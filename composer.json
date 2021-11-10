@@ -80,6 +80,7 @@
     "require-dev": {
         "maglnet/composer-require-checker": "^3.5",
         "phpspec/phpspec": "^7.1",
+        "phpstan/phpstan": "^1.1",
         "phpunit/phpunit": "^9.5",
         "roave/security-advisories": "dev-latest",
         "symfony/browser-kit": "5.3.*",
