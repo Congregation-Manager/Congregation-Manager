@@ -106,8 +106,8 @@
             "@auto-scripts"
         ],
         "test": {
-            "ecs": "vendor/bin/ecs check src spec tests",
-            "phpstan": "vendor/bin/phpstan analyse src tests spec -l max",
+            "ecs": "vendor/bin/ecs check src tests spec features/bootstrap",
+            "phpstan": "vendor/bin/phpstan analyse src tests spec features/bootstrap -l max",
             "psalm": "vendor/bin/psalm",
             "spec": "vendor/bin/phpspec run",
             "unit": "vendor/bin/phpunit",
