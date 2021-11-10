@@ -107,6 +107,7 @@
         "test": {
             "ecs": "vendor/bin/ecs check src spec tests",
             "phpstan": "vendor/bin/phpstan analyse src tests spec -l max",
+            "psalm": "vendor/bin/psalm",
             "spec": "vendor/bin/phpspec run",
             "unit": "vendor/bin/phpunit",
             "composer-require-checker": "vendor/bin/composer-require-checker check"
