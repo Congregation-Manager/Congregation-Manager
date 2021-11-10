@@ -104,7 +104,8 @@
         ],
         "test": {
             "ecs": "vendor/bin/ecs check src spec tests",
-            "spec": "vendor/bin/phpspec run"
+            "spec": "vendor/bin/phpspec run",
+            "composer-require-checker": "vendor/bin/composer-require-checker check"
         }
     },
     "type": "project"
