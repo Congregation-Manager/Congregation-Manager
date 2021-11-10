@@ -38,6 +38,9 @@ jobs:
                 name: Run easy coding standard
                 run: vendor/bin/ecs check src spec tests
             -
+                name: Analyse code with phpstan
+                run: vendor/bin/phpstan analyse src tests spec -l max
+            -
                 name: Check composer direct dependencies
                 run: vendor/bin/composer-require-checker check
             -
