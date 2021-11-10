@@ -41,6 +41,9 @@ jobs:
                 name: Analyse code with phpstan
                 run: vendor/bin/phpstan analyse src tests spec -l max
             -
+                name: Analyse code with psalm
+                run: vendor/bin/psalm
+            -
                 name: Check composer direct dependencies
                 run: vendor/bin/composer-require-checker check
             -
