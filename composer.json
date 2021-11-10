@@ -99,7 +99,7 @@
             "@auto-scripts"
         ],
         "test": {
-            "ecs": "vendor/bin/ecs check src tests"
+            "ecs": "vendor/bin/ecs check src spec tests"
         }
     },
     "type": "project"
