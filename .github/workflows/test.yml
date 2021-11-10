@@ -38,6 +38,9 @@ jobs:
                 name: Run easy coding standard
                 run: vendor/bin/ecs check src spec tests
             -
+                name: Check composer direct dependencies
+                run: vendor/bin/composer-require-checker check
+            -
                 name: Create Database
                 run: |
                     mkdir -p data
