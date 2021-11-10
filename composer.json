@@ -90,7 +90,8 @@
         "symfony/phpunit-bridge": "^5.3",
         "symfony/stopwatch": "5.3.*",
         "symfony/web-profiler-bundle": "5.3.*",
-        "symplify/easy-coding-standard": "^9.4"
+        "symplify/easy-coding-standard": "^9.4",
+        "vimeo/psalm": "^4.12"
     },
     "scripts": {
         "auto-scripts": {
