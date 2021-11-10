@@ -91,6 +91,9 @@
     "laminas/laminas-code": {
         "version": "4.4.3"
     },
+    "maglnet/composer-require-checker": {
+        "version": "3.5.1"
+    },
     "monolog/monolog": {
         "version": "2.3.5"
     },
@@ -603,5 +606,11 @@
     },
     "webmozart/assert": {
         "version": "1.10.0"
+    },
+    "webmozart/glob": {
+        "version": "4.4.0"
+    },
+    "webmozart/path-util": {
+        "version": "2.3.0"
     }
 }
