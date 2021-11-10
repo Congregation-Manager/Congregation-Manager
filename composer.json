@@ -103,7 +103,8 @@
             "@auto-scripts"
         ],
         "test": {
-            "ecs": "vendor/bin/ecs check src spec tests"
+            "ecs": "vendor/bin/ecs check src spec tests",
+            "spec": "vendor/bin/phpspec run"
         }
     },
     "type": "project"
