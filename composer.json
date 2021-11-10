@@ -111,6 +111,7 @@
             "psalm": "vendor/bin/psalm",
             "spec": "vendor/bin/phpspec run",
             "unit": "vendor/bin/phpunit",
+            "behat": "vendor/bin/behat",
             "composer-require-checker": "vendor/bin/composer-require-checker check"
         }
     },
