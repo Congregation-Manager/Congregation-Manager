@@ -95,7 +95,10 @@
         ],
         "post-update-cmd": [
             "@auto-scripts"
-        ]
+        ],
+        "test": {
+            "ecs": "vendor/bin/ecs check src tests"
+        }
     },
     "type": "project"
 }
