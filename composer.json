@@ -78,6 +78,7 @@
         "twig/twig": "^2.12|^3.0"
     },
     "require-dev": {
+        "behat/behat": "^3.10",
         "maglnet/composer-require-checker": "^3.5",
         "phpspec/phpspec": "^7.1",
         "phpstan/phpstan": "^1.1",
