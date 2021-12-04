@@ -44,8 +44,11 @@ jobs:
                 name: Analyse code with psalm
                 run: vendor/bin/psalm
             -
+                name: Download composer-require-checker
+                run: curl -o composer-require-checker.phar https://github.com/maglnet/ComposerRequireChecker/releases/latest/download/composer-require-checker.phar
+            -
                 name: Check composer direct dependencies
-                run: vendor/bin/composer-require-checker check
+                run: php composer-require-checker.phar check composer.json
             -
                 name: Create Database
                 run: |
