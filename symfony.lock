@@ -106,9 +106,6 @@
     "doctrine/sql-formatter": {
         "version": "1.1.2"
     },
-    "egulias/email-validator": {
-        "version": "3.1.2"
-    },
     "felixfbecker/advanced-json-rpc": {
         "version": "v3.2.1"
     },
@@ -270,9 +267,6 @@
             "config/packages/sensio_framework_extra.yaml"
         ]
     },
-    "symfony/asset": {
-        "version": "v5.3.4"
-    },
     "symfony/browser-kit": {
         "version": "v5.3.4"
     },
@@ -379,9 +373,6 @@
             "src/Controller/.gitignore"
         ]
     },
-    "symfony/http-client": {
-        "version": "v5.3.10"
-    },
     "symfony/http-client-contracts": {
         "version": "v2.4.0"
     },
@@ -393,18 +384,6 @@
     },
     "symfony/intl": {
         "version": "v5.3.8"
-    },
-    "symfony/mailer": {
-        "version": "5.3",
-        "recipe": {
-            "repo": "github.com/symfony/recipes",
-            "branch": "master",
-            "version": "4.3",
-            "ref": "bbfc7e27257d3a3f12a6fb0a42540a42d9623a37"
-        },
-        "files": [
-            "config/packages/mailer.yaml"
-        ]
     },
     "symfony/maker-bundle": {
         "version": "1.34",
@@ -434,18 +413,6 @@
             "config/packages/prod/monolog.yaml",
             "config/packages/prod/deprecations.yaml",
             "config/packages/dev/monolog.yaml"
-        ]
-    },
-    "symfony/notifier": {
-        "version": "5.3",
-        "recipe": {
-            "repo": "github.com/symfony/recipes",
-            "branch": "master",
-            "version": "5.0",
-            "ref": "c31585e252b32fe0e1f30b1f256af553f4a06eb9"
-        },
-        "files": [
-            "config/packages/notifier.yaml"
         ]
     },
     "symfony/options-resolver": {
