@@ -37,6 +37,21 @@ composer install # For development
 Usage
 -----
 
+You can install or develop on this project using both:
+
+ - Local runtime environment: in this setup the webserver and PHP is installed and run directly on your machine. Only services (Postgres, MailHog, etc...) run with Docker containers. This setup is especially useful on macOS where using a Docker runtime results in bad performances due to filesystem sync latency with bind mounted volumes.
+ - Docker runtime environment: in this setup both the runtime and services are run on Docker containers.
+
+### Local runtime environment
+
+You have to specify your personal configuration in the .env.local file:
+
+    echo 'DATABASE_URL="postgresql://app_user:ChangeMe@127.0.0.1:5432/app_%kernel.environment%?serverVersion=13&charset=utf8' >> .env.local
+
+and in the .env.local.test file for the test environment:
+
+    echo 'DATABASE_URL="postgresql://app_user:ChangeMe@127.0.0.1:5432/app_%kernel.environment%?serverVersion=13&charset=utf8' >> .env.test.local
+
 There's no need to configure anything to run the application. If you have
 [installed Symfony][symfony_cli] binary, run this command:
 

@@ -1,9 +1,12 @@
 version: '3'
 
 services:
-
-###> doctrine/doctrine-bundle ###
-  database:
-    ports:
-      - "5432"
-###< doctrine/doctrine-bundle ###
+    ###> doctrine/doctrine-bundle ###
+    database:
+        environment:
+            POSTGRES_DB: congregation-manager
+            POSTGRES_PASSWORD: wT5.d45eFfDdwep%4rg
+            POSTGRES_USER: app
+        ports:
+            - "15432:5432"
+    ###< doctrine/doctrine-bundle ###
