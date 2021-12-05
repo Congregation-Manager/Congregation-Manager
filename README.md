@@ -44,13 +44,19 @@ You can install or develop on this project using both:
 
 ### Local runtime environment
 
-You have to specify your personal configuration in the .env.local file:
+First, you have to configure your env variables by creating the .env.local file.
 
-    echo 'DATABASE_URL="postgresql://app_user:ChangeMe@127.0.0.1:5432/app_%kernel.environment%?serverVersion=13&charset=utf8' >> .env.local
+    touch .env.local
 
-and in the .env.local.test file for the test environment:
+Now you need to copy the local runtime docker-compose.yml example.
 
-    echo 'DATABASE_URL="postgresql://app_user:ChangeMe@127.0.0.1:5432/app_%kernel.environment%?serverVersion=13&charset=utf8' >> .env.test.local
+    cp docker.compose.override.local-runtime-sample.yml docker.compose.override.yml
+
+Then change the env variables with the previous one.
+
+Run the docker services.
+
+    docker-composer up -d
 
 There's no need to configure anything to run the application. If you have
 [installed Symfony][symfony_cli] binary, run this command:
@@ -65,8 +71,14 @@ If you don't have the Symfony binary installed, run `php -S localhost:8000 -t pu
 to use the built-in PHP web server or [configure a web server][web_server] like Nginx or
 Apache to run the application.
 
+### Docker runtime environment
+
+[WIP][#4]
+
 Tests
 -----
+
+Create your test environment database by creating a custom .env.test.local.
 
 Execute this command to run tests:
 
@@ -78,3 +90,4 @@ composer run test
 [requirements]: https://symfony.com/doc/current/reference/requirements.html
 [symfony_cli]: https://symfony.com/download
 [web_server]: https://symfony.com/doc/current/cookbook/configuration/web_server_configuration.html
+[#4]: https://github.com/lruozzi9/congregation-manager/issues/4
