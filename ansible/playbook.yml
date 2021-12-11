@@ -1,0 +1,234 @@
+---
+-
+    hosts: vb
+
+    vars:
+        server_name: congregation-manager.org
+        project_root_dir: /var/www/congregation-manager
+        project_var_dir: "{{ project_root_dir }}/var"
+        project_console_path: "{{ project_root_dir }}/bin/console"
+        apache_web_dir: "{{ project_root_dir }}/public"
+
+    vars_prompt:
+        -
+            name: project_env
+            prompt: "Enter the environment for your project app (prod|dev|test)"
+            default: prod
+            private: no
+
+    environment:
+        APP_ENV: "{{ project_env|lower }}"
+
+    pre_tasks:
+        -
+            name: Convert entered project environment to lowercase
+            set_fact:
+                project_env: "{{ project_env|lower }}"
+            tags:
+                - always
+
+    tasks:
+        -
+            ping: ~
+
+        -
+            name: Update APT package manager repositories cache
+            become: true
+            apt:
+                update_cache: yes
+            changed_when: false
+
+        -
+            name: Upgrade installed packages
+            become: true
+            apt:
+                upgrade: safe # This option requires "aptitude", be sure that is installed on your distro or add it via apt before these command
+
+        -
+            name: Install cowsay - it's probably important
+            become: true
+            apt:
+                name: cowsay
+
+        -
+            name: Install low-level utilities
+            become: true
+            apt:
+                name:
+                    - zip
+                    - unzip
+                state: latest
+
+        -
+            name: Install Git VCS
+            become: true
+            apt:
+                name: git
+                state: latest
+
+        -
+            name: Install Apache web server
+            become: true
+            apt:
+                name:
+                    - apache2
+                    - libapache2-mod-fcgid
+                state: latest
+            notify: Restart Apache
+
+        -
+            name: Add Project config template to the Apache available sites
+            become: true
+            template:
+                src: templates/apache.conf
+                dest: "/etc/apache2/sites-available/{{ server_name }}.conf"
+            notify: Restart Apache
+
+        -
+            name: Enable Project config template from Apache available sites
+            become: true
+            file:
+                src: "/etc/apache2/sites-available/{{ server_name }}.conf"
+                dest: "/etc/apache2/sites-enabled/{{ server_name }}.conf"
+                state: link
+            notify: Restart Apache
+
+        -
+            name: Add enabled Apache site to /etc/hosts
+            become: true
+            lineinfile:
+                dest: /etc/hosts
+                regexp: "{{ server_name }}"
+                line: "127.0.0.1 {{ server_name }}"
+
+        -
+            name: Install PostgreSQL DB server
+            become: true
+            apt:
+                name:
+                    - postgresql
+                    - postgresql-contrib
+                state: latest
+
+        -
+            name: Add PHP PPA repository
+            become: true
+            apt_repository:
+                repo: ppa:ondrej/php
+
+        -
+            name: Install PHP packages
+            become: true
+            apt:
+                name:
+                    - php8.0
+                    - php8.0-fpm
+                    - php8.0-xml
+                    - php8.0-pgsql
+                    - php8.0-sqlite3 #TODO: Remove this
+                    - php8.0-mbstring #TODO: Remove this
+                state: latest
+            notify: Restart PHP-FPM
+
+        -
+            name: Set date.timezone for CLI
+            become: true
+            lineinfile:
+                path: /etc/php/8.0/cli/php.ini
+                regexp: "date.timezone ="
+                line: "date.timezone = Europe/Rome"
+            notify: Restart PHP-FPM
+
+        -
+            name: Set date.timezone for FPM
+            become: true
+            lineinfile:
+                path: /etc/php/8.0/fpm/php.ini
+                regexp: "date.timezone ="
+                line: "date.timezone = Europe/Rome"
+
+        -
+            name: Download Composer
+            script: scripts/install_composer.sh
+            tags:
+                - deploy
+            changed_when: false
+
+        -
+            name: Move Composer globally
+            become: true
+            command: mv composer.phar /usr/local/bin/composer
+            changed_when: false
+            tags:
+                - deploy
+
+        -
+            name: Set permissions on Composer
+            become: true
+            file:
+                path: /usr/local/bin/composer
+                mode: "a+x"
+            tags:
+                - deploy
+
+        -
+            name: Create project directory and set its permissions
+            become: true
+            file:
+                path: "{{ project_root_dir }}"
+                state: directory
+                owner: "{{ ansible_user }}"
+                group: "{{ ansible_user }}"
+                recurse: yes
+            tags:
+                - deploy
+
+        -
+            name: Checkout Git repository
+            git:
+                repo: https://github.com/symfony/demo
+                dest: "{{ project_root_dir }}"
+                force: yes
+            changed_when: false
+            tags:
+                - deploy
+
+        -
+            name: Install Composer's dependencies
+            composer:
+                working_dir: "{{ project_root_dir }}"
+                no_dev: "{{ 'yes' if ('prod' == project_env) else 'no' }}"
+            tags:
+                - deploy
+
+        -
+            name: Fix var directory permissions
+            file:
+                path: "{{ project_var_dir }}"
+                state: directory
+                mode: 0777
+                recurse: yes
+            changed_when: false
+            tags:
+                - deploy
+        -
+            name: Clear cache
+            command: '{{ project_console_path }} cache:clear --env={{ project_env }}'
+            tags:
+                - deploy
+            changed_when: false
+
+    handlers:
+        -
+            name: Restart Apache
+            become: true
+            service:
+                name: apache2
+                state: restarted
+
+        -
+            name: Restart PHP-FPM
+            become: true
+            service:
+                name: php8.0-fpm
+                state: restarted
