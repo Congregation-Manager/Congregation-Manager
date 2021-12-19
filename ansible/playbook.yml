@@ -3,7 +3,6 @@
     hosts: vb
 
     vars:
-        server_name: congregation-manager.org
         project_root_dir: /var/www/congregation-manager
         project_var_dir: "{{ project_root_dir }}/var"
         project_console_path: "{{ project_root_dir }}/bin/console"
@@ -26,11 +25,6 @@
                 project_env: "{{ project_env|lower }}"
             tags:
                 - always
-
-    tasks:
-        -
-            ping: ~
-
         -
             name: Update APT package manager repositories cache
             become: true
@@ -43,6 +37,13 @@
             become: true
             apt:
                 upgrade: safe # This option requires "aptitude", be sure that is installed on your distro or add it via apt before these command
+
+    roles:
+        - apache
+
+    tasks:
+        -
+            ping: ~
 
         -
             name: Install cowsay - it's probably important
@@ -65,41 +66,6 @@
             apt:
                 name: git
                 state: latest
-
-        -
-            name: Install Apache web server
-            become: true
-            apt:
-                name:
-                    - apache2
-                    - libapache2-mod-fcgid
-                state: latest
-            notify: Restart Apache
-
-        -
-            name: Add Project config template to the Apache available sites
-            become: true
-            template:
-                src: templates/apache.conf
-                dest: "/etc/apache2/sites-available/{{ server_name }}.conf"
-            notify: Restart Apache
-
-        -
-            name: Enable Project config template from Apache available sites
-            become: true
-            file:
-                src: "/etc/apache2/sites-available/{{ server_name }}.conf"
-                dest: "/etc/apache2/sites-enabled/{{ server_name }}.conf"
-                state: link
-            notify: Restart Apache
-
-        -
-            name: Add enabled Apache site to /etc/hosts
-            become: true
-            lineinfile:
-                dest: /etc/hosts
-                regexp: "{{ server_name }}"
-                line: "127.0.0.1 {{ server_name }}"
 
         -
             name: Install PostgreSQL DB server
@@ -226,13 +192,6 @@
             import_tasks: ./includes/project-bootstrap.yml
 
     handlers:
-        -
-            name: Restart Apache
-            become: true
-            service:
-                name: apache2
-                state: restarted
-
         -
             name: Restart PHP-FPM
             become: true

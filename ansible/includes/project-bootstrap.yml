@@ -4,7 +4,7 @@
     composer:
         working_dir: "{{ project_root_dir }}"
         no_dev: "{{ 'yes' if ('prod' == project_env) else 'no' }}"
-    when: code_changed | bool
+    # when: code_changed | bool
     tags:
         - deploy
 
