@@ -19,6 +19,15 @@
     tags:
         - deploy
 
+-
+    name: Set Symfony secret in parameters.yml
+    lineinfile:
+        dest: "{{ project_root_dir }}/app/config/parameters.yml"
+        regexp: "^    secret:"
+        line: "    secret: {{ project_secret }}"
+    tags:
+        - deploy
+
 # Symfony console commands
 #-
 #    name: Create DB if not exists
