@@ -148,17 +148,25 @@
                 line: "date.timezone = Europe/Rome"
 
         -
-            name: Download Composer
-            script: scripts/install_composer.sh
+            name: Check for Composer
+            stat:
+                path: /usr/local/bin/composer
+            register: composer_stat
             tags:
                 - deploy
-            changed_when: false
+
+        -
+            name: Download Composer
+            script: scripts/install_composer.sh
+            when: not composer_stat.stat.exists
+            tags:
+                - deploy
 
         -
             name: Move Composer globally
             become: true
             command: mv composer.phar /usr/local/bin/composer
-            changed_when: false
+            when: not composer_stat.stat.exists
             tags:
                 - deploy
 
@@ -168,6 +176,18 @@
             file:
                 path: /usr/local/bin/composer
                 mode: "a+x"
+            when: not composer_stat.stat.exists
+            tags:
+                - deploy
+
+        -
+            name: Make sure composer is at its latest version
+            composer:
+                working_dir: "{{ project_root_dir }}"
+                command: self-update
+            when: composer_stat.stat.exists
+            register: composer_self_update
+            changed_when: "not composer_self_update.stdout|regex_search('You are already using the latest available Composer')"
             tags:
                 - deploy
 
@@ -190,33 +210,20 @@
                 dest: "{{ project_root_dir }}"
                 force: yes
             changed_when: false
+            register: repo_code
             tags:
                 - deploy
 
         -
-            name: Install Composer's dependencies
-            composer:
-                working_dir: "{{ project_root_dir }}"
-                no_dev: "{{ 'yes' if ('prod' == project_env) else 'no' }}"
+            name: Register code_changed variable
+            set_fact:
+                code_changed: repo_code.changed
             tags:
                 - deploy
 
+        # Bootstrap project app
         -
-            name: Fix var directory permissions
-            file:
-                path: "{{ project_var_dir }}"
-                state: directory
-                mode: 0777
-                recurse: yes
-            changed_when: false
-            tags:
-                - deploy
-        -
-            name: Clear cache
-            command: '{{ project_console_path }} cache:clear --env={{ project_env }}'
-            tags:
-                - deploy
-            changed_when: false
+            import_tasks: ./includes/project-bootstrap.yml
 
     handlers:
         -
