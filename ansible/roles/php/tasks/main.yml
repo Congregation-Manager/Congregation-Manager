@@ -1,0 +1,35 @@
+---
+-
+    name: Add PHP PPA repository
+    become: true
+    apt_repository:
+        repo: ppa:ondrej/php
+
+-
+    name: Install PHP packages
+    become: true
+    apt:
+        name:
+            - php8.0
+            - php8.0-fpm
+            - php8.0-xml
+            - php8.0-pgsql
+        state: latest
+    notify: Restart PHP-FPM
+
+-
+    name: Set date.timezone for CLI
+    become: true
+    lineinfile:
+        path: /etc/php/8.0/cli/php.ini
+        regexp: "date.timezone ="
+        line: "date.timezone = Europe/Rome"
+    notify: Restart PHP-FPM
+
+-
+    name: Set date.timezone for FPM
+    become: true
+    lineinfile:
+        path: /etc/php/8.0/fpm/php.ini
+        regexp: "date.timezone ="
+        line: "date.timezone = Europe/Rome"

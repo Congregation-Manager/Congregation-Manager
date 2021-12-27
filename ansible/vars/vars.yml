@@ -1,6 +1,19 @@
 ---
-project_root_dir: /var/www/congregation-manager
+host_server_name: "congregation-manager"
+project_root_dir: "/var/www/congregation-manager"
 project_var_dir: "{{ project_root_dir }}/var"
 project_console_path: "{{ project_root_dir }}/bin/console"
 apache_web_dir: "{{ project_root_dir }}/public"
 project_secret: "{{ vault_project_secret }}"
+
+postgresql_databases:
+    - name: congregation-manager
+postgresql_users:
+    - name: app
+      password: "{{ vault_database_password }}"
+postgres_users_no_log: false
+postgresql_hba_entries:
+    - {type: local, database: all, user: postgres, auth_method: peer}
+    - {type: local, database: all, user: all, auth_method: md5}
+    - {type: host, database: all, user: all, address: '127.0.0.1/32', auth_method: "{{ postgresql_auth_method }}"}
+    - {type: host, database: all, user: all, address: '::1/128', auth_method: "{{ postgresql_auth_method }}"}

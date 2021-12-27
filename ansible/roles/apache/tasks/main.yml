@@ -10,6 +10,26 @@
     notify: Restart Apache
 
 -
+    name: Set right permissions for Apache log directory
+    become: true
+    file:
+        path: "/var/log/apache2"
+        state: directory
+        recurse: yes
+        mode: '744'
+
+-
+    name: Add logs directory for project
+    become: true
+    file:
+        path: "/var/log/apache2/{{ server_name }}"
+        state: directory
+        owner: "{{ ansible_user }}"
+        group: "{{ ansible_user }}"
+        recurse: yes
+        mode: '744'
+
+-
     name: Add Project config template to the Apache available sites
     become: true
     template:
