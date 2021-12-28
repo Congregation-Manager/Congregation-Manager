@@ -1,28 +1,12 @@
 ---
 -
-    hosts: webserver
+    hosts: servers
 
     vars_files:
         - ./vars/vault.yml
         - ./vars/vars.yml
 
-    vars_prompt:
-        -
-            name: project_env
-            prompt: "Enter the environment for your project app (prod|dev|test)"
-            default: prod
-            private: no
-
-    environment:
-        APP_ENV: "{{ project_env|lower }}"
-
     pre_tasks:
-        -
-            name: Convert entered project environment to lowercase
-            set_fact:
-                project_env: "{{ project_env|lower }}"
-            tags:
-                - always
         -
             name: Update APT package manager repositories cache
             become: true
@@ -36,20 +20,59 @@
             apt:
                 upgrade: safe # This option requires "aptitude", be sure that is installed on your distro or add it via apt before these command
 
-    roles:
-        - apache
-        - php
-
     tasks:
         -
             ping: ~
 
-        -
-            name: Install cowsay - it's probably important
-            become: true
-            apt:
-                name: cowsay
+    tags:
+        - always
 
+# Install and Set Up DataBase
+-
+    hosts: dbservers
+
+    become: yes
+
+    vars_files:
+        - ./vars/vault.yml
+        - ./vars/vars.yml
+
+    roles:
+        - geerlingguy.postgresql
+
+    tags:
+        - database
+
+
+# Install and Set Up Apache and PHP
+-
+    hosts: webservers
+
+    become: yes
+
+    vars_files:
+        - ./vars/vault.yml
+        - ./vars/vars.yml
+
+    roles:
+        - geerlingguy.php-versions
+        - geerlingguy.php
+        - geerlingguy.apache-php-fpm
+        - geerlingguy.php-pgsql
+        - geerlingguy.apache
+
+    tags:
+        - web
+
+
+-
+    hosts: webservers
+
+    vars_files:
+        - ./vars/vault.yml
+        - ./vars/vars.yml
+
+    tasks:
         -
             name: Install low-level utilities
             become: true
@@ -57,59 +80,8 @@
                 name:
                     - zip
                     - unzip
+                    - git
                 state: latest
-
-        -
-            name: Install Git VCS
-            become: true
-            apt:
-                name: git
-                state: latest
-
-        -
-            name: Check for Composer
-            stat:
-                path: /usr/local/bin/composer
-            register: composer_stat
-            tags:
-                - deploy
-
-        -
-            name: Download Composer
-            script: scripts/install_composer.sh
-            when: not composer_stat.stat.exists
-            tags:
-                - deploy
-
-        -
-            name: Move Composer globally
-            become: true
-            command: mv composer.phar /usr/local/bin/composer
-            when: not composer_stat.stat.exists
-            tags:
-                - deploy
-
-        -
-            name: Set permissions on Composer
-            become: true
-            file:
-                path: /usr/local/bin/composer
-                mode: "a+x"
-            when: not composer_stat.stat.exists
-            tags:
-                - deploy
-
-        -
-            name: Make sure composer is at its latest version
-            become: true
-            composer:
-                working_dir: "{{ project_root_dir }}"
-                command: self-update
-            when: composer_stat.stat.exists
-            register: composer_self_update
-            changed_when: "not composer_self_update.stdout|regex_search('You are already using the latest available Composer')"
-            tags:
-                - deploy
 
         -
             name: Create project directory and set its permissions
@@ -120,40 +92,23 @@
                 owner: "{{ ansible_user }}"
                 group: "{{ ansible_user }}"
                 recurse: yes
-            tags:
-                - deploy
+
+        # Install Composer
+        -
+            import_tasks: ./includes/install-composer.yml
+
+        # Install Symfony CLI
+        -
+            import_tasks: ./includes/install-symfony-cli.yml
 
         -
-            name: Checkout Git repository
-            git:
-                repo: https://github.com/symfony/demo
-                dest: "{{ project_root_dir }}"
-                force: yes
+            name: Fix var directory permissions
+            file:
+                path: "{{ project_var_dir }}"
+                state: directory
+                mode: 0777
+                recurse: yes
             changed_when: false
-            register: repo_code
-            tags:
-                - deploy
 
-        -
-            name: Register code_changed variable
-            set_fact:
-                code_changed: repo_code.changed
-            tags:
-                - deploy
-
-        # Bootstrap project app
-        -
-            import_tasks: ./includes/project-bootstrap.yml
-
-# Install and Set Up DataBase
--
-    hosts: database
-
-    become: yes
-
-    vars_files:
-        - ./vars/vault.yml
-        - ./vars/vars.yml
-
-    roles:
-        - geerlingguy.postgresql
+    tags:
+        - web

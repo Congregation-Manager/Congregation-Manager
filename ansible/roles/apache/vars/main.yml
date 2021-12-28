@@ -1,2 +1,0 @@
----
-server_name: "{{ host_server_name|default('congregation-manager.org') }}"
