@@ -19,3 +19,5 @@
 ###> docker <###
 docker-compose.override.yml
 ###> docker <###
+
+ansible/vars/.password
