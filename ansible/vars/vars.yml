@@ -10,7 +10,7 @@ postgresql_databases:
 postgresql_users:
     - name: app
       password: "{{ vault_database_password }}"
-postgres_users_no_log: false
+postgres_users_no_log: true
 postgresql_hba_entries:
     - {type: local, database: all, user: postgres, auth_method: peer}
     - {type: local, database: all, user: all, auth_method: md5}
