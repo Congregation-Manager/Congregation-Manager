@@ -34,9 +34,9 @@ jobs:
             -
                 name: Check composer direct dependencies
                 run: composer-require-checker check
-            #-
-            #    name: Check if dependencies are used
-            #    run: composer-unused
+            -
+                name: Check if dependencies are used
+                run: composer-unused
             -
                 name: Run easy coding standard
                 run: vendor/bin/ecs check src tests spec features/bootstrap
