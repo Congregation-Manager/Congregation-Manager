@@ -79,7 +79,6 @@
     },
     "require-dev": {
         "behat/behat": "^3.10",
-        "deployer/dist": "^6.8",
         "easycorp/easy-deploy-bundle": "^1.0",
         "phpspec/phpspec": "^7.1",
         "phpstan/phpstan": "^1.1",

@@ -1,4 +1,0 @@
-# Deploy
-
-[Return to Summary main page](README.md)
-
