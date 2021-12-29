@@ -10,7 +10,7 @@ return new class extends DefaultDeployer {
             ->server('vagrant@congregation-manager.org')
             ->deployDir('/var/www/congregation-manager')
             ->repositoryUrl('git@github.com:lruozzi9/congregation-manager.git')
-            ->repositoryBranch('issue-3')
+            ->repositoryBranch('master')
             ->sharedFilesAndDirs(['.env.local', 'var/log']);
     }
 
