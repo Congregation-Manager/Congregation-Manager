@@ -79,6 +79,7 @@
     },
     "require-dev": {
         "behat/behat": "^3.10",
+        "deployer/dist": "^6.8",
         "phpspec/phpspec": "^7.1",
         "phpstan/phpstan": "^1.1",
         "phpunit/phpunit": "^9.5",
