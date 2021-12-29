@@ -1,6 +1,6 @@
 ---
-host_server_name: "congregation-manager"
-project_root_dir: "/var/www/congregation-manager/release"
+host_server_name: "congregation-manager.org"
+project_root_dir: "/var/www/congregation-manager/current"
 project_var_dir: "{{ project_root_dir }}/var"
 project_console_path: "{{ project_root_dir }}/bin/console"
 apache_web_dir: "{{ project_root_dir }}/public"
