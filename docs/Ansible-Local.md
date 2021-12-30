@@ -57,6 +57,7 @@ As anticipated earlier, the project's playbook makes use of several Ansible's th
     ansible-galaxy install geerlingguy.apache-php-fpm
     ansible-galaxy install geerlingguy.php-pgsql
     ansible-galaxy install geerlingguy.apache
+    ansible-galaxy install geerlingguy.nodejs
 
 ### Run provision
 

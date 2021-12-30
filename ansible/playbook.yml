@@ -65,6 +65,22 @@
         - web
 
 
+# Install and Set Up Node JS
+-
+    hosts: webservers
+
+    become: yes
+
+    vars_files:
+        - ./vars/vars.yml
+
+    roles:
+        - geerlingguy.nodejs
+
+    tags:
+        - web
+
+
 -
     hosts: webservers
 
@@ -84,10 +100,22 @@
                 state: latest
 
         -
+            name: Remove package cmdtest which confilicts with yarn
+            become: true
+            apt:
+                name: cmdtest
+                state: absent
+
+        -
+            name: Install yarn
+            become: true
+            command: npm install -g yarn
+
+        -
             name: Create project directory and set its permissions
             become: true
             file:
-                path: "{{ project_root_dir }}"
+                path: "{{ project_versions_root }}"
                 state: directory
                 owner: "{{ ansible_user }}"
                 group: "{{ ansible_user }}"
@@ -100,15 +128,6 @@
         # Install Symfony CLI
         -
             import_tasks: ./includes/install-symfony-cli.yml
-
-        -
-            name: Fix var directory permissions
-            file:
-                path: "{{ project_var_dir }}"
-                state: directory
-                mode: 0777
-                recurse: yes
-            changed_when: false
 
     tags:
         - web

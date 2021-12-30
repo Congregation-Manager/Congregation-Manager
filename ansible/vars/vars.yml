@@ -1,6 +1,7 @@
 ---
 host_server_name: "congregation-manager.org"
-project_root_dir: "/var/www/congregation-manager/current"
+project_versions_root: "/var/www/congregation-manager"
+project_root_dir: "{{ project_versions_root }}/current"
 project_var_dir: "{{ project_root_dir }}/var"
 project_console_path: "{{ project_root_dir }}/bin/console"
 apache_web_dir: "{{ project_root_dir }}/public"
@@ -32,6 +33,9 @@ php_packages:
     - php{{ php_version }}-xml
     - php{{ php_version }}-opcache
     - php{{ php_version }}-apcu
+    - php{{ php_version }}-mbstring
 php_pgsql_package: php{{ php_version }}-pgsql
 php_enable_php_fpm: true
 php_date_timezone: "Europe/Rome"
+
+nodejs_version: "17.x"
