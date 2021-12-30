@@ -3,6 +3,11 @@ name: Tests
 on:
     push: ~
     pull_request: ~
+    release:
+        types: [ created ]
+    schedule:
+        -
+            cron: "0 6 * * 7"
 
 jobs:
     tests:
