@@ -9,6 +9,8 @@ use Symfony\Component\Security\Core\User\UserInterface;
 
 class AdminUser extends AggregateRoot implements UserInterface, PasswordAuthenticatedUserInterface
 {
+    private ?int $id = null;
+
     private ?string $password = null;
 
     /** @var string[] */
@@ -17,6 +19,16 @@ class AdminUser extends AggregateRoot implements UserInterface, PasswordAuthenti
     public function __construct(
         private string $email
     ) {
+    }
+
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
+
+    public function setId(?int $id): void
+    {
+        $this->id = $id;
     }
 
     public function getEmail(): string
