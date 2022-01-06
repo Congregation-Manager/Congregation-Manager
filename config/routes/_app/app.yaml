@@ -1,0 +1,17 @@
+app_homepage:
+    path: /
+    methods: [GET]
+
+app_login:
+    path: /login
+    methods: [GET]
+    defaults:
+        _controller: app.controller.app_user_login:index
+
+app_login_check:
+    path: /login-check
+    methods: [POST]
+
+app_logout:
+    path: /logout
+    methods: GET

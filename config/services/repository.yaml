@@ -5,7 +5,9 @@ services:
         public: false
 
     app.repository.app_user:
-        class: App\Infrastructure\User\Repository\AppUserRepository
+        alias: 'App\Infrastructure\User\Repository\AppUserRepository'
+
+    App\Infrastructure\User\Repository\AppUserRepository:
         arguments:
             - '@doctrine'
         tags:

@@ -1,4 +1,5 @@
 parameters:
+    app_admin.path_name: 'admin'
 
 imports:
     - { resource: "services/*.yaml" }

@@ -1,0 +1,13 @@
+services:
+    _defaults:
+        autowire: false
+        autoconfigure: false
+        public: false
+
+    app.controller.app_user_login:
+        class: App\Infrastructure\User\Controller\AppUserLoginController
+        arguments:
+            - '@security.authentication_utils'
+        calls:
+            - [setContainer, ['@service_container']]
+        tags: [ 'controller.service_arguments' ]

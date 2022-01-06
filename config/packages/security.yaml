@@ -1,3 +1,6 @@
+parameters:
+    security.admin_regex: "^/%app_admin.path_name%"
+
 security:
     enable_authenticator_manager: true
     # https://symfony.com/doc/current/security.html#registering-the-user-hashing-passwords
@@ -16,9 +19,17 @@ security:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
-        main:
+        app:
             lazy: true
             provider: app_user_provider
+            form_login:
+                login_path: app_login
+                check_path: app_login_check
+                enable_csrf: true
+            logout:
+                path: app_logout
+                target: app_homepage
+
 
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#the-firewall
@@ -29,5 +40,12 @@ security:
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
-        # - { path: ^/admin, roles: ROLE_ADMIN }
-        # - { path: ^/profile, roles: ROLE_USER }
+        - { path: "/", role: PUBLIC_ACCESS }
+
+        - { path: "%security.admin_regex%/login", role: PUBLIC_ACCESS }
+        - { path: "^/login", role: PUBLIC_ACCESS }
+
+        - { path: '%security.admin_regex%/users', roles: ROLE_SUPER_ADMIN }
+        - { path: "%security.admin_regex%", role: ROLE_ADMIN }
+
+        - { path: "/.*", role: ROLE_USER }
