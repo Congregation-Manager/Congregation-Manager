@@ -2,6 +2,7 @@
 
 namespace App\Infrastructure\User\Repository;
 
+use App\Domain\User\Model\AdminUser;
 use App\Domain\User\Model\AppUser;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
@@ -10,6 +11,8 @@ use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\PasswordUpgraderInterface;
 
 /**
+ * @extends ServiceEntityRepository<AppUser>
+ *
  * @method AppUser|null find($id, $lockMode = null, $lockVersion = null)
  * @method AppUser|null findOneBy(array $criteria, array $orderBy = null)
  * @psalm-method list<AppUser> findAll()

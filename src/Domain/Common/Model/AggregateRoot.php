@@ -8,14 +8,17 @@ use App\Domain\User\ValueObject\UserId;
 
 abstract class AggregateRoot
 {
-    private AggregateRootId $id;
+    private ?int $id = null;
 
-    public function getId(): AggregateRootId
+    public function getId(): ?int
     {
         return $this->id;
     }
 
-    abstract public function setId(int $id): void;
+    public function setId(?int $id): void
+    {
+        $this->id = $id;
+    }
 
     public function __toString(): string
     {

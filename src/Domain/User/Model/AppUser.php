@@ -9,20 +9,14 @@ use Symfony\Component\Security\Core\User\UserInterface;
 
 class AppUser extends AggregateRoot implements UserInterface, PasswordAuthenticatedUserInterface
 {
-    private ?int $id = null;
-
     private ?string $password = null;
 
+    /** @var string[] */
     private array $roles = ['ROLE_USER'];
 
     public function __construct(
         private string $email
     ) {
-    }
-
-    public function setId(int $id): void
-    {
-        $this->id = $id;
     }
 
     public function getEmail(): string
@@ -50,6 +44,9 @@ class AppUser extends AggregateRoot implements UserInterface, PasswordAuthentica
         return $this->roles;
     }
 
+    /**
+     * @param string[] $roles
+     */
     public function setRoles(array $roles): void
     {
         $this->roles = $roles;

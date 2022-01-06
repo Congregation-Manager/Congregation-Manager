@@ -18,11 +18,11 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Stopwatch\Stopwatch;
-use Webmozart\Assert\Assert;
 use function Symfony\Component\String\u;
 
 final class AddUserCommand extends Command
 {
+    /** @psalm-suppress PropertyNotSetInConstructor */
     private SymfonyStyle $io;
 
     public function __construct(
@@ -71,19 +71,23 @@ final class AddUserCommand extends Command
         ]);
 
         // Ask for the email if it's not defined
+        /** @var ?string $email */
         $email = $input->getArgument('email');
         if (null !== $email) {
             $this->io->text(' > <info>Email</info>: ' . $email);
         } else {
+            /** @var string $email */
             $email = $this->io->ask('Email', null, [$this->validator, 'validateEmail']);
             $input->setArgument('email', $email);
         }
 
         // Ask for the password if it's not defined
+        /** @var ?string $password */
         $password = $input->getArgument('password');
         if (null !== $password) {
             $this->io->text(' > <info>Password</info>: ' . u('*')->repeat(u($password)->length()));
         } else {
+            /** @var string $password */
             $password = $this->io->askHidden('Password (your type will be hidden)', [$this->validator, 'validatePassword']);
             $input->setArgument('password', $password);
         }
@@ -105,6 +109,12 @@ final class AddUserCommand extends Command
 
         // make sure to validate the user data is correct
         $this->validateUserData($email, $plainPassword, $isAdmin);
+        if ($email === null) {
+            return Command::FAILURE;
+        }
+        if ($plainPassword === null) {
+            return Command::FAILURE;
+        }
 
         // create the user and hash its password
         if ($isAdmin) {
@@ -143,7 +153,7 @@ final class AddUserCommand extends Command
         }
 
         if (null !== $existingEmail) {
-            throw new RuntimeException(sprintf('There is already a user registered with the "%s" email.', $email));
+            throw new RuntimeException(sprintf('There is already a user registered with the "%s" email.', (string) $email));
         }
     }
 

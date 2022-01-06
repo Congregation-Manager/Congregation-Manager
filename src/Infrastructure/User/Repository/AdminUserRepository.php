@@ -10,6 +10,8 @@ use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\PasswordUpgraderInterface;
 
 /**
+ * @extends ServiceEntityRepository<AdminUser>
+ *
  * @method AdminUser|null find($id, $lockMode = null, $lockVersion = null)
  * @method AdminUser|null findOneBy(array $criteria, array $orderBy = null)
  * @psalm-method list<AdminUser> findAll()
