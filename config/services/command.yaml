@@ -1,0 +1,15 @@
+services:
+    _defaults:
+        autowire: false
+        autoconfigure: false
+        public: false
+
+    app.command.create_user:
+        class: App\Infrastructure\User\Command\AddUserCommand
+        arguments:
+            - '@doctrine.orm.entity_manager'
+            - '@security.user_password_hasher'
+            - '@app.utils.validator'
+            - '@app.repository.app_user'
+        tags:
+            - { name: 'console.command', command: 'app:add-user', description: 'Creates users and stores them in the database' }

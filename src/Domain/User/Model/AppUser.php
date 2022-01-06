@@ -3,19 +3,26 @@
 namespace App\Domain\User\Model;
 
 use App\Domain\Common\Model\AggregateRoot;
-use App\Domain\User\ValueObject\UserId;
+use App\Domain\Common\ValueObject\AggregateRootId;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 class AppUser extends AggregateRoot implements UserInterface, PasswordAuthenticatedUserInterface
 {
+    private ?int $id = null;
+
+    private ?string $password = null;
+
+    private array $roles = ['ROLE_USER'];
+
     public function __construct(
-        private UserId $id,
-        private string $email,
-        private string $password,
-        private array $roles = ['ROLE_USER'],
+        private string $email
     ) {
-        parent::__construct($id);
+    }
+
+    public function setId(int $id): void
+    {
+        $this->id = $id;
     }
 
     public function getEmail(): string
@@ -48,12 +55,12 @@ class AppUser extends AggregateRoot implements UserInterface, PasswordAuthentica
         $this->roles = $roles;
     }
 
-    public function getPassword(): string
+    public function getPassword(): ?string
     {
         return $this->password;
     }
 
-    public function setPassword(string $password): void
+    public function setPassword(?string $password): void
     {
         $this->password = $password;
     }

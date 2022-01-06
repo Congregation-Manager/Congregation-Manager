@@ -1,0 +1,8 @@
+services:
+    _defaults:
+        autowire: false
+        autoconfigure: false
+        public: false
+
+    app.utils.validator:
+        class: App\Infrastructure\Common\Utils\Validator\Validator
