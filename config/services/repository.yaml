@@ -1,0 +1,13 @@
+services:
+    _defaults:
+        autowire: false
+        autoconfigure: false
+        public: false
+
+    app.repository.app_user:
+        class: App\Infrastructure\User\Repository\AppUserRepository
+        arguments:
+            - '@doctrine'
+        tags:
+            - { name: doctrine.repository_service }
+
