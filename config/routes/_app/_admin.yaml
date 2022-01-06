@@ -1,0 +1,3 @@
+_admin:
+    resource: "_admin/*.yaml"
+    prefix: /admin

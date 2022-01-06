@@ -13,3 +13,11 @@ services:
         tags:
             - { name: doctrine.repository_service }
 
+    app.repository.admin_user:
+        alias: 'App\Infrastructure\User\Repository\AdminUserRepository'
+
+    App\Infrastructure\User\Repository\AdminUserRepository:
+        arguments:
+            - '@doctrine'
+        tags:
+            - { name: doctrine.repository_service }

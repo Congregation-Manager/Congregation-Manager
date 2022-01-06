@@ -3,22 +3,40 @@ parameters:
 
 security:
     enable_authenticator_manager: true
-    # https://symfony.com/doc/current/security.html#registering-the-user-hashing-passwords
     password_hashers:
         Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface: 'auto'
         App\Entity\User\AppUser:
             algorithm: auto
 
-    # https://symfony.com/doc/current/security.html#loading-the-user-the-user-provider
+    role_hierarchy:
+        ROLE_SUPER_ADMIN: [ ROLE_ADMIN ]
+
     providers:
         app_user_provider:
             entity:
                 class: App\Domain\User\Model\AppUser
                 property: email
+        admin_user_provider:
+            entity:
+                class: App\Domain\User\Model\AdminUser
+                property: email
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
+        admin:
+            lazy: true
+            provider: admin_user_provider
+            pattern: "%security.admin_regex%"
+            form_login:
+                login_path: admin_login
+                check_path: admin_login_check
+                enable_csrf: true
+                default_target_path: admin_dashboard
+            logout:
+                path: admin_logout
+                target: app_homepage
+                invalidate_session: false
         app:
             lazy: true
             provider: app_user_provider
@@ -26,21 +44,16 @@ security:
                 login_path: app_login
                 check_path: app_login_check
                 enable_csrf: true
+                default_target_path: app_dashboard
             logout:
                 path: app_logout
                 target: app_homepage
-
-
-            # activate different ways to authenticate
-            # https://symfony.com/doc/current/security.html#the-firewall
-
-            # https://symfony.com/doc/current/security/impersonating_user.html
-            # switch_user: true
+                invalidate_session: false
 
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
-        - { path: "/", role: PUBLIC_ACCESS }
+        - { path: "^/$", role: PUBLIC_ACCESS }
 
         - { path: "%security.admin_regex%/login", role: PUBLIC_ACCESS }
         - { path: "^/login", role: PUBLIC_ACCESS }

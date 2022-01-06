@@ -3,9 +3,10 @@
 
 namespace App\Infrastructure\User\Command;
 
+use App\Domain\User\Model\AdminUser;
 use App\Domain\User\Model\AppUser;
-use App\Domain\User\ValueObject\UserId;
 use App\Infrastructure\Common\Utils\Validator\Validator;
+use App\Infrastructure\User\Repository\AdminUserRepository;
 use App\Infrastructure\User\Repository\AppUserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Console\Command\Command;
@@ -28,7 +29,8 @@ final class AddUserCommand extends Command
         private EntityManagerInterface $entityManager,
         private UserPasswordHasherInterface $passwordHasher,
         private Validator $validator,
-        private AppUserRepository $users
+        private AppUserRepository $appUserRepository,
+        private AdminUserRepository $adminUserRepository
     ) {
         parent::__construct();
     }
@@ -42,6 +44,8 @@ final class AddUserCommand extends Command
             ->setHelp($this->getCommandHelp())
             ->addArgument('email', InputArgument::OPTIONAL, 'The email of the new user')
             ->addArgument('password', InputArgument::OPTIONAL, 'The plain password of the new user')
+            ->addOption('admin', 'a', InputOption::VALUE_NONE, 'If set, the user is created as an administrator')
+            ->addOption('super-admin', 'sa', InputOption::VALUE_NONE, 'If set, the user is created as a super administrator')
         ;
     }
 
@@ -94,13 +98,21 @@ final class AddUserCommand extends Command
         $email = $input->getArgument('email');
         /** @var ?string $plainPassword */
         $plainPassword = $input->getArgument('password');
+        /** @var bool $isSuperAdmin */
+        $isSuperAdmin = $input->getOption('super-admin');
+        /** @var bool $isAdmin */
+        $isAdmin = $isSuperAdmin === true ? true : $input->getOption('admin');
 
         // make sure to validate the user data is correct
-        $this->validateUserData($email, $plainPassword);
+        $this->validateUserData($email, $plainPassword, $isAdmin);
 
         // create the user and hash its password
-        $user = new AppUser($email);
-
+        if ($isAdmin) {
+            $user = new AdminUser($email);
+            $user->setRoles([$isSuperAdmin ? 'ROLE_SUPER_ADMIN' : 'ROLE_ADMIN']);
+        } else {
+            $user = new AppUser($email);
+        }
         $hashedPassword = $this->passwordHasher->hashPassword($user, $plainPassword);
         $user->setPassword($hashedPassword);
 
@@ -111,20 +123,24 @@ final class AddUserCommand extends Command
 
         $event = $stopwatch->stop('add-user-command');
         if ($output->isVerbose()) {
-            $this->io->comment(sprintf('New user database id: %d / Elapsed time: %.2f ms / Consumed memory: %.2f MB', (string) $user->getId(), $event->getDuration(), $event->getMemory() / (1024 ** 2)));
+            $this->io->comment(sprintf('New user with role %s database id: %d / Elapsed time: %.2f ms / Consumed memory: %.2f MB', implode(', ', $user->getRoles()), (string) $user->getId(), $event->getDuration(), $event->getMemory() / (1024 ** 2)));
         }
 
         return Command::SUCCESS;
     }
 
-    private function validateUserData(?string $email, ?string $plainPassword): void
+    private function validateUserData(?string $email, ?string $plainPassword, bool $isAdmin): void
     {
         // validate password and email if is not this input means interactive.
         $this->validator->validateEmail($email);
         $this->validator->validatePassword($plainPassword);
 
         // check if a user with the same email already exists.
-        $existingEmail = $this->users->findOneBy(['email' => $email]);
+        if ($isAdmin) {
+            $existingEmail = $this->adminUserRepository->findOneBy(['email' => $email]);
+        } else {
+            $existingEmail = $this->appUserRepository->findOneBy(['email' => $email]);
+        }
 
         if (null !== $existingEmail) {
             throw new RuntimeException(sprintf('There is already a user registered with the "%s" email.', $email));
@@ -137,6 +153,12 @@ final class AddUserCommand extends Command
             The <info>%command.name%</info> command creates new users and saves them in the database:
 
               <info>php %command.full_name%</info> <comment>email password</comment>
+
+            By default the command creates regular users. To create administrator users, add the <comment>--admin</comment> option:
+              <info>php %command.full_name%</info> email password<comment>--admin</comment>
+              
+            To create super administrator users, add the <comment>--super-admin</comment> option:
+              <info>php %command.full_name%</info> email password<comment>--super-admin</comment>
 
             If you omit any of the two required arguments, the command will ask you to
             provide the missing values:

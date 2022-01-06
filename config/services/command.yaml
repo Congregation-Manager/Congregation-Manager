@@ -11,5 +11,6 @@ services:
             - '@security.user_password_hasher'
             - '@app.utils.validator'
             - '@app.repository.app_user'
+            - '@app.repository.admin_user'
         tags:
             - { name: 'console.command', command: 'app:add-user', description: 'Creates users and stores them in the database' }

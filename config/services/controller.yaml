@@ -4,10 +4,36 @@ services:
         autoconfigure: false
         public: false
 
+    app.controller.homepage:
+        class: App\Infrastructure\Common\Controller\HomePageController
+        calls:
+            - [setContainer, ['@service_container']]
+        tags: [ 'controller.service_arguments' ]
+
     app.controller.app_user_login:
         class: App\Infrastructure\User\Controller\AppUserLoginController
         arguments:
             - '@security.authentication_utils'
+        calls:
+            - [setContainer, ['@service_container']]
+        tags: [ 'controller.service_arguments' ]
+
+    app.controller.app_dashboard:
+        class: App\Infrastructure\Common\Controller\AppDashboardController
+        calls:
+            - [setContainer, ['@service_container']]
+        tags: [ 'controller.service_arguments' ]
+
+    app.controller.admin_user_login:
+        class: App\Infrastructure\User\Controller\AdminUserLoginController
+        arguments:
+            - '@security.authentication_utils'
+        calls:
+            - [setContainer, ['@service_container']]
+        tags: [ 'controller.service_arguments' ]
+
+    app.controller.admin_dashboard:
+        class: App\Infrastructure\Common\Controller\AdminDashboardController
         calls:
             - [setContainer, ['@service_container']]
         tags: [ 'controller.service_arguments' ]
