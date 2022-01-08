@@ -1,4 +1,5 @@
 app:
+    meta_title: 'Gestione Congregazione'
     homepage:
         meta_title: 'Gestione Congregazione'
         title: 'Gestione Congregazione'
@@ -22,3 +23,7 @@ app:
     label:
         email_address: 'Indirizzo email'
         password: 'Password'
+    nav:
+        title: 'Gestione Congregazione'
+        toggle: 'Chiudi navigazione'
+        logout: 'Esci'

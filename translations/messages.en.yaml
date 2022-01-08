@@ -1,4 +1,5 @@
 app:
+    meta_title: 'Congregation Manager'
     homepage:
         meta_title: 'Congregation Manager'
         title: 'Congregation Manager'
@@ -20,3 +21,7 @@ app:
         password: 'Password'
         remember_me: 'Remember me on this device'
         signin: 'Sign in'
+    nav:
+        title: 'Congregation Manager'
+        toggle: 'Toggle navigation'
+        logout: 'Sign out'
