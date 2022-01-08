@@ -5,3 +5,13 @@ app:
         subtitle: 'Gestione Congregazione è uno strumento online per gestire e semplificare i flussi all''interno di una congregazione.'
         login: 'Sei già iscritto? Accedi!'
         register: 'Non hai accesso? Richiedi un accesso per la tua congregazione.'
+    login:
+        meta_title: 'Accedi'
+        title: 'Per favore, inserisci le tue credenziali'
+        email_placeholder: 'Indirizzo email'
+        password_placeholder: 'Password'
+        remember_me: 'Ricordami su questo dispositivo'
+        signin: 'Accedi'
+    label:
+        email_address: 'Indirizzo email'
+        password: 'Password'
