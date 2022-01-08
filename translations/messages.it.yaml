@@ -1,0 +1,7 @@
+app:
+    homepage:
+        meta_title: 'Gestione Congregazione'
+        title: 'Gestione Congregazione'
+        subtitle: 'Gestione Congregazione è uno strumento online per gestire e semplificare i flussi all''interno di una congregazione.'
+        login: 'Sei già iscritto? Accedi!'
+        register: 'Non hai accesso? Richiedi un accesso per la tua congregazione.'
