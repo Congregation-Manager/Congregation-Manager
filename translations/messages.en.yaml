@@ -5,13 +5,18 @@ app:
         subtitle: 'Congregation Management is an online tool to manage and simplify flows within a congregation.'
         login: 'Are you already a member? Log in!'
         register: 'Don''t have access? Request access for your congregation.'
-    login:
+    app_login:
         meta_title: 'Log in'
         title: 'Please, sign in'
         email_placeholder: 'Email address'
         password_placeholder: 'Password'
-        remember_me: 'Remember me on this device'
-        signin: 'Sign in'
+    admin_login:
+        meta_title: 'Log in'
+        title: 'Please, sign in'
+        email_placeholder: 'Email address'
+        password_placeholder: 'Password'
     label:
         email_address: 'Email address'
         password: 'Password'
+        remember_me: 'Remember me on this device'
+        signin: 'Sign in'
