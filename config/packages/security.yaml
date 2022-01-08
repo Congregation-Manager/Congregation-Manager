@@ -37,6 +37,11 @@ security:
                 path: admin_logout
                 target: app_homepage
                 invalidate_session: false
+            remember_me:
+                secret: '%kernel.secret%'
+                name: ADMIN_REMEMBER_ME
+                lifetime: 2629746
+                path: '/%app_admin.path_name%'
         app:
             lazy: true
             provider: app_user_provider
@@ -49,6 +54,10 @@ security:
                 path: app_logout
                 target: app_homepage
                 invalidate_session: false
+            remember_me:
+                secret: '%kernel.secret%'
+                name: REMEMBERME
+                path: /
 
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
