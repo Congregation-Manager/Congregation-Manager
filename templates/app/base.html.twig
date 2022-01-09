@@ -3,9 +3,9 @@
 {% block body %}
     <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-3">
         <div class="container">
-            <a class="navbar-brand" href="{{ path('app_dashboard') }}">{{ 'app.nav.title'|trans }}</a>
+            <a class="navbar-brand" href="{{ path('app_dashboard') }}">{{ 'app.app_nav.title'|trans }}</a>
 
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#top-navbar" aria-controls="top-navbar" aria-expanded="false" aria-label="{{ 'app.nav.toggle'|trans }}">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#top-navbar" aria-controls="top-navbar" aria-expanded="false" aria-label="{{ 'app.app_nav.toggle'|trans }}">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
@@ -19,7 +19,7 @@
                     </a>
                     <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end" aria-labelledby="dropdown-user">
                         <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" href="{{ path('app_logout') }}">{{ 'app.nav.logout'|trans }}</a></li>
+                        <li><a class="dropdown-item" href="{{ path('app_logout') }}">{{ 'app.app_nav.logout'|trans }}</a></li>
                     </ul>
                 </div>
             </div>

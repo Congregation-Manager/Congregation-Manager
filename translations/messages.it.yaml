@@ -23,7 +23,12 @@ app:
     label:
         email_address: 'Indirizzo email'
         password: 'Password'
-    nav:
+        dashboard: 'Cruscotto'
+    app_nav:
+        title: 'Gestione Congregazione'
+        toggle: 'Chiudi navigazione'
+        logout: 'Esci'
+    admin_nav:
         title: 'Gestione Congregazione'
         toggle: 'Chiudi navigazione'
         logout: 'Esci'
