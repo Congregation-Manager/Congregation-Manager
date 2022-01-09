@@ -1,5 +1,7 @@
 parameters:
     app_admin.path_name: 'admin'
+    default_locale: 'en'
+    supported_locales: en|it
 
 imports:
     - { resource: "services/*.yaml" }

@@ -1,19 +1,5 @@
-admin_login:
-    path: /login
-    methods: [GET]
-    defaults:
-        _controller: app.controller.admin_user_login:index
-
-admin_login_check:
-    path: admin/login-check
-    methods: [POST]
-
-admin_logout:
-    path: /logout
-    methods: GET
-
-admin_dashboard:
+admin_index:
     path: /
     methods: [GET]
     defaults:
-        _controller: app.controller.admin_dashboard:index
+        _controller: app.controller.locale:resolveForAdmin

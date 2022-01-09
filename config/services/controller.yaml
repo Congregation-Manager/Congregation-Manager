@@ -4,6 +4,14 @@ services:
         autoconfigure: false
         public: false
 
+    app.controller.locale:
+        class: App\Infrastructure\Common\Controller\LocaleController
+        arguments:
+            - '%supported_locales%'
+        calls:
+            - [setContainer, ['@service_container']]
+        tags: [ 'controller.service_arguments' ]
+
     app.controller.homepage:
         class: App\Infrastructure\Common\Controller\HomePageController
         calls:
