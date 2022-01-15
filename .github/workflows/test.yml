@@ -13,7 +13,7 @@ jobs:
         runs-on: ubuntu-latest
         timeout-minutes: 10
         env:
-            APP_ENV: test
+            APP_ENV: prod
             DATABASE_URL: sqlite:///%kernel.project_dir%/var/database.sqlite
         steps:
             -
@@ -58,7 +58,10 @@ jobs:
                 run: php bin/console doctrine:database:create
             -
                 name: Update Database Schema
-                run: php bin/console doctrine:schema:update --force
+                run: php bin/console doctrine:migrations:migrate
+            -
+                name: Validate database schema
+                run: php bin/console doctrine:schema:validate
             -
                 name: Execute tests (Unit and Feature tests) via PHPUnit
                 run: vendor/bin/phpunit
@@ -71,4 +74,12 @@ jobs:
                     mkdir -p var/behat
             -
                 name: Execute behavior tests via behat
-                run: vendor/bin/behat
+                run: vendor/bin/behat --colors --strict --no-interaction -f progress
+            -
+                name: Upload Behat logs
+                uses: actions/upload-artifact@v2
+                if: failure()
+                with:
+                    name: "Behat logs"
+                    path: data/behat/
+                    if-no-files-found: ignore
