@@ -1,0 +1,11 @@
+services:
+    _defaults:
+        autowire: false
+        autoconfigure: false
+        public: true
+
+    test.behat.context.ui.account:
+        class: App\Tests\Behat\Context\Ui\App\AccountContext
+        arguments:
+            - '@test.behat.page.app.login'
+            - '@test.behat.page.app.dashboard'

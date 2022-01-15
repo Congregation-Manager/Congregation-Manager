@@ -1,0 +1,10 @@
+services:
+    _defaults:
+        autowire: false
+        autoconfigure: false
+        public: true
+
+    test.behat.context.hook.doctrine:
+        class: App\Tests\Behat\Context\Hook\DoctrineORMContext
+        arguments:
+            - '@doctrine.orm.entity_manager'

@@ -1,0 +1,11 @@
+services:
+    _defaults:
+        autowire: false
+        autoconfigure: false
+        public: true
+
+    test.behat.context.setup.account:
+        class: App\Tests\Behat\Context\Setup\AccountContext
+        arguments:
+            - '@doctrine.orm.entity_manager'
+            - '@security.password_hasher'

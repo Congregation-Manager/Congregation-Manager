@@ -1,0 +1,7 @@
+imports:
+    - { resource: "../tests/Behat/Resources/config/services/**/*.yaml" }
+
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true

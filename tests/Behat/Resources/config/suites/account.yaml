@@ -1,0 +1,10 @@
+default:
+    suites:
+        ui_account_features:
+            contexts:
+                - test.behat.context.hook.doctrine
+
+                - test.behat.context.setup.account
+                - test.behat.context.ui.account
+            filters:
+                tags: "@account && @ui"
