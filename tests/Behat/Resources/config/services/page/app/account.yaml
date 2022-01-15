@@ -18,3 +18,11 @@ services:
     test.behat.page.app.dashboard:
         class: App\Tests\Behat\Page\App\DashboardPage
         parent: test.behat.page
+
+    test.behat.page.admin.login:
+        class: App\Tests\Behat\Page\Admin\LoginPage
+        parent: test.behat.page
+
+    test.behat.page.admin.dashboard:
+        class: App\Tests\Behat\Page\Admin\DashboardPage
+        parent: test.behat.page

@@ -2,6 +2,7 @@
 
 namespace App\Tests\Behat\Context\Setup;
 
+use App\Domain\User\Model\AdminUser;
 use App\Domain\User\Model\AppUser;
 use Behat\Behat\Context\Context;
 use Doctrine\ORM\EntityManagerInterface;
@@ -20,10 +21,22 @@ final class AccountContext implements Context
      */
     public function thereIsAnAppUserWithEmailAndPassword(string $email, string $password): void
     {
-        $user = new AppUser($email);
-        $user->setPassword($this->userPasswordHasher->hashPassword($user, $password));
+        $appUser = new AppUser($email);
+        $appUser->setPassword($this->userPasswordHasher->hashPassword($appUser, $password));
 
-        $this->entityManager->persist($user);
+        $this->entityManager->persist($appUser);
+        $this->entityManager->flush();
+    }
+
+    /**
+     * @Given there is an admin user with email :email and password :password
+     */
+    public function thereIsAnAdminUserWithEmailAndPassword(string $email, string $password): void
+    {
+        $adminUser = new AdminUser($email);
+        $adminUser->setPassword($this->userPasswordHasher->hashPassword($adminUser, $password));
+
+        $this->entityManager->persist($adminUser);
         $this->entityManager->flush();
     }
 }

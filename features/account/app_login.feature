@@ -1,7 +1,7 @@
 @account
 Feature: Signing in to the app
   In order to operates for my congregation
-  As a Visitor
+  As a Brother
   I want to be able to log in to the app
 
   @app @ui

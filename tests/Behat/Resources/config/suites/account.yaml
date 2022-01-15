@@ -1,10 +1,19 @@
 default:
     suites:
-        ui_account_features:
+        ui_app_account_features:
             contexts:
                 - test.behat.context.hook.doctrine
 
                 - test.behat.context.setup.account
-                - test.behat.context.ui.account
+                - test.behat.context.ui.app.account
             filters:
-                tags: "@account && @ui"
+                tags: "@account && @ui && @app"
+
+        ui_admin_account_features:
+            contexts:
+                - test.behat.context.hook.doctrine
+
+                - test.behat.context.setup.account
+                - test.behat.context.ui.admin.account
+            filters:
+                tags: "@account && @ui && @admin"
