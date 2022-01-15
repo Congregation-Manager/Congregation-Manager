@@ -14,7 +14,23 @@ jobs:
         timeout-minutes: 10
         env:
             APP_ENV: prod
-            DATABASE_URL: sqlite:///%kernel.project_dir%/var/database.sqlite
+            DATABASE_URL: postgresql://postgres:postgres@localhost:5432/congregation-manager?serverVersion=14&charset=utf8
+
+        services:
+            postgres:
+                image: postgres:14
+                env:
+                    POSTGRES_PASSWORD: postgres
+                    POSTGRES_USER: postgres
+                    POSTGRES_DB: congregation-manager
+                # Set health checks to wait until postgres has started
+                options: >-
+                    --health-cmd pg_isready
+                    --health-interval 10s
+                    --health-timeout 5s
+                    --health-retries 5
+                ports:
+                    - 5432:5432
         steps:
             -
                 uses: shivammathur/setup-php@v2
@@ -53,9 +69,6 @@ jobs:
             -
                 name: Analyse code with psalm
                 run: vendor/bin/psalm
-            -
-                name: Create Database
-                run: php bin/console doctrine:database:create
             -
                 name: Update Database Schema
                 run: php bin/console doctrine:migrations:migrate
