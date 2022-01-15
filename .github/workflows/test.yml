@@ -13,7 +13,7 @@ jobs:
         runs-on: ubuntu-latest
         timeout-minutes: 10
         env:
-            APP_ENV: prod
+            APP_ENV: test
             DATABASE_URL: postgresql://postgres:postgres@localhost:5432/congregation-manager?serverVersion=14&charset=utf8
 
         services:
