@@ -1,0 +1,10 @@
+@account
+Feature: Securing the app
+  In order to prevent access to private data
+  As a Visitor
+  I want to be prevented to access to app without authentication
+
+  @app @ui
+  Scenario: Preventing access to app if not authenticated
+    When I try to open dashboard
+    Then I should be redirected to the login page

@@ -1,8 +1,8 @@
 @account
-Feature: Signing in to the admin
+Feature: Signing in to the administration
   In order to manage subscribed congregations
   As Administrator
-  I want to be able to log in to the admin
+  I want to be able to log in to the administration
 
   @admin @ui
   Scenario: Sign in with email and password

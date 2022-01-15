@@ -55,4 +55,20 @@ final class AccountContext implements Context
         $this->dashboardPage->verify();
         Assert::true($this->dashboardPage->hasLogoutButton());
     }
+
+    /**
+     * @When /^I try to open dashboard$/
+     */
+    public function iTryToOpenDashboard(): void
+    {
+        $this->dashboardPage->tryToOpen();
+    }
+
+    /**
+     * @Then /^I should be redirected to the login page$/
+     */
+    public function iShouldBeRedirectedToTheLoginPage(): void
+    {
+        $this->loginPage->verify();
+    }
 }
