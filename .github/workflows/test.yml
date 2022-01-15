@@ -46,7 +46,7 @@ jobs:
                 run: vendor/bin/ecs check src tests spec
             -
                 name: Analyse code with phpstan
-                run: vendor/bin/phpstan analyse src tests spec features/bootstrap -l max
+                run: vendor/bin/phpstan analyse src -l max
             -
                 name: Analyse code with psalm
                 run: vendor/bin/psalm

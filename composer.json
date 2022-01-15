@@ -119,7 +119,7 @@
         ],
         "test": {
             "ecs": "vendor/bin/ecs check src tests spec",
-            "phpstan": "vendor/bin/phpstan analyse src tests spec features/bootstrap -l max",
+            "phpstan": "vendor/bin/phpstan analyse src -l max",
             "psalm": "vendor/bin/psalm",
             "spec": "vendor/bin/phpspec run",
             "unit": "vendor/bin/phpunit",
