@@ -55,9 +55,10 @@ jobs:
                 run: vendor/bin/psalm
             -
                 name: Create Database
-                run: |
-                    mkdir -p var
-                    touch var/database.sqlite
+                run: php bin/console doctrine:database:create
+            -
+                name: Update Database Schema
+                run: php bin/console doctrine:schema:update --force
             -
                 name: Execute tests (Unit and Feature tests) via PHPUnit
                 run: vendor/bin/phpunit
