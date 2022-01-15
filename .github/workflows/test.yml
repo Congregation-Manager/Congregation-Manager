@@ -43,7 +43,7 @@ jobs:
             #    run: composer-unused
             -
                 name: Run easy coding standard
-                run: vendor/bin/ecs check src tests spec features/bootstrap
+                run: vendor/bin/ecs check src tests spec
             -
                 name: Analyse code with phpstan
                 run: vendor/bin/phpstan analyse src tests spec features/bootstrap -l max
