@@ -12,6 +12,9 @@ jobs:
     tests:
         runs-on: ubuntu-latest
         timeout-minutes: 10
+        env:
+            APP_ENV: test
+            DATABASE_URL: sqlite:///%kernel.project_dir%/var/database.sqlite
         steps:
             -
                 uses: shivammathur/setup-php@v2
@@ -57,8 +60,6 @@ jobs:
                     touch var/database.sqlite
             -
                 name: Execute tests (Unit and Feature tests) via PHPUnit
-                env:
-                    DATABASE_URL: sqlite:///%kernel.project_dir%/var/database.sqlite
                 run: vendor/bin/phpunit
             -
                 name: Execute specification tests via PHPSpec
