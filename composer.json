@@ -60,6 +60,7 @@
         "symfony/http-foundation": "^5.4",
         "symfony/http-kernel": "^5.4",
         "symfony/intl": "^5.4",
+        "symfony/mailer": "^5.4 || ^6.0",
         "symfony/mime": "^5.4",
         "symfony/monolog-bundle": "^3.1",
         "symfony/password-hasher": "^5.4",
@@ -81,6 +82,7 @@
         "symfony/web-link": "^5.4",
         "symfony/webpack-encore-bundle": "^1.13",
         "symfony/yaml": "^5.4",
+        "symfonycasts/reset-password-bundle": "^1.11",
         "twig/extra-bundle": "^2.12|^3.0",
         "twig/twig": "^2.12|^3.0"
     },
