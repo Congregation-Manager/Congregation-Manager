@@ -28,7 +28,7 @@
     "extra": {
         "symfony": {
             "allow-contrib": false,
-            "require": "^5.4"
+            "require": "^5.4 || ^6.0"
         }
     },
     "license": "proprietary",
@@ -117,15 +117,20 @@
         "post-update-cmd": [
             "@auto-scripts"
         ],
-        "test": {
-            "ecs": "vendor/bin/ecs check src tests spec",
-            "phpstan": "vendor/bin/phpstan analyse src -l max",
-            "psalm": "vendor/bin/psalm",
-            "spec": "vendor/bin/phpspec run",
-            "unit": "vendor/bin/phpunit",
-            "behat": "vendor/bin/behat",
-            "composer-require-checker": "vendor/bin/composer-require-checker check"
-        }
+        "ecs": "vendor/bin/ecs check src tests spec",
+        "phpstan": "vendor/bin/phpstan analyse src -l max",
+        "psalm": "vendor/bin/psalm",
+        "spec": "vendor/bin/phpspec run",
+        "unit": "vendor/bin/phpunit",
+        "behat": "vendor/bin/behat",
+        "test": [
+            "@ecs",
+            "@phpstan",
+            "@psalm",
+            "@spec",
+            "@unit",
+            "@behat"
+        ]
     },
     "type": "project"
 }
