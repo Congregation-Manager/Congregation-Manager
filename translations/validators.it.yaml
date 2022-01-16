@@ -1,0 +1,8 @@
+app:
+    email:
+        not_blank: 'Per favore, inserisci la tua email.'
+        email: 'Questo valore non è un indirizzo email valido.'
+    password:
+        not_blank: 'Per favore, inserisci la nuova password.'
+        length: 'La tua password deve essere di almeno {{ limit }} caratteri.'
+        must_match: 'I campi Nuova Password e Ripeti Password devono combaciare.'

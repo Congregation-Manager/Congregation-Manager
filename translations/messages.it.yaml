@@ -11,19 +11,20 @@ app:
         title: 'Per favore, inserisci le tue credenziali'
         email_placeholder: 'Indirizzo email'
         password_placeholder: 'Password'
-        remember_me: 'Ricordami su questo dispositivo'
-        signin: 'Accedi'
+        forgot_password: 'Hai dimenticato la password? Clicca qui per recuperarla.'
     admin_login:
         meta_title: 'Accedi'
         title: 'Per favore, inserisci le tue credenziali'
         email_placeholder: 'Indirizzo email'
         password_placeholder: 'Password'
-        remember_me: 'Ricordami su questo dispositivo'
-        signin: 'Accedi'
     label:
         email_address: 'Indirizzo email'
         password: 'Password'
         dashboard: 'Cruscotto'
+        remember_me: 'Ricordami su questo dispositivo'
+        signin: 'Accedi'
+        new_password: 'Nuova Password'
+        repeat_password: 'Ripeti Password'
     app_nav:
         title: 'Gestione Congregazione'
         toggle: 'Chiudi navigazione'
@@ -32,3 +33,23 @@ app:
         title: 'Gestione Congregazione'
         toggle: 'Chiudi navigazione'
         logout: 'Esci'
+    app_forgot_password:
+        meta_title: 'Recupera la tua Password'
+        title: 'Recupera la tua Password'
+        signin: 'Hai già le credenziali? Clicca qui per accedere'
+        submit: 'Invia email per il recupero della password'
+        help: 'Inserisci il tuo indirizzo email e ti invieremo un link per reimpostare la password.'
+    app_check_email:
+        meta_title: 'Email Recupero Password Inviata'
+        instructions: 'Se esiste un account con l''indirizzo inserito, una email contenente un link che puoi usare per recuperare la password ti è stata inviata. Questo link scadrà in {expiresIn}.'
+        try_again: 'Se non hai ricevuto l''email per favore, verifica all''interno della cartella spam oppure <a href="{link}">prova ancora</a>.'
+    app_reset_password:
+        meta_title: 'Recupera la tua password'
+        title: 'Recupera la tua password'
+        submit: 'Recupera password'
+    email:
+        reset_password:
+            hello: 'Ciao!'
+            intro: 'Per recuperare la tua password per favore, clicca sul seguente collegamento:'
+            expire: 'Il collegamento scadrà fra {expireIn}.'
+            greetings: 'Saluti!'

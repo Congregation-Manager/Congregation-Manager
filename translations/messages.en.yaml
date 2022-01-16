@@ -11,6 +11,7 @@ app:
         title: 'Please, sign in'
         email_placeholder: 'Email address'
         password_placeholder: 'Password'
+        forgot_password: 'Did you forget your password? Click here to reset it.'
     admin_login:
         meta_title: 'Log in'
         title: 'Please, sign in'
@@ -22,6 +23,8 @@ app:
         remember_me: 'Remember me on this device'
         signin: 'Sign in'
         dashboard: 'Dashboard'
+        new_password: 'New Password'
+        repeat_password: 'Repeat Password'
     app_nav:
         title: 'Congregation Manager'
         toggle: 'Toggle navigation'
@@ -30,3 +33,23 @@ app:
         title: 'Congregation Manager'
         toggle: 'Toggle navigation'
         logout: 'Sign out'
+    app_forgot_password:
+        meta_title: 'Reset your password'
+        title: 'Reset your password'
+        signin: 'Do you already have your credentials? Click here to sign in'
+        submit: 'Send password reset email'
+        help: 'Enter your email address and we will send you a link to reset your password.'
+    app_check_email:
+        meta_title: 'Password Reset Email Sent'
+        instructions: 'If an account matching your email exists, then an email was just sent that contains a link that you can use to reset your password. This link will expire in {expiresIn}.'
+        try_again: 'If you don''t receive an email please check your spam folder or <a href="{link}">try again</a>.'
+    app_reset_password:
+        meta_title: 'Reset your password'
+        title: 'Reset your password'
+        submit: 'Reset password'
+    email:
+        reset_password:
+            hello: 'Hi!'
+            intro: 'To reset your password, please visit the following link'
+            expire: 'This link will expire in {expireIn}.'
+            greetings: 'Cheers!'

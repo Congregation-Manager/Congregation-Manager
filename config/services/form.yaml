@@ -1,0 +1,15 @@
+services:
+    _defaults:
+        autowire: false
+        autoconfigure: false
+        public: false
+
+    app.form.type.reset_password_request:
+        class: App\Infrastructure\User\Form\ResetPasswordRequestFormType
+        tags:
+            - { name: 'form.type' }
+
+    app.form.type.change_password:
+        class: App\Infrastructure\User\Form\ChangePasswordFormType
+        tags:
+            - { name: 'form.type' }
