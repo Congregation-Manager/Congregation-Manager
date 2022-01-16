@@ -102,10 +102,8 @@ final class AddUserCommand extends Command
         $email = $input->getArgument('email');
         /** @var ?string $plainPassword */
         $plainPassword = $input->getArgument('password');
-        /** @var bool $isSuperAdmin */
-        $isSuperAdmin = $input->getOption('super-admin');
-        /** @var bool $isAdmin */
-        $isAdmin = $isSuperAdmin === true ? true : $input->getOption('admin');
+        $isSuperAdmin = (bool) $input->getOption('super-admin');
+        $isAdmin = $isSuperAdmin === true || (bool) $input->getOption('admin');
 
         // make sure to validate the user data is correct
         $this->validateUserData($email, $plainPassword, $isAdmin);
