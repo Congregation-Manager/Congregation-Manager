@@ -18,7 +18,7 @@ Then change the env variables with the previous one.
 
 Run the docker services.
 
-    docker-composer up -d
+    docker-compose up -d
 
 There's no need to configure anything to run the application. If you have
 [installed Symfony][symfony_cli] binary, run this command:

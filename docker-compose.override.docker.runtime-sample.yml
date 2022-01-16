@@ -10,6 +10,10 @@ services:
         ports:
             - "5432:5432"
     ###< doctrine/doctrine-bundle ###
+    mail:
+        ports:
+            - "8025:8025"
+            - "1025:1025"
     web:
         container_name: server
         build: .

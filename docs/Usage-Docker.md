@@ -18,6 +18,6 @@ Then change the env variables with the previous one.
 
 Run the docker services.
 
-    docker-composer up -d
+    docker-compose up -d
 
 Then access the application in your browser at the given URL (<https://localhost:8080> by default).
