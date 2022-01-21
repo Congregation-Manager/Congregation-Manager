@@ -14,5 +14,5 @@ doctrine:
                 is_bundle: false
                 type: xml
                 dir: '%kernel.project_dir%/config/doctrine/user'
-                prefix: 'App\Domain\User\Model'
+                prefix: 'App\Infrastructure\User\Model'
                 alias: App\User

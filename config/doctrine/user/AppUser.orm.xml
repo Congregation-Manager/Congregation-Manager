@@ -4,7 +4,7 @@
                   xsi:schemaLocation="https://doctrine-project.org/schemas/orm/doctrine-mapping
                           https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
 
-    <entity name="App\Domain\User\Model\AppUser" table="app_user" repository-class="App\Infrastructure\User\Repository\AppUserRepository">
+    <entity name="App\Infrastructure\User\Model\AppUser" table="app_user" repository-class="App\Infrastructure\User\Repository\AppUserRepository">
 
         <id name="id" type="integer" column="id">
             <generator strategy="AUTO"/>
