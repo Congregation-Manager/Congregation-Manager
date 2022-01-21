@@ -74,6 +74,7 @@ security:
         - { path: "%security.app_with_locale_regex%/reset-password", role: PUBLIC_ACCESS }
 
         - { path: "%security.admin_with_locale_regex%/login", role: PUBLIC_ACCESS }
+        - { path: "%security.admin_with_locale_regex%/reset-password", role: PUBLIC_ACCESS }
 
         #- { path: '%security.admin_with_locale_regex%/users', roles: ROLE_SUPER_ADMIN }
         - { path: "%security.admin_with_locale_regex%/.*", role: ROLE_ADMIN }

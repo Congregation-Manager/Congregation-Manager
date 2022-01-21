@@ -56,3 +56,14 @@ services:
         calls:
             - [setContainer, ['@service_container']]
         tags: [ 'controller.service_arguments' ]
+
+    app.controller.reset_admin_password:
+        class: App\Infrastructure\User\Controller\ResetAdminPasswordController
+        arguments:
+            - '@symfonycasts.reset_password.helper'
+            - '@doctrine.orm.entity_manager'
+            - '@mailer.mailer'
+            - '@security.user_password_hasher'
+        calls:
+            - [setContainer, ['@service_container']]
+        tags: [ 'controller.service_arguments' ]

@@ -17,6 +17,7 @@ app:
         title: 'Please, sign in'
         email_placeholder: 'Email address'
         password_placeholder: 'Password'
+        forgot_password: 'Did you forget your password? Click here to reset it.'
     label:
         email_address: 'Email address'
         password: 'Password'
@@ -44,6 +45,20 @@ app:
         instructions: 'If an account matching your email exists, then an email was just sent that contains a link that you can use to reset your password. This link will expire in {expiresIn}.'
         try_again: 'If you don''t receive an email please check your spam folder or <a href="{link}">try again</a>.'
     app_reset_password:
+        meta_title: 'Reset your password'
+        title: 'Reset your password'
+        submit: 'Reset password'
+    admin_forgot_password:
+        meta_title: 'Reset your password'
+        title: 'Reset your password'
+        signin: 'Do you already have your credentials? Click here to sign in'
+        submit: 'Send password reset email'
+        help: 'Enter your email address and we will send you a link to reset your password.'
+    admin_check_email:
+        meta_title: 'Password Reset Email Sent'
+        instructions: 'If an account matching your email exists, then an email was just sent that contains a link that you can use to reset your password. This link will expire in {expiresIn}.'
+        try_again: 'If you don''t receive an email please check your spam folder or <a href="{link}">try again</a>.'
+    admin_reset_password:
         meta_title: 'Reset your password'
         title: 'Reset your password'
         submit: 'Reset password'

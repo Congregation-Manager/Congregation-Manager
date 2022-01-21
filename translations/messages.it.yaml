@@ -17,6 +17,7 @@ app:
         title: 'Per favore, inserisci le tue credenziali'
         email_placeholder: 'Indirizzo email'
         password_placeholder: 'Password'
+        forgot_password: 'Hai dimenticato la password? Clicca qui per recuperarla.'
     label:
         email_address: 'Indirizzo email'
         password: 'Password'
@@ -44,6 +45,20 @@ app:
         instructions: 'Se esiste un account con l''indirizzo inserito, una email contenente un link che puoi usare per recuperare la password ti è stata inviata. Questo link scadrà in {expiresIn}.'
         try_again: 'Se non hai ricevuto l''email per favore, verifica all''interno della cartella spam oppure <a href="{link}">prova ancora</a>.'
     app_reset_password:
+        meta_title: 'Recupera la tua password'
+        title: 'Recupera la tua password'
+        submit: 'Recupera password'
+    admin_forgot_password:
+        meta_title: 'Recupera la tua Password'
+        title: 'Recupera la tua Password'
+        signin: 'Hai già le credenziali? Clicca qui per accedere'
+        submit: 'Invia email per il recupero della password'
+        help: 'Inserisci il tuo indirizzo email e ti invieremo un link per reimpostare la password.'
+    admin_check_email:
+        meta_title: 'Email Recupero Password Inviata'
+        instructions: 'Se esiste un account con l''indirizzo inserito, una email contenente un link che puoi usare per recuperare la password ti è stata inviata. Questo link scadrà in {expiresIn}.'
+        try_again: 'Se non hai ricevuto l''email per favore, verifica all''interno della cartella spam oppure <a href="{link}">prova ancora</a>.'
+    admin_reset_password:
         meta_title: 'Recupera la tua password'
         title: 'Recupera la tua password'
         submit: 'Recupera password'
