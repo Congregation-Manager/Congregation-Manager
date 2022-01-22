@@ -4,9 +4,6 @@ namespace App\Infrastructure\User\Model;
 
 trait SymfonyUserTrait
 {
-    /** @var string[] */
-    protected array $roles = ['ROLE_ADMIN'];
-
     public function getUserIdentifier(): string
     {
         return $this->email;

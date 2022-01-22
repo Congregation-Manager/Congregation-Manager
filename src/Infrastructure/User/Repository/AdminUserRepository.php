@@ -2,7 +2,9 @@
 
 namespace App\Infrastructure\User\Repository;
 
-use App\Domain\User\Model\AdminUser;
+use App\Domain\User\Repository\AdminUserRepositoryInterface;
+use App\Infrastructure\User\Model\AdminUser;
+use App\Infrastructure\User\Model\AdminUserInterface;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
@@ -10,16 +12,16 @@ use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\PasswordUpgraderInterface;
 
 /**
- * @extends ServiceEntityRepository<AdminUser>
+ * @extends ServiceEntityRepository<AdminUserInterface>
  *
- * @method AdminUser|null find($id, $lockMode = null, $lockVersion = null)
- * @method AdminUser|null findOneBy(array $criteria, array $orderBy = null)
- * @psalm-method list<AdminUser> findAll()
- * @method AdminUser[]    findAll()
- * @psalm-method list<AdminUser> findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
- * @method AdminUser[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method AdminUserInterface|null find($id, $lockMode = null, $lockVersion = null)
+ * @method AdminUserInterface|null findOneBy(array $criteria, array $orderBy = null)
+ * @psalm-method list<AdminUserInterface> findAll()
+ * @method AdminUserInterface[]    findAll()
+ * @psalm-method list<AdminUserInterface> findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method AdminUserInterface[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class AdminUserRepository extends ServiceEntityRepository implements PasswordUpgraderInterface
+class AdminUserRepository extends ServiceEntityRepository implements AdminUserRepositoryInterface, PasswordUpgraderInterface
 {
     public function __construct(ManagerRegistry $registry)
     {

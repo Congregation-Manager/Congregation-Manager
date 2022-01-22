@@ -17,11 +17,11 @@ security:
     providers:
         app_user_provider:
             entity:
-                class: App\Domain\User\Model\AppUser
+                class: App\Infrastructure\User\Model\AppUser
                 property: email
         admin_user_provider:
             entity:
-                class: App\Domain\User\Model\AdminUser
+                class: App\Infrastructure\User\Model\AdminUser
                 property: email
     firewalls:
         dev:
