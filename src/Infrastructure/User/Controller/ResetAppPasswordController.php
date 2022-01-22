@@ -17,11 +17,9 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Address;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
-use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use SymfonyCasts\Bundle\ResetPassword\Controller\ResetPasswordControllerTrait;
 use SymfonyCasts\Bundle\ResetPassword\Exception\ResetPasswordExceptionInterface;
 use SymfonyCasts\Bundle\ResetPassword\ResetPasswordHelperInterface;
-use Webmozart\Assert\Assert;
 
 /** @psalm-suppress PropertyNotSetInConstructor */
 class ResetAppPasswordController extends AbstractController
@@ -95,6 +93,7 @@ class ResetAppPasswordController extends AbstractController
         }
 
         try {
+            /** @var UserInterface $user */
             $user = $this->resetPasswordHelper->validateTokenAndFetchUser($token);
         } catch (ResetPasswordExceptionInterface $e) {
             $this->addFlash('reset_password_error', sprintf(
@@ -113,7 +112,6 @@ class ResetAppPasswordController extends AbstractController
             if (!$user instanceof UserInterface) {
                 throw new UserInstanceNotValid(sprintf('User instance not valid. Provided "%s", expected "%s"', get_class($user), UserInterface::class));
             }
-            Assert::isInstanceOf($user, PasswordAuthenticatedUserInterface::class);
             // A password reset token should be used only once, remove it.
             $this->resetPasswordHelper->removeResetRequest($token);
 
