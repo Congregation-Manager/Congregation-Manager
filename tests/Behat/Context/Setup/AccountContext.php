@@ -2,8 +2,8 @@
 
 namespace App\Tests\Behat\Context\Setup;
 
-use App\Domain\User\Model\AdminUser;
-use App\Domain\User\Model\AppUser;
+use App\Infrastructure\User\Model\AdminUser;
+use App\Infrastructure\User\Model\AppUser;
 use Behat\Behat\Context\Context;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
@@ -21,7 +21,7 @@ final class AccountContext implements Context
      */
     public function thereIsAnAppUserWithEmailAndPassword(string $email, string $password): void
     {
-        $appUser = new AppUser($email);
+        $appUser = AppUser::create($email);
         $appUser->setPassword($this->userPasswordHasher->hashPassword($appUser, $password));
 
         $this->entityManager->persist($appUser);
@@ -33,7 +33,7 @@ final class AccountContext implements Context
      */
     public function thereIsAnAdminUserWithEmailAndPassword(string $email, string $password): void
     {
-        $adminUser = new AdminUser($email);
+        $adminUser = AdminUser::create($email);
         $adminUser->setPassword($this->userPasswordHasher->hashPassword($adminUser, $password));
 
         $this->entityManager->persist($adminUser);
