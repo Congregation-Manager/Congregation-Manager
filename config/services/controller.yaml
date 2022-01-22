@@ -53,6 +53,7 @@ services:
             - '@doctrine.orm.entity_manager'
             - '@mailer.mailer'
             - '@security.user_password_hasher'
+            - '@logger'
         calls:
             - [setContainer, ['@service_container']]
         tags: [ 'controller.service_arguments' ]
@@ -64,6 +65,7 @@ services:
             - '@doctrine.orm.entity_manager'
             - '@mailer.mailer'
             - '@security.user_password_hasher'
+            - '@logger'
         calls:
             - [setContainer, ['@service_container']]
         tags: [ 'controller.service_arguments' ]

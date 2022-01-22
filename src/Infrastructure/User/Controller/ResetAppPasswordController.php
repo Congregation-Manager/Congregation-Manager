@@ -2,13 +2,13 @@
 
 namespace App\Infrastructure\User\Controller;
 
-use App\Domain\User\Exception\Factory\UserInstanceNotValidFactory;
 use App\Domain\User\Exception\UserInstanceNotValid;
 use App\Infrastructure\User\Form\ChangePasswordFormType;
 use App\Infrastructure\User\Form\ResetPasswordRequestFormType;
 use App\Infrastructure\User\Model\AppUser;
 use App\Infrastructure\User\Model\UserInterface;
 use Doctrine\ORM\EntityManagerInterface;
+use Psr\Log\LoggerInterface;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -30,7 +30,8 @@ class ResetAppPasswordController extends AbstractController
         private ResetPasswordHelperInterface $resetPasswordHelper,
         private EntityManagerInterface $entityManager,
         private MailerInterface $mailer,
-        private UserPasswordHasherInterface $userPasswordHasher
+        private UserPasswordHasherInterface $userPasswordHasher,
+        private LoggerInterface $logger
     ) {
     }
 
@@ -161,6 +162,7 @@ class ResetAppPasswordController extends AbstractController
             //     'There was a problem handling your password reset request - %s',
             //     $e->getReason()
             // ));
+            $this->logger->error(sprintf('Unable to send reset password email for app user. Code "%s", message: %s', $e->getCode(), $e->getMessage()));
 
             return $this->redirectToRoute('app_check_email');
         }
@@ -169,7 +171,7 @@ class ResetAppPasswordController extends AbstractController
             ->from(new Address('no-reply@congregation-manager.org', 'Congregation Manager'))
             ->to($user->getEmail())
             ->subject('Your password reset request')
-            ->htmlTemplate('email/reset_password.html.twig')
+            ->htmlTemplate('email/app/reset_password.html.twig')
             ->context([
                 'resetToken' => $resetToken,
             ])

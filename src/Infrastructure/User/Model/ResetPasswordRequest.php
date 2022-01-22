@@ -21,8 +21,8 @@ class ResetPasswordRequest extends DomainResetPasswordRequest implements ResetPa
     public function __construct(
         UserInterface $user,
         DateTimeInterface $expiresAt,
-        protected string $hashedToken,
-        protected string $selector
+        protected string $selector,
+        protected string $hashedToken
     ) {
         if ($user instanceof AdminUserInterface) {
             parent::__construct($expiresAt, $hashedToken, null, $user);
