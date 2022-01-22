@@ -2,46 +2,6 @@
 
 namespace App\Domain\User\Model;
 
-use App\Domain\Common\Model\AggregateRoot;
-
-class AppUser extends AggregateRoot implements AppUserInterface
+class AppUser extends User implements AppUserInterface
 {
-    protected ?int $id = null;
-
-    protected ?string $password = null;
-
-    public function __construct(
-        protected string $email
-    ) {
-    }
-
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
-
-    public function setId(?int $id): void
-    {
-        $this->id = $id;
-    }
-
-    public function getEmail(): string
-    {
-        return $this->email;
-    }
-
-    public function setEmail(string $email): void
-    {
-        $this->email = $email;
-    }
-
-    public function getPassword(): ?string
-    {
-        return $this->password;
-    }
-
-    public function setPassword(?string $password): void
-    {
-        $this->password = $password;
-    }
 }

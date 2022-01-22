@@ -2,7 +2,7 @@
 
 namespace App\Infrastructure\User\Repository;
 
-use App\Domain\User\Model\ResetAppPasswordRequest;
+use App\Infrastructure\User\Model\ResetPasswordRequest;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use SymfonyCasts\Bundle\ResetPassword\Model\ResetPasswordRequestInterface;
@@ -10,22 +10,22 @@ use SymfonyCasts\Bundle\ResetPassword\Persistence\Repository\ResetPasswordReques
 use SymfonyCasts\Bundle\ResetPassword\Persistence\ResetPasswordRequestRepositoryInterface;
 
 /**
- * @method ResetAppPasswordRequest|null find($id, $lockMode = null, $lockVersion = null)
- * @method ResetAppPasswordRequest|null findOneBy(array $criteria, array $orderBy = null)
- * @method ResetAppPasswordRequest[]    findAll()
- * @method ResetAppPasswordRequest[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method ResetPasswordRequest|null find($id, $lockMode = null, $lockVersion = null)
+ * @method ResetPasswordRequest|null findOneBy(array $criteria, array $orderBy = null)
+ * @method ResetPasswordRequest[]    findAll()
+ * @method ResetPasswordRequest[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class ResetAppPasswordRequestRepository extends ServiceEntityRepository implements ResetPasswordRequestRepositoryInterface
+class ResetPasswordRequestRepository extends ServiceEntityRepository implements ResetPasswordRequestRepositoryInterface
 {
     use ResetPasswordRequestRepositoryTrait;
 
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, ResetAppPasswordRequest::class);
+        parent::__construct($registry, ResetPasswordRequest::class);
     }
 
     public function createResetPasswordRequest(object $user, \DateTimeInterface $expiresAt, string $selector, string $hashedToken): ResetPasswordRequestInterface
     {
-        return new ResetAppPasswordRequest($user, $expiresAt, $selector, $hashedToken);
+        return new ResetPasswordRequest($user, $expiresAt, $selector, $hashedToken);
     }
 }

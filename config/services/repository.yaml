@@ -22,10 +22,10 @@ services:
         tags:
             - { name: doctrine.repository_service }
 
-    app.repository.reset_app_password_request:
-        alias: 'App\Infrastructure\User\Repository\ResetAppPasswordRequestRepository'
+    app.repository.reset_password_request:
+        alias: 'App\Infrastructure\User\Repository\ResetPasswordRequestRepository'
 
-    App\Infrastructure\User\Repository\ResetAppPasswordRequestRepository:
+    App\Infrastructure\User\Repository\ResetPasswordRequestRepository:
         arguments:
             - '@doctrine'
         tags:
