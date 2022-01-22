@@ -14,6 +14,9 @@ trait SymfonyUserTrait
         return $this->email;
     }
 
+    /**
+     * @return string[]
+     */
     public function getRoles(): array
     {
         return $this->roles;

@@ -10,9 +10,8 @@ use App\Domain\User\Model\ResetPasswordRequest as DomainResetPasswordRequest;
 use App\Domain\User\Model\UserInterface;
 use DateTimeImmutable;
 use DateTimeInterface;
-use SymfonyCasts\Bundle\ResetPassword\Model\ResetPasswordRequestInterface as SymfonyResetPasswordRequestInterface;
 
-class ResetPasswordRequest extends DomainResetPasswordRequest implements SymfonyResetPasswordRequestInterface
+class ResetPasswordRequest extends DomainResetPasswordRequest implements ResetPasswordRequestInterface
 {
     protected DateTimeImmutable $requestedAt;
 
@@ -38,12 +37,14 @@ class ResetPasswordRequest extends DomainResetPasswordRequest implements Symfony
 
     public function getUser(): object
     {
-        if ($this->getAdminUser() !== null) {
-            return $this->getAdminUser();
+        $adminUser = $this->getAdminUser();
+        if ($adminUser !== null) {
+            return $adminUser;
         }
 
-        if ($this->getAppUser() !== null) {
-            return $this->getAppUser();
+        $appUser = $this->getAppUser();
+        if ($appUser !== null) {
+            return $appUser;
         }
 
         throw new \LogicException('Unable to determine the user to return.');

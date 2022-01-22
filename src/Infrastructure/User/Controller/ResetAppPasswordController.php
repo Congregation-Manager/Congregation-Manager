@@ -2,9 +2,12 @@
 
 namespace App\Infrastructure\User\Controller;
 
-use App\Domain\User\Model\AppUser;
+use App\Domain\User\Exception\Factory\UserInstanceNotValidFactory;
+use App\Domain\User\Exception\UserInstanceNotValid;
 use App\Infrastructure\User\Form\ChangePasswordFormType;
 use App\Infrastructure\User\Form\ResetPasswordRequestFormType;
+use App\Infrastructure\User\Model\AppUser;
+use App\Infrastructure\User\Model\UserInterface;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -20,6 +23,7 @@ use SymfonyCasts\Bundle\ResetPassword\Exception\ResetPasswordExceptionInterface;
 use SymfonyCasts\Bundle\ResetPassword\ResetPasswordHelperInterface;
 use Webmozart\Assert\Assert;
 
+/** @psalm-suppress PropertyNotSetInConstructor */
 class ResetAppPasswordController extends AbstractController
 {
     use ResetPasswordControllerTrait;
@@ -41,8 +45,12 @@ class ResetAppPasswordController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $emailFormData = $form->get('email')->getData();
+            if (!is_string($emailFormData)) {
+                throw new \InvalidArgumentException(sprintf('Email input not valid! Expected string, actual %s', gettype($emailFormData)));
+            }
             return $this->processSendingPasswordResetEmail(
-                $form->get('email')->getData(),
+                $emailFormData,
                 $this->mailer
             );
         }
@@ -87,7 +95,6 @@ class ResetAppPasswordController extends AbstractController
         }
 
         try {
-            /** @var PasswordAuthenticatedUserInterface|object $user */
             $user = $this->resetPasswordHelper->validateTokenAndFetchUser($token);
         } catch (ResetPasswordExceptionInterface $e) {
             $this->addFlash('reset_password_error', sprintf(
@@ -97,20 +104,27 @@ class ResetAppPasswordController extends AbstractController
 
             return $this->redirectToRoute('app_forgot_password_request');
         }
-        Assert::isInstanceOf($user, PasswordAuthenticatedUserInterface::class);
 
         // The token is valid; allow the user to change their password.
         $form = $this->createForm(ChangePasswordFormType::class);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            if (!$user instanceof UserInterface) {
+                throw new UserInstanceNotValid(sprintf('User instance not valid. Provided "%s", expected "%s"', get_class($user), UserInterface::class));
+            }
+            Assert::isInstanceOf($user, PasswordAuthenticatedUserInterface::class);
             // A password reset token should be used only once, remove it.
             $this->resetPasswordHelper->removeResetRequest($token);
 
+            $plainPassword = $form->get('plainPassword')->getData();
+            if (!is_string($plainPassword)) {
+                throw new \InvalidArgumentException(sprintf('Password input not valid! Expected string, actual %s', gettype($plainPassword)));
+            }
             // Encode(hash) the plain password, and set it.
             $encodedPassword = $this->userPasswordHasher->hashPassword(
                 $user,
-                $form->get('plainPassword')->getData()
+                $plainPassword
             );
 
             $user->setPassword($encodedPassword);
