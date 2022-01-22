@@ -3,9 +3,9 @@
 
 namespace App\Infrastructure\User\Command;
 
-use App\Domain\User\Model\AdminUser;
-use App\Domain\User\Model\AppUser;
 use App\Infrastructure\Common\Utils\Validator\Validator;
+use App\Infrastructure\User\Model\AdminUser;
+use App\Infrastructure\User\Model\AppUser;
 use App\Infrastructure\User\Repository\AdminUserRepository;
 use App\Infrastructure\User\Repository\AppUserRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -45,7 +45,7 @@ final class AddUserCommand extends Command
             ->addArgument('email', InputArgument::OPTIONAL, 'The email of the new user')
             ->addArgument('password', InputArgument::OPTIONAL, 'The plain password of the new user')
             ->addOption('admin', 'a', InputOption::VALUE_NONE, 'If set, the user is created as an administrator')
-            ->addOption('super-admin', 'sa', InputOption::VALUE_NONE, 'If set, the user is created as a super administrator')
+            ->addOption('super-admin', 's', InputOption::VALUE_NONE, 'If set, the user is created as a super administrator')
         ;
     }
 
@@ -116,10 +116,10 @@ final class AddUserCommand extends Command
 
         // create the user and hash its password
         if ($isAdmin) {
-            $user = new AdminUser($email);
+            $user = AdminUser::create($email);
             $user->setRoles([$isSuperAdmin ? 'ROLE_SUPER_ADMIN' : 'ROLE_ADMIN']);
         } else {
-            $user = new AppUser($email);
+            $user = AppUser::create($email);
         }
         $hashedPassword = $this->passwordHasher->hashPassword($user, $plainPassword);
         $user->setPassword($hashedPassword);
