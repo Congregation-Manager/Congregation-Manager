@@ -49,6 +49,7 @@
         "doctrine/orm": "^2.10",
         "doctrine/persistence": "^2.2",
         "phpdocumentor/reflection-docblock": "^5.3",
+        "psr/log": "^2.0",
         "sensio/framework-extra-bundle": "^6.1",
         "symfony/console": "^5.4",
         "symfony/dependency-injection": "^5.4",
