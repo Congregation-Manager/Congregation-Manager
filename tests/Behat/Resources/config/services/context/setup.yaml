@@ -9,3 +9,6 @@ services:
         arguments:
             - '@doctrine.orm.entity_manager'
             - '@security.password_hasher'
+            - '@symfonycasts.reset_password.token_generator'
+            - '@test.behat.shared_storage'
+            - '@app.repository.reset_password_request'

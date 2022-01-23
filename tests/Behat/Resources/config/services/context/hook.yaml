@@ -8,3 +8,6 @@ services:
         class: App\Tests\Behat\Context\Hook\DoctrineORMContext
         arguments:
             - '@doctrine.orm.entity_manager'
+
+    test.behat.context.hook.email_spool:
+        class: App\Tests\Behat\Context\Hook\EmailSpoolContext

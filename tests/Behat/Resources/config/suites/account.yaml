@@ -5,7 +5,9 @@ default:
                 - test.behat.context.hook.doctrine
 
                 - test.behat.context.setup.account
+
                 - test.behat.context.ui.app.account
+                - test.behat.context.ui.email
             filters:
                 tags: "@account && @ui && @app"
 
@@ -14,6 +16,8 @@ default:
                 - test.behat.context.hook.doctrine
 
                 - test.behat.context.setup.account
+
                 - test.behat.context.ui.admin.account
+                - test.behat.context.ui.email
             filters:
                 tags: "@account && @ui && @admin"

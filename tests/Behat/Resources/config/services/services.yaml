@@ -1,0 +1,23 @@
+services:
+    _defaults:
+        autowire: false
+        autoconfigure: false
+        public: false
+
+    test.behat.email_checker:
+        class: App\Tests\Behat\Services\EmailChecker
+
+    test.behat.mailer_factory:
+        class: App\Tests\Behat\Services\BehatMailerFactory
+        arguments:
+            - '@test.behat.mailer_transport'
+        tags:
+            - {name: 'mailer.transport_factory'}
+
+    test.behat.mailer_transport:
+        class: App\Tests\Behat\Services\FakeMailerTransport
+        arguments:
+            - '@twig'
+
+    test.behat.shared_storage:
+        class: App\Tests\Behat\Services\SharedStorage

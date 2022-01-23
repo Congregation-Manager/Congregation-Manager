@@ -15,3 +15,12 @@ services:
         arguments:
             - '@test.behat.page.admin.login'
             - '@test.behat.page.admin.dashboard'
+            - '@test.behat.page.admin.forgot_password'
+            - '@test.behat.page.admin.check_email'
+            - '@test.behat.page.admin.reset_password'
+            - '@test.behat.shared_storage'
+
+    test.behat.context.ui.email:
+        class: App\Tests\Behat\Context\Ui\EmailContext
+        arguments:
+            - '@test.behat.email_checker'
