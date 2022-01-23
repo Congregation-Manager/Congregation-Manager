@@ -4,8 +4,8 @@ namespace App\Tests\Behat\Context\Ui\Admin;
 
 use App\Tests\Behat\Page\Admin\CheckEmailPageInterface;
 use App\Tests\Behat\Page\Admin\DashboardPageInterface;
-use App\Tests\Behat\Page\Admin\LoginPageInterface;
 use App\Tests\Behat\Page\Admin\ForgotPasswordPageInterface;
+use App\Tests\Behat\Page\Admin\LoginPageInterface;
 use App\Tests\Behat\Page\Admin\ResetPasswordPageInterface;
 use App\Tests\Behat\Services\SharedStorageInterface;
 use Behat\Behat\Context\Context;

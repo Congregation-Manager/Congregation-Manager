@@ -9,7 +9,6 @@ use Symfony\Component\Mailer\Transport\TransportInterface;
 
 final class BehatMailerFactory extends AbstractTransportFactory
 {
-
     public function __construct(
         private TransportInterface $fakeMailerTransport
     ) {
