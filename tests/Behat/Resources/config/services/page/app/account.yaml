@@ -19,6 +19,18 @@ services:
         class: App\Tests\Behat\Page\App\DashboardPage
         parent: test.behat.page
 
+    test.behat.page.app.forgot_password:
+        class: App\Tests\Behat\Page\App\ForgotPasswordPage
+        parent: test.behat.page
+
+    test.behat.page.app.check_email:
+        class: App\Tests\Behat\Page\App\CheckEmailPage
+        parent: test.behat.page
+
+    test.behat.page.app.reset_password:
+        class: App\Tests\Behat\Page\App\ResetPasswordPage
+        parent: test.behat.page
+
     test.behat.page.admin.login:
         class: App\Tests\Behat\Page\Admin\LoginPage
         parent: test.behat.page

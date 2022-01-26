@@ -89,9 +89,9 @@ final class AccountContext implements Context
     }
 
     /**
-     * @Given /^I specify customer email as "([^"]*)"$/
+     * @Given /^I specify email as "([^"]*)"$/
      */
-    public function iSpecifyCustomerEmailAs(string $email): void
+    public function iSpecifyEmailAs(string $email): void
     {
         $this->forgotPasswordPage->specifyEmail($email);
     }

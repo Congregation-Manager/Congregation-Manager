@@ -3,6 +3,7 @@ default:
         ui_app_account_features:
             contexts:
                 - test.behat.context.hook.doctrine
+                - test.behat.context.hook.email_spool
 
                 - test.behat.context.setup.account
 
@@ -14,6 +15,7 @@ default:
         ui_admin_account_features:
             contexts:
                 - test.behat.context.hook.doctrine
+                - test.behat.context.hook.email_spool
 
                 - test.behat.context.setup.account
 

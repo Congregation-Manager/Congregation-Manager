@@ -5,6 +5,7 @@ namespace App\Tests\Behat\Context\Setup;
 use App\Infrastructure\User\Model\AdminUser;
 use App\Infrastructure\User\Model\AdminUserInterface;
 use App\Infrastructure\User\Model\AppUser;
+use App\Infrastructure\User\Model\AppUserInterface;
 use App\Infrastructure\User\Model\ResetPasswordRequest;
 use App\Tests\Behat\Services\SharedStorageInterface;
 use Behat\Behat\Context\Context;
@@ -26,9 +27,10 @@ final class AccountContext implements Context
     }
 
     /**
+     * @Given there is an app user with email :email
      * @Given there is an app user with email :email and password :password
      */
-    public function thereIsAnAppUserWithEmailAndPassword(string $email, string $password): void
+    public function thereIsAnAppUserWithEmailAndPassword(string $email, string $password = 'password'): void
     {
         $appUser = AppUser::create($email);
         $appUser->setPassword($this->userPasswordHasher->hashPassword($appUser, $password));
@@ -60,7 +62,6 @@ final class AccountContext implements Context
         Assert::isInstanceOf($adminUser, AdminUserInterface::class);
 
         $expiresAt = new \DateTimeImmutable('tomorrow');
-        $fullToken = $this->getRandomString(40);
         $hashedVerifierToken = $this->tokenGenerator->createToken(
             $expiresAt,
             $this->resetPasswordRequestRepository->getUserIdentifier($adminUser)
@@ -78,8 +79,30 @@ final class AccountContext implements Context
         $this->sharedStorage->set('forgot_password_token', $hashedVerifierToken->getPublicToken());
     }
 
-    private function getRandomString(int $length = 5)
+    /**
+     * @Given I have already received a resetting password email for :email brother
+     */
+    public function iHaveAlreadyReceivedAResettingPasswordEmailForBrother(string $email): void
     {
-        return substr(str_shuffle("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"), 10, $length);
+        $appUserRepository = $this->entityManager->getRepository(AppUser::class);
+        $appUser = $appUserRepository->findOneBy(['email' => $email]);
+        Assert::isInstanceOf($appUser, AppUserInterface::class);
+
+        $expiresAt = new \DateTimeImmutable('tomorrow');
+        $hashedVerifierToken = $this->tokenGenerator->createToken(
+            $expiresAt,
+            $this->resetPasswordRequestRepository->getUserIdentifier($appUser)
+        );
+
+        $resetPasswordRequest = new ResetPasswordRequest(
+            $appUser,
+            $expiresAt,
+            $hashedVerifierToken->getSelector(),
+            $hashedVerifierToken->getHashedToken()
+        );
+        $this->entityManager->persist($resetPasswordRequest);
+        $this->entityManager->flush();
+
+        $this->sharedStorage->set('forgot_password_token', $hashedVerifierToken->getPublicToken());
     }
 }
