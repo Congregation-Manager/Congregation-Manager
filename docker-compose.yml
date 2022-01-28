@@ -18,6 +18,8 @@ services:
     mail:
         container_name: mail
         image: mailhog/mailhog
+        labels:
+            com.symfony.server.service-prefix: 'MAILER'
         ports:
             - "18025:8025"
             - "11025:1025"
