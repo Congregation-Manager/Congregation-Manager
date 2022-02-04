@@ -79,6 +79,7 @@
         "symfony/stopwatch": "^5.4",
         "symfony/string": "^5.4",
         "symfony/translation": "^5.4",
+        "symfony/translation-contracts": "^2.5",
         "symfony/twig-bridge": "^5.4 || ^6.0",
         "symfony/twig-bundle": "^5.4",
         "symfony/validator": "^5.4",
