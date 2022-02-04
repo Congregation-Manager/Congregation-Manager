@@ -17,3 +17,9 @@ admin_dashboard:
     methods: [GET]
     defaults:
         _controller: app.controller.admin_dashboard:index
+
+admin_profile_update:
+    path: /profile/update
+    methods: [GET, POST]
+    defaults:
+        _controller: app.controller.admin_profile:update

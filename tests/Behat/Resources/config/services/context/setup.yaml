@@ -18,3 +18,9 @@ services:
         arguments:
             - '@app.repository.app_user'
             - '@test.behat.service.app_security'
+
+    test.behat.context.setup.admin_security:
+        class: App\Tests\Behat\Context\Setup\AdminSecurityContext
+        arguments:
+            - '@app.repository.admin_user'
+            - '@test.behat.service.admin_security'

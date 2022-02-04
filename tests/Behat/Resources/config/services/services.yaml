@@ -29,6 +29,13 @@ services:
             - 'app'
             - '@test.behat.setter.cookie'
 
+    test.behat.service.admin_security:
+        class: App\Tests\Behat\Services\SecurityService
+        arguments:
+            - '@session'
+            - 'admin'
+            - '@test.behat.setter.cookie'
+
     test.behat.setter.cookie:
         class: App\Tests\Behat\Services\Setter\CookieSetter
         arguments:

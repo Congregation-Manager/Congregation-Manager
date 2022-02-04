@@ -13,7 +13,7 @@ use Symfony\Component\Security\Core\Security;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 /** @psalm-suppress PropertyNotSetInConstructor */
-final class ProfileController extends AbstractController
+final class AppProfileController extends AbstractController
 {
     public function __construct(
         private Security $security,
