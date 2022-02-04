@@ -13,3 +13,8 @@ services:
         class: App\Infrastructure\User\Form\ChangePasswordFormType
         tags:
             - { name: 'form.type' }
+
+    app.form.type.email:
+        class: App\Infrastructure\User\Form\ChangeEmailFormType
+        tags:
+            - { name: 'form.type' }

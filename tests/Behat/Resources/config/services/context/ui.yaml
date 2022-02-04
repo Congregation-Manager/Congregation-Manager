@@ -12,6 +12,7 @@ services:
             - '@test.behat.page.app.forgot_password'
             - '@test.behat.page.app.check_email'
             - '@test.behat.page.app.reset_password'
+            - '@test.behat.page.app.profile_update'
             - '@test.behat.shared_storage'
 
     test.behat.context.ui.admin.account:

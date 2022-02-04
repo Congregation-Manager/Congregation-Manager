@@ -6,6 +6,7 @@ default:
                 - test.behat.context.hook.email_spool
 
                 - test.behat.context.setup.account
+                - test.behat.context.setup.app_security
 
                 - test.behat.context.ui.app.account
                 - test.behat.context.ui.email

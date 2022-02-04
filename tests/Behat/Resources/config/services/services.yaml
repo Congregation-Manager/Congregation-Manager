@@ -21,3 +21,15 @@ services:
 
     test.behat.shared_storage:
         class: App\Tests\Behat\Services\SharedStorage
+
+    test.behat.service.app_security:
+        class: App\Tests\Behat\Services\SecurityService
+        arguments:
+            - '@session'
+            - 'app'
+            - '@test.behat.setter.cookie'
+
+    test.behat.setter.cookie:
+        class: App\Tests\Behat\Services\Setter\CookieSetter
+        arguments:
+            - '@behat.mink.default_session'

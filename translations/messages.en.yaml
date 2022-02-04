@@ -68,3 +68,8 @@ app:
             intro: 'To reset your password, please visit the following link'
             expire: 'This link will expire in {expireIn}.'
             greetings: 'Cheers!'
+    profile_update:
+        meta_title: 'Profile update'
+        title: 'Profile update'
+    ui:
+        update_success: 'Update successfully completed!'

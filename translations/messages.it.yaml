@@ -68,3 +68,8 @@ app:
             intro: 'Per recuperare la tua password per favore, clicca sul seguente collegamento:'
             expire: 'Il collegamento scadrà fra {expireIn}.'
             greetings: 'Saluti!'
+    profile_update:
+        meta_title: 'Aggiorna profilo'
+        title: 'Aggiorna profilo'
+    ui:
+        update_success: 'Aggiornamento completato con successo!'

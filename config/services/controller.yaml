@@ -69,3 +69,13 @@ services:
         calls:
             - [setContainer, ['@service_container']]
         tags: [ 'controller.service_arguments' ]
+
+    app.controller.app_profile:
+        class: App\Infrastructure\User\Controller\ProfileController
+        arguments:
+            - '@security.helper'
+            - '@doctrine.orm.entity_manager'
+            - '@translator'
+        calls:
+            - [setContainer, ['@service_container']]
+        tags: [ 'controller.service_arguments' ]

@@ -6,6 +6,7 @@ use App\Tests\Behat\Page\App\CheckEmailPageInterface;
 use App\Tests\Behat\Page\App\DashboardPageInterface;
 use App\Tests\Behat\Page\App\ForgotPasswordPageInterface;
 use App\Tests\Behat\Page\App\LoginPageInterface;
+use App\Tests\Behat\Page\App\ProfileUpdatePageInterface;
 use App\Tests\Behat\Page\App\ResetPasswordPageInterface;
 use App\Tests\Behat\Services\SharedStorageInterface;
 use Behat\Behat\Context\Context;
@@ -19,6 +20,7 @@ final class AccountContext implements Context
         private ForgotPasswordPageInterface $forgotPasswordPage,
         private CheckEmailPageInterface $checkEmailPage,
         private ResetPasswordPageInterface $resetPasswordPage,
+        private ProfileUpdatePageInterface $profileUpdatePage,
         private SharedStorageInterface $sharedStorage
     ) {
     }
@@ -156,5 +158,30 @@ final class AccountContext implements Context
         $this->loginPage->signIn();
 
         $this->iShouldBeLoggedIn();
+    }
+
+    /**
+     * @When I change my email with :email
+     */
+    public function iChangeMyEmailWith(string $email): void
+    {
+        $this->profileUpdatePage->specifyEmail($email);
+        $this->profileUpdatePage->update();
+    }
+
+    /**
+     * @WHen I log out
+     */
+    public function iLogOut(): void
+    {
+        $this->dashboardPage->signOut();
+    }
+
+    /**
+     * @When I want to change my email
+     */
+    public function iWantToChangeMyEmail(): void
+    {
+        $this->profileUpdatePage->open();
     }
 }
