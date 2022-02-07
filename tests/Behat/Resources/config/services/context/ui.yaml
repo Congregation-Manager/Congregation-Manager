@@ -25,6 +25,7 @@ services:
             - '@test.behat.page.admin.reset_password'
             - '@test.behat.shared_storage'
             - '@test.behat.page.admin.profile_update'
+            - '@test.behat.page.admin.change_password'
 
     test.behat.context.ui.email:
         class: App\Tests\Behat\Context\Ui\EmailContext

@@ -73,3 +73,7 @@ app:
         title: 'Profile update'
     ui:
         update_success: 'Update successfully completed!'
+    change_password:
+        meta_title: 'Change password'
+        title: 'Change password'
+        submit: 'Update'

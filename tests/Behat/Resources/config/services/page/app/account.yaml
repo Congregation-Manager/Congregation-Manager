@@ -58,3 +58,7 @@ services:
     test.behat.page.admin.profile_update:
         class: App\Tests\Behat\Page\Admin\ProfileUpdatePage
         parent: test.behat.page
+
+    test.behat.page.admin.change_password:
+        class: App\Tests\Behat\Page\Admin\ChangePasswordPage
+        parent: test.behat.page

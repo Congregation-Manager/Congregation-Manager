@@ -73,3 +73,7 @@ app:
         title: 'Aggiorna profilo'
     ui:
         update_success: 'Aggiornamento completato con successo!'
+    change_password:
+        meta_title: 'Cambia password'
+        title: 'Cambia password'
+        submit: 'Aggiorna'

@@ -89,3 +89,14 @@ services:
         calls:
             - [setContainer, ['@service_container']]
         tags: [ 'controller.service_arguments' ]
+
+    app.controller.admin_change_password:
+        class: App\Infrastructure\User\Controller\AdminChangePasswordController
+        arguments:
+            - '@security.helper'
+            - '@doctrine.orm.entity_manager'
+            - '@translator'
+            - '@security.user_password_hasher'
+        calls:
+            - [ setContainer, [ '@service_container' ] ]
+        tags: [ 'controller.service_arguments' ]
