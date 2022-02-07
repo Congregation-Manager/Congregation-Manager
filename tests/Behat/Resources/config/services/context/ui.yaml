@@ -14,6 +14,7 @@ services:
             - '@test.behat.page.app.reset_password'
             - '@test.behat.page.app.profile_update'
             - '@test.behat.shared_storage'
+            - '@test.behat.page.app.change_password'
 
     test.behat.context.ui.admin.account:
         class: App\Tests\Behat\Context\Ui\Admin\AccountContext

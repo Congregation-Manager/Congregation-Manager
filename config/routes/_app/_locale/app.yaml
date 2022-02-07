@@ -29,3 +29,9 @@ app_profile_update:
     methods: [GET, POST]
     defaults:
         _controller: app.controller.app_profile:update
+
+app_change_password:
+    path: /password/update
+    methods: [GET, POST]
+    defaults:
+        _controller: app.controller.app_change_password:update

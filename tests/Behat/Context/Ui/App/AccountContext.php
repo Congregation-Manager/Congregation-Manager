@@ -2,6 +2,7 @@
 
 namespace App\Tests\Behat\Context\Ui\App;
 
+use App\Tests\Behat\Page\App\ChangePasswordPageInterface;
 use App\Tests\Behat\Page\App\CheckEmailPageInterface;
 use App\Tests\Behat\Page\App\DashboardPageInterface;
 use App\Tests\Behat\Page\App\ForgotPasswordPageInterface;
@@ -21,7 +22,8 @@ final class AccountContext implements Context
         private CheckEmailPageInterface $checkEmailPage,
         private ResetPasswordPageInterface $resetPasswordPage,
         private ProfileUpdatePageInterface $profileUpdatePage,
-        private SharedStorageInterface $sharedStorage
+        private SharedStorageInterface $sharedStorage,
+        private ChangePasswordPageInterface $changePasswordPage
     ) {
     }
 
@@ -183,5 +185,45 @@ final class AccountContext implements Context
     public function iWantToChangeMyEmail(): void
     {
         $this->profileUpdatePage->open();
+    }
+
+    /**
+     * @When I want to change my password
+     */
+    public function iWantToChangeMyPassword(): void
+    {
+        $this->changePasswordPage->open();
+    }
+
+    /**
+     * @Given I change my password with :password
+     */
+    public function iChangeMyPasswordWith(string $password): void
+    {
+        $this->changePasswordPage->specifyPassword($password);
+    }
+
+    /**
+     * @Given I confirm my password with :password
+     */
+    public function iConfirmMyPasswordWith(string $password): void
+    {
+        $this->changePasswordPage->confirmPassword($password);
+    }
+
+    /**
+     * @Given I specify my actual password with :password
+     */
+    public function iSpecifyMyActualPasswordWith(string $password): void
+    {
+        $this->changePasswordPage->specifyActualPassword($password);
+    }
+
+    /**
+     * @Given I update it
+     */
+    public function iUpdateIt(): void
+    {
+        $this->changePasswordPage->update();
     }
 }
