@@ -3,3 +3,42 @@ admin_index:
     methods: [GET]
     defaults:
         _controller: app.controller.locale:resolveForAdmin
+
+admin_switch_locale:
+    path: /switch-locale/{locale}
+    methods: [GET]
+    defaults:
+        locale: '%supported_locales%'
+        _controller: app.controller.admin_locale:switchLocale
+
+admin_login:
+    path: /login
+    methods: [GET]
+    defaults:
+        _controller: app.controller.admin_user_login:index
+
+admin_login_check:
+    path: /login-check
+    methods: [POST]
+
+admin_logout:
+    path: /logout
+    methods: GET
+
+admin_dashboard:
+    path: /dashboard
+    methods: [GET]
+    defaults:
+        _controller: app.controller.admin_dashboard:index
+
+admin_profile_update:
+    path: /profile/update
+    methods: [GET, POST]
+    defaults:
+        _controller: app.controller.admin_profile:update
+
+admin_change_password:
+    path: /password/update
+    methods: [GET, POST]
+    defaults:
+        _controller: app.controller.admin_change_password:update

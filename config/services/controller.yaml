@@ -4,17 +4,17 @@ services:
         autoconfigure: false
         public: false
 
-    app.controller.locale:
-        class: App\Infrastructure\Common\Controller\LocaleController
-        arguments:
-            - '%supported_locales%'
-            - '@session'
+    app.controller.homepage:
+        class: App\Infrastructure\Common\Controller\HomePageController
         calls:
             - [setContainer, ['@service_container']]
         tags: [ 'controller.service_arguments' ]
 
-    app.controller.homepage:
-        class: App\Infrastructure\Common\Controller\HomePageController
+    app.controller.app_locale:
+        class: App\Infrastructure\Common\Controller\AppLocaleController
+        arguments:
+            - '%supported_locales%'
+            - '@session'
         calls:
             - [setContainer, ['@service_container']]
         tags: [ 'controller.service_arguments' ]
@@ -29,6 +29,15 @@ services:
 
     app.controller.app_dashboard:
         class: App\Infrastructure\Common\Controller\AppDashboardController
+        calls:
+            - [setContainer, ['@service_container']]
+        tags: [ 'controller.service_arguments' ]
+
+    app.controller.admin_locale:
+        class: App\Infrastructure\Common\Controller\AdminLocaleController
+        arguments:
+            - '%supported_locales%'
+            - '@session'
         calls:
             - [setContainer, ['@service_container']]
         tags: [ 'controller.service_arguments' ]

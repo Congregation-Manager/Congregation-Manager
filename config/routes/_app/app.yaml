@@ -1,15 +1,15 @@
-app_switch_locale:
-    path: /switch-locale/{locale}
-    methods: [GET]
-    defaults:
-        locale: '%supported_locales%'
-        _controller: app.controller.locale:switchLocale
-
 app_homepage:
     path: /
     methods: [GET]
     defaults:
         _controller: app.controller.homepage:index
+
+app_switch_locale:
+    path: /switch-locale/{locale}
+    methods: [GET]
+    defaults:
+        locale: '%supported_locales%'
+        _controller: app.controller.app_locale:switchLocale
 
 app_login:
     path: /login
