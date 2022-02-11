@@ -1,8 +1,11 @@
 admin_index:
     path: /
-    methods: [GET]
+    controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController
     defaults:
-        _controller: app.controller.locale:resolveForAdmin
+        route: 'admin_login'
+        permanent: true
+        keepQueryParams: true
+        keepRequestMethod: false
 
 admin_switch_locale:
     path: /switch-locale/{locale}

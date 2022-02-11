@@ -17,6 +17,14 @@ final class AppLocaleController extends AbstractController
     ) {
     }
 
+    public function renderAction(Request $request): Response
+    {
+        return $this->render('app/components/_switch_locale.html.twig', [
+            'active' => $request->getLocale(),
+            'locales' => explode('|', $this->availableLocales),
+        ]);
+    }
+
     public function switchLocale(Request $request, string $locale): Response
     {
         $this->session->set('_locale', $locale);

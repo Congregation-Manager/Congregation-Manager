@@ -16,6 +16,14 @@ final class AdminLocaleController extends AbstractController
     ) {
     }
 
+    public function renderAction(Request $request): Response
+    {
+        return $this->render('admin/components/_switch_locale.html.twig', [
+            'active' => $request->getLocale(),
+            'locales' => explode('|', $this->availableLocales),
+        ]);
+    }
+
     public function switchLocale(Request $request, string $locale): Response
     {
         $this->session->set('_locale', $locale);
