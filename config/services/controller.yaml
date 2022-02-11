@@ -8,6 +8,7 @@ services:
         class: App\Infrastructure\Common\Controller\LocaleController
         arguments:
             - '%supported_locales%'
+            - '@session'
         calls:
             - [setContainer, ['@service_container']]
         tags: [ 'controller.service_arguments' ]

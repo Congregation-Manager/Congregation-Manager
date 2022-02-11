@@ -6,28 +6,21 @@ namespace App\Infrastructure\Common\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 /** @psalm-suppress PropertyNotSetInConstructor */
 final class LocaleController extends AbstractController
 {
     public function __construct(
-        private string $availableLocales
+        private string $availableLocales,
+        private SessionInterface $session
     ) {
     }
 
-    public function resolveForApp(Request $request): Response
+    public function switchLocale(Request $request, string $locale): Response
     {
-        $preferredLanguageLocaleCode = $this->getPreferredLanguageLocaleCode($request);
-        if ($preferredLanguageLocaleCode === null) {
-            $preferredLanguageLocaleCode = $request->getDefaultLocale();
-        }
-
-        return $this->redirectToRoute(
-            'app_homepage',
-            [
-            '_locale' => $preferredLanguageLocaleCode
-            ]
-        );
+        $this->session->set('_locale', $locale);
+        return $this->redirectToRoute('app_homepage');
     }
 
     public function resolveForAdmin(Request $request): Response

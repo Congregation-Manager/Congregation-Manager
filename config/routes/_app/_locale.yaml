@@ -1,5 +1,0 @@
-_locale:
-    resource: "_locale/*.yaml"
-    prefix: /{_locale}
-    requirements:
-        _locale: '%supported_locales%'

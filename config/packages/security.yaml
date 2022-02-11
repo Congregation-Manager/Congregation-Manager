@@ -2,7 +2,6 @@ parameters:
     security.admin_regex: "^/%app_admin.path_name%"
     security.admin_with_locale_regex: "%security.admin_regex%/(%supported_locales%)"
     security.app_regex: "^/(?!%app_admin.path_name%)"
-    security.app_with_locale_regex: "^/(%supported_locales%)"
 
 security:
     enable_authenticator_manager: true
@@ -65,13 +64,12 @@ security:
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
-        - { path: "%security.app_regex%/$", role: PUBLIC_ACCESS }
-        - { path: "%security.app_with_locale_regex%/$", role: PUBLIC_ACCESS }
+        - { path: "%security.app_regex%$", role: PUBLIC_ACCESS }
 
         - { path: "%security.admin_regex%/$", role: PUBLIC_ACCESS }
 
-        - { path: "%security.app_with_locale_regex%/login", role: PUBLIC_ACCESS }
-        - { path: "%security.app_with_locale_regex%/reset-password", role: PUBLIC_ACCESS }
+        - { path: "%security.app_regex%login", role: PUBLIC_ACCESS }
+        - { path: "%security.app_regex%reset-password", role: PUBLIC_ACCESS }
 
         - { path: "%security.admin_with_locale_regex%/login", role: PUBLIC_ACCESS }
         - { path: "%security.admin_with_locale_regex%/reset-password", role: PUBLIC_ACCESS }
@@ -79,4 +77,4 @@ security:
         #- { path: '%security.admin_with_locale_regex%/users', roles: ROLE_SUPER_ADMIN }
         - { path: "%security.admin_with_locale_regex%/.*", role: ROLE_ADMIN }
 
-        - { path: "%security.app_with_locale_regex%/.*", role: ROLE_USER }
+        - { path: "%security.app_regex%.*", role: ROLE_USER }

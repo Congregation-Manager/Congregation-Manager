@@ -1,0 +1,12 @@
+services:
+    _defaults:
+        autowire: false
+        autoconfigure: false
+        public: false
+
+    app.event_subscriber.locale:
+        class: App\Infrastructure\Common\EventSubscriber\LocaleSubscriber
+        arguments:
+            - '%default_locale%'
+        tags:
+            - { name: kernel.event_subscriber }
