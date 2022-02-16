@@ -6,6 +6,8 @@ services:
 
     app.controller.homepage:
         class: App\Infrastructure\Common\Controller\HomePageController
+        arguments:
+            - '%supported_locales%'
         calls:
             - [setContainer, ['@service_container']]
         tags: [ 'controller.service_arguments' ]
