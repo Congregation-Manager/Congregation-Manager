@@ -24,3 +24,9 @@ services:
         arguments:
             - '@app.repository.admin_user'
             - '@test.behat.service.admin_security'
+
+    test.behat.context.setup.browser:
+        class: App\Tests\Behat\Context\Setup\BrowserContext
+        arguments:
+            - '@behat.mink.default_session'
+            - '@app.converter.locale'

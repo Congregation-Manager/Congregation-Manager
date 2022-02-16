@@ -1,2 +1,3 @@
 imports:
     - suites/account.yaml
+    - suites/locales.yaml

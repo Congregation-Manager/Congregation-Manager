@@ -11,6 +11,10 @@ services:
             - '@behat.mink.parameters'
             - '@router'
 
+    test.behat.page.app.home:
+        class: App\Tests\Behat\Page\App\HomePage
+        parent: test.behat.page
+
     test.behat.page.app.login:
         class: App\Tests\Behat\Page\App\LoginPage
         parent: test.behat.page

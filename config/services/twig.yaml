@@ -1,0 +1,12 @@
+services:
+    _defaults:
+        autowire: false
+        autoconfigure: false
+        public: false
+
+    app.twig.extension.test_html_attribute:
+        class: App\Infrastructure\Common\Twig\TestHtmlAttributeExtension
+        arguments:
+            - '%kernel.environment%'
+        tags:
+            - { name: twig.extension }

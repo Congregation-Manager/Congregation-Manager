@@ -23,6 +23,8 @@
                         <button type="button" class="btn btn-outline-secondary btn-lg px-4">{{ 'app.homepage.register'|trans }}</button>
                     </a>
                 </div>
+    
+                {{ render(controller('app.controller.app_locale:renderAction')) }}
             </div>
         </div>
     </div>

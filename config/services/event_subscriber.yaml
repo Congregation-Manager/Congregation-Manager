@@ -8,5 +8,6 @@ services:
         class: App\Infrastructure\Common\EventSubscriber\LocaleSubscriber
         arguments:
             - '%default_locale%'
+            - '%supported_locales%'
         tags:
             - { name: kernel.event_subscriber }
