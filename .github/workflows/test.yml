@@ -78,7 +78,7 @@ jobs:
                 run: vendor/bin/ecs check src tests spec
             -
                 name: Analyse code with phpstan
-                run: vendor/bin/phpstan analyse src -l max
+                run: vendor/bin/phpstan analyse -c phpstan.neon
             -
                 name: Analyse code with psalm
                 run: vendor/bin/psalm

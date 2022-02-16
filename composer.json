@@ -103,6 +103,7 @@
         "friends-of-behat/symfony-extension": "^2.3",
         "phpspec/phpspec": "^7.1",
         "phpstan/phpstan": "^1.1",
+        "phpstan/phpstan-webmozart-assert": "^1.0",
         "phpunit/phpunit": "^9.5",
         "roave/security-advisories": "dev-latest",
         "symfony/browser-kit": "^5.4",
@@ -126,7 +127,7 @@
             "@auto-scripts"
         ],
         "ecs": "vendor/bin/ecs check src tests spec",
-        "phpstan": "vendor/bin/phpstan analyse src -l max",
+        "phpstan": "vendor/bin/phpstan analyse -c phpstan.neon",
         "psalm": "vendor/bin/psalm",
         "spec": "vendor/bin/phpspec run",
         "unit": "vendor/bin/phpunit",
