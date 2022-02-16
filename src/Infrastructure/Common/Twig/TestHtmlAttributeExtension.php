@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Infrastructure\Common\Twig;
 
 use Twig\Extension\AbstractExtension;
-use Twig\Extension\ExtensionInterface;
 use Twig\TwigFunction;
 
 final class TestHtmlAttributeExtension extends AbstractExtension

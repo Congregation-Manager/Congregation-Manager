@@ -20,7 +20,6 @@ services:
         class: App\Tests\Behat\Context\Ui\App\LocaleContext
         arguments:
             - '@test.behat.page.app.home'
-            - '@app.converter.locale'
 
     test.behat.context.ui.admin.account:
         class: App\Tests\Behat\Context\Ui\Admin\AccountContext

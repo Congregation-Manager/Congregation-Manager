@@ -3,16 +3,16 @@
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         </ul>
         
-        <div class="dropdown">
+        <div class="dropdown" {{ test_html_attribute('locale-selector') }}>
             <a class="d-block text-decoration-none dropdown-toggle text-white" href="#" id="dropdown-locale" data-bs-toggle="dropdown" aria-expanded="false" {{ test_html_attribute('active-locale', active) }}>
-                {{ active }}
+                {{ active|locale_name }}
             </a>
             <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end" aria-labelledby="dropdown-locale">
                 {% for locale in locales %}
                     {% if locale is not same as(active) %}
                         <li>
-                            <a class="dropdown-item" href="{{ path('app_switch_locale', {'locale': locale}) }}">
-                                {{ locale }}
+                            <a class="dropdown-item" href="{{ path('app_switch_locale', {'locale': locale}) }}" {{ test_html_attribute('available-locale', locale) }}>
+                                {{ locale|locale_name }}
                             </a>
                         </li>
                     {% endif %}

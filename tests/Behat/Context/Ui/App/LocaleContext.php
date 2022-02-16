@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Tests\Behat\Context\Ui\App;
 
-use App\Infrastructure\Common\Locale\LocaleConverterInterface;
 use App\Tests\Behat\Page\App\HomePageInterface;
 use Behat\Behat\Context\Context;
 use Webmozart\Assert\Assert;
@@ -12,8 +11,7 @@ use Webmozart\Assert\Assert;
 final class LocaleContext implements Context
 {
     public function __construct(
-        private HomePageInterface $homePage,
-        private LocaleConverterInterface $localeConverter
+        private HomePageInterface $homePage
     ) {
     }
 
@@ -30,6 +28,22 @@ final class LocaleContext implements Context
      */
     public function iShouldUsingTheLocale(string $locale): void
     {
-        Assert::eq($this->homePage->getActiveLocale(), $this->localeConverter->convertNameToCode($locale));
+        Assert::eq($this->homePage->getActiveLocale(), $locale);
+    }
+
+    /**
+     * @Then I should be able to use the :locale locale
+     */
+    public function iShouldBeAbleToUseTheLocale(string $locale): void
+    {
+        Assert::oneOf($locale, $this->homePage->getAvailableLocales());
+    }
+
+    /**
+     * @Given I switch to the :locale locale
+     */
+    public function iSwitchToTheLocale(string $locale): void
+    {
+        $this->homePage->switchLocale($locale);
     }
 }
