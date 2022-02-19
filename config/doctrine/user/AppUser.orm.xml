@@ -17,6 +17,8 @@
 
         <field name="roles" type="json"/>
 
+        <field name="localeCode" column="locale_code" type="string" length="10" nullable="true" />
+
     </entity>
 
 </doctrine-mapping>

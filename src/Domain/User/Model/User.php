@@ -11,6 +11,8 @@ abstract class User extends AggregateRoot implements UserInterface
 
     protected ?string $password = null;
 
+    protected ?string $localeCode = null;
+
     public function __construct(
         protected string $email
     ) {
@@ -46,5 +48,15 @@ abstract class User extends AggregateRoot implements UserInterface
     public function setPassword(?string $password): void
     {
         $this->password = $password;
+    }
+
+    public function getLocaleCode(): ?string
+    {
+        return $this->localeCode;
+    }
+
+    public function setLocaleCode(?string $localeCode): void
+    {
+        $this->localeCode = $localeCode;
     }
 }
