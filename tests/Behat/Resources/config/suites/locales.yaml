@@ -4,8 +4,12 @@ default:
             contexts:
                 - test.behat.context.hook.doctrine
 
+                - test.behat.context.transform.user
+
+                - test.behat.context.setup.account
                 - test.behat.context.setup.browser
 
+                - test.behat.context.ui.app.account
                 - test.behat.context.ui.app.locale
             filters:
                 tags: "@locales && @ui && @app"
@@ -14,8 +18,12 @@ default:
             contexts:
                 - test.behat.context.hook.doctrine
 
+                - test.behat.context.transform.user
+
+                - test.behat.context.setup.account
                 - test.behat.context.setup.browser
 
+                - test.behat.context.ui.admin.account
                 - test.behat.context.ui.admin.locale
             filters:
                 tags: "@locales && @ui && @admin"

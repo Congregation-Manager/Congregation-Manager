@@ -226,4 +226,15 @@ final class AccountContext implements Context
     {
         $this->changePasswordPage->update();
     }
+
+    /**
+     * @When I log in as :email
+     */
+    public function iLogInAs(string $email, string $password = 'password'): void
+    {
+        $this->loginPage->open();
+        $this->loginPage->specifyEmail($email);
+        $this->loginPage->specifyPassword($password);
+        $this->loginPage->signIn();
+    }
 }

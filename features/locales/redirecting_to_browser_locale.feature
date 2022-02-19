@@ -1,7 +1,7 @@
 @locales
 Feature: Redirect to browser locale
     In order to facilitate the use of the app
-    As a Brother
+    As a Brother or Administrator
     I want to be redirected to my browser preferred locale
 
     @ui @app

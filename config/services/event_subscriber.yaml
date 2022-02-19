@@ -11,3 +11,11 @@ services:
             - '%supported_locales%'
         tags:
             - { name: kernel.event_subscriber }
+
+    app.event_subscriber.user_locale:
+        class: App\Infrastructure\Common\EventSubscriber\UserLocaleSubscriber
+        arguments:
+            - '@request_stack'
+            - '%supported_locales%'
+        tags:
+            - { name: kernel.event_subscriber }

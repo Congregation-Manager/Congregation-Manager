@@ -2,6 +2,7 @@
 
 namespace App\Tests\Behat\Context\Setup;
 
+use App\Infrastructure\Common\Converter\LocaleConverterInterface;
 use App\Infrastructure\User\Model\AdminUser;
 use App\Infrastructure\User\Model\AdminUserInterface;
 use App\Infrastructure\User\Model\AppUser;
@@ -22,7 +23,8 @@ final class AccountContext implements Context
         private UserPasswordHasherInterface $userPasswordHasher,
         private ResetPasswordTokenGenerator $tokenGenerator,
         private SharedStorageInterface $sharedStorage,
-        private ResetPasswordRequestRepositoryInterface $resetPasswordRequestRepository
+        private ResetPasswordRequestRepositoryInterface $resetPasswordRequestRepository,
+        private LocaleConverterInterface $localeConverter
     ) {
     }
 
@@ -104,5 +106,25 @@ final class AccountContext implements Context
         $this->entityManager->flush();
 
         $this->sharedStorage->set('forgot_password_token', $hashedVerifierToken->getPublicToken());
+    }
+
+    /**
+     * @Given /^The (app user "[^"]+") has "([^"]*)" as preferred language$/
+     */
+    public function theAppUserHasAsPreferredLanguage(AppUserInterface $appUser, string $locale): void
+    {
+        $localeCode = $this->localeConverter->convertNameToCode($locale);
+        $appUser->setLocaleCode($localeCode);
+        $this->entityManager->flush();
+    }
+
+    /**
+     * @Given /^The (admin user "[^"]+") has "([^"]*)" as preferred language$/
+     */
+    public function theAdminUserHasAsPreferredLanguage(AdminUserInterface $adminUser, string $locale): void
+    {
+        $localeCode = $this->localeConverter->convertNameToCode($locale);
+        $adminUser->setLocaleCode($localeCode);
+        $this->entityManager->flush();
     }
 }

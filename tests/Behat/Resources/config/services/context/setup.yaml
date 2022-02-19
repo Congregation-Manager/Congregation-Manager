@@ -12,6 +12,7 @@ services:
             - '@symfonycasts.reset_password.token_generator'
             - '@test.behat.shared_storage'
             - '@app.repository.reset_password_request'
+            - '@app.converter.locale'
 
     test.behat.context.setup.app_security:
         class: App\Tests\Behat\Context\Setup\AppSecurityContext
