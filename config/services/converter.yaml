@@ -5,4 +5,4 @@ services:
         public: false
 
     app.converter.locale:
-        class: App\Infrastructure\Common\Locale\LocaleConverter
+        class: App\Infrastructure\Common\Converter\LocaleConverter

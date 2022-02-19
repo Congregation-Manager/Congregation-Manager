@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Tests\Behat\Context\Setup;
 
-use App\Infrastructure\Common\Locale\LocaleConverterInterface;
+use App\Infrastructure\Common\Converter\LocaleConverterInterface;
 use Behat\Behat\Context\Context;
 use Behat\Mink\Session;
 

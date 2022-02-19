@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Infrastructure\Common\Locale;
+namespace App\Infrastructure\Common\Converter;
 
 use InvalidArgumentException;
 

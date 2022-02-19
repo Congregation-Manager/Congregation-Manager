@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Infrastructure\Common\Twig;
 
-use App\Infrastructure\Common\Locale\LocaleConverterInterface;
+use App\Infrastructure\Common\Converter\LocaleConverterInterface;
 use InvalidArgumentException;
 use Twig\Extension\RuntimeExtensionInterface;
 
