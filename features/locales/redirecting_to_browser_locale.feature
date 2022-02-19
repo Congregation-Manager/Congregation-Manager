@@ -15,3 +15,15 @@ Feature: Redirect to browser locale
         Given I use a browser set in the "French" preferred language
         When I visit the homepage
         Then I should use the "English" locale
+
+    @ui @admin
+    Scenario: Redirect to browser locale if it is available
+        Given I use a browser set in the "Italian" preferred language
+        When I visit the administration login page
+        Then I should use the "Italian" locale
+
+    @ui @admin
+    Scenario: Redirect to default locale if it is not available
+        Given I use a browser set in the "French" preferred language
+        When I visit the administration login page
+        Then I should use the "English" locale
