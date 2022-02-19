@@ -172,10 +172,11 @@ final class AccountContext implements Context
     }
 
     /**
-     * @WHen I log out
+     * @When I log out
      */
     public function iLogOut(): void
     {
+        $this->dashboardPage->open();
         $this->dashboardPage->signOut();
     }
 

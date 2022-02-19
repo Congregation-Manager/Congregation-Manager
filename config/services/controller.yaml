@@ -17,6 +17,8 @@ services:
         arguments:
             - '%supported_locales%'
             - '@session'
+            - '@security.helper'
+            - '@doctrine.orm.entity_manager'
         calls:
             - [setContainer, ['@service_container']]
         tags: [ 'controller.service_arguments' ]
@@ -40,6 +42,8 @@ services:
         arguments:
             - '%supported_locales%'
             - '@session'
+            - '@security.helper'
+            - '@doctrine.orm.entity_manager'
         calls:
             - [setContainer, ['@service_container']]
         tags: [ 'controller.service_arguments' ]

@@ -26,7 +26,7 @@ final class DashboardPage extends SymfonyPage implements DashboardPageInterface
     protected function getDefinedElements(): array
     {
         return array_merge(parent::getDefinedElements(), [
-            'logout_button' => 'a:contains("Sign out")'
+            'logout_button' => '[data-test-logout-button]'
         ]);
     }
 }
