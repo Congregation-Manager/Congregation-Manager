@@ -9,3 +9,13 @@ default:
                 - test.behat.context.ui.app.locale
             filters:
                 tags: "@locales && @ui && @app"
+
+        ui_admin_locales_features:
+            contexts:
+                - test.behat.context.hook.doctrine
+
+                - test.behat.context.setup.browser
+
+                - test.behat.context.ui.admin.locale
+            filters:
+                tags: "@locales && @ui && @admin"

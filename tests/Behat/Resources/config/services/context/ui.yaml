@@ -33,6 +33,11 @@ services:
             - '@test.behat.page.admin.profile_update'
             - '@test.behat.page.admin.change_password'
 
+    test.behat.context.ui.admin.locale:
+        class: App\Tests\Behat\Context\Ui\Admin\LocaleContext
+        arguments:
+            - '@test.behat.page.admin.login'
+
     test.behat.context.ui.email:
         class: App\Tests\Behat\Context\Ui\EmailContext
         arguments:

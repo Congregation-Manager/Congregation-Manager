@@ -2,16 +2,18 @@
     <div class="position-sticky pt-3">
         <ul class="nav flex-column">
             <li class="nav-item">
-                <div class="dropdown">
-                    <a class="nav-link" href="#" id="dropdown-locale" data-bs-toggle="dropdown" aria-expanded="false">
-                        {{ active }}
+                <div class="dropdown" {{ test_html_attribute('locale-selector') }}>
+                    <a class="nav-link" href="#" id="dropdown-locale" data-bs-toggle="dropdown"
+                       aria-expanded="false" {{ test_html_attribute('active-locale', active) }}>
+                        {{ active|locale_name }}
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="dropdown-locale">
                         {% for locale in locales %}
                             {% if locale is not same as(active) %}
                                 <li>
-                                    <a class="dropdown-item" href="{{ path('admin_switch_locale', {'locale': locale}) }}">
-                                        {{ locale }}
+                                    <a class="dropdown-item"
+                                       href="{{ path('admin_switch_locale', {'locale': locale}) }}" {{ test_html_attribute('available-locale', locale) }}>
+                                        {{ locale|locale_name }}
                                     </a>
                                 </li>
                             {% endif %}

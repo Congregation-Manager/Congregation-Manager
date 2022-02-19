@@ -11,4 +11,11 @@ interface LoginPageInterface extends SymfonyPageInterface
     public function specifyPassword(string $password): void;
 
     public function signIn(): void;
+
+    public function getActiveLocale(): string;
+
+    /** @return string[] */
+    public function getAvailableLocales(): array;
+
+    public function switchLocale(string $locale): void;
 }
