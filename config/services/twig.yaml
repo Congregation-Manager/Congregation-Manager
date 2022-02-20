@@ -20,5 +20,6 @@ services:
         class: App\Infrastructure\Common\Twig\LocaleRuntime
         arguments:
             - '@app.converter.locale'
+            - '@app.context.locale'
         tags:
             - { name: twig.runtime }

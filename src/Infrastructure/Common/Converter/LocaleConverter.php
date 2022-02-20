@@ -11,9 +11,14 @@ use Webmozart\Assert\Assert;
 
 final class LocaleConverter implements LocaleConverterInterface
 {
+    public function __construct(
+        private string $defaultLocale
+    ) {
+    }
+
     public function convertNameToCode(string $name, ?string $locale = null): string
     {
-        $names = Locales::getNames($locale ?? 'en');
+        $names = Locales::getNames($locale ?? $this->defaultLocale);
         $code = array_search($name, $names, true);
 
         Assert::string($code, sprintf('Cannot find code for "%s" locale name', $name));

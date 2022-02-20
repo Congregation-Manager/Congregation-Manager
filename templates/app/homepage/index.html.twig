@@ -30,7 +30,7 @@
                     {% for locale in locales %}
                         <a href="{{ path('app_switch_locale', {'locale': locale}) }}" {{ test_html_attribute('available-locale', locale) }}
                             {% if locale == active %}{{ test_html_attribute('active-locale', active) }} class="active text-decoration-underline" {% endif %}>
-                            {{ locale|locale_name }}
+                            {{ locale|locale_name }} [{{ locale|locale_name(locale) }}]
                         </a>
                     {% endfor %}
                 </div>

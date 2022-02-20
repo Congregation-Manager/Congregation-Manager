@@ -1,0 +1,10 @@
+services:
+    _defaults:
+        autowire: false
+        autoconfigure: false
+        public: false
+
+    app.context.locale:
+        class: App\Infrastructure\Common\Context\LocaleContext
+        arguments:
+            - '@request_stack'

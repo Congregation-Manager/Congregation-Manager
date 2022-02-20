@@ -6,3 +6,5 @@ services:
 
     app.converter.locale:
         class: App\Infrastructure\Common\Converter\LocaleConverter
+        arguments:
+            - '%default_locale%'

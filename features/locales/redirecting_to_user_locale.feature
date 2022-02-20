@@ -12,15 +12,15 @@ Feature: Redirect to user locale after login
   Scenario: Redirect to user locale if it is available
     Given The app user "walkbrend@email.com" has "Italian" as preferred language
     When I visit the homepage
-    Then I should use the "English" locale
+    Then I should use the "English [English]" locale
     When I log in as "walkbrend@email.com"
-    Then I should use the "Italian" locale
+    Then I should use the "italiano" locale
 
   @ui @app
   Scenario: Do not change the current locale if it is not available
     Given The app user "walkbrend@email.com" has "French" as preferred language
     When I visit the homepage
-    Then I should use the "English" locale
+    Then I should use the "English [English]" locale
     When I log in as "walkbrend@email.com"
     Then I should use the "English" locale
 
@@ -30,7 +30,7 @@ Feature: Redirect to user locale after login
     When I visit the administration login page
     Then I should use the "English" locale
     When I log in as "admin@cm.org"
-    Then I should use the "Italian" locale
+    Then I should use the "italiano" locale
 
   @ui @admin
   Scenario: Do not change the current locale if it is not available
