@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "67144dbcb3b1c91a69da86bd17ba26bd",
+    "content-hash": "e722cac4677bfbdb620712e7ab498979",
     "packages": [
         {
             "name": "composer/package-versions-deprecated",
@@ -9248,6 +9248,76 @@
                 "source": "https://github.com/phar-io/version/tree/3.1.1"
             },
             "time": "2022-02-07T21:56:48+00:00"
+        },
+        {
+            "name": "phparkitect/phparkitect",
+            "version": "0.2.15",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/phparkitect/arkitect.git",
+                "reference": "755e6e4116d88048250fe1637f7d7d519419a2d6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/phparkitect/arkitect/zipball/755e6e4116d88048250fe1637f7d7d519419a2d6",
+                "reference": "755e6e4116d88048250fe1637f7d7d519419a2d6",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "nikic/php-parser": "~4",
+                "php": "^7.1|^8",
+                "symfony/console": "^3.0|^4.0|^5.0|^6.0",
+                "symfony/event-dispatcher": "^3.0|^4.0|^5.0|^6.0",
+                "symfony/finder": "^3.0|^4.0|^5.0|^6.0",
+                "symfony/polyfill-php80": "^1.20",
+                "webmozart/assert": "^1.9"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^2.16",
+                "mikey179/vfsstream": "^1.6",
+                "phpunit/phpunit": "^7.5|^9.0",
+                "roave/security-advisories": "dev-master",
+                "symfony/var-dumper": "^3.0|^4.0|^5.0|^6.0",
+                "vimeo/psalm": "^4.6"
+            },
+            "bin": [
+                "bin-stub/phparkitect"
+            ],
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Arkitect\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Pietro Campagnano",
+                    "email": "hello@pietro.camp"
+                },
+                {
+                    "name": "Patrick Luca Fazzi",
+                    "email": "patrick91@live.it"
+                },
+                {
+                    "name": "Alessandro Minoccheri",
+                    "email": "alessandro.minoccheri@gmail.com"
+                },
+                {
+                    "name": "Michele Orselli",
+                    "email": "michele.orselli@gmail.com"
+                }
+            ],
+            "description": "Enforce architectural constraints in your PHP applications",
+            "support": {
+                "issues": "https://github.com/phparkitect/arkitect/issues",
+                "source": "https://github.com/phparkitect/arkitect/tree/0.2.15"
+            },
+            "time": "2022-02-23T11:47:11+00:00"
         },
         {
             "name": "phpspec/php-diff",
