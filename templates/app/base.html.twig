@@ -1,5 +1,11 @@
 {% extends 'base.html.twig' %}
 
+{% block stylesheets %}
+    {{ parent() }}
+    
+    {{ encore_entry_link_tags('app') }}
+{% endblock %}
+
 {% block body %}
     <header>
         <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-3">
@@ -31,4 +37,10 @@
     </header>
 
     {% block content %}{% endblock %}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    
+    {{ encore_entry_script_tags('app') }}
 {% endblock %}
