@@ -30,3 +30,12 @@ services:
             - '@doctrine'
         tags:
             - { name: doctrine.repository_service }
+
+    cm.repository.congregation:
+        alias: 'CongregationManager\Infrastructure\Congregation\Repository\CongregationRepository'
+
+    CongregationManager\Infrastructure\Congregation\Repository\CongregationRepository:
+        arguments:
+            - '@doctrine'
+        tags:
+            - { name: doctrine.repository_service }

@@ -16,3 +16,10 @@ doctrine:
                 dir: '%kernel.project_dir%/config/doctrine/user'
                 prefix: 'CongregationManager\Infrastructure\User\Model'
                 alias: CongregationManager\User
+            Congregation:
+                is_bundle: false
+                type: xml
+                dir: '%kernel.project_dir%/config/doctrine/congregation'
+                prefix: 'CongregationManager\Domain\Congregation\Model'
+                alias: CongregationManager\Congregation
+
