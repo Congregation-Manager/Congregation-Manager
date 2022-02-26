@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Domain\User\Model;
+namespace CongregationManager\Domain\User\Model;
 
-use App\Domain\Common\Model\AggregateRoot;
+use CongregationManager\Domain\Common\Model\AggregateRoot;
 use DateTimeInterface;
 
 class ResetPasswordRequest extends AggregateRoot implements ResetPasswordRequestInterface

@@ -2,28 +2,28 @@ default:
     suites:
         ui_app_locales_features:
             contexts:
-                - test.behat.context.hook.doctrine
+                - cm.test.behat.context.hook.doctrine
 
-                - test.behat.context.transform.user
+                - cm.test.behat.context.transform.user
 
-                - test.behat.context.setup.account
-                - test.behat.context.setup.browser
+                - cm.test.behat.context.setup.account
+                - cm.test.behat.context.setup.browser
 
-                - test.behat.context.ui.app.account
-                - test.behat.context.ui.app.locale
+                - cm.test.behat.context.ui.app.account
+                - cm.test.behat.context.ui.app.locale
             filters:
                 tags: "@locales && @ui && @app"
 
         ui_admin_locales_features:
             contexts:
-                - test.behat.context.hook.doctrine
+                - cm.test.behat.context.hook.doctrine
 
-                - test.behat.context.transform.user
+                - cm.test.behat.context.transform.user
 
-                - test.behat.context.setup.account
-                - test.behat.context.setup.browser
+                - cm.test.behat.context.setup.account
+                - cm.test.behat.context.setup.browser
 
-                - test.behat.context.ui.admin.account
-                - test.behat.context.ui.admin.locale
+                - cm.test.behat.context.ui.admin.account
+                - cm.test.behat.context.ui.admin.locale
             filters:
                 tags: "@locales && @ui && @admin"

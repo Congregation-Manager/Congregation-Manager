@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Infrastructure\User\Model;
+namespace CongregationManager\Infrastructure\User\Model;
 
-use App\Domain\User\Model\ResetPasswordRequestInterface as DomainResetPasswordRequestInterface;
+use CongregationManager\Domain\User\Model\ResetPasswordRequestInterface as DomainResetPasswordRequestInterface;
 use SymfonyCasts\Bundle\ResetPassword\Model\ResetPasswordRequestInterface as SymfonyResetPasswordRequestInterface;
 
 interface ResetPasswordRequestInterface extends DomainResetPasswordRequestInterface, SymfonyResetPasswordRequestInterface

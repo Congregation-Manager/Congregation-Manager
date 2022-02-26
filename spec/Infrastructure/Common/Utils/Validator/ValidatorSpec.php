@@ -1,8 +1,8 @@
 <?php
 
-namespace spec\App\Infrastructure\Common\Utils\Validator;
+namespace spec\CongregationManager\Infrastructure\Common\Utils\Validator;
 
-use App\Infrastructure\Common\Utils\Validator\Validator;
+use CongregationManager\Infrastructure\Common\Utils\Validator\Validator;
 use PhpSpec\ObjectBehavior;
 
 class ValidatorSpec extends ObjectBehavior

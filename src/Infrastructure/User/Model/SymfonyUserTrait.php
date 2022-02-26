@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Infrastructure\User\Model;
+namespace CongregationManager\Infrastructure\User\Model;
 
 trait SymfonyUserTrait
 {

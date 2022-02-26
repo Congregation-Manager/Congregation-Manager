@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Infrastructure\User\Form;
+namespace CongregationManager\Infrastructure\User\Form;
 
-use App\Infrastructure\User\Model\UserInterface;
+use CongregationManager\Infrastructure\User\Model\UserInterface;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;

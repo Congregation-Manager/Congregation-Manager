@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Tests\Integration\Command;
+namespace CongregationManager\Tests\Integration\Command;
 
-use App\Domain\User\Model\AdminUser;
-use App\Domain\User\Model\AppUser;
-use App\Infrastructure\User\Repository\AdminUserRepository;
-use App\Infrastructure\User\Repository\AppUserRepository;
+use CongregationManager\Domain\User\Model\AdminUser;
+use CongregationManager\Domain\User\Model\AppUser;
+use CongregationManager\Infrastructure\User\Repository\AdminUserRepository;
+use CongregationManager\Infrastructure\User\Repository\AppUserRepository;
 
 final class AddUserCommandTest extends AbstractCommandTest
 {
@@ -52,7 +52,7 @@ final class AddUserCommandTest extends AbstractCommandTest
 
     protected function getCommandServiceDefinition(): string
     {
-        return 'app.command.create_user';
+        return 'cm.command.create_user';
     }
 
     private function assertAppUserCreated(): void

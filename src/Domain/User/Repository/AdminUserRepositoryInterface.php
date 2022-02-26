@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Domain\User\Repository;
+namespace CongregationManager\Domain\User\Repository;
 
 interface AdminUserRepositoryInterface
 {

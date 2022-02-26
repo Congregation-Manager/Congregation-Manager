@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Tests\Behat\Services;
+namespace CongregationManager\Tests\Behat\Services;
 
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Component\Mailer\Envelope;

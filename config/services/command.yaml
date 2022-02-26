@@ -4,13 +4,13 @@ services:
         autoconfigure: false
         public: false
 
-    app.command.create_user:
-        class: App\Infrastructure\User\Command\AddUserCommand
+    cm.command.create_user:
+        class: CongregationManager\Infrastructure\User\Command\AddUserCommand
         arguments:
             - '@doctrine.orm.entity_manager'
             - '@security.user_password_hasher'
-            - '@app.utils.validator'
-            - '@app.repository.app_user'
-            - '@app.repository.admin_user'
+            - '@cm.utils.validator'
+            - '@cm.repository.app_user'
+            - '@cm.repository.admin_user'
         tags:
             - { name: 'console.command', command: 'app:add-user', description: 'Creates users and stores them in the database' }

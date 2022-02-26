@@ -8,15 +8,15 @@
 
 {% block body %}
     <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
-        <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="{{ path('admin_dashboard') }}">{{ 'app.admin_nav.title'|trans }}</a>
+        <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="{{ path('admin_dashboard') }}">{{ 'cm.admin_nav.title'|trans }}</a>
 
-        <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebar-menu" aria-controls="sidebar-menu" aria-expanded="false" aria-label="{{ 'app.admin_nav.toggle'|trans }}">
+        <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebar-menu" aria-controls="sidebar-menu" aria-expanded="false" aria-label="{{ 'cm.admin_nav.toggle'|trans }}">
             <span class="navbar-toggler-icon"></span>
         </button>
 
         <div class="navbar-nav">
             <div class="nav-item text-nowrap">
-                <a class="nav-link px-3" href="{{ path('admin_logout') }}" {{ test_html_attribute('logout-button') }}>{{ 'app.admin_nav.logout'|trans }}</a>
+                <a class="nav-link px-3" href="{{ path('admin_logout') }}" {{ test_html_attribute('logout-button') }}>{{ 'cm.admin_nav.logout'|trans }}</a>
             </div>
         </div>
     </header>
@@ -29,14 +29,14 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ path('admin_dashboard') }}">
                                 <span data-feather="home"></span>
-                                {{ 'app.label.dashboard'|trans }}
+                                {{ 'cm.label.dashboard'|trans }}
                             </a>
                         </li>
                     </ul>
                 </div>
     
     
-                {{ render(controller('app.controller.admin_locale:renderAction')) }}
+                {{ render(controller('cm.controller.admin_locale:renderAction')) }}
             </nav>
 
             <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">

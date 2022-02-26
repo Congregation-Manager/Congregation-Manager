@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Behat\Context\Transform;
+namespace CongregationManager\Tests\Behat\Context\Transform;
 
-use App\Domain\User\Model\AdminUserInterface;
-use App\Infrastructure\User\Model\AdminUser;
-use App\Infrastructure\User\Model\AppUser;
-use App\Infrastructure\User\Model\AppUserInterface;
 use Behat\Behat\Context\Context;
+use CongregationManager\Domain\User\Model\AdminUserInterface;
+use CongregationManager\Infrastructure\User\Model\AdminUser;
+use CongregationManager\Infrastructure\User\Model\AppUser;
+use CongregationManager\Infrastructure\User\Model\AppUserInterface;
 use Doctrine\ORM\EntityManagerInterface;
 
 final class UserContext implements Context

@@ -4,39 +4,39 @@ services:
         autoconfigure: false
         public: false
 
-    test.behat.email_checker:
-        class: App\Tests\Behat\Services\EmailChecker
+    cm.test.behat.email_checker:
+        class: CongregationManager\Tests\Behat\Services\EmailChecker
 
-    test.behat.mailer_factory:
-        class: App\Tests\Behat\Services\BehatMailerFactory
+    cm.test.behat.mailer_factory:
+        class: CongregationManager\Tests\Behat\Services\BehatMailerFactory
         arguments:
-            - '@test.behat.mailer_transport'
+            - '@cm.test.behat.mailer_transport'
         tags:
             - {name: 'mailer.transport_factory'}
 
-    test.behat.mailer_transport:
-        class: App\Tests\Behat\Services\FakeMailerTransport
+    cm.test.behat.mailer_transport:
+        class: CongregationManager\Tests\Behat\Services\FakeMailerTransport
         arguments:
             - '@twig'
 
-    test.behat.shared_storage:
-        class: App\Tests\Behat\Services\SharedStorage
+    cm.test.behat.shared_storage:
+        class: CongregationManager\Tests\Behat\Services\SharedStorage
 
-    test.behat.service.app_security:
-        class: App\Tests\Behat\Services\SecurityService
+    cm.test.behat.service.app_security:
+        class: CongregationManager\Tests\Behat\Services\SecurityService
         arguments:
             - '@session'
             - 'app'
-            - '@test.behat.setter.cookie'
+            - '@cm.test.behat.setter.cookie'
 
-    test.behat.service.admin_security:
-        class: App\Tests\Behat\Services\SecurityService
+    cm.test.behat.service.admin_security:
+        class: CongregationManager\Tests\Behat\Services\SecurityService
         arguments:
             - '@session'
             - 'admin'
-            - '@test.behat.setter.cookie'
+            - '@cm.test.behat.setter.cookie'
 
-    test.behat.setter.cookie:
-        class: App\Tests\Behat\Services\Setter\CookieSetter
+    cm.test.behat.setter.cookie:
+        class: CongregationManager\Tests\Behat\Services\Setter\CookieSetter
         arguments:
             - '@behat.mink.default_session'

@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Tests\Behat\Context\Setup;
+namespace CongregationManager\Tests\Behat\Context\Setup;
 
-use App\Infrastructure\Common\Converter\LocaleConverterInterface;
-use App\Infrastructure\User\Model\AdminUser;
-use App\Infrastructure\User\Model\AdminUserInterface;
-use App\Infrastructure\User\Model\AppUser;
-use App\Infrastructure\User\Model\AppUserInterface;
-use App\Infrastructure\User\Model\ResetPasswordRequest;
-use App\Tests\Behat\Services\SharedStorageInterface;
 use Behat\Behat\Context\Context;
+use CongregationManager\Infrastructure\Common\Converter\LocaleConverterInterface;
+use CongregationManager\Infrastructure\User\Model\AdminUser;
+use CongregationManager\Infrastructure\User\Model\AdminUserInterface;
+use CongregationManager\Infrastructure\User\Model\AppUser;
+use CongregationManager\Infrastructure\User\Model\AppUserInterface;
+use CongregationManager\Infrastructure\User\Model\ResetPasswordRequest;
+use CongregationManager\Tests\Behat\Services\SharedStorageInterface;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use SymfonyCasts\Bundle\ResetPassword\Generator\ResetPasswordTokenGenerator;

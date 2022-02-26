@@ -1,9 +1,9 @@
 <?php
 
 
-namespace App\Infrastructure\User\Model;
+namespace CongregationManager\Infrastructure\User\Model;
 
-use App\Domain\User\Model\AdminUser as DomainAdminUser;
+use CongregationManager\Domain\User\Model\AdminUser as DomainAdminUser;
 
 class AdminUser extends DomainAdminUser implements AdminUserInterface
 {

@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Infrastructure\User\Controller;
+namespace CongregationManager\Infrastructure\User\Controller;
 
-use App\Domain\User\Exception\UserInstanceNotValid;
-use App\Infrastructure\User\Form\ChangePasswordFormType;
-use App\Infrastructure\User\Form\ResetPasswordRequestFormType;
-use App\Infrastructure\User\Model\AppUser;
-use App\Infrastructure\User\Model\UserInterface;
+use CongregationManager\Domain\User\Exception\UserInstanceNotValid;
+use CongregationManager\Infrastructure\User\Form\ChangePasswordFormType;
+use CongregationManager\Infrastructure\User\Form\ResetPasswordRequestFormType;
+use CongregationManager\Infrastructure\User\Model\AppUser;
+use CongregationManager\Infrastructure\User\Model\UserInterface;
 use Doctrine\ORM\EntityManagerInterface;
 use Psr\Log\LoggerInterface;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;

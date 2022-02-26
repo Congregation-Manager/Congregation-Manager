@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Tests\Behat\Page\App;
+namespace CongregationManager\Tests\Behat\Page\App;
 
 use FriendsOfBehat\PageObjectExtension\Page\SymfonyPageInterface;
 

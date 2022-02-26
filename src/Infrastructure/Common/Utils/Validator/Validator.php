@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Infrastructure\Common\Utils\Validator;
+namespace CongregationManager\Infrastructure\Common\Utils\Validator;
 
 use Symfony\Component\Console\Exception\InvalidArgumentException;
 use function Symfony\Component\String\u;

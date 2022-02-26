@@ -4,30 +4,30 @@ services:
         autoconfigure: false
         public: true
 
-    test.behat.context.setup.account:
-        class: App\Tests\Behat\Context\Setup\AccountContext
+    cm.test.behat.context.setup.account:
+        class: CongregationManager\Tests\Behat\Context\Setup\AccountContext
         arguments:
             - '@doctrine.orm.entity_manager'
             - '@security.password_hasher'
             - '@symfonycasts.reset_password.token_generator'
-            - '@test.behat.shared_storage'
-            - '@app.repository.reset_password_request'
-            - '@app.converter.locale'
+            - '@cm.test.behat.shared_storage'
+            - '@cm.repository.reset_password_request'
+            - '@cm.converter.locale'
 
-    test.behat.context.setup.app_security:
-        class: App\Tests\Behat\Context\Setup\AppSecurityContext
+    cm.test.behat.context.setup.app_security:
+        class: CongregationManager\Tests\Behat\Context\Setup\AppSecurityContext
         arguments:
-            - '@app.repository.app_user'
-            - '@test.behat.service.app_security'
+            - '@cm.repository.app_user'
+            - '@cm.test.behat.service.app_security'
 
-    test.behat.context.setup.admin_security:
-        class: App\Tests\Behat\Context\Setup\AdminSecurityContext
+    cm.test.behat.context.setup.admin_security:
+        class: CongregationManager\Tests\Behat\Context\Setup\AdminSecurityContext
         arguments:
-            - '@app.repository.admin_user'
-            - '@test.behat.service.admin_security'
+            - '@cm.repository.admin_user'
+            - '@cm.test.behat.service.admin_security'
 
-    test.behat.context.setup.browser:
-        class: App\Tests\Behat\Context\Setup\BrowserContext
+    cm.test.behat.context.setup.browser:
+        class: CongregationManager\Tests\Behat\Context\Setup\BrowserContext
         arguments:
             - '@behat.mink.default_session'
-            - '@app.converter.locale'
+            - '@cm.converter.locale'

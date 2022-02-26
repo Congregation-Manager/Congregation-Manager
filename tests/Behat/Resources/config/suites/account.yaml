@@ -2,26 +2,26 @@ default:
     suites:
         ui_app_account_features:
             contexts:
-                - test.behat.context.hook.doctrine
-                - test.behat.context.hook.email_spool
+                - cm.test.behat.context.hook.doctrine
+                - cm.test.behat.context.hook.email_spool
 
-                - test.behat.context.setup.account
-                - test.behat.context.setup.app_security
+                - cm.test.behat.context.setup.account
+                - cm.test.behat.context.setup.app_security
 
-                - test.behat.context.ui.app.account
-                - test.behat.context.ui.email
+                - cm.test.behat.context.ui.app.account
+                - cm.test.behat.context.ui.email
             filters:
                 tags: "@account && @ui && @app"
 
         ui_admin_account_features:
             contexts:
-                - test.behat.context.hook.doctrine
-                - test.behat.context.hook.email_spool
+                - cm.test.behat.context.hook.doctrine
+                - cm.test.behat.context.hook.email_spool
 
-                - test.behat.context.setup.account
-                - test.behat.context.setup.admin_security
+                - cm.test.behat.context.setup.account
+                - cm.test.behat.context.setup.admin_security
 
-                - test.behat.context.ui.admin.account
-                - test.behat.context.ui.email
+                - cm.test.behat.context.ui.admin.account
+                - cm.test.behat.context.ui.email
             filters:
                 tags: "@account && @ui && @admin"

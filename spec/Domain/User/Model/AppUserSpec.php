@@ -1,12 +1,12 @@
 <?php
 
-namespace spec\App\Domain\User\Model;
+namespace spec\CongregationManager\Domain\User\Model;
 
-use App\Domain\Common\Model\AggregateRoot;
-use App\Domain\User\Model\AppUser;
-use App\Domain\User\Model\AppUserInterface;
-use App\Domain\User\Model\User;
-use App\Domain\User\Model\UserInterface;
+use CongregationManager\Domain\Common\Model\AggregateRoot;
+use CongregationManager\Domain\User\Model\AppUser;
+use CongregationManager\Domain\User\Model\AppUserInterface;
+use CongregationManager\Domain\User\Model\User;
+use CongregationManager\Domain\User\Model\UserInterface;
 use PhpSpec\ObjectBehavior;
 
 class AppUserSpec extends ObjectBehavior

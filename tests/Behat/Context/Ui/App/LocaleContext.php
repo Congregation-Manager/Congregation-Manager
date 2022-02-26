@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Behat\Context\Ui\App;
+namespace CongregationManager\Tests\Behat\Context\Ui\App;
 
-use App\Tests\Behat\Page\App\HomePageInterface;
 use Behat\Behat\Context\Context;
+use CongregationManager\Tests\Behat\Page\App\HomePageInterface;
 use Webmozart\Assert\Assert;
 
 final class LocaleContext implements Context

@@ -4,7 +4,7 @@ services:
         autoconfigure: false
         public: false
 
-    app.context.locale:
-        class: App\Infrastructure\Common\Context\LocaleContext
+    cm.context.locale:
+        class: CongregationManager\Infrastructure\Common\Context\LocaleContext
         arguments:
             - '@request_stack'

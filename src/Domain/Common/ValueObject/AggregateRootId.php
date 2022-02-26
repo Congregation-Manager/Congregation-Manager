@@ -1,7 +1,6 @@
 <?php
 
-
-namespace App\Domain\Common\ValueObject;
+namespace CongregationManager\Domain\Common\ValueObject;
 
 abstract class AggregateRootId
 {

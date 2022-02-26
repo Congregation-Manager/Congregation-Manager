@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Infrastructure\Common\Twig;
+namespace CongregationManager\Infrastructure\Common\Twig;
 
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFilter;

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Behat\Page\Admin;
+namespace CongregationManager\Tests\Behat\Page\Admin;
 
 use FriendsOfBehat\PageObjectExtension\Page\SymfonyPage;
 

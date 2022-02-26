@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Tests\Behat\Services;
+namespace CongregationManager\Tests\Behat\Services;
 
 interface SharedStorageInterface
 {

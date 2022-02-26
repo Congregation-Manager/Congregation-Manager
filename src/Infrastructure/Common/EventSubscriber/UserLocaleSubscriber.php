@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Infrastructure\Common\EventSubscriber;
+namespace CongregationManager\Infrastructure\Common\EventSubscriber;
 
-use App\Domain\User\Model\UserInterface as DomainUserInterface;
+use CongregationManager\Domain\User\Model\UserInterface as DomainUserInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\Security\Core\User\UserInterface as SymfonyUserInterface;

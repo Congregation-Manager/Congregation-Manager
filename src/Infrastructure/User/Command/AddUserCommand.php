@@ -1,13 +1,13 @@
 <?php
 
 
-namespace App\Infrastructure\User\Command;
+namespace CongregationManager\Infrastructure\User\Command;
 
-use App\Infrastructure\Common\Utils\Validator\Validator;
-use App\Infrastructure\User\Model\AdminUser;
-use App\Infrastructure\User\Model\AppUser;
-use App\Infrastructure\User\Repository\AdminUserRepository;
-use App\Infrastructure\User\Repository\AppUserRepository;
+use CongregationManager\Infrastructure\Common\Utils\Validator\Validator;
+use CongregationManager\Infrastructure\User\Model\AdminUser;
+use CongregationManager\Infrastructure\User\Model\AppUser;
+use CongregationManager\Infrastructure\User\Repository\AdminUserRepository;
+use CongregationManager\Infrastructure\User\Repository\AppUserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Exception\RuntimeException;

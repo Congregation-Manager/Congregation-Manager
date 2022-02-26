@@ -1,6 +1,6 @@
 {% extends 'app/base.html.twig' %}
 
-{% block title %}{{ 'app.homepage.meta_title'|trans }}{% endblock %}
+{% block title %}{{ 'cm.homepage.meta_title'|trans }}{% endblock %}
 
 {% block stylesheets %}
     {{ parent() }}
@@ -12,17 +12,17 @@
     <div class="container">
         <div class="px-4 py-5 my-5 text-center">
             <img class="d-block mx-auto mb-4" src="https://via.placeholder.com/72x57" alt="" width="72" height="57">
-            <h1 class="display-5 fw-bold">{{ 'app.homepage.title'|trans }}</h1>
+            <h1 class="display-5 fw-bold">{{ 'cm.homepage.title'|trans }}</h1>
             <div class="col-lg-6 mx-auto">
-                <p class="lead mb-4">{{ 'app.homepage.subtitle'|trans }}</p>
+                <p class="lead mb-4">{{ 'cm.homepage.subtitle'|trans }}</p>
                 <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
                     <a href="{{ path('app_login') }}">
                         <button type="button"
-                                class="btn btn-primary btn-lg px-4 gap-3">{{ 'app.homepage.login'|trans }}</button>
+                                class="btn btn-primary btn-lg px-4 gap-3">{{ 'cm.homepage.login'|trans }}</button>
                     </a>
                     <a href="{{ path('app_homepage') }}">
                         <button type="button"
-                                class="btn btn-outline-secondary btn-lg px-4">{{ 'app.homepage.register'|trans }}</button>
+                                class="btn btn-outline-secondary btn-lg px-4">{{ 'cm.homepage.register'|trans }}</button>
                     </a>
                 </div>
                 

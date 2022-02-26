@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Behat\Context\Setup;
+namespace CongregationManager\Tests\Behat\Context\Setup;
 
-use App\Infrastructure\Common\Converter\LocaleConverterInterface;
 use Behat\Behat\Context\Context;
 use Behat\Mink\Session;
+use CongregationManager\Infrastructure\Common\Converter\LocaleConverterInterface;
 
 final class BrowserContext implements Context
 {

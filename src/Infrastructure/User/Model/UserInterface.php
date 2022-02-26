@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Infrastructure\User\Model;
+namespace CongregationManager\Infrastructure\User\Model;
 
-use App\Domain\User\Model\UserInterface as DomainUserInterface;
+use CongregationManager\Domain\User\Model\UserInterface as DomainUserInterface;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface as SymfonyUserInterface;
 

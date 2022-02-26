@@ -4,5 +4,5 @@ services:
         autoconfigure: false
         public: false
 
-    app.utils.validator:
-        class: App\Infrastructure\Common\Utils\Validator\Validator
+    cm.utils.validator:
+        class: CongregationManager\Infrastructure\Common\Utils\Validator\Validator

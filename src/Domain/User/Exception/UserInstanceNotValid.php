@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Domain\User\Exception;
+namespace CongregationManager\Domain\User\Exception;
 
 use InvalidArgumentException;
 

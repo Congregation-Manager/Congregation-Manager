@@ -1,9 +1,9 @@
 <?php
 
 
-namespace App\Infrastructure\Common\Controller;
+namespace CongregationManager\Infrastructure\Common\Controller;
 
-use App\Infrastructure\User\Model\UserInterface;
+use CongregationManager\Infrastructure\User\Model\UserInterface;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;

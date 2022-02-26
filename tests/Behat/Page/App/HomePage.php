@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Behat\Page\App;
+namespace CongregationManager\Tests\Behat\Page\App;
 
 use Behat\Mink\Element\NodeElement;
 use FriendsOfBehat\PageObjectExtension\Page\SymfonyPage;

@@ -1,16 +1,16 @@
 <?php
 
-namespace App\Tests\Behat\Context\Ui\App;
+namespace CongregationManager\Tests\Behat\Context\Ui\App;
 
-use App\Tests\Behat\Page\App\ChangePasswordPageInterface;
-use App\Tests\Behat\Page\App\CheckEmailPageInterface;
-use App\Tests\Behat\Page\App\DashboardPageInterface;
-use App\Tests\Behat\Page\App\ForgotPasswordPageInterface;
-use App\Tests\Behat\Page\App\LoginPageInterface;
-use App\Tests\Behat\Page\App\ProfileUpdatePageInterface;
-use App\Tests\Behat\Page\App\ResetPasswordPageInterface;
-use App\Tests\Behat\Services\SharedStorageInterface;
 use Behat\Behat\Context\Context;
+use CongregationManager\Tests\Behat\Page\App\ChangePasswordPageInterface;
+use CongregationManager\Tests\Behat\Page\App\CheckEmailPageInterface;
+use CongregationManager\Tests\Behat\Page\App\DashboardPageInterface;
+use CongregationManager\Tests\Behat\Page\App\ForgotPasswordPageInterface;
+use CongregationManager\Tests\Behat\Page\App\LoginPageInterface;
+use CongregationManager\Tests\Behat\Page\App\ProfileUpdatePageInterface;
+use CongregationManager\Tests\Behat\Page\App\ResetPasswordPageInterface;
+use CongregationManager\Tests\Behat\Services\SharedStorageInterface;
 use Webmozart\Assert\Assert;
 
 final class AccountContext implements Context

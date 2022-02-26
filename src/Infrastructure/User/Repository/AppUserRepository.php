@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Infrastructure\User\Repository;
+namespace CongregationManager\Infrastructure\User\Repository;
 
-use App\Domain\User\Model\AppUserInterface;
-use App\Domain\User\Repository\AppUserRepositoryInterface;
-use App\Infrastructure\User\Model\AppUser;
+use CongregationManager\Domain\User\Model\AppUserInterface;
+use CongregationManager\Domain\User\Repository\AppUserRepositoryInterface;
+use CongregationManager\Infrastructure\User\Model\AppUser;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\Security\Core\Exception\UnsupportedUserException;

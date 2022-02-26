@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Tests\Behat\Services\Setter;
+namespace CongregationManager\Tests\Behat\Services\Setter;
 
 use Behat\Mink\Session;
 

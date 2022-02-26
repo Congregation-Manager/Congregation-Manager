@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Tests\Behat\Context\Hook;
+namespace CongregationManager\Tests\Behat\Context\Hook;
 
-use App\Tests\Behat\Services\FakeMailerTransport;
 use Behat\Behat\Context\Context;
+use CongregationManager\Tests\Behat\Services\FakeMailerTransport;
 
 final class EmailSpoolContext implements Context
 {

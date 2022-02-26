@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Tests\Integration\Command;
+namespace CongregationManager\Tests\Integration\Command;
 
 use Symfony\Bundle\FrameworkBundle\Console\Application;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;

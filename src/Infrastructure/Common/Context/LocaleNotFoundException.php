@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Infrastructure\Common\Context;
+namespace CongregationManager\Infrastructure\Common\Context;
 
 use RuntimeException;
 

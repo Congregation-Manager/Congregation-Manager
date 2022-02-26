@@ -1,6 +1,6 @@
 {% extends 'admin/base.html.twig' %}
 
-{% block title %}{{ 'app.admin_check_email.meta_title'|trans }}{% endblock %}
+{% block title %}{{ 'cm.admin_check_email.meta_title'|trans }}{% endblock %}
 
 {% block body %}
     <div class="container">
@@ -8,10 +8,10 @@
             <div class="col-12 col-md-8 col-lg-6 m-auto text-center mt-5">
 
                 <p>
-                    {{ 'app.admin_check_email.instructions'|trans({'{expiresIn}': resetToken.expirationMessageKey|trans(resetToken.expirationMessageData, 'ResetPasswordBundle')})|raw }}
+                    {{ 'cm.admin_check_email.instructions'|trans({'{expiresIn}': resetToken.expirationMessageKey|trans(resetToken.expirationMessageData, 'ResetPasswordBundle')})|raw }}
                 </p>
                 <p>
-                    {{ 'app.admin_check_email.try_again'|trans({'{link}': path('admin_forgot_password_request')})|raw }}
+                    {{ 'cm.admin_check_email.try_again'|trans({'{link}': path('admin_forgot_password_request')})|raw }}
                 </p>
 
             </div>

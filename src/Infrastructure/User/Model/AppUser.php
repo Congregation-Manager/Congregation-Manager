@@ -1,9 +1,9 @@
 <?php
 
 
-namespace App\Infrastructure\User\Model;
+namespace CongregationManager\Infrastructure\User\Model;
 
-use App\Domain\User\Model\AppUser as DomainAppUser;
+use CongregationManager\Domain\User\Model\AppUser as DomainAppUser;
 
 class AppUser extends DomainAppUser implements AppUserInterface
 {

@@ -1,13 +1,13 @@
 {
     "autoload": {
         "psr-4": {
-            "App\\": "src/"
+            "CongregationManager\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "App\\Tests\\": "tests/",
-            "spec\\App\\": "spec/"
+            "CongregationManager\\Tests\\": "tests/",
+            "spec\\CongregationManager\\": "spec/"
         }
     },
     "config": {

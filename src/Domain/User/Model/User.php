@@ -1,9 +1,9 @@
 <?php
 
 
-namespace App\Domain\User\Model;
+namespace CongregationManager\Domain\User\Model;
 
-use App\Domain\Common\Model\AggregateRoot;
+use CongregationManager\Domain\Common\Model\AggregateRoot;
 
 abstract class User extends AggregateRoot implements UserInterface
 {

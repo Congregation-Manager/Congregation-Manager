@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Tests\Behat\Services;
+namespace CongregationManager\Tests\Behat\Services;
 
 use Symfony\Component\Mailer\Exception\UnsupportedSchemeException;
 use Symfony\Component\Mailer\Transport\AbstractTransportFactory;

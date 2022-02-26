@@ -1,10 +1,6 @@
 <?php
 
-
-namespace App\Domain\Common\Model;
-
-use App\Domain\Common\ValueObject\AggregateRootId;
-use App\Domain\User\ValueObject\UserId;
+namespace CongregationManager\Domain\Common\Model;
 
 abstract class AggregateRoot
 {

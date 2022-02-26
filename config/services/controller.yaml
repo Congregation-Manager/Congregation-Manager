@@ -4,41 +4,16 @@ services:
         autoconfigure: false
         public: false
 
-    app.controller.homepage:
-        class: App\Infrastructure\Common\Controller\HomePageController
+    cm.controller.homepage:
+        class: CongregationManager\Infrastructure\Common\Controller\HomePageController
         arguments:
             - '%supported_locales%'
         calls:
             - [setContainer, ['@service_container']]
         tags: [ 'controller.service_arguments' ]
 
-    app.controller.app_locale:
-        class: App\Infrastructure\Common\Controller\AppLocaleController
-        arguments:
-            - '%supported_locales%'
-            - '@session'
-            - '@security.helper'
-            - '@doctrine.orm.entity_manager'
-        calls:
-            - [setContainer, ['@service_container']]
-        tags: [ 'controller.service_arguments' ]
-
-    app.controller.app_user_login:
-        class: App\Infrastructure\User\Controller\AppUserLoginController
-        arguments:
-            - '@security.authentication_utils'
-        calls:
-            - [setContainer, ['@service_container']]
-        tags: [ 'controller.service_arguments' ]
-
-    app.controller.app_dashboard:
-        class: App\Infrastructure\Common\Controller\AppDashboardController
-        calls:
-            - [setContainer, ['@service_container']]
-        tags: [ 'controller.service_arguments' ]
-
-    app.controller.admin_locale:
-        class: App\Infrastructure\Common\Controller\AdminLocaleController
+    cm.controller.app_locale:
+        class: CongregationManager\Infrastructure\Common\Controller\AppLocaleController
         arguments:
             - '%supported_locales%'
             - '@session'
@@ -48,22 +23,47 @@ services:
             - [setContainer, ['@service_container']]
         tags: [ 'controller.service_arguments' ]
 
-    app.controller.admin_user_login:
-        class: App\Infrastructure\User\Controller\AdminUserLoginController
+    cm.controller.app_user_login:
+        class: CongregationManager\Infrastructure\User\Controller\AppUserLoginController
         arguments:
             - '@security.authentication_utils'
         calls:
             - [setContainer, ['@service_container']]
         tags: [ 'controller.service_arguments' ]
 
-    app.controller.admin_dashboard:
-        class: App\Infrastructure\Common\Controller\AdminDashboardController
+    cm.controller.app_dashboard:
+        class: CongregationManager\Infrastructure\Common\Controller\AppDashboardController
         calls:
             - [setContainer, ['@service_container']]
         tags: [ 'controller.service_arguments' ]
 
-    app.controller.reset_app_password:
-        class: App\Infrastructure\User\Controller\ResetAppPasswordController
+    cm.controller.admin_locale:
+        class: CongregationManager\Infrastructure\Common\Controller\AdminLocaleController
+        arguments:
+            - '%supported_locales%'
+            - '@session'
+            - '@security.helper'
+            - '@doctrine.orm.entity_manager'
+        calls:
+            - [setContainer, ['@service_container']]
+        tags: [ 'controller.service_arguments' ]
+
+    cm.controller.admin_user_login:
+        class: CongregationManager\Infrastructure\User\Controller\AdminUserLoginController
+        arguments:
+            - '@security.authentication_utils'
+        calls:
+            - [setContainer, ['@service_container']]
+        tags: [ 'controller.service_arguments' ]
+
+    cm.controller.admin_dashboard:
+        class: CongregationManager\Infrastructure\Common\Controller\AdminDashboardController
+        calls:
+            - [setContainer, ['@service_container']]
+        tags: [ 'controller.service_arguments' ]
+
+    cm.controller.reset_app_password:
+        class: CongregationManager\Infrastructure\User\Controller\ResetAppPasswordController
         arguments:
             - '@symfonycasts.reset_password.helper'
             - '@doctrine.orm.entity_manager'
@@ -74,8 +74,8 @@ services:
             - [setContainer, ['@service_container']]
         tags: [ 'controller.service_arguments' ]
 
-    app.controller.app_change_password:
-        class: App\Infrastructure\User\Controller\AppChangePasswordController
+    cm.controller.app_change_password:
+        class: CongregationManager\Infrastructure\User\Controller\AppChangePasswordController
         arguments:
             - '@security.helper'
             - '@doctrine.orm.entity_manager'
@@ -85,8 +85,8 @@ services:
             - [ setContainer, [ '@service_container' ] ]
         tags: [ 'controller.service_arguments' ]
 
-    app.controller.reset_admin_password:
-        class: App\Infrastructure\User\Controller\ResetAdminPasswordController
+    cm.controller.reset_admin_password:
+        class: CongregationManager\Infrastructure\User\Controller\ResetAdminPasswordController
         arguments:
             - '@symfonycasts.reset_password.helper'
             - '@doctrine.orm.entity_manager'
@@ -97,8 +97,8 @@ services:
             - [setContainer, ['@service_container']]
         tags: [ 'controller.service_arguments' ]
 
-    app.controller.app_profile:
-        class: App\Infrastructure\User\Controller\AppProfileController
+    cm.controller.app_profile:
+        class: CongregationManager\Infrastructure\User\Controller\AppProfileController
         arguments:
             - '@security.helper'
             - '@doctrine.orm.entity_manager'
@@ -107,8 +107,8 @@ services:
             - [setContainer, ['@service_container']]
         tags: [ 'controller.service_arguments' ]
 
-    app.controller.admin_profile:
-        class: App\Infrastructure\User\Controller\AdminProfileController
+    cm.controller.admin_profile:
+        class: CongregationManager\Infrastructure\User\Controller\AdminProfileController
         arguments:
             - '@security.helper'
             - '@doctrine.orm.entity_manager'
@@ -117,8 +117,8 @@ services:
             - [setContainer, ['@service_container']]
         tags: [ 'controller.service_arguments' ]
 
-    app.controller.admin_change_password:
-        class: App\Infrastructure\User\Controller\AdminChangePasswordController
+    cm.controller.admin_change_password:
+        class: CongregationManager\Infrastructure\User\Controller\AdminChangePasswordController
         arguments:
             - '@security.helper'
             - '@doctrine.orm.entity_manager'

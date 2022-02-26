@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Infrastructure\User\Controller;
+namespace CongregationManager\Infrastructure\User\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Domain\User\Model;
+namespace CongregationManager\Domain\User\Model;
 
 class AppUser extends User implements AppUserInterface
 {

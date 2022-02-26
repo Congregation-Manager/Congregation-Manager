@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Infrastructure\User\Controller;
+namespace CongregationManager\Infrastructure\User\Controller;
 
-use App\Infrastructure\User\Form\ChangePasswordFormType;
-use App\Infrastructure\User\Model\UserInterface;
+use CongregationManager\Infrastructure\User\Form\ChangePasswordFormType;
+use CongregationManager\Infrastructure\User\Model\UserInterface;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -50,7 +50,7 @@ final class AdminChangePasswordController extends AbstractController
             $user->setPassword($encodedPassword);
             $this->entityManager->flush();
 
-            $this->addFlash('success', $this->translator->trans('app.ui.update_success'));
+            $this->addFlash('success', $this->translator->trans('cm.ui.update_success'));
 
             return $this->redirectToRoute('admin_dashboard');
         }

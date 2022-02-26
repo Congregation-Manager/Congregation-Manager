@@ -4,22 +4,22 @@ services:
         autoconfigure: false
         public: false
 
-    app.twig.extension.test_html_attribute:
-        class: App\Infrastructure\Common\Twig\TestHtmlAttributeExtension
+    cm.twig.extension.test_html_attribute:
+        class: CongregationManager\Infrastructure\Common\Twig\TestHtmlAttributeExtension
         arguments:
             - '%kernel.environment%'
         tags:
             - { name: twig.extension }
 
-    app.twig.extension.locale:
-        class: App\Infrastructure\Common\Twig\LocaleExtension
+    cm.twig.extension.locale:
+        class: CongregationManager\Infrastructure\Common\Twig\LocaleExtension
         tags:
             - { name: twig.extension }
 
-    app.twig.runtime.locale:
-        class: App\Infrastructure\Common\Twig\LocaleRuntime
+    cm.twig.runtime.locale:
+        class: CongregationManager\Infrastructure\Common\Twig\LocaleRuntime
         arguments:
-            - '@app.converter.locale'
-            - '@app.context.locale'
+            - '@cm.converter.locale'
+            - '@cm.context.locale'
         tags:
             - { name: twig.runtime }

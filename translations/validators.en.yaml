@@ -1,4 +1,4 @@
-app:
+congregation_manager:
     email:
         not_blank: 'Please enter your email.'
         email: 'This value is not a valid email address.'

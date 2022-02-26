@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Infrastructure\User\Model;
+namespace CongregationManager\Infrastructure\User\Model;
 
-use App\Domain\User\Exception\Factory\UserInstanceNotValidFactory;
-use App\Domain\User\Exception\UserInstanceNotValid;
-use App\Domain\User\Model\AdminUserInterface;
-use App\Domain\User\Model\AppUserInterface;
-use App\Domain\User\Model\ResetPasswordRequest as DomainResetPasswordRequest;
-use App\Domain\User\Model\UserInterface;
+use CongregationManager\Domain\User\Exception\Factory\UserInstanceNotValidFactory;
+use CongregationManager\Domain\User\Exception\UserInstanceNotValid;
+use CongregationManager\Domain\User\Model\AdminUserInterface;
+use CongregationManager\Domain\User\Model\AppUserInterface;
+use CongregationManager\Domain\User\Model\ResetPasswordRequest as DomainResetPasswordRequest;
+use CongregationManager\Domain\User\Model\UserInterface;
 use DateTimeImmutable;
 use DateTimeInterface;
 

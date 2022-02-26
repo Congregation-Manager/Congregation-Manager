@@ -4,7 +4,7 @@ services:
         autoconfigure: false
         public: true
 
-    test.behat.context.transform.user:
-        class: App\Tests\Behat\Context\Transform\UserContext
+    cm.test.behat.context.transform.user:
+        class: CongregationManager\Tests\Behat\Context\Transform\UserContext
         arguments:
             - '@doctrine.orm.entity_manager'

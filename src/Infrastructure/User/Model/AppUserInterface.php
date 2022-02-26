@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Infrastructure\User\Model;
+namespace CongregationManager\Infrastructure\User\Model;
 
-use App\Domain\User\Model\AppUserInterface as DomainAppUserInterface;
+use CongregationManager\Domain\User\Model\AppUserInterface as DomainAppUserInterface;
 
 interface AppUserInterface extends DomainAppUserInterface, UserInterface
 {

@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Infrastructure\User\Repository;
+namespace CongregationManager\Infrastructure\User\Repository;
 
-use App\Domain\User\Exception\Factory\UserInstanceNotValidFactory;
-use App\Domain\User\Model\AdminUser;
-use App\Domain\User\Model\AppUser;
-use App\Domain\User\Model\UserInterface;
-use App\Domain\User\Repository\ResetPasswordRequestRepositoryInterface;
-use App\Infrastructure\User\Model\ResetPasswordRequest;
-use App\Infrastructure\User\Model\ResetPasswordRequestInterface;
+use CongregationManager\Domain\User\Exception\Factory\UserInstanceNotValidFactory;
+use CongregationManager\Domain\User\Model\AdminUser;
+use CongregationManager\Domain\User\Model\AppUser;
+use CongregationManager\Domain\User\Model\UserInterface;
+use CongregationManager\Domain\User\Repository\ResetPasswordRequestRepositoryInterface;
+use CongregationManager\Infrastructure\User\Model\ResetPasswordRequest;
+use CongregationManager\Infrastructure\User\Model\ResetPasswordRequestInterface;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use SymfonyCasts\Bundle\ResetPassword\Model\ResetPasswordRequestInterface as SymfonyResetPasswordRequestInterface;

@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Tests\Behat\Context\Ui;
+namespace CongregationManager\Tests\Behat\Context\Ui;
 
-use App\Tests\Behat\Services\EmailCheckerInterface;
 use Behat\Behat\Context\Context;
+use CongregationManager\Tests\Behat\Services\EmailCheckerInterface;
 use Webmozart\Assert\Assert;
 
 final class EmailContext implements Context

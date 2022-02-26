@@ -4,16 +4,16 @@ services:
         autoconfigure: false
         public: false
 
-    app.event_subscriber.locale:
-        class: App\Infrastructure\Common\EventSubscriber\LocaleSubscriber
+    cm.event_subscriber.locale:
+        class: CongregationManager\Infrastructure\Common\EventSubscriber\LocaleSubscriber
         arguments:
             - '%default_locale%'
             - '%supported_locales%'
         tags:
             - { name: kernel.event_subscriber }
 
-    app.event_subscriber.user_locale:
-        class: App\Infrastructure\Common\EventSubscriber\UserLocaleSubscriber
+    cm.event_subscriber.user_locale:
+        class: CongregationManager\Infrastructure\Common\EventSubscriber\UserLocaleSubscriber
         arguments:
             - '@request_stack'
             - '%supported_locales%'

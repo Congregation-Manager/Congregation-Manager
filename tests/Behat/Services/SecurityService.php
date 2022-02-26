@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Tests\Behat\Services;
+namespace CongregationManager\Tests\Behat\Services;
 
-use App\Tests\Behat\Services\Setter\CookieSetterInterface;
+use CongregationManager\Tests\Behat\Services\Setter\CookieSetterInterface;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;

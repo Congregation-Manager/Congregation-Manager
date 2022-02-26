@@ -4,28 +4,28 @@ services:
         autoconfigure: false
         public: false
 
-    app.repository.app_user:
-        alias: 'App\Infrastructure\User\Repository\AppUserRepository'
+    cm.repository.app_user:
+        alias: 'CongregationManager\Infrastructure\User\Repository\AppUserRepository'
 
-    App\Infrastructure\User\Repository\AppUserRepository:
+    CongregationManager\Infrastructure\User\Repository\AppUserRepository:
         arguments:
             - '@doctrine'
         tags:
             - { name: doctrine.repository_service }
 
-    app.repository.admin_user:
-        alias: 'App\Infrastructure\User\Repository\AdminUserRepository'
+    cm.repository.admin_user:
+        alias: 'CongregationManager\Infrastructure\User\Repository\AdminUserRepository'
 
-    App\Infrastructure\User\Repository\AdminUserRepository:
+    CongregationManager\Infrastructure\User\Repository\AdminUserRepository:
         arguments:
             - '@doctrine'
         tags:
             - { name: doctrine.repository_service }
 
-    app.repository.reset_password_request:
-        alias: 'App\Infrastructure\User\Repository\ResetPasswordRequestRepository'
+    cm.repository.reset_password_request:
+        alias: 'CongregationManager\Infrastructure\User\Repository\ResetPasswordRequestRepository'
 
-    App\Infrastructure\User\Repository\ResetPasswordRequestRepository:
+    CongregationManager\Infrastructure\User\Repository\ResetPasswordRequestRepository:
         arguments:
             - '@doctrine'
         tags:

@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Tests\Behat\Context\Setup;
+namespace CongregationManager\Tests\Behat\Context\Setup;
 
-use App\Infrastructure\User\Model\AppUser;
-use App\Tests\Behat\Services\SecurityServiceInterface;
 use Behat\Behat\Context\Context;
+use CongregationManager\Infrastructure\User\Model\AppUser;
+use CongregationManager\Tests\Behat\Services\SecurityServiceInterface;
 use Doctrine\Persistence\ObjectRepository;
 use Webmozart\Assert\Assert;
 

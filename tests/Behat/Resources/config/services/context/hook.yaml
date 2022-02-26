@@ -4,10 +4,10 @@ services:
         autoconfigure: false
         public: true
 
-    test.behat.context.hook.doctrine:
-        class: App\Tests\Behat\Context\Hook\DoctrineORMContext
+    cm.test.behat.context.hook.doctrine:
+        class: CongregationManager\Tests\Behat\Context\Hook\DoctrineORMContext
         arguments:
             - '@doctrine.orm.entity_manager'
 
-    test.behat.context.hook.email_spool:
-        class: App\Tests\Behat\Context\Hook\EmailSpoolContext
+    cm.test.behat.context.hook.email_spool:
+        class: CongregationManager\Tests\Behat\Context\Hook\EmailSpoolContext

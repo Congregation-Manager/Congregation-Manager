@@ -4,7 +4,7 @@ services:
         autoconfigure: false
         public: false
 
-    app.converter.locale:
-        class: App\Infrastructure\Common\Converter\LocaleConverter
+    cm.converter.locale:
+        class: CongregationManager\Infrastructure\Common\Converter\LocaleConverter
         arguments:
             - '%default_locale%'

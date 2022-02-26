@@ -1,11 +1,11 @@
 <?php
 
 
-namespace App\Domain\User\Exception\Factory;
+namespace CongregationManager\Domain\User\Exception\Factory;
 
-use App\Domain\User\Exception\UserInstanceNotValid;
-use App\Domain\User\Model\AdminUserInterface;
-use App\Domain\User\Model\AppUserInterface;
+use CongregationManager\Domain\User\Exception\UserInstanceNotValid;
+use CongregationManager\Domain\User\Model\AdminUserInterface;
+use CongregationManager\Domain\User\Model\AppUserInterface;
 
 final class UserInstanceNotValidFactory
 {

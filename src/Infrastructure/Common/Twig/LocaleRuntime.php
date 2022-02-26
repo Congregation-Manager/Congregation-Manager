@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace App\Infrastructure\Common\Twig;
+namespace CongregationManager\Infrastructure\Common\Twig;
 
-use App\Infrastructure\Common\Context\LocaleContextInterface;
-use App\Infrastructure\Common\Context\LocaleNotFoundException;
-use App\Infrastructure\Common\Converter\LocaleConverterInterface;
+use CongregationManager\Infrastructure\Common\Context\LocaleContextInterface;
+use CongregationManager\Infrastructure\Common\Context\LocaleNotFoundException;
+use CongregationManager\Infrastructure\Common\Converter\LocaleConverterInterface;
 use InvalidArgumentException;
 use Twig\Extension\RuntimeExtensionInterface;
 
