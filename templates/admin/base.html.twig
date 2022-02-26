@@ -13,7 +13,14 @@
         <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebar-menu" aria-controls="sidebar-menu" aria-expanded="false" aria-label="{{ 'cm.admin_nav.toggle'|trans }}">
             <span class="navbar-toggler-icon"></span>
         </button>
-
+        <div class="w-100 row text-center">
+            <div class="col">
+                <a class="d-block text-decoration-none text-white" href="{{ path('admin_profile_update') }}">{{ 'cm.profile_update.title'|trans }}</a>
+            </div>
+            <div class="col">
+                <a class="d-block text-decoration-none text-white" href="{{ path('admin_change_password') }}">{{ 'cm.change_password.title'|trans }}</a>
+            </div>
+        </div>
         <div class="navbar-nav">
             <div class="nav-item text-nowrap">
                 <a class="nav-link px-3" href="{{ path('admin_logout') }}" {{ test_html_attribute('logout-button') }}>{{ 'cm.admin_nav.logout'|trans }}</a>
@@ -28,15 +35,19 @@
                     <ul class="nav flex-column">
                         <li class="nav-item">
                             <a class="nav-link" href="{{ path('admin_dashboard') }}">
-                                <span data-feather="home"></span>
+                                <i class="bi bi-house-door"></i>
                                 {{ 'cm.label.dashboard'|trans }}
                             </a>
                         </li>
                     </ul>
+    
+                    <ul class="nav flex-column mt-5">
+                        {{ render(controller('cm.controller.admin_locale:renderAction')) }}
+                    </ul>
+                    
                 </div>
     
     
-                {{ render(controller('cm.controller.admin_locale:renderAction')) }}
             </nav>
 
             <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
