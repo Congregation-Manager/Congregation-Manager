@@ -131,11 +131,13 @@
         "ecs": "vendor/bin/ecs check src tests spec",
         "phpstan": "vendor/bin/phpstan analyse -c phpstan.neon",
         "psalm": "vendor/bin/psalm",
+        "phparkitect": "vendor/bin/phparkitect check",
         "spec": "vendor/bin/phpspec run",
         "unit": "vendor/bin/phpunit",
         "behat": "vendor/bin/behat",
         "test": [
             "@ecs",
+            "@phparkitect",
             "@phpstan",
             "@psalm",
             "@spec",

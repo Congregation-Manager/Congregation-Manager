@@ -77,6 +77,9 @@ jobs:
                 name: Run easy coding standard
                 run: vendor/bin/ecs check src tests spec
             -
+                name: Check Clean Architecture
+                run: vendor/bin/phparkitect check
+            -
                 name: Analyse code with phpstan
                 run: vendor/bin/phpstan analyse -c phpstan.neon
             -
