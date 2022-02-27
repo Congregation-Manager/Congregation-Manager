@@ -39,3 +39,12 @@ services:
             - '@doctrine'
         tags:
             - { name: doctrine.repository_service }
+
+    cm.repository.brother:
+        alias: 'CongregationManager\Infrastructure\Congregation\Repository\BrotherRepository'
+
+    CongregationManager\Infrastructure\Congregation\Repository\BrotherRepository:
+        arguments:
+            - '@doctrine'
+        tags:
+            - { name: doctrine.repository_service }

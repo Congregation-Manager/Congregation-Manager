@@ -12,6 +12,8 @@
         </id>
 
         <field name="name" type="string" length="255"/>
+
+        <one-to-many field="brothers" target-entity="CongregationManager\Domain\Congregation\Model\Brother" mapped-by="congregation" />
     </entity>
 
 </doctrine-mapping>

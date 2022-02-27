@@ -18,8 +18,6 @@ abstract class User extends AggregateRoot implements UserInterface
     ) {
     }
 
-    abstract public static function create(string $email): UserInterface;
-
     public function getId(): ?int
     {
         return $this->id;

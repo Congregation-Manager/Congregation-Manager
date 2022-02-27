@@ -3,6 +3,8 @@
 
 namespace CongregationManager\Infrastructure\User\Command;
 
+use CongregationManager\Domain\Congregation\Model\Brother;
+use CongregationManager\Domain\Congregation\Model\Congregation;
 use CongregationManager\Infrastructure\Common\Utils\Validator\Validator;
 use CongregationManager\Infrastructure\User\Model\AdminUser;
 use CongregationManager\Infrastructure\User\Model\AppUser;
@@ -119,7 +121,12 @@ final class AddUserCommand extends Command
             $user = AdminUser::create($email);
             $user->setRoles([$isSuperAdmin ? 'ROLE_SUPER_ADMIN' : 'ROLE_ADMIN']);
         } else {
-            $user = AppUser::create($email);
+            # TODO: Change AddUserCommand
+            $congregation = new Congregation('Congregation');
+            $brother = new Brother('Name', 'Surname', $congregation);
+            $this->entityManager->persist($congregation);
+            $this->entityManager->persist($brother);
+            $user = AppUser::create($brother, $email);
         }
         $hashedPassword = $this->passwordHasher->hashPassword($user, $plainPassword);
         $user->setPassword($hashedPassword);

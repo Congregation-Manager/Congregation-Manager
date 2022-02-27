@@ -19,6 +19,9 @@
 
         <field name="localeCode" column="locale_code" type="string" length="10" nullable="true" />
 
+        <one-to-one field="brother" target-entity="CongregationManager\Domain\Congregation\Model\Brother" inversed-by="user">
+            <join-column name="brother_id" referenced-column-name="id" nullable="false" />
+        </one-to-one>
     </entity>
 
 </doctrine-mapping>
