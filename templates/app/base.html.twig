@@ -28,8 +28,9 @@
                         </div>
                         <div class="float-end">
                             <div class="dropdown ">
-                                <a class="d-block text-decoration-none dropdown-toggle" href="#" id="dropdown-user" data-bs-toggle="dropdown" aria-expanded="false">
+                                <a class="d-block text-decoration-none dropdown-toggle text-white" href="#" id="dropdown-user" data-bs-toggle="dropdown" aria-expanded="false">
                                     <img src="https://via.placeholder.com/35" alt="mdo" width="35" height="35" class="rounded-circle">
+                                    {{ app.user.brother }}
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end" aria-labelledby="dropdown-user">
                                     <li><a class="dropdown-item" href="{{ path('app_profile_update') }}">{{ 'cm.profile_update.title'|trans }}</a></li>

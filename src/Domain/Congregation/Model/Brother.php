@@ -94,4 +94,14 @@ class Brother extends AggregateRoot implements BrotherInterface
     {
         $this->congregation = $congregation;
     }
+
+    public function __toString(): string
+    {
+        return sprintf(
+            '%s%s %s',
+            $this->firstName,
+            $this->middleName !== null ? ' ' . $this->middleName : '',
+            $this->lastName
+        );
+    }
 }
