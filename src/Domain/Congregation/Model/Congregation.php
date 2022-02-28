@@ -10,6 +10,7 @@ use Doctrine\Common\Collections\Collection;
 
 class Congregation extends AggregateRoot implements CongregationInterface
 {
+    /** @var Collection<array-key, BrotherInterface> */
     protected Collection $brothers;
 
     public function __construct(
@@ -28,6 +29,7 @@ class Congregation extends AggregateRoot implements CongregationInterface
         $this->name = $name;
     }
 
+    /** @return Collection<array-key, BrotherInterface> */
     public function getBrothers(): Collection
     {
         return $this->brothers;

@@ -14,6 +14,7 @@ interface CongregationInterface
 
     public function setName(string $name): void;
 
+    /** @return Collection<array-key, BrotherInterface> */
     public function getBrothers(): Collection;
 
     public function addBrother(BrotherInterface $brother): void;
