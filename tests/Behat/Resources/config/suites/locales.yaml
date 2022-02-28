@@ -8,6 +8,8 @@ default:
 
                 - cm.test.behat.context.setup.account
                 - cm.test.behat.context.setup.browser
+                - cm.test.behat.context.setup.brother
+                - cm.test.behat.context.setup.congregation
 
                 - cm.test.behat.context.ui.app.account
                 - cm.test.behat.context.ui.app.locale

@@ -3,6 +3,7 @@
 namespace CongregationManager\Tests\Behat\Context\Setup;
 
 use Behat\Behat\Context\Context;
+use CongregationManager\Domain\Congregation\Model\BrotherInterface;
 use CongregationManager\Infrastructure\Common\Converter\LocaleConverterInterface;
 use CongregationManager\Infrastructure\User\Model\AdminUser;
 use CongregationManager\Infrastructure\User\Model\AdminUserInterface;
@@ -29,12 +30,15 @@ final class AccountContext implements Context
     }
 
     /**
-     * @Given there is an app user with email :email
-     * @Given there is an app user with email :email and password :password
+     * @Given /^the (brother|sister) has an account for email "([^"]*)"$/
+     * @Given /^the (brother|sister) has an account for email "([^"]*)" and password "([^"]*)"$/
      */
-    public function thereIsAnAppUserWithEmailAndPassword(string $email, string $password = 'password'): void
+    public function thereIsAnAppUserWithEmailAndPassword(string $type, string $email, string $password = 'password'): void
     {
-        $appUser = AppUser::create($email);
+        /** @var ?BrotherInterface $brother */
+        $brother = $this->sharedStorage->get('brother');
+        Assert::isInstanceOf($brother, BrotherInterface::class);
+        $appUser = AppUser::create($brother, $email);
         $appUser->setPassword($this->userPasswordHasher->hashPassword($appUser, $password));
 
         $this->entityManager->persist($appUser);

@@ -5,7 +5,9 @@ Feature: Changing password
   I want to be able to change my password
 
   Background:
-    Given there is an app user with email "avaadams@gmail.com" and password "helloworld!"
+    Given there is a congregation "Carrollton"
+    And there is a sister "Ava Adams"
+    And the sister has an account for email "avaadams@gmail.com" and password "helloworld!"
     And I am logged in as "avaadams@gmail.com"
 
   @ui

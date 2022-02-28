@@ -5,7 +5,9 @@ Feature: Resetting an app password
   I need to be able to reset my password
 
   Background:
-    Given there is an app user with email "dylan.mart@outlook.it"
+    Given there is a congregation "Carrollton"
+    And there is a brother "Dylan Martinez"
+    And the brother has an account for email "dylan.mart@outlook.it"
 
   @ui @email
   Scenario: Resetting an account password

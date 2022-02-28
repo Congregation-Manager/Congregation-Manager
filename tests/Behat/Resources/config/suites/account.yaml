@@ -7,6 +7,8 @@ default:
 
                 - cm.test.behat.context.setup.account
                 - cm.test.behat.context.setup.app_security
+                - cm.test.behat.context.setup.brother
+                - cm.test.behat.context.setup.congregation
 
                 - cm.test.behat.context.ui.app.account
                 - cm.test.behat.context.ui.email

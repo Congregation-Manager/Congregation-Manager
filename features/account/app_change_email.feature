@@ -5,7 +5,9 @@ Feature: Changing email
   I need to be able to change my email
 
   Background:
-    Given there is an app user with email "avaadams.old@gmail.com" and password "helloworld!"
+    Given there is a congregation "Carrollton"
+    And there is a sister "Ava Adams"
+    And the sister has an account for email "avaadams.old@gmail.com" and password "helloworld!"
     And I am logged in as "avaadams.old@gmail.com"
 
   @ui

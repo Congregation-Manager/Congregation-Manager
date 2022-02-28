@@ -31,3 +31,15 @@ services:
         arguments:
             - '@behat.mink.default_session'
             - '@cm.converter.locale'
+
+    cm.test.behat.context.setup.congregation:
+        class: CongregationManager\Tests\Behat\Context\Setup\CongregationContext
+        arguments:
+            - '@doctrine.orm.entity_manager'
+            - '@cm.test.behat.shared_storage'
+
+    cm.test.behat.context.setup.brother:
+        class: CongregationManager\Tests\Behat\Context\Setup\BrotherContext
+        arguments:
+            - '@doctrine.orm.entity_manager'
+            - '@cm.test.behat.shared_storage'
