@@ -26,6 +26,7 @@ cm:
         dashboard: 'Dashboard'
         new_password: 'New Password'
         repeat_password: 'Repeat Password'
+        old_password: 'Old Password'
     app_nav:
         title: 'Congregation Manager'
         toggle: 'Toggle navigation'

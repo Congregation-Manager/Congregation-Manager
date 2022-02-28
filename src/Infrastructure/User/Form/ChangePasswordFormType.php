@@ -20,7 +20,8 @@ class ChangePasswordFormType extends AbstractType
                 'mapped' => false,
                 'constraints' => [
                     new UserPassword()
-                ]
+                ],
+                'label' => 'cm.label.old_password',
             ]);
         }
         $builder

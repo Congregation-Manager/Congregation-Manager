@@ -26,6 +26,7 @@ cm:
         signin: 'Accedi'
         new_password: 'Nuova Password'
         repeat_password: 'Ripeti Password'
+        old_password: 'Vecchia Password'
     app_nav:
         title: 'Gestione Congregazione'
         toggle: 'Chiudi navigazione'
