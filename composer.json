@@ -96,7 +96,6 @@
         "behat/behat": "^3.10",
         "dama/doctrine-test-bundle": "^6.7",
         "doctrine/doctrine-fixtures-bundle": "^3.4",
-        "easycorp/easy-deploy-bundle": "^1.0",
         "friends-of-behat/mink-browserkit-driver": "^1.6",
         "friends-of-behat/mink-debug-extension": "^2.1",
         "friends-of-behat/mink-extension": "^2.6",
