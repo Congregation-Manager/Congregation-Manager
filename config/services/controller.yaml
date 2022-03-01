@@ -9,58 +9,58 @@ services:
         arguments:
             - '%supported_locales%'
         calls:
-            - [setContainer, ['@service_container']]
-        tags: [ 'controller.service_arguments' ]
+            - [ setContainer, [ '@Psr\Container\ContainerInterface' ] ]
+        tags: [ 'container.service_subscriber', 'controller.service_arguments' ]
 
     cm.controller.app_locale:
         class: CongregationManager\Infrastructure\Common\Controller\AppLocaleController
         arguments:
             - '%supported_locales%'
-            - '@session'
+            - '@request_stack'
             - '@security.helper'
             - '@doctrine.orm.entity_manager'
         calls:
-            - [setContainer, ['@service_container']]
-        tags: [ 'controller.service_arguments' ]
+            - [ setContainer, [ '@Psr\Container\ContainerInterface' ] ]
+        tags: [ 'container.service_subscriber', 'controller.service_arguments' ]
 
     cm.controller.app_user_login:
         class: CongregationManager\Infrastructure\User\Controller\AppUserLoginController
         arguments:
             - '@security.authentication_utils'
         calls:
-            - [setContainer, ['@service_container']]
-        tags: [ 'controller.service_arguments' ]
+            - [ setContainer, [ '@Psr\Container\ContainerInterface' ] ]
+        tags: [ 'container.service_subscriber', 'controller.service_arguments' ]
 
     cm.controller.app_dashboard:
         class: CongregationManager\Infrastructure\Common\Controller\AppDashboardController
         calls:
-            - [setContainer, ['@service_container']]
-        tags: [ 'controller.service_arguments' ]
+            - [ setContainer, [ '@Psr\Container\ContainerInterface' ] ]
+        tags: [ 'container.service_subscriber', 'controller.service_arguments' ]
 
     cm.controller.admin_locale:
         class: CongregationManager\Infrastructure\Common\Controller\AdminLocaleController
         arguments:
             - '%supported_locales%'
-            - '@session'
+            - '@request_stack'
             - '@security.helper'
             - '@doctrine.orm.entity_manager'
         calls:
-            - [setContainer, ['@service_container']]
-        tags: [ 'controller.service_arguments' ]
+            - [ setContainer, [ '@Psr\Container\ContainerInterface' ] ]
+        tags: [ 'container.service_subscriber', 'controller.service_arguments' ]
 
     cm.controller.admin_user_login:
         class: CongregationManager\Infrastructure\User\Controller\AdminUserLoginController
         arguments:
             - '@security.authentication_utils'
         calls:
-            - [setContainer, ['@service_container']]
-        tags: [ 'controller.service_arguments' ]
+            - [ setContainer, [ '@Psr\Container\ContainerInterface' ] ]
+        tags: [ 'container.service_subscriber', 'controller.service_arguments' ]
 
     cm.controller.admin_dashboard:
         class: CongregationManager\Infrastructure\Common\Controller\AdminDashboardController
         calls:
-            - [setContainer, ['@service_container']]
-        tags: [ 'controller.service_arguments' ]
+            - [ setContainer, [ '@Psr\Container\ContainerInterface' ] ]
+        tags: [ 'container.service_subscriber', 'controller.service_arguments' ]
 
     cm.controller.reset_app_password:
         class: CongregationManager\Infrastructure\User\Controller\ResetAppPasswordController
@@ -71,8 +71,8 @@ services:
             - '@security.user_password_hasher'
             - '@logger'
         calls:
-            - [setContainer, ['@service_container']]
-        tags: [ 'controller.service_arguments' ]
+            - [ setContainer, [ '@Psr\Container\ContainerInterface' ] ]
+        tags: [ 'container.service_subscriber', 'controller.service_arguments' ]
 
     cm.controller.app_change_password:
         class: CongregationManager\Infrastructure\User\Controller\AppChangePasswordController
@@ -82,8 +82,8 @@ services:
             - '@translator'
             - '@security.user_password_hasher'
         calls:
-            - [ setContainer, [ '@service_container' ] ]
-        tags: [ 'controller.service_arguments' ]
+            - [ setContainer, [ '@Psr\Container\ContainerInterface' ] ]
+        tags: [ 'container.service_subscriber', 'controller.service_arguments' ]
 
     cm.controller.reset_admin_password:
         class: CongregationManager\Infrastructure\User\Controller\ResetAdminPasswordController
@@ -94,8 +94,8 @@ services:
             - '@security.user_password_hasher'
             - '@logger'
         calls:
-            - [setContainer, ['@service_container']]
-        tags: [ 'controller.service_arguments' ]
+            - [ setContainer, [ '@Psr\Container\ContainerInterface' ] ]
+        tags: [ 'container.service_subscriber', 'controller.service_arguments' ]
 
     cm.controller.app_profile:
         class: CongregationManager\Infrastructure\User\Controller\AppProfileController
@@ -104,8 +104,8 @@ services:
             - '@doctrine.orm.entity_manager'
             - '@translator'
         calls:
-            - [setContainer, ['@service_container']]
-        tags: [ 'controller.service_arguments' ]
+            - [ setContainer, [ '@Psr\Container\ContainerInterface' ] ]
+        tags: [ 'container.service_subscriber', 'controller.service_arguments' ]
 
     cm.controller.admin_profile:
         class: CongregationManager\Infrastructure\User\Controller\AdminProfileController
@@ -114,8 +114,8 @@ services:
             - '@doctrine.orm.entity_manager'
             - '@translator'
         calls:
-            - [setContainer, ['@service_container']]
-        tags: [ 'controller.service_arguments' ]
+            - [ setContainer, [ '@Psr\Container\ContainerInterface' ] ]
+        tags: [ 'container.service_subscriber', 'controller.service_arguments' ]
 
     cm.controller.admin_change_password:
         class: CongregationManager\Infrastructure\User\Controller\AdminChangePasswordController
@@ -125,5 +125,5 @@ services:
             - '@translator'
             - '@security.user_password_hasher'
         calls:
-            - [ setContainer, [ '@service_container' ] ]
-        tags: [ 'controller.service_arguments' ]
+            - [ setContainer, [ '@Psr\Container\ContainerInterface' ] ]
+        tags: [ 'container.service_subscriber', 'controller.service_arguments' ]

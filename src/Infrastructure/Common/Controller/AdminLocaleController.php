@@ -6,6 +6,7 @@ use CongregationManager\Infrastructure\User\Model\UserInterface;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Security\Core\Security;
@@ -15,7 +16,7 @@ final class AdminLocaleController extends AbstractController
 {
     public function __construct(
         private string $availableLocales,
-        private SessionInterface $session,
+        private RequestStack $requestStack,
         private Security $security,
         private EntityManagerInterface $entityManager
     ) {
@@ -36,7 +37,8 @@ final class AdminLocaleController extends AbstractController
             $user->setLocaleCode($locale);
             $this->entityManager->flush();
         }
-        $this->session->set('_locale', $locale);
+        $session = $this->requestStack->getSession();
+        $session->set('_locale', $locale);
         return $this->redirectToRoute('admin_dashboard');
     }
 }
