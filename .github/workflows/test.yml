@@ -75,7 +75,7 @@ jobs:
             #    run: composer-unused
             -
                 name: Run easy coding standard
-                run: vendor/bin/ecs check src tests spec
+                run: vendor/bin/ecs check src tests
             -
                 name: Check Clean Architecture
                 run: vendor/bin/phparkitect check
@@ -94,9 +94,6 @@ jobs:
             -
                 name: Execute tests (Unit and Feature tests) via PHPUnit
                 run: vendor/bin/phpunit
-            -
-                name: Execute specification tests via PHPSpec
-                run: vendor/bin/phpspec run
             -
                 name: Create Behat logs dir
                 run: |

@@ -6,8 +6,7 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "CongregationManager\\Tests\\": "tests/",
-            "spec\\CongregationManager\\": "spec/"
+            "CongregationManager\\Tests\\": "tests/"
         }
     },
     "config": {
@@ -104,7 +103,6 @@
         "friends-of-behat/page-object-extension": "^0.3.2",
         "friends-of-behat/symfony-extension": "^2.3",
         "phparkitect/phparkitect": "^0.2.15",
-        "phpspec/phpspec": "^7.1",
         "phpstan/phpstan": "^1.1",
         "phpstan/phpstan-webmozart-assert": "^1.0",
         "phpunit/phpunit": "^9.5",
@@ -129,11 +127,10 @@
         "post-update-cmd": [
             "@auto-scripts"
         ],
-        "ecs": "vendor/bin/ecs check src tests spec",
+        "ecs": "vendor/bin/ecs check src tests",
         "phpstan": "vendor/bin/phpstan analyse -c phpstan.neon",
         "psalm": "vendor/bin/psalm",
         "phparkitect": "vendor/bin/phparkitect check",
-        "spec": "vendor/bin/phpspec run",
         "unit": "vendor/bin/phpunit",
         "behat": "vendor/bin/behat",
         "test": [
@@ -141,7 +138,6 @@
             "@phparkitect",
             "@phpstan",
             "@psalm",
-            "@spec",
             "@unit",
             "@behat"
         ]
