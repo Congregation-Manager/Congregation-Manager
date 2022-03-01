@@ -3,6 +3,7 @@
 namespace CongregationManager\Tests\Behat\Services;
 
 use CongregationManager\Tests\Behat\Services\Setter\CookieSetterInterface;
+use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
@@ -13,7 +14,7 @@ final class SecurityService implements SecurityServiceInterface
     private string $sessionTokenVariable;
 
     public function __construct(
-        private SessionInterface $session,
+        private RequestStack $requestStack,
         private string $firewallContextName,
         private CookieSetterInterface $cookieSetter
     ) {
@@ -30,8 +31,9 @@ final class SecurityService implements SecurityServiceInterface
     private function setToken(TokenInterface $token): void
     {
         $serializedToken = serialize($token);
-        $this->session->set($this->sessionTokenVariable, $serializedToken);
-        $this->session->save();
-        $this->cookieSetter->setCookie($this->session->getName(), $this->session->getId());
+        $session = $this->requestStack->getSession();
+        $session->set($this->sessionTokenVariable, $serializedToken);
+        $session->save();
+        $this->cookieSetter->setCookie($session->getName(), $session->getId());
     }
 }

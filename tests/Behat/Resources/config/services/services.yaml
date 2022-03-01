@@ -25,14 +25,14 @@ services:
     cm.test.behat.service.app_security:
         class: CongregationManager\Tests\Behat\Services\SecurityService
         arguments:
-            - '@session'
+            - '@request_stack'
             - 'app'
             - '@cm.test.behat.setter.cookie'
 
     cm.test.behat.service.admin_security:
         class: CongregationManager\Tests\Behat\Services\SecurityService
         arguments:
-            - '@session'
+            - '@request_stack'
             - 'admin'
             - '@cm.test.behat.setter.cookie'
 
