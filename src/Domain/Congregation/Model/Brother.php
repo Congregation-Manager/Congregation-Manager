@@ -18,6 +18,8 @@ class Brother extends AggregateRoot implements BrotherInterface
 
     protected ?AppUserInterface $user = null;
 
+    protected bool $male = true;
+
     public function __construct(
         protected string $firstName,
         protected string $lastName,
@@ -93,6 +95,16 @@ class Brother extends AggregateRoot implements BrotherInterface
     public function setCongregation(CongregationInterface $congregation): void
     {
         $this->congregation = $congregation;
+    }
+
+    public function isMale(): bool
+    {
+        return $this->male;
+    }
+
+    public function setMale(bool $male): void
+    {
+        $this->male = $male;
     }
 
     public function __toString(): string

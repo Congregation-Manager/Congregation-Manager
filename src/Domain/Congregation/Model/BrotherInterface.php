@@ -36,4 +36,8 @@ interface BrotherInterface
     public function getCongregation(): CongregationInterface;
 
     public function setCongregation(CongregationInterface $congregation): void;
+
+    public function isMale(): bool;
+
+    public function setMale(bool $male): void;
 }

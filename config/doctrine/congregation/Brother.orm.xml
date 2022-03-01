@@ -21,6 +21,12 @@
 
         <field name="baptismDate" column="baptism_date" type="date" nullable="true"/>
 
+        <field name="male" type="boolean" nullable="false">
+            <options>
+                <option name="default">true</option>
+            </options>
+        </field>
+
         <one-to-one field="user" target-entity="CongregationManager\Infrastructure\User\Model\AppUser" mapped-by="brother" />
 
         <many-to-one field="congregation" target-entity="CongregationManager\Domain\Congregation\Model\Congregation" inversed-by="brothers">
