@@ -28,6 +28,11 @@ class AdminUserRepository extends ServiceEntityRepository implements AdminUserRe
         parent::__construct($registry, AdminUser::class);
     }
 
+    public function add(\CongregationManager\Domain\User\Model\AdminUserInterface $adminUser): void
+    {
+        $this->_em->persist($adminUser);
+    }
+
     /**
      * Used to upgrade (rehash) the user's password automatically over time.
      */
