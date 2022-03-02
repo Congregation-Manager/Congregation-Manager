@@ -28,6 +28,11 @@ class AppUserRepository extends ServiceEntityRepository implements AppUserReposi
         parent::__construct($registry, AppUser::class);
     }
 
+    public function add(AppUserInterface $appUser): void
+    {
+        $this->_em->persist($appUser);
+    }
+
     /**
      * Used to upgrade (rehash) the user's password automatically over time.
      */

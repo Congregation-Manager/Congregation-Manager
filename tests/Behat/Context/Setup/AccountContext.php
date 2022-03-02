@@ -38,7 +38,7 @@ final class AccountContext implements Context
         /** @var ?BrotherInterface $brother */
         $brother = $this->sharedStorage->get('brother');
         Assert::isInstanceOf($brother, BrotherInterface::class);
-        $appUser = AppUser::create($brother, $email);
+        $appUser = new AppUser($brother, $email);
         $appUser->setPassword($this->userPasswordHasher->hashPassword($appUser, $password));
 
         $this->entityManager->persist($appUser);

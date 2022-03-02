@@ -19,25 +19,6 @@ final class UserContext implements Context
     }
 
     /**
-     * @Transform :appUser
-     * @Transform /^app user "([^"]+)"$/
-     */
-    public function getOrCreateAppUserByEmail(string $email): AppUserInterface
-    {
-        /** @var AppUserInterface $appUser */
-        $appUserRepository = $this->entityManager->getRepository(AppUser::class);
-        $appUser = $appUserRepository->findOneBy(['email' => $email]);
-        if (null === $appUser) {
-            $appUser = AppUser::create($email);
-
-            $this->entityManager->persist($appUser);
-            $this->entityManager->flush();
-        }
-
-        return $appUser;
-    }
-
-    /**
      * @Transform :adminUser
      * @Transform /^admin user "([^"]+)"$/
      */

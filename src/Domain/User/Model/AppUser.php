@@ -8,16 +8,11 @@ class AppUser extends User implements AppUserInterface
 {
     public function __construct(
         protected BrotherInterface $brother,
-        string $email
+        string $email,
+        ?string $password = null,
+        ?string $localeCode = null
     ) {
-        parent::__construct($email);
-    }
-
-    public static function create(
-        BrotherInterface $brother,
-        string $email
-    ): AppUserInterface {
-        return new self($brother, $email);
+        parent::__construct($email, $password, $localeCode);
     }
 
     public function getBrother(): BrotherInterface

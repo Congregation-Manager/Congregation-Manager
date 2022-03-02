@@ -126,7 +126,7 @@ final class AddUserCommand extends Command
             $brother = new Brother('Name', 'Surname', $congregation);
             $this->entityManager->persist($congregation);
             $this->entityManager->persist($brother);
-            $user = AppUser::create($brother, $email);
+            $user = new AppUser($brother, $email);
         }
         $hashedPassword = $this->passwordHasher->hashPassword($user, $plainPassword);
         $user->setPassword($hashedPassword);

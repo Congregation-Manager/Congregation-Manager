@@ -13,15 +13,17 @@ class CreateCongregationTest extends TestCase
 {
     private CongregationRepositoryInterface $congregationRepository;
 
+    private CreateCongregation $createCongregation;
+
     protected function setUp(): void
     {
         $this->congregationRepository = new CongregationRepository();
-        $this->action = new CreateCongregation($this->congregationRepository);
+        $this->createCongregation = new CreateCongregation($this->congregationRepository);
     }
 
     public function test_that_it_creates_a_new_congregation(): void
     {
-        $congregation = $this->action->create('Carrollton');
+        $congregation = $this->createCongregation->create('Carrollton');
 
         $this->assertEquals('Carrollton', $congregation->getName());
         $this->assertEquals($this->congregationRepository->findAll()->first(), $congregation);

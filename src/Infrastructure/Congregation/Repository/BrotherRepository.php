@@ -27,7 +27,7 @@ final class BrotherRepository extends ServiceEntityRepository implements Brother
         parent::__construct($registry, Brother::class);
     }
 
-    public function add(Brother $brother): void
+    public function add(BrotherInterface $brother): void
     {
         $this->_em->persist($brother);
     }
