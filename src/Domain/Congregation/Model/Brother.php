@@ -10,20 +10,16 @@ use DateTimeInterface;
 
 class Brother extends AggregateRoot implements BrotherInterface
 {
-    protected ?string $middleName = null;
-
-    protected ?DateTimeInterface $birthDate = null;
-
-    protected ?DateTimeInterface $baptismDate = null;
-
     protected ?AppUserInterface $user = null;
-
-    protected bool $male = true;
 
     public function __construct(
         protected string $firstName,
         protected string $lastName,
-        protected CongregationInterface $congregation
+        protected CongregationInterface $congregation,
+        protected bool $male = true,
+        protected ?string $middleName = null,
+        protected ?DateTimeInterface $birthDate = null,
+        protected ?DateTimeInterface $baptismDate = null
     ) {
     }
 

@@ -8,3 +8,8 @@ services:
         class: CongregationManager\Application\Congregation\CreateCongregation
         arguments:
             - '@cm.repository.congregation'
+
+    cm.create_brother:
+        class: CongregationManager\Application\Congregation\CreateBrother
+        arguments:
+            - '@cm.repository.brother'
