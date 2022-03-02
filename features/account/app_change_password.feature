@@ -8,11 +8,11 @@ Feature: Changing password
     Given there is a congregation "Carrollton"
     And there is a sister "Ava Adams"
     And the sister has an account for email "avaadams@gmail.com" and password "helloworld!"
-    And I am logged in as "avaadams@gmail.com"
 
   @ui
   Scenario: Changing password
-    When I want to change my password
+    When I log in as "avaadams@gmail.com" with password "helloworld!"
+    And I want to change my password
     And I specify my actual password with "helloworld!"
     And I change my password with "newpassword"
     And I confirm my password with "newpassword"

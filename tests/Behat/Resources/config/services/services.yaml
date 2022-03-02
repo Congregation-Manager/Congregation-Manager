@@ -22,20 +22,6 @@ services:
     cm.test.behat.shared_storage:
         class: CongregationManager\Tests\Behat\Services\SharedStorage
 
-    cm.test.behat.service.app_security:
-        class: CongregationManager\Tests\Behat\Services\SecurityService
-        arguments:
-            - '@request_stack'
-            - 'app'
-            - '@cm.test.behat.setter.cookie'
-
-    cm.test.behat.service.admin_security:
-        class: CongregationManager\Tests\Behat\Services\SecurityService
-        arguments:
-            - '@request_stack'
-            - 'admin'
-            - '@cm.test.behat.setter.cookie'
-
     cm.test.behat.setter.cookie:
         class: CongregationManager\Tests\Behat\Services\Setter\CookieSetter
         arguments:

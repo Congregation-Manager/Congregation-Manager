@@ -12,13 +12,13 @@ admin_switch_locale:
     methods: [GET]
     defaults:
         locale: '%supported_locales%'
-        _controller: cm.controller.admin_locale:switchLocale
+        _controller: cm.controller.admin_locale::switchLocale
 
 admin_login:
     path: /login
     methods: [GET]
     defaults:
-        _controller: cm.controller.admin_user_login:index
+        _controller: cm.controller.admin_user_login::index
 
 admin_login_check:
     path: /login-check
@@ -32,16 +32,16 @@ admin_dashboard:
     path: /dashboard
     methods: [GET]
     defaults:
-        _controller: cm.controller.admin_dashboard:index
+        _controller: cm.controller.admin_dashboard::index
 
 admin_profile_update:
     path: /profile/update
     methods: [GET, POST]
     defaults:
-        _controller: cm.controller.admin_profile:update
+        _controller: cm.controller.admin_profile::update
 
 admin_change_password:
     path: /password/update
     methods: [GET, POST]
     defaults:
-        _controller: cm.controller.admin_change_password:update
+        _controller: cm.controller.admin_change_password::update

@@ -230,6 +230,7 @@ final class AccountContext implements Context
 
     /**
      * @When I log in as :email
+     * @When I log in as :email with password :password
      */
     public function iLogInAs(string $email, string $password = 'password'): void
     {

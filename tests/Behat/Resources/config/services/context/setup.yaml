@@ -14,18 +14,6 @@ services:
             - '@cm.repository.reset_password_request'
             - '@cm.converter.locale'
 
-    cm.test.behat.context.setup.app_security:
-        class: CongregationManager\Tests\Behat\Context\Setup\AppSecurityContext
-        arguments:
-            - '@cm.repository.app_user'
-            - '@cm.test.behat.service.app_security'
-
-    cm.test.behat.context.setup.admin_security:
-        class: CongregationManager\Tests\Behat\Context\Setup\AdminSecurityContext
-        arguments:
-            - '@cm.repository.admin_user'
-            - '@cm.test.behat.service.admin_security'
-
     cm.test.behat.context.setup.browser:
         class: CongregationManager\Tests\Behat\Context\Setup\BrowserContext
         arguments:

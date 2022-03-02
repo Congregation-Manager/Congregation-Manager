@@ -2,17 +2,17 @@ app_forgot_password_request:
     path: /
     methods: [GET, POST]
     defaults:
-        _controller: cm.controller.reset_app_password:request
+        _controller: cm.controller.reset_app_password::request
 
 app_check_email:
     path: /check-email
     methods: [GET]
     defaults:
-        _controller: cm.controller.reset_app_password:checkEmail
+        _controller: cm.controller.reset_app_password::checkEmail
 
 app_reset_password:
     path: /reset/{token}
     methods: [GET, POST]
     defaults:
-        _controller: cm.controller.reset_app_password:reset
+        _controller: cm.controller.reset_app_password::reset
         token: null

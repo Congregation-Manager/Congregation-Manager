@@ -9,13 +9,13 @@ app_switch_locale:
     methods: [GET]
     defaults:
         locale: '%supported_locales%'
-        _controller: cm.controller.app_locale:switchLocale
+        _controller: cm.controller.app_locale::switchLocale
 
 app_login:
     path: /login
     methods: [GET]
     defaults:
-        _controller: cm.controller.app_user_login:index
+        _controller: cm.controller.app_user_login::index
 
 app_login_check:
     path: /login-check
@@ -29,16 +29,16 @@ app_dashboard:
     path: /dashboard
     methods: [GET]
     defaults:
-        _controller: cm.controller.app_dashboard:index
+        _controller: cm.controller.app_dashboard::index
 
 app_profile_update:
     path: /profile/update
     methods: [GET, POST]
     defaults:
-        _controller: cm.controller.app_profile:update
+        _controller: cm.controller.app_profile::update
 
 app_change_password:
     path: /password/update
     methods: [GET, POST]
     defaults:
-        _controller: cm.controller.app_change_password:update
+        _controller: cm.controller.app_change_password::update

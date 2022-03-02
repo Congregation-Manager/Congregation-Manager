@@ -6,11 +6,11 @@ Feature: Changing password
 
   Background:
     Given there is an admin user with email "admin@cm.org" and password "password"
-    And I am logged in as "admin@cm.org"
 
   @ui
   Scenario: Changing password
-    When I want to change my password
+    When I log in as "admin@cm.org" with password "password"
+    And I want to change my password
     And I specify my actual password with "password"
     And I change my password with "4dm1n15tr4t0r"
     And I confirm my password with "4dm1n15tr4t0r"
