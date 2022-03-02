@@ -26,4 +26,9 @@ final class CongregationRepository extends ServiceEntityRepository implements Co
     {
         parent::__construct($registry, Congregation::class);
     }
+
+    public function add(Congregation $congregation): void
+    {
+        $this->_em->persist($congregation);
+    }
 }
