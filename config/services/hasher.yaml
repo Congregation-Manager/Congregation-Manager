@@ -1,0 +1,10 @@
+services:
+    _defaults:
+        autowire: false
+        autoconfigure: false
+        public: false
+
+    cm.hasher.user_password:
+        class: CongregationManager\Infrastructure\User\Hasher\UserPasswordHasher
+        arguments:
+            - '@security.user_password_hasher'

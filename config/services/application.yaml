@@ -20,6 +20,7 @@ services:
             - '@cm.repository.app_user'
 
     cm.create_admin_user:
-        class: CongregationManager\Application\User\CreateAdminUser
+        class: CongregationManager\Infrastructure\User\Action\CreateAdminUser
         arguments:
             - '@cm.repository.admin_user'
+            - '@cm.hasher.user_password'
