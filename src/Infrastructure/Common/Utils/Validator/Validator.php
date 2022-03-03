@@ -8,11 +8,18 @@ use function Symfony\Component\String\u;
 
 final class Validator
 {
+    public function validateString(?string $string): string
+    {
+        if (empty($string)) {
+            throw new InvalidArgumentException('The string can not be empty.');
+        }
+
+        return $string;
+    }
+
     public function validatePassword(?string $plainPassword): string
     {
-        if (empty($plainPassword)) {
-            throw new InvalidArgumentException('The password can not be empty.');
-        }
+        $plainPassword = $this->validateString($plainPassword);
 
         if (u($plainPassword)->trim()->length() < 8) {
             throw new InvalidArgumentException('The password must be at least 8 characters long.');
@@ -23,9 +30,7 @@ final class Validator
 
     public function validateEmail(?string $email): string
     {
-        if (empty($email)) {
-            throw new InvalidArgumentException('The email can not be empty.');
-        }
+        $email = $this->validateString($email);
 
         if (null === u($email)->indexOf('@')) {
             throw new InvalidArgumentException('The email should look like a real email.');

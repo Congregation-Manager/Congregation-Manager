@@ -17,6 +17,26 @@ class ValidatorTest extends TestCase
         $this->validator = new Validator();
     }
 
+    public function test_that_it_does_not_validate_empty_string(): void
+    {
+        $this->expectException(InvalidArgumentException::class);
+        $this->validator->validateString('');
+    }
+
+    public function test_that_it_does_not_validate_null_as_string(): void
+    {
+        $this->expectException(InvalidArgumentException::class);
+        $this->validator->validateString(null);
+    }
+
+    public function test_that_it_validates_valid_string(): void
+    {
+        $this->assertEquals(
+            'string',
+            $this->validator->validateString('string')
+        );
+    }
+
     public function test_that_it_does_not_validate_empty_password(): void
     {
         $this->expectException(InvalidArgumentException::class);

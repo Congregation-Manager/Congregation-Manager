@@ -6,6 +6,7 @@ use CongregationManager\Domain\User\Model\AdminUser;
 use CongregationManager\Domain\User\Model\AppUser;
 use CongregationManager\Infrastructure\User\Repository\AdminUserRepository;
 use CongregationManager\Infrastructure\User\Repository\AppUserRepository;
+use CongregationManager\Tests\Integration\Infrastructure\Common\Command\AbstractCommandTest;
 
 final class AddUserCommandTest extends AbstractCommandTest
 {

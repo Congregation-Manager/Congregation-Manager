@@ -4,6 +4,16 @@ services:
         autoconfigure: false
         public: false
 
+    cm.command.create_congregation:
+        class: CongregationManager\Infrastructure\Congregation\Command\CreateCongregationCommand
+        arguments:
+            - '@cm.utils.validator'
+            - '@cm.create_congregation'
+            - '@doctrine.orm.entity_manager'
+            - 'app:create-congregation'
+        tags:
+            - { name: 'console.command' }
+
     cm.command.create_user:
         class: CongregationManager\Infrastructure\User\Command\AddUserCommand
         arguments:
