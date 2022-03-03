@@ -51,7 +51,7 @@ final class AccountContext implements Context
      */
     public function thereIsAnAdminUserWithEmailAndPassword(string $email, string $password = 'password'): void
     {
-        $adminUser = AdminUser::create($email);
+        $adminUser = new AdminUser($email);
         $adminUser->setPassword($this->userPasswordHasher->hashPassword($adminUser, $password));
 
         $this->entityManager->persist($adminUser);

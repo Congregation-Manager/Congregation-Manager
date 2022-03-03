@@ -11,9 +11,4 @@ class AdminUser extends DomainAdminUser implements AdminUserInterface
 
     /** @var string[] */
     protected array $roles = ['ROLE_ADMIN'];
-
-    public static function create(string $email): AdminUserInterface
-    {
-        return new self($email);
-    }
 }

@@ -28,7 +28,7 @@ final class UserContext implements Context
         $adminUserRepository = $this->entityManager->getRepository(AdminUser::class);
         $adminUser = $adminUserRepository->findOneBy(['email' => $email]);
         if (null === $adminUser) {
-            $adminUser = AdminUser::create($email);
+            $adminUser = new AdminUser($email);
 
             $this->entityManager->persist($adminUser);
             $this->entityManager->flush();
