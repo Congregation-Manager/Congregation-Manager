@@ -62,6 +62,7 @@
         "symfony/http-foundation": "^6.0",
         "symfony/http-kernel": "^6.0",
         "symfony/intl": "^6.0",
+        "symfony/lock": "^6.0",
         "symfony/mailer": "^6.0",
         "symfony/mime": "^6.0",
         "symfony/monolog-bundle": "^3.1",
