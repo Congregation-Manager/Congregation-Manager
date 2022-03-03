@@ -14,13 +14,14 @@ services:
         tags:
             - { name: 'console.command' }
 
-    cm.command.create_user:
-        class: CongregationManager\Infrastructure\User\Command\AddUserCommand
+    cm.command.create_admin_user:
+        class: CongregationManager\Infrastructure\User\Command\CreateAdminUserCommand
         arguments:
+            - '@cm.create_admin_user'
             - '@doctrine.orm.entity_manager'
-            - '@security.user_password_hasher'
             - '@cm.utils.validator'
-            - '@cm.repository.app_user'
-            - '@cm.repository.admin_user'
+            - '%default_locale%'
+            - '%supported_locales%'
+            - 'app:create-admin-user'
         tags:
-            - { name: 'console.command', command: 'app:add-user', description: 'Creates users and stores them in the database' }
+            - { name: 'console.command' }
