@@ -10,11 +10,13 @@ final class CreateAdminUserCommandTest extends AbstractCommandTest
     public function testCreateAdminUserInteractive(): void
     {
         $this->executeCommand(
-            [], [
+            [],
+            [
             'admin@cm.org',
             'password',
             'en',
-        ]);
+        ]
+        );
 
         $adminUsers = self::getContainer()->get('cm.repository.admin_user')->findAll();
         $this->assertCount(1, $adminUsers);
@@ -28,11 +30,13 @@ final class CreateAdminUserCommandTest extends AbstractCommandTest
     public function testCreateAdminUserDefaultLocale(): void
     {
         $this->executeCommand(
-            [], [
+            [],
+            [
             'admin@cm.org',
             'password',
             null
-        ]);
+        ]
+        );
 
         $adminUsers = self::getContainer()->get('cm.repository.admin_user')->findAll();
         $this->assertCount(1, $adminUsers);
@@ -47,11 +51,13 @@ final class CreateAdminUserCommandTest extends AbstractCommandTest
     {
         $this->expectException(InvalidArgumentException::class);
         $this->executeCommand(
-            [], [
+            [],
+            [
             'admin@cm.org',
             'password',
             'ge'
-        ]);
+        ]
+        );
     }
 
     protected function getCommandServiceDefinition(): string
