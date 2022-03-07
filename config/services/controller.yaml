@@ -127,3 +127,11 @@ services:
         calls:
             - [ setContainer, [ '@Psr\Container\ContainerInterface' ] ]
         tags: [ 'container.service_subscriber', 'controller.service_arguments' ]
+
+    cm.controller.admin_congregation:
+        class: CongregationManager\Infrastructure\Congregation\Controller\AdminCongregationController
+        arguments:
+            - '@cm.repository.congregation'
+        calls:
+            - [ setContainer, [ '@Psr\Container\ContainerInterface' ] ]
+        tags: [ 'container.service_subscriber', 'controller.service_arguments' ]

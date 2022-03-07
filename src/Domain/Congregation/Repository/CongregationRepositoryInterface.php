@@ -8,5 +8,11 @@ use CongregationManager\Domain\Congregation\Model\CongregationInterface;
 
 interface CongregationRepositoryInterface
 {
+    /** @return CongregationInterface[] */
+    public function findAll();
+
+    /** @return CongregationInterface|null */
+    public function find(int $id);
+
     public function add(CongregationInterface $congregation): void;
 }

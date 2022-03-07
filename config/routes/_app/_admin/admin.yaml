@@ -45,3 +45,15 @@ admin_change_password:
     methods: [GET, POST]
     defaults:
         _controller: cm.controller.admin_change_password::update
+
+admin_congregation_index:
+    path: /congregations
+    methods: [GET]
+    defaults:
+        _controller: cm.controller.admin_congregation::index
+
+admin_congregation_show:
+    path: /congregation/{id}
+    methods: [GET]
+    defaults:
+        _controller: cm.controller.admin_congregation::show

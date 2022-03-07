@@ -1,5 +1,11 @@
 cm:
     meta_title: 'Gestione Congregazione'
+    congregation:
+        title: 'Congregazione'
+        index:
+            meta_title: 'Congregazioni'
+        show:
+            meta_title: 'Congregazione {name}'
     homepage:
         meta_title: 'Gestione Congregazione'
         title: 'Gestione Congregazione'
@@ -27,6 +33,10 @@ cm:
         new_password: 'Nuova Password'
         repeat_password: 'Ripeti Password'
         old_password: 'Vecchia Password'
+        name: 'Nome'
+        id: 'Id'
+        congregation: 'Congregazione'
+        view: 'Vedi'
     app_nav:
         title: 'Gestione Congregazione'
         toggle: 'Chiudi navigazione'
