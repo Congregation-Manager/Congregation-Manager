@@ -1,0 +1,25 @@
+<?php
+
+namespace CongregationManager\Infrastructure\User\Repository;
+
+use CongregationManager\Domain\User\Model\AppUserInvitation;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\Persistence\ManagerRegistry;
+
+/**
+ * @extends ServiceEntityRepository<AppUserInvitation>
+ *
+ * @method AppUserInvitation|null find($id, $lockMode = null, $lockVersion = null)
+ * @method AppUserInvitation|null findOneBy(array $criteria, array $orderBy = null)
+ * @psalm-method list<AppUserInvitation> findAll()
+ * @method AppUserInvitation[]    findAll()
+ * @psalm-method list<AppUserInvitation> findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method AppUserInvitation[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ */
+class AppUserInvitationRepository extends ServiceEntityRepository
+{
+    public function __construct(ManagerRegistry $registry)
+    {
+        parent::__construct($registry, AppUserInvitation::class);
+    }
+}

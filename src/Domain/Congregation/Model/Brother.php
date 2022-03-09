@@ -6,6 +6,7 @@ namespace CongregationManager\Domain\Congregation\Model;
 
 use CongregationManager\Domain\Common\Model\AggregateRoot;
 use CongregationManager\Domain\User\Model\AppUserInterface;
+use CongregationManager\Domain\User\Model\AppUserInvitation;
 use DateTimeInterface;
 
 class Brother extends AggregateRoot implements BrotherInterface
@@ -19,7 +20,8 @@ class Brother extends AggregateRoot implements BrotherInterface
         protected bool $male = true,
         protected ?string $middleName = null,
         protected ?DateTimeInterface $birthDate = null,
-        protected ?DateTimeInterface $baptismDate = null
+        protected ?DateTimeInterface $baptismDate = null,
+        protected ?AppUserInvitation $invitation = null
     ) {
     }
 
@@ -101,6 +103,16 @@ class Brother extends AggregateRoot implements BrotherInterface
     public function setMale(bool $male): void
     {
         $this->male = $male;
+    }
+
+    public function getInvitation(): ?AppUserInvitation
+    {
+        return $this->invitation;
+    }
+
+    public function setInvitation(?AppUserInvitation $invitation): void
+    {
+        $this->invitation = $invitation;
     }
 
     public function __toString(): string
