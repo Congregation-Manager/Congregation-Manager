@@ -18,5 +18,21 @@
                 </ul>
             </div>
         </div>
+        
+        {% if brother.user %}
+            <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title">{{ 'cm.label.user'|trans }}</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">{{ brother.user.email }}</h6>
+                </div>
+            </div>
+        {% else %}
+            <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title">{{ 'cm.label.invite_user'|trans }}</h5>
+                    <a href="" class="btn btn-primary" {{ test_html_attribute('invite-user-button') }}>{{ 'cm.label.invite'|trans }}</a>
+                </div>
+            </div>
+        {% endif %}
     </div>
 {% endblock %}

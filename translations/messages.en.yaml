@@ -43,6 +43,9 @@ cm:
         first_name: 'First name'
         middle_name: 'Middle name'
         last_name: 'Last name'
+        user: 'User'
+        invite_user: 'Invite user'
+        invite: 'Invite'
     app_nav:
         title: 'Congregation Manager'
         toggle: 'Toggle navigation'

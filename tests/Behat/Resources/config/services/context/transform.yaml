@@ -8,3 +8,8 @@ services:
         class: CongregationManager\Tests\Behat\Context\Transform\UserContext
         arguments:
             - '@doctrine.orm.entity_manager'
+
+    cm.test.behat.context.transform.brother:
+        class: CongregationManager\Tests\Behat\Context\Transform\BrotherContext
+        arguments:
+            - '@cm.repository.brother'

@@ -14,5 +14,11 @@ interface BrotherRepositoryInterface
     /** @return BrotherInterface|null */
     public function find(int $id);
 
+    /**
+     * @return BrotherInterface|null
+     * @phpstan-ignore-next-line
+     */
+    public function findOneBy(array $criteria);
+
     public function add(BrotherInterface $brother): void;
 }

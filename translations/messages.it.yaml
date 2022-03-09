@@ -43,6 +43,9 @@ cm:
         first_name: 'Nome'
         middle_name: 'Secondo nome'
         last_name: 'Cognome'
+        user: 'Utente'
+        invite_user: 'Invita utente'
+        invite: 'Invita'
     app_nav:
         title: 'Gestione Congregazione'
         toggle: 'Chiudi navigazione'

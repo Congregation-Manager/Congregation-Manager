@@ -70,3 +70,7 @@ services:
     cm.test.behat.page.admin.change_password:
         class: CongregationManager\Tests\Behat\Page\Admin\ChangePasswordPage
         parent: cm.test.behat.page
+
+    cm.test.behat.page.admin.brother_show:
+        class: CongregationManager\Tests\Behat\Page\Admin\BrotherShowPage
+        parent: cm.test.behat.page

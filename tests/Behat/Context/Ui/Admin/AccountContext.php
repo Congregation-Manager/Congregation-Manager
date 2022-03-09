@@ -3,6 +3,8 @@
 namespace CongregationManager\Tests\Behat\Context\Ui\Admin;
 
 use Behat\Behat\Context\Context;
+use CongregationManager\Domain\Congregation\Model\BrotherInterface;
+use CongregationManager\Tests\Behat\Page\Admin\BrotherShowPageInterface;
 use CongregationManager\Tests\Behat\Page\Admin\ChangePasswordPageInterface;
 use CongregationManager\Tests\Behat\Page\Admin\CheckEmailPageInterface;
 use CongregationManager\Tests\Behat\Page\Admin\DashboardPageInterface;
@@ -23,7 +25,8 @@ final class AccountContext implements Context
         private ResetPasswordPageInterface $resetPasswordPage,
         private SharedStorageInterface $sharedStorage,
         private ProfileUpdatePageInterface $profileUpdatePage,
-        private ChangePasswordPageInterface $changePasswordPage
+        private ChangePasswordPageInterface $changePasswordPage,
+        private BrotherShowPageInterface $brotherShowPage
     ) {
     }
 
@@ -238,5 +241,21 @@ final class AccountContext implements Context
         $this->loginPage->specifyEmail($email);
         $this->loginPage->specifyPassword($password);
         $this->loginPage->signIn();
+    }
+
+    /**
+     * @Given I want to see brother :brother details
+     */
+    public function iWantToSeeBrotherDetails(BrotherInterface $brother): void
+    {
+        $this->brotherShowPage->open(['id' => $brother->getId()]);
+    }
+
+    /**
+     * @Then I should see that the brother does not have a user
+     */
+    public function iShouldSeeThatTheBrotherDoesNotHaveAUser(): void
+    {
+        Assert::false($this->brotherShowPage->hasUser());
     }
 }
