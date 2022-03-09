@@ -135,3 +135,11 @@ services:
         calls:
             - [ setContainer, [ '@Psr\Container\ContainerInterface' ] ]
         tags: [ 'container.service_subscriber', 'controller.service_arguments' ]
+
+    cm.controller.admin_brother:
+        class: CongregationManager\Infrastructure\Congregation\Controller\AdminBrotherController
+        arguments:
+            - '@cm.repository.brother'
+        calls:
+            - [ setContainer, [ '@Psr\Container\ContainerInterface' ] ]
+        tags: [ 'container.service_subscriber', 'controller.service_arguments' ]

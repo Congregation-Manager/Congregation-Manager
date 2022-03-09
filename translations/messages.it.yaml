@@ -1,7 +1,7 @@
 cm:
     meta_title: 'Gestione Congregazione'
     congregation:
-        title: 'Congregazione'
+        title: 'Congregazioni'
         index:
             meta_title: 'Congregazioni'
         show:
@@ -37,6 +37,12 @@ cm:
         id: 'Id'
         congregation: 'Congregazione'
         view: 'Vedi'
+        birth_date: 'Data di nascita'
+        baptism_date: 'Data del battesimo'
+        brother: 'Fratello'
+        first_name: 'Nome'
+        middle_name: 'Secondo nome'
+        last_name: 'Cognome'
     app_nav:
         title: 'Gestione Congregazione'
         toggle: 'Chiudi navigazione'
@@ -88,3 +94,9 @@ cm:
         meta_title: 'Cambia password'
         title: 'Cambia password'
         submit: 'Aggiorna'
+    brother:
+        show:
+            meta_title: 'Fratello {name}'
+        index:
+            meta_title: 'Fratelli'
+        title: 'Fratelli'

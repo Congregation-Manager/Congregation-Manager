@@ -57,3 +57,15 @@ admin_congregation_show:
     methods: [GET]
     defaults:
         _controller: cm.controller.admin_congregation::show
+
+admin_brother_index:
+    path: /brothers
+    methods: [GET]
+    defaults:
+        _controller: cm.controller.admin_brother::index
+
+admin_brother_show:
+    path: /brother/{id}
+    methods: [GET]
+    defaults:
+        _controller: cm.controller.admin_brother::show

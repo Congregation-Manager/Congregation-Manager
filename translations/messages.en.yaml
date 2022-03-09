@@ -1,7 +1,7 @@
 cm:
     meta_title: 'Congregation Manager'
     congregation:
-        title: 'Congregation'
+        title: 'Congregations'
         index:
             meta_title: 'Congregations'
         show:
@@ -37,6 +37,12 @@ cm:
         id: 'Id'
         congregation: 'Congregation'
         view: 'View'
+        birth_date: 'Birth date'
+        baptism_date: 'Baptism date'
+        brother: 'Brother'
+        first_name: 'First name'
+        middle_name: 'Middle name'
+        last_name: 'Last name'
     app_nav:
         title: 'Congregation Manager'
         toggle: 'Toggle navigation'
@@ -88,3 +94,9 @@ cm:
         meta_title: 'Change password'
         title: 'Change password'
         submit: 'Update'
+    brother:
+        show:
+            meta_title: 'Brother {name}'
+        index:
+            meta_title: 'Brothers'
+        title: 'Brother'
