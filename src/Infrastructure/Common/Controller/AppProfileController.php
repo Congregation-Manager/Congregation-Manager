@@ -1,10 +1,12 @@
 <?php
 
-namespace CongregationManager\Infrastructure\User\Controller;
+namespace CongregationManager\Infrastructure\Common\Controller;
 
-use CongregationManager\Infrastructure\User\Form\ChangeEmailFormType;
-use CongregationManager\Infrastructure\User\Model\UserInterface;
+use CongregationManager\Infrastructure\Common\Form\ProfileUpdateFormType;
+use CongregationManager\Infrastructure\Common\Model\ProfileUpdate;
+use CongregationManager\Infrastructure\User\Model\AppUserInterface;
 use Doctrine\ORM\EntityManagerInterface;
+use LogicException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -28,20 +30,22 @@ final class AppProfileController extends AbstractController
         if ($user === null) {
             throw new AccessDeniedHttpException();
         }
-        if (!$user instanceof UserInterface) {
-            throw new \LogicException();
+        if (!$user instanceof AppUserInterface) {
+            throw new LogicException();
         }
-        $changeEmailForm = $this->createForm(ChangeEmailFormType::class, $user);
-        $changeEmailForm->handleRequest($request);
 
-        if ($changeEmailForm->isSubmitted() && $changeEmailForm->isValid()) {
+        $profileUpdate = new ProfileUpdate($user->getBrother(), $user);
+        $updateProfileForm = $this->createForm(ProfileUpdateFormType::class, $profileUpdate);
+        $updateProfileForm->handleRequest($request);
+
+        if ($updateProfileForm->isSubmitted() && $updateProfileForm->isValid()) {
             $this->entityManager->flush();
             $this->addFlash('success', $this->translator->trans('cm.ui.update_success'));
 
             return $this->redirectToRoute('app_dashboard');
         }
         return $this->renderForm('app/profile/update.html.twig', [
-            'changeEmailForm' => $changeEmailForm,
+            'updateProfileForm' => $updateProfileForm,
         ]);
     }
 }

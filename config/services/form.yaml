@@ -14,7 +14,17 @@ services:
         tags:
             - { name: 'form.type' }
 
+    cm.form.type.brother:
+        class: CongregationManager\Infrastructure\Congregation\Form\UpdateBrotherFormType
+        tags:
+            - { name: 'form.type' }
+
     cm.form.type.email:
         class: CongregationManager\Infrastructure\User\Form\ChangeEmailFormType
+        tags:
+            - { name: 'form.type' }
+
+    cm.form.type.profile_update:
+        class: CongregationManager\Infrastructure\Common\Form\ProfileUpdateFormType
         tags:
             - { name: 'form.type' }

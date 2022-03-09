@@ -28,7 +28,7 @@
                         </div>
                         <div class="float-end">
                             <div class="dropdown ">
-                                <a class="d-block text-decoration-none dropdown-toggle text-white" href="#" id="dropdown-user" data-bs-toggle="dropdown" aria-expanded="false">
+                                <a class="d-block text-decoration-none dropdown-toggle text-white" href="#" id="dropdown-user" data-bs-toggle="dropdown" aria-expanded="false" {{ test_html_attribute('logged-in-brother-full-name', app.user.brother) }}>
                                     <img src="https://via.placeholder.com/35" alt="mdo" width="35" height="35" class="rounded-circle">
                                     {{ app.user.brother }}
                                 </a>

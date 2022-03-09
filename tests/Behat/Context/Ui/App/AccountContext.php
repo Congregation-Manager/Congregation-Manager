@@ -182,10 +182,51 @@ final class AccountContext implements Context
 
     /**
      * @When I want to change my email
+     * @When I want to update my profile
      */
-    public function iWantToChangeMyEmail(): void
+    public function iWantToUpdateMyProfile(): void
     {
         $this->profileUpdatePage->open();
+    }
+
+    /**
+     * @Given I change my first name with :firstName
+     */
+    public function iChangeMyFirstNameWith(string $firstName): void
+    {
+        $this->profileUpdatePage->specifyFirstName($firstName);
+    }
+
+    /**
+     * @Given I change my middle name with :middleName
+     */
+    public function iChangeMyMiddleNameWith(string $middleName): void
+    {
+        $this->profileUpdatePage->specifyMiddleName($middleName);
+    }
+
+    /**
+     * @Given I change my last name with :lastName
+     */
+    public function iChangeMyLastNameWith(string $lastName): void
+    {
+        $this->profileUpdatePage->specifyLastName($lastName);
+    }
+
+    /**
+     * @Given I update the profile
+     */
+    public function iUpdateTheProfile(): void
+    {
+        $this->profileUpdatePage->update();
+    }
+
+    /**
+     * @Then I should be logged in as :fullName
+     */
+    public function iShouldBeLoggedInAs(string $fullName): void
+    {
+        Assert::eq($this->dashboardPage->getLoggedInBrotherFullName(), $fullName);
     }
 
     /**
@@ -221,9 +262,9 @@ final class AccountContext implements Context
     }
 
     /**
-     * @Given I update it
+     * @Given I update the password
      */
-    public function iUpdateIt(): void
+    public function iUpdateThePassword(): void
     {
         $this->changePasswordPage->update();
     }

@@ -98,7 +98,7 @@ services:
         tags: [ 'container.service_subscriber', 'controller.service_arguments' ]
 
     cm.controller.app_profile:
-        class: CongregationManager\Infrastructure\User\Controller\AppProfileController
+        class: CongregationManager\Infrastructure\Common\Controller\AppProfileController
         arguments:
             - '@security.helper'
             - '@doctrine.orm.entity_manager'

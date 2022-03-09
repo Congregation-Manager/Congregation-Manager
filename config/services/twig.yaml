@@ -11,6 +11,13 @@ services:
         tags:
             - { name: twig.extension }
 
+    cm.twig.extension.test_form_attribute:
+        class: CongregationManager\Infrastructure\Common\Twig\TestFormAttributeExtension
+        arguments:
+            - '%kernel.environment%'
+        tags:
+            - { name: twig.extension }
+
     cm.twig.extension.locale:
         class: CongregationManager\Infrastructure\Common\Twig\LocaleExtension
         tags:

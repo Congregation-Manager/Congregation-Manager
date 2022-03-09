@@ -23,10 +23,28 @@ final class ProfileUpdatePage extends SymfonyPage implements ProfileUpdatePageIn
         $this->getElement('save_button')->click();
     }
 
+    public function specifyFirstName(string $firstName): void
+    {
+        $this->getElement('first_name')->setValue($firstName);
+    }
+
+    public function specifyMiddleName(string $middleName): void
+    {
+        $this->getElement('middle_name')->setValue($middleName);
+    }
+
+    public function specifyLastName(string $lastName): void
+    {
+        $this->getElement('last_name')->setValue($lastName);
+    }
+
     protected function getDefinedElements(): array
     {
         return array_merge(parent::getDefinedElements(), [
             'email' => 'input[type=email]',
+            'first_name' => '[data-test-brother-first-name]',
+            'middle_name' => '[data-test-brother-middle-name]',
+            'last_name' => '[data-test-brother-last-name]',
             'save_button' => 'button[type=submit]'
         ]);
     }

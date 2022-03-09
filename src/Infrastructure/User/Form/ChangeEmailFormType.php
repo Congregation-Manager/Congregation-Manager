@@ -17,14 +17,17 @@ final class ChangeEmailFormType extends AbstractType
             ->add('email', EmailType::class, [
                 'required' => true
             ])
-            ->add('submit', SubmitType::class)
         ;
+        if ($options['with_submit']) {
+            $builder->add('submit', SubmitType::class, []);
+        }
     }
 
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
             'data_class' => UserInterface::class,
+            'with_submit' => true
         ]);
     }
 }

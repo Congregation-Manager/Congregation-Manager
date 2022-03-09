@@ -16,6 +16,6 @@ Feature: Changing password
     And I specify my actual password with "helloworld!"
     And I change my password with "newpassword"
     And I confirm my password with "newpassword"
-    And I update it
+    And I update the password
     And I log out
     Then I should be able to log in as "avaadams@gmail.com" with "newpassword" password

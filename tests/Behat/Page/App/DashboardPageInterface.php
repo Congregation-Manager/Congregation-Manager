@@ -9,4 +9,6 @@ interface DashboardPageInterface extends SymfonyPageInterface
     public function hasLogoutButton(): bool;
 
     public function signOut(): void;
+
+    public function getLoggedInBrotherFullName(): string;
 }

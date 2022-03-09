@@ -23,9 +23,15 @@ final class DashboardPage extends SymfonyPage implements DashboardPageInterface
         $this->getElement('logout_button')->click();
     }
 
+    public function getLoggedInBrotherFullName(): string
+    {
+        return $this->getElement('logged_in_brother')->getAttribute('data-test-logged-in-brother-full-name');
+    }
+
     protected function getDefinedElements(): array
     {
         return array_merge(parent::getDefinedElements(), [
+            'logged_in_brother' => '[data-test-logged-in-brother-full-name]',
             'logout_button' => '[data-test-logout-button]'
         ]);
     }
