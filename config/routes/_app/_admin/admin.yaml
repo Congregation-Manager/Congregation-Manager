@@ -69,3 +69,9 @@ admin_brother_show:
     methods: [GET]
     defaults:
         _controller: cm.controller.admin_brother::show
+
+admin_invite_app_user:
+    path: /brother/{id}/invite
+    methods: [GET, POST]
+    defaults:
+        _controller: cm.controller.admin_brother::invite

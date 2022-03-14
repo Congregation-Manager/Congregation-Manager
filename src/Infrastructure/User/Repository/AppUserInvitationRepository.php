@@ -2,7 +2,9 @@
 
 namespace CongregationManager\Infrastructure\User\Repository;
 
-use CongregationManager\Domain\User\Model\AppUserInvitation;
+use CongregationManager\Domain\User\Model\AppUserInvitation as DomainAppUserInvitation;
+use CongregationManager\Domain\User\Repository\AppUserInvitationRepositoryInterface;
+use CongregationManager\Infrastructure\User\Model\AppUserInvitation;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -16,10 +18,15 @@ use Doctrine\Persistence\ManagerRegistry;
  * @psalm-method list<AppUserInvitation> findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  * @method AppUserInvitation[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class AppUserInvitationRepository extends ServiceEntityRepository
+class AppUserInvitationRepository extends ServiceEntityRepository implements AppUserInvitationRepositoryInterface
 {
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, AppUserInvitation::class);
+    }
+
+    public function add(DomainAppUserInvitation $appUserInvitation): void
+    {
+        $this->_em->persist($appUserInvitation);
     }
 }

@@ -48,3 +48,12 @@ services:
             - '@doctrine'
         tags:
             - { name: doctrine.repository_service }
+
+    cm.repository.app_user_invitation:
+        alias: 'CongregationManager\Infrastructure\User\Repository\AppUserInvitationRepository'
+
+    CongregationManager\Infrastructure\User\Repository\AppUserInvitationRepository:
+        arguments:
+            - '@doctrine'
+        tags:
+            - { name: doctrine.repository_service }

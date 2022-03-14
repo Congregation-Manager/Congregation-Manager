@@ -140,6 +140,9 @@ services:
         class: CongregationManager\Infrastructure\Congregation\Controller\AdminBrotherController
         arguments:
             - '@cm.repository.brother'
+            - '@cm.create_app_user_invitation'
+            - '@doctrine.orm.entity_manager'
+            - '@mailer'
         calls:
             - [ setContainer, [ '@Psr\Container\ContainerInterface' ] ]
         tags: [ 'container.service_subscriber', 'controller.service_arguments' ]

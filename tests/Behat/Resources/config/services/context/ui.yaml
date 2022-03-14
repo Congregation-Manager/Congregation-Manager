@@ -33,6 +33,7 @@ services:
             - '@cm.test.behat.page.admin.profile_update'
             - '@cm.test.behat.page.admin.change_password'
             - '@cm.test.behat.page.admin.brother_show'
+            - '@cm.test.behat.page.admin.invite_app_user'
 
     cm.test.behat.context.ui.admin.locale:
         class: CongregationManager\Tests\Behat\Context\Ui\Admin\LocaleContext

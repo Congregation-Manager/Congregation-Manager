@@ -25,10 +25,21 @@ final class BrotherShowPage extends SymfonyPage implements BrotherShowPageInterf
         return false;
     }
 
+    public function inviteUser(): void
+    {
+        $this->getElement('invite_user')->click();
+    }
+
+    public function hasUserInvitation(): bool
+    {
+        return $this->hasElement('user_invitation');
+    }
+
     protected function getDefinedElements(): array
     {
         return array_merge(parent::getDefinedElements(), [
-            'invite_user' => '[data-test-invite-user-button]'
+            'invite_user' => '[data-test-invite-user-button]',
+            'user_invitation' => '[data-test-user-invitation]',
         ]);
     }
 }

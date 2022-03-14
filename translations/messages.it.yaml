@@ -46,6 +46,7 @@ cm:
         user: 'Utente'
         invite_user: 'Invita utente'
         invite: 'Invita'
+        invitation_send: 'Invito inviato'
     app_nav:
         title: 'Gestione Congregazione'
         toggle: 'Chiudi navigazione'
@@ -86,6 +87,11 @@ cm:
         reset_password:
             hello: 'Ciao!'
             intro: 'Per recuperare la tua password per favore, clicca sul seguente collegamento:'
+            expire: 'Il collegamento scadrà fra {expireIn}.'
+            greetings: 'Saluti!'
+        app_user_invitation:
+            hello: 'Ciao!'
+            intro: 'Benvenuto su Gestione Congregazione, per favore visita il seguente collegamento per completare la tua iscrizione'
             expire: 'Il collegamento scadrà fra {expireIn}.'
             greetings: 'Saluti!'
     profile_update:

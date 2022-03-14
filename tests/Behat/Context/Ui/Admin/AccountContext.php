@@ -9,6 +9,7 @@ use CongregationManager\Tests\Behat\Page\Admin\ChangePasswordPageInterface;
 use CongregationManager\Tests\Behat\Page\Admin\CheckEmailPageInterface;
 use CongregationManager\Tests\Behat\Page\Admin\DashboardPageInterface;
 use CongregationManager\Tests\Behat\Page\Admin\ForgotPasswordPageInterface;
+use CongregationManager\Tests\Behat\Page\Admin\InviteAppUserPageInterface;
 use CongregationManager\Tests\Behat\Page\Admin\LoginPageInterface;
 use CongregationManager\Tests\Behat\Page\Admin\ProfileUpdatePageInterface;
 use CongregationManager\Tests\Behat\Page\Admin\ResetPasswordPageInterface;
@@ -26,7 +27,8 @@ final class AccountContext implements Context
         private SharedStorageInterface $sharedStorage,
         private ProfileUpdatePageInterface $profileUpdatePage,
         private ChangePasswordPageInterface $changePasswordPage,
-        private BrotherShowPageInterface $brotherShowPage
+        private BrotherShowPageInterface $brotherShowPage,
+        private InviteAppUserPageInterface $inviteAppUserPage
     ) {
     }
 
@@ -257,5 +259,30 @@ final class AccountContext implements Context
     public function iShouldSeeThatTheBrotherDoesNotHaveAUser(): void
     {
         Assert::false($this->brotherShowPage->hasUser());
+    }
+
+    /**
+     * @When I click invite user
+     */
+    public function iClickInviteUser(): void
+    {
+        $this->brotherShowPage->inviteUser();
+    }
+
+    /**
+     * @Given I send the invite to email :email
+     */
+    public function ISendTheInviteToEmail(string $email): void
+    {
+        $this->inviteAppUserPage->specifyEmail($email);
+        $this->inviteAppUserPage->sendInvite();
+    }
+
+    /**
+     * @Then I should see that the brother has a pending invite
+     */
+    public function iShouldSeeThatTheBrotherHasAPendingInvite(): void
+    {
+        Assert::true($this->brotherShowPage->hasUserInvitation());
     }
 }

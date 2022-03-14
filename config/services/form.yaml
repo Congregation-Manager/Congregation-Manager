@@ -28,3 +28,8 @@ services:
         class: CongregationManager\Infrastructure\Common\Form\ProfileUpdateFormType
         tags:
             - { name: 'form.type' }
+
+    cm.form.type.user_invite:
+        class: CongregationManager\Infrastructure\User\Form\InviteUserFormType
+        tags:
+            - { name: 'form.type' }

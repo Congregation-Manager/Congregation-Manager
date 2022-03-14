@@ -4,11 +4,12 @@ declare(strict_types=1);
 
 namespace CongregationManager\Domain\Congregation\Model;
 
+use CongregationManager\Domain\Common\Model\AggregateRootInterface;
 use CongregationManager\Domain\User\Model\AppUserInterface;
 use CongregationManager\Domain\User\Model\AppUserInvitation;
 use DateTimeInterface;
 
-interface BrotherInterface
+interface BrotherInterface extends AggregateRootInterface
 {
     public function getMiddleName(): ?string;
 

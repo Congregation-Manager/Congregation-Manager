@@ -3,6 +3,7 @@
 namespace CongregationManager\Tests\Behat\Context\Ui;
 
 use Behat\Behat\Context\Context;
+use Behat\Behat\Tester\Exception\PendingException;
 use CongregationManager\Tests\Behat\Services\EmailCheckerInterface;
 use Webmozart\Assert\Assert;
 
@@ -21,6 +22,17 @@ final class EmailContext implements Context
     {
         $this->assertEmailContainsMessageTo(
             'To reset your password, please visit the following link',
+            $email
+        );
+    }
+
+    /**
+     * @Given an email with user invite should be sent to :email
+     */
+    public function anEmailWithUserInviteShouldBeSentTo(string $email): void
+    {
+        $this->assertEmailContainsMessageTo(
+            'Welcome to Congregation Manager, please visit the following link to complete your subscription',
             $email
         );
     }

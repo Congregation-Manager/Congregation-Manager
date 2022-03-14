@@ -46,6 +46,7 @@ cm:
         user: 'User'
         invite_user: 'Invite user'
         invite: 'Invite'
+        invitation_send: 'Invitation send'
     app_nav:
         title: 'Congregation Manager'
         toggle: 'Toggle navigation'
@@ -86,6 +87,11 @@ cm:
         reset_password:
             hello: 'Hi!'
             intro: 'To reset your password, please visit the following link'
+            expire: 'This link will expire in {expireIn}.'
+            greetings: 'Cheers!'
+        app_user_invitation:
+            hello: 'Hi!'
+            intro: 'Welcome to Congregation Manager, please visit the following link to complete your subscription'
             expire: 'This link will expire in {expireIn}.'
             greetings: 'Cheers!'
     profile_update:

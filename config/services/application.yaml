@@ -25,3 +25,9 @@ services:
         arguments:
             - '@cm.repository.admin_user'
             - '@cm.hasher.user_password'
+
+    cm.create_app_user_invitation:
+        class: CongregationManager\Infrastructure\User\Action\CreateAppUserInvitation
+        arguments:
+            - '@cm.generator.token'
+            - '@cm.repository.app_user_invitation'
