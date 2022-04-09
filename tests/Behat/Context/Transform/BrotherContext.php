@@ -25,6 +25,5 @@ final class BrotherContext implements Context
         $brother = $this->brotherRepository->findOneBy(['firstName' => $firstName, 'lastName' => $lastName]);
 
         return $brother ?? throw new InvalidArgumentException(sprintf('Brother with first name "%s" and last name "%s" does not exist.', $firstName, $lastName));
-
     }
 }
