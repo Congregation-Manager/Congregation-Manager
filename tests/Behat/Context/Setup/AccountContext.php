@@ -5,6 +5,7 @@ namespace CongregationManager\Tests\Behat\Context\Setup;
 use Behat\Behat\Context\Context;
 use CongregationManager\Domain\Congregation\Model\BrotherInterface;
 use CongregationManager\Infrastructure\Common\Converter\LocaleConverterInterface;
+use CongregationManager\Infrastructure\User\Action\CreateAppUserInvitation;
 use CongregationManager\Infrastructure\User\Model\AdminUser;
 use CongregationManager\Infrastructure\User\Model\AdminUserInterface;
 use CongregationManager\Infrastructure\User\Model\AppUser;
@@ -25,7 +26,8 @@ final class AccountContext implements Context
         private ResetPasswordTokenGenerator $tokenGenerator,
         private SharedStorageInterface $sharedStorage,
         private ResetPasswordRequestRepositoryInterface $resetPasswordRequestRepository,
-        private LocaleConverterInterface $localeConverter
+        private LocaleConverterInterface $localeConverter,
+        private CreateAppUserInvitation $createAppUserInvitation
     ) {
     }
 
@@ -130,5 +132,20 @@ final class AccountContext implements Context
         $localeCode = $this->localeConverter->convertNameToCode($locale);
         $adminUser->setLocaleCode($localeCode);
         $this->entityManager->flush();
+    }
+
+    /**
+     * @Given I have already received an invitation email for :email
+     */
+    public function iHaveAlreadyReceivedAnInviteEmailForBrother(string $email): void
+    {
+        /** @var BrotherInterface $brother */
+        $brother = $this->sharedStorage->get('brother');
+        $appUserInvitation = $this->createAppUserInvitation->create($brother, $email);
+
+        $this->entityManager->persist($appUserInvitation);
+        $this->entityManager->flush();
+
+        $this->sharedStorage->set('invitation_app_token', $appUserInvitation->getToken());
     }
 }

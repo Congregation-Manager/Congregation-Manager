@@ -17,7 +17,7 @@ Feature: Resetting an app password
     Then I should be invited to check my email
     And an email with reset token should be sent to "dylan.mart@outlook.it"
 
-  @ui @email
+  @ui
   Scenario: Changing my account password with token I received
     Given I have already received a resetting password email for "dylan.mart@outlook.it" brother
     When I follow link on my email to reset my password

@@ -33,3 +33,8 @@ services:
         class: CongregationManager\Infrastructure\User\Form\InviteUserFormType
         tags:
             - { name: 'form.type' }
+
+    cm.form.type.complete_account:
+        class: CongregationManager\Infrastructure\User\Form\CompleteAccountFormType
+        tags:
+            - { name: 'form.type' }

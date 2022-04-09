@@ -5,6 +5,7 @@ namespace CongregationManager\Tests\Behat\Context\Ui\App;
 use Behat\Behat\Context\Context;
 use CongregationManager\Tests\Behat\Page\App\ChangePasswordPageInterface;
 use CongregationManager\Tests\Behat\Page\App\CheckEmailPageInterface;
+use CongregationManager\Tests\Behat\Page\App\CompleteAccountPageInterface;
 use CongregationManager\Tests\Behat\Page\App\DashboardPageInterface;
 use CongregationManager\Tests\Behat\Page\App\ForgotPasswordPageInterface;
 use CongregationManager\Tests\Behat\Page\App\LoginPageInterface;
@@ -23,7 +24,8 @@ final class AccountContext implements Context
         private ResetPasswordPageInterface $resetPasswordPage,
         private ProfileUpdatePageInterface $profileUpdatePage,
         private SharedStorageInterface $sharedStorage,
-        private ChangePasswordPageInterface $changePasswordPage
+        private ChangePasswordPageInterface $changePasswordPage,
+        private CompleteAccountPageInterface $completeAccountPage
     ) {
     }
 
@@ -279,5 +281,38 @@ final class AccountContext implements Context
         $this->loginPage->specifyEmail($email);
         $this->loginPage->specifyPassword($password);
         $this->loginPage->signIn();
+    }
+
+    /**
+     * @When I follow link on my email to complete my account
+     */
+    public function iFollowLinkOnMyEmailToCompleteMyAccount(): void
+    {
+        $this->completeAccountPage->tryToOpen(['token' => $this->sharedStorage->get('invitation_app_token')]);
+        $this->completeAccountPage->verify();
+    }
+
+    /**
+     * @Given I specify my password as :password
+     */
+    public function iSpecifyMyPasswordAs(string $password): void
+    {
+        $this->completeAccountPage->specifyPassword($password);
+    }
+
+    /**
+     * @Given I confirm my password as :password
+     */
+    public function iConfirmMyPasswordAs(string $password): void
+    {
+        $this->completeAccountPage->confirmPassword($password);
+    }
+
+    /**
+     * @Given I complete my account
+     */
+    public function iCompleteMyAccount(): void
+    {
+        $this->completeAccountPage->complete();
     }
 }

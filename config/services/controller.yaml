@@ -31,6 +31,17 @@ services:
             - [ setContainer, [ '@Psr\Container\ContainerInterface' ] ]
         tags: [ 'container.service_subscriber', 'controller.service_arguments' ]
 
+    cm.controller.app_complete_account:
+        class: CongregationManager\Infrastructure\User\Controller\AppCompleteAccountController
+        arguments:
+            - '@request_stack'
+            - '@cm.repository.app_user_invitation'
+            - '@cm.create_app_user'
+            - '@doctrine.orm.entity_manager'
+        calls:
+            - [ setContainer, [ '@Psr\Container\ContainerInterface' ] ]
+        tags: [ 'container.service_subscriber', 'controller.service_arguments' ]
+
     cm.controller.app_dashboard:
         class: CongregationManager\Infrastructure\Common\Controller\AppDashboardController
         calls:

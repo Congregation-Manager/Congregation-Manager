@@ -42,3 +42,11 @@ app_change_password:
     methods: [GET, POST]
     defaults:
         _controller: cm.controller.app_change_password::update
+
+app_complete_account:
+    path: /complete/account/{token}
+    methods: [GET, POST]
+    defaults:
+        _controller: cm.controller.app_complete_account::complete
+        token: null
+

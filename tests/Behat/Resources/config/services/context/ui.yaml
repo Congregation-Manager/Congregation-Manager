@@ -15,6 +15,7 @@ services:
             - '@cm.test.behat.page.app.profile_update'
             - '@cm.test.behat.shared_storage'
             - '@cm.test.behat.page.app.change_password'
+            - '@cm.test.behat.page.app.complete_account'
 
     cm.test.behat.context.ui.app.locale:
         class: CongregationManager\Tests\Behat\Context\Ui\App\LocaleContext

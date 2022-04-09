@@ -43,6 +43,10 @@ services:
         class: CongregationManager\Tests\Behat\Page\App\ChangePasswordPage
         parent: cm.test.behat.page
 
+    cm.test.behat.page.app.complete_account:
+        class: CongregationManager\Tests\Behat\Page\App\CompleteAccountPage
+        parent: cm.test.behat.page
+
     cm.test.behat.page.admin.login:
         class: CongregationManager\Tests\Behat\Page\Admin\LoginPage
         parent: cm.test.behat.page

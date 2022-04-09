@@ -15,7 +15,7 @@ services:
             - '@cm.repository.brother'
 
     cm.create_app_user:
-        class: CongregationManager\Application\User\CreateAppUser
+        class: CongregationManager\Infrastructure\User\Action\CreateAppUser
         arguments:
             - '@cm.repository.app_user'
             - '@cm.hasher.user_password'

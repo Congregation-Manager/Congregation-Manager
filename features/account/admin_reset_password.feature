@@ -15,7 +15,7 @@ Feature: Resetting an administration password
     Then I should be invited to check my email
     And an email with reset token should be sent to "admin@cm.org"
 
-  @ui @email
+  @ui
   Scenario: Changing my account password with token I received
     Given I have already received a resetting password email for "admin@cm.org" administrator
     When I follow link on my email to reset my password

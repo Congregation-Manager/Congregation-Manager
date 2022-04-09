@@ -13,10 +13,11 @@
             <join-column name="brother_id" nullable="false" />
         </one-to-one>
 
-
         <field name="email" column="email"/>
 
         <field name="token" column="token" length="100"/>
+
+        <field name="createdAt" column="created_at" type="datetime_immutable"/>
 
         <indexes>
             <index columns="token"/>

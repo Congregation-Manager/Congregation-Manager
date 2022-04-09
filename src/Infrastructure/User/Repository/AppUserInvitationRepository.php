@@ -29,4 +29,14 @@ class AppUserInvitationRepository extends ServiceEntityRepository implements App
     {
         $this->_em->persist($appUserInvitation);
     }
+
+    public function findByToken(string $token): ?DomainAppUserInvitation
+    {
+        return $this->findOneBy(['token' => $token]);
+    }
+
+    public function remove(DomainAppUserInvitation $appUserInvitation): void
+    {
+        $this->_em->remove($appUserInvitation);
+    }
 }
