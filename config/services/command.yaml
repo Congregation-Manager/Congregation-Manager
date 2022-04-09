@@ -25,3 +25,17 @@ services:
             - 'app:create-admin-user'
         tags:
             - { name: 'console.command' }
+
+    cm.command.import_from_old_cm:
+        class: CongregationManager\Infrastructure\Common\Command\ImportFromOldCMCommand
+        arguments:
+            - '@cm.repository.old_cm.congregation'
+            - '@cm.create_congregation'
+            - '@doctrine.orm.entity_manager'
+            - '@cm.repository.old_cm.brother'
+            - '@cm.create_brother'
+            - '@cm.repository.old_cm.app_user'
+            - '@cm.create_app_user'
+            - 'app:import-from-old-cm'
+        tags:
+            - { name: 'console.command' }

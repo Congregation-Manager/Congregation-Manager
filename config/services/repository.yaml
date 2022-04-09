@@ -57,3 +57,18 @@ services:
             - '@doctrine'
         tags:
             - { name: doctrine.repository_service }
+
+    cm.repository.old_cm.congregation:
+        class: CongregationManager\Infrastructure\Common\Repository\OldCM\CongregationRepository
+        arguments:
+            - '@doctrine.dbal.old_cm_connection'
+
+    cm.repository.old_cm.brother:
+        class: CongregationManager\Infrastructure\Common\Repository\OldCM\BrotherRepository
+        arguments:
+            - '@doctrine.dbal.old_cm_connection'
+
+    cm.repository.old_cm.app_user:
+        class: CongregationManager\Infrastructure\Common\Repository\OldCM\AppUserRepository
+        arguments:
+            - '@doctrine.dbal.old_cm_connection'

@@ -22,10 +22,11 @@ final class CreateAppUser
         BrotherInterface $brother,
         string $email,
         ?string $plainPassword = null,
-        ?string $localeCode = null
+        ?string $localeCode = null,
+        ?string $hashedPassword = null
     ): AppUserInterface {
-        $appUser = new AppUser($brother, $email, null, $localeCode);
-        if ($plainPassword !== null) {
+        $appUser = new AppUser($brother, $email, $hashedPassword, $localeCode);
+        if ($hashedPassword === null && $plainPassword !== null) {
             $appUser->setPassword($this->userPasswordHasher->hashPasswordForUser($plainPassword, $appUser));
         }
         $this->appUserRepository->add($appUser);
