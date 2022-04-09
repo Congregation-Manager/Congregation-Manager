@@ -18,6 +18,7 @@ return static function (Config $config): void {
         ->should(new NotHaveDependencyOutsideNamespace('CongregationManager\Domain', [
             InvalidArgumentException::class,
             DateTimeInterface::class,
+            DateTimeImmutable::class,
             "Doctrine\Common\Collections"
         ]))
         ->because('Domain should not have external dependencies');
