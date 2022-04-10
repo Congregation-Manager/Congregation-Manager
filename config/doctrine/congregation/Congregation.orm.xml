@@ -20,6 +20,8 @@
         <one-to-many field="municipalities" target-entity="CongregationManager\Domain\Territory\Model\Municipality" mapped-by="congregation" />
 
         <one-to-many field="areas" target-entity="CongregationManager\Domain\Territory\Model\Area" mapped-by="congregation" />
+
+        <one-to-many field="territories" target-entity="CongregationManager\Domain\Territory\Model\Territory" mapped-by="congregation" />
     </entity>
 
 </doctrine-mapping>

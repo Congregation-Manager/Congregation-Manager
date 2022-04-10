@@ -8,6 +8,7 @@ use CongregationManager\Domain\Common\Model\AggregateRoot;
 use CongregationManager\Domain\Territory\Model\AreaInterface;
 use CongregationManager\Domain\Territory\Model\MunicipalityInterface;
 use CongregationManager\Domain\Territory\Model\ProvinceInterface;
+use CongregationManager\Domain\Territory\Model\TerritoryInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 
@@ -25,6 +26,9 @@ class Congregation extends AggregateRoot implements CongregationInterface
     /** @var Collection<array-key, AreaInterface> */
     protected Collection $areas;
 
+    /** @var Collection<array-key, TerritoryInterface> */
+    protected Collection $territories;
+
     public function __construct(
         protected string $name
     ) {
@@ -32,6 +36,7 @@ class Congregation extends AggregateRoot implements CongregationInterface
         $this->provinces = new ArrayCollection();
         $this->municipalities = new ArrayCollection();
         $this->areas = new ArrayCollection();
+        $this->territories = new ArrayCollection();
     }
 
     public function getName(): string
@@ -94,5 +99,11 @@ class Congregation extends AggregateRoot implements CongregationInterface
     public function getAreas(): Collection
     {
         return $this->areas;
+    }
+
+    /** @return Collection<array-key, TerritoryInterface> */
+    public function getTerritories(): Collection
+    {
+        return $this->territories;
     }
 }
