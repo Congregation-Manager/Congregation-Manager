@@ -10,7 +10,10 @@
         <id association-key="true" name="brother" />
 
         <one-to-one field="brother" target-entity="CongregationManager\Domain\Congregation\Model\Brother" inversed-by="invitation">
-            <join-column name="brother_id" nullable="false" />
+            <cascade>
+                <cascade-remove/>
+            </cascade>
+            <join-column name="brother_id" nullable="false" on-delete="CASCADE" />
         </one-to-one>
 
         <field name="email" column="email"/>
