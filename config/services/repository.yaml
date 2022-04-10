@@ -58,6 +58,33 @@ services:
         tags:
             - { name: doctrine.repository_service }
 
+    cm.repository.province:
+        alias: 'CongregationManager\Infrastructure\Territory\Repository\ProvinceRepository'
+
+    CongregationManager\Infrastructure\Territory\Repository\ProvinceRepository:
+        arguments:
+            - '@doctrine'
+        tags:
+            - { name: doctrine.repository_service }
+
+    cm.repository.municipality:
+        alias: 'CongregationManager\Infrastructure\Territory\Repository\MunicipalityRepository'
+
+    CongregationManager\Infrastructure\Territory\Repository\MunicipalityRepository:
+        arguments:
+            - '@doctrine'
+        tags:
+            - { name: doctrine.repository_service }
+
+    cm.repository.area:
+        alias: 'CongregationManager\Infrastructure\Territory\Repository\AreaRepository'
+
+    CongregationManager\Infrastructure\Territory\Repository\AreaRepository:
+        arguments:
+            - '@doctrine'
+        tags:
+            - { name: doctrine.repository_service }
+
     cm.repository.old_cm.congregation:
         class: CongregationManager\Infrastructure\Common\Repository\OldCM\CongregationRepository
         arguments:
