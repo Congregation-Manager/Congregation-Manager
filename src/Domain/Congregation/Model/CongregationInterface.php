@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace CongregationManager\Domain\Congregation\Model;
 
+use CongregationManager\Domain\Territory\Model\AreaInterface;
 use CongregationManager\Domain\Territory\Model\MunicipalityInterface;
 use CongregationManager\Domain\Territory\Model\ProvinceInterface;
 use Doctrine\Common\Collections\Collection;
@@ -32,4 +33,7 @@ interface CongregationInterface
 
     /** @return Collection<array-key, MunicipalityInterface> */
     public function getMunicipalities(): Collection;
+
+    /** @return Collection<array-key, AreaInterface> */
+    public function getAreas(): Collection;
 }

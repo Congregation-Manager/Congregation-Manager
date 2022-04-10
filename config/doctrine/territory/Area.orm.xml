@@ -4,8 +4,8 @@
                   xsi:schemaLocation="https://doctrine-project.org/schemas/orm/doctrine-mapping
                           https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
 
-    <entity name="CongregationManager\Domain\Territory\Model\Municipality" table="municipality"
-            repository-class="CongregationManager\Infrastructure\Territory\Repository\MunicipalityRepository">
+    <entity name="CongregationManager\Domain\Territory\Model\Area" table="area"
+            repository-class="CongregationManager\Infrastructure\Territory\Repository\AreaRepository">
 
         <id name="id" type="integer" column="id">
             <generator strategy="AUTO"/>
@@ -16,16 +16,14 @@
         <field name="description" type="string" length="255" nullable="true"/>
 
         <many-to-one field="congregation" target-entity="CongregationManager\Domain\Congregation\Model\Congregation"
-                     inversed-by="municipalities">
+                     inversed-by="areas">
             <join-column name="congregation_id" referenced-column-name="id" nullable="false" on-delete="CASCADE"/>
         </many-to-one>
 
-        <many-to-one field="province" target-entity="CongregationManager\Domain\Territory\Model\Province"
-                     inversed-by="municipalities">
-            <join-column name="province_id" referenced-column-name="id" nullable="false" on-delete="CASCADE"/>
+        <many-to-one field="municipality" target-entity="CongregationManager\Domain\Territory\Model\Municipality"
+                     inversed-by="areas">
+            <join-column name="municipality_id" referenced-column-name="id" nullable="false" on-delete="CASCADE"/>
         </many-to-one>
-
-        <one-to-many field="areas" target-entity="CongregationManager\Domain\Territory\Model\Area" mapped-by="municipality" />
     </entity>
 
 </doctrine-mapping>

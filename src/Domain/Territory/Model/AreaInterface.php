@@ -6,17 +6,16 @@ namespace CongregationManager\Domain\Territory\Model;
 
 use CongregationManager\Domain\Common\Model\AggregateRootInterface;
 use CongregationManager\Domain\Congregation\Model\CongregationInterface;
-use Doctrine\Common\Collections\Collection;
 
-interface MunicipalityInterface extends AggregateRootInterface
+interface AreaInterface extends AggregateRootInterface
 {
     public function getCongregation(): CongregationInterface;
 
     public function setCongregation(CongregationInterface $congregation): void;
 
-    public function getProvince(): ProvinceInterface;
+    public function getMunicipality(): MunicipalityInterface;
 
-    public function setProvince(ProvinceInterface $province): void;
+    public function setMunicipality(MunicipalityInterface $municipality): void;
 
     public function getName(): string;
 
@@ -25,11 +24,4 @@ interface MunicipalityInterface extends AggregateRootInterface
     public function getDescription(): ?string;
 
     public function setDescription(?string $description): void;
-
-    /** @return Collection<array-key, AreaInterface> */
-    public function getAreas(): Collection;
-
-    public function addArea(AreaInterface $area): void;
-
-    public function removeArea(AreaInterface $area): void;
 }

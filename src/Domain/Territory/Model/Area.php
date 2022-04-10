@@ -6,21 +6,15 @@ namespace CongregationManager\Domain\Territory\Model;
 
 use CongregationManager\Domain\Common\Model\AggregateRoot;
 use CongregationManager\Domain\Congregation\Model\CongregationInterface;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 
-class Municipality extends AggregateRoot implements MunicipalityInterface
+class Area extends AggregateRoot implements AreaInterface
 {
-    /** @var Collection<array-key, AreaInterface> */
-    protected Collection $areas;
-
     public function __construct(
         private CongregationInterface $congregation,
-        private ProvinceInterface $province,
+        private MunicipalityInterface $municipality,
         private string $name,
         private ?string $description = null
     ) {
-        $this->areas = new ArrayCollection();
     }
 
     public function getCongregation(): CongregationInterface
@@ -33,14 +27,14 @@ class Municipality extends AggregateRoot implements MunicipalityInterface
         $this->congregation = $congregation;
     }
 
-    public function getProvince(): ProvinceInterface
+    public function getMunicipality(): MunicipalityInterface
     {
-        return $this->province;
+        return $this->municipality;
     }
 
-    public function setProvince(ProvinceInterface $province): void
+    public function setMunicipality(MunicipalityInterface $municipality): void
     {
-        $this->province = $province;
+        $this->municipality = $municipality;
     }
 
     public function getName(): string
@@ -61,25 +55,5 @@ class Municipality extends AggregateRoot implements MunicipalityInterface
     public function setDescription(?string $description): void
     {
         $this->description = $description;
-    }
-
-    /** @return Collection<array-key, AreaInterface> */
-    public function getAreas(): Collection
-    {
-        return $this->areas;
-    }
-
-    public function addArea(AreaInterface $area): void
-    {
-        if (!$this->areas->contains($area)) {
-            $this->areas->add($area);
-        }
-    }
-
-    public function removeArea(AreaInterface $area): void
-    {
-        if ($this->areas->contains($area)) {
-            $this->areas->removeElement($area);
-        }
     }
 }
