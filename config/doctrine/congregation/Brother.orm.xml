@@ -32,9 +32,6 @@
         <one-to-one field="invitation" target-entity="CongregationManager\Infrastructure\User\Model\AppUserInvitation" mapped-by="brother" />
 
         <many-to-one field="congregation" target-entity="CongregationManager\Domain\Congregation\Model\Congregation" inversed-by="brothers">
-            <cascade>
-                <cascade-remove/>
-            </cascade>
             <join-column name="congregation_id" referenced-column-name="id" nullable="false" on-delete="CASCADE" />
         </many-to-one>
     </entity>
