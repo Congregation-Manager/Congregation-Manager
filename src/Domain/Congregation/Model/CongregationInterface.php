@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace CongregationManager\Domain\Congregation\Model;
 
+use CongregationManager\Domain\Territory\Model\ProvinceInterface;
 use Doctrine\Common\Collections\Collection;
 
 interface CongregationInterface
@@ -20,4 +21,11 @@ interface CongregationInterface
     public function addBrother(BrotherInterface $brother): void;
 
     public function removeBrother(BrotherInterface $brother): void;
+
+    /** @return Collection<array-key, ProvinceInterface> */
+    public function getProvinces(): Collection;
+
+    public function addProvince(ProvinceInterface $province): void;
+
+    public function removeProvince(ProvinceInterface $province): void;
 }

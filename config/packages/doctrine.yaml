@@ -24,4 +24,10 @@ doctrine:
                 dir: '%kernel.project_dir%/config/doctrine/congregation'
                 prefix: 'CongregationManager\Domain\Congregation\Model'
                 alias: CongregationManager\Congregation
+            Territory:
+                is_bundle: false
+                type: xml
+                dir: '%kernel.project_dir%/config/doctrine/territory'
+                prefix: 'CongregationManager\Domain\Territory\Model'
+                alias: CongregationManager\Territory
 
