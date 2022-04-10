@@ -6,20 +6,15 @@ namespace CongregationManager\Domain\Territory\Model;
 
 use CongregationManager\Domain\Common\Model\AggregateRoot;
 use CongregationManager\Domain\Congregation\Model\CongregationInterface;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 
-class Province extends AggregateRoot implements ProvinceInterface
+class Municipality extends AggregateRoot implements MunicipalityInterface
 {
-    /** @var Collection<array-key, MunicipalityInterface> */
-    protected Collection $municipalities;
-
     public function __construct(
         private CongregationInterface $congregation,
+        private ProvinceInterface $province,
         private string $name,
         private ?string $description = null
     ) {
-        $this->municipalities = new ArrayCollection();
     }
 
     public function getCongregation(): CongregationInterface
@@ -30,6 +25,16 @@ class Province extends AggregateRoot implements ProvinceInterface
     public function setCongregation(CongregationInterface $congregation): void
     {
         $this->congregation = $congregation;
+    }
+
+    public function getProvince(): ProvinceInterface
+    {
+        return $this->province;
+    }
+
+    public function setProvince(ProvinceInterface $province): void
+    {
+        $this->province = $province;
     }
 
     public function getName(): string
@@ -50,25 +55,5 @@ class Province extends AggregateRoot implements ProvinceInterface
     public function setDescription(?string $description): void
     {
         $this->description = $description;
-    }
-
-    /** @return Collection<array-key, MunicipalityInterface> */
-    public function getMunicipalities(): Collection
-    {
-        return $this->municipalities;
-    }
-
-    public function addMunicipality(MunicipalityInterface $municipality): void
-    {
-        if (!$this->municipalities->contains($municipality)) {
-            $this->municipalities->add($municipality);
-        }
-    }
-
-    public function removeMunicipality(MunicipalityInterface $municipality): void
-    {
-        if ($this->municipalities->contains($municipality)) {
-            $this->municipalities->removeElement($municipality);
-        }
     }
 }
