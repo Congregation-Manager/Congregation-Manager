@@ -85,6 +85,15 @@ services:
         tags:
             - { name: doctrine.repository_service }
 
+    cm.repository.territory:
+        alias: 'CongregationManager\Infrastructure\Territory\Repository\TerritoryRepository'
+
+    CongregationManager\Infrastructure\Territory\Repository\TerritoryRepository:
+        arguments:
+            - '@doctrine'
+        tags:
+            - { name: doctrine.repository_service }
+
     cm.repository.old_cm.congregation:
         class: CongregationManager\Infrastructure\Common\Repository\OldCM\CongregationRepository
         arguments:
