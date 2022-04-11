@@ -31,3 +31,23 @@ services:
         arguments:
             - '@cm.generator.token'
             - '@cm.repository.app_user_invitation'
+
+    cm.create_province:
+        class: CongregationManager\Application\Territory\CreateProvince
+        arguments:
+            - '@cm.repository.province'
+
+    cm.create_municipality:
+        class: CongregationManager\Application\Territory\CreateMunicipality
+        arguments:
+            - '@cm.repository.municipality'
+
+    cm.create_area:
+        class: CongregationManager\Application\Territory\CreateArea
+        arguments:
+            - '@cm.repository.area'
+
+    cm.create_territory:
+        class: CongregationManager\Application\Territory\CreateTerritory
+        arguments:
+            - '@cm.repository.territory'
