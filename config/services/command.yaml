@@ -36,6 +36,14 @@ services:
             - '@cm.create_brother'
             - '@cm.repository.old_cm.app_user'
             - '@cm.create_app_user'
+            - '@cm.repository.old_cm.province'
+            - '@cm.create_province'
+            - '@cm.repository.old_cm.municipality'
+            - '@cm.create_municipality'
+            - '@cm.repository.old_cm.area'
+            - '@cm.create_area'
+            - '@cm.repository.old_cm.territory'
+            - '@cm.create_territory'
             - 'app:import-from-old-cm'
         tags:
             - { name: 'console.command' }

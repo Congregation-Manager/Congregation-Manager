@@ -6,9 +6,18 @@ namespace CongregationManager\Infrastructure\Common\Command;
 
 use CongregationManager\Application\Congregation\CreateBrother;
 use CongregationManager\Application\Congregation\CreateCongregation;
+use CongregationManager\Application\Territory\CreateArea;
+use CongregationManager\Application\Territory\CreateMunicipality;
+use CongregationManager\Application\Territory\CreateProvince;
+use CongregationManager\Application\Territory\CreateTerritory;
+use CongregationManager\Domain\Congregation\Model\CongregationInterface;
 use CongregationManager\Infrastructure\Common\Repository\OldCM\AppUserRepositoryInterface as OldAppUserRepositoryInterface;
+use CongregationManager\Infrastructure\Common\Repository\OldCM\AreaRepository;
 use CongregationManager\Infrastructure\Common\Repository\OldCM\BrotherRepositoryInterface as OldBrotherRepositoryInterface;
 use CongregationManager\Infrastructure\Common\Repository\OldCM\CongregationRepositoryInterface as OldCongregationRepositoryInterface;
+use CongregationManager\Infrastructure\Common\Repository\OldCM\MunicipalityRepository;
+use CongregationManager\Infrastructure\Common\Repository\OldCM\ProvinceRepository;
+use CongregationManager\Infrastructure\Common\Repository\OldCM\TerritoryRepository;
 use CongregationManager\Infrastructure\User\Action\CreateAppUser;
 use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
@@ -39,6 +48,14 @@ final class ImportFromOldCMCommand extends Command
         private CreateBrother $createBrother,
         private OldAppUserRepositoryInterface $oldAppUserRepository,
         private CreateAppUser $createAppUser,
+        private ProvinceRepository $oldProvinceRepository,
+        private CreateProvince $createProvince,
+        private MunicipalityRepository $oldMunicipalityRepository,
+        private CreateMunicipality $createMunicipality,
+        private AreaRepository $oldAreaRepository,
+        private CreateArea $createArea,
+        private TerritoryRepository $oldTerritoryRepository,
+        private CreateTerritory $createTerritory,
         private ?string $name = null
     ) {
         parent::__construct($name);
@@ -105,28 +122,38 @@ final class ImportFromOldCMCommand extends Command
         $oldCongregation = reset($oldCongregation);
         $congregation = $this->createCongregation->create($oldCongregation['name']);
 
-        foreach ($this->oldBrotherRepository->findAllByCongregation($oldCongregationId) as $oldBrother) {
-            $brother = $this->createBrother->create(
-                $oldBrother['name'],
-                $oldBrother['surname'],
+        $this->importBrothersAndAppUsers($oldCongregationId, $congregation);
+
+        foreach ($this->oldProvinceRepository->findAllByCongregation($oldCongregationId) as $oldProvince) {
+            $province = $this->createProvince->create(
                 $congregation,
-                (bool) $oldBrother['male'],
-                $oldBrother['middle_name'],
-                $oldBrother['birth_date'] ? new DateTime($oldBrother['birth_date']) : null,
-                $oldBrother['baptism_date'] ? new DateTime($oldBrother['baptism_date']) : null,
+                $oldProvince['name'],
+                $oldProvince['description'],
             );
-            $oldAppUser = $this->oldAppUserRepository->findOneByBrother((int) $oldBrother['id']);
-            if (count($oldAppUser) === 0) {
-                continue;
+            foreach ($this->oldMunicipalityRepository->findAllByCongregationAndProvince($oldCongregationId, (int) $oldProvince['id']) as $oldMunicipality) {
+                $municipality = $this->createMunicipality->create(
+                    $congregation,
+                    $province,
+                    $oldMunicipality['name'],
+                    $oldMunicipality['description'],
+                );
+                foreach ($this->oldAreaRepository->findAllByCongregationAndMunicipality($oldCongregationId, (int) $oldMunicipality['id']) as $oldArea) {
+                    $area = $this->createArea->create(
+                        $congregation,
+                        $municipality,
+                        $oldArea['name'],
+                        $oldArea['description'],
+                    );
+                    foreach ($this->oldTerritoryRepository->findAllByCongregationAndArea($oldCongregationId, (int) $oldArea['id']) as $oldTerritory) {
+                        $this->createTerritory->create(
+                            $congregation,
+                            $area,
+                            $oldTerritory['name'],
+                            $oldTerritory['description'],
+                        );
+                    }
+                }
             }
-            $oldAppUser = reset($oldAppUser);
-            $this->createAppUser->create(
-                $brother,
-                $oldAppUser['email'],
-                null,
-                'it',
-                $oldAppUser['password']
-            );
         }
 
         $this->entityManager->flush();
@@ -159,5 +186,32 @@ final class ImportFromOldCMCommand extends Command
 
               <info>php %command.full_name%</info> <comment>old-congregation-id</comment>
             HELP;
+    }
+
+    private function importBrothersAndAppUsers(int $oldCongregationId, CongregationInterface $congregation): void
+    {
+        foreach ($this->oldBrotherRepository->findAllByCongregation($oldCongregationId) as $oldBrother) {
+            $brother = $this->createBrother->create(
+                $oldBrother['name'],
+                $oldBrother['surname'],
+                $congregation,
+                (bool)$oldBrother['male'],
+                $oldBrother['middle_name'],
+                $oldBrother['birth_date'] ? new DateTime($oldBrother['birth_date']) : null,
+                $oldBrother['baptism_date'] ? new DateTime($oldBrother['baptism_date']) : null,
+            );
+            $oldAppUser = $this->oldAppUserRepository->findOneByBrother((int)$oldBrother['id']);
+            if (count($oldAppUser) === 0) {
+                continue;
+            }
+            $oldAppUser = reset($oldAppUser);
+            $this->createAppUser->create(
+                $brother,
+                $oldAppUser['email'],
+                null,
+                'it',
+                $oldAppUser['password']
+            );
+        }
     }
 }
