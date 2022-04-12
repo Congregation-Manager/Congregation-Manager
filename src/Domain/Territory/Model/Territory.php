@@ -6,15 +6,21 @@ namespace CongregationManager\Domain\Territory\Model;
 
 use CongregationManager\Domain\Common\Model\AggregateRoot;
 use CongregationManager\Domain\Congregation\Model\CongregationInterface;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 
 class Territory extends AggregateRoot implements TerritoryInterface
 {
+    /** @var Collection<array-key, TerritoryAssignmentInterface> */
+    protected Collection $territoryAssignments;
+
     public function __construct(
         private CongregationInterface $congregation,
         private AreaInterface $area,
         private string $name,
         private ?string $description = null
     ) {
+        $this->territoryAssignments = new ArrayCollection();
     }
 
     public function getCongregation(): CongregationInterface
@@ -55,5 +61,25 @@ class Territory extends AggregateRoot implements TerritoryInterface
     public function setDescription(?string $description): void
     {
         $this->description = $description;
+    }
+
+    /** @return Collection<array-key, TerritoryAssignmentInterface> */
+    public function getTerritoryAssignments(): Collection
+    {
+        return $this->territoryAssignments;
+    }
+
+    public function addTerritoryAssignment(TerritoryAssignmentInterface $territoryAssignment): void
+    {
+        if (!$this->territoryAssignments->contains($territoryAssignment)) {
+            $this->territoryAssignments->add($territoryAssignment);
+        }
+    }
+
+    public function removeTerritoryAssignment(TerritoryAssignmentInterface $territoryAssignment): void
+    {
+        if ($this->territoryAssignments->contains($territoryAssignment)) {
+            $this->territoryAssignments->removeElement($territoryAssignment);
+        }
     }
 }

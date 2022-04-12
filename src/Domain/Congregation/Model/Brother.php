@@ -5,13 +5,19 @@ declare(strict_types=1);
 namespace CongregationManager\Domain\Congregation\Model;
 
 use CongregationManager\Domain\Common\Model\AggregateRoot;
+use CongregationManager\Domain\Territory\Model\TerritoryAssignmentInterface;
 use CongregationManager\Domain\User\Model\AppUserInterface;
 use CongregationManager\Domain\User\Model\AppUserInvitation;
 use DateTimeInterface;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 
 class Brother extends AggregateRoot implements BrotherInterface
 {
     protected ?AppUserInterface $user = null;
+
+    /** @var Collection<array-key, TerritoryAssignmentInterface> */
+    protected Collection $territoryAssignments;
 
     public function __construct(
         protected string $firstName,
@@ -23,6 +29,7 @@ class Brother extends AggregateRoot implements BrotherInterface
         protected ?DateTimeInterface $baptismDate = null,
         protected ?AppUserInvitation $invitation = null
     ) {
+        $this->territoryAssignments = new ArrayCollection();
     }
 
     public function getMiddleName(): ?string
@@ -113,6 +120,26 @@ class Brother extends AggregateRoot implements BrotherInterface
     public function setInvitation(?AppUserInvitation $invitation): void
     {
         $this->invitation = $invitation;
+    }
+
+    /** @return Collection<array-key, TerritoryAssignmentInterface> */
+    public function getTerritoryAssignments(): Collection
+    {
+        return $this->territoryAssignments;
+    }
+
+    public function addTerritoryAssignment(TerritoryAssignmentInterface $territoryAssignment): void
+    {
+        if (!$this->territoryAssignments->contains($territoryAssignment)) {
+            $this->territoryAssignments->add($territoryAssignment);
+        }
+    }
+
+    public function removeTerritoryAssignment(TerritoryAssignmentInterface $territoryAssignment): void
+    {
+        if ($this->territoryAssignments->contains($territoryAssignment)) {
+            $this->territoryAssignments->removeElement($territoryAssignment);
+        }
     }
 
     public function __toString(): string
