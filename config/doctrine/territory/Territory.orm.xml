@@ -24,6 +24,8 @@
                      inversed-by="territories">
             <join-column name="area_id" referenced-column-name="id" nullable="false" on-delete="CASCADE"/>
         </many-to-one>
+
+        <one-to-many field="territoryAssignments" target-entity="CongregationManager\Domain\Territory\Model\TerritoryAssignment" mapped-by="territory" />
     </entity>
 
 </doctrine-mapping>
