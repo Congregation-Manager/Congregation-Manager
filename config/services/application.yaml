@@ -51,3 +51,8 @@ services:
         class: CongregationManager\Application\Territory\CreateTerritory
         arguments:
             - '@cm.repository.territory'
+
+    cm.create_territory_assignment:
+        class: CongregationManager\Application\Territory\CreateTerritoryAssignment
+        arguments:
+            - '@cm.repository.territory_assignment'

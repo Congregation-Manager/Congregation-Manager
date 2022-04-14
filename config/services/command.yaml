@@ -44,6 +44,8 @@ services:
             - '@cm.create_area'
             - '@cm.repository.old_cm.territory'
             - '@cm.create_territory'
+            - '@cm.repository.old_cm.territory_assignment'
+            - '@cm.create_territory_assignment'
             - 'app:import-from-old-cm'
         tags:
             - { name: 'console.command' }

@@ -137,3 +137,8 @@ services:
         class: CongregationManager\Infrastructure\Common\Repository\OldCM\TerritoryRepository
         arguments:
             - '@doctrine.dbal.old_cm_connection'
+
+    cm.repository.old_cm.territory_assignment:
+        class: CongregationManager\Infrastructure\Common\Repository\OldCM\TerritoryAssignmentRepository
+        arguments:
+            - '@doctrine.dbal.old_cm_connection'

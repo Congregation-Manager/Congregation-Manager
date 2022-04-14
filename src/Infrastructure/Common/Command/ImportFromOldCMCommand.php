@@ -10,6 +10,8 @@ use CongregationManager\Application\Territory\CreateArea;
 use CongregationManager\Application\Territory\CreateMunicipality;
 use CongregationManager\Application\Territory\CreateProvince;
 use CongregationManager\Application\Territory\CreateTerritory;
+use CongregationManager\Application\Territory\CreateTerritoryAssignment;
+use CongregationManager\Domain\Congregation\Model\BrotherInterface;
 use CongregationManager\Domain\Congregation\Model\CongregationInterface;
 use CongregationManager\Infrastructure\Common\Repository\OldCM\AppUserRepositoryInterface as OldAppUserRepositoryInterface;
 use CongregationManager\Infrastructure\Common\Repository\OldCM\AreaRepository;
@@ -17,11 +19,13 @@ use CongregationManager\Infrastructure\Common\Repository\OldCM\BrotherRepository
 use CongregationManager\Infrastructure\Common\Repository\OldCM\CongregationRepositoryInterface as OldCongregationRepositoryInterface;
 use CongregationManager\Infrastructure\Common\Repository\OldCM\MunicipalityRepository;
 use CongregationManager\Infrastructure\Common\Repository\OldCM\ProvinceRepository;
+use CongregationManager\Infrastructure\Common\Repository\OldCM\TerritoryAssignmentRepository;
 use CongregationManager\Infrastructure\Common\Repository\OldCM\TerritoryRepository;
 use CongregationManager\Infrastructure\User\Action\CreateAppUser;
 use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
 use InvalidArgumentException;
+use RuntimeException;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Command\LockableTrait;
 use Symfony\Component\Console\Input\InputArgument;
@@ -40,6 +44,9 @@ final class ImportFromOldCMCommand extends Command
     /** @psalm-suppress PropertyNotSetInConstructor */
     private SymfonyStyle $io;
 
+    /** @var array<int,BrotherInterface> */
+    private array $oldBrotherIds = [];
+
     public function __construct(
         private OldCongregationRepositoryInterface $oldCongregationRepository,
         private CreateCongregation $createCongregation,
@@ -56,6 +63,8 @@ final class ImportFromOldCMCommand extends Command
         private CreateArea $createArea,
         private TerritoryRepository $oldTerritoryRepository,
         private CreateTerritory $createTerritory,
+        private TerritoryAssignmentRepository $oldTerritoryAssignmentRepository,
+        private CreateTerritoryAssignment $createTerritoryAssignment,
         private ?string $name = null
     ) {
         parent::__construct($name);
@@ -124,37 +133,7 @@ final class ImportFromOldCMCommand extends Command
 
         $this->importBrothersAndAppUsers($oldCongregationId, $congregation);
 
-        foreach ($this->oldProvinceRepository->findAllByCongregation($oldCongregationId) as $oldProvince) {
-            $province = $this->createProvince->create(
-                $congregation,
-                $oldProvince['name'],
-                $oldProvince['description'],
-            );
-            foreach ($this->oldMunicipalityRepository->findAllByCongregationAndProvince($oldCongregationId, (int) $oldProvince['id']) as $oldMunicipality) {
-                $municipality = $this->createMunicipality->create(
-                    $congregation,
-                    $province,
-                    $oldMunicipality['name'],
-                    $oldMunicipality['description'],
-                );
-                foreach ($this->oldAreaRepository->findAllByCongregationAndMunicipality($oldCongregationId, (int) $oldMunicipality['id']) as $oldArea) {
-                    $area = $this->createArea->create(
-                        $congregation,
-                        $municipality,
-                        $oldArea['name'],
-                        $oldArea['description'],
-                    );
-                    foreach ($this->oldTerritoryRepository->findAllByCongregationAndArea($oldCongregationId, (int) $oldArea['id']) as $oldTerritory) {
-                        $this->createTerritory->create(
-                            $congregation,
-                            $area,
-                            $oldTerritory['name'],
-                            $oldTerritory['description'],
-                        );
-                    }
-                }
-            }
-        }
+        $this->importAreasAndTerritories($oldCongregationId, $congregation);
 
         $this->entityManager->flush();
 
@@ -200,6 +179,7 @@ final class ImportFromOldCMCommand extends Command
                 $oldBrother['birth_date'] ? new DateTime($oldBrother['birth_date']) : null,
                 $oldBrother['baptism_date'] ? new DateTime($oldBrother['baptism_date']) : null,
             );
+            $this->oldBrotherIds[(int) $oldBrother['id']] = $brother;
             $oldAppUser = $this->oldAppUserRepository->findOneByBrother((int)$oldBrother['id']);
             if (count($oldAppUser) === 0) {
                 continue;
@@ -212,6 +192,60 @@ final class ImportFromOldCMCommand extends Command
                 'it',
                 $oldAppUser['password']
             );
+        }
+    }
+
+    private function importAreasAndTerritories(int $oldCongregationId, CongregationInterface $congregation): void
+    {
+        foreach ($this->oldProvinceRepository->findAllByCongregation($oldCongregationId) as $oldProvince) {
+            $province = $this->createProvince->create(
+                $congregation,
+                $oldProvince['name'],
+                $oldProvince['description'],
+            );
+            foreach ($this->oldMunicipalityRepository->findAllByCongregationAndProvince($oldCongregationId, (int)$oldProvince['id']) as $oldMunicipality) {
+                $municipality = $this->createMunicipality->create(
+                    $congregation,
+                    $province,
+                    $oldMunicipality['name'],
+                    $oldMunicipality['description'],
+                );
+                foreach ($this->oldAreaRepository->findAllByCongregationAndMunicipality($oldCongregationId, (int)$oldMunicipality['id']) as $oldArea) {
+                    $area = $this->createArea->create(
+                        $congregation,
+                        $municipality,
+                        $oldArea['name'],
+                        $oldArea['description'],
+                    );
+                    foreach ($this->oldTerritoryRepository->findAllByCongregationAndArea($oldCongregationId, (int)$oldArea['id']) as $oldTerritory) {
+                        $territory = $this->createTerritory->create(
+                            $congregation,
+                            $area,
+                            $oldTerritory['name'],
+                            $oldTerritory['description'],
+                        );
+                        foreach ($this->oldTerritoryAssignmentRepository->findAllByTerritoryId((int)$oldTerritory['id']) as $oldTerritoryAssignment) {
+                            $brother = null;
+                            if ($oldTerritoryAssignment['brother_id'] !== null) {
+                                if (!array_key_exists((int) $oldTerritoryAssignment['brother_id'], $this->oldBrotherIds)) {
+                                    throw new RuntimeException(sprintf(
+                                        'Unable to create the territory assignment for brother "%s" and territory "%s", brother not found.',
+                                        $oldTerritoryAssignment['brother_id'],
+                                        $oldTerritory['id']
+                                    ));
+                                }
+                                $brother = $this->oldBrotherIds[(int) $oldTerritoryAssignment['brother_id']];
+                            }
+                            $this->createTerritoryAssignment->create(
+                                $territory,
+                                new DateTime($oldTerritoryAssignment['assignment_date']),
+                                $brother,
+                                $oldTerritoryAssignment['revocation_date'] !== null ? new DateTime($oldTerritoryAssignment['revocation_date']) : null
+                            );
+                        }
+                    }
+                }
+            }
         }
     }
 }
