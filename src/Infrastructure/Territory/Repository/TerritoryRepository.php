@@ -6,7 +6,9 @@ namespace CongregationManager\Infrastructure\Territory\Repository;
 
 use CongregationManager\Domain\Territory\Model\Territory;
 use CongregationManager\Domain\Territory\Model\TerritoryInterface;
+use CongregationManager\Domain\Territory\Repository\Filter\TerritoryRepositoryFilterInterface;
 use CongregationManager\Domain\Territory\Repository\TerritoryRepositoryInterface;
+use CongregationManager\Infrastructure\Territory\Repository\Filter\TerritoryFilterResults;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -31,4 +33,17 @@ final class TerritoryRepository extends ServiceEntityRepository implements Terri
     {
         $this->_em->persist($territory);
     }
+
+    public function filter(TerritoryRepositoryFilterInterface $filter): TerritoryFilterResults
+    {
+        $qb = $this->createQueryBuilder('t');
+        $qb->join('t.area', 'a');
+        if ($filter->inArea() !== null) {
+            $qb->andWhere('area = :area')->setParameter('area', $filter->inArea());
+        }
+
+        return new TerritoryFilterResults($qb);
+    }
+
+
 }

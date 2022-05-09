@@ -50,3 +50,8 @@ app_complete_account:
         _controller: cm.controller.app_complete_account::complete
         token: null
 
+app_territories:
+    path: /territories
+    methods: [GET]
+    defaults:
+        _controller: cm.controller.app_territory::index

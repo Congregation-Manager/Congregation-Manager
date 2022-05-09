@@ -96,6 +96,16 @@ services:
             - [ setContainer, [ '@Psr\Container\ContainerInterface' ] ]
         tags: [ 'container.service_subscriber', 'controller.service_arguments' ]
 
+    cm.controller.app_territory:
+        class: CongregationManager\Infrastructure\Territory\Controller\TerritoryController
+        arguments:
+            - '@cm.repository.territory'
+            - '@knp_paginator'
+            - '@cm.repository.area'
+        calls:
+            - [ setContainer, [ '@Psr\Container\ContainerInterface' ] ]
+        tags: [ 'container.service_subscriber', 'controller.service_arguments' ]
+
     cm.controller.reset_admin_password:
         class: CongregationManager\Infrastructure\User\Controller\ResetAdminPasswordController
         arguments:
