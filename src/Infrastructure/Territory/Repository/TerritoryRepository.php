@@ -38,12 +38,10 @@ final class TerritoryRepository extends ServiceEntityRepository implements Terri
     {
         $qb = $this->createQueryBuilder('t');
         $qb->join('t.area', 'a');
-        if ($filter->inArea() !== null) {
-            $qb->andWhere('area = :area')->setParameter('area', $filter->inArea());
+        if (count($filter->getAreas()) > 0) {
+            $qb->andWhere('t.area IN (:areas)')->setParameter('areas', $filter->getAreas());
         }
 
         return new TerritoryFilterResults($qb);
     }
-
-
 }

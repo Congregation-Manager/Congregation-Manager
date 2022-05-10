@@ -9,15 +9,16 @@ use CongregationManager\Domain\Territory\Repository\Filter\TerritoryRepositoryFi
 
 final class QueryBuilderTerritoryRepositoryFilter implements TerritoryRepositoryFilterInterface
 {
-    private ?AreaInterface $inArea = null;
+    /** @var AreaInterface[] */
+    private array $areas = [];
 
-    public function byArea(?AreaInterface $area): void
+    public function setAreas(array $areas): void
     {
-        $this->inArea = $area;
+        $this->areas = $areas;
     }
 
-    public function inArea(): ?AreaInterface
+    public function getAreas(): array
     {
-        return $this->inArea;
+        return $this->areas;
     }
 }

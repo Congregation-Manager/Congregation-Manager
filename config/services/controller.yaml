@@ -101,7 +101,6 @@ services:
         arguments:
             - '@cm.repository.territory'
             - '@knp_paginator'
-            - '@cm.repository.area'
         calls:
             - [ setContainer, [ '@Psr\Container\ContainerInterface' ] ]
         tags: [ 'container.service_subscriber', 'controller.service_arguments' ]

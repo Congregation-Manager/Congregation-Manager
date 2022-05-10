@@ -8,7 +8,9 @@ use CongregationManager\Domain\Territory\Model\AreaInterface;
 
 interface TerritoryRepositoryFilterInterface
 {
-    public function byArea(?AreaInterface $area): void;
+    /** @return AreaInterface[] */
+    public function getAreas(): array;
 
-    public function inArea(): ?AreaInterface;
+    /** @param AreaInterface[] $areas */
+    public function setAreas(array $areas): void;
 }
