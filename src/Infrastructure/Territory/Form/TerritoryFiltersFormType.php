@@ -8,11 +8,14 @@ use CongregationManager\Domain\Territory\Model\Area;
 use CongregationManager\Infrastructure\Territory\Repository\Filter\QueryBuilderTerritoryRepositoryFilter;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\RadioType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-final class TerritoryFiltersType extends AbstractType
+final class TerritoryFiltersFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
@@ -22,6 +25,16 @@ final class TerritoryFiltersType extends AbstractType
                 'choice_label' => 'name',
                 'multiple' => true,
                 'expanded' => true,
+            ])
+            ->add('notAssigned', ChoiceType::class, [
+                'choices'  => [
+                    'All' => null,
+                    'Not assigned' => true,
+                    'Assigned' => false,
+                ],
+                'label' => 'Status',
+                'expanded' => true,
+                'multiple' => false,
             ])
             ->add('submit', SubmitType::class)
         ;

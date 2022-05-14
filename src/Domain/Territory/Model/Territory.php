@@ -82,4 +82,22 @@ class Territory extends AggregateRoot implements TerritoryInterface
             $this->territoryAssignments->removeElement($territoryAssignment);
         }
     }
+
+    public function getActualAssignment(): ?TerritoryAssignmentInterface
+    {
+        $actualAssignment = $this->territoryAssignments->filter(function (TerritoryAssignmentInterface $territoryAssignment) {
+            return $territoryAssignment->getRevocationDate() === null;
+        })->first();
+
+        if (!$actualAssignment instanceof TerritoryAssignmentInterface) {
+            return null;
+        }
+
+        return $actualAssignment;
+    }
+
+    public function isAvailable(): bool
+    {
+        return $this->getActualAssignment() === null;
+    }
 }

@@ -13,4 +13,8 @@ interface TerritoryRepositoryFilterInterface
 
     /** @param AreaInterface[] $areas */
     public function setAreas(array $areas): void;
+
+    public function isNotAssigned(): ?bool;
+
+    public function setNotAssigned(?bool $notAssigned): void;
 }

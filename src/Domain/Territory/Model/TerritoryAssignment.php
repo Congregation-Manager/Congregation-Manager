@@ -6,6 +6,8 @@ namespace CongregationManager\Domain\Territory\Model;
 
 use CongregationManager\Domain\Common\Model\AggregateRoot;
 use CongregationManager\Domain\Congregation\Model\BrotherInterface;
+use DateInterval;
+use DateTime;
 use DateTimeInterface;
 
 final class TerritoryAssignment extends AggregateRoot implements TerritoryAssignmentInterface
@@ -56,5 +58,12 @@ final class TerritoryAssignment extends AggregateRoot implements TerritoryAssign
     public function setRevocationDate(?DateTimeInterface $revocationDate): void
     {
         $this->revocationDate = $revocationDate;
+    }
+
+    public function getExpirationDate(): ?DateTimeInterface
+    {
+        $expirationDate = new DateTime($this->getAssignmentDate()->format('Y-m-d H:i:s'), $this->getAssignmentDate()->getTimezone());
+
+        return $expirationDate->add(new DateInterval('P4M'));
     }
 }

@@ -12,6 +12,8 @@ final class QueryBuilderTerritoryRepositoryFilter implements TerritoryRepository
     /** @var AreaInterface[] */
     private array $areas = [];
 
+    private ?bool $notAssigned = null;
+
     public function setAreas(array $areas): void
     {
         $this->areas = $areas;
@@ -20,5 +22,15 @@ final class QueryBuilderTerritoryRepositoryFilter implements TerritoryRepository
     public function getAreas(): array
     {
         return $this->areas;
+    }
+
+    public function setNotAssigned(?bool $notAssigned): void
+    {
+        $this->notAssigned = $notAssigned;
+    }
+
+    public function isNotAssigned(): ?bool
+    {
+        return $this->notAssigned;
     }
 }

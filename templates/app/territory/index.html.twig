@@ -2,7 +2,7 @@
 
 {% block title %}{{ 'cm.territory.meta_title'|trans }}{% endblock %}
 
-{% block body %}
+{% block content %}
     <div class="container">
         <div class="row">
             <div class="col-12 col-md-8 col-lg-6">
@@ -26,6 +26,19 @@
                             </div>
                         </div>
                     </div>
+                    <div class="accordion-item">
+                        {% set accordionSelected = form.notAssigned.vars['value'] is not empty %}
+                        <h2 class="accordion-header" id="assignment-heading">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-assignment" aria-expanded="true" aria-controls="collapse-assignment">
+                                Assignment{% if accordionSelected %} <span class="me-1 badge bg-primary">{{ form.notAssigned.vars['value']|length }}</span>{%endif%}
+                            </button>
+                        </h2>
+                        <div id="collapse-assignment" class="accordion-collapse collapse" aria-labelledby="assignment-heading" data-bs-parent="#accordion-filter">
+                            <div class="accordion-body">
+                                {{ form_row(form.notAssigned) }}
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="d-grid gap-2 mt-2">
                     {{ form_widget(form.submit) }}
@@ -46,17 +59,50 @@
                             <th{% if pagination.isSorted('t.area') %} class="sorted"{% endif %}>
                                 {{ knp_pagination_sortable(pagination, 'Area', 'a.name') }}
                             </th>
+                            <th>
+                                Status
+                            </th>
+                            <th{% if pagination.isSorted('last_assignment.assignmentDate') %} class="sorted"{% endif %}>
+                                {{ knp_pagination_sortable(pagination, 'Assignment date', 'last_assignment.assignmentDate') }}
+                            </th>
+                            <th>
+                                Expiration date
+                            </th>
+                            <th{% if pagination.isSorted('last_assignment.brother') %} class="sorted"{% endif %}>
+                                {{ knp_pagination_sortable(pagination, 'Assignment brother', 'last_assignment.brother') }}
+                            </th>
                         </tr>
                         </thead>
                         <tbody>
                         {# @var territory \CongregationManager\Domain\Territory\Model\Territory #}
                         {% for territory in pagination %}
+                            {% set actualAssignment = territory.actualAssignment %}
                             <tr>
                                 <td>
                                     {{ territory.name }}
                                 </td>
                                 <td>
                                     {{ territory.area.name }}
+                                </td>
+                                <td>
+                                    {% if territory.available %}
+                                        <span class="badge bg-success">Not assigned</span>
+                                    {% else %}
+                                        <span class="badge bg-secondary">Assigned</span>
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    {{ actualAssignment ? actualAssignment.assignmentDate|format_date : '' }}
+                                </td>
+                                <td>
+                                    {% if actualAssignment %}
+                                        <span class="badge bg-{{ actualAssignment.expirationDate < date() ? 'danger' : 'warning' }} text-dark">
+                                            {{ actualAssignment.expirationDate|format_date }}
+                                        </span>
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    {{ actualAssignment ? actualAssignment.brother : '' }}
                                 </td>
                             </tr>
                         {% else %}

@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace CongregationManager\Infrastructure\Territory\Controller;
 
 use CongregationManager\Domain\Territory\Repository\TerritoryRepositoryInterface;
-use CongregationManager\Infrastructure\Territory\Form\TerritoryFiltersType;
+use CongregationManager\Infrastructure\Territory\Form\TerritoryFiltersFormType;
 use CongregationManager\Infrastructure\Territory\Repository\Filter\QueryBuilderTerritoryRepositoryFilter;
 use Knp\Component\Pager\Event\Subscriber\Paginate\Callback\CallbackPagination;
 use Knp\Component\Pager\PaginatorInterface;
@@ -25,7 +25,7 @@ final class TerritoryController extends AbstractController
     public function index(Request $request): Response
     {
         $filters = new QueryBuilderTerritoryRepositoryFilter();
-        $form = $this->createForm(TerritoryFiltersType::class, $filters, [
+        $form = $this->createForm(TerritoryFiltersFormType::class, $filters, [
             'method' => 'GET',
         ]);
         $sort = (string) $request->query->get('sort', 't.name');
@@ -39,9 +39,8 @@ final class TerritoryController extends AbstractController
         $items = static function (int $offset, int $limit) use ($query, $sort, $direction): array {
             return $query->getResults($limit, $offset, $sort, $direction);
         };
-        $target = new CallbackPagination($count, $items);
         $pagination = $this->paginator->paginate(
-            $target,
+            new CallbackPagination($count, $items),
             $request->query->getInt('page', 1),
             $request->query->getInt('limit', 10),
             [

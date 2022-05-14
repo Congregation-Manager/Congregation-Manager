@@ -10,6 +10,7 @@ use CongregationManager\Domain\Territory\Repository\Filter\TerritoryRepositoryFi
 use CongregationManager\Domain\Territory\Repository\TerritoryRepositoryInterface;
 use CongregationManager\Infrastructure\Territory\Repository\Filter\TerritoryFilterResults;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\Query\Expr\Join;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -38,8 +39,16 @@ final class TerritoryRepository extends ServiceEntityRepository implements Terri
     {
         $qb = $this->createQueryBuilder('t');
         $qb->join('t.area', 'a');
+        $qb->leftJoin('t.territoryAssignments', 'last_assignment', Join::WITH, 'last_assignment.revocationDate IS NULL');
         if (count($filter->getAreas()) > 0) {
             $qb->andWhere('t.area IN (:areas)')->setParameter('areas', $filter->getAreas());
+        }
+        if ($filter->isNotAssigned() !== null) {
+            if ($filter->isNotAssigned()) {
+                $qb->andWhere('last_assignment.id is null');
+            } else {
+                $qb->andWhere('last_assignment.id is not null');
+            }
         }
 
         return new TerritoryFilterResults($qb);
