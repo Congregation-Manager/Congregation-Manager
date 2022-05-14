@@ -4,13 +4,12 @@ declare(strict_types=1);
 
 namespace CongregationManager\Infrastructure\Territory\Form;
 
+use CongregationManager\Domain\Congregation\Model\Brother;
 use CongregationManager\Domain\Territory\Model\Area;
 use CongregationManager\Infrastructure\Territory\Repository\Filter\QueryBuilderTerritoryRepositoryFilter;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\Form\Extension\Core\Type\RadioType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -35,6 +34,11 @@ final class TerritoryFiltersFormType extends AbstractType
                 'label' => 'Status',
                 'expanded' => true,
                 'multiple' => false,
+            ])
+            ->add('assignedTo', EntityType::class, [
+                'class' => Brother::class,
+                'multiple' => false,
+                'expanded' => false,
             ])
             ->add('submit', SubmitType::class)
         ;

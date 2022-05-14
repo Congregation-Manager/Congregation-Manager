@@ -50,6 +50,9 @@ final class TerritoryRepository extends ServiceEntityRepository implements Terri
                 $qb->andWhere('last_assignment.id is not null');
             }
         }
+        if ($filter->getAssignedTo() !== null) {
+            $qb->andWhere('last_assignment.brother = :brother')->setParameter('brother', $filter->getAssignedTo());
+        }
 
         return new TerritoryFilterResults($qb);
     }

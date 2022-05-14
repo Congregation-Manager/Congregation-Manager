@@ -27,15 +27,16 @@
                         </div>
                     </div>
                     <div class="accordion-item">
-                        {% set accordionSelected = form.notAssigned.vars['value'] is not empty %}
+                        {% set accordionSelected = form.notAssigned.vars['value'] is not empty or form.assignedTo.vars['value'] is not empty %}
                         <h2 class="accordion-header" id="assignment-heading">
                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-assignment" aria-expanded="true" aria-controls="collapse-assignment">
-                                Assignment{% if accordionSelected %} <span class="me-1 badge bg-primary">{{ form.notAssigned.vars['value']|length }}</span>{%endif%}
+                                Assignment{% if accordionSelected %} <span class="me-1 badge bg-primary">{{ form.notAssigned.vars['value']|length + (form.assignedTo.vars['value'] is not empty ? 1 : 0) }}</span>{%endif%}
                             </button>
                         </h2>
                         <div id="collapse-assignment" class="accordion-collapse collapse" aria-labelledby="assignment-heading" data-bs-parent="#accordion-filter">
                             <div class="accordion-body">
                                 {{ form_row(form.notAssigned) }}
+                                {{ form_row(form.assignedTo) }}
                             </div>
                         </div>
                     </div>
@@ -107,7 +108,7 @@
                             </tr>
                         {% else %}
                             <tr>
-                                <td colspan="2" class="text-center">
+                                <td colspan="6" class="text-center">
                                     {{ 'cm.territory.no_results'|trans }}
                                 </td>
                             </tr>

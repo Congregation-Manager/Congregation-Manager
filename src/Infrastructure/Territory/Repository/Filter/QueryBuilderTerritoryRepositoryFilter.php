@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace CongregationManager\Infrastructure\Territory\Repository\Filter;
 
+use CongregationManager\Domain\Congregation\Model\BrotherInterface;
 use CongregationManager\Domain\Territory\Model\AreaInterface;
 use CongregationManager\Domain\Territory\Repository\Filter\TerritoryRepositoryFilterInterface;
 
@@ -13,6 +14,8 @@ final class QueryBuilderTerritoryRepositoryFilter implements TerritoryRepository
     private array $areas = [];
 
     private ?bool $notAssigned = null;
+
+    private ?BrotherInterface $assignedTo = null;
 
     public function setAreas(array $areas): void
     {
@@ -32,5 +35,15 @@ final class QueryBuilderTerritoryRepositoryFilter implements TerritoryRepository
     public function isNotAssigned(): ?bool
     {
         return $this->notAssigned;
+    }
+
+    public function getAssignedTo(): ?BrotherInterface
+    {
+        return $this->assignedTo;
+    }
+
+    public function setAssignedTo(?BrotherInterface $assignedTo): void
+    {
+        $this->assignedTo = $assignedTo;
     }
 }
