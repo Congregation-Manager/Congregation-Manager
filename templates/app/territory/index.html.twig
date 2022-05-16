@@ -1,133 +1,21 @@
 {% extends 'app/base.html.twig' %}
 
-{% block title %}{{ 'cm.territory.meta_title'|trans }}{% endblock %}
+{% block title %}{{ 'cm.meta_title.territory_index'|trans }}{% endblock %}
 
 {% block content %}
     <div class="container">
         <div class="row">
-            <div class="col-12 col-md-8 col-lg-6">
-                <h1>Territories</h1>
+            <div class="col-12">
+                <h1>{{ 'cm.ui.territories'|trans }}</h1>
             </div>
         </div>
         <div class="row mt-4">
-            <div class="col-12 com-md-3 col-lg-4">
-                {{ form_start(form) }}
-                <div class="accordion" id="accordion-filter">
-                    <div class="accordion-item">
-                        {% set accordionSelected = form.areas.vars['value'] is not empty %}
-                        <h2 class="accordion-header" id="area-heading">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-area" aria-expanded="true" aria-controls="collapse-area">
-                                Area{% if accordionSelected %} <span class="me-1 badge bg-primary">{{ form.areas.vars['value']|length }}</span>{%endif%}
-                            </button>
-                        </h2>
-                        <div id="collapse-area" class="accordion-collapse collapse" aria-labelledby="area-heading" data-bs-parent="#accordion-filter">
-                            <div class="accordion-body">
-                                {{ form_row(form.areas) }}
-                            </div>
-                        </div>
-                    </div>
-                    <div class="accordion-item">
-                        {% set accordionSelected = form.notAssigned.vars['value'] is not empty or form.assignedTo.vars['value'] is not empty %}
-                        <h2 class="accordion-header" id="assignment-heading">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-assignment" aria-expanded="true" aria-controls="collapse-assignment">
-                                Assignment{% if accordionSelected %} <span class="me-1 badge bg-primary">{{ form.notAssigned.vars['value']|length + (form.assignedTo.vars['value'] is not empty ? 1 : 0) }}</span>{%endif%}
-                            </button>
-                        </h2>
-                        <div id="collapse-assignment" class="accordion-collapse collapse" aria-labelledby="assignment-heading" data-bs-parent="#accordion-filter">
-                            <div class="accordion-body">
-                                {{ form_row(form.notAssigned) }}
-                                {{ form_row(form.assignedTo) }}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="d-grid gap-2 mt-2">
-                    {{ form_widget(form.submit) }}
-                    <a class="btn btn-secondary" href="{{ path('app_territories') }}">
-                        Show all
-                    </a>
-                </div>
-                {{ form_end(form) }}
+            <div class="col-12 col-lg-3 col-xl-4">
+                {{ include('app/territory/index/_filters.html.twig') }}
             </div>
-            <div class="col-12 com-md-9 col-lg-8">
-                <div class="table-responsive-md">
-                    <table class="table table-striped caption-top">
-                        <caption>{{ pagination.totalItemCount }} territories</caption>
-                        <thead>
-                        <tr>
-                            {# sorting of properties based on query components #}
-                            <th>{{ knp_pagination_sortable(pagination, 'Name', 't.name') }}</th>
-                            <th{% if pagination.isSorted('t.area') %} class="sorted"{% endif %}>
-                                {{ knp_pagination_sortable(pagination, 'Area', 'a.name') }}
-                            </th>
-                            <th>
-                                Status
-                            </th>
-                            <th{% if pagination.isSorted('last_assignment.assignmentDate') %} class="sorted"{% endif %}>
-                                {{ knp_pagination_sortable(pagination, 'Assignment date', 'last_assignment.assignmentDate') }}
-                            </th>
-                            <th>
-                                Expiration date
-                            </th>
-                            <th{% if pagination.isSorted('last_assignment.brother') %} class="sorted"{% endif %}>
-                                {{ knp_pagination_sortable(pagination, 'Assignment brother', 'last_assignment.brother') }}
-                            </th>
-                            <th{% if pagination.isSorted('latest_assignment.revocationDate') %} class="sorted"{% endif %}>
-                                {{ knp_pagination_sortable(pagination, 'Latest revocation date', 'latest_assignment.revocationDate') }}
-                            </th>
-                            <th{% if pagination.isSorted('latest_assignment.brother') %} class="sorted"{% endif %}>
-                                {{ knp_pagination_sortable(pagination, 'Latest assignment brother', 'latest_assignment.brother') }}
-                            </th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        {# @var territory \CongregationManager\Domain\Territory\Model\Territory #}
-                        {% for territory in pagination %}
-                            {% set actualAssignment = territory.actualAssignment %}
-                            {% set latestAssignment = territory.latestAssignment %}
-                            <tr>
-                                <td>
-                                    {{ territory.name }}
-                                </td>
-                                <td>
-                                    {{ territory.area.name }}
-                                </td>
-                                <td>
-                                    {% if territory.available %}
-                                        <span class="badge bg-success">Not assigned</span>
-                                    {% else %}
-                                        <span class="badge bg-secondary">Assigned</span>
-                                    {% endif %}
-                                </td>
-                                <td>
-                                    {{ actualAssignment ? actualAssignment.assignmentDate|format_date : '' }}
-                                </td>
-                                <td>
-                                    {% if actualAssignment %}
-                                        <span class="badge bg-{{ actualAssignment.expirationDate < date() ? 'danger text-white' : 'primary text-white' }} text-dark">
-                                            {{ actualAssignment.expirationDate|format_date }}
-                                        </span>
-                                    {% endif %}
-                                </td>
-                                <td>
-                                    {{ actualAssignment ? actualAssignment.brother : '' }}
-                                </td>
-                                <td>
-                                    {{ latestAssignment ? latestAssignment.revocationDate|format_date : '' }}
-                                </td>
-                                <td>
-                                    {{ latestAssignment ? latestAssignment.brother : '' }}
-                                </td>
-                            </tr>
-                        {% else %}
-                            <tr>
-                                <td colspan="8" class="text-center">
-                                    {{ 'cm.territory.no_results'|trans }}
-                                </td>
-                            </tr>
-                        {% endfor %}
-                        </tbody>
-                    </table>
+            <div class="col-12 col-lg-9 col-xl-8">
+                <div class="table-responsive-xl">
+                    {{ include('app/territory/index/_table.html.twig') }}
                 </div>
                 
                 {# display navigation #}

@@ -1,5 +1,7 @@
 cm:
-    meta_title: 'Congregation Manager'
+    meta_title:
+        default: 'Congregation Manager'
+        territory_index: 'Territories'
     congregation:
         title: 'Congregations'
         index:
@@ -99,6 +101,25 @@ cm:
         title: 'Profile update'
     ui:
         update_success: 'Update successfully completed!'
+        territories: 'Territories'
+        area: 'Area'
+        status: 'Status'
+        show_all: 'Show all'
+        count_territories: ':count territories'
+        name: 'Nome'
+        assignment_date: 'Data assegnazione'
+        revocation_date: 'Data revocazione'
+        expiration_date: 'Expiration date'
+        assigned_to: 'Assigned to'
+        latest_assignment_revocation_date: 'Latest revocation date'
+        latest_assignment_assigned_to: 'Latest assignee'
+        not_assigned: 'Not assigned'
+        assigned: 'Assigned'
+        no_results: 'No results found'
+        any: 'Any'
+        choose_option: 'Choose an option'
+        submit: 'Submit'
+        filter: 'Filter'
     change_password:
         meta_title: 'Change password'
         title: 'Change password'

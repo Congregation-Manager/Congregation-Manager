@@ -38,3 +38,8 @@ services:
         class: CongregationManager\Infrastructure\User\Form\CompleteAccountFormType
         tags:
             - { name: 'form.type' }
+
+    cm.form.type.territory_filters:
+        class: CongregationManager\Infrastructure\Territory\Form\TerritoryFiltersFormType
+        tags:
+            - { name: 'form.type' }

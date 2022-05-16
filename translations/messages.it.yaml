@@ -1,5 +1,7 @@
 cm:
-    meta_title: 'Gestione Congregazione'
+    meta_title:
+        default: 'Gestione Congregazione'
+        territory_index: 'Territori'
     congregation:
         title: 'Congregazioni'
         index:
@@ -99,6 +101,25 @@ cm:
         title: 'Aggiorna profilo'
     ui:
         update_success: 'Aggiornamento completato con successo!'
+        territories: 'Territori'
+        area: 'Zona'
+        status: 'Stato'
+        show_all: 'Vedi tutto'
+        count_territories: ':count territori'
+        name: 'Nome'
+        assignment_date: 'Data assegnazione'
+        revocation_date: 'Data revocazione'
+        expiration_date: 'Data scadenza'
+        assigned_to: 'Assegnato a'
+        latest_assignment_revocation_date: 'Data ultima revocazione'
+        latest_assignment_assigned_to: 'Ultimo assegnatario'
+        not_assigned: 'Non assegnato'
+        assigned: 'Assegnato'
+        no_results: 'Nessun risultato trovato'
+        any: 'Qualsiasi'
+        choose_option: 'Scegli un opzione'
+        submit: 'Sottoscrivi'
+        filter: 'Filtra'
     change_password:
         meta_title: 'Cambia password'
         title: 'Cambia password'

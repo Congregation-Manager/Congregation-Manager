@@ -21,28 +21,32 @@ final class TerritoryFiltersFormType extends AbstractType
         $builder
             ->add('areas', EntityType::class, [
                 'class' => Area::class,
+                'label' => 'cm.ui.area',
                 'choice_label' => 'name',
                 'multiple' => true,
                 'expanded' => true,
             ])
             ->add('notAssigned', ChoiceType::class, [
                 'choices'  => [
-                    'All' => null,
-                    'Not assigned' => true,
-                    'Assigned' => false,
+                    'cm.ui.any' => null,
+                    'cm.ui.not_assigned' => true,
+                    'cm.ui.assigned' => false,
                 ],
-                'label' => 'Status',
+                'label' => 'cm.ui.status',
                 'expanded' => true,
                 'multiple' => false,
             ])
             ->add('assignedTo', EntityType::class, [
                 'class' => Brother::class,
-                'placeholder' => 'Choose an option',
+                'label' => 'cm.ui.assigned_to',
+                'placeholder' => 'cm.ui.choose_option',
                 'required' => false,
                 'multiple' => false,
                 'expanded' => false,
             ])
-            ->add('submit', SubmitType::class)
+            ->add('filter', SubmitType::class, [
+                'label' => 'cm.ui.filter'
+            ])
         ;
     }
 
