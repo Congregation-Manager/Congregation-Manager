@@ -96,6 +96,23 @@ class Territory extends AggregateRoot implements TerritoryInterface
         return $actualAssignment;
     }
 
+    public function getLatestAssignment(): ?TerritoryAssignmentInterface
+    {
+        $revocatedAssignementsIterator = $this->territoryAssignments->filter(function (TerritoryAssignmentInterface $territoryAssignment) {
+            return $territoryAssignment->getRevocationDate() !== null;
+        })->getIterator();
+        $revocatedAssignementsIterator->uasort(function (TerritoryAssignmentInterface $first, TerritoryAssignmentInterface $second): int {
+            return $first->getRevocationDate() < $second->getRevocationDate() ? 1 : -1;
+        });
+        $latestAssignemnt = $revocatedAssignementsIterator->current();
+
+        if (!$latestAssignemnt instanceof TerritoryAssignmentInterface) {
+            return null;
+        }
+
+        return $latestAssignemnt;
+    }
+
     public function isAvailable(): bool
     {
         return $this->getActualAssignment() === null;

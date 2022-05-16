@@ -72,12 +72,19 @@
                             <th{% if pagination.isSorted('last_assignment.brother') %} class="sorted"{% endif %}>
                                 {{ knp_pagination_sortable(pagination, 'Assignment brother', 'last_assignment.brother') }}
                             </th>
+                            <th{% if pagination.isSorted('latest_assignment.revocationDate') %} class="sorted"{% endif %}>
+                                {{ knp_pagination_sortable(pagination, 'Latest revocation date', 'latest_assignment.revocationDate') }}
+                            </th>
+                            <th{% if pagination.isSorted('latest_assignment.brother') %} class="sorted"{% endif %}>
+                                {{ knp_pagination_sortable(pagination, 'Latest assignment brother', 'latest_assignment.brother') }}
+                            </th>
                         </tr>
                         </thead>
                         <tbody>
                         {# @var territory \CongregationManager\Domain\Territory\Model\Territory #}
                         {% for territory in pagination %}
                             {% set actualAssignment = territory.actualAssignment %}
+                            {% set latestAssignment = territory.latestAssignment %}
                             <tr>
                                 <td>
                                     {{ territory.name }}
@@ -97,7 +104,7 @@
                                 </td>
                                 <td>
                                     {% if actualAssignment %}
-                                        <span class="badge bg-{{ actualAssignment.expirationDate < date() ? 'danger' : 'warning' }} text-dark">
+                                        <span class="badge bg-{{ actualAssignment.expirationDate < date() ? 'danger text-white' : 'primary text-white' }} text-dark">
                                             {{ actualAssignment.expirationDate|format_date }}
                                         </span>
                                     {% endif %}
@@ -105,10 +112,16 @@
                                 <td>
                                     {{ actualAssignment ? actualAssignment.brother : '' }}
                                 </td>
+                                <td>
+                                    {{ latestAssignment ? latestAssignment.revocationDate|format_date : '' }}
+                                </td>
+                                <td>
+                                    {{ latestAssignment ? latestAssignment.brother : '' }}
+                                </td>
                             </tr>
                         {% else %}
                             <tr>
-                                <td colspan="6" class="text-center">
+                                <td colspan="8" class="text-center">
                                     {{ 'cm.territory.no_results'|trans }}
                                 </td>
                             </tr>

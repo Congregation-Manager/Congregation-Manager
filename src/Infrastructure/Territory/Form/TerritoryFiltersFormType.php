@@ -37,6 +37,8 @@ final class TerritoryFiltersFormType extends AbstractType
             ])
             ->add('assignedTo', EntityType::class, [
                 'class' => Brother::class,
+                'placeholder' => 'Choose an option',
+                'required' => false,
                 'multiple' => false,
                 'expanded' => false,
             ])

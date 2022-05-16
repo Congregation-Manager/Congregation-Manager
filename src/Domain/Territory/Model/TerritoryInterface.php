@@ -37,4 +37,6 @@ interface TerritoryInterface extends AggregateRootInterface
     public function getActualAssignment(): ?TerritoryAssignmentInterface;
 
     public function isAvailable(): bool;
+
+    public function getLatestAssignment(): ?TerritoryAssignmentInterface;
 }
