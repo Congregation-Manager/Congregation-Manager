@@ -2,6 +2,7 @@ cm:
     meta_title:
         default: 'Congregation Manager'
         territory_index: 'Territories'
+        territory_show: 'Territory :name'
     congregation:
         title: 'Congregations'
         index:
@@ -120,6 +121,10 @@ cm:
         choose_option: 'Choose an option'
         submit: 'Submit'
         filter: 'Filter'
+        show: 'Show'
+        territory_with_name: 'Territorio :name'
+        description: 'Description'
+        brother: 'Brother'
     change_password:
         meta_title: 'Change password'
         title: 'Change password'

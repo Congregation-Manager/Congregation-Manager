@@ -12,6 +12,7 @@ use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 /** @psalm-suppress PropertyNotSetInConstructor */
 final class TerritoryController extends AbstractController
@@ -52,6 +53,18 @@ final class TerritoryController extends AbstractController
         return $this->renderForm('app/territory/index.html.twig', [
             'pagination' => $pagination,
             'form' => $form
+        ]);
+    }
+
+    public function show(int $id, Request $request): Response
+    {
+        $territory = $this->territoryRepository->find($id);
+        if ($territory === null) {
+            throw new NotFoundHttpException();
+        }
+
+        return $this->render('app/territory/show.html.twig', [
+            'territory' => $territory,
         ]);
     }
 }

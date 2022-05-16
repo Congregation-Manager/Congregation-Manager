@@ -65,6 +65,11 @@
             <td>
                 {{ latestAssignment ? latestAssignment.brother : '' }}
             </td>
+            <td>
+                <a href="{{ path('app_territory_show', {id: territory.id}) }}">
+                    {{ 'cm.ui.show'|trans }}
+                </a>
+            </td>
         </tr>
     {% else %}
         <tr>

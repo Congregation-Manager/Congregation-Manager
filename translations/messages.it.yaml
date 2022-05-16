@@ -2,6 +2,7 @@ cm:
     meta_title:
         default: 'Gestione Congregazione'
         territory_index: 'Territori'
+        territory_show: 'Territorio :name'
     congregation:
         title: 'Congregazioni'
         index:
@@ -120,6 +121,10 @@ cm:
         choose_option: 'Scegli un opzione'
         submit: 'Sottoscrivi'
         filter: 'Filtra'
+        show: 'Vedi'
+        territory_with_name: 'Territorio :name'
+        description: 'Descrizione'
+        brother: 'Fratello'
     change_password:
         meta_title: 'Cambia password'
         title: 'Cambia password'

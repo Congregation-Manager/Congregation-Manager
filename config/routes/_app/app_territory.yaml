@@ -1,0 +1,11 @@
+app_territory_index:
+    path: /territories
+    methods: [GET]
+    defaults:
+        _controller: cm.controller.app_territory::index
+
+app_territory_show:
+    path: /territory/{id}
+    methods: [GET]
+    defaults:
+        _controller: cm.controller.app_territory::show
