@@ -8,7 +8,7 @@ Feature: Redirect to browser locale
     Scenario: Redirect to browser locale if it is available
         Given I use a browser set in the "Italian" preferred language
         When I visit the homepage
-        Then I should use the "Italian [italiano]" locale
+        Then I should use the "italiano [italiano]" locale
 
     @ui @app
     Scenario: Redirect to default locale if it is not available
@@ -20,7 +20,7 @@ Feature: Redirect to browser locale
     Scenario: Redirect to browser locale if it is available
         Given I use a browser set in the "Italian" preferred language
         When I visit the administration login page
-        Then I should use the "Italian" locale
+        Then I should use the "italiano" locale
 
     @ui @admin
     Scenario: Redirect to default locale if it is not available
