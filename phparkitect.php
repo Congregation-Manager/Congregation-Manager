@@ -19,7 +19,11 @@ return static function (Config $config): void {
             InvalidArgumentException::class,
             DateTimeInterface::class,
             DateTimeImmutable::class,
-            "Doctrine\Common\Collections"
+            DateTime::class,
+            "Doctrine\Common\Collections",
+            ArrayIterator::class,
+            RuntimeException::class,
+            DateInterval::class,
         ]))
         ->because('Domain should not have external dependencies');
 

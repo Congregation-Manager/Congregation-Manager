@@ -4,10 +4,13 @@ declare(strict_types=1);
 
 namespace CongregationManager\Domain\Territory\Model;
 
+use ArrayIterator;
 use CongregationManager\Domain\Common\Model\AggregateRoot;
 use CongregationManager\Domain\Congregation\Model\CongregationInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use RuntimeException;
+use Traversable;
 
 class Territory extends AggregateRoot implements TerritoryInterface
 {
@@ -101,6 +104,14 @@ class Territory extends AggregateRoot implements TerritoryInterface
         $revocatedAssignementsIterator = $this->territoryAssignments->filter(function (TerritoryAssignmentInterface $territoryAssignment) {
             return $territoryAssignment->getRevocationDate() !== null;
         })->getIterator();
+        if (!$revocatedAssignementsIterator instanceof ArrayIterator) {
+            throw new RuntimeException(sprintf(
+                'Unable to retrieve the latest assignment for Territory "%s": expected instance of "%s", get "%s".',
+                (string) $this->getId(),
+                ArrayIterator::class,
+                get_debug_type($revocatedAssignementsIterator)
+            ));
+        }
         $revocatedAssignementsIterator->uasort(function (TerritoryAssignmentInterface $first, TerritoryAssignmentInterface $second): int {
             return $first->getRevocationDate() < $second->getRevocationDate() ? 1 : -1;
         });

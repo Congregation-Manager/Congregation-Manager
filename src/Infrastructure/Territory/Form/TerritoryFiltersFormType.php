@@ -27,7 +27,7 @@ final class TerritoryFiltersFormType extends AbstractType
                 'expanded' => true,
             ])
             ->add('notAssigned', ChoiceType::class, [
-                'choices'  => [
+                'choices' => [
                     'cm.ui.any' => null,
                     'cm.ui.not_assigned' => true,
                     'cm.ui.assigned' => false,

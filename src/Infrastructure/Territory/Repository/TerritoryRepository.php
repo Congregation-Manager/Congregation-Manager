@@ -53,7 +53,7 @@ final class TerritoryRepository extends ServiceEntityRepository implements Terri
             't.territoryAssignments',
             'latest_assignment',
             Join::WITH,
-            $qb->expr()->eq( 'latest_assignment.revocationDate', '('.$latestCompletedAssignmentQb->getDQL().')')
+            $qb->expr()->eq('latest_assignment.revocationDate', '(' . $latestCompletedAssignmentQb->getDQL() . ')')
         );
         if (count($filter->getAreas()) > 0) {
             $qb->andWhere('t.area IN (:areas)')->setParameter('areas', $filter->getAreas());
