@@ -25,6 +25,7 @@
         <th{% if pagination.isSorted('latest_assignment.brother') %} class="sorted"{% endif %}>
             {{ knp_pagination_sortable(pagination, 'cm.ui.latest_assignment_assigned_to'|trans, 'latest_assignment.brother') }}
         </th>
+        <th></th>
     </tr>
     </thead>
     <tbody>
@@ -73,7 +74,7 @@
         </tr>
     {% else %}
         <tr>
-            <td colspan="8" class="text-center">
+            <td colspan="9" class="text-center">
                 {{ 'cm.ui.no_results'|trans }}
             </td>
         </tr>
