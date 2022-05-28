@@ -36,7 +36,7 @@ final class TerritoryAssignmentController extends AbstractController
             $brother = $form->get('brother')->getData();
             /** @var ?DateTimeInterface $revocationDate */
             $revocationDate = $form->get('revocationDate')->getData();
-            $territoryAssignment = $this->createTerritoryAssignment->create(
+            $this->createTerritoryAssignment->create(
                 $territory,
                 $assignmentDate,
                 $brother,

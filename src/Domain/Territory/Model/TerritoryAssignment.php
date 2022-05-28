@@ -28,7 +28,7 @@ final class TerritoryAssignment extends AggregateRoot implements TerritoryAssign
 
     public function setTerritory(TerritoryInterface $territory): void
     {
-        $conflictinAssignemnts = $territory->getTerritoryAssignments()->filter(function (TerritoryAssignment $territoryAssignment) {
+        $conflictinAssignemnts = $territory->getTerritoryAssignments()->filter(function (TerritoryAssignmentInterface $territoryAssignment) {
             if ($territoryAssignment->getRevocationDate() !== null) {
                 if ($this->getRevocationDate() !== null) {
                     if (($this->getRevocationDate() > $territoryAssignment->getAssignmentDate()) || ($this->getAssignmentDate() >= $territoryAssignment->getAssignmentDate())) {
