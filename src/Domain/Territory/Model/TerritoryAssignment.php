@@ -42,7 +42,7 @@ final class TerritoryAssignment extends AggregateRoot implements TerritoryAssign
                     if (($this->getRevocationDate() > $territoryAssignment->getAssignmentDate()) && ($this->getAssignmentDate() < $territoryAssignment->getRevocationDate())) {
                         return true;
                     }
-                } else if ($this->getAssignmentDate() < $territoryAssignment->getRevocationDate()) {
+                } elseif ($this->getAssignmentDate() < $territoryAssignment->getRevocationDate()) {
                     return true;
                 }
             }
