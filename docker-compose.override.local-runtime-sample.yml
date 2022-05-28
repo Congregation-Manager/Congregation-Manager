@@ -10,7 +10,12 @@ services:
         ports:
             - "5432:5432"
     ###< doctrine/doctrine-bundle ###
+
     mail:
+        container_name: mail
+        image: mailhog/mailhog
+        labels:
+            com.symfony.server.service-prefix: 'MAILER'
         ports:
             - "8025:8025"
             - "1025:1025"
