@@ -70,6 +70,9 @@
                 <a href="{{ path('app_territory_show', {id: territory.id}) }}">
                     {{ 'cm.ui.show'|trans }}
                 </a>
+                <a href="{{ path('app_territory_assign', {territoryId: territory.id}) }}">
+                    {{ 'cm.ui.assign'|trans }}
+                </a>
             </td>
         </tr>
     {% else %}

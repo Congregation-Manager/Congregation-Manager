@@ -1,0 +1,22 @@
+{% extends 'app/base.html.twig' %}
+
+{% block title %}{{ 'cm.meta_title.territory_assignment.create'|trans }}{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h1>{{ 'cm.ui.create_territory_assignment'|trans }}</h1>
+            </div>
+        </div>
+        <dl class="row mt-4">
+            {{ form_start(form) }}
+            {{ form_row(form.territory) }}
+            {{ form_row(form.assignmentDate) }}
+            {{ form_row(form.brother) }}
+            {{ form_row(form.revocationDate) }}
+            {{ form_row(form.save) }}
+            {{ form_end(form) }}
+        </dl>
+    </div>
+{% endblock %}

@@ -125,6 +125,7 @@ cm:
         territory_with_name: 'Territorio :name'
         description: 'Description'
         brother: 'Brother'
+        assign: 'Assegna'
     change_password:
         meta_title: 'Change password'
         title: 'Change password'

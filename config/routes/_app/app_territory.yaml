@@ -9,3 +9,9 @@ app_territory_show:
     methods: [GET]
     defaults:
         _controller: cm.controller.app_territory::show
+
+app_territory_assign:
+    path: /territory/{territoryId}/assign
+    methods: [GET, POST]
+    defaults:
+        _controller: cm.controller.app_territory_assignment::create

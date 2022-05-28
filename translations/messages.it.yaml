@@ -3,6 +3,8 @@ cm:
         default: 'Gestione Congregazione'
         territory_index: 'Territori'
         territory_show: 'Territorio :name'
+        territory_assignment:
+            create: 'Crea assegnazione territorio'
     congregation:
         title: 'Congregazioni'
         index:
@@ -125,6 +127,9 @@ cm:
         territory_with_name: 'Territorio :name'
         description: 'Descrizione'
         brother: 'Fratello'
+        assign: 'Assegna'
+        create_territory_assignment: 'Crea assegnazione territorio'
+        territory: 'Territorio'
     change_password:
         meta_title: 'Cambia password'
         title: 'Cambia password'

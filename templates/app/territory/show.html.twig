@@ -33,7 +33,7 @@
                     <tr>
                         <th scope="row">{{ territoryAssignment.brother }}</th>
                         <td>{{ territoryAssignment.assignmentDate|format_date }}</td>
-                        <td>{{ territoryAssignment.revocationDate|format_date }}</td>
+                        <td>{{ territoryAssignment.revocationDate ? territoryAssignment.revocationDate|format_date : '' }}</td>
                     </tr>
                 {% endfor %}
                 </tbody>

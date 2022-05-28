@@ -105,6 +105,15 @@ services:
             - [ setContainer, [ '@Psr\Container\ContainerInterface' ] ]
         tags: [ 'container.service_subscriber', 'controller.service_arguments' ]
 
+    cm.controller.app_territory_assignment:
+        class: CongregationManager\Infrastructure\Territory\Controller\TerritoryAssignmentController
+        arguments:
+            - '@cm.create_territory_assignment'
+            - '@doctrine.orm.entity_manager'
+        calls:
+            - [ setContainer, [ '@Psr\Container\ContainerInterface' ] ]
+        tags: [ 'container.service_subscriber', 'controller.service_arguments' ]
+
     cm.controller.reset_admin_password:
         class: CongregationManager\Infrastructure\User\Controller\ResetAdminPasswordController
         arguments:
