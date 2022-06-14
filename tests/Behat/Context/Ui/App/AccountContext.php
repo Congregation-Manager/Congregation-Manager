@@ -3,6 +3,8 @@
 namespace CongregationManager\Tests\Behat\Context\Ui\App;
 
 use Behat\Behat\Context\Context;
+use Behat\Behat\Tester\Exception\PendingException;
+use CongregationManager\Domain\Congregation\Model\BrotherInterface;
 use CongregationManager\Tests\Behat\Page\App\ChangePasswordPageInterface;
 use CongregationManager\Tests\Behat\Page\App\CheckEmailPageInterface;
 use CongregationManager\Tests\Behat\Page\App\CompleteAccountPageInterface;

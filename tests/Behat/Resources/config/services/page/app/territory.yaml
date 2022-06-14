@@ -1,0 +1,13 @@
+services:
+    _defaults:
+        autowire: false
+        autoconfigure: false
+        public: false
+
+    cm.test.behat.page.app.territory.assign:
+        class: CongregationManager\Tests\Behat\Page\App\Territory\AssignPage
+        parent: cm.test.behat.page
+
+    cm.test.behat.page.app.territory.show:
+        class: CongregationManager\Tests\Behat\Page\App\Territory\ShowPage
+        parent: cm.test.behat.page

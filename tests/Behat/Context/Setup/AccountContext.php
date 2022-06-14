@@ -11,7 +11,9 @@ use CongregationManager\Infrastructure\User\Model\AdminUserInterface;
 use CongregationManager\Infrastructure\User\Model\AppUser;
 use CongregationManager\Infrastructure\User\Model\AppUserInterface;
 use CongregationManager\Infrastructure\User\Model\ResetPasswordRequest;
+use CongregationManager\Tests\Behat\Services\SecurityService;
 use CongregationManager\Tests\Behat\Services\SharedStorageInterface;
+use DateTimeImmutable;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use SymfonyCasts\Bundle\ResetPassword\Generator\ResetPasswordTokenGenerator;
@@ -27,7 +29,8 @@ final class AccountContext implements Context
         private SharedStorageInterface $sharedStorage,
         private ResetPasswordRequestRepositoryInterface $resetPasswordRequestRepository,
         private LocaleConverterInterface $localeConverter,
-        private CreateAppUserInvitation $createAppUserInvitation
+        private CreateAppUserInvitation $createAppUserInvitation,
+        private SecurityService $appSecurityService,
     ) {
     }
 
@@ -69,7 +72,7 @@ final class AccountContext implements Context
         $adminUser = $adminUserRepository->findOneBy(['email' => $email]);
         Assert::isInstanceOf($adminUser, AdminUserInterface::class);
 
-        $expiresAt = new \DateTimeImmutable('tomorrow');
+        $expiresAt = new DateTimeImmutable('tomorrow');
         $hashedVerifierToken = $this->tokenGenerator->createToken(
             $expiresAt,
             $this->resetPasswordRequestRepository->getUserIdentifier($adminUser)
@@ -96,7 +99,7 @@ final class AccountContext implements Context
         $appUser = $appUserRepository->findOneBy(['email' => $email]);
         Assert::isInstanceOf($appUser, AppUserInterface::class);
 
-        $expiresAt = new \DateTimeImmutable('tomorrow');
+        $expiresAt = new DateTimeImmutable('tomorrow');
         $hashedVerifierToken = $this->tokenGenerator->createToken(
             $expiresAt,
             $this->resetPasswordRequestRepository->getUserIdentifier($appUser)
@@ -147,5 +150,20 @@ final class AccountContext implements Context
         $this->entityManager->flush();
 
         $this->sharedStorage->set('invitation_app_token', $appUserInvitation->getToken());
+    }
+
+    /**
+     * @Given I am logged in as :brother
+     */
+    public function iAmLoggedInAs(BrotherInterface $brother): void
+    {
+        $appUser = new AppUser($brother, 'user@cm.org');
+        $appUser->setPassword($this->userPasswordHasher->hashPassword($appUser, 'password'));
+
+        $this->entityManager->persist($appUser);
+        $this->entityManager->flush();
+
+        $this->appSecurityService->logIn($appUser);
+        $this->sharedStorage->set('app_user', $appUser);
     }
 }

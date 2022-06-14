@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace CongregationManager\Tests\Behat\Context\Setup;
 
 use Behat\Behat\Context\Context;
+use Behat\Behat\Tester\Exception\PendingException;
 use CongregationManager\Domain\Congregation\Model\Brother;
 use CongregationManager\Domain\Congregation\Model\Congregation;
 use CongregationManager\Domain\Congregation\Model\CongregationInterface;

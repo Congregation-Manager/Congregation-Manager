@@ -13,3 +13,8 @@ services:
         class: CongregationManager\Tests\Behat\Context\Transform\BrotherContext
         arguments:
             - '@cm.repository.brother'
+
+    cm.test.behat.context.transform.territory:
+        class: CongregationManager\Tests\Behat\Context\Transform\TerritoryContext
+        arguments:
+            - '@cm.repository.territory'

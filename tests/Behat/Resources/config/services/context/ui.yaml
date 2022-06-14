@@ -22,6 +22,12 @@ services:
         arguments:
             - '@cm.test.behat.page.app.home'
 
+    cm.test.behat.context.ui.app.territory:
+        class: CongregationManager\Tests\Behat\Context\Ui\App\TerritoryContext
+        arguments:
+            - '@cm.test.behat.page.app.territory.assign'
+            - '@cm.test.behat.page.app.territory.show'
+
     cm.test.behat.context.ui.admin.account:
         class: CongregationManager\Tests\Behat\Context\Ui\Admin\AccountContext
         arguments:

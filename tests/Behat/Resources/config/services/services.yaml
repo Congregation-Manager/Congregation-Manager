@@ -26,3 +26,10 @@ services:
         class: CongregationManager\Tests\Behat\Services\Setter\CookieSetter
         arguments:
             - '@behat.mink.default_session'
+
+    cm.test.behat.app_security:
+        class: CongregationManager\Tests\Behat\Services\SecurityService
+        arguments:
+            - '@session.factory'
+            - '@cm.test.behat.setter.cookie'
+            - 'app'

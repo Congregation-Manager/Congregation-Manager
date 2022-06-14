@@ -11,11 +11,11 @@
         </div>
         <dl class="row mt-4">
             {{ form_start(form) }}
-            {{ form_row(form.territory) }}
-            {{ form_row(form.assignmentDate) }}
-            {{ form_row(form.brother) }}
-            {{ form_row(form.revocationDate) }}
-            {{ form_row(form.save) }}
+            {{ form_row(form.territory, test_form_attribute('territory')) }}
+            {{ form_row(form.assignmentDate, test_form_attribute('assignment-date')) }}
+            {{ form_row(form.brother, test_form_attribute('brother')) }}
+            {{ form_row(form.revocationDate, test_form_attribute('revocation-date')) }}
+            {{ form_row(form.save, test_form_attribute('save')) }}
             {{ form_end(form) }}
         </dl>
     </div>

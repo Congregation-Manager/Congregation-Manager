@@ -108,7 +108,8 @@ services:
     cm.controller.app_territory_assignment:
         class: CongregationManager\Infrastructure\Territory\Controller\TerritoryAssignmentController
         arguments:
-            - '@cm.create_territory_assignment'
+            - '@cm.repository.territory'
+            - '@cm.repository.territory_assignment'
             - '@doctrine.orm.entity_manager'
         calls:
             - [ setContainer, [ '@Psr\Container\ContainerInterface' ] ]

@@ -19,4 +19,6 @@ interface TerritoryRepositoryInterface
     public function add(TerritoryInterface $territory): void;
 
     public function filter(TerritoryRepositoryFilterInterface $filter): TerritoryFilterResultsInterface;
+
+    public function findOneByName(string $name): ?TerritoryInterface;
 }

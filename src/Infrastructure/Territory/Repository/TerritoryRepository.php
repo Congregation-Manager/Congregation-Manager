@@ -71,4 +71,9 @@ final class TerritoryRepository extends ServiceEntityRepository implements Terri
 
         return new TerritoryFilterResults($qb);
     }
+
+    public function findOneByName(string $name): ?TerritoryInterface
+    {
+        return $this->findOneBy(['name' => $name]);
+    }
 }

@@ -1,0 +1,17 @@
+default:
+    suites:
+        ui_app_territory_features:
+            contexts:
+                - cm.test.behat.context.hook.doctrine
+
+                - cm.test.behat.context.transform.brother
+                - cm.test.behat.context.transform.territory
+
+                - cm.test.behat.context.setup.account
+                - cm.test.behat.context.setup.brother
+                - cm.test.behat.context.setup.congregation
+                - cm.test.behat.context.setup.territory
+
+                - cm.test.behat.context.ui.app.territory
+            filters:
+                tags: "@territory && @ui && @app"

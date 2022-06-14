@@ -14,6 +14,7 @@ services:
             - '@cm.repository.reset_password_request'
             - '@cm.converter.locale'
             - '@cm.create_app_user_invitation'
+            - '@cm.test.behat.app_security'
 
     cm.test.behat.context.setup.browser:
         class: CongregationManager\Tests\Behat\Context\Setup\BrowserContext
@@ -32,3 +33,10 @@ services:
         arguments:
             - '@doctrine.orm.entity_manager'
             - '@cm.test.behat.shared_storage'
+
+    cm.test.behat.context.setup.territory:
+        class: CongregationManager\Tests\Behat\Context\Setup\TerritoryContext
+        arguments:
+            - '@cm.test.behat.shared_storage'
+            - '@cm.repository.territory'
+            - '@doctrine.orm.entity_manager'
