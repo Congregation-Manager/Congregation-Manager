@@ -1,16 +1,18 @@
 @territory
 Feature: Create territory assignment
-  In order to register the status of territories
+  In order to register the assignments of territories
   As a Brother
-  I want to create new assignment for territory
+  I want to create new assignments for territories
 
-  @ui @app
-  Scenario: Create new territory assignment
+  Background:
     Given there is a congregation "Carrollton"
     And there is a brother "Dylan Martinez"
     And I am logged in as "Dylan Martinez"
     And there is a territory "01"
-    And I am on the assign territory "01" page
+
+  @ui @app
+  Scenario: Create new territory assignment
+    Given I am on the assign territory "01" page
     Then I should see that the territory "01" is selected
     When I set assignment date as "2022-06-14"
     And I select brother "Dylan Martinez"
@@ -19,4 +21,3 @@ Feature: Create territory assignment
     And I should see 1 territory assignment
     And the first territory assignment should be assigned starting from "2022-06-14"
     And the first territory assignment should be assigned to brother "Dylan Martinez"
-

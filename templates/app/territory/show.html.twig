@@ -26,6 +26,7 @@
                     <th scope="col">{{ 'cm.ui.brother'|trans }}</th>
                     <th scope="col">{{ 'cm.ui.assignment_date'|trans }}</th>
                     <th scope="col">{{ 'cm.ui.revocation_date'|trans }}</th>
+                    <th></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -34,6 +35,7 @@
                         <th scope="row" {{ test_html_attribute('territory-assignment-brother', territoryAssignment.brother) }}>{{ territoryAssignment.brother }}</th>
                         <td {{ test_html_attribute('territory-assignment-assignment-date', territoryAssignment.assignmentDate|date()) }}>{{ territoryAssignment.assignmentDate|format_date }}</td>
                         <td>{{ territoryAssignment.revocationDate ? territoryAssignment.revocationDate|format_date : '' }}</td>
+                        <td><a href="{{ path('app_territory_assignment_update', {'id': territoryAssignment.id}) }}">{{ 'cm.ui.edit'|trans }}</a> </td>
                     </tr>
                 {% endfor %}
                 </tbody>

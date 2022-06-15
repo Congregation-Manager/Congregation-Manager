@@ -126,6 +126,7 @@ cm:
         description: 'Description'
         brother: 'Brother'
         assign: 'Assegna'
+        edit: 'Edit'
     change_password:
         meta_title: 'Change password'
         title: 'Change password'

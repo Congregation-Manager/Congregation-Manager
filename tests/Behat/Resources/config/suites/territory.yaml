@@ -11,7 +11,9 @@ default:
                 - cm.test.behat.context.setup.brother
                 - cm.test.behat.context.setup.congregation
                 - cm.test.behat.context.setup.territory
+                - cm.test.behat.context.setup.territory_assignment
 
                 - cm.test.behat.context.ui.app.territory
+                - cm.test.behat.context.ui.app.territory_assignment
             filters:
                 tags: "@territory && @ui && @app"

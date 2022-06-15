@@ -40,3 +40,10 @@ services:
             - '@cm.test.behat.shared_storage'
             - '@cm.repository.territory'
             - '@doctrine.orm.entity_manager'
+
+    cm.test.behat.context.setup.territory_assignment:
+        class: CongregationManager\Tests\Behat\Context\Setup\TerritoryAssignmentContext
+        arguments:
+            - '@cm.test.behat.shared_storage'
+            - '@cm.repository.territory_assignment'
+            - '@doctrine.orm.entity_manager'

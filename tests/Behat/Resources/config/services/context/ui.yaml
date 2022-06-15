@@ -25,8 +25,14 @@ services:
     cm.test.behat.context.ui.app.territory:
         class: CongregationManager\Tests\Behat\Context\Ui\App\TerritoryContext
         arguments:
-            - '@cm.test.behat.page.app.territory.assign'
             - '@cm.test.behat.page.app.territory.show'
+
+    cm.test.behat.context.ui.app.territory_assignment:
+        class: CongregationManager\Tests\Behat\Context\Ui\App\TerritoryAssignmentContext
+        arguments:
+            - '@cm.test.behat.page.app.territory_assignment.create'
+            - '@cm.test.behat.page.app.territory_assignment.update'
+            - '@cm.test.behat.shared_storage'
 
     cm.test.behat.context.ui.admin.account:
         class: CongregationManager\Tests\Behat\Context\Ui\Admin\AccountContext

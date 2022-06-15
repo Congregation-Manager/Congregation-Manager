@@ -28,14 +28,11 @@ final class TerritoryAssignmentController extends AbstractController
     ) {
     }
 
-    public function create(Request $request, ?int $territoryId): Response
+    public function create(Request $request): Response
     {
         $territory = null;
-        if ($territoryId !== null) {
+        if (($territoryId = $request->query->getInt('territoryId')) !== 0) {
             $territory = $this->territoryRepository->find($territoryId);
-            if ($territory === null) {
-                throw $this->createNotFoundException();
-            }
         }
         $form = $this->createForm(TerritoryAssignmentFormType::class, null, [
             'territory' => $territory,
@@ -52,6 +49,26 @@ final class TerritoryAssignmentController extends AbstractController
             return $this->redirectToRoute('app_territory_show', ['id' => $territoryId]);
         }
         return $this->renderForm('app/territory_assignment/create.html.twig', [
+            'form' => $form,
+        ]);
+    }
+
+    public function update(Request $request, int $id): Response
+    {
+        $territoryAssignment = $this->territoryAssignmentRepository->find($id);
+        if ($territoryAssignment === null) {
+            throw $this->createNotFoundException();
+        }
+        $form = $this->createForm(TerritoryAssignmentFormType::class, $territoryAssignment);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->entityManager->flush();
+
+            $this->addFlash('sucess', 'Territory assignment updated');
+
+            return $this->redirectToRoute('app_territory_show', ['id' => $territoryAssignment->getTerritory()->getId()]);
+        }
+        return $this->renderForm('app/territory_assignment/update.html.twig', [
             'form' => $form,
         ]);
     }

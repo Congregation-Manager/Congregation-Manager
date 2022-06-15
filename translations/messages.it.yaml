@@ -130,6 +130,7 @@ cm:
         assign: 'Assegna'
         create_territory_assignment: 'Crea assegnazione territorio'
         territory: 'Territorio'
+        edit: 'Modifica'
     change_password:
         meta_title: 'Cambia password'
         title: 'Cambia password'
