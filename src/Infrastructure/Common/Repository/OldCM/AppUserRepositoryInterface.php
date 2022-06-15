@@ -6,6 +6,8 @@ namespace CongregationManager\Infrastructure\Common\Repository\OldCM;
 
 interface AppUserRepositoryInterface
 {
-    /** @return array<array-key, array{id: string, username: string, email: string, password: string}> */
+    /**
+     * @return array<array-key, array{id: string, username: string, email: string, password: string}>
+     */
     public function findOneByBrother(int $brotherId): array;
 }

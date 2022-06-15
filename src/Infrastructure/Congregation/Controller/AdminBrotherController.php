@@ -30,6 +30,7 @@ final class AdminBrotherController extends AbstractController
     public function index(Request $request): Response
     {
         $brothers = $this->brotherRepository->findAll();
+
         return $this->render('admin/brother/index.html.twig', [
             'brothers' => $brothers,
         ]);
@@ -38,7 +39,7 @@ final class AdminBrotherController extends AbstractController
     public function show(Request $request, int $id): Response
     {
         $brother = $this->brotherRepository->find($id);
-        if ($brother === null) {
+        if (null === $brother) {
             throw new NotFoundHttpException();
         }
 
@@ -50,7 +51,7 @@ final class AdminBrotherController extends AbstractController
     public function invite(Request $request, int $id): Response
     {
         $brother = $this->brotherRepository->find($id);
-        if ($brother === null) {
+        if (null === $brother) {
             throw new NotFoundHttpException();
         }
         $inviteUserForm = $this->createForm(InviteUserFormType::class);
@@ -75,12 +76,14 @@ final class AdminBrotherController extends AbstractController
             ;
             $this->mailer->send($email);
 
-            return $this->redirectToRoute('admin_brother_show', ['id' => $brother->getId()]);
+            return $this->redirectToRoute('admin_brother_show', [
+                'id' => $brother->getId(),
+            ]);
         }
 
         return $this->renderForm('admin/brother/invite.html.twig', [
             'brother' => $brother,
-            'inviteUserForm' => $inviteUserForm
+            'inviteUserForm' => $inviteUserForm,
         ]);
     }
 }

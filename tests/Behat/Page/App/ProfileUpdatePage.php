@@ -1,12 +1,16 @@
 <?php
 
+declare(strict_types=1);
+
 namespace CongregationManager\Tests\Behat\Page\App;
 
 use FriendsOfBehat\PageObjectExtension\Page\SymfonyPage;
 
 final class ProfileUpdatePage extends SymfonyPage implements ProfileUpdatePageInterface
 {
-    protected static $additionalParameters = ['_locale' => 'en'];
+    protected static $additionalParameters = [
+        '_locale' => 'en',
+    ];
 
     public function getRouteName(): string
     {
@@ -15,27 +19,37 @@ final class ProfileUpdatePage extends SymfonyPage implements ProfileUpdatePageIn
 
     public function specifyEmail(string $email): void
     {
-        $this->getElement('email')->setValue($email);
+        $this->getElement('email')
+            ->setValue($email)
+        ;
     }
 
     public function update(): void
     {
-        $this->getElement('save_button')->click();
+        $this->getElement('save_button')
+            ->click()
+        ;
     }
 
     public function specifyFirstName(string $firstName): void
     {
-        $this->getElement('first_name')->setValue($firstName);
+        $this->getElement('first_name')
+            ->setValue($firstName)
+        ;
     }
 
     public function specifyMiddleName(string $middleName): void
     {
-        $this->getElement('middle_name')->setValue($middleName);
+        $this->getElement('middle_name')
+            ->setValue($middleName)
+        ;
     }
 
     public function specifyLastName(string $lastName): void
     {
-        $this->getElement('last_name')->setValue($lastName);
+        $this->getElement('last_name')
+            ->setValue($lastName)
+        ;
     }
 
     protected function getDefinedElements(): array
@@ -45,7 +59,7 @@ final class ProfileUpdatePage extends SymfonyPage implements ProfileUpdatePageIn
             'first_name' => '[data-test-brother-first-name]',
             'middle_name' => '[data-test-brother-middle-name]',
             'last_name' => '[data-test-brother-last-name]',
-            'save_button' => 'button[type=submit]'
+            'save_button' => 'button[type=submit]',
         ]);
     }
 }

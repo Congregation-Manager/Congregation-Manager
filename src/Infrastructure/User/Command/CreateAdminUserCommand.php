@@ -1,11 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace CongregationManager\Infrastructure\User\Command;
 
 use CongregationManager\Infrastructure\Common\Utils\Validator\Validator;
 use CongregationManager\Infrastructure\User\Action\CreateAdminUser;
 use Doctrine\ORM\EntityManagerInterface;
-use InvalidArgumentException;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Command\LockableTrait;
 use Symfony\Component\Console\Input\InputInterface;
@@ -20,19 +21,29 @@ final class CreateAdminUserCommand extends Command
 
     private const CREATE_ADMIN_USER_COMMAND_EVENT_NAME = 'create-admin-user-command';
 
-    /** @psalm-suppress PropertyNotSetInConstructor */
+    /**
+     * @psalm-suppress PropertyNotSetInConstructor
+     */
     private SymfonyStyle $io;
 
-    /** @psalm-suppress PropertyNotSetInConstructor */
+    /**
+     * @psalm-suppress PropertyNotSetInConstructor
+     */
     private string $userEmail;
 
-    /** @psalm-suppress PropertyNotSetInConstructor */
+    /**
+     * @psalm-suppress PropertyNotSetInConstructor
+     */
     private string $userPassword;
 
-    /** @psalm-suppress PropertyNotSetInConstructor */
+    /**
+     * @psalm-suppress PropertyNotSetInConstructor
+     */
     private string $userLocale;
 
-    /** @var string[] */
+    /**
+     * @var string[]
+     */
     private array $locales;
 
     public function __construct(
@@ -63,9 +74,7 @@ final class CreateAdminUserCommand extends Command
     protected function interact(InputInterface $input, OutputInterface $output): void
     {
         $this->io->title('Create admin user command interactive wizard');
-        $this->io->text([
-            'Now we\'ll ask you for the value of the necessary arguments.',
-        ]);
+        $this->io->text(['Now we\'ll ask you for the value of the necessary arguments.']);
 
         $userEmail = $this->io->ask('Email', null, [$this->validator, 'validateEmail']);
         Assert::string($userEmail);
@@ -75,7 +84,11 @@ final class CreateAdminUserCommand extends Command
         Assert::string($userPassword);
         $this->userPassword = $userPassword;
 
-        $userLocale = $this->io->ask(sprintf('Locale [%s]', implode(',', $this->locales)), $this->defaultLocale, [$this->validator, 'validateString']);
+        $userLocale = $this->io->ask(
+            sprintf('Locale [%s]', implode(',', $this->locales)),
+            $this->defaultLocale,
+            [$this->validator, 'validateString']
+        );
         Assert::string($userLocale);
         Assert::inArray($userLocale, $this->locales);
         $this->userLocale = $userLocale;
@@ -83,7 +96,7 @@ final class CreateAdminUserCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        if (!$this->lock()) {
+        if (! $this->lock()) {
             $this->io->error('The command is already running in another process.');
 
             return Command::FAILURE;
@@ -91,17 +104,19 @@ final class CreateAdminUserCommand extends Command
         $stopwatch = new Stopwatch();
         $stopwatch->start(self::CREATE_ADMIN_USER_COMMAND_EVENT_NAME);
 
-        $this->createAdminUser->create(
-            $this->userEmail,
-            $this->userPassword,
-            $this->userLocale
-        );
+        $this->createAdminUser->create($this->userEmail, $this->userPassword, $this->userLocale);
         $this->entityManager->flush();
 
         $this->io->success('Admin user successfully created');
         $event = $stopwatch->stop(self::CREATE_ADMIN_USER_COMMAND_EVENT_NAME);
         if ($output->isVerbose()) {
-            $this->io->comment(sprintf('Elapsed time: %.2f ms / Consumed memory: %.2f MB', $event->getDuration(), $event->getMemory() / (1024 ** 2)));
+            $this->io->comment(
+                sprintf(
+                    'Elapsed time: %.2f ms / Consumed memory: %.2f MB',
+                    $event->getDuration(),
+                    $event->getMemory() / (1024 ** 2)
+                )
+            );
         }
 
         return Command::SUCCESS;
@@ -109,12 +124,12 @@ final class CreateAdminUserCommand extends Command
 
     private function getCommandHelp(): string
     {
-        return <<<'HELP'
+        return <<<'CODE_SAMPLE'
             The <info>%command.name%</info> command will guide you through the creation of a new admin user.
 
               <info>php %command.full_name%</info>
 
             The command will ask you to provide the necessary arguments like the email and the password of the user.
-        HELP;
+        CODE_SAMPLE;
     }
 }

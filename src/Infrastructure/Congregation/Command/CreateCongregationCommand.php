@@ -21,10 +21,14 @@ final class CreateCongregationCommand extends Command
 
     private const CREATE_CONGREGATION_COMMAND_EVENT_NAME = 'create-congregation-command';
 
-    /** @psalm-suppress PropertyNotSetInConstructor */
+    /**
+     * @psalm-suppress PropertyNotSetInConstructor
+     */
     private SymfonyStyle $io;
 
-    /** @psalm-suppress PropertyNotSetInConstructor */
+    /**
+     * @psalm-suppress PropertyNotSetInConstructor
+     */
     private string $congregationName;
 
     public function __construct(
@@ -40,7 +44,8 @@ final class CreateCongregationCommand extends Command
     {
         $this
             ->setDescription('Create a new congregation.')
-            ->setHelp($this->getCommandHelp());
+            ->setHelp($this->getCommandHelp())
+        ;
     }
 
     protected function initialize(InputInterface $input, OutputInterface $output): void
@@ -51,9 +56,7 @@ final class CreateCongregationCommand extends Command
     protected function interact(InputInterface $input, OutputInterface $output): void
     {
         $this->io->title('Create Congregation command interactive wizard');
-        $this->io->text([
-            'Now we\'ll ask you for the value of the necessary arguments.',
-        ]);
+        $this->io->text(['Now we\'ll ask you for the value of the necessary arguments.']);
 
         $congregationName = $this->io->ask('Congregation name', null, [$this->validator, 'validateString']);
         Assert::string($congregationName);
@@ -62,7 +65,7 @@ final class CreateCongregationCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        if (!$this->lock()) {
+        if (! $this->lock()) {
             $this->io->error('The command is already running in another process.');
 
             return Command::FAILURE;
@@ -76,7 +79,13 @@ final class CreateCongregationCommand extends Command
         $this->io->success('Congregation successfully created');
         $event = $stopwatch->stop(self::CREATE_CONGREGATION_COMMAND_EVENT_NAME);
         if ($output->isVerbose()) {
-            $this->io->comment(sprintf('Elapsed time: %.2f ms / Consumed memory: %.2f MB', $event->getDuration(), $event->getMemory() / (1024 ** 2)));
+            $this->io->comment(
+                sprintf(
+                    'Elapsed time: %.2f ms / Consumed memory: %.2f MB',
+                    $event->getDuration(),
+                    $event->getMemory() / (1024 ** 2)
+                )
+            );
         }
         $this->release();
 
@@ -85,12 +94,12 @@ final class CreateCongregationCommand extends Command
 
     private function getCommandHelp(): string
     {
-        return <<<'HELP'
+        return <<<'CODE_SAMPLE'
             The <info>%command.name%</info> command will guide you through the creation of a new congregation.
 
               <info>php %command.full_name%</info>
 
             The command will ask you to provide the necessary arguments like the name of the congregation.
-        HELP;
+        CODE_SAMPLE;
     }
 }

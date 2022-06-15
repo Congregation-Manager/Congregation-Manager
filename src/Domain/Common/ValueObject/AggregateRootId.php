@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace CongregationManager\Domain\Common\ValueObject;
 
 abstract class AggregateRootId
@@ -9,13 +11,13 @@ abstract class AggregateRootId
     ) {
     }
 
-    public function equals(AggregateRootId $aggregateRootId): bool
-    {
-        return $this->id === $aggregateRootId->id;
-    }
-
     public function __toString(): string
     {
         return (string) $this->id;
+    }
+
+    public function equals(self $aggregateRootId): bool
+    {
+        return $this->id === $aggregateRootId->id;
     }
 }

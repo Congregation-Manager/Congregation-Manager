@@ -21,7 +21,9 @@ final class LocaleContext implements LocaleContextInterface
         }
 
         /** @var string|null $localeCode */
-        $localeCode = $request->getSession()->get('_locale');
+        $localeCode = $request->getSession()
+            ->get('_locale')
+        ;
         if (null === $localeCode) {
             throw new LocaleNotFoundException('No locale attribute is set on the master request.');
         }

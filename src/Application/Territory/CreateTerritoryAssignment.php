@@ -13,8 +13,9 @@ use DateTimeInterface;
 
 final class CreateTerritoryAssignment
 {
-    public function __construct(private TerritoryAssignmentRepositoryInterface $territoryAssignmentRepository)
-    {
+    public function __construct(
+        private TerritoryAssignmentRepositoryInterface $territoryAssignmentRepository
+    ) {
     }
 
     public function create(
@@ -23,12 +24,7 @@ final class CreateTerritoryAssignment
         ?BrotherInterface $brother = null,
         ?DateTimeInterface $revocationDate = null
     ): TerritoryAssignmentInterface {
-        $territoryAssignment = new TerritoryAssignment(
-            $territory,
-            $assignmentDate,
-            $brother,
-            $revocationDate
-        );
+        $territoryAssignment = new TerritoryAssignment($territory, $assignmentDate, $brother, $revocationDate);
         $this->territoryAssignmentRepository->add($territoryAssignment);
 
         return $territoryAssignment;

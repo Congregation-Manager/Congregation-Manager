@@ -15,12 +15,16 @@ final class InviteAppUserPage extends SymfonyPage implements InviteAppUserPageIn
 
     public function specifyEmail(string $email): void
     {
-        $this->getElement('email')->setValue($email);
+        $this->getElement('email')
+            ->setValue($email)
+        ;
     }
 
     public function sendInvite(): void
     {
-        $this->getElement('submit')->click();
+        $this->getElement('submit')
+            ->click()
+        ;
     }
 
     protected function getDefinedElements(): array

@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace CongregationManager\Tests\Behat\Context\Ui\App;
 
 use Behat\Behat\Context\Context;
-use Behat\Behat\Tester\Exception\PendingException;
 use CongregationManager\Domain\Congregation\Model\BrotherInterface;
 use CongregationManager\Domain\Territory\Model\TerritoryAssignmentInterface;
 use CongregationManager\Domain\Territory\Model\TerritoryInterface;
@@ -29,7 +28,9 @@ final class TerritoryAssignmentContext implements Context
      */
     public function iAmOnTheAssignTerritoryPage(TerritoryInterface $territory): void
     {
-        $this->assignPage->open(['territoryId' => $territory->getId()]);
+        $this->assignPage->open([
+            'territoryId' => $territory->getId(),
+        ]);
     }
 
     /**
@@ -73,6 +74,8 @@ final class TerritoryAssignmentContext implements Context
         $territoryAssignment = $this->sharedStorage->get('territory_assignment');
         Assert::isInstanceOf($territoryAssignment, TerritoryAssignmentInterface::class);
 
-        $this->updatePage->open(['id' => $territoryAssignment->getId()]);
+        $this->updatePage->open([
+            'id' => $territoryAssignment->getId(),
+        ]);
     }
 }

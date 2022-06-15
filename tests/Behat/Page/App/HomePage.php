@@ -9,7 +9,9 @@ use FriendsOfBehat\PageObjectExtension\Page\SymfonyPage;
 
 final class HomePage extends SymfonyPage implements HomePageInterface
 {
-    protected static $additionalParameters = ['_locale' => 'en'];
+    protected static $additionalParameters = [
+        '_locale' => 'en',
+    ];
 
     public function getRouteName(): string
     {
@@ -18,7 +20,9 @@ final class HomePage extends SymfonyPage implements HomePageInterface
 
     public function getActiveLocale(): string
     {
-        return $this->getElement('active_locale')->getText();
+        return $this->getElement('active_locale')
+            ->getText()
+        ;
     }
 
     public function getAvailableLocales(): array
@@ -27,13 +31,16 @@ final class HomePage extends SymfonyPage implements HomePageInterface
             static function (NodeElement $element) {
                 return $element->getText();
             },
-            $this->getElement('locale_selector')->findAll('css', '[data-test-available-locale]')
+            $this->getElement('locale_selector')
+                ->findAll('css', '[data-test-available-locale]')
         );
     }
 
     public function switchLocale(string $locale): void
     {
-        $this->getElement('locale_selector')->clickLink($locale);
+        $this->getElement('locale_selector')
+            ->clickLink($locale)
+        ;
     }
 
     protected function getDefinedElements(): array

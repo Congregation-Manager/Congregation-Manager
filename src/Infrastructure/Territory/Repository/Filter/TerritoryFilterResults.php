@@ -16,30 +16,35 @@ final class TerritoryFilterResults implements TerritoryFilterResultsInterface
     ) {
     }
 
-    /**
-     * @throws \Doctrine\ORM\NonUniqueResultException
-     * @throws \Doctrine\ORM\NoResultException
-     */
     public function getTotalCount(): int
     {
         $qb = clone $this->queryBuilder;
-        $result = $qb->select('count(t.id)')->getQuery()->getSingleScalarResult();
+        $result = $qb->select('count(t.id)')
+            ->getQuery()
+            ->getSingleScalarResult()
+        ;
         Assert::integer($result);
 
         return $result;
     }
 
-    public function getResults(?int $limit = null, ?int $offset = null, ?string $sort = null, string $direction = 'ASC'): array
-    {
+    public function getResults(
+        ?int $limit = null,
+        ?int $offset = null,
+        ?string $sort = null,
+        string $direction = 'ASC'
+    ): array {
         $qb = clone $this->queryBuilder;
-        $qb = $qb->setFirstResult($offset)->setMaxResults($limit);
-        if ($sort !== null) {
+        $qb = $qb->setFirstResult($offset)
+            ->setMaxResults($limit)
+        ;
+        if (null !== $sort) {
             $qb->orderBy($sort, $direction);
         }
 
         /** @var TerritoryInterface[] $results */
-        $results = $qb->getQuery()->getResult();
-
-        return $results;
+        return $qb->getQuery()
+            ->getResult()
+        ;
     }
 }

@@ -15,7 +15,7 @@ final class InviteUserFormType extends AbstractType
     {
         $builder
             ->add('email', EmailType::class, [
-                'required' => true
+                'required' => true,
             ])
             ->add('submit', SubmitType::class)
         ;

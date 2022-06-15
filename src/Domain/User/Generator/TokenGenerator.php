@@ -8,9 +8,6 @@ use function strlen;
 
 final class TokenGenerator implements TokenGeneratorInterface
 {
-    /**
-     * @throws \Exception
-     */
     public function generate(): string
     {
         $string = '';
@@ -21,11 +18,7 @@ final class TokenGenerator implements TokenGeneratorInterface
 
             $bytes = random_bytes($size);
 
-            $string .= substr(
-                str_replace(['/', '+', '='], '', base64_encode($bytes)),
-                0,
-                $size
-            );
+            $string .= substr(str_replace(['/', '+', '='], '', base64_encode($bytes)), 0, $size);
         }
 
         return $string;

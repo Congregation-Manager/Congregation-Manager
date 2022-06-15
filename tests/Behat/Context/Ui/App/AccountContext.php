@@ -1,10 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace CongregationManager\Tests\Behat\Context\Ui\App;
 
 use Behat\Behat\Context\Context;
-use Behat\Behat\Tester\Exception\PendingException;
-use CongregationManager\Domain\Congregation\Model\BrotherInterface;
 use CongregationManager\Tests\Behat\Page\App\ChangePasswordPageInterface;
 use CongregationManager\Tests\Behat\Page\App\CheckEmailPageInterface;
 use CongregationManager\Tests\Behat\Page\App\CompleteAccountPageInterface;
@@ -125,7 +125,9 @@ final class AccountContext implements Context
      */
     public function iFollowLinkOnMyEmailToResetMyPassword(): void
     {
-        $this->resetPasswordPage->tryToOpen(['token' => $this->sharedStorage->get('forgot_password_token')]);
+        $this->resetPasswordPage->tryToOpen([
+            'token' => $this->sharedStorage->get('forgot_password_token'),
+        ]);
         $this->resetPasswordPage->verify();
     }
 
@@ -290,7 +292,9 @@ final class AccountContext implements Context
      */
     public function iFollowLinkOnMyEmailToCompleteMyAccount(): void
     {
-        $this->completeAccountPage->tryToOpen(['token' => $this->sharedStorage->get('invitation_app_token')]);
+        $this->completeAccountPage->tryToOpen([
+            'token' => $this->sharedStorage->get('invitation_app_token'),
+        ]);
         $this->completeAccountPage->verify();
     }
 

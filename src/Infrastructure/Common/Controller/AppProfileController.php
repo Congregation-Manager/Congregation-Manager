@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace CongregationManager\Infrastructure\Common\Controller;
 
 use CongregationManager\Infrastructure\Common\Form\ProfileUpdateFormType;
@@ -27,10 +29,10 @@ final class AppProfileController extends AbstractController
     public function update(Request $request): Response
     {
         $user = $this->security->getUser();
-        if ($user === null) {
+        if (null === $user) {
             throw new AccessDeniedHttpException();
         }
-        if (!$user instanceof AppUserInterface) {
+        if (! $user instanceof AppUserInterface) {
             throw new LogicException();
         }
 
@@ -44,6 +46,7 @@ final class AppProfileController extends AbstractController
 
             return $this->redirectToRoute('app_dashboard');
         }
+
         return $this->renderForm('app/profile/update.html.twig', [
             'updateProfileForm' => $updateProfileForm,
         ]);

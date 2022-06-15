@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace CongregationManager\Tests\Behat\Context\Ui\Admin;
 
 use Behat\Behat\Context\Context;
@@ -126,7 +128,9 @@ final class AccountContext implements Context
      */
     public function iFollowLinkOnMyEmailToResetMyPassword(): void
     {
-        $this->resetPasswordPage->tryToOpen(['token' => $this->sharedStorage->get('forgot_password_token')]);
+        $this->resetPasswordPage->tryToOpen([
+            'token' => $this->sharedStorage->get('forgot_password_token'),
+        ]);
         $this->resetPasswordPage->verify();
     }
 
@@ -250,7 +254,9 @@ final class AccountContext implements Context
      */
     public function iWantToSeeBrotherDetails(BrotherInterface $brother): void
     {
-        $this->brotherShowPage->open(['id' => $brother->getId()]);
+        $this->brotherShowPage->open([
+            'id' => $brother->getId(),
+        ]);
     }
 
     /**

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace CongregationManager\Infrastructure\User\Form;
 
 use CongregationManager\Infrastructure\User\Model\UserInterface;
@@ -15,7 +17,7 @@ final class ChangeEmailFormType extends AbstractType
     {
         $builder
             ->add('email', EmailType::class, [
-                'required' => true
+                'required' => true,
             ])
         ;
         if ($options['with_submit']) {
@@ -27,7 +29,7 @@ final class ChangeEmailFormType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => UserInterface::class,
-            'with_submit' => true
+            'with_submit' => true,
         ]);
     }
 }

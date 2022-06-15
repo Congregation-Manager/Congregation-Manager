@@ -1,9 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace CongregationManager\Infrastructure\User\Model;
 
 use CongregationManager\Domain\User\Exception\Factory\UserInstanceNotValidFactory;
-use CongregationManager\Domain\User\Exception\UserInstanceNotValid;
 use CongregationManager\Domain\User\Model\AdminUserInterface;
 use CongregationManager\Domain\User\Model\AppUserInterface;
 use CongregationManager\Domain\User\Model\ResetPasswordRequest as DomainResetPasswordRequest;
@@ -15,9 +16,6 @@ class ResetPasswordRequest extends DomainResetPasswordRequest implements ResetPa
 {
     protected DateTimeImmutable $requestedAt;
 
-    /**
-     * @throws UserInstanceNotValid
-     */
     public function __construct(
         UserInterface $user,
         DateTimeInterface $expiresAt,
@@ -38,12 +36,12 @@ class ResetPasswordRequest extends DomainResetPasswordRequest implements ResetPa
     public function getUser(): object
     {
         $adminUser = $this->getAdminUser();
-        if ($adminUser !== null) {
+        if (null !== $adminUser) {
             return $adminUser;
         }
 
         $appUser = $this->getAppUser();
-        if ($appUser !== null) {
+        if (null !== $appUser) {
             return $appUser;
         }
 

@@ -8,7 +8,6 @@ use CongregationManager\Domain\Congregation\Model\Brother;
 use CongregationManager\Domain\Congregation\Model\BrotherInterface;
 use CongregationManager\Domain\Congregation\Model\CongregationInterface;
 use CongregationManager\Domain\Congregation\Repository\BrotherRepositoryInterface;
-use CongregationManager\Domain\User\Model\AppUserInterface;
 use DateTimeInterface;
 
 final class CreateBrother
@@ -27,15 +26,7 @@ final class CreateBrother
         ?DateTimeInterface $birthDate = null,
         ?DateTimeInterface $baptismDate = null
     ): BrotherInterface {
-        $brother = new Brother(
-            $firstName,
-            $lastName,
-            $congregation,
-            $male,
-            $middleName,
-            $birthDate,
-            $baptismDate
-        );
+        $brother = new Brother($firstName, $lastName, $congregation, $male, $middleName, $birthDate, $baptismDate);
         $this->brotherRepository->add($brother);
 
         return $brother;

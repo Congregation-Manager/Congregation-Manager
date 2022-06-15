@@ -16,9 +16,11 @@ use Doctrine\Persistence\ManagerRegistry;
  * @method TerritoryAssignmentInterface|null find($id, $lockMode = null, $lockVersion = null)
  * @method TerritoryAssignmentInterface|null findOneBy(array $criteria, array $orderBy = null)
  * @psalm-method list<TerritoryAssignmentInterface> findAll()
- * @method TerritoryAssignmentInterface[]    findAll()
+ *
+ * @method TerritoryAssignmentInterface[] findAll()
  * @psalm-method list<TerritoryAssignmentInterface> findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
- * @method TerritoryAssignmentInterface[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ *
+ * @method TerritoryAssignmentInterface[] findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
 final class TerritoryAssignmentRepository extends ServiceEntityRepository implements TerritoryAssignmentRepositoryInterface
 {

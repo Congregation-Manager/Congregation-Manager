@@ -9,7 +9,11 @@ use CongregationManager\Domain\Congregation\Repository\CongregationRepositoryInt
 use CongregationManager\Tests\Repository\CongregationRepository;
 use PHPUnit\Framework\TestCase;
 
-class CreateCongregationTest extends TestCase
+/**
+ * @internal
+ * @coversNothing
+ */
+final class CreateCongregationTest extends TestCase
 {
     private CongregationRepositoryInterface $congregationRepository;
 
@@ -21,11 +25,11 @@ class CreateCongregationTest extends TestCase
         $this->createCongregation = new CreateCongregation($this->congregationRepository);
     }
 
-    public function test_that_it_creates_a_new_congregation(): void
+    public function testThatItCreatesANewCongregation(): void
     {
         $congregation = $this->createCongregation->create('Carrollton');
 
-        $this->assertEquals('Carrollton', $congregation->getName());
-        $this->assertEquals($this->congregationRepository->findAll()->first(), $congregation);
+        $this->assertSame('Carrollton', $congregation->getName());
+        $this->assertSame($this->congregationRepository->findAll()->first(), $congregation);
     }
 }

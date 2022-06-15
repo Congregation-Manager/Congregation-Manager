@@ -4,14 +4,10 @@ declare(strict_types=1);
 
 namespace CongregationManager\Infrastructure\Territory\Controller;
 
-use CongregationManager\Application\Territory\CreateTerritoryAssignment;
-use CongregationManager\Domain\Congregation\Model\BrotherInterface;
 use CongregationManager\Domain\Territory\Model\TerritoryAssignmentInterface;
-use CongregationManager\Domain\Territory\Model\TerritoryInterface;
 use CongregationManager\Domain\Territory\Repository\TerritoryAssignmentRepositoryInterface;
 use CongregationManager\Domain\Territory\Repository\TerritoryRepositoryInterface;
 use CongregationManager\Infrastructure\Territory\Form\TerritoryAssignmentFormType;
-use DateTimeInterface;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -31,7 +27,8 @@ final class TerritoryAssignmentController extends AbstractController
     public function create(Request $request): Response
     {
         $territory = null;
-        if (($territoryId = $request->query->getInt('territoryId')) !== 0) {
+        $territoryId = $request->query->getInt('territoryId');
+        if (0 !== $territoryId) {
             $territory = $this->territoryRepository->find($territoryId);
         }
         $form = $this->createForm(TerritoryAssignmentFormType::class, null, [
@@ -46,8 +43,11 @@ final class TerritoryAssignmentController extends AbstractController
 
             $this->addFlash('sucess', 'Territory assignment created');
 
-            return $this->redirectToRoute('app_territory_show', ['id' => $territoryId]);
+            return $this->redirectToRoute('app_territory_show', [
+                'id' => $territoryId,
+            ]);
         }
+
         return $this->renderForm('app/territory_assignment/create.html.twig', [
             'form' => $form,
         ]);
@@ -56,7 +56,7 @@ final class TerritoryAssignmentController extends AbstractController
     public function update(Request $request, int $id): Response
     {
         $territoryAssignment = $this->territoryAssignmentRepository->find($id);
-        if ($territoryAssignment === null) {
+        if (null === $territoryAssignment) {
             throw $this->createNotFoundException();
         }
         $form = $this->createForm(TerritoryAssignmentFormType::class, $territoryAssignment);
@@ -66,8 +66,12 @@ final class TerritoryAssignmentController extends AbstractController
 
             $this->addFlash('sucess', 'Territory assignment updated');
 
-            return $this->redirectToRoute('app_territory_show', ['id' => $territoryAssignment->getTerritory()->getId()]);
+            return $this->redirectToRoute('app_territory_show', [
+                'id' => $territoryAssignment->getTerritory()
+                    ->getId(),
+            ]);
         }
+
         return $this->renderForm('app/territory_assignment/update.html.twig', [
             'form' => $form,
         ]);

@@ -1,5 +1,6 @@
 <?php
 
+declare(strict_types=1);
 
 namespace CongregationManager\Infrastructure\User\Controller;
 
@@ -24,6 +25,9 @@ final class AppUserLoginController extends AbstractController
         $error = $this->authenticationUtils->getLastAuthenticationError();
         $lastUsername = $this->authenticationUtils->getLastUsername();
 
-        return $this->render('app/login/index.html.twig', ['last_username' => $lastUsername, 'error' => $error]);
+        return $this->render('app/login/index.html.twig', [
+            'last_username' => $lastUsername,
+            'error' => $error,
+        ]);
     }
 }

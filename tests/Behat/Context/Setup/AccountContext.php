@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace CongregationManager\Tests\Behat\Context\Setup;
 
 use Behat\Behat\Context\Context;
@@ -38,8 +40,11 @@ final class AccountContext implements Context
      * @Given /^the (brother|sister) has an account for email "([^"]*)"$/
      * @Given /^the (brother|sister) has an account for email "([^"]*)" and password "([^"]*)"$/
      */
-    public function thereIsAnAppUserWithEmailAndPassword(string $type, string $email, string $password = 'password'): void
-    {
+    public function thereIsAnAppUserWithEmailAndPassword(
+        string $type,
+        string $email,
+        string $password = 'password'
+    ): void {
         /** @var ?BrotherInterface $brother */
         $brother = $this->sharedStorage->get('brother');
         Assert::isInstanceOf($brother, BrotherInterface::class);
@@ -69,7 +74,9 @@ final class AccountContext implements Context
     public function iHaveAlreadyReceivedAResettingPasswordEmailForAdministrator(string $email): void
     {
         $adminUserRepository = $this->entityManager->getRepository(AdminUser::class);
-        $adminUser = $adminUserRepository->findOneBy(['email' => $email]);
+        $adminUser = $adminUserRepository->findOneBy([
+            'email' => $email,
+        ]);
         Assert::isInstanceOf($adminUser, AdminUserInterface::class);
 
         $expiresAt = new DateTimeImmutable('tomorrow');
@@ -96,7 +103,9 @@ final class AccountContext implements Context
     public function iHaveAlreadyReceivedAResettingPasswordEmailForBrother(string $email): void
     {
         $appUserRepository = $this->entityManager->getRepository(AppUser::class);
-        $appUser = $appUserRepository->findOneBy(['email' => $email]);
+        $appUser = $appUserRepository->findOneBy([
+            'email' => $email,
+        ]);
         Assert::isInstanceOf($appUser, AppUserInterface::class);
 
         $expiresAt = new DateTimeImmutable('tomorrow');

@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace CongregationManager\Tests\Behat\Context\Setup;
 
 use Behat\Behat\Context\Context;
-use Behat\Behat\Tester\Exception\PendingException;
 use CongregationManager\Domain\Congregation\Model\CongregationInterface;
 use CongregationManager\Domain\Territory\Model\Area;
 use CongregationManager\Domain\Territory\Model\AreaInterface;
@@ -67,11 +66,7 @@ final class TerritoryContext implements Context
 
     private function createAreaByCongregation(CongregationInterface $congregation): AreaInterface
     {
-        $area = new Area(
-            $congregation,
-            $this->createMunicipalityByCongregation($congregation),
-            'Carrollton'
-        );
+        $area = new Area($congregation, $this->createMunicipalityByCongregation($congregation), 'Carrollton');
         $this->entityManager->persist($area);
 
         return $area;

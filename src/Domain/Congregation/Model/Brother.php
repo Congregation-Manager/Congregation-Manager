@@ -16,7 +16,9 @@ class Brother extends AggregateRoot implements BrotherInterface
 {
     protected ?AppUserInterface $user = null;
 
-    /** @var Collection<array-key, TerritoryAssignmentInterface> */
+    /**
+     * @var Collection<array-key, TerritoryAssignmentInterface>
+     */
     protected Collection $territoryAssignments;
 
     public function __construct(
@@ -30,6 +32,16 @@ class Brother extends AggregateRoot implements BrotherInterface
         protected ?AppUserInvitation $invitation = null
     ) {
         $this->territoryAssignments = new ArrayCollection();
+    }
+
+    public function __toString(): string
+    {
+        return sprintf(
+            '%s%s %s',
+            $this->firstName,
+            null !== $this->middleName ? ' '.$this->middleName : '',
+            $this->lastName
+        );
     }
 
     public function getMiddleName(): ?string
@@ -122,7 +134,9 @@ class Brother extends AggregateRoot implements BrotherInterface
         $this->invitation = $invitation;
     }
 
-    /** @return Collection<array-key, TerritoryAssignmentInterface> */
+    /**
+     * @return Collection<array-key, TerritoryAssignmentInterface>
+     */
     public function getTerritoryAssignments(): Collection
     {
         return $this->territoryAssignments;
@@ -130,7 +144,7 @@ class Brother extends AggregateRoot implements BrotherInterface
 
     public function addTerritoryAssignment(TerritoryAssignmentInterface $territoryAssignment): void
     {
-        if (!$this->territoryAssignments->contains($territoryAssignment)) {
+        if (! $this->territoryAssignments->contains($territoryAssignment)) {
             $this->territoryAssignments->add($territoryAssignment);
         }
     }
@@ -140,15 +154,5 @@ class Brother extends AggregateRoot implements BrotherInterface
         if ($this->territoryAssignments->contains($territoryAssignment)) {
             $this->territoryAssignments->removeElement($territoryAssignment);
         }
-    }
-
-    public function __toString(): string
-    {
-        return sprintf(
-            '%s%s %s',
-            $this->firstName,
-            $this->middleName !== null ? ' ' . $this->middleName : '',
-            $this->lastName
-        );
     }
 }

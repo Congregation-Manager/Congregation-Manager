@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace CongregationManager\Infrastructure\User\Form;
 
 use Symfony\Component\Form\AbstractType;
@@ -15,14 +17,16 @@ class ResetPasswordRequestFormType extends AbstractType
     {
         $builder
             ->add('email', EmailType::class, [
-                'attr' => ['autocomplete' => 'email'],
+                'attr' => [
+                    'autocomplete' => 'email',
+                ],
                 'constraints' => [
                     new NotBlank([
                         'message' => 'cm.email.not_blank',
                     ]),
                     new Email([
                         'message' => 'cm.email.email',
-                    ])
+                    ]),
                 ],
             ])
         ;

@@ -1,9 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace CongregationManager\Tests\Behat\Context\Ui;
 
 use Behat\Behat\Context\Context;
-use Behat\Behat\Tester\Exception\PendingException;
 use CongregationManager\Tests\Behat\Services\EmailCheckerInterface;
 use Webmozart\Assert\Assert;
 
@@ -14,16 +15,12 @@ final class EmailContext implements Context
     ) {
     }
 
-
     /**
      * @Given /^an email with reset token should be sent to "([^"]*)"$/
      */
     public function anEmailWithResetTokenShouldBeSentTo(string $email): void
     {
-        $this->assertEmailContainsMessageTo(
-            'To reset your password, please visit the following link',
-            $email
-        );
+        $this->assertEmailContainsMessageTo('To reset your password, please visit the following link', $email);
     }
 
     /**

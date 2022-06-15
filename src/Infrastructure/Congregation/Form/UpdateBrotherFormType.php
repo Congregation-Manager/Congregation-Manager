@@ -17,21 +17,21 @@ final class UpdateBrotherFormType extends AbstractType
     {
         $builder
             ->add('firstName', TextType::class, [
-                'required' => true
+                'required' => true,
             ])
             ->add('lastName', TextType::class, [
-                'required' => true
+                'required' => true,
             ])
             ->add('middleName', TextType::class, [
-                'required' => false
+                'required' => false,
             ])
             ->add('birthDate', DateType::class, [
                 'widget' => 'single_text',
-                'required' => false
+                'required' => false,
             ])
             ->add('baptismDate', DateType::class, [
                 'widget' => 'single_text',
-                'required' => false
+                'required' => false,
             ])
         ;
     }

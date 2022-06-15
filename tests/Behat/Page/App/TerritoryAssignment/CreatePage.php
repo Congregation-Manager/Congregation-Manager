@@ -18,22 +18,29 @@ final class CreatePage extends SymfonyPage
 
     public function selectBrother(BrotherInterface $brother): void
     {
-        $this->getElement('brother')->selectOption((string) $brother);
+        $this->getElement('brother')
+            ->selectOption((string) $brother)
+        ;
     }
 
     public function isTerritorySelected(TerritoryInterface $territory): bool
     {
-        return $this->getElement('territory')->find('named', ['option', $territory->getName()])->hasAttribute('selected');
+        return $this->getElement('territory')
+            ->find('named', ['option', $territory->getName()])->hasAttribute('selected');
     }
 
     public function specifyAssignmentDate(DateTimeImmutable $assignmentDate): void
     {
-        $this->getElement('assignment-date')->setValue($assignmentDate->format('Y-m-d'));
+        $this->getElement('assignment-date')
+            ->setValue($assignmentDate->format('Y-m-d'))
+        ;
     }
 
     public function save(): void
     {
-        $this->getElement('save')->click();
+        $this->getElement('save')
+            ->click()
+        ;
     }
 
     protected function getDefinedElements(): array

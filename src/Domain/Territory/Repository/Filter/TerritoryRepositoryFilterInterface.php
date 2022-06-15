@@ -6,14 +6,17 @@ namespace CongregationManager\Domain\Territory\Repository\Filter;
 
 use CongregationManager\Domain\Congregation\Model\BrotherInterface;
 use CongregationManager\Domain\Territory\Model\AreaInterface;
-use CongregationManager\Infrastructure\Territory\Repository\Filter\QueryBuilderTerritoryRepositoryFilter;
 
 interface TerritoryRepositoryFilterInterface
 {
-    /** @return AreaInterface[] */
+    /**
+     * @return AreaInterface[]
+     */
     public function getAreas(): array;
 
-    /** @param AreaInterface[] $areas */
+    /**
+     * @param AreaInterface[] $areas
+     */
     public function setAreas(array $areas): void;
 
     public function isNotAssigned(): ?bool;

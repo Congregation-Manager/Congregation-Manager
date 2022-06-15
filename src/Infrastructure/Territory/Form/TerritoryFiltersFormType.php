@@ -45,7 +45,7 @@ final class TerritoryFiltersFormType extends AbstractType
                 'expanded' => false,
             ])
             ->add('filter', SubmitType::class, [
-                'label' => 'cm.ui.filter'
+                'label' => 'cm.ui.filter',
             ])
         ;
     }
@@ -53,7 +53,7 @@ final class TerritoryFiltersFormType extends AbstractType
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => QueryBuilderTerritoryRepositoryFilter::class
+            'data_class' => QueryBuilderTerritoryRepositoryFilter::class,
         ]);
     }
 }

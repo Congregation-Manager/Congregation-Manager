@@ -11,8 +11,9 @@ use CongregationManager\Domain\Territory\Repository\ProvinceRepositoryInterface;
 
 final class CreateProvince
 {
-    public function __construct(private ProvinceRepositoryInterface $provinceRepository)
-    {
+    public function __construct(
+        private ProvinceRepositoryInterface $provinceRepository
+    ) {
     }
 
     public function create(
@@ -20,11 +21,7 @@ final class CreateProvince
         string $name,
         ?string $description
     ): ProvinceInterface {
-        $province = new Province(
-            $congregation,
-            $name,
-            $description
-        );
+        $province = new Province($congregation, $name, $description);
         $this->provinceRepository->add($province);
 
         return $province;

@@ -13,7 +13,9 @@ use Symfony\Component\Security\Http\SecurityEvents;
 
 final class UserLocaleSubscriber implements EventSubscriberInterface
 {
-    /** @var string[] */
+    /**
+     * @var string[]
+     */
     private array $availableLocales;
 
     public function __construct(
@@ -32,12 +34,20 @@ final class UserLocaleSubscriber implements EventSubscriberInterface
 
     public function onInteractiveLogin(InteractiveLoginEvent $event): void
     {
-        /** @var SymfonyUserInterface|null|DomainUserInterface $user */
-        $user = $event->getAuthenticationToken()->getUser();
+        /** @var SymfonyUserInterface|DomainUserInterface|null $user */
+        $user = $event->getAuthenticationToken()
+            ->getUser()
+        ;
 
-        if (!$user instanceof DomainUserInterface || $user->getLocaleCode() === null || !in_array($user->getLocaleCode(), $this->availableLocales, true)) {
+        if (! $user instanceof DomainUserInterface || null === $user->getLocaleCode() || ! in_array(
+            $user->getLocaleCode(),
+            $this->availableLocales,
+            true
+        )) {
             return;
         }
-        $this->requestStack->getSession()->set('_locale', $user->getLocaleCode());
+        $this->requestStack->getSession()
+            ->set('_locale', $user->getLocaleCode())
+        ;
     }
 }

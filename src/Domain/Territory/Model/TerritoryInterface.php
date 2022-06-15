@@ -6,7 +6,6 @@ namespace CongregationManager\Domain\Territory\Model;
 
 use CongregationManager\Domain\Common\Model\AggregateRootInterface;
 use CongregationManager\Domain\Congregation\Model\CongregationInterface;
-use DateTimeInterface;
 use Doctrine\Common\Collections\Collection;
 
 interface TerritoryInterface extends AggregateRootInterface
@@ -27,7 +26,9 @@ interface TerritoryInterface extends AggregateRootInterface
 
     public function setDescription(?string $description): void;
 
-    /** @return Collection<array-key, TerritoryAssignmentInterface> */
+    /**
+     * @return Collection<array-key, TerritoryAssignmentInterface>
+     */
     public function getTerritoryAssignments(): Collection;
 
     public function addTerritoryAssignment(TerritoryAssignmentInterface $territoryAssignment): void;

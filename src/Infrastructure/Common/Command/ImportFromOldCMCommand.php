@@ -41,10 +41,14 @@ final class ImportFromOldCMCommand extends Command
 
     private const OLD_CONGREGATION_ID_ARGUMENT_CODE = 'old-congregation-id';
 
-    /** @psalm-suppress PropertyNotSetInConstructor */
+    /**
+     * @psalm-suppress PropertyNotSetInConstructor
+     */
     private SymfonyStyle $io;
 
-    /** @var array<int,BrotherInterface> */
+    /**
+     * @var array<int,BrotherInterface>
+     */
     private array $oldBrotherIds = [];
 
     public function __construct(
@@ -70,14 +74,30 @@ final class ImportFromOldCMCommand extends Command
         parent::__construct($name);
     }
 
+    public function validateOldCongregationId(mixed $oldCongregationId): int
+    {
+        if (empty($oldCongregationId)) {
+            throw new InvalidArgumentException('The old congregation id can not be empty.');
+        }
+        if (is_int($oldCongregationId)) {
+            return $oldCongregationId;
+        }
+        Assert::string($oldCongregationId);
+
+        return (int) $oldCongregationId;
+    }
+
     protected function configure(): void
     {
         $this
             ->setHelp($this->getCommandHelp())
-            ->addArgument(self::OLD_CONGREGATION_ID_ARGUMENT_CODE, InputArgument::REQUIRED, 'The old id of the congregation to import')
+            ->addArgument(
+                self::OLD_CONGREGATION_ID_ARGUMENT_CODE,
+                InputArgument::REQUIRED,
+                'The old id of the congregation to import'
+            )
         ;
     }
-
 
     protected function initialize(InputInterface $input, OutputInterface $output): void
     {
@@ -86,7 +106,7 @@ final class ImportFromOldCMCommand extends Command
 
     protected function interact(InputInterface $input, OutputInterface $output): void
     {
-        if ($input->getArgument(self::OLD_CONGREGATION_ID_ARGUMENT_CODE) !== null) {
+        if (null !== $input->getArgument(self::OLD_CONGREGATION_ID_ARGUMENT_CODE)) {
             return;
         }
 
@@ -95,12 +115,12 @@ final class ImportFromOldCMCommand extends Command
             'If you prefer to not use this interactive wizard, provide the',
             'arguments required by this command as follows:',
             '',
-            ' $ php bin/console ' . (string) $this->name . ' old-congregation-id',
+            ' $ php bin/console '.(string) $this->name.' old-congregation-id',
             '',
             'Now we\'ll ask you for the value of all the missing command arguments.',
         ]);
 
-        /** @var null|mixed $oldCongregationId */
+        /** @var mixed|null $oldCongregationId */
         $oldCongregationId = $input->getArgument(self::OLD_CONGREGATION_ID_ARGUMENT_CODE);
         if (null === $oldCongregationId) {
             /** @var int $oldCongregationId */
@@ -111,7 +131,7 @@ final class ImportFromOldCMCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        if (!$this->lock()) {
+        if (! $this->lock()) {
             $this->io->error('The command is already running in another process.');
 
             return Command::FAILURE;
@@ -120,10 +140,12 @@ final class ImportFromOldCMCommand extends Command
         $stopwatch->start('import-from-old-cm-command');
 
         // make sure to validate the user data is correct
-        $oldCongregationId = $this->validateOldCongregationId($input->getArgument(self::OLD_CONGREGATION_ID_ARGUMENT_CODE));
+        $oldCongregationId = $this->validateOldCongregationId(
+            $input->getArgument(self::OLD_CONGREGATION_ID_ARGUMENT_CODE)
+        );
         $oldCongregation = $this->oldCongregationRepository->findOneById($oldCongregationId);
 
-        if (count($oldCongregation) === 0) {
+        if (0 === count($oldCongregation)) {
             $this->io->error('No old congregation founded');
 
             return Command::FAILURE;
@@ -138,33 +160,26 @@ final class ImportFromOldCMCommand extends Command
         $this->entityManager->flush();
 
         $event = $stopwatch->stop('import-from-old-cm-command');
-        $this->io->comment(sprintf('Elapsed time: %.2f ms / Consumed memory: %.2f MB', $event->getDuration(), $event->getMemory() / (1024 ** 2)));
+        $this->io->comment(
+            sprintf(
+                'Elapsed time: %.2f ms / Consumed memory: %.2f MB',
+                $event->getDuration(),
+                $event->getMemory() / (1024 ** 2)
+            )
+        );
 
         $this->release();
 
         return Command::SUCCESS;
     }
 
-    public function validateOldCongregationId(mixed $oldCongregationId): int
-    {
-        if (empty($oldCongregationId)) {
-            throw new InvalidArgumentException('The old congregation id can not be empty.');
-        }
-        if (is_int($oldCongregationId)) {
-            return $oldCongregationId;
-        }
-        Assert::string($oldCongregationId);
-
-        return (int) $oldCongregationId;
-    }
-
     private function getCommandHelp(): string
     {
-        return <<<'HELP'
+        return <<<'CODE_SAMPLE'
             The <info>%command.name%</info> command imports congregation, brothers and users from an old CM congregation:
 
               <info>php %command.full_name%</info> <comment>old-congregation-id</comment>
-            HELP;
+            CODE_SAMPLE;
     }
 
     private function importBrothersAndAppUsers(int $oldCongregationId, CongregationInterface $congregation): void
@@ -174,24 +189,18 @@ final class ImportFromOldCMCommand extends Command
                 $oldBrother['name'],
                 $oldBrother['surname'],
                 $congregation,
-                (bool)$oldBrother['male'],
+                (bool) $oldBrother['male'],
                 $oldBrother['middle_name'],
                 $oldBrother['birth_date'] ? new DateTime($oldBrother['birth_date']) : null,
                 $oldBrother['baptism_date'] ? new DateTime($oldBrother['baptism_date']) : null,
             );
             $this->oldBrotherIds[(int) $oldBrother['id']] = $brother;
-            $oldAppUser = $this->oldAppUserRepository->findOneByBrother((int)$oldBrother['id']);
-            if (count($oldAppUser) === 0) {
+            $oldAppUser = $this->oldAppUserRepository->findOneByBrother((int) $oldBrother['id']);
+            if (0 === count($oldAppUser)) {
                 continue;
             }
             $oldAppUser = reset($oldAppUser);
-            $this->createAppUser->create(
-                $brother,
-                $oldAppUser['email'],
-                null,
-                'it',
-                $oldAppUser['password']
-            );
+            $this->createAppUser->create($brother, $oldAppUser['email'], null, 'it', $oldAppUser['password']);
         }
     }
 
@@ -203,31 +212,45 @@ final class ImportFromOldCMCommand extends Command
                 $oldProvince['name'],
                 $oldProvince['description'],
             );
-            foreach ($this->oldMunicipalityRepository->findAllByCongregationAndProvince($oldCongregationId, (int)$oldProvince['id']) as $oldMunicipality) {
+            foreach ($this->oldMunicipalityRepository->findAllByCongregationAndProvince(
+                $oldCongregationId,
+                (int) $oldProvince['id']
+            ) as $oldMunicipality) {
                 $municipality = $this->createMunicipality->create(
                     $congregation,
                     $province,
                     $oldMunicipality['name'],
                     $oldMunicipality['description'],
                 );
-                foreach ($this->oldAreaRepository->findAllByCongregationAndMunicipality($oldCongregationId, (int)$oldMunicipality['id']) as $oldArea) {
+                foreach ($this->oldAreaRepository->findAllByCongregationAndMunicipality(
+                    $oldCongregationId,
+                    (int) $oldMunicipality['id']
+                ) as $oldArea) {
                     $area = $this->createArea->create(
                         $congregation,
                         $municipality,
                         $oldArea['name'],
                         $oldArea['description'],
                     );
-                    foreach ($this->oldTerritoryRepository->findAllByCongregationAndArea($oldCongregationId, (int)$oldArea['id']) as $oldTerritory) {
+                    foreach ($this->oldTerritoryRepository->findAllByCongregationAndArea(
+                        $oldCongregationId,
+                        (int) $oldArea['id']
+                    ) as $oldTerritory) {
                         $territory = $this->createTerritory->create(
                             $congregation,
                             $area,
                             $oldTerritory['name'],
                             $oldTerritory['description'],
                         );
-                        foreach ($this->oldTerritoryAssignmentRepository->findAllByTerritoryId((int)$oldTerritory['id']) as $oldTerritoryAssignment) {
+                        foreach ($this->oldTerritoryAssignmentRepository->findAllByTerritoryId(
+                            (int) $oldTerritory['id']
+                        ) as $oldTerritoryAssignment) {
                             $brother = null;
-                            if ($oldTerritoryAssignment['brother_id'] !== null) {
-                                if (!array_key_exists((int) $oldTerritoryAssignment['brother_id'], $this->oldBrotherIds)) {
+                            if (null !== $oldTerritoryAssignment['brother_id']) {
+                                if (! array_key_exists(
+                                    (int) $oldTerritoryAssignment['brother_id'],
+                                    $this->oldBrotherIds
+                                )) {
                                     throw new RuntimeException(sprintf(
                                         'Unable to create the territory assignment for brother "%s" and territory "%s", brother not found.',
                                         $oldTerritoryAssignment['brother_id'],
@@ -240,7 +263,9 @@ final class ImportFromOldCMCommand extends Command
                                 $territory,
                                 new DateTime($oldTerritoryAssignment['assignment_date']),
                                 $brother,
-                                $oldTerritoryAssignment['revocation_date'] !== null ? new DateTime($oldTerritoryAssignment['revocation_date']) : null
+                                null !== $oldTerritoryAssignment['revocation_date'] ? new DateTime(
+                                    $oldTerritoryAssignment['revocation_date']
+                                ) : null
                             );
                         }
                     }

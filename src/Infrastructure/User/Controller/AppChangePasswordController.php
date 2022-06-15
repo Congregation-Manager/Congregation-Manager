@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace CongregationManager\Infrastructure\User\Controller;
 
 use CongregationManager\Infrastructure\User\Form\ChangePasswordFormType;
@@ -27,25 +29,29 @@ final class AppChangePasswordController extends AbstractController
     public function update(Request $request): Response
     {
         $user = $this->security->getUser();
-        if ($user === null) {
+        if (null === $user) {
             throw new AccessDeniedHttpException();
         }
-        if (!$user instanceof UserInterface) {
+        if (! $user instanceof UserInterface) {
             throw new \LogicException();
         }
-        $changePasswordForm = $this->createForm(ChangePasswordFormType::class, $user, ['actual_password' => true]);
+        $changePasswordForm = $this->createForm(ChangePasswordFormType::class, $user, [
+            'actual_password' => true,
+        ]);
         $changePasswordForm->handleRequest($request);
 
         if ($changePasswordForm->isSubmitted() && $changePasswordForm->isValid()) {
-            $plainPassword = $changePasswordForm->get('plainPassword')->getData();
-            if (!is_string($plainPassword)) {
-                throw new \InvalidArgumentException(sprintf('Password input not valid! Expected string, actual %s', gettype($plainPassword)));
+            $plainPassword = $changePasswordForm->get('plainPassword')
+                ->getData()
+            ;
+            if (! is_string($plainPassword)) {
+                throw new \InvalidArgumentException(sprintf(
+                    'Password input not valid! Expected string, actual %s',
+                    gettype($plainPassword)
+                ));
             }
             // Encode(hash) the plain password, and set it.
-            $encodedPassword = $this->userPasswordHasher->hashPassword(
-                $user,
-                $plainPassword
-            );
+            $encodedPassword = $this->userPasswordHasher->hashPassword($user, $plainPassword);
 
             $user->setPassword($encodedPassword);
             $this->entityManager->flush();

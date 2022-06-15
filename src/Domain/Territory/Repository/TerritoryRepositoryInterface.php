@@ -10,10 +10,14 @@ use CongregationManager\Domain\Territory\Repository\Filter\TerritoryRepositoryFi
 
 interface TerritoryRepositoryInterface
 {
-    /** @return TerritoryInterface[] */
+    /**
+     * @return TerritoryInterface[]
+     */
     public function findAll();
 
-    /** @return TerritoryInterface|null */
+    /**
+     * @return TerritoryInterface|null
+     */
     public function find(int $id);
 
     public function add(TerritoryInterface $territory): void;

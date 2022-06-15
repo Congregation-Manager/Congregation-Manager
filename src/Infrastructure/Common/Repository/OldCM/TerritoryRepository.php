@@ -13,11 +13,13 @@ final class TerritoryRepository
     ) {
     }
 
-    /** @return array<array-key, array{id: string, name: string, description: string, congregation_id: string}> */
+    /**
+     * @return array<array-key, array{id: string, name: string, description: string, congregation_id: string}>
+     */
     public function findAllByCongregationAndArea(int $congregationId, int $areaId): array
     {
         /** @var array<array-key, array{id: string, name: string, description: string, congregation_id: string}> $results */
-        $results = $this->connection->createQueryBuilder()
+        return $this->connection->createQueryBuilder()
             ->select('*')
             ->from('territories')
             ->where('congregation_id = :congregation_id')
@@ -26,6 +28,5 @@ final class TerritoryRepository
             ->setParameter('area_id', $areaId)
             ->fetchAllAssociative()
         ;
-        return $results;
     }
 }

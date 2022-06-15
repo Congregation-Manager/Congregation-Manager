@@ -15,17 +15,23 @@ final class CompleteAccountPage extends SymfonyPage implements CompleteAccountPa
 
     public function specifyPassword(string $password): void
     {
-        $this->getElement('password')->setValue($password);
+        $this->getElement('password')
+            ->setValue($password)
+        ;
     }
 
     public function confirmPassword(string $password): void
     {
-        $this->getElement('confirm_password')->setValue($password);
+        $this->getElement('confirm_password')
+            ->setValue($password)
+        ;
     }
 
     public function complete(): void
     {
-        $this->getElement('submit_button')->click();
+        $this->getElement('submit_button')
+            ->click()
+        ;
     }
 
     protected function getDefinedElements(): array
@@ -33,7 +39,7 @@ final class CompleteAccountPage extends SymfonyPage implements CompleteAccountPa
         return array_merge(parent::getDefinedElements(), [
             'password' => '#complete_account_form_plainPassword_first',
             'confirm_password' => '#complete_account_form_plainPassword_second',
-            'submit_button' => '[data-test-submit]'
+            'submit_button' => '[data-test-submit]',
         ]);
     }
 }

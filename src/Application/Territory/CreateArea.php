@@ -12,8 +12,9 @@ use CongregationManager\Domain\Territory\Repository\AreaRepositoryInterface;
 
 final class CreateArea
 {
-    public function __construct(private AreaRepositoryInterface $areaRepository)
-    {
+    public function __construct(
+        private AreaRepositoryInterface $areaRepository
+    ) {
     }
 
     public function create(
@@ -22,12 +23,7 @@ final class CreateArea
         string $name,
         ?string $description
     ): AreaInterface {
-        $area = new Area(
-            $congregation,
-            $municipality,
-            $name,
-            $description
-        );
+        $area = new Area($congregation, $municipality, $name, $description);
         $this->areaRepository->add($area);
 
         return $area;

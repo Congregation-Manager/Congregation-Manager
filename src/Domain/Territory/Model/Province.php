@@ -11,7 +11,9 @@ use Doctrine\Common\Collections\Collection;
 
 class Province extends AggregateRoot implements ProvinceInterface
 {
-    /** @var Collection<array-key, MunicipalityInterface> */
+    /**
+     * @var Collection<array-key, MunicipalityInterface>
+     */
     protected Collection $municipalities;
 
     public function __construct(
@@ -52,7 +54,9 @@ class Province extends AggregateRoot implements ProvinceInterface
         $this->description = $description;
     }
 
-    /** @return Collection<array-key, MunicipalityInterface> */
+    /**
+     * @return Collection<array-key, MunicipalityInterface>
+     */
     public function getMunicipalities(): Collection
     {
         return $this->municipalities;
@@ -60,7 +64,7 @@ class Province extends AggregateRoot implements ProvinceInterface
 
     public function addMunicipality(MunicipalityInterface $municipality): void
     {
-        if (!$this->municipalities->contains($municipality)) {
+        if (! $this->municipalities->contains($municipality)) {
             $this->municipalities->add($municipality);
         }
     }

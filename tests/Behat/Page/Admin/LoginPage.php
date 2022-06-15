@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace CongregationManager\Tests\Behat\Page\Admin;
 
 use Behat\Mink\Element\NodeElement;
@@ -7,7 +9,9 @@ use FriendsOfBehat\PageObjectExtension\Page\SymfonyPage;
 
 final class LoginPage extends SymfonyPage implements LoginPageInterface
 {
-    protected static $additionalParameters = ['_locale' => 'en'];
+    protected static $additionalParameters = [
+        '_locale' => 'en',
+    ];
 
     public function getRouteName(): string
     {
@@ -16,22 +20,30 @@ final class LoginPage extends SymfonyPage implements LoginPageInterface
 
     public function specifyEmail(string $email): void
     {
-        $this->getElement('username')->setValue($email);
+        $this->getElement('username')
+            ->setValue($email)
+        ;
     }
 
     public function specifyPassword(string $password): void
     {
-        $this->getElement('password')->setValue($password);
+        $this->getElement('password')
+            ->setValue($password)
+        ;
     }
 
     public function signIn(): void
     {
-        $this->getElement('signin_button')->click();
+        $this->getElement('signin_button')
+            ->click()
+        ;
     }
 
     public function getActiveLocale(): string
     {
-        return $this->getElement('active_locale')->getText();
+        return $this->getElement('active_locale')
+            ->getText()
+        ;
     }
 
     public function getAvailableLocales(): array
@@ -40,13 +52,16 @@ final class LoginPage extends SymfonyPage implements LoginPageInterface
             static function (NodeElement $element) {
                 return $element->getText();
             },
-            $this->getElement('locale_selector')->findAll('css', '[data-test-available-locale]')
+            $this->getElement('locale_selector')
+                ->findAll('css', '[data-test-available-locale]')
         );
     }
 
     public function switchLocale(string $locale): void
     {
-        $this->getElement('locale_selector')->clickLink($locale);
+        $this->getElement('locale_selector')
+            ->clickLink($locale)
+        ;
     }
 
     protected function getDefinedElements(): array

@@ -8,10 +8,14 @@ use CongregationManager\Domain\Congregation\Model\BrotherInterface;
 
 interface BrotherRepositoryInterface
 {
-    /** @return BrotherInterface[] */
+    /**
+     * @return BrotherInterface[]
+     */
     public function findAll();
 
-    /** @return BrotherInterface|null */
+    /**
+     * @return BrotherInterface|null
+     */
     public function find(int $id);
 
     /**

@@ -52,14 +52,14 @@ final class TerritoryController extends AbstractController
 
         return $this->renderForm('app/territory/index.html.twig', [
             'pagination' => $pagination,
-            'form' => $form
+            'form' => $form,
         ]);
     }
 
     public function show(int $id, Request $request): Response
     {
         $territory = $this->territoryRepository->find($id);
-        if ($territory === null) {
+        if (null === $territory) {
             throw new NotFoundHttpException();
         }
 

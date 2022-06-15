@@ -6,8 +6,5 @@ namespace CongregationManager\Infrastructure\Common\Context;
 
 interface LocaleContextInterface
 {
-    /**
-     * @throws LocaleNotFoundException
-     */
     public function getLocaleCode(): string;
 }

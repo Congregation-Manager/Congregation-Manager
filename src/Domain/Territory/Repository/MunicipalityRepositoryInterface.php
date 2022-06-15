@@ -8,10 +8,14 @@ use CongregationManager\Domain\Territory\Model\MunicipalityInterface;
 
 interface MunicipalityRepositoryInterface
 {
-    /** @return MunicipalityInterface[] */
+    /**
+     * @return MunicipalityInterface[]
+     */
     public function findAll();
 
-    /** @return MunicipalityInterface|null */
+    /**
+     * @return MunicipalityInterface|null
+     */
     public function find(int $id);
 
     public function add(MunicipalityInterface $municipality): void;

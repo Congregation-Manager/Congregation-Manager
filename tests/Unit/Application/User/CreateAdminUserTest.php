@@ -14,7 +14,11 @@ use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
 use Prophecy\Prophecy\ObjectProphecy;
 
-class CreateAdminUserTest extends TestCase
+/**
+ * @internal
+ * @coversNothing
+ */
+final class CreateAdminUserTest extends TestCase
 {
     use ProphecyTrait;
 
@@ -22,44 +26,48 @@ class CreateAdminUserTest extends TestCase
 
     private CreateAdminUser $createAdminUser;
 
-    /** @var ObjectProphecy|UserPasswordHasherInterface  */
+    /**
+     * @var ObjectProphecy|UserPasswordHasherInterface
+     */
     private $userPasswordHasher;
 
     protected function setUp(): void
     {
         $this->adminUserRepository = new AdminUserRepository();
         $this->userPasswordHasher = $this->prophesize(UserPasswordHasherInterface::class);
-        $this->userPasswordHasher->hashPasswordForUser('p455w0rd', Argument::type(UserInterface::class))->willReturn('3r34fQDEWw3d');
+        $this->userPasswordHasher->hashPasswordForUser('p455w0rd', Argument::type(UserInterface::class))->willReturn(
+            '3r34fQDEWw3d'
+        );
         $this->createAdminUser = new CreateAdminUser($this->adminUserRepository, $this->userPasswordHasher->reveal());
     }
 
-    public function test_that_it_creates_a_new_admin_user(): void
+    public function testThatItCreatesANewAdminUser(): void
     {
         $adminUser = $this->createAdminUser->create('info@email.com', 'p455w0rd', 'it_IT');
 
-        $this->assertEquals('info@email.com', $adminUser->getEmail());
-        $this->assertEquals('3r34fQDEWw3d', $adminUser->getPassword());
-        $this->assertEquals('it_IT', $adminUser->getLocaleCode());
-        $this->assertEquals($this->adminUserRepository->findAll()->first(), $adminUser);
+        $this->assertSame('info@email.com', $adminUser->getEmail());
+        $this->assertSame('3r34fQDEWw3d', $adminUser->getPassword());
+        $this->assertSame('it_IT', $adminUser->getLocaleCode());
+        $this->assertSame($this->adminUserRepository->findAll()->first(), $adminUser);
     }
 
-    public function test_that_it_creates_a_new_admin_user_without_password_if_not_specified(): void
+    public function testThatItCreatesANewAdminUserWithoutPasswordIfNotSpecified(): void
     {
         $adminUser = $this->createAdminUser->create('info@email.com', null, 'it_IT');
 
-        $this->assertEquals('info@email.com', $adminUser->getEmail());
+        $this->assertSame('info@email.com', $adminUser->getEmail());
         $this->assertNull($adminUser->getPassword());
-        $this->assertEquals('it_IT', $adminUser->getLocaleCode());
-        $this->assertEquals($this->adminUserRepository->findAll()->first(), $adminUser);
+        $this->assertSame('it_IT', $adminUser->getLocaleCode());
+        $this->assertSame($this->adminUserRepository->findAll()->first(), $adminUser);
     }
 
-    public function test_that_it_creates_a_new_admin_user_without_locale_if_not_specified(): void
+    public function testThatItCreatesANewAdminUserWithoutLocaleIfNotSpecified(): void
     {
         $adminUser = $this->createAdminUser->create('info@email.com', 'p455w0rd', null);
 
-        $this->assertEquals('info@email.com', $adminUser->getEmail());
-        $this->assertEquals('3r34fQDEWw3d', $adminUser->getPassword());
+        $this->assertSame('info@email.com', $adminUser->getEmail());
+        $this->assertSame('3r34fQDEWw3d', $adminUser->getPassword());
         $this->assertNull($adminUser->getLocaleCode());
-        $this->assertEquals($this->adminUserRepository->findAll()->first(), $adminUser);
+        $this->assertSame($this->adminUserRepository->findAll()->first(), $adminUser);
     }
 }

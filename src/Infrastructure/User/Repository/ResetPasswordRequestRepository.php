@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace CongregationManager\Infrastructure\User\Repository;
 
 use CongregationManager\Domain\User\Exception\Factory\UserInstanceNotValidFactory;
@@ -21,9 +23,11 @@ use SymfonyCasts\Bundle\ResetPassword\Persistence\ResetPasswordRequestRepository
  * @method ResetPasswordRequestInterface|null find($id, $lockMode = null, $lockVersion = null)
  * @method ResetPasswordRequestInterface|null findOneBy(array $criteria, array $orderBy = null)
  * @psalm-method list<ResetPasswordRequestInterface> findAll()
- * @method ResetPasswordRequestInterface[]    findAll()
+ *
+ * @method ResetPasswordRequestInterface[] findAll()
  * @psalm-method list<ResetPasswordRequestInterface> findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
- * @method ResetPasswordRequestInterface[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ *
+ * @method ResetPasswordRequestInterface[] findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
 class ResetPasswordRequestRepository extends ServiceEntityRepository implements ResetPasswordRequestRepositoryInterface, SymfonyResetPasswordRequestRepositoryInterface
 {
@@ -34,11 +38,16 @@ class ResetPasswordRequestRepository extends ServiceEntityRepository implements 
         parent::__construct($registry, ResetPasswordRequest::class);
     }
 
-    public function createResetPasswordRequest(object $user, \DateTimeInterface $expiresAt, string $selector, string $hashedToken): ResetPasswordRequestInterface
-    {
-        if (!$user instanceof UserInterface) {
+    public function createResetPasswordRequest(
+        object $user,
+        \DateTimeInterface $expiresAt,
+        string $selector,
+        string $hashedToken
+    ): ResetPasswordRequestInterface {
+        if (! $user instanceof UserInterface) {
             throw UserInstanceNotValidFactory::createWithInstanceClass(get_class($user));
         }
+
         return new ResetPasswordRequest($user, $expiresAt, $selector, $hashedToken);
     }
 
@@ -63,7 +72,7 @@ class ResetPasswordRequestRepository extends ServiceEntityRepository implements 
             ->getOneorNullResult()
         ;
 
-        if (null !== $resetPasswordRequest && !$resetPasswordRequest->isExpired()) {
+        if (null !== $resetPasswordRequest && ! $resetPasswordRequest->isExpired()) {
             return $resetPasswordRequest->getRequestedAt();
         }
 

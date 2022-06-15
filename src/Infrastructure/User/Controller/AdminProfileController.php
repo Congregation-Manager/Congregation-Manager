@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace CongregationManager\Infrastructure\User\Controller;
 
 use CongregationManager\Infrastructure\User\Form\ChangeEmailFormType;
@@ -25,10 +27,10 @@ final class AdminProfileController extends AbstractController
     public function update(Request $request): Response
     {
         $user = $this->security->getUser();
-        if ($user === null) {
+        if (null === $user) {
             throw new AccessDeniedHttpException();
         }
-        if (!$user instanceof UserInterface) {
+        if (! $user instanceof UserInterface) {
             throw new \LogicException();
         }
         $changeEmailForm = $this->createForm(ChangeEmailFormType::class, $user);
@@ -40,6 +42,7 @@ final class AdminProfileController extends AbstractController
 
             return $this->redirectToRoute('admin_dashboard');
         }
+
         return $this->renderForm('admin/profile/update.html.twig', [
             'changeEmailForm' => $changeEmailForm,
         ]);

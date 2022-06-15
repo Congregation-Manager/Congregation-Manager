@@ -16,9 +16,11 @@ use Doctrine\Persistence\ManagerRegistry;
  * @method MunicipalityInterface|null find($id, $lockMode = null, $lockVersion = null)
  * @method MunicipalityInterface|null findOneBy(array $criteria, array $orderBy = null)
  * @psalm-method list<MunicipalityInterface> findAll()
- * @method MunicipalityInterface[]    findAll()
+ *
+ * @method MunicipalityInterface[] findAll()
  * @psalm-method list<MunicipalityInterface> findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
- * @method MunicipalityInterface[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ *
+ * @method MunicipalityInterface[] findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
 final class MunicipalityRepository extends ServiceEntityRepository implements MunicipalityRepositoryInterface
 {

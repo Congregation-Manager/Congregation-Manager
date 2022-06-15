@@ -1,5 +1,6 @@
 <?php
 
+declare(strict_types=1);
 
 namespace CongregationManager\Infrastructure\Common\Controller;
 
@@ -10,12 +11,13 @@ use Symfony\Component\HttpFoundation\Response;
 /** @psalm-suppress PropertyNotSetInConstructor */
 final class HomePageController extends AbstractController
 {
-    /** @var string[] */
+    /**
+     * @var string[]
+     */
     private array $availableLocales;
 
-    public function __construct(
-        string $availableLocales
-    ) {
+    public function __construct(string $availableLocales)
+    {
         $this->availableLocales = explode('|', $availableLocales);
     }
 

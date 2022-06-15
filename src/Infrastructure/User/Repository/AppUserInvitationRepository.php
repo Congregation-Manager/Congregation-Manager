@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace CongregationManager\Infrastructure\User\Repository;
 
 use CongregationManager\Domain\User\Model\AppUserInvitation as DomainAppUserInvitation;
@@ -14,9 +16,11 @@ use Doctrine\Persistence\ManagerRegistry;
  * @method AppUserInvitation|null find($id, $lockMode = null, $lockVersion = null)
  * @method AppUserInvitation|null findOneBy(array $criteria, array $orderBy = null)
  * @psalm-method list<AppUserInvitation> findAll()
- * @method AppUserInvitation[]    findAll()
+ *
+ * @method AppUserInvitation[] findAll()
  * @psalm-method list<AppUserInvitation> findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
- * @method AppUserInvitation[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ *
+ * @method AppUserInvitation[] findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
 class AppUserInvitationRepository extends ServiceEntityRepository implements AppUserInvitationRepositoryInterface
 {
@@ -32,7 +36,9 @@ class AppUserInvitationRepository extends ServiceEntityRepository implements App
 
     public function findByToken(string $token): ?DomainAppUserInvitation
     {
-        return $this->findOneBy(['token' => $token]);
+        return $this->findOneBy([
+            'token' => $token,
+        ]);
     }
 
     public function remove(DomainAppUserInvitation $appUserInvitation): void

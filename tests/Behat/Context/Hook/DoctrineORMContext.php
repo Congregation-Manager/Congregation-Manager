@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace CongregationManager\Tests\Behat\Context\Hook;
 
 use Behat\Behat\Context\Context;
@@ -18,7 +20,10 @@ final class DoctrineORMContext implements Context
      */
     public function purgeDatabase(): void
     {
-        $this->entityManager->getConnection()->getConfiguration()->setSQLLogger(null);
+        $this->entityManager->getConnection()
+            ->getConfiguration()
+            ->setSQLLogger(null)
+        ;
         $purger = new ORMPurger($this->entityManager);
         $purger->purge();
         $this->entityManager->clear();

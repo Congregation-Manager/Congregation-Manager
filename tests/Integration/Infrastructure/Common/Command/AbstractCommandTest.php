@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace CongregationManager\Tests\Integration\Infrastructure\Common\Command;
 
 use Symfony\Bundle\FrameworkBundle\Console\Application;
@@ -10,8 +12,7 @@ use Symfony\Component\Console\Tester\CommandTester;
 abstract class AbstractCommandTest extends KernelTestCase
 {
     /**
-     * This helper method abstracts the boilerplate code needed to test the
-     * execution of a command.
+     * This helper method abstracts the boilerplate code needed to test the execution of a command.
      *
      * @param array $arguments All the arguments passed when executing the command
      * @param array $inputs    The (optional) answers given to the command when it asks for the value of the missing arguments

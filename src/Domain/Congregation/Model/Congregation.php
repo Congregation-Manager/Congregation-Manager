@@ -14,19 +14,29 @@ use Doctrine\Common\Collections\Collection;
 
 class Congregation extends AggregateRoot implements CongregationInterface
 {
-    /** @var Collection<array-key, BrotherInterface> */
+    /**
+     * @var Collection<array-key, BrotherInterface>
+     */
     protected Collection $brothers;
 
-    /** @var Collection<array-key, ProvinceInterface> */
+    /**
+     * @var Collection<array-key, ProvinceInterface>
+     */
     protected Collection $provinces;
 
-    /** @var Collection<array-key, MunicipalityInterface> */
+    /**
+     * @var Collection<array-key, MunicipalityInterface>
+     */
     protected Collection $municipalities;
 
-    /** @var Collection<array-key, AreaInterface> */
+    /**
+     * @var Collection<array-key, AreaInterface>
+     */
     protected Collection $areas;
 
-    /** @var Collection<array-key, TerritoryInterface> */
+    /**
+     * @var Collection<array-key, TerritoryInterface>
+     */
     protected Collection $territories;
 
     public function __construct(
@@ -49,7 +59,9 @@ class Congregation extends AggregateRoot implements CongregationInterface
         $this->name = $name;
     }
 
-    /** @return Collection<array-key, BrotherInterface> */
+    /**
+     * @return Collection<array-key, BrotherInterface>
+     */
     public function getBrothers(): Collection
     {
         return $this->brothers;
@@ -57,7 +69,7 @@ class Congregation extends AggregateRoot implements CongregationInterface
 
     public function addBrother(BrotherInterface $brother): void
     {
-        if (!$this->brothers->contains($brother)) {
+        if (! $this->brothers->contains($brother)) {
             $this->brothers->add($brother);
         }
     }
@@ -69,7 +81,9 @@ class Congregation extends AggregateRoot implements CongregationInterface
         }
     }
 
-    /** @return Collection<array-key, ProvinceInterface> */
+    /**
+     * @return Collection<array-key, ProvinceInterface>
+     */
     public function getProvinces(): Collection
     {
         return $this->provinces;
@@ -77,7 +91,7 @@ class Congregation extends AggregateRoot implements CongregationInterface
 
     public function addProvince(ProvinceInterface $province): void
     {
-        if (!$this->provinces->contains($province)) {
+        if (! $this->provinces->contains($province)) {
             $this->provinces->add($province);
         }
     }
@@ -89,19 +103,25 @@ class Congregation extends AggregateRoot implements CongregationInterface
         }
     }
 
-    /** @return Collection<array-key, MunicipalityInterface> */
+    /**
+     * @return Collection<array-key, MunicipalityInterface>
+     */
     public function getMunicipalities(): Collection
     {
         return $this->municipalities;
     }
 
-    /** @return Collection<array-key, AreaInterface> */
+    /**
+     * @return Collection<array-key, AreaInterface>
+     */
     public function getAreas(): Collection
     {
         return $this->areas;
     }
 
-    /** @return Collection<array-key, TerritoryInterface> */
+    /**
+     * @return Collection<array-key, TerritoryInterface>
+     */
     public function getTerritories(): Collection
     {
         return $this->territories;

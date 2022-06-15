@@ -17,15 +17,9 @@ final class CreateAppUserInvitation
     ) {
     }
 
-    public function create(
-        BrotherInterface $brother,
-        string $email
-    ): AppUserInvitation {
-        $appUserInvitation = new AppUserInvitation(
-            $brother,
-            $email,
-            $this->tokenGenerator->generate()
-        );
+    public function create(BrotherInterface $brother, string $email): AppUserInvitation
+    {
+        $appUserInvitation = new AppUserInvitation($brother, $email, $this->tokenGenerator->generate());
         $this->invitationRepository->add($appUserInvitation);
 
         return $appUserInvitation;

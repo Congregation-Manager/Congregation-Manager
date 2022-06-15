@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace CongregationManager\Tests\Behat\Services;
 
 use Symfony\Component\Mailer\Exception\UnsupportedSchemeException;
@@ -14,17 +16,17 @@ final class BehatMailerFactory extends AbstractTransportFactory
     ) {
     }
 
-    protected function getSupportedSchemes(): array
-    {
-        return ['behat'];
-    }
-
     public function create(Dsn $dsn): TransportInterface
     {
-        if (!\in_array($dsn->getScheme(), $this->getSupportedSchemes(), true)) {
+        if (! \in_array($dsn->getScheme(), $this->getSupportedSchemes(), true)) {
             throw new UnsupportedSchemeException($dsn, 'behat', $this->getSupportedSchemes());
         }
 
         return $this->fakeMailerTransport;
+    }
+
+    protected function getSupportedSchemes(): array
+    {
+        return ['behat'];
     }
 }

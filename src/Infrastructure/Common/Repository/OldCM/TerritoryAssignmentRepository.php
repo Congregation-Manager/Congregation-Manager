@@ -13,17 +13,18 @@ final class TerritoryAssignmentRepository
     ) {
     }
 
-    /** @return array<array-key, array{id: string, brother_id: ?string, campaign_id: ?string, assignment_date: string, revocation_date: ?string}> */
+    /**
+     * @return array<array-key, array{id: string, brother_id: ?string, campaign_id: ?string, assignment_date: string, revocation_date: ?string}>
+     */
     public function findAllByTerritoryId(int $territoryId): array
     {
         /** @var array<array-key, array{id: string, brother_id: string, campaign_id: string, assignment_date: string, revocation_date: string}> $results */
-        $results = $this->connection->createQueryBuilder()
+        return $this->connection->createQueryBuilder()
             ->select('*')
             ->from('territory_assignment')
             ->where('territory_id = :territory_id')
             ->setParameter('territory_id', $territoryId)
             ->fetchAllAssociative()
         ;
-        return $results;
     }
 }

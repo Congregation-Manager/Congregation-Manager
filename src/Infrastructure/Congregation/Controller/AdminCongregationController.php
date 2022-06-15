@@ -21,6 +21,7 @@ final class AdminCongregationController extends AbstractController
     public function index(Request $request): Response
     {
         $congregations = $this->congregationRepository->findAll();
+
         return $this->render('admin/congregation/index.html.twig', [
             'congregations' => $congregations,
         ]);
@@ -29,7 +30,7 @@ final class AdminCongregationController extends AbstractController
     public function show(Request $request, int $id): Response
     {
         $congregation = $this->congregationRepository->find($id);
-        if ($congregation === null) {
+        if (null === $congregation) {
             throw new NotFoundHttpException();
         }
 

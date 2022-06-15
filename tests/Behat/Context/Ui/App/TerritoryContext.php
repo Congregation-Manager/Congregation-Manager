@@ -23,7 +23,9 @@ final class TerritoryContext implements Context
      */
     public function iShouldBeRedirectedToTerritoryPage(TerritoryInterface $territory): void
     {
-        $this->showPage->verify(['id' => $territory->getId()]);
+        $this->showPage->verify([
+            'id' => $territory->getId(),
+        ]);
     }
 
     /**
@@ -47,6 +49,9 @@ final class TerritoryContext implements Context
      */
     public function theFirstTerritoryAssignmentShouldBeAssignedStartingFrom(string $assignmentDate): void
     {
-        Assert::eq($this->showPage->getFirstTerritoryAssignmentAssignmentDate(), new DateTimeImmutable($assignmentDate));
+        Assert::eq(
+            $this->showPage->getFirstTerritoryAssignmentAssignmentDate(),
+            new DateTimeImmutable($assignmentDate)
+        );
     }
 }

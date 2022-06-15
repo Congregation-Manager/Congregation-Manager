@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace CongregationManager\Infrastructure\User\Form;
 
 use Symfony\Component\Form\AbstractType;
@@ -18,9 +20,7 @@ class ChangePasswordFormType extends AbstractType
         if ($options['actual_password']) {
             $builder->add('oldPassword', PasswordType::class, [
                 'mapped' => false,
-                'constraints' => [
-                    new UserPassword()
-                ],
+                'constraints' => [new UserPassword()],
                 'label' => 'cm.label.old_password',
             ]);
         }
@@ -28,7 +28,9 @@ class ChangePasswordFormType extends AbstractType
             ->add('plainPassword', RepeatedType::class, [
                 'type' => PasswordType::class,
                 'first_options' => [
-                    'attr' => ['autocomplete' => 'new-password'],
+                    'attr' => [
+                        'autocomplete' => 'new-password',
+                    ],
                     'constraints' => [
                         new NotBlank([
                             'message' => 'cm.password.not_blank',
@@ -43,7 +45,9 @@ class ChangePasswordFormType extends AbstractType
                     'label' => 'cm.label.new_password',
                 ],
                 'second_options' => [
-                    'attr' => ['autocomplete' => 'new-password'],
+                    'attr' => [
+                        'autocomplete' => 'new-password',
+                    ],
                     'label' => 'cm.label.repeat_password',
                 ],
                 'invalid_message' => 'cm.password.must_match',
@@ -57,7 +61,7 @@ class ChangePasswordFormType extends AbstractType
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'actual_password' => false
+            'actual_password' => false,
         ]);
     }
 }

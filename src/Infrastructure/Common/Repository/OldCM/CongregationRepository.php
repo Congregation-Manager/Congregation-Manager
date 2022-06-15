@@ -16,14 +16,12 @@ final class CongregationRepository implements CongregationRepositoryInterface
     public function findOneById(int $id): array
     {
         /** @var array<array-key, array{id: string, name: string}> $results */
-        $results = $this->connection->createQueryBuilder()
+        return $this->connection->createQueryBuilder()
             ->select('*')
             ->from('congregations')
             ->where('id = :id')
             ->setParameter('id', $id)
             ->fetchAllAssociative()
         ;
-
-        return $results;
     }
 }

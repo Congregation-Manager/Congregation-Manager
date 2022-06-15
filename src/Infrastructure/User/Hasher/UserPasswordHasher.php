@@ -20,6 +20,7 @@ final class UserPasswordHasher implements UserPasswordHasherInterface
     public function hashPasswordForUser(string $plainPassword, UserInterface $user): string
     {
         Assert::isInstanceOf($user, PasswordAuthenticatedUserInterface::class);
+
         return $this->symfonyUserPasswordHasher->hashPassword($user, $plainPassword);
     }
 }

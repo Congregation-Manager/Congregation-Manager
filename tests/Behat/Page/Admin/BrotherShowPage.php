@@ -27,7 +27,9 @@ final class BrotherShowPage extends SymfonyPage implements BrotherShowPageInterf
 
     public function inviteUser(): void
     {
-        $this->getElement('invite_user')->click();
+        $this->getElement('invite_user')
+            ->click()
+        ;
     }
 
     public function hasUserInvitation(): bool

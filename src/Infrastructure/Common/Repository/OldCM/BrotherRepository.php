@@ -16,7 +16,7 @@ final class BrotherRepository implements BrotherRepositoryInterface
     public function findAllByCongregation(int $congregationId): array
     {
         /** @var array<array-key, array{id: string, name: string, surname: string, birth_date: ?string, baptism_date: ?string, congregation_id: int, group_id: int, male: string, middle_name: ?string}> $results */
-        $results = $this->connection->createQueryBuilder()
+        return $this->connection->createQueryBuilder()
             ->select('*')
             ->from('brothers')
             ->where('congregation_id = :congregation_id')
@@ -24,6 +24,5 @@ final class BrotherRepository implements BrotherRepositoryInterface
             ->orderBy('surname, name', 'ASC')
             ->fetchAllAssociative()
         ;
-        return $results;
     }
 }

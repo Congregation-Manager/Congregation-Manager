@@ -22,7 +22,9 @@ interface ProvinceInterface extends AggregateRootInterface
 
     public function setDescription(?string $description): void;
 
-    /** @return Collection<array-key, MunicipalityInterface> */
+    /**
+     * @return Collection<array-key, MunicipalityInterface>
+     */
     public function getMunicipalities(): Collection;
 
     public function addMunicipality(MunicipalityInterface $municipality): void;

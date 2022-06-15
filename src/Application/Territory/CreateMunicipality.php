@@ -12,8 +12,9 @@ use CongregationManager\Domain\Territory\Repository\MunicipalityRepositoryInterf
 
 final class CreateMunicipality
 {
-    public function __construct(private MunicipalityRepositoryInterface $municipalityRepository)
-    {
+    public function __construct(
+        private MunicipalityRepositoryInterface $municipalityRepository
+    ) {
     }
 
     public function create(
@@ -22,12 +23,7 @@ final class CreateMunicipality
         string $name,
         ?string $description
     ): MunicipalityInterface {
-        $municipality = new Municipality(
-            $congregation,
-            $province,
-            $name,
-            $description
-        );
+        $municipality = new Municipality($congregation, $province, $name, $description);
         $this->municipalityRepository->add($municipality);
 
         return $municipality;

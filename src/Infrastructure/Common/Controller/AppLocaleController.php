@@ -1,5 +1,6 @@
 <?php
 
+declare(strict_types=1);
 
 namespace CongregationManager\Infrastructure\Common\Controller;
 
@@ -9,7 +10,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Security\Core\Security;
 
 /** @psalm-suppress PropertyNotSetInConstructor */
@@ -40,6 +40,7 @@ final class AppLocaleController extends AbstractController
         }
         $session = $this->requestStack->getSession();
         $session->set('_locale', $locale);
+
         return $this->redirectToRoute('app_homepage');
     }
 }

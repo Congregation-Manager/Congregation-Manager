@@ -20,9 +20,11 @@ use Doctrine\Persistence\ManagerRegistry;
  * @method TerritoryInterface|null find($id, $lockMode = null, $lockVersion = null)
  * @method TerritoryInterface|null findOneBy(array $criteria, array $orderBy = null)
  * @psalm-method list<TerritoryInterface> findAll()
- * @method TerritoryInterface[]    findAll()
+ *
+ * @method TerritoryInterface[] findAll()
  * @psalm-method list<TerritoryInterface> findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
- * @method TerritoryInterface[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ *
+ * @method TerritoryInterface[] findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
 final class TerritoryRepository extends ServiceEntityRepository implements TerritoryRepositoryInterface
 {
@@ -48,25 +50,35 @@ final class TerritoryRepository extends ServiceEntityRepository implements Terri
 
         $qb = $this->createQueryBuilder('t');
         $qb->join('t.area', 'a');
-        $qb->leftJoin('t.territoryAssignments', 'actual_assignment', Join::WITH, 'actual_assignment.revocationDate IS NULL');
+        $qb->leftJoin(
+            't.territoryAssignments',
+            'actual_assignment',
+            Join::WITH,
+            'actual_assignment.revocationDate IS NULL'
+        );
         $qb->leftJoin(
             't.territoryAssignments',
             'latest_assignment',
             Join::WITH,
-            $qb->expr()->eq('latest_assignment.revocationDate', '(' . $latestCompletedAssignmentQb->getDQL() . ')')
+            $qb->expr()
+                ->eq('latest_assignment.revocationDate', '('.$latestCompletedAssignmentQb->getDQL().')')
         );
         if (count($filter->getAreas()) > 0) {
-            $qb->andWhere('t.area IN (:areas)')->setParameter('areas', $filter->getAreas());
+            $qb->andWhere('t.area IN (:areas)')
+                ->setParameter('areas', $filter->getAreas())
+            ;
         }
-        if ($filter->isNotAssigned() !== null) {
+        if (null !== $filter->isNotAssigned()) {
             if ($filter->isNotAssigned()) {
                 $qb->andWhere('actual_assignment.id is null');
             } else {
                 $qb->andWhere('actual_assignment.id is not null');
             }
         }
-        if ($filter->getAssignedTo() !== null) {
-            $qb->andWhere('actual_assignment.brother = :brother')->setParameter('brother', $filter->getAssignedTo());
+        if (null !== $filter->getAssignedTo()) {
+            $qb->andWhere('actual_assignment.brother = :brother')
+                ->setParameter('brother', $filter->getAssignedTo())
+            ;
         }
 
         return new TerritoryFilterResults($qb);
@@ -74,6 +86,8 @@ final class TerritoryRepository extends ServiceEntityRepository implements Terri
 
     public function findOneByName(string $name): ?TerritoryInterface
     {
-        return $this->findOneBy(['name' => $name]);
+        return $this->findOneBy([
+            'name' => $name,
+        ]);
     }
 }

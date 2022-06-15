@@ -9,11 +9,11 @@ use Twig\TwigFilter;
 
 final class LocaleExtension extends AbstractExtension
 {
-    /** @return TwigFilter[] */
+    /**
+     * @return TwigFilter[]
+     */
     public function getFilters(): array
     {
-        return [
-            new TwigFilter('locale_name', [LocaleRuntime::class, 'convertCodeToName']),
-        ];
+        return [new TwigFilter('locale_name', [LocaleRuntime::class, 'convertCodeToName'])];
     }
 }

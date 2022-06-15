@@ -8,10 +8,14 @@ use CongregationManager\Domain\Territory\Model\AreaInterface;
 
 interface AreaRepositoryInterface
 {
-    /** @return AreaInterface[] */
+    /**
+     * @return AreaInterface[]
+     */
     public function findAll();
 
-    /** @return AreaInterface|null */
+    /**
+     * @return AreaInterface|null
+     */
     public function find(int $id);
 
     public function add(AreaInterface $area): void;

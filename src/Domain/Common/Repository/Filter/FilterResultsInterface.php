@@ -10,6 +10,13 @@ interface FilterResultsInterface
 {
     public function getTotalCount(): int;
 
-    /** @return TerritoryInterface[] */
-    public function getResults(?int $limit = null, ?int $offset = null, ?string $sort = null, string $direction = 'ASC'): array;
+    /**
+     * @return TerritoryInterface[]
+     */
+    public function getResults(
+        ?int $limit = null,
+        ?int $offset = null,
+        ?string $sort = null,
+        string $direction = 'ASC'
+    ): array;
 }

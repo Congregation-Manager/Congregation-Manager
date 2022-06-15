@@ -8,10 +8,14 @@ use CongregationManager\Domain\Territory\Model\TerritoryAssignmentInterface;
 
 interface TerritoryAssignmentRepositoryInterface
 {
-    /** @return TerritoryAssignmentInterface[] */
+    /**
+     * @return TerritoryAssignmentInterface[]
+     */
     public function findAll();
 
-    /** @return TerritoryAssignmentInterface|null */
+    /**
+     * @return TerritoryAssignmentInterface|null
+     */
     public function find(int $id);
 
     public function add(TerritoryAssignmentInterface $territoryAssignment): void;

@@ -11,7 +11,9 @@ use Symfony\Component\HttpKernel\KernelEvents;
 
 final class LocaleSubscriber implements EventSubscriberInterface
 {
-    /** @var string[] */
+    /**
+     * @var string[]
+     */
     private array $availableLocaleCodes = [];
 
     public function __construct(
@@ -32,7 +34,7 @@ final class LocaleSubscriber implements EventSubscriberInterface
     public function onKernelRequest(RequestEvent $event): void
     {
         $request = $event->getRequest();
-        if (!$request->hasPreviousSession()) {
+        if (! $request->hasPreviousSession()) {
             $request->setLocale($this->getPreferredLocaleCode($request) ?? $this->defaultLocale);
 
             return;
@@ -40,8 +42,10 @@ final class LocaleSubscriber implements EventSubscriberInterface
 
         // if no explicit locale has been set on this request, use one from the session
         /** @var mixed|string $locale */
-        $locale = $request->getSession()->get('_locale', $this->defaultLocale);
-        if (is_string($locale) && $locale !== '') {
+        $locale = $request->getSession()
+            ->get('_locale', $this->defaultLocale)
+        ;
+        if (is_string($locale) && '' !== $locale) {
             $request->setLocale($locale);
         }
     }
@@ -53,7 +57,7 @@ final class LocaleSubscriber implements EventSubscriberInterface
             $this->getSuperLanguageCodesFromLocaleCodes($this->availableLocaleCodes)
         );
         $preferredLocaleCode = $request->getPreferredLanguage($availableLocaleCodesWithSuperLanguage);
-        if ($preferredLocaleCode === null) {
+        if (null === $preferredLocaleCode) {
             return null;
         }
         if (in_array($preferredLocaleCode, $this->availableLocaleCodes, true)) {
@@ -81,7 +85,7 @@ final class LocaleSubscriber implements EventSubscriberInterface
         $superLanguageCodes = [];
         foreach ($localeCodes as $localeCode) {
             $languageCode = $this->getLanguageFromLocaleCode($localeCode);
-            if (!in_array($languageCode, $superLanguageCodes, true)) {
+            if (! in_array($languageCode, $superLanguageCodes, true)) {
                 $superLanguageCodes[] = $languageCode;
             }
         }
@@ -91,7 +95,8 @@ final class LocaleSubscriber implements EventSubscriberInterface
 
     private function getLanguageFromLocaleCode(string $localeCode): string
     {
-        if (false !== $position = strpos($localeCode, '_')) {
+        $position = strpos($localeCode, '_');
+        if (false !== $position) {
             return substr($localeCode, 0, $position);
         }
 

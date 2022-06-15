@@ -6,6 +6,8 @@ namespace CongregationManager\Infrastructure\Common\Repository\OldCM;
 
 interface CongregationRepositoryInterface
 {
-    /** @return array<array-key, array{id: string, name: string}> */
+    /**
+     * @return array<array-key, array{id: string, name: string}>
+     */
     public function findOneById(int $id): array;
 }

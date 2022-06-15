@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace CongregationManager\Infrastructure\User\Model;
 
 trait SymfonyUserTrait
@@ -29,7 +31,6 @@ trait SymfonyUserTrait
     {
         $this->roles = $roles;
     }
-
 
     public function getSalt(): ?string
     {

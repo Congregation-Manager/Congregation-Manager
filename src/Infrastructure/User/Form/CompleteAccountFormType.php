@@ -23,12 +23,14 @@ final class CompleteAccountFormType extends AbstractType
         $builder
             ->add('brother', UpdateBrotherFormType::class)
             ->add('email', EmailType::class, [
-                'required' => true
+                'required' => true,
             ])
             ->add('plainPassword', RepeatedType::class, [
                 'type' => PasswordType::class,
                 'first_options' => [
-                    'attr' => ['autocomplete' => 'new-password'],
+                    'attr' => [
+                        'autocomplete' => 'new-password',
+                    ],
                     'constraints' => [
                         new NotBlank([
                             'message' => 'cm.password.not_blank',
@@ -43,7 +45,9 @@ final class CompleteAccountFormType extends AbstractType
                     'label' => 'cm.label.new_password',
                 ],
                 'second_options' => [
-                    'attr' => ['autocomplete' => 'new-password'],
+                    'attr' => [
+                        'autocomplete' => 'new-password',
+                    ],
                     'label' => 'cm.label.repeat_password',
                 ],
                 'invalid_message' => 'cm.password.must_match',

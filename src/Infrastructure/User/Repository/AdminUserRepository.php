@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace CongregationManager\Infrastructure\User\Repository;
 
 use CongregationManager\Domain\User\Repository\AdminUserRepositoryInterface;
@@ -17,9 +19,11 @@ use Symfony\Component\Security\Core\User\PasswordUpgraderInterface;
  * @method AdminUserInterface|null find($id, $lockMode = null, $lockVersion = null)
  * @method AdminUserInterface|null findOneBy(array $criteria, array $orderBy = null)
  * @psalm-method list<AdminUserInterface> findAll()
- * @method AdminUserInterface[]    findAll()
+ *
+ * @method AdminUserInterface[] findAll()
  * @psalm-method list<AdminUserInterface> findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
- * @method AdminUserInterface[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ *
+ * @method AdminUserInterface[] findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
 class AdminUserRepository extends ServiceEntityRepository implements AdminUserRepositoryInterface, PasswordUpgraderInterface
 {
@@ -38,7 +42,7 @@ class AdminUserRepository extends ServiceEntityRepository implements AdminUserRe
      */
     public function upgradePassword(PasswordAuthenticatedUserInterface $user, string $newHashedPassword): void
     {
-        if (!$user instanceof AdminUser) {
+        if (! $user instanceof AdminUser) {
             throw new UnsupportedUserException(sprintf('Instances of "%s" are not supported.', \get_class($user)));
         }
 

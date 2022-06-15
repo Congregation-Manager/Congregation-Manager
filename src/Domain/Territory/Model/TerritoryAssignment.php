@@ -28,26 +28,29 @@ final class TerritoryAssignment extends AggregateRoot implements TerritoryAssign
 
     public function setTerritory(TerritoryInterface $territory): void
     {
-        $conflictinAssignemnts = $territory->getTerritoryAssignments()->filter(function (TerritoryAssignmentInterface $territoryAssignment) {
-            if ($territoryAssignment->getRevocationDate() !== null) {
-                if ($this->getRevocationDate() !== null) {
-                    if (($this->getRevocationDate() > $territoryAssignment->getAssignmentDate()) || ($this->getAssignmentDate() >= $territoryAssignment->getAssignmentDate())) {
+        $conflictinAssignemnts = $territory->getTerritoryAssignments()
+            ->filter(function (TerritoryAssignmentInterface $territoryAssignment) {
+                if (null !== $territoryAssignment->getRevocationDate()) {
+                    if (null !== $this->getRevocationDate()) {
+                        if (($this->getRevocationDate() > $territoryAssignment->getAssignmentDate()) || ($this->getAssignmentDate() >= $territoryAssignment->getAssignmentDate())) {
+                            return true;
+                        }
+                    } else {
                         return true;
                     }
                 } else {
-                    return true;
-                }
-            } else {
-                if ($this->getRevocationDate() !== null) {
-                    if (($this->getRevocationDate() > $territoryAssignment->getAssignmentDate()) && ($this->getAssignmentDate() < $territoryAssignment->getRevocationDate())) {
+                    if (null !== $this->getRevocationDate()) {
+                        if (($this->getRevocationDate() > $territoryAssignment->getAssignmentDate()) && ($this->getAssignmentDate() < $territoryAssignment->getRevocationDate())) {
+                            return true;
+                        }
+                    } elseif ($this->getAssignmentDate() < $territoryAssignment->getRevocationDate()) {
                         return true;
                     }
-                } elseif ($this->getAssignmentDate() < $territoryAssignment->getRevocationDate()) {
-                    return true;
                 }
-            }
-            return false;
-        });
+
+                return false;
+            })
+        ;
         if ($conflictinAssignemnts->count() > 0) {
             throw new InvalidArgumentException('Another territory assignment for the territory exists');
         }
@@ -86,7 +89,8 @@ final class TerritoryAssignment extends AggregateRoot implements TerritoryAssign
 
     public function getExpirationDate(): ?DateTimeInterface
     {
-        $expirationDate = new DateTime($this->getAssignmentDate()->format('Y-m-d H:i:s'), $this->getAssignmentDate()->getTimezone());
+        $expirationDate = new DateTime($this->getAssignmentDate()->format('Y-m-d H:i:s'), $this->getAssignmentDate()
+            ->getTimezone());
 
         return $expirationDate->add(new DateInterval('P4M'));
     }

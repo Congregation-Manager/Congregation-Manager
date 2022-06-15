@@ -26,7 +26,9 @@ interface AreaInterface extends AggregateRootInterface
 
     public function setDescription(?string $description): void;
 
-    /** @return Collection<array-key, TerritoryInterface> */
+    /**
+     * @return Collection<array-key, TerritoryInterface>
+     */
     public function getTerritories(): Collection;
 
     public function addTerritory(TerritoryInterface $territory): void;

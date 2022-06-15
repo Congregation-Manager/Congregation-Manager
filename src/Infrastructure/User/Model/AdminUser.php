@@ -1,5 +1,6 @@
 <?php
 
+declare(strict_types=1);
 
 namespace CongregationManager\Infrastructure\User\Model;
 
@@ -9,6 +10,8 @@ class AdminUser extends DomainAdminUser implements AdminUserInterface
 {
     use SymfonyUserTrait;
 
-    /** @var string[] */
+    /**
+     * @var string[]
+     */
     protected array $roles = ['ROLE_ADMIN'];
 }

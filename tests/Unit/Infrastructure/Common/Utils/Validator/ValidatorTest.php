@@ -8,7 +8,11 @@ use CongregationManager\Infrastructure\Common\Utils\Validator\Validator;
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 
-class ValidatorTest extends TestCase
+/**
+ * @internal
+ * @coversNothing
+ */
+final class ValidatorTest extends TestCase
 {
     private Validator $validator;
 
@@ -17,63 +21,54 @@ class ValidatorTest extends TestCase
         $this->validator = new Validator();
     }
 
-    public function test_that_it_does_not_validate_empty_string(): void
+    public function testThatItDoesNotValidateEmptyString(): void
     {
         $this->expectException(InvalidArgumentException::class);
         $this->validator->validateString('');
     }
 
-    public function test_that_it_does_not_validate_null_as_string(): void
+    public function testThatItDoesNotValidateNullAsString(): void
     {
         $this->expectException(InvalidArgumentException::class);
         $this->validator->validateString(null);
     }
 
-    public function test_that_it_validates_valid_string(): void
+    public function testThatItValidatesValidString(): void
     {
-        $this->assertEquals(
-            'string',
-            $this->validator->validateString('string')
-        );
+        $this->assertSame('string', $this->validator->validateString('string'));
     }
 
-    public function test_that_it_does_not_validate_empty_password(): void
+    public function testThatItDoesNotValidateEmptyPassword(): void
     {
         $this->expectException(InvalidArgumentException::class);
         $this->validator->validatePassword('');
     }
 
-    public function test_that_it_does_not_validate_short_password(): void
+    public function testThatItDoesNotValidateShortPassword(): void
     {
         $this->expectException(InvalidArgumentException::class);
         $this->validator->validatePassword('asdasds');
     }
 
-    public function test_that_it_validates_strong_password(): void
+    public function testThatItValidatesStrongPassword(): void
     {
-        $this->assertEquals(
-            'p455w0rd',
-            $this->validator->validatePassword('p455w0rd')
-        );
+        $this->assertSame('p455w0rd', $this->validator->validatePassword('p455w0rd'));
     }
 
-    public function test_that_it_does_not_validate_empty_email(): void
+    public function testThatItDoesNotValidateEmptyEmail(): void
     {
         $this->expectException(InvalidArgumentException::class);
         $this->validator->validateEmail('');
     }
 
-    public function test_that_it_does_not_validate_mail_without_at(): void
+    public function testThatItDoesNotValidateMailWithoutAt(): void
     {
         $this->expectException(InvalidArgumentException::class);
         $this->validator->validateEmail('asdasds');
     }
 
-    public function test_that_it_validates_valid_email(): void
+    public function testThatItValidatesValidEmail(): void
     {
-        $this->assertEquals(
-            'test@mail.com',
-            $this->validator->validateEmail('test@mail.com')
-        );
+        $this->assertSame('test@mail.com', $this->validator->validateEmail('test@mail.com'));
     }
 }

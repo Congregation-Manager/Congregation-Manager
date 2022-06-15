@@ -27,7 +27,9 @@ final class UserContext implements Context
     {
         /** @var AppUserInterface $appUser */
         $appUserRepository = $this->entityManager->getRepository(AppUser::class);
-        $appUser = $appUserRepository->findOneBy(['email' => $email]);
+        $appUser = $appUserRepository->findOneBy([
+            'email' => $email,
+        ]);
         if (null === $appUser) {
             throw new InvalidArgumentException(sprintf('App user with email "%s" does not exist.', $email));
         }
@@ -43,7 +45,9 @@ final class UserContext implements Context
     {
         /** @var AdminUserInterface $adminUser */
         $adminUserRepository = $this->entityManager->getRepository(AdminUser::class);
-        $adminUser = $adminUserRepository->findOneBy(['email' => $email]);
+        $adminUser = $adminUserRepository->findOneBy([
+            'email' => $email,
+        ]);
         if (null === $adminUser) {
             $adminUser = new AdminUser($email);
 

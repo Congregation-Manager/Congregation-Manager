@@ -8,7 +8,9 @@ use FriendsOfBehat\PageObjectExtension\Page\SymfonyPage;
 
 final class ChangePasswordPage extends SymfonyPage implements ChangePasswordPageInterface
 {
-    protected static $additionalParameters = ['_locale' => 'en'];
+    protected static $additionalParameters = [
+        '_locale' => 'en',
+    ];
 
     public function getRouteName(): string
     {
@@ -17,22 +19,30 @@ final class ChangePasswordPage extends SymfonyPage implements ChangePasswordPage
 
     public function specifyActualPassword(string $password): void
     {
-        $this->getElement('old_password')->setValue($password);
+        $this->getElement('old_password')
+            ->setValue($password)
+        ;
     }
 
     public function specifyPassword(string $password): void
     {
-        $this->getElement('password')->setValue($password);
+        $this->getElement('password')
+            ->setValue($password)
+        ;
     }
 
     public function confirmPassword(string $password): void
     {
-        $this->getElement('confirm_password')->setValue($password);
+        $this->getElement('confirm_password')
+            ->setValue($password)
+        ;
     }
 
     public function update(): void
     {
-        $this->getElement('submit_button')->click();
+        $this->getElement('submit_button')
+            ->click()
+        ;
     }
 
     protected function getDefinedElements(): array
@@ -41,7 +51,7 @@ final class ChangePasswordPage extends SymfonyPage implements ChangePasswordPage
             'old_password' => '#change_password_form_oldPassword',
             'password' => '#change_password_form_plainPassword_first',
             'confirm_password' => '#change_password_form_plainPassword_second',
-            'submit_button' => 'button[type=submit]'
+            'submit_button' => 'button[type=submit]',
         ]);
     }
 }

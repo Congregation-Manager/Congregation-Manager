@@ -18,7 +18,9 @@ final class ProfileUpdateFormType extends AbstractType
     {
         $builder
             ->add('brother', UpdateBrotherFormType::class)
-            ->add('appUser', ChangeEmailFormType::class, ['with_submit' => false])
+            ->add('appUser', ChangeEmailFormType::class, [
+                'with_submit' => false,
+            ])
             ->add('submit', SubmitType::class)
         ;
     }

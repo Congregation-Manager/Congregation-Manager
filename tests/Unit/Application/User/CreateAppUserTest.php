@@ -16,7 +16,11 @@ use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
 use Prophecy\Prophecy\ObjectProphecy;
 
-class CreateAppUserTest extends TestCase
+/**
+ * @internal
+ * @coversNothing
+ */
+final class CreateAppUserTest extends TestCase
 {
     use ProphecyTrait;
 
@@ -24,48 +28,52 @@ class CreateAppUserTest extends TestCase
 
     private CreateAppUser $createAppUser;
 
-    /** @var ObjectProphecy|UserPasswordHasherInterface  */
+    /**
+     * @var ObjectProphecy|UserPasswordHasherInterface
+     */
     private $userPasswordHasher;
 
     protected function setUp(): void
     {
         $this->appUserRepository = new AppUserRepository();
         $this->userPasswordHasher = $this->prophesize(UserPasswordHasherInterface::class);
-        $this->userPasswordHasher->hashPasswordForUser('p455w0rd', Argument::type(UserInterface::class))->willReturn('3r34fQDEWw3d');
+        $this->userPasswordHasher->hashPasswordForUser('p455w0rd', Argument::type(UserInterface::class))->willReturn(
+            '3r34fQDEWw3d'
+        );
         $this->createAppUser = new CreateAppUser($this->appUserRepository, $this->userPasswordHasher->reveal());
     }
 
-    public function test_that_it_creates_a_new_app_user(): void
+    public function testThatItCreatesANewAppUser(): void
     {
         $brother = new Brother('John', 'Ritz', new Congregation('Carrollton'));
         $appUser = $this->createAppUser->create($brother, 'info@email.com', 'p455w0rd', 'it_IT');
 
-        $this->assertEquals($brother, $appUser->getBrother());
-        $this->assertEquals('info@email.com', $appUser->getEmail());
-        $this->assertEquals('3r34fQDEWw3d', $appUser->getPassword());
-        $this->assertEquals('it_IT', $appUser->getLocaleCode());
-        $this->assertEquals($this->appUserRepository->findAll()->first(), $appUser);
+        $this->assertSame($brother, $appUser->getBrother());
+        $this->assertSame('info@email.com', $appUser->getEmail());
+        $this->assertSame('3r34fQDEWw3d', $appUser->getPassword());
+        $this->assertSame('it_IT', $appUser->getLocaleCode());
+        $this->assertSame($this->appUserRepository->findAll()->first(), $appUser);
     }
 
-    public function test_that_it_creates_a_new_app_user_without_password_if_not_specified(): void
+    public function testThatItCreatesANewAppUserWithoutPasswordIfNotSpecified(): void
     {
         $brother = new Brother('John', 'Ritz', new Congregation('Carrollton'));
         $adminUser = $this->createAppUser->create($brother, 'info@email.com', null, 'it_IT');
 
-        $this->assertEquals('info@email.com', $adminUser->getEmail());
+        $this->assertSame('info@email.com', $adminUser->getEmail());
         $this->assertNull($adminUser->getPassword());
-        $this->assertEquals('it_IT', $adminUser->getLocaleCode());
-        $this->assertEquals($this->appUserRepository->findAll()->first(), $adminUser);
+        $this->assertSame('it_IT', $adminUser->getLocaleCode());
+        $this->assertSame($this->appUserRepository->findAll()->first(), $adminUser);
     }
 
-    public function test_that_it_creates_a_new_app_user_without_locale_if_not_specified(): void
+    public function testThatItCreatesANewAppUserWithoutLocaleIfNotSpecified(): void
     {
         $brother = new Brother('John', 'Ritz', new Congregation('Carrollton'));
         $adminUser = $this->createAppUser->create($brother, 'info@email.com', 'p455w0rd', null);
 
-        $this->assertEquals('info@email.com', $adminUser->getEmail());
-        $this->assertEquals('3r34fQDEWw3d', $adminUser->getPassword());
+        $this->assertSame('info@email.com', $adminUser->getEmail());
+        $this->assertSame('3r34fQDEWw3d', $adminUser->getPassword());
         $this->assertNull($adminUser->getLocaleCode());
-        $this->assertEquals($this->appUserRepository->findAll()->first(), $adminUser);
+        $this->assertSame($this->appUserRepository->findAll()->first(), $adminUser);
     }
 }

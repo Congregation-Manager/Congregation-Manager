@@ -6,10 +6,8 @@ namespace CongregationManager\Infrastructure\Territory\Form;
 
 use CongregationManager\Domain\Congregation\Model\Brother;
 use CongregationManager\Domain\Congregation\Model\BrotherInterface;
-use CongregationManager\Domain\Territory\Model\Area;
 use CongregationManager\Domain\Territory\Model\Territory;
 use CongregationManager\Domain\Territory\Model\TerritoryAssignment;
-use CongregationManager\Domain\Territory\Model\TerritoryAssignmentInterface;
 use CongregationManager\Domain\Territory\Model\TerritoryInterface;
 use DateTimeInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -61,9 +59,13 @@ final class TerritoryAssignmentFormType extends AbstractType
     {
         $form = $event->getForm();
         /** @var TerritoryInterface|mixed $territory */
-        $territory = $form->getConfig()->getOption('territory');
+        $territory = $form->getConfig()
+            ->getOption('territory')
+        ;
         if ($territory instanceof TerritoryInterface) {
-            $form->get('territory')->setData($territory);
+            $form->get('territory')
+                ->setData($territory)
+            ;
         }
     }
 
@@ -72,22 +74,26 @@ final class TerritoryAssignmentFormType extends AbstractType
         $resolver->setDefaults([
             'empty_data' => function (FormInterface $form) {
                 /** @var TerritoryInterface $territory */
-                $territory = $form->get('territory')->getData();
+                $territory = $form->get('territory')
+                    ->getData()
+                ;
                 /** @var DateTimeInterface $assignmentDate */
-                $assignmentDate = $form->get('assignmentDate')->getData();
+                $assignmentDate = $form->get('assignmentDate')
+                    ->getData()
+                ;
                 /** @var BrotherInterface|null $brother */
-                $brother = $form->get('brother')->getData();
+                $brother = $form->get('brother')
+                    ->getData()
+                ;
                 /** @var DateTimeInterface|null $revocationDate */
-                $revocationDate = $form->get('revocationDate')->getData();
-                return new TerritoryAssignment(
-                    $territory,
-                    $assignmentDate,
-                    $brother,
-                    $revocationDate,
-                );
+                $revocationDate = $form->get('revocationDate')
+                    ->getData()
+                ;
+
+                return new TerritoryAssignment($territory, $assignmentDate, $brother, $revocationDate,);
             },
             'data_class' => TerritoryAssignment::class,
-            'territory' => null
+            'territory' => null,
         ]);
     }
 }

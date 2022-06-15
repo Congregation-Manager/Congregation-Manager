@@ -10,7 +10,9 @@ use CongregationManager\Domain\Territory\Repository\Filter\TerritoryRepositoryFi
 
 final class QueryBuilderTerritoryRepositoryFilter implements TerritoryRepositoryFilterInterface
 {
-    /** @var AreaInterface[] */
+    /**
+     * @var AreaInterface[]
+     */
     private array $areas = [];
 
     private ?bool $notAssigned = null;

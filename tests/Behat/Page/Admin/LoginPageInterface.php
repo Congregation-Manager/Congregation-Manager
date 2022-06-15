@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace CongregationManager\Tests\Behat\Page\Admin;
 
 use FriendsOfBehat\PageObjectExtension\Page\SymfonyPageInterface;
@@ -14,7 +16,9 @@ interface LoginPageInterface extends SymfonyPageInterface
 
     public function getActiveLocale(): string;
 
-    /** @return string[] */
+    /**
+     * @return string[]
+     */
     public function getAvailableLocales(): array;
 
     public function switchLocale(string $locale): void;

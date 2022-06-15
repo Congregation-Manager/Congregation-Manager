@@ -8,7 +8,11 @@ use CongregationManager\Domain\Congregation\Model\CongregationInterface;
 use CongregationManager\Tests\Integration\Infrastructure\Common\Command\AbstractCommandTest;
 use Doctrine\Common\DataFixtures\Purger\ORMPurger;
 
-class CreateCongregationCommandTest extends AbstractCommandTest
+/**
+ * @internal
+ * @coversNothing
+ */
+final class CreateCongregationCommandTest extends AbstractCommandTest
 {
     private array $congregationData = [
         'name' => 'Carrollton',
@@ -24,17 +28,14 @@ class CreateCongregationCommandTest extends AbstractCommandTest
 
     public function testCreateAppUserInteractive(): void
     {
-        $this->executeCommand(
-            [],
-            array_values($this->congregationData)
-        );
+        $this->executeCommand([], array_values($this->congregationData));
 
         $congregations = self::getContainer()->get('cm.repository.congregation')->findAll();
         $this->assertCount(1, $congregations);
         $congregation = $congregations[0];
         $this->assertInstanceOf(CongregationInterface::class, $congregation);
         $this->assertNotNull($congregation->getId());
-        $this->assertEquals('Carrollton', $congregation->getName());
+        $this->assertSame('Carrollton', $congregation->getName());
         $this->assertCount(0, $congregation->getBrothers());
     }
 

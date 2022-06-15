@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace CongregationManager\Tests\Behat\Services;
 
 use Symfony\Component\Mailer\SentMessage;
@@ -21,7 +23,9 @@ final class EmailChecker implements EmailCheckerInterface
 
     private function isMessageTo(SentMessage $message, string $recipient): bool
     {
-        $sentMessageRecipients = $message->getEnvelope()->getRecipients();
+        $sentMessageRecipients = $message->getEnvelope()
+            ->getRecipients()
+        ;
         foreach ($sentMessageRecipients as $messageRecipient) {
             if ($messageRecipient->getAddress() === $recipient) {
                 return true;

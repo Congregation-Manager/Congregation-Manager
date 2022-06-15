@@ -12,8 +12,9 @@ use CongregationManager\Domain\Territory\Repository\TerritoryRepositoryInterface
 
 final class CreateTerritory
 {
-    public function __construct(private TerritoryRepositoryInterface $territoryRepository)
-    {
+    public function __construct(
+        private TerritoryRepositoryInterface $territoryRepository
+    ) {
     }
 
     public function create(
@@ -22,12 +23,7 @@ final class CreateTerritory
         string $name,
         ?string $description
     ): TerritoryInterface {
-        $territory = new Territory(
-            $congregation,
-            $area,
-            $name,
-            $description
-        );
+        $territory = new Territory($congregation, $area, $name, $description);
         $this->territoryRepository->add($territory);
 
         return $territory;

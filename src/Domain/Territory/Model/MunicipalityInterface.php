@@ -26,7 +26,9 @@ interface MunicipalityInterface extends AggregateRootInterface
 
     public function setDescription(?string $description): void;
 
-    /** @return Collection<array-key, AreaInterface> */
+    /**
+     * @return Collection<array-key, AreaInterface>
+     */
     public function getAreas(): Collection;
 
     public function addArea(AreaInterface $area): void;

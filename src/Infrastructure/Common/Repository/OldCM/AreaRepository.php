@@ -13,11 +13,13 @@ final class AreaRepository
     ) {
     }
 
-    /** @return array<array-key, array{id: string, name: string, description: string, congregation_id: string}> */
+    /**
+     * @return array<array-key, array{id: string, name: string, description: string, congregation_id: string}>
+     */
     public function findAllByCongregationAndMunicipality(int $congregationId, int $municipalityId): array
     {
         /** @var array<array-key, array{id: string, name: string, description: string, congregation_id: string}> $results */
-        $results = $this->connection->createQueryBuilder()
+        return $this->connection->createQueryBuilder()
             ->select('*')
             ->from('areas')
             ->where('congregation_id = :congregation_id')
@@ -26,6 +28,5 @@ final class AreaRepository
             ->setParameter('municipality_id', $municipalityId)
             ->fetchAllAssociative()
         ;
-        return $results;
     }
 }

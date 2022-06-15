@@ -8,10 +8,14 @@ use CongregationManager\Domain\Territory\Model\ProvinceInterface;
 
 interface ProvinceRepositoryInterface
 {
-    /** @return ProvinceInterface[] */
+    /**
+     * @return ProvinceInterface[]
+     */
     public function findAll();
 
-    /** @return ProvinceInterface|null */
+    /**
+     * @return ProvinceInterface|null
+     */
     public function find(int $id);
 
     public function add(ProvinceInterface $province): void;

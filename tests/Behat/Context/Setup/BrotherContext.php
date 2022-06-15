@@ -5,9 +5,7 @@ declare(strict_types=1);
 namespace CongregationManager\Tests\Behat\Context\Setup;
 
 use Behat\Behat\Context\Context;
-use Behat\Behat\Tester\Exception\PendingException;
 use CongregationManager\Domain\Congregation\Model\Brother;
-use CongregationManager\Domain\Congregation\Model\Congregation;
 use CongregationManager\Domain\Congregation\Model\CongregationInterface;
 use CongregationManager\Tests\Behat\Services\SharedStorageInterface;
 use Doctrine\ORM\EntityManagerInterface;
@@ -31,7 +29,7 @@ final class BrotherContext implements Context
         Assert::isInstanceOf($congregation, CongregationInterface::class);
         [$firstName, $lastName] = explode(' ', $fullName);
         $brother = new Brother($firstName, $lastName, $congregation);
-        if ($type === 'sister') {
+        if ('sister' === $type) {
             $brother->setMale(false);
         }
         $this->entityManager->persist($brother);

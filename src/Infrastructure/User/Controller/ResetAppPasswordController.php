@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace CongregationManager\Infrastructure\User\Controller;
 
 use CongregationManager\Domain\User\Exception\UserInstanceNotValid;
@@ -44,14 +46,17 @@ class ResetAppPasswordController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $emailFormData = $form->get('email')->getData();
-            if (!is_string($emailFormData)) {
-                throw new \InvalidArgumentException(sprintf('Email input not valid! Expected string, actual %s', gettype($emailFormData)));
+            $emailFormData = $form->get('email')
+                ->getData()
+            ;
+            if (! is_string($emailFormData)) {
+                throw new \InvalidArgumentException(sprintf(
+                    'Email input not valid! Expected string, actual %s',
+                    gettype($emailFormData)
+                ));
             }
-            return $this->processSendingPasswordResetEmail(
-                $emailFormData,
-                $this->mailer
-            );
+
+            return $this->processSendingPasswordResetEmail($emailFormData, $this->mailer);
         }
 
         return $this->render('app/reset_password/request.html.twig', [
@@ -66,7 +71,8 @@ class ResetAppPasswordController extends AbstractController
     {
         // Generate a fake token if the user does not exist or someone hit this page directly.
         // This prevents exposing whether or not a user was found with the given email address or not
-        if (null === ($resetToken = $this->getTokenObjectFromSession())) {
+        $resetToken = $this->getTokenObjectFromSession();
+        if (null === $resetToken) {
             $resetToken = $this->resetPasswordHelper->generateFakeResetToken();
         }
 
@@ -110,21 +116,27 @@ class ResetAppPasswordController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            if (!$user instanceof UserInterface) {
-                throw new UserInstanceNotValid(sprintf('User instance not valid. Provided "%s", expected "%s"', get_class($user), UserInterface::class));
+            if (! $user instanceof UserInterface) {
+                throw new UserInstanceNotValid(sprintf(
+                    'User instance not valid. Provided "%s", expected "%s"',
+                    get_class($user),
+                    UserInterface::class
+                ));
             }
             // A password reset token should be used only once, remove it.
             $this->resetPasswordHelper->removeResetRequest($token);
 
-            $plainPassword = $form->get('plainPassword')->getData();
-            if (!is_string($plainPassword)) {
-                throw new \InvalidArgumentException(sprintf('Password input not valid! Expected string, actual %s', gettype($plainPassword)));
+            $plainPassword = $form->get('plainPassword')
+                ->getData()
+            ;
+            if (! is_string($plainPassword)) {
+                throw new \InvalidArgumentException(sprintf(
+                    'Password input not valid! Expected string, actual %s',
+                    gettype($plainPassword)
+                ));
             }
             // Encode(hash) the plain password, and set it.
-            $encodedPassword = $this->userPasswordHasher->hashPassword(
-                $user,
-                $plainPassword
-            );
+            $encodedPassword = $this->userPasswordHasher->hashPassword($user, $plainPassword);
 
             $user->setPassword($encodedPassword);
             $this->entityManager->flush();
@@ -147,7 +159,7 @@ class ResetAppPasswordController extends AbstractController
         ]);
 
         // Do not reveal whether a user account was found or not.
-        if (!$user) {
+        if (! $user) {
             return $this->redirectToRoute('app_check_email');
         }
 
@@ -162,7 +174,13 @@ class ResetAppPasswordController extends AbstractController
             //     'There was a problem handling your password reset request - %s',
             //     $e->getReason()
             // ));
-            $this->logger->error(sprintf('Unable to send reset password email for app user. Code "%s", message: %s', $e->getCode(), $e->getMessage()));
+            $this->logger->error(
+                sprintf(
+                    'Unable to send reset password email for app user. Code "%s", message: %s',
+                    $e->getCode(),
+                    $e->getMessage()
+                )
+            );
 
             return $this->redirectToRoute('app_check_email');
         }

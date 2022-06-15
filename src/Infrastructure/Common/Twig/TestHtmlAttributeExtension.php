@@ -14,11 +14,15 @@ final class TestHtmlAttributeExtension extends AbstractExtension
     ) {
     }
 
-    /** @return TwigFunction[] */
+    /**
+     * @return TwigFunction[]
+     */
     public function getFunctions(): array
     {
         return [
-            new TwigFunction('test_html_attribute', [$this, 'testHtmlAttribute'], ['is_safe' => ['html']]),
+            new TwigFunction('test_html_attribute', [$this, 'testHtmlAttribute'], [
+                'is_safe' => ['html'],
+            ]),
         ];
     }
 

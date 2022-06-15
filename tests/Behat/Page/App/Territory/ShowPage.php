@@ -22,12 +22,14 @@ final class ShowPage extends SymfonyPage
 
     public function getFirstTerritoryAssignmentBrother(): string
     {
-        return $this->getElement('territory-assignments')->find('css', $this->getDefinedElements()['territory-assignment-brother'])->getText();
+        return $this->getElement('territory-assignments')
+            ->find('css', $this->getDefinedElements()['territory-assignment-brother'])->getText();
     }
 
     public function getFirstTerritoryAssignmentAssignmentDate(): DateTimeInterface
     {
-        $assignmentDate = $this->getElement('territory-assignments')->find('css', $this->getDefinedElements()['territory-assignment-assignment-date'])->getText();
+        $assignmentDate = $this->getElement('territory-assignments')
+            ->find('css', $this->getDefinedElements()['territory-assignment-assignment-date'])->getText();
 
         return new DateTimeImmutable($assignmentDate);
     }

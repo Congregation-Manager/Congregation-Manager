@@ -11,7 +11,9 @@ use Doctrine\Common\Collections\Collection;
 
 class Municipality extends AggregateRoot implements MunicipalityInterface
 {
-    /** @var Collection<array-key, AreaInterface> */
+    /**
+     * @var Collection<array-key, AreaInterface>
+     */
     protected Collection $areas;
 
     public function __construct(
@@ -63,7 +65,9 @@ class Municipality extends AggregateRoot implements MunicipalityInterface
         $this->description = $description;
     }
 
-    /** @return Collection<array-key, AreaInterface> */
+    /**
+     * @return Collection<array-key, AreaInterface>
+     */
     public function getAreas(): Collection
     {
         return $this->areas;
@@ -71,7 +75,7 @@ class Municipality extends AggregateRoot implements MunicipalityInterface
 
     public function addArea(AreaInterface $area): void
     {
-        if (!$this->areas->contains($area)) {
+        if (! $this->areas->contains($area)) {
             $this->areas->add($area);
         }
     }
