@@ -76,6 +76,4 @@ final class TerritoryContext implements Context
 
         return $area;
     }
-
-
 }
