@@ -9,8 +9,8 @@ use CongregationManager\Domain\Common\Model\AggregateRoot;
 use CongregationManager\Domain\Congregation\Model\CongregationInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use InvalidArgumentException;
 use RuntimeException;
-use Traversable;
 
 class Territory extends AggregateRoot implements TerritoryInterface
 {
@@ -112,7 +112,10 @@ class Territory extends AggregateRoot implements TerritoryInterface
                 get_debug_type($revocatedAssignementsIterator)
             ));
         }
-        $revocatedAssignementsIterator->uasort(function (TerritoryAssignmentInterface $first, TerritoryAssignmentInterface $second): int {
+        $revocatedAssignementsIterator->uasort(static function (mixed $first, mixed $second): int {
+            if (!$first instanceof TerritoryAssignmentInterface || !$second instanceof TerritoryAssignmentInterface) {
+                throw new InvalidArgumentException(sprintf('Expected two implementation of territory assignments, got %s and %s', get_debug_type($first), get_debug_type($second)));
+            }
             return $first->getRevocationDate() < $second->getRevocationDate() ? 1 : -1;
         });
         $latestAssignemnt = $revocatedAssignementsIterator->current();
