@@ -3605,16 +3605,16 @@
         },
         {
             "name": "symfony/flex",
-            "version": "v1.19.1",
+            "version": "v1.19.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/flex.git",
-                "reference": "9c612796a68de4196fff4bc159db5071aa62d428"
+                "reference": "d1a692369be53445af6e391170b509d7f5d026cf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/flex/zipball/9c612796a68de4196fff4bc159db5071aa62d428",
-                "reference": "9c612796a68de4196fff4bc159db5071aa62d428",
+                "url": "https://api.github.com/repos/symfony/flex/zipball/d1a692369be53445af6e391170b509d7f5d026cf",
+                "reference": "d1a692369be53445af6e391170b509d7f5d026cf",
                 "shasum": ""
             },
             "require": {
@@ -3650,7 +3650,7 @@
             "description": "Composer plugin for Symfony",
             "support": {
                 "issues": "https://github.com/symfony/flex/issues",
-                "source": "https://github.com/symfony/flex/tree/v1.19.1"
+                "source": "https://github.com/symfony/flex/tree/v1.19.2"
             },
             "funding": [
                 {
@@ -3666,7 +3666,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2022-06-06T15:14:39+00:00"
+            "time": "2022-06-14T21:13:39+00:00"
         },
         {
             "name": "symfony/form",
@@ -9312,16 +9312,16 @@
         },
         {
             "name": "phparkitect/phparkitect",
-            "version": "0.2.21",
+            "version": "0.2.22",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phparkitect/arkitect.git",
-                "reference": "3dab4257c8314d5ef256f5112a768a90328c985e"
+                "reference": "183b4bf65bfc4435524a8f534c21c4a1b8ae6519"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phparkitect/arkitect/zipball/3dab4257c8314d5ef256f5112a768a90328c985e",
-                "reference": "3dab4257c8314d5ef256f5112a768a90328c985e",
+                "url": "https://api.github.com/repos/phparkitect/arkitect/zipball/183b4bf65bfc4435524a8f534c21c4a1b8ae6519",
+                "reference": "183b4bf65bfc4435524a8f534c21c4a1b8ae6519",
                 "shasum": ""
             },
             "require": {
@@ -9376,9 +9376,9 @@
             "description": "Enforce architectural constraints in your PHP applications",
             "support": {
                 "issues": "https://github.com/phparkitect/arkitect/issues",
-                "source": "https://github.com/phparkitect/arkitect/tree/0.2.21"
+                "source": "https://github.com/phparkitect/arkitect/tree/0.2.22"
             },
-            "time": "2022-06-07T16:40:02+00:00"
+            "time": "2022-06-15T06:40:23+00:00"
         },
         {
             "name": "phpspec/prophecy",
@@ -10035,12 +10035,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Roave/SecurityAdvisories.git",
-                "reference": "bf362097fbfe4580b99b696dd8208b24ffd112b2"
+                "reference": "63cab080a023a4a2ecc61edf778d11ce69b07cfe"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/bf362097fbfe4580b99b696dd8208b24ffd112b2",
-                "reference": "bf362097fbfe4580b99b696dd8208b24ffd112b2",
+                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/63cab080a023a4a2ecc61edf778d11ce69b07cfe",
+                "reference": "63cab080a023a4a2ecc61edf778d11ce69b07cfe",
                 "shasum": ""
             },
             "conflict": {
@@ -10528,7 +10528,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2022-06-10T00:15:15+00:00"
+            "time": "2022-06-15T17:06:07+00:00"
         },
         {
             "name": "sebastian/cli-parser",
