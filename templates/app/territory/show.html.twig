@@ -30,9 +30,9 @@
                 </thead>
                 <tbody>
                 {% for territoryAssignment in territory.territoryAssignments %}
-                    <tr>
-                        <th scope="row">{{ territoryAssignment.brother }}</th>
-                        <td>{{ territoryAssignment.assignmentDate|format_date }}</td>
+                    <tr {{ test_html_attribute('territory-assignment', territoryAssignment.id) }}>
+                        <th scope="row" {{ test_html_attribute('territory-assignment-brother', territoryAssignment.brother) }}>{{ territoryAssignment.brother }}</th>
+                        <td {{ test_html_attribute('territory-assignment-assignment-date', territoryAssignment.assignmentDate|date()) }}>{{ territoryAssignment.assignmentDate|format_date }}</td>
                         <td>{{ territoryAssignment.revocationDate ? territoryAssignment.revocationDate|format_date : '' }}</td>
                     </tr>
                 {% endfor %}

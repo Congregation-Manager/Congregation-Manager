@@ -16,4 +16,7 @@ Feature: Create territory assignment
     And I select brother "Dylan Martinez"
     And I save territory assignment
     Then I should be redirected to territory "01" page
+    And I should see 1 territory assignment
+    And the first territory assignment should be assigned starting from "2022-06-14"
+    And the first territory assignment should be assigned to brother "Dylan Martinez"
 
