@@ -43,9 +43,21 @@ final class CreatePage extends SymfonyPage
         ;
     }
 
+    public function hasAlreadyAssignedErrorMessage(): bool
+    {
+        foreach ($this->getDocument()->findAll('css', $this->getDefinedElements()['errors']) as $errorMessage) {
+            if ('This territory assignment is not valid' === $errorMessage->getText()) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     protected function getDefinedElements(): array
     {
         return array_merge(parent::getDefinedElements(), [
+            'errors' => '.invalid-feedback',
             'brother' => '[data-test-brother]',
             'assignment-date' => '[data-test-assignment-date]',
             'territory' => '[data-test-territory]',

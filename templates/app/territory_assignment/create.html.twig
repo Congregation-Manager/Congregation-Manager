@@ -11,6 +11,7 @@
         </div>
         <dl class="row mt-4">
             {{ form_start(form) }}
+            {{ form_errors(form, test_form_attribute('errors')) }}
             {{ form_row(form.territory, test_form_attribute('territory')) }}
             {{ form_row(form.assignmentDate, test_form_attribute('assignment-date')) }}
             {{ form_row(form.brother, test_form_attribute('brother')) }}

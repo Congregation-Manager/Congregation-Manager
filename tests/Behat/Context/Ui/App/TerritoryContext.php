@@ -54,4 +54,14 @@ final class TerritoryContext implements Context
             new DateTimeImmutable($assignmentDate)
         );
     }
+
+    /**
+     * @When I view the territory :territory page
+     */
+    public function iViewTheTerritoryPage(TerritoryInterface $territory): void
+    {
+        $this->showPage->open([
+            'id' => $territory->getId(),
+        ]);
+    }
 }

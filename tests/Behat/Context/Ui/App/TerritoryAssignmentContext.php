@@ -78,4 +78,22 @@ final class TerritoryAssignmentContext implements Context
             'id' => $territoryAssignment->getId(),
         ]);
     }
+
+    /**
+     * @Then I should still be on the territory :territory page
+     */
+    public function iShouldStillBeOnTheTerritoryPage(TerritoryInterface $territory): void
+    {
+        $this->assignPage->isOpen([
+            'territoryId' => $territory->getId(),
+        ]);
+    }
+
+    /**
+     * @Given I should be informed that the territory is already assigned
+     */
+    public function iShouldBeInformedThatTheTerritoryIsAlreadyAssigned(): void
+    {
+        Assert::true($this->assignPage->hasAlreadyAssignedErrorMessage());
+    }
 }

@@ -9,7 +9,6 @@ use CongregationManager\Domain\Congregation\Model\BrotherInterface;
 use DateInterval;
 use DateTime;
 use DateTimeInterface;
-use InvalidArgumentException;
 
 final class TerritoryAssignment extends AggregateRoot implements TerritoryAssignmentInterface
 {
@@ -28,32 +27,6 @@ final class TerritoryAssignment extends AggregateRoot implements TerritoryAssign
 
     public function setTerritory(TerritoryInterface $territory): void
     {
-        $conflictinAssignemnts = $territory->getTerritoryAssignments()
-            ->filter(function (TerritoryAssignmentInterface $territoryAssignment) {
-                if (null !== $territoryAssignment->getRevocationDate()) {
-                    if (null !== $this->getRevocationDate()) {
-                        if (($this->getRevocationDate() > $territoryAssignment->getAssignmentDate()) || ($this->getAssignmentDate() >= $territoryAssignment->getAssignmentDate())) {
-                            return true;
-                        }
-                    } else {
-                        return true;
-                    }
-                } else {
-                    if (null !== $this->getRevocationDate()) {
-                        if (($this->getRevocationDate() > $territoryAssignment->getAssignmentDate()) && ($this->getAssignmentDate() < $territoryAssignment->getRevocationDate())) {
-                            return true;
-                        }
-                    } elseif ($this->getAssignmentDate() < $territoryAssignment->getRevocationDate()) {
-                        return true;
-                    }
-                }
-
-                return false;
-            })
-        ;
-        if ($conflictinAssignemnts->count() > 0) {
-            throw new InvalidArgumentException('Another territory assignment for the territory exists');
-        }
         $this->territory = $territory;
     }
 
@@ -93,5 +66,17 @@ final class TerritoryAssignment extends AggregateRoot implements TerritoryAssign
             ->getTimezone());
 
         return $expirationDate->add(new DateInterval('P4M'));
+    }
+
+    public function isValid(): bool
+    {
+        $territory = $this->getTerritory();
+        foreach ($territory->getTerritoryAssignments() as $territoryAssignment) {
+            if (null === $territoryAssignment->getRevocationDate()) {
+                return false;
+            }
+        }
+
+        return true;
     }
 }

@@ -41,7 +41,7 @@ final class TerritoryAssignmentController extends AbstractController
             $this->territoryAssignmentRepository->add($territoryAssignment);
             $this->entityManager->flush();
 
-            $this->addFlash('sucess', 'Territory assignment created');
+            $this->addFlash('success', 'Territory assignment created');
 
             return $this->redirectToRoute('app_territory_show', [
                 'id' => $territoryId,
@@ -64,7 +64,7 @@ final class TerritoryAssignmentController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->entityManager->flush();
 
-            $this->addFlash('sucess', 'Territory assignment updated');
+            $this->addFlash('success', 'Territory assignment updated');
 
             return $this->redirectToRoute('app_territory_show', [
                 'id' => $territoryAssignment->getTerritory()

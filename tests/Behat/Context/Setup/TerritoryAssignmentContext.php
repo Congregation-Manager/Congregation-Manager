@@ -24,10 +24,15 @@ final class TerritoryAssignmentContext implements Context
 
     /**
      * @Given the territory :territory is assigned to brother :brother
+     * @Given the territory :territory has been assigned to brother :brother on :assignmentDate
      */
-    public function theTerritoryIsAssignedToBrother(TerritoryInterface $territory, BrotherInterface $brother): void
-    {
-        $territoryAssignment = new TerritoryAssignment($territory, new DateTimeImmutable(), $brother,);
+    public function theTerritoryIsAssignedToBrother(
+        TerritoryInterface $territory,
+        BrotherInterface $brother,
+        ?string $assignmentDate = null
+    ): void {
+        $assignmentDate = new DateTimeImmutable($assignmentDate ?? 'now');
+        $territoryAssignment = new TerritoryAssignment($territory, $assignmentDate, $brother);
 
         $this->territoryAssignmentRepository->add($territoryAssignment);
         $this->entityManager->flush();
