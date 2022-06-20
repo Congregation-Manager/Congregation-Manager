@@ -68,6 +68,9 @@ jobs:
                 name: Build Yarn Assets
                 run: yarn build
             -
+                name: Validate project's compliance
+                run: vendor/bin/pds-skeleton validate
+            -
                 name: Check composer direct dependencies
                 run: composer-require-checker check
             #-
