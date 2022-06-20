@@ -24,6 +24,7 @@
     "conflict": {
         "symfony/symfony": "*"
     },
+    "description": "Tool to manage Congregation based on Symfony framework.",
     "extra": {
         "symfony": {
             "allow-contrib": false,
@@ -32,6 +33,7 @@
     },
     "license": "proprietary",
     "minimum-stability": "stable",
+    "name": "lruozzi9/congregation-manager",
     "prefer-stable": true,
     "replace": {
         "symfony/polyfill-ctype": "*",
@@ -41,7 +43,7 @@
     "require": {
         "php": "^8.1",
         "ext-ctype": "*",
-        "composer/package-versions-deprecated": "1.11.99.4",
+        "composer/package-versions-deprecated": "^1.11",
         "doctrine/annotations": "^1.0",
         "doctrine/collections": "^1.6",
         "doctrine/dbal": "^3.3",
@@ -100,7 +102,7 @@
     },
     "require-dev": {
         "behat/behat": "^3.10",
-        "behat/mink": "dev-master#a91ab98",
+        "behat/mink": "^1.10",
         "dama/doctrine-test-bundle": "^6.7",
         "doctrine/doctrine-fixtures-bundle": "^3.4",
         "friends-of-behat/mink-browserkit-driver": "^1.6",
@@ -136,6 +138,7 @@
         "post-update-cmd": [
             "@auto-scripts"
         ],
+        "pds": "vendor/bin/pds-skeleton validate",
         "ecs": "vendor/bin/ecs check src tests",
         "phpstan": "vendor/bin/phpstan analyse -c phpstan.neon",
         "psalm": "vendor/bin/psalm",
@@ -143,6 +146,7 @@
         "unit": "vendor/bin/phpunit",
         "behat": "vendor/bin/behat",
         "test": [
+            "@pds",
             "@ecs",
             "@phparkitect",
             "@phpstan",
