@@ -10,7 +10,7 @@ use DateInterval;
 use DateTime;
 use DateTimeInterface;
 
-final class TerritoryAssignment extends AggregateRoot implements TerritoryAssignmentInterface
+class TerritoryAssignment extends AggregateRoot implements TerritoryAssignmentInterface
 {
     public function __construct(
         private TerritoryInterface $territory,

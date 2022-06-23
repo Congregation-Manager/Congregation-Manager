@@ -104,6 +104,7 @@
         "behat/behat": "^3.10",
         "behat/mink": "^1.10",
         "dama/doctrine-test-bundle": "^6.7",
+        "deployer/dist": "v7.0.0-rc.4",
         "doctrine/doctrine-fixtures-bundle": "^3.4",
         "friends-of-behat/mink-browserkit-driver": "^1.6",
         "friends-of-behat/mink-debug-extension": "^2.1",
