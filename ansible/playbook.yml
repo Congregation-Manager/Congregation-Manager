@@ -72,6 +72,7 @@
     become: yes
 
     vars_files:
+        - ./vars/vault.yml
         - ./vars/vars.yml
 
     roles:
@@ -97,10 +98,11 @@
                     - zip
                     - unzip
                     - git
+                    - acl
                 state: latest
 
         -
-            name: Remove package cmdtest which confilicts with yarn
+            name: Remove package cmdtest which conflicts with yarn
             become: true
             apt:
                 name: cmdtest

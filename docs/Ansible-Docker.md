@@ -72,7 +72,7 @@ Now, we have an image ready to be used from a container, so just use it. We will
 	-e ANSIBLE_HOST_KEY_CHECKING=False \
 	-v congregation-manager_ansible-volume:/root/.ansible \
 	congregation-manager_ansible-image:latest \
-	ansible-playbook playbook.yml -i hosts.ini --vault-password-file vars/.password
+	ansible-playbook playbook.yml -i production.ini -K --vault-password-file vars/.password
 
 If you want to run provision only for dbservers or webservers just add the tags option with the values web or database.
 
@@ -83,7 +83,7 @@ If you want to run provision only for dbservers or webservers just add the tags 
 	-e ANSIBLE_HOST_KEY_CHECKING=False \
 	-v congregation-manager_ansible-volume:/root/.ansible \
 	congregation-manager_ansible-image:latest \
-	ansible-playbook playbook.yml -i hosts.ini --vault-password-file vars/.password -t database
+	ansible-playbook playbook.yml -i production.ini -K --vault-password-file vars/.password -t database
 
 [ansible_host_parameters]:https://docs.ansible.com/ansible/2.6/user_guide/intro_inventory.html#list-of-behavioral-inventory-parameters
 [docker_installation_docs]:https://docs.docker.com/get-docker/
