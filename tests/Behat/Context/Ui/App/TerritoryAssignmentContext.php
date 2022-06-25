@@ -96,6 +96,12 @@ final class TerritoryAssignmentContext implements Context
      */
     public function iShouldBeInformedThatTheTerritoryIsAlreadyAssigned(): void
     {
-        Assert::true($this->assignPage->hasErrorMessage($this->translator->trans('congregation_manager.territory_assignment.valid', [], 'validators')));
+        Assert::true(
+            $this->assignPage->hasErrorMessage($this->translator->trans(
+                'congregation_manager.territory_assignment.valid',
+                [],
+                'validators'
+            ))
+        );
     }
 }
