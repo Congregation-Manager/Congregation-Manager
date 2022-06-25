@@ -76,9 +76,9 @@ jobs:
             -
                 name: Check composer direct dependencies
                 run: composer-require-checker check
-            -
-                name: Check if dependencies are used
-                run: composer-unused
+#            -  TODO: some requested dep are marked as unused because not inside the src directory
+#                name: Check if dependencies are used
+#                run: composer-unused
             -
                 name: Run easy coding standard
                 run: vendor/bin/ecs check src tests
