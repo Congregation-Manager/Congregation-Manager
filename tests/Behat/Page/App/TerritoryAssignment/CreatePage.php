@@ -43,10 +43,10 @@ final class CreatePage extends SymfonyPage
         ;
     }
 
-    public function hasAlreadyAssignedErrorMessage(): bool
+    public function hasErrorMessage(string $message): bool
     {
         foreach ($this->getDocument()->findAll('css', $this->getDefinedElements()['errors']) as $errorMessage) {
-            if ('This territory assignment is not valid' === $errorMessage->getText()) {
+            if ($message === $errorMessage->getText()) {
                 return true;
             }
         }

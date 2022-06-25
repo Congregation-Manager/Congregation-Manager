@@ -7,7 +7,7 @@
     <class name="CongregationManager\Domain\Territory\Model\TerritoryAssignment">
         <getter property="valid">
             <constraint name="IsTrue">
-                <option name="message">This territory assignment is not valid</option>
+                <option name="message">congregation_manager.territory_assignment.valid</option>
             </constraint>
         </getter>
         <property name="assignmentDate">

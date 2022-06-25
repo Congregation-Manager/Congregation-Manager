@@ -24,7 +24,7 @@ Feature: Create territory assignment
 
   @ui @app
   Scenario: Prevent creating new territory assignment on already assigned territory
-    Given the territory "01" has been assigned to brother "Dylan Martinez" on "2022-04-31"
+    Given the territory "01" has been assigned to brother "Dylan Martinez" on "2022-04-30"
     And I am on the assign territory "01" page
     When I set assignment date as "2022-06-14"
     And I select brother "Dylan Martinez"
@@ -33,5 +33,5 @@ Feature: Create territory assignment
     And I should be informed that the territory is already assigned
     When I view the territory "01" page
     Then I should see 1 territory assignment
-    And the first territory assignment should be assigned starting from "2022-04-31"
+    And the first territory assignment should be assigned starting from "2022-04-30"
     And the first territory assignment should be assigned to brother "Dylan Martinez"

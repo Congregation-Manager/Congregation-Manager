@@ -12,6 +12,7 @@ use CongregationManager\Tests\Behat\Page\App\TerritoryAssignment\CreatePage;
 use CongregationManager\Tests\Behat\Page\App\TerritoryAssignment\UpdatePage;
 use CongregationManager\Tests\Behat\Services\SharedStorageInterface;
 use DateTimeImmutable;
+use Symfony\Contracts\Translation\TranslatorInterface;
 use Webmozart\Assert\Assert;
 
 final class TerritoryAssignmentContext implements Context
@@ -20,6 +21,7 @@ final class TerritoryAssignmentContext implements Context
         private CreatePage $assignPage,
         private UpdatePage $updatePage,
         private SharedStorageInterface $sharedStorage,
+        private TranslatorInterface $translator,
     ) {
     }
 
@@ -94,6 +96,6 @@ final class TerritoryAssignmentContext implements Context
      */
     public function iShouldBeInformedThatTheTerritoryIsAlreadyAssigned(): void
     {
-        Assert::true($this->assignPage->hasAlreadyAssignedErrorMessage());
+        Assert::true($this->assignPage->hasErrorMessage($this->translator->trans('congregation_manager.territory_assignment.valid', [], 'validators')));
     }
 }

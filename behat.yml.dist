@@ -15,7 +15,7 @@ default:
                     symfony: ~
 
         FriendsOfBehat\MinkDebugExtension:
-            directory: "%paths.base%/var/behat/"
+            directory: "%paths.base%/etc/build/"
             screenshot: true
             clean_start: true
 
