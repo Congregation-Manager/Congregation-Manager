@@ -45,8 +45,8 @@ final class CreateBrotherTest extends TestCase
         $this->assertSame('Junior', $brother->getMiddleName());
         $this->assertSame($congregation, $brother->getCongregation());
         $this->assertTrue($brother->isMale());
-        $this->assertSame(new DateTime('1976-04-23'), $brother->getBirthDate());
-        $this->assertSame(new DateTime('1988-06-12'), $brother->getBaptismDate());
+        $this->assertSame((new DateTime('1976-04-23'))->format('d/m/Y'), $brother->getBirthDate()->format('d/m/Y'));
+        $this->assertSame((new DateTime('1988-06-12'))->format('d/m/Y'), $brother->getBaptismDate()->format('d/m/Y'));
         $this->assertSame($this->brotherRepository->findAll()->first(), $brother);
     }
 }
