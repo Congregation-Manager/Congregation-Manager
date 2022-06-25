@@ -1,4 +1,0 @@
-suites:
-    congregation_manager:
-        namespace: CongregationManager
-        psr4_prefix: CongregationManager
