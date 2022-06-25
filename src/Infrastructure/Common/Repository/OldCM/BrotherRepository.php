@@ -15,7 +15,7 @@ final class BrotherRepository implements BrotherRepositoryInterface
 
     public function findAllByCongregation(int $congregationId): array
     {
-        /** @var array<array-key, array{id: string, name: string, surname: string, birth_date: ?string, baptism_date: ?string, congregation_id: int, group_id: int, male: string, middle_name: ?string}> $results */
+        /* @phpstan-ignore-next-line */
         return $this->connection->createQueryBuilder()
             ->select('*')
             ->from('brothers')

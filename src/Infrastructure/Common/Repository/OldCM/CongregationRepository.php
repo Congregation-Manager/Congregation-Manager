@@ -15,7 +15,7 @@ final class CongregationRepository implements CongregationRepositoryInterface
 
     public function findOneById(int $id): array
     {
-        /** @var array<array-key, array{id: string, name: string}> $results */
+        /* @phpstan-ignore-next-line */
         return $this->connection->createQueryBuilder()
             ->select('*')
             ->from('congregations')

@@ -18,7 +18,7 @@ final class TerritoryAssignmentRepository
      */
     public function findAllByTerritoryId(int $territoryId): array
     {
-        /** @var array<array-key, array{id: string, brother_id: string, campaign_id: string, assignment_date: string, revocation_date: string}> $results */
+        /* @phpstan-ignore-next-line */
         return $this->connection->createQueryBuilder()
             ->select('*')
             ->from('territory_assignment')

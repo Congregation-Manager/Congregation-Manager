@@ -18,7 +18,7 @@ final class AreaRepository
      */
     public function findAllByCongregationAndMunicipality(int $congregationId, int $municipalityId): array
     {
-        /** @var array<array-key, array{id: string, name: string, description: string, congregation_id: string}> $results */
+        /* @phpstan-ignore-next-line */
         return $this->connection->createQueryBuilder()
             ->select('*')
             ->from('areas')

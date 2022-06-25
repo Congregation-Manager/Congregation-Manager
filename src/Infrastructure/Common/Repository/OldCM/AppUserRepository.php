@@ -15,7 +15,7 @@ final class AppUserRepository implements AppUserRepositoryInterface
 
     public function findOneByBrother(int $brotherId): array
     {
-        /** @var array<array-key, array{id: string, username: string, email: string, password: string}> $results */
+        /* @phpstan-ignore-next-line */
         return $this->connection->createQueryBuilder()
             ->select('*')
             ->from('users')

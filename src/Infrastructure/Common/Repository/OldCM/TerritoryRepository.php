@@ -18,7 +18,7 @@ final class TerritoryRepository
      */
     public function findAllByCongregationAndArea(int $congregationId, int $areaId): array
     {
-        /** @var array<array-key, array{id: string, name: string, description: string, congregation_id: string}> $results */
+        /* @phpstan-ignore-next-line */
         return $this->connection->createQueryBuilder()
             ->select('*')
             ->from('territories')

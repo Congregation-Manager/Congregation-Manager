@@ -18,7 +18,7 @@ final class MunicipalityRepository
      */
     public function findAllByCongregationAndProvince(int $congregationId, int $provinceId): array
     {
-        /** @var array<array-key, array{id: string, name: string, description: string, congregation_id: string}> $results */
+        /* @phpstan-ignore-next-line */
         return $this->connection->createQueryBuilder()
             ->select('*')
             ->from('municipalities')

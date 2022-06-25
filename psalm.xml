@@ -9,6 +9,7 @@
         <directory name="src"/>
         <ignoreFiles>
             <directory name="vendor"/>
+            <directory name="src/Infrastructure/Common/Repository/OldCM"/>
         </ignoreFiles>
     </projectFiles>
 </psalm>
