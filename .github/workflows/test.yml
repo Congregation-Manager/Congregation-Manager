@@ -101,10 +101,6 @@ jobs:
                 name: Execute tests (Unit and Feature tests) via PHPUnit
                 run: vendor/bin/phpunit
             -
-                name: Create Behat logs dir
-                run: |
-                    mkdir -p var/behat
-            -
                 name: Execute behavior tests via behat
                 run: vendor/bin/behat --colors --strict --no-interaction -f progress
             -
@@ -113,5 +109,5 @@ jobs:
                 if: failure()
                 with:
                     name: "Behat logs"
-                    path: var/behat
+                    path: etc/build
                     if-no-files-found: ignore
