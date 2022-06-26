@@ -302,4 +302,12 @@ final class TerritoryAssignmentTest extends TestCase
         ;
         self::assertFalse($this->territoryAssignmentWithRevocationDate->isValid());
     }
+
+    public function testAssignmentIsValidWhenTerritoryContainsTheSameInstance(): void
+    {
+        $this->territory->getTerritoryAssignments()
+            ->willReturn(new ArrayCollection([$this->territoryAssignmentWithRevocationDate]))
+        ;
+        self::assertTrue($this->territoryAssignmentWithRevocationDate->isValid());
+    }
 }

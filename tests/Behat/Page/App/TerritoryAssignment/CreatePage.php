@@ -36,6 +36,13 @@ final class CreatePage extends SymfonyPage
         ;
     }
 
+    public function specifyRevocationDate(DateTimeImmutable $revocationDate)
+    {
+        $this->getElement('revocation-date')
+            ->setValue($revocationDate->format('Y-m-d'))
+        ;
+    }
+
     public function save(): void
     {
         $this->getElement('save')
@@ -60,6 +67,7 @@ final class CreatePage extends SymfonyPage
             'errors' => '.invalid-feedback',
             'brother' => '[data-test-brother]',
             'assignment-date' => '[data-test-assignment-date]',
+            'revocation-date' => '[data-test-revocation-date]',
             'territory' => '[data-test-territory]',
             'save' => '[data-test-save]',
         ]);

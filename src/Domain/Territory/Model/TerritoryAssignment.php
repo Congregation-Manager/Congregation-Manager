@@ -72,6 +72,9 @@ class TerritoryAssignment extends AggregateRoot implements TerritoryAssignmentIn
     {
         $territory = $this->getTerritory();
         foreach ($territory->getTerritoryAssignments() as $existingAssignment) {
+            if ($existingAssignment === $this) {
+                continue;
+            }
             if (null === $this->getRevocationDate() && null === $existingAssignment->getRevocationDate()) {
                 return false;
             }

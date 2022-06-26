@@ -37,11 +37,30 @@ final class TerritoryContext implements Context
     }
 
     /**
+     * @Given the last one territory assignment should be assigned to brother :brother
+     */
+    public function theLastOneTerritoryAssignmentShouldBeAssignedToBrother(BrotherInterface $brother): void
+    {
+        Assert::eq($this->showPage->getLastTerritoryAssignmentBrother(), (string) $brother);
+    }
+
+    /**
      * @Then the first territory assignment should be assigned to brother :brother
      */
     public function theFirstTerritoryAssignmentShouldBeAssignedToBrother(BrotherInterface $brother): void
     {
         Assert::eq($this->showPage->getFirstTerritoryAssignmentBrother(), (string) $brother);
+    }
+
+    /**
+     * @Given the last one territory assignment should be assigned starting from :startingDate
+     */
+    public function theLastOneTerritoryAssignmentShouldBeAssignedStartingFrom(string $assignmentDate): void
+    {
+        Assert::eq(
+            $this->showPage->getLastTerritoryAssignmentAssignmentDate(),
+            new DateTimeImmutable($assignmentDate)
+        );
     }
 
     /**

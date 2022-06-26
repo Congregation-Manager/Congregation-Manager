@@ -60,6 +60,14 @@ final class TerritoryAssignmentContext implements Context
     }
 
     /**
+     * @Given I set revocation date as :revocationDate
+     */
+    public function iSetRevocationDateAs(string $revocationDate): void
+    {
+        $this->assignPage->specifyRevocationDate(new DateTimeImmutable($revocationDate));
+    }
+
+    /**
      * @Given I save territory assignment
      */
     public function iSaveTerritoryAssignment(): void
@@ -82,19 +90,9 @@ final class TerritoryAssignmentContext implements Context
     }
 
     /**
-     * @Then I should still be on the territory :territory page
+     * @Given I should be informed that the territory is conflicting another
      */
-    public function iShouldStillBeOnTheTerritoryPage(TerritoryInterface $territory): void
-    {
-        $this->assignPage->isOpen([
-            'territoryId' => $territory->getId(),
-        ]);
-    }
-
-    /**
-     * @Given I should be informed that the territory is already assigned
-     */
-    public function iShouldBeInformedThatTheTerritoryIsAlreadyAssigned(): void
+    public function iShouldBeInformedThatTheTerritoryIsConflictingAnother(): void
     {
         Assert::true(
             $this->assignPage->hasErrorMessage($this->translator->trans(

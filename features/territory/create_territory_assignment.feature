@@ -29,8 +29,7 @@ Feature: Create territory assignment
     When I set assignment date as "2022-06-14"
     And I select brother "Dylan Martinez"
     And I save territory assignment
-    Then I should still be on the territory "01" page
-    And I should be informed that the territory is already assigned
+    Then I should be informed that the territory is conflicting another
     When I view the territory "01" page
     Then I should see 1 territory assignment
     And the first territory assignment should be assigned starting from "2022-04-30"
