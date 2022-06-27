@@ -54,7 +54,7 @@
         "knplabs/knp-components": "^3.5",
         "knplabs/knp-paginator-bundle": "^5.8",
         "phpdocumentor/reflection-docblock": "^5.3",
-        "psr/log": "^2.0",
+        "psr/log": "^3.0",
         "sensio/framework-extra-bundle": "^6.1",
         "symfony/console": "^6.0",
         "symfony/dependency-injection": "^6.0",
