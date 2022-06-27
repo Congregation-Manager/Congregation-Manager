@@ -37,3 +37,13 @@ Feature: Update territory assignment
     And the first territory assignment should be assigned to brother "Dylan Martinez"
     And the last one territory assignment should be assigned starting from "2022-04-30"
     And the last one territory assignment should be assigned to brother "Christian Martinez"
+
+  @ui @app
+  Scenario: Prevent updating territory assignment with revocation date before assignment date
+    And I am on the territory assignment update page
+    When I set assignment date as "2022-06-14"
+    And I set revocation date as "2022-06-12"
+    And I save territory assignment
+    Then I should be informed that revocation date should be greater or equal than "2022-06-14"
+    When I view the territory "01" page
+    Then I should see 1 territory assignment

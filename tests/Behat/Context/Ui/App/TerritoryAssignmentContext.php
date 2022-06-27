@@ -102,4 +102,35 @@ final class TerritoryAssignmentContext implements Context
             ))
         );
     }
+
+    /**
+     * @Then I should be informed that revocation date should be greater or equal than :assignmentDate
+     */
+    public function iShouldBeInformedThatRevocationDateShouldBeGreaterOrEqualThanAssignmentDate(
+        string $assignmentDate
+    ): void {
+        Assert::true(
+            $this->assignPage->hasErrorMessage($this->translator->trans(
+                'This value should be greater than or equal to {{ compared_value }}.',
+                [
+                    '{{ compared_value }}' => (new DateTimeImmutable($assignmentDate))->format('M d, Y, h:i A'),
+                ],
+                'validators'
+            ))
+        );
+    }
+
+    /**
+     * @Then I should be informed that assignment date is required
+     */
+    public function iShouldBeInformedThatAssignmentDateIsRequired(): void
+    {
+        Assert::true(
+            $this->assignPage->hasErrorMessage($this->translator->trans(
+                'This value should not be blank.',
+                [],
+                'validators'
+            ))
+        );
+    }
 }

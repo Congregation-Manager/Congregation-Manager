@@ -34,3 +34,21 @@ Feature: Create territory assignment
     Then I should see 1 territory assignment
     And the first territory assignment should be assigned starting from "2022-04-30"
     And the first territory assignment should be assigned to brother "Dylan Martinez"
+
+  @ui @app
+  Scenario: Prevent creating territory assignment with revocation date before assignment date
+    Given I am on the assign territory "01" page
+    When I set assignment date as "2022-06-14"
+    And I set revocation date as "2022-06-12"
+    And I save territory assignment
+    Then I should be informed that revocation date should be greater or equal than "2022-06-14"
+    When I view the territory "01" page
+    Then I should see 0 territory assignment
+
+  @ui @app @wip
+  Scenario: Prevent creating territory assignment without assignment date
+    Given I am on the assign territory "01" page
+    When I save territory assignment
+    Then I should be informed that assignment date is required
+    When I view the territory "01" page
+    Then I should see 0 territory assignment
