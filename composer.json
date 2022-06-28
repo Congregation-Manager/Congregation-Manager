@@ -50,7 +50,7 @@
         "doctrine/doctrine-bundle": "^2.4",
         "doctrine/doctrine-migrations-bundle": "^3.2",
         "doctrine/orm": "^2.10",
-        "doctrine/persistence": "^2.2",
+        "doctrine/persistence": "^3.0",
         "knplabs/knp-components": "^3.5",
         "knplabs/knp-paginator-bundle": "^5.8",
         "phpdocumentor/reflection-docblock": "^5.3",
