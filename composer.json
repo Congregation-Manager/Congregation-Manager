@@ -125,7 +125,7 @@
         "symfony/maker-bundle": "^1.36",
         "symfony/phpunit-bridge": "^6.0",
         "symfony/web-profiler-bundle": "^6.0",
-        "symplify/easy-coding-standard": "^9.4",
+        "symplify/easy-coding-standard": "^11.0",
         "vimeo/psalm": "^4.12"
     },
     "scripts": {
