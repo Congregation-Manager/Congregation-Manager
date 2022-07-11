@@ -45,7 +45,7 @@ final class LocaleSubscriber implements EventSubscriberInterface
         $locale = $request->getSession()
             ->get('_locale', $this->defaultLocale)
         ;
-        if (is_string($locale) && '' !== $locale) {
+        if (is_string($locale) && $locale !== '') {
             $request->setLocale($locale);
         }
     }
@@ -57,7 +57,7 @@ final class LocaleSubscriber implements EventSubscriberInterface
             $this->getSuperLanguageCodesFromLocaleCodes($this->availableLocaleCodes)
         );
         $preferredLocaleCode = $request->getPreferredLanguage($availableLocaleCodesWithSuperLanguage);
-        if (null === $preferredLocaleCode) {
+        if ($preferredLocaleCode === null) {
             return null;
         }
         if (in_array($preferredLocaleCode, $this->availableLocaleCodes, true)) {
@@ -96,7 +96,7 @@ final class LocaleSubscriber implements EventSubscriberInterface
     private function getLanguageFromLocaleCode(string $localeCode): string
     {
         $position = strpos($localeCode, '_');
-        if (false !== $position) {
+        if ($position !== false) {
             return substr($localeCode, 0, $position);
         }
 

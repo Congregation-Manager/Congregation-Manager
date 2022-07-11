@@ -29,7 +29,7 @@ final class LocaleRuntime implements RuntimeExtensionInterface
 
     private function getLocaleCode(?string $localeCode): ?string
     {
-        if (null !== $localeCode) {
+        if ($localeCode !== null) {
             return $localeCode;
         }
 

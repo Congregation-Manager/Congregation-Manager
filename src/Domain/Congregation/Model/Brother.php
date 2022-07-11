@@ -39,7 +39,7 @@ class Brother extends AggregateRoot implements BrotherInterface
         return sprintf(
             '%s%s %s',
             $this->firstName,
-            null !== $this->middleName ? ' '.$this->middleName : '',
+            $this->middleName !== null ? ' ' . $this->middleName : '',
             $this->lastName
         );
     }

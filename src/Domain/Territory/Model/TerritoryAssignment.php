@@ -75,16 +75,16 @@ class TerritoryAssignment extends AggregateRoot implements TerritoryAssignmentIn
             if ($existingAssignment === $this) {
                 continue;
             }
-            if (null === $this->getRevocationDate() && null === $existingAssignment->getRevocationDate()) {
+            if ($this->getRevocationDate() === null && $existingAssignment->getRevocationDate() === null) {
                 return false;
             }
-            if (null === $this->getRevocationDate() && $this->getAssignmentDate() <= $existingAssignment->getRevocationDate()) {
+            if ($this->getRevocationDate() === null && $this->getAssignmentDate() <= $existingAssignment->getRevocationDate()) {
                 return false;
             }
             if ($existingAssignment->getAssignmentDate() > $this->getRevocationDate()) {
                 continue;
             }
-            if (null === $existingAssignment->getRevocationDate()) {
+            if ($existingAssignment->getRevocationDate() === null) {
                 return false;
             }
             if ($existingAssignment->getRevocationDate() >= $this->getAssignmentDate()) {

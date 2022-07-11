@@ -23,7 +23,7 @@ final class CreateAdminUser
         ?string $localeCode = null
     ): AdminUserInterface {
         $adminUser = new AdminUser($email, null, $localeCode);
-        if (null !== $plainPassword) {
+        if ($plainPassword !== null) {
             $adminUser->setPassword($this->userPasswordHasher->hashPasswordForUser($plainPassword, $adminUser));
         }
         $this->adminUserRepository->add($adminUser);

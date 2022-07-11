@@ -72,7 +72,7 @@ class ResetPasswordRequestRepository extends ServiceEntityRepository implements 
             ->getOneorNullResult()
         ;
 
-        if (null !== $resetPasswordRequest && ! $resetPasswordRequest->isExpired()) {
+        if ($resetPasswordRequest !== null && ! $resetPasswordRequest->isExpired()) {
             return $resetPasswordRequest->getRequestedAt();
         }
 

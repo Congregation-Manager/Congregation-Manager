@@ -106,7 +106,7 @@ final class ImportFromOldCMCommand extends Command
 
     protected function interact(InputInterface $input, OutputInterface $output): void
     {
-        if (null !== $input->getArgument(self::OLD_CONGREGATION_ID_ARGUMENT_CODE)) {
+        if ($input->getArgument(self::OLD_CONGREGATION_ID_ARGUMENT_CODE) !== null) {
             return;
         }
 
@@ -115,14 +115,14 @@ final class ImportFromOldCMCommand extends Command
             'If you prefer to not use this interactive wizard, provide the',
             'arguments required by this command as follows:',
             '',
-            ' $ php bin/console '.(string) $this->name.' old-congregation-id',
+            ' $ php bin/console ' . (string) $this->name . ' old-congregation-id',
             '',
             'Now we\'ll ask you for the value of all the missing command arguments.',
         ]);
 
         /** @var mixed|null $oldCongregationId */
         $oldCongregationId = $input->getArgument(self::OLD_CONGREGATION_ID_ARGUMENT_CODE);
-        if (null === $oldCongregationId) {
+        if ($oldCongregationId === null) {
             /** @var int $oldCongregationId */
             $oldCongregationId = $this->io->ask('Old congregation id', null, [$this, 'validateOldCongregationId']);
             $input->setArgument(self::OLD_CONGREGATION_ID_ARGUMENT_CODE, $oldCongregationId);
@@ -145,7 +145,7 @@ final class ImportFromOldCMCommand extends Command
         );
         $oldCongregation = $this->oldCongregationRepository->findOneById($oldCongregationId);
 
-        if (0 === count($oldCongregation)) {
+        if (count($oldCongregation) === 0) {
             $this->io->error('No old congregation founded');
 
             return Command::FAILURE;
@@ -196,7 +196,7 @@ final class ImportFromOldCMCommand extends Command
             );
             $this->oldBrotherIds[(int) $oldBrother['id']] = $brother;
             $oldAppUser = $this->oldAppUserRepository->findOneByBrother((int) $oldBrother['id']);
-            if (0 === count($oldAppUser)) {
+            if (count($oldAppUser) === 0) {
                 continue;
             }
             $oldAppUser = reset($oldAppUser);
@@ -246,7 +246,7 @@ final class ImportFromOldCMCommand extends Command
                             (int) $oldTerritory['id']
                         ) as $oldTerritoryAssignment) {
                             $brother = null;
-                            if (null !== $oldTerritoryAssignment['brother_id']) {
+                            if ($oldTerritoryAssignment['brother_id'] !== null) {
                                 if (! array_key_exists(
                                     (int) $oldTerritoryAssignment['brother_id'],
                                     $this->oldBrotherIds
@@ -263,7 +263,7 @@ final class ImportFromOldCMCommand extends Command
                                 $territory,
                                 new DateTime($oldTerritoryAssignment['assignment_date']),
                                 $brother,
-                                null !== $oldTerritoryAssignment['revocation_date'] ? new DateTime(
+                                $oldTerritoryAssignment['revocation_date'] !== null ? new DateTime(
                                     $oldTerritoryAssignment['revocation_date']
                                 ) : null
                             );

@@ -26,7 +26,7 @@ abstract class InMemoryRepository implements DoctrineObjectRepository
      */
     public function __construct(ArrayCollection $objectCollection = null)
     {
-        if (null === $objectCollection) {
+        if ($objectCollection === null) {
             /** @var ArrayCollection<TKey,T> $objectCollection */
             $objectCollection = new ArrayCollection();
         }
@@ -72,7 +72,7 @@ abstract class InMemoryRepository implements DoctrineObjectRepository
         foreach ($criteria as $field => $value) {
             $criteriaObject->andWhere(Criteria::expr()->eq($field, $value));
         }
-        if (null !== $orderBy) {
+        if ($orderBy !== null) {
             $criteriaObject->orderBy($orderBy);
         }
         $criteriaObject->setMaxResults($limit);

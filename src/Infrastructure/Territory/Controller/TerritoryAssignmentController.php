@@ -28,7 +28,7 @@ final class TerritoryAssignmentController extends AbstractController
     {
         $territory = null;
         $territoryId = $request->query->getInt('territoryId');
-        if (0 !== $territoryId) {
+        if ($territoryId !== 0) {
             $territory = $this->territoryRepository->find($territoryId);
         }
         $form = $this->createForm(TerritoryAssignmentFormType::class, null, [
@@ -56,7 +56,7 @@ final class TerritoryAssignmentController extends AbstractController
     public function update(Request $request, int $id): Response
     {
         $territoryAssignment = $this->territoryAssignmentRepository->find($id);
-        if (null === $territoryAssignment) {
+        if ($territoryAssignment === null) {
             throw $this->createNotFoundException();
         }
         $form = $this->createForm(TerritoryAssignmentFormType::class, $territoryAssignment);

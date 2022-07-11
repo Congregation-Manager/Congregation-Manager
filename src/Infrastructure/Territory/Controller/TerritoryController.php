@@ -59,7 +59,7 @@ final class TerritoryController extends AbstractController
     public function show(int $id, Request $request): Response
     {
         $territory = $this->territoryRepository->find($id);
-        if (null === $territory) {
+        if ($territory === null) {
             throw new NotFoundHttpException();
         }
 

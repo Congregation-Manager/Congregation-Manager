@@ -34,7 +34,7 @@ final class TestFormAttributeExtension extends AbstractExtension
         if (str_starts_with($this->env, 'test')) {
             return [
                 'attr' => [
-                    'data-test-'.$name => (string) $value,
+                    'data-test-' . $name => (string) $value,
                 ],
             ];
         }

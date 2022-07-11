@@ -29,7 +29,7 @@ final class BrotherContext implements Context
         Assert::isInstanceOf($congregation, CongregationInterface::class);
         [$firstName, $lastName] = explode(' ', $fullName);
         $brother = new Brother($firstName, $lastName, $congregation);
-        if ('sister' === $type) {
+        if ($type === 'sister') {
             $brother->setMale(false);
         }
         $this->entityManager->persist($brother);

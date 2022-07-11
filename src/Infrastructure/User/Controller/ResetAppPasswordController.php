@@ -72,7 +72,7 @@ class ResetAppPasswordController extends AbstractController
         // Generate a fake token if the user does not exist or someone hit this page directly.
         // This prevents exposing whether or not a user was found with the given email address or not
         $resetToken = $this->getTokenObjectFromSession();
-        if (null === $resetToken) {
+        if ($resetToken === null) {
             $resetToken = $this->resetPasswordHelper->generateFakeResetToken();
         }
 
@@ -95,7 +95,7 @@ class ResetAppPasswordController extends AbstractController
         }
 
         $token = $this->getTokenFromSession();
-        if (null === $token) {
+        if ($token === null) {
             throw $this->createNotFoundException('No reset password token found in the URL or in the session.');
         }
 

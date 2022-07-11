@@ -39,7 +39,7 @@ final class AdminBrotherController extends AbstractController
     public function show(Request $request, int $id): Response
     {
         $brother = $this->brotherRepository->find($id);
-        if (null === $brother) {
+        if ($brother === null) {
             throw new NotFoundHttpException();
         }
 
@@ -51,7 +51,7 @@ final class AdminBrotherController extends AbstractController
     public function invite(Request $request, int $id): Response
     {
         $brother = $this->brotherRepository->find($id);
-        if (null === $brother) {
+        if ($brother === null) {
             throw new NotFoundHttpException();
         }
         $inviteUserForm = $this->createForm(InviteUserFormType::class);
