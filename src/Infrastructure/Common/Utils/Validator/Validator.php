@@ -33,7 +33,7 @@ final class Validator
     {
         $email = $this->validateString($email);
 
-        if (null === u($email)->indexOf('@')) {
+        if (u($email)->indexOf('@') === null) {
             throw new InvalidArgumentException('The email should look like a real email.');
         }
 

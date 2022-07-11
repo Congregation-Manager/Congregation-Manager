@@ -30,7 +30,7 @@ final class UserContext implements Context
         $appUser = $appUserRepository->findOneBy([
             'email' => $email,
         ]);
-        if (null === $appUser) {
+        if ($appUser === null) {
             throw new InvalidArgumentException(sprintf('App user with email "%s" does not exist.', $email));
         }
 
@@ -48,7 +48,7 @@ final class UserContext implements Context
         $adminUser = $adminUserRepository->findOneBy([
             'email' => $email,
         ]);
-        if (null === $adminUser) {
+        if ($adminUser === null) {
             $adminUser = new AdminUser($email);
 
             $this->entityManager->persist($adminUser);

@@ -41,12 +41,12 @@ final class AppCompleteAccountController extends AbstractController
             return $this->redirectToRoute('app_complete_account');
         }
         $token = $this->getTokenFromSession();
-        if (null === $token) {
+        if ($token === null) {
             throw $this->createNotFoundException('No invitation token found in the URL or in the session.');
         }
 
         $appUserInvitation = $this->appUserInvitationRepository->findByToken($token);
-        if (null === $appUserInvitation) {
+        if ($appUserInvitation === null) {
             throw $this->createNotFoundException('No invitation token found in the URL or in the session.');
         }
 
@@ -94,7 +94,7 @@ final class AppCompleteAccountController extends AbstractController
     {
         /** @var string|int|null $token */
         $token = $this->session->get('CompleteAccountToken');
-        if (null === $token) {
+        if ($token === null) {
             return null;
         }
 

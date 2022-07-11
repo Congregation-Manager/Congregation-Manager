@@ -41,7 +41,7 @@ final class TerritoryFilterResults implements TerritoryFilterResultsInterface
         $qb = $qb->setFirstResult($offset)
             ->setMaxResults($limit)
         ;
-        if (null !== $sort) {
+        if ($sort !== null) {
             $qb->orderBy($sort, $direction);
         }
 

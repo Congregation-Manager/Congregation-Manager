@@ -94,7 +94,7 @@ class Territory extends AggregateRoot implements TerritoryInterface
     {
         $actualAssignment = $this->territoryAssignments->filter(
             function (TerritoryAssignmentInterface $territoryAssignment) {
-                return null === $territoryAssignment->getRevocationDate();
+                return $territoryAssignment->getRevocationDate() === null;
             }
         )->first();
 
@@ -109,7 +109,7 @@ class Territory extends AggregateRoot implements TerritoryInterface
     {
         $revocatedAssignementsIterator = $this->territoryAssignments->filter(
             function (TerritoryAssignmentInterface $territoryAssignment) {
-                return null !== $territoryAssignment->getRevocationDate();
+                return $territoryAssignment->getRevocationDate() !== null;
             }
         )->getIterator();
         if (! $revocatedAssignementsIterator instanceof ArrayIterator) {
@@ -142,6 +142,6 @@ class Territory extends AggregateRoot implements TerritoryInterface
 
     public function isAvailable(): bool
     {
-        return null === $this->getActualAssignment();
+        return $this->getActualAssignment() === null;
     }
 }

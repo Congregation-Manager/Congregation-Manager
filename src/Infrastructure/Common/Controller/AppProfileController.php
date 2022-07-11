@@ -29,7 +29,7 @@ final class AppProfileController extends AbstractController
     public function update(Request $request): Response
     {
         $user = $this->security->getUser();
-        if (null === $user) {
+        if ($user === null) {
             throw new AccessDeniedHttpException();
         }
         if (! $user instanceof AppUserInterface) {

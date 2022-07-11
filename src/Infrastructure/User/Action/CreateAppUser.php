@@ -26,7 +26,7 @@ final class CreateAppUser
         ?string $hashedPassword = null
     ): AppUserInterface {
         $appUser = new AppUser($brother, $email, $hashedPassword, $localeCode);
-        if (null === $hashedPassword && null !== $plainPassword) {
+        if ($hashedPassword === null && $plainPassword !== null) {
             $appUser->setPassword($this->userPasswordHasher->hashPasswordForUser($plainPassword, $appUser));
         }
         $this->appUserRepository->add($appUser);

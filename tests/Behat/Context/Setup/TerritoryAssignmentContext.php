@@ -34,7 +34,7 @@ final class TerritoryAssignmentContext implements Context
         ?string $revocationDate = null,
     ): void {
         $assignmentDate = new DateTimeImmutable($assignmentDate ?? 'now');
-        $revocationDate = null !== $revocationDate ? new DateTimeImmutable($revocationDate) : null;
+        $revocationDate = $revocationDate !== null ? new DateTimeImmutable($revocationDate) : null;
         $territoryAssignment = new TerritoryAssignment($territory, $assignmentDate, $brother);
 
         $this->territoryAssignmentRepository->add($territoryAssignment);

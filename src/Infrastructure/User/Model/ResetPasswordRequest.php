@@ -36,12 +36,12 @@ class ResetPasswordRequest extends DomainResetPasswordRequest implements ResetPa
     public function getUser(): object
     {
         $adminUser = $this->getAdminUser();
-        if (null !== $adminUser) {
+        if ($adminUser !== null) {
             return $adminUser;
         }
 
         $appUser = $this->getAppUser();
-        if (null !== $appUser) {
+        if ($appUser !== null) {
             return $appUser;
         }
 

@@ -30,7 +30,7 @@ final class AdminCongregationController extends AbstractController
     public function show(Request $request, int $id): Response
     {
         $congregation = $this->congregationRepository->find($id);
-        if (null === $congregation) {
+        if ($congregation === null) {
             throw new NotFoundHttpException();
         }
 
