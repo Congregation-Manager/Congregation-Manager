@@ -9395,16 +9395,16 @@
         },
         {
             "name": "phparkitect/phparkitect",
-            "version": "0.2.23",
+            "version": "0.2.26",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phparkitect/arkitect.git",
-                "reference": "cfcc9e42980356f49da5f4bdbb1aea459c0734de"
+                "reference": "bfe4157aa557dfc663105ec9dc41ea8fbfc0697f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phparkitect/arkitect/zipball/cfcc9e42980356f49da5f4bdbb1aea459c0734de",
-                "reference": "cfcc9e42980356f49da5f4bdbb1aea459c0734de",
+                "url": "https://api.github.com/repos/phparkitect/arkitect/zipball/bfe4157aa557dfc663105ec9dc41ea8fbfc0697f",
+                "reference": "bfe4157aa557dfc663105ec9dc41ea8fbfc0697f",
                 "shasum": ""
             },
             "require": {
@@ -9459,9 +9459,9 @@
             "description": "Enforce architectural constraints in your PHP applications",
             "support": {
                 "issues": "https://github.com/phparkitect/arkitect/issues",
-                "source": "https://github.com/phparkitect/arkitect/tree/0.2.23"
+                "source": "https://github.com/phparkitect/arkitect/tree/0.2.26"
             },
-            "time": "2022-06-18T13:33:28+00:00"
+            "time": "2022-07-13T10:53:06+00:00"
         },
         {
             "name": "phpspec/prophecy",
