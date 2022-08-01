@@ -11646,16 +11646,16 @@
         },
         {
             "name": "symfony/css-selector",
-            "version": "v6.1.0",
+            "version": "v6.1.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/css-selector.git",
-                "reference": "05c40f02f621609404b8820ff8bc39acb46e19cf"
+                "reference": "0dd5e36b80e1de97f8f74ed7023ac2b837a36443"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/css-selector/zipball/05c40f02f621609404b8820ff8bc39acb46e19cf",
-                "reference": "05c40f02f621609404b8820ff8bc39acb46e19cf",
+                "url": "https://api.github.com/repos/symfony/css-selector/zipball/0dd5e36b80e1de97f8f74ed7023ac2b837a36443",
+                "reference": "0dd5e36b80e1de97f8f74ed7023ac2b837a36443",
                 "shasum": ""
             },
             "require": {
@@ -11691,7 +11691,7 @@
             "description": "Converts CSS selectors to XPath expressions",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/css-selector/tree/v6.1.0"
+                "source": "https://github.com/symfony/css-selector/tree/v6.1.3"
             },
             "funding": [
                 {
@@ -11707,7 +11707,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2022-02-25T11:15:52+00:00"
+            "time": "2022-06-27T17:24:16+00:00"
         },
         {
             "name": "symfony/debug-bundle",
@@ -11952,16 +11952,16 @@
         },
         {
             "name": "symfony/phpunit-bridge",
-            "version": "v6.1.2",
+            "version": "v6.1.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/phpunit-bridge.git",
-                "reference": "899fdec151add3dc339cf394a15100a1acc177ad"
+                "reference": "75c2fa71d049c1f48e39d208c0cefba97e66335a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/phpunit-bridge/zipball/899fdec151add3dc339cf394a15100a1acc177ad",
-                "reference": "899fdec151add3dc339cf394a15100a1acc177ad",
+                "url": "https://api.github.com/repos/symfony/phpunit-bridge/zipball/75c2fa71d049c1f48e39d208c0cefba97e66335a",
+                "reference": "75c2fa71d049c1f48e39d208c0cefba97e66335a",
                 "shasum": ""
             },
             "require": {
@@ -12015,7 +12015,7 @@
             "description": "Provides utilities for PHPUnit, especially user deprecation notices management",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/phpunit-bridge/tree/v6.1.2"
+                "source": "https://github.com/symfony/phpunit-bridge/tree/v6.1.3"
             },
             "funding": [
                 {
@@ -12031,7 +12031,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2022-06-20T12:01:07+00:00"
+            "time": "2022-07-28T13:40:41+00:00"
         },
         {
             "name": "symfony/web-profiler-bundle",
@@ -12113,16 +12113,16 @@
         },
         {
             "name": "symplify/easy-coding-standard",
-            "version": "11.0.8",
+            "version": "11.0.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symplify/easy-coding-standard.git",
-                "reference": "ee347cd02e2aea9f706fc3f67ea0fc19cc0ca606"
+                "reference": "f5fa37979195781fac1b7adbc64101501f5b6de1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symplify/easy-coding-standard/zipball/ee347cd02e2aea9f706fc3f67ea0fc19cc0ca606",
-                "reference": "ee347cd02e2aea9f706fc3f67ea0fc19cc0ca606",
+                "url": "https://api.github.com/repos/symplify/easy-coding-standard/zipball/f5fa37979195781fac1b7adbc64101501f5b6de1",
+                "reference": "f5fa37979195781fac1b7adbc64101501f5b6de1",
                 "shasum": ""
             },
             "require": {
@@ -12152,7 +12152,7 @@
             ],
             "description": "Prefixed scoped version of ECS package",
             "support": {
-                "source": "https://github.com/symplify/easy-coding-standard/tree/11.0.8"
+                "source": "https://github.com/symplify/easy-coding-standard/tree/11.0.9"
             },
             "funding": [
                 {
@@ -12164,7 +12164,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2022-07-05T11:49:37+00:00"
+            "time": "2022-07-28T17:42:26+00:00"
         },
         {
             "name": "theseer/tokenizer",
