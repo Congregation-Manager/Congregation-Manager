@@ -10,14 +10,14 @@
         <th>
             {{ 'cm.ui.status'|trans }}
         </th>
-        <th{% if pagination.isSorted('last_assignment.assignmentDate') %} class="sorted"{% endif %}>
-            {{ knp_pagination_sortable(pagination, 'cm.ui.assignment_date'|trans, 'last_assignment.assignmentDate') }}
+        <th{% if pagination.isSorted('latest_assignment.assignmentDate') %} class="sorted"{% endif %}>
+            {{ knp_pagination_sortable(pagination, 'cm.ui.assignment_date'|trans, 'latest_assignment.assignmentDate') }}
         </th>
         <th>
             {{ 'cm.ui.expiration_date'|trans }}
         </th>
-        <th{% if pagination.isSorted('last_assignment.brother') %} class="sorted"{% endif %}>
-            {{ knp_pagination_sortable(pagination, 'cm.ui.assigned_to'|trans, 'last_assignment.brother') }}
+        <th{% if pagination.isSorted('latest_assignment.brother') %} class="sorted"{% endif %}>
+            {{ knp_pagination_sortable(pagination, 'cm.ui.assigned_to'|trans, 'latest_assignment.brother') }}
         </th>
         <th{% if pagination.isSorted('latest_assignment.revocationDate') %} class="sorted"{% endif %}>
             {{ knp_pagination_sortable(pagination, 'cm.ui.latest_assignment_revocation_date'|trans, 'latest_assignment.revocationDate') }}
