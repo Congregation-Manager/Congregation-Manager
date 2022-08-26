@@ -20,10 +20,11 @@ final class CongregationContext implements CongregationContextInterface
     public function getCongregation(): CongregationInterface
     {
         $user = $this->security->getUser();
-        if (!$user instanceof AppUserInterface) {
-           throw new RuntimeException('Unable to retrieve the app user to determine the Congregation.');
+        if (! $user instanceof AppUserInterface) {
+            throw new RuntimeException('Unable to retrieve the app user to determine the Congregation.');
         }
 
-        return $user->getBrother()->getCongregation();
+        return $user->getBrother()
+            ->getCongregation();
     }
 }
