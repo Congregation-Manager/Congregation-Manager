@@ -19,7 +19,7 @@ final class TerritoryFiltersFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('areas', EntityType::class, [
+            ->add('areas', AreaFormType::class, [
                 'class' => Area::class,
                 'label' => 'cm.ui.area',
                 'choice_label' => 'name',

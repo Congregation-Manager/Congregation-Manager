@@ -8,3 +8,8 @@ services:
         class: CongregationManager\Infrastructure\Common\Context\LocaleContext
         arguments:
             - '@request_stack'
+
+    cm.context.congregation:
+        class: CongregationManager\Infrastructure\Common\Context\CongregationContext
+        arguments:
+            - '@security.helper'

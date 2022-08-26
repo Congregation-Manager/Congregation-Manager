@@ -43,3 +43,11 @@ services:
         class: CongregationManager\Infrastructure\Territory\Form\TerritoryFiltersFormType
         tags:
             - { name: 'form.type' }
+
+    cm.form.type.area:
+        class: CongregationManager\Infrastructure\Territory\Form\AreaFormType
+        arguments:
+            - '@cm.context.congregation'
+            - '@doctrine'
+        tags:
+            - { name: 'form.type' }
