@@ -3673,16 +3673,16 @@
         },
         {
             "name": "symfony/form",
-            "version": "v6.1.3",
+            "version": "v6.1.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/form.git",
-                "reference": "b435d0eebfcd6985e8bdc984e67888278a6e6d6d"
+                "reference": "0a1a3ea071a216e2902cebe0b47750ca51f12f27"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/form/zipball/b435d0eebfcd6985e8bdc984e67888278a6e6d6d",
-                "reference": "b435d0eebfcd6985e8bdc984e67888278a6e6d6d",
+                "url": "https://api.github.com/repos/symfony/form/zipball/0a1a3ea071a216e2902cebe0b47750ca51f12f27",
+                "reference": "0a1a3ea071a216e2902cebe0b47750ca51f12f27",
                 "shasum": ""
             },
             "require": {
@@ -3755,7 +3755,7 @@
             "description": "Allows to easily create, process and reuse HTML forms",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/form/tree/v6.1.3"
+                "source": "https://github.com/symfony/form/tree/v6.1.4"
             },
             "funding": [
                 {
@@ -3771,7 +3771,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2022-07-20T15:00:40+00:00"
+            "time": "2022-08-09T09:57:18+00:00"
         },
         {
             "name": "symfony/framework-bundle",
@@ -6368,16 +6368,16 @@
         },
         {
             "name": "symfony/translation",
-            "version": "v6.1.3",
+            "version": "v6.1.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/translation.git",
-                "reference": "b042e16087d298d08c1f013ff505d16c12a3b1be"
+                "reference": "45d0f5bb8df7255651ca91c122fab604e776af03"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/translation/zipball/b042e16087d298d08c1f013ff505d16c12a3b1be",
-                "reference": "b042e16087d298d08c1f013ff505d16c12a3b1be",
+                "url": "https://api.github.com/repos/symfony/translation/zipball/45d0f5bb8df7255651ca91c122fab604e776af03",
+                "reference": "45d0f5bb8df7255651ca91c122fab604e776af03",
                 "shasum": ""
             },
             "require": {
@@ -6444,7 +6444,7 @@
             "description": "Provides tools to internationalize your application",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/translation/tree/v6.1.3"
+                "source": "https://github.com/symfony/translation/tree/v6.1.4"
             },
             "funding": [
                 {
@@ -6460,7 +6460,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2022-07-20T13:46:29+00:00"
+            "time": "2022-08-02T16:17:38+00:00"
         },
         {
             "name": "symfony/translation-contracts",
@@ -7177,16 +7177,16 @@
         },
         {
             "name": "symfony/yaml",
-            "version": "v6.1.3",
+            "version": "v6.1.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/yaml.git",
-                "reference": "cc48dd42ae1201abced04ae38284e23ce2d2d8f3"
+                "reference": "86ee4d8fa594ed45e40d86eedfda1bcb66c8d919"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/yaml/zipball/cc48dd42ae1201abced04ae38284e23ce2d2d8f3",
-                "reference": "cc48dd42ae1201abced04ae38284e23ce2d2d8f3",
+                "url": "https://api.github.com/repos/symfony/yaml/zipball/86ee4d8fa594ed45e40d86eedfda1bcb66c8d919",
+                "reference": "86ee4d8fa594ed45e40d86eedfda1bcb66c8d919",
                 "shasum": ""
             },
             "require": {
@@ -7231,7 +7231,7 @@
             "description": "Loads and dumps YAML files",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/yaml/tree/v6.1.3"
+                "source": "https://github.com/symfony/yaml/tree/v6.1.4"
             },
             "funding": [
                 {
@@ -7247,7 +7247,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2022-07-20T14:45:06+00:00"
+            "time": "2022-08-02T16:17:38+00:00"
         },
         {
             "name": "symfonycasts/reset-password-bundle",
