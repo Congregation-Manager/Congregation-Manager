@@ -9,6 +9,7 @@ use CongregationManager\Domain\Congregation\Model\BrotherInterface;
 use DateInterval;
 use DateTime;
 use DateTimeInterface;
+use InvalidArgumentException;
 
 class TerritoryAssignment extends AggregateRoot implements TerritoryAssignmentInterface
 {
@@ -18,6 +19,9 @@ class TerritoryAssignment extends AggregateRoot implements TerritoryAssignmentIn
         private ?BrotherInterface $brother = null,
         private ?DateTimeInterface $revocationDate = null
     ) {
+        if ($this->revocationDate !== null && $this->revocationDate < $this->assignmentDate) {
+            throw new InvalidArgumentException('Revocation date can not be less than assignment date.');
+        }
     }
 
     public function getTerritory(): TerritoryInterface
@@ -66,6 +70,36 @@ class TerritoryAssignment extends AggregateRoot implements TerritoryAssignmentIn
             ->getTimezone());
 
         return $expirationDate->add(new DateInterval('P4M'));
+    }
+
+    public function isGreaterThan(TerritoryAssignmentInterface $territoryAssignment): bool
+    {
+        if ($this->getRevocationDate() === null && $territoryAssignment->getRevocationDate() === null) {
+            return $this->getAssignmentDate() > $territoryAssignment->getAssignmentDate();
+        }
+        if ($territoryAssignment->getRevocationDate() === null) {
+            return false;
+        }
+        if ($this->getRevocationDate() === null) {
+            return true;
+        }
+        if ($this->getAssignmentDate() > $territoryAssignment->getAssignmentDate() ||
+            $this->getRevocationDate() > $territoryAssignment->getRevocationDate()
+        ) {
+            return true;
+        }
+
+        return false;
+    }
+
+    public function hasSameDatesTo(TerritoryAssignmentInterface $territoryAssignment): bool
+    {
+        if ($this === $territoryAssignment) {
+            return true;
+        }
+
+        return $this->getAssignmentDate() == $territoryAssignment->getAssignmentDate() &&
+            $this->getRevocationDate() == $territoryAssignment->getRevocationDate();
     }
 
     public function isValid(): bool

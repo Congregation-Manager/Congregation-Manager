@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace CongregationManager\Domain\Territory\Repository;
 
+use CongregationManager\Domain\Congregation\Model\CongregationInterface;
 use CongregationManager\Domain\Territory\Model\TerritoryInterface;
 use CongregationManager\Domain\Territory\Repository\Filter\TerritoryFilterResultsInterface;
 use CongregationManager\Domain\Territory\Repository\Filter\TerritoryRepositoryFilterInterface;
@@ -25,4 +26,9 @@ interface TerritoryRepositoryInterface
     public function filter(TerritoryRepositoryFilterInterface $filter): TerritoryFilterResultsInterface;
 
     public function findOneByName(string $name): ?TerritoryInterface;
+
+    /**
+     * @return TerritoryInterface[]
+     */
+    public function findByCongregation(CongregationInterface $congregation): array;
 }

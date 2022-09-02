@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace CongregationManager\Infrastructure\Territory\Repository;
 
+use CongregationManager\Domain\Congregation\Model\CongregationInterface;
 use CongregationManager\Domain\Territory\Model\Territory;
 use CongregationManager\Domain\Territory\Model\TerritoryAssignment;
 use CongregationManager\Domain\Territory\Model\TerritoryInterface;
@@ -88,6 +89,15 @@ final class TerritoryRepository extends ServiceEntityRepository implements Terri
     {
         return $this->findOneBy([
             'name' => $name,
+        ]);
+    }
+
+    public function findByCongregation(CongregationInterface $congregation): array
+    {
+        return $this->findBy([
+            'congregation' => $congregation,
+        ], [
+            'name' => 'ASC',
         ]);
     }
 }

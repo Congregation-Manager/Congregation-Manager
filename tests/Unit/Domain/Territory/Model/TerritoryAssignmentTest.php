@@ -310,4 +310,159 @@ final class TerritoryAssignmentTest extends TestCase
         ;
         self::assertTrue($this->territoryAssignmentWithRevocationDate->isValid());
     }
+
+    public function testItHasSameDateToSameAssignment(): void
+    {
+        self::assertTrue(
+            $this->territoryAssignmentWithRevocationDate->hasSameDatesTo(
+                $this->territoryAssignmentWithRevocationDate
+            )
+        );
+    }
+
+    public function testItHasSameDateToDifferentAssignmentWithSameDates(): void
+    {
+        $otherAssignment = new TerritoryAssignment(
+            $this->territory->reveal(),
+            new DateTimeImmutable('2022-06-10'),
+            null,
+            new DateTimeImmutable('2022-06-25'),
+        );
+        self::assertTrue($this->territoryAssignmentWithRevocationDate->hasSameDatesTo($otherAssignment));
+    }
+
+    public function testItDoesNotHaveSameDateToDifferentAssignmentWithDifferentDates(): void
+    {
+        $otherAssignment = new TerritoryAssignment(
+            $this->territory->reveal(),
+            new DateTimeImmutable('2022-06-10'),
+            null,
+            new DateTimeImmutable('2022-06-31'),
+        );
+        self::assertFalse($this->territoryAssignmentWithRevocationDate->hasSameDatesTo($otherAssignment));
+    }
+
+    public function testItDoesNotHaveSameDateToDifferentAssignmentWithoutRevocationDate(): void
+    {
+        $otherAssignment = new TerritoryAssignment(
+            $this->territory->reveal(),
+            new DateTimeImmutable('2022-06-10'),
+        );
+        self::assertFalse($this->territoryAssignmentWithRevocationDate->hasSameDatesTo($otherAssignment));
+    }
+
+    public function testItIsGreaterThanAssignmentWithPreviousAssignmentDate(): void
+    {
+        $otherAssignment = new TerritoryAssignment(
+            $this->territory->reveal(),
+            new DateTimeImmutable('2022-06-08'),
+            null,
+            new DateTimeImmutable('2022-06-25'),
+        );
+        self::assertTrue($this->territoryAssignmentWithRevocationDate->isGreaterThan($otherAssignment));
+    }
+
+    public function testItIsGreaterThanAssignmentWithPreviousRevocationDate(): void
+    {
+        $otherAssignment = new TerritoryAssignment(
+            $this->territory->reveal(),
+            new DateTimeImmutable('2022-06-10'),
+            null,
+            new DateTimeImmutable('2022-06-24'),
+        );
+        self::assertTrue($this->territoryAssignmentWithRevocationDate->isGreaterThan($otherAssignment));
+    }
+
+    public function testItIsNotGreaterThanAssignmentWithoutRevocationDate(): void
+    {
+        $otherAssignment = new TerritoryAssignment(
+            $this->territory->reveal(),
+            new DateTimeImmutable('2022-06-10'),
+            null,
+            null,
+        );
+        self::assertFalse($this->territoryAssignmentWithRevocationDate->isGreaterThan($otherAssignment));
+    }
+
+    public function testItIsNotGreaterThanAssignmentWithGreaterRevocationDate(): void
+    {
+        $otherAssignment = new TerritoryAssignment(
+            $this->territory->reveal(),
+            new DateTimeImmutable('2022-06-10'),
+            null,
+            new DateTimeImmutable('2022-06-26'),
+        );
+        self::assertFalse($this->territoryAssignmentWithRevocationDate->isGreaterThan($otherAssignment));
+    }
+
+    public function testItIsNotGreaterThanAssignmentWithGreaterAssignmentDate(): void
+    {
+        $otherAssignment = new TerritoryAssignment(
+            $this->territory->reveal(),
+            new DateTimeImmutable('2022-06-11'),
+            null,
+            new DateTimeImmutable('2022-06-25'),
+        );
+        self::assertFalse($this->territoryAssignmentWithRevocationDate->isGreaterThan($otherAssignment));
+    }
+
+    public function testItIsNotGreaterThanAssignmentWithSameDates(): void
+    {
+        $otherAssignment = new TerritoryAssignment(
+            $this->territory->reveal(),
+            new DateTimeImmutable('2022-06-10'),
+            null,
+            new DateTimeImmutable('2022-06-25'),
+        );
+        self::assertFalse($this->territoryAssignmentWithRevocationDate->isGreaterThan($otherAssignment));
+    }
+
+    public function testItIsNotGreaterThanSameAssignment(): void
+    {
+        self::assertFalse(
+            $this->territoryAssignmentWithRevocationDate->isGreaterThan(
+                $this->territoryAssignmentWithRevocationDate
+            )
+        );
+    }
+
+    public function testItIsNotGreaterThanAssignmentWithSameDatesIfWithoutRevocationDate(): void
+    {
+        $otherAssignment = new TerritoryAssignment(
+            $this->territory->reveal(),
+            new DateTimeImmutable('2022-06-10'),
+            null,
+            null,
+        );
+        self::assertFalse($this->territoryAssignmentWithoutRevocationDate->isGreaterThan($otherAssignment));
+    }
+
+    public function testItIsGreaterThanAssignmentWithDatesIfWithoutRevocationDate(): void
+    {
+        $otherAssignment = new TerritoryAssignment(
+            $this->territory->reveal(),
+            new DateTimeImmutable('2022-06-10'),
+            null,
+            new DateTimeImmutable('2022-06-25'),
+        );
+        self::assertTrue($this->territoryAssignmentWithoutRevocationDate->isGreaterThan($otherAssignment));
+    }
+
+    public function testItIsGreaterThanAssignmentWithoutRevocationDateAndNotGreaterAssignmentDateIfWithoutRevocationDate(): void
+    {
+        $otherAssignment = new TerritoryAssignment(
+            $this->territory->reveal(),
+            new DateTimeImmutable('2022-06-08'),
+        );
+        self::assertTrue($this->territoryAssignmentWithoutRevocationDate->isGreaterThan($otherAssignment));
+    }
+
+    public function testItIsNotGreaterThanAssignmentWithoutRevocationDateAndGreaterAssignmentDateIfWithoutRevocationDate(): void
+    {
+        $otherAssignment = new TerritoryAssignment(
+            $this->territory->reveal(),
+            new DateTimeImmutable('2022-06-12'),
+        );
+        self::assertFalse($this->territoryAssignmentWithoutRevocationDate->isGreaterThan($otherAssignment));
+    }
 }

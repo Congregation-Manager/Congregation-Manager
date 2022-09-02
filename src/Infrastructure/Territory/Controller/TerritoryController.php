@@ -4,22 +4,33 @@ declare(strict_types=1);
 
 namespace CongregationManager\Infrastructure\Territory\Controller;
 
+use CongregationManager\Domain\Common\Context\CongregationContextInterface;
+use CongregationManager\Domain\Territory\Generator\S13GeneratorInterface;
+use CongregationManager\Domain\Territory\Renderer\S13RendererInterface;
 use CongregationManager\Domain\Territory\Repository\TerritoryRepositoryInterface;
 use CongregationManager\Infrastructure\Territory\Form\TerritoryFiltersFormType;
 use CongregationManager\Infrastructure\Territory\Repository\Filter\QueryBuilderTerritoryRepositoryFilter;
 use Knp\Component\Pager\Event\Subscriber\Paginate\Callback\CallbackPagination;
 use Knp\Component\Pager\PaginatorInterface;
+use PhpOffice\PhpWord\IOFactory;
+use PhpOffice\PhpWord\PhpWord;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Webmozart\Assert\Assert;
 
 /** @psalm-suppress PropertyNotSetInConstructor */
 final class TerritoryController extends AbstractController
 {
     public function __construct(
-        private TerritoryRepositoryInterface $territoryRepository,
-        private PaginatorInterface $paginator
+        private                              readonly TerritoryRepositoryInterface $territoryRepository,
+        private readonly PaginatorInterface $paginator,
+        private readonly S13GeneratorInterface $s13Generator,
+        private readonly CongregationContextInterface $congregationContext,
+        private readonly S13RendererInterface $s13Renderer,
     ) {
     }
 
@@ -66,5 +77,29 @@ final class TerritoryController extends AbstractController
         return $this->render('app/territory/show.html.twig', [
             'territory' => $territory,
         ]);
+    }
+
+    public function s13(): Response
+    {
+        $s13 = $this->s13Generator->generateByCongregation($this->congregationContext->getCongregation(), 2023);
+        $wordFile = $this->s13Renderer->render($s13);
+        Assert::isInstanceOf($wordFile, PhpWord::class);
+
+        // Saving the document as OOXML file...
+        $objWriter = IOFactory::createWriter($wordFile, 'Word2007');
+
+        // Create a temporal file in the system
+        $fileName = 'S-13.docx';
+        $tempFile = tempnam(sys_get_temp_dir(), $fileName);
+        Assert::string($tempFile);
+
+        // Write in the temporal filepath
+        $objWriter->save($tempFile);
+
+        // Send the temporal file as response (as an attachment)
+        $response = new BinaryFileResponse($tempFile);
+        $response->setContentDisposition(ResponseHeaderBag::DISPOSITION_ATTACHMENT, $fileName,);
+
+        return $response;
     }
 }

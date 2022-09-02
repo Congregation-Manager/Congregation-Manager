@@ -6,3 +6,8 @@ services:
 
     cm.generator.token:
         class: CongregationManager\Domain\User\Generator\TokenGenerator
+
+    cm.generator.s_13:
+        class: CongregationManager\Domain\Territory\Generator\S13Generator
+        arguments:
+            - '@cm.repository.territory'

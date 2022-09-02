@@ -27,4 +27,8 @@ interface TerritoryAssignmentInterface extends AggregateRootInterface
     public function setRevocationDate(?DateTimeInterface $revocationDate): void;
 
     public function getExpirationDate(): ?DateTimeInterface;
+
+    public function isGreaterThan(self $territoryAssignment): bool;
+
+    public function hasSameDatesTo(self $territoryAssignment): bool;
 }

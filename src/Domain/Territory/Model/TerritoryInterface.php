@@ -31,11 +31,16 @@ interface TerritoryInterface extends AggregateRootInterface
      */
     public function getTerritoryAssignments(): Collection;
 
+    /**
+     * @return Collection<array-key, TerritoryAssignmentInterface>
+     */
+    public function getSortedTerritoryAssignments(): Collection;
+
     public function addTerritoryAssignment(TerritoryAssignmentInterface $territoryAssignment): void;
 
     public function removeTerritoryAssignment(TerritoryAssignmentInterface $territoryAssignment): void;
 
-    public function getActualAssignment(): ?TerritoryAssignmentInterface;
+    public function getCurrentAssignment(): ?TerritoryAssignmentInterface;
 
     public function isAvailable(): bool;
 

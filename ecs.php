@@ -1,6 +1,7 @@
 <?php
 
 use PhpCsFixer\Fixer\ArrayNotation\ArraySyntaxFixer;
+use PhpCsFixer\Fixer\Strict\StrictComparisonFixer;
 use Symplify\EasyCodingStandard\Config\ECSConfig;
 use Symplify\EasyCodingStandard\ValueObject\Set\SetList;
 
@@ -18,5 +19,10 @@ return static function (ECSConfig $ecsConfig): void {
         SetList::PHPUNIT,
         SetList::SPACES,
         SetList::STRICT,
+    ]);
+    $ecsConfig->skip([
+        StrictComparisonFixer::class => [
+            'src/Domain/Territory/Model/TerritoryAssignment.php',
+        ]
     ]);
 };

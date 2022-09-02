@@ -9,8 +9,8 @@ use CongregationManager\Domain\Common\Model\AggregateRoot;
 use CongregationManager\Domain\Congregation\Model\CongregationInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
-use InvalidArgumentException;
 use RuntimeException;
+use Traversable;
 
 class Territory extends AggregateRoot implements TerritoryInterface
 {
@@ -18,6 +18,11 @@ class Territory extends AggregateRoot implements TerritoryInterface
      * @var Collection<array-key, TerritoryAssignmentInterface>
      */
     protected Collection $territoryAssignments;
+
+    /**
+     * @var ?Collection<array-key, TerritoryAssignmentInterface>
+     */
+    protected ?Collection $sortedTerritoryAssignments = null;
 
     public function __construct(
         private CongregationInterface $congregation,
@@ -76,6 +81,46 @@ class Territory extends AggregateRoot implements TerritoryInterface
         return $this->territoryAssignments;
     }
 
+    public function getSortedTerritoryAssignments(): Collection
+    {
+        if ($this->sortedTerritoryAssignments !== null) {
+            return $this->sortedTerritoryAssignments;
+        }
+        /** @var Traversable<TerritoryAssignmentInterface>|ArrayIterator<array-key, TerritoryAssignmentInterface> $territoryAssignments */
+        $territoryAssignments = $this->getTerritoryAssignments()
+            ->getIterator();
+        if (! $territoryAssignments instanceof ArrayIterator) {
+            throw new RuntimeException(sprintf(
+                'Unable to sort the assignments for Territory "%s": expected instance of "%s", get "%s".',
+                (string) $this->getId(),
+                ArrayIterator::class,
+                get_debug_type($territoryAssignments)
+            ));
+        }
+        $territoryAssignments->uasort(
+            static function (mixed $first, mixed $second): int {
+                if (! $first instanceof TerritoryAssignmentInterface || ! $second instanceof TerritoryAssignmentInterface) {
+                    throw new RuntimeException(sprintf(
+                        'Expected two implementation of territory assignments, got %s and %s',
+                        get_debug_type($first),
+                        get_debug_type($second)
+                    ));
+                }
+                if ($first->hasSameDatesTo($second)) {
+                    return 0;
+                }
+
+                return $first->isGreaterThan($second) ? 1 : -1;
+            }
+        );
+
+        /** @var Collection<array-key, TerritoryAssignmentInterface> $sortedTerritoryAssignments */
+        $sortedTerritoryAssignments = new ArrayCollection(iterator_to_array($territoryAssignments));
+        $this->sortedTerritoryAssignments = $sortedTerritoryAssignments;
+
+        return $sortedTerritoryAssignments;
+    }
+
     public function addTerritoryAssignment(TerritoryAssignmentInterface $territoryAssignment): void
     {
         if (! $this->territoryAssignments->contains($territoryAssignment)) {
@@ -90,13 +135,10 @@ class Territory extends AggregateRoot implements TerritoryInterface
         }
     }
 
-    public function getActualAssignment(): ?TerritoryAssignmentInterface
+    public function getCurrentAssignment(): ?TerritoryAssignmentInterface
     {
-        $actualAssignment = $this->territoryAssignments->filter(
-            function (TerritoryAssignmentInterface $territoryAssignment) {
-                return $territoryAssignment->getRevocationDate() === null;
-            }
-        )->first();
+        $actualAssignment = $this->getSortedTerritoryAssignments()
+            ->last();
 
         if (! $actualAssignment instanceof TerritoryAssignmentInterface) {
             return null;
@@ -107,41 +149,22 @@ class Territory extends AggregateRoot implements TerritoryInterface
 
     public function getLatestAssignment(): ?TerritoryAssignmentInterface
     {
-        $revocatedAssignementsIterator = $this->territoryAssignments->filter(
-            function (TerritoryAssignmentInterface $territoryAssignment) {
-                return $territoryAssignment->getRevocationDate() !== null;
-            }
-        )->getIterator();
-        if (! $revocatedAssignementsIterator instanceof ArrayIterator) {
-            throw new RuntimeException(sprintf(
-                'Unable to retrieve the latest assignment for Territory "%s": expected instance of "%s", get "%s".',
-                (string) $this->getId(),
-                ArrayIterator::class,
-                get_debug_type($revocatedAssignementsIterator)
-            ));
-        }
-        $revocatedAssignementsIterator->uasort(static function (mixed $first, mixed $second): int {
-            if (! $first instanceof TerritoryAssignmentInterface || ! $second instanceof TerritoryAssignmentInterface) {
-                throw new InvalidArgumentException(sprintf(
-                    'Expected two implementation of territory assignments, got %s and %s',
-                    get_debug_type($first),
-                    get_debug_type($second)
-                ));
-            }
+        $latestAssignment = $this->getSortedTerritoryAssignments()
+            ->filter(
+                function (TerritoryAssignmentInterface $territoryAssignment) {
+                    return $territoryAssignment->getRevocationDate() !== null;
+                }
+            )->last();
 
-            return $first->getRevocationDate() < $second->getRevocationDate() ? 1 : -1;
-        });
-        $latestAssignemnt = $revocatedAssignementsIterator->current();
-
-        if (! $latestAssignemnt instanceof TerritoryAssignmentInterface) {
+        if (! $latestAssignment instanceof TerritoryAssignmentInterface) {
             return null;
         }
 
-        return $latestAssignemnt;
+        return $latestAssignment;
     }
 
     public function isAvailable(): bool
     {
-        return $this->getActualAssignment() === null;
+        return $this->getCurrentAssignment() === null;
     }
 }
