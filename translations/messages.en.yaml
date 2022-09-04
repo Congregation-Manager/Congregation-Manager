@@ -137,3 +137,13 @@ cm:
         index:
             meta_title: 'Brothers'
         title: 'Brother'
+    s_13:
+        title: 'TERRITORY ASSIGNMENT RECORD'
+        service_year: 'Service Year:'
+        territory_number: 'Terr. no.'
+        last_date_completed: 'Last date completed*'
+        date_assigned: 'Date assigned'
+        date_completed: 'Date completed'
+        assigned_to: 'Assigned to'
+        note: '*When beginning a new sheet, use this column to record the date on which each territory was last completed.'
+        code: 'S-13-E'

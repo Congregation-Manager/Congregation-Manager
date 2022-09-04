@@ -8,8 +8,9 @@ use CongregationManager\Domain\Common\Model\AggregateRootInterface;
 use CongregationManager\Domain\User\Model\AppUserInterface;
 use CongregationManager\Domain\User\Model\AppUserInvitation;
 use DateTimeInterface;
+use Stringable;
 
-interface BrotherInterface extends AggregateRootInterface
+interface BrotherInterface extends AggregateRootInterface, Stringable
 {
     public function getMiddleName(): ?string;
 

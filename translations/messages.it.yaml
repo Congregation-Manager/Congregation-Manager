@@ -141,3 +141,13 @@ cm:
         index:
             meta_title: 'Fratelli'
         title: 'Fratelli'
+    s_13:
+        title: 'REGISTRAZIONE DELLE ASSEGNAZIONI DEL TERRITORIO'
+        service_year: 'Anno di servizio:'
+        territory_number: 'Terr. N.'
+        last_date_completed: 'Restituito l''ultima volta il*'
+        date_assigned: 'Assegnato il'
+        date_completed: 'Restituito il'
+        assigned_to: 'Assegnato a'
+        note: '*Quando si inizia un nuovo foglio, registrare in questa colonna l’ultima data in cui è stato restituito ogni territorio.'
+        code: 'S-13-I'
