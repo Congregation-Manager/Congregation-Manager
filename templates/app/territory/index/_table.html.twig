@@ -31,7 +31,7 @@
     <tbody>
     {# @var territory \CongregationManager\Domain\Territory\Model\Territory #}
     {% for territory in pagination %}
-        {% set actualAssignment = territory.actualAssignment %}
+        {% set currentAssignment = territory.currentAssignment %}
         {% set latestAssignment = territory.latestAssignment %}
         <tr>
             <td>
@@ -48,17 +48,17 @@
                 {% endif %}
             </td>
             <td>
-                {{ actualAssignment ? actualAssignment.assignmentDate|format_date : '' }}
+                {{ currentAssignment ? currentAssignment.assignmentDate|format_date : '' }}
             </td>
             <td>
-                {% if actualAssignment %}
-                    <span class="badge bg-{{ actualAssignment.expirationDate < date() ? 'danger text-white' : 'primary text-white' }} text-dark">
-                                            {{ actualAssignment.expirationDate|format_date }}
+                {% if currentAssignment %}
+                    <span class="badge bg-{{ currentAssignment.expirationDate < date() ? 'danger text-white' : 'primary text-white' }} text-dark">
+                                            {{ currentAssignment.expirationDate|format_date }}
                                         </span>
                 {% endif %}
             </td>
             <td>
-                {{ actualAssignment ? actualAssignment.brother : '' }}
+                {{ currentAssignment ? currentAssignment.brother : '' }}
             </td>
             <td>
                 {{ latestAssignment ? latestAssignment.revocationDate|format_date : '' }}

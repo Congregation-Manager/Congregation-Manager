@@ -26,7 +26,7 @@ use Webmozart\Assert\Assert;
 final class TerritoryController extends AbstractController
 {
     public function __construct(
-        private                              readonly TerritoryRepositoryInterface $territoryRepository,
+        private readonly TerritoryRepositoryInterface $territoryRepository,
         private readonly PaginatorInterface $paginator,
         private readonly S13GeneratorInterface $s13Generator,
         private readonly CongregationContextInterface $congregationContext,
@@ -81,7 +81,7 @@ final class TerritoryController extends AbstractController
 
     public function s13(): Response
     {
-        $s13 = $this->s13Generator->generateByCongregation($this->congregationContext->getCongregation(), 2023);
+        $s13 = $this->s13Generator->generateByCongregation($this->congregationContext->getCongregation(), 2019);
         $wordFile = $this->s13Renderer->render($s13);
         Assert::isInstanceOf($wordFile, PhpWord::class);
 

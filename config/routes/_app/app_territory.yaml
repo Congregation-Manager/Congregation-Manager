@@ -4,6 +4,12 @@ app_territory_index:
     defaults:
         _controller: cm.controller.app_territory::index
 
+app_territory_s_13:
+    path: /territories/S-13
+    methods: [GET, POST]
+    defaults:
+        _controller: cm.controller.app_territory::s13
+
 app_territory_show:
     path: /territory/{id}
     methods: [GET]

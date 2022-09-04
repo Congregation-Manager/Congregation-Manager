@@ -101,6 +101,9 @@ services:
         arguments:
             - '@cm.repository.territory'
             - '@knp_paginator'
+            - '@cm.generator.s_13'
+            - '@cm.context.congregation'
+            - '@cm.renderer.word_s_13'
         calls:
             - [ setContainer, [ '@Psr\Container\ContainerInterface' ] ]
         tags: [ 'container.service_subscriber', 'controller.service_arguments' ]
