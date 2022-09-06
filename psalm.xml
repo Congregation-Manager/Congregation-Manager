@@ -12,4 +12,11 @@
             <directory name="src/Infrastructure/Common/Repository/OldCM"/>
         </ignoreFiles>
     </projectFiles>
+    <issueHandlers>
+        <InvalidScalarArgument>
+            <errorLevel type="suppress">
+                <file name="src/Infrastructure/Territory/Renderer/WordS13Renderer.php"/>
+            </errorLevel>
+        </InvalidScalarArgument>
+    </issueHandlers>
 </psalm>

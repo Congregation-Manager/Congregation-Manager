@@ -2,6 +2,10 @@ parameters:
 	level: max
 	paths:
 		- src
+	ignoreErrors:
+		-
+			message: '#^Parameter \#1 \$width of method PhpOffice\\PhpWord\\Element\\Table\:\:addCell\(\) expects int\|null, float given\.$#'
+			path: src/Infrastructure/Territory/Renderer/WordS13Renderer.php
 
 includes:
     - vendor/phpstan/phpstan-webmozart-assert/extension.neon

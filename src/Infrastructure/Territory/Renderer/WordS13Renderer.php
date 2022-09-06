@@ -284,7 +284,7 @@ final class WordS13Renderer implements S13RendererInterface
             ]),
         );
         $assignmentsTableLastDateCompletedColumn->addText(
-            $row->getLastRevocationDate()?->format('d-m-Y'),
+            (string) $row->getLastRevocationDate()?->format('d-m-Y'),
             [
                 'size' => 9,
             ],
@@ -309,7 +309,7 @@ final class WordS13Renderer implements S13RendererInterface
             $territoryAssignment = $row->getTerritoryAssignments()
                 ->get($i);
             $assignmentsTableAssignedToColumn->addText(
-                $territoryAssignment ? (string) $territoryAssignment->getBrother() : null,
+                $territoryAssignment ? (string) $territoryAssignment->getBrother() : '',
                 [
                     'size' => 9,
                 ],
@@ -342,7 +342,7 @@ final class WordS13Renderer implements S13RendererInterface
             );
             $assignmentsTableDateAssignedColumn->addText(
                 $territoryAssignment ? $territoryAssignment->getAssignmentDate()
-                    ->format('d-m-Y') : null,
+                    ->format('d-m-Y') : '',
                 [
                     'size' => 8,
                 ],
@@ -363,7 +363,7 @@ final class WordS13Renderer implements S13RendererInterface
                 ]),
             );
             $assignmentsTableDateCompletedColumn->addText(
-                $territoryAssignment ? $territoryAssignment->getRevocationDate()?->format('d-m-Y') : null,
+                $territoryAssignment ? (string) $territoryAssignment->getRevocationDate()?->format('d-m-Y') : '',
                 [
                     'size' => 8,
                 ],

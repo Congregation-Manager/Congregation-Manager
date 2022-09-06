@@ -100,7 +100,9 @@ final class TerritoryController extends AbstractController
         ]);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
+            /** @var int|mixed $serviceYear */
             $serviceYear = $form->getData();
+            Assert::integer($serviceYear);
             $s13 = $this->s13Generator->generateByCongregation(
                 $this->congregationContext->getCongregation(),
                 $serviceYear
