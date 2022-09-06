@@ -18,9 +18,9 @@ interface TerritoryInterface extends AggregateRootInterface
 
     public function setArea(AreaInterface $area): void;
 
-    public function getName(): string;
+    public function getNumber(): int;
 
-    public function setName(string $name): void;
+    public function setNumber(int $number): void;
 
     public function getDescription(): ?string;
 

@@ -65,7 +65,7 @@ class S13GeneratorTest extends TestCase
         $municipality = new Municipality($this->carrolltonCongregation, $province, 'Carrollton');
         $area = new Area($this->carrolltonCongregation, $municipality, 'Carrollton');
 
-        $this->carrolltonTerritory1 = new Territory($this->carrolltonCongregation, $area, '1', 'Territory 1');
+        $this->carrolltonTerritory1 = new Territory($this->carrolltonCongregation, $area, 1, 'Territory 1');
         $this->carrolltonTerritory1Assignment1 = new TerritoryAssignment(
             $this->carrolltonTerritory1,
             new DateTimeImmutable('2022-08-01'),
@@ -102,7 +102,7 @@ class S13GeneratorTest extends TestCase
         $this->carrolltonTerritory1->addTerritoryAssignment($this->carrolltonTerritory1Assignment3);
         $this->carrolltonTerritory1->addTerritoryAssignment($this->carrolltonTerritory1Assignment4);
 
-        $this->carrolltonTerritory2 = new Territory($this->carrolltonCongregation, $area, '2', 'Territory 2');
+        $this->carrolltonTerritory2 = new Territory($this->carrolltonCongregation, $area, 2, 'Territory 2');
         $this->carrolltonTerritory2Assignment1 = new TerritoryAssignment(
             $this->carrolltonTerritory2,
             new DateTimeImmutable('2023-01-10'),
@@ -125,7 +125,7 @@ class S13GeneratorTest extends TestCase
         $this->carrolltonTerritory2->addTerritoryAssignment($this->carrolltonTerritory2Assignment2);
         $this->carrolltonTerritory2->addTerritoryAssignment($this->carrolltonTerritory2Assignment3);
 
-        $this->carrolltonTerritory3 = new Territory($this->carrolltonCongregation, $area, '3', 'Territory 3');
+        $this->carrolltonTerritory3 = new Territory($this->carrolltonCongregation, $area, 3, 'Territory 3');
         $this->carrolltonTerritory3Assignment1 = new TerritoryAssignment(
             $this->carrolltonTerritory3,
             new DateTimeImmutable('2022-07-03'),
@@ -234,7 +234,7 @@ class S13GeneratorTest extends TestCase
     private function generateTerritories(int $num, Congregation $congregation, Area $area, int $startFrom = 1): void
     {
         for ($startFrom; $startFrom <= $num; $startFrom++) {
-            $territory = new Territory($congregation, $area, (string) $startFrom, 'Territory ' . $startFrom);
+            $territory = new Territory($congregation, $area, $startFrom, 'Territory ' . $startFrom);
             $this->territoryRepository->add($territory);
         }
     }

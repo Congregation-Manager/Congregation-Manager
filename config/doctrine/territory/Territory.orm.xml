@@ -11,7 +11,7 @@
             <generator strategy="AUTO"/>
         </id>
 
-        <field name="name" type="string" length="255"/>
+        <field name="number" type="integer" nullable="false"/>
 
         <field name="description" type="text" nullable="true"/>
 
@@ -25,7 +25,13 @@
             <join-column name="area_id" referenced-column-name="id" nullable="false" on-delete="CASCADE"/>
         </many-to-one>
 
-        <one-to-many field="territoryAssignments" target-entity="CongregationManager\Domain\Territory\Model\TerritoryAssignment" mapped-by="territory" />
+        <one-to-many field="territoryAssignments"
+                     target-entity="CongregationManager\Domain\Territory\Model\TerritoryAssignment"
+                     mapped-by="territory"/>
+
+        <unique-constraints>
+            <unique-constraint columns="number,congregation_id"/>
+        </unique-constraints>
     </entity>
 
 </doctrine-mapping>

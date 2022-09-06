@@ -236,10 +236,14 @@ final class ImportFromOldCMCommand extends Command
                         $oldCongregationId,
                         (int) $oldArea['id']
                     ) as $oldTerritory) {
+                        $number = $oldTerritory['name'];
+                        if (! is_numeric($number)) {
+                            continue;
+                        }
                         $territory = $this->createTerritory->create(
                             $congregation,
                             $area,
-                            $oldTerritory['name'],
+                            (int) $number,
                             $oldTerritory['description'],
                         );
                         foreach ($this->oldTerritoryAssignmentRepository->findAllByTerritoryId(

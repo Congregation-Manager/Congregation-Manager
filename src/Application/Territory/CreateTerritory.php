@@ -20,7 +20,7 @@ final class CreateTerritory
     public function create(
         CongregationInterface $congregation,
         AreaInterface $area,
-        string $name,
+        int $name,
         ?string $description
     ): TerritoryInterface {
         $territory = new Territory($congregation, $area, $name, $description);

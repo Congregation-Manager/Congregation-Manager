@@ -29,7 +29,7 @@ final class TerritoryTest extends TestCase
         $province = new Province($congregation, 'Carrollton');
         $municipality = new Municipality($congregation, $province, 'Carrollton');
         $area = new Area($congregation, $municipality, 'Carrollton');
-        $this->territory = new Territory($congregation, $area, '1');
+        $this->territory = new Territory($congregation, $area, 1);
         $this->territoryAssignment1 = new TerritoryAssignment(
             $this->territory,
             new DateTimeImmutable('2022-05-01'),

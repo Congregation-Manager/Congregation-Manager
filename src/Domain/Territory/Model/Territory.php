@@ -27,7 +27,7 @@ class Territory extends AggregateRoot implements TerritoryInterface
     public function __construct(
         private CongregationInterface $congregation,
         private AreaInterface $area,
-        private string $name,
+        private int $number,
         private ?string $description = null
     ) {
         $this->territoryAssignments = new ArrayCollection();
@@ -53,14 +53,14 @@ class Territory extends AggregateRoot implements TerritoryInterface
         $this->area = $area;
     }
 
-    public function getName(): string
+    public function getNumber(): int
     {
-        return $this->name;
+        return $this->number;
     }
 
-    public function setName(string $name): void
+    public function setNumber(int $number): void
     {
-        $this->name = $name;
+        $this->number = $number;
     }
 
     public function getDescription(): ?string

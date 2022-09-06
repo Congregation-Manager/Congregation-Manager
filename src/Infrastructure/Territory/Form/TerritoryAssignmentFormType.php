@@ -28,7 +28,7 @@ final class TerritoryAssignmentFormType extends AbstractType
             ->add('territory', EntityType::class, [
                 'class' => Territory::class,
                 'label' => 'cm.ui.territory',
-                'choice_label' => 'name',
+                'choice_label' => 'number',
                 'placeholder' => 'cm.ui.choose_option',
                 'multiple' => false,
                 'expanded' => false,

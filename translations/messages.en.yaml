@@ -2,7 +2,7 @@ cm:
     meta_title:
         default: 'Congregation Manager'
         territory_index: 'Territories'
-        territory_show: 'Territory :name'
+        territory_show: 'Territory :number'
     congregation:
         title: 'Congregations'
         index:
@@ -104,6 +104,7 @@ cm:
         update_success: 'Update successfully completed!'
         territories: 'Territories'
         area: 'Area'
+        number: 'Number'
         status: 'Status'
         show_all: 'Show all'
         count_territories: ':count territories'
@@ -114,6 +115,8 @@ cm:
         assigned_to: 'Assigned to'
         latest_assignment_revocation_date: 'Latest revocation date'
         latest_assignment_assigned_to: 'Latest assignee'
+        create_territory_assignment: 'Create territory assignment'
+        update_territory_assignment: 'Edit territory assignment'
         not_assigned: 'Not assigned'
         assigned: 'Assigned'
         no_results: 'No results found'
@@ -122,7 +125,7 @@ cm:
         submit: 'Submit'
         filter: 'Filter'
         show: 'Show'
-        territory_with_name: 'Territorio :name'
+        territory_with_number: 'Territory :number'
         description: 'Description'
         brother: 'Brother'
         assign: 'Assegna'

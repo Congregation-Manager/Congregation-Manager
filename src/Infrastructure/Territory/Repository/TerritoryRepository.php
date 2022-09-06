@@ -85,10 +85,10 @@ final class TerritoryRepository extends ServiceEntityRepository implements Terri
         return new TerritoryFilterResults($qb);
     }
 
-    public function findOneByName(string $name): ?TerritoryInterface
+    public function findOneByNumber(int $number): ?TerritoryInterface
     {
         return $this->findOneBy([
-            'name' => $name,
+            'number' => $number,
         ]);
     }
 
@@ -97,7 +97,7 @@ final class TerritoryRepository extends ServiceEntityRepository implements Terri
         return $this->findBy([
             'congregation' => $congregation,
         ], [
-            'name' => 'ASC',
+            'number' => 'ASC',
         ]);
     }
 }

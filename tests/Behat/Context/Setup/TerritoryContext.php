@@ -28,15 +28,15 @@ final class TerritoryContext implements Context
     }
 
     /**
-     * @Given there is a territory :name
+     * @Given there is a territory :number
      */
-    public function thereIsATerritory(string $name): void
+    public function thereIsATerritory(int $number): void
     {
         /** @var CongregationInterface|mixed $congregation */
         $congregation = $this->sharedStorage->get('congregation');
         Assert::isInstanceOf($congregation, CongregationInterface::class);
 
-        $territory = new Territory($congregation, $this->createAreaByCongregation($congregation), $name);
+        $territory = new Territory($congregation, $this->createAreaByCongregation($congregation), $number);
 
         $this->territoryRepository->add($territory);
         $this->entityManager->flush();

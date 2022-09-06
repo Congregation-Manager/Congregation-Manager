@@ -3,7 +3,7 @@
     <thead>
     <tr>
         {# sorting of properties based on query components #}
-        <th>{{ knp_pagination_sortable(pagination, 'cm.ui.name'|trans, 't.name') }}</th>
+        <th>{{ knp_pagination_sortable(pagination, 'cm.ui.number'|trans, 't.number') }}</th>
         <th{% if pagination.isSorted('t.area') %} class="sorted"{% endif %}>
             {{ knp_pagination_sortable(pagination, 'cm.ui.area'|trans, 'a.name', {'translationDomain': 'cm'}) }}
         </th>
@@ -35,7 +35,7 @@
         {% set latestAssignment = territory.latestAssignment %}
         <tr>
             <td>
-                {{ territory.name }}
+                {{ territory.number }}
             </td>
             <td>
                 {{ territory.area.name }}

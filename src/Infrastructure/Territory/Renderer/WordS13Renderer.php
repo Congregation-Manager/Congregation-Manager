@@ -266,8 +266,8 @@ final class WordS13Renderer implements S13RendererInterface
             ]),
         );
         $assignmentsTableTerritoryColumn->addText(
-            $row->getTerritory()
-                ->getName(),
+            (string) $row->getTerritory()
+                ->getNumber(),
             [
                 'size' => 11,
             ],

@@ -29,10 +29,10 @@ final class TerritoryRepository extends InMemoryRepository implements TerritoryR
         throw new RuntimeException('TODO');
     }
 
-    public function findOneByName(string $name): ?TerritoryInterface
+    public function findOneByNumber(int $number): ?TerritoryInterface
     {
         return $this->findOneBy([
-            'name' => $name,
+            'number' => $number,
         ]);
     }
 

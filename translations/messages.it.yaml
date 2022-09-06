@@ -2,7 +2,7 @@ cm:
     meta_title:
         default: 'Gestione Congregazione'
         territory_index: 'Territori'
-        territory_show: 'Territorio :name'
+        territory_show: 'Territorio :number'
         territory_assignment:
             create: 'Crea assegnazione territorio'
     congregation:
@@ -106,6 +106,7 @@ cm:
         update_success: 'Aggiornamento completato con successo!'
         territories: 'Territori'
         area: 'Zona'
+        number: 'Numero'
         status: 'Stato'
         show_all: 'Vedi tutto'
         count_territories: ':count territori'
@@ -124,11 +125,12 @@ cm:
         submit: 'Sottoscrivi'
         filter: 'Filtra'
         show: 'Vedi'
-        territory_with_name: 'Territorio :name'
+        territory_with_number: 'Territorio :number'
         description: 'Descrizione'
         brother: 'Fratello'
         assign: 'Assegna'
         create_territory_assignment: 'Crea assegnazione territorio'
+        update_territory_assignment: 'Modifica assegnazione territorio'
         territory: 'Territorio'
         edit: 'Modifica'
         download_s_13: 'Scarica S-13'

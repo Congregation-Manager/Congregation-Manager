@@ -1,12 +1,12 @@
 {% extends 'app/base.html.twig' %}
 
-{% block title %}{{ 'cm.meta_title.territory_show'|trans({':name': territory.name}) }}{% endblock %}
+{% block title %}{{ 'cm.meta_title.territory_show'|trans({':number': territory.number}) }}{% endblock %}
 
 {% block content %}
     <div class="container">
         <div class="row">
             <div class="col-12">
-                <h1>{{ 'cm.ui.territory_with_name'|trans({':name': territory.name}) }} <span
+                <h1>{{ 'cm.ui.territory_with_number'|trans({':number': territory.number}) }} <span
                         class="badge badge-{% if territory.available %}success{% else %}secondary{% endif %}">
                         {% if territory.available %}{{ 'cm.ui.not_assigned'|trans }}{% else %}{{ 'cm.ui.assigned'|trans }}{% endif %}
                     </span></h1>
@@ -30,7 +30,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                {% for territoryAssignment in territory.territoryAssignments %}
+                {% for territoryAssignment in territory.sortedTerritoryAssignments %}
                     <tr {{ test_html_attribute('territory-assignment', territoryAssignment.id) }}>
                         <th scope="row" {{ test_html_attribute('territory-assignment-brother', territoryAssignment.brother) }}>{{ territoryAssignment.brother }}</th>
                         <td {{ test_html_attribute('territory-assignment-assignment-date', territoryAssignment.assignmentDate|date()) }}>{{ territoryAssignment.assignmentDate|format_date }}</td>

@@ -12,16 +12,16 @@ use Webmozart\Assert\Assert;
 final class TerritoryContext implements Context
 {
     public function __construct(
-        private TerritoryRepositoryInterface $territoryRepository
+        private readonly TerritoryRepositoryInterface $territoryRepository
     ) {
     }
 
     /**
      * @Transform :territory
      */
-    public function getTerritoryByName(string $name): TerritoryInterface
+    public function getTerritoryByNumber(int $number): TerritoryInterface
     {
-        $territory = $this->territoryRepository->findOneByName($name);
+        $territory = $this->territoryRepository->findOneByNumber($number);
         Assert::isInstanceOf($territory, TerritoryInterface::class);
 
         return $territory;

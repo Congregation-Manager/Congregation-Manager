@@ -26,7 +26,7 @@ final class CreatePage extends SymfonyPage
     public function isTerritorySelected(TerritoryInterface $territory): bool
     {
         return $this->getElement('territory')
-            ->find('named', ['option', $territory->getName()])->hasAttribute('selected');
+            ->find('named', ['option', $territory->getNumber()])->hasAttribute('selected');
     }
 
     public function specifyAssignmentDate(DateTimeImmutable $assignmentDate): void

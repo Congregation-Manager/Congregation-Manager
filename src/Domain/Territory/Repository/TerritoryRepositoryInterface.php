@@ -25,7 +25,7 @@ interface TerritoryRepositoryInterface
 
     public function filter(TerritoryRepositoryFilterInterface $filter): TerritoryFilterResultsInterface;
 
-    public function findOneByName(string $name): ?TerritoryInterface;
+    public function findOneByNumber(int $number): ?TerritoryInterface;
 
     /**
      * @return TerritoryInterface[]
