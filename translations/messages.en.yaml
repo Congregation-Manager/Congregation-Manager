@@ -127,6 +127,8 @@ cm:
         brother: 'Brother'
         assign: 'Assegna'
         edit: 'Edit'
+        s_13: 'Download S-13'
+        service_year: 'Service year'
     change_password:
         meta_title: 'Change password'
         title: 'Change password'

@@ -10,11 +10,13 @@ use CongregationManager\Domain\Territory\Renderer\S13RendererInterface;
 use CongregationManager\Domain\Territory\Repository\TerritoryRepositoryInterface;
 use CongregationManager\Infrastructure\Territory\Form\TerritoryFiltersFormType;
 use CongregationManager\Infrastructure\Territory\Repository\Filter\QueryBuilderTerritoryRepositoryFilter;
+use DateTimeImmutable;
 use Knp\Component\Pager\Event\Subscriber\Paginate\Callback\CallbackPagination;
 use Knp\Component\Pager\PaginatorInterface;
 use PhpOffice\PhpWord\IOFactory;
 use PhpOffice\PhpWord\PhpWord;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -79,27 +81,53 @@ final class TerritoryController extends AbstractController
         ]);
     }
 
-    public function s13(): Response
+    public function s13(Request $request): Response
     {
-        $s13 = $this->s13Generator->generateByCongregation($this->congregationContext->getCongregation(), 2019);
-        $wordFile = $this->s13Renderer->render($s13);
-        Assert::isInstanceOf($wordFile, PhpWord::class);
+        $currentDate = new DateTimeImmutable();
+        $serviceYear = (int) $currentDate->format('Y');
+        if ($currentDate >= DateTimeImmutable::createFromFormat('Y-m-d', $serviceYear . '-09-01')) {
+            ++$serviceYear;
+        }
+        $years = [];
+        for ($y = 2015; $y <= $serviceYear; $y++) {
+            $years[$y] = $y;
+        }
+        $form = $this->createForm(ChoiceType::class, $serviceYear, [
+            'choices' => $years,
+            'placeholder' => false,
+            'required' => true,
+            'label' => 'cm.ui.service_year',
+        ]);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $serviceYear = $form->getData();
+            $s13 = $this->s13Generator->generateByCongregation(
+                $this->congregationContext->getCongregation(),
+                $serviceYear
+            );
+            $wordFile = $this->s13Renderer->render($s13);
+            Assert::isInstanceOf($wordFile, PhpWord::class);
 
-        // Saving the document as OOXML file...
-        $objWriter = IOFactory::createWriter($wordFile, 'Word2007');
+            // Saving the document as OOXML file...
+            $objWriter = IOFactory::createWriter($wordFile, 'Word2007');
 
-        // Create a temporal file in the system
-        $fileName = 'S-13.docx';
-        $tempFile = tempnam(sys_get_temp_dir(), $fileName);
-        Assert::string($tempFile);
+            // Create a temporal file in the system
+            $fileName = 'S-13_' . $serviceYear . '.docx';
+            $tempFile = tempnam(sys_get_temp_dir(), $fileName);
+            Assert::string($tempFile);
 
-        // Write in the temporal filepath
-        $objWriter->save($tempFile);
+            // Write in the temporal filepath
+            $objWriter->save($tempFile);
 
-        // Send the temporal file as response (as an attachment)
-        $response = new BinaryFileResponse($tempFile);
-        $response->setContentDisposition(ResponseHeaderBag::DISPOSITION_ATTACHMENT, $fileName,);
+            // Send the temporal file as response (as an attachment)
+            $response = new BinaryFileResponse($tempFile);
+            $response->setContentDisposition(ResponseHeaderBag::DISPOSITION_ATTACHMENT, $fileName,);
 
-        return $response;
+            return $response;
+        }
+
+        return $this->renderForm('app/territory/components/s_13.html.twig', [
+            'form' => $form,
+        ]);
     }
 }

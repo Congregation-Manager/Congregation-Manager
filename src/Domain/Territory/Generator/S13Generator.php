@@ -22,24 +22,24 @@ final class S13Generator implements S13GeneratorInterface
     ) {
     }
 
-    public function generateByCongregation(CongregationInterface $congregation, int $theocraticYear): S13
+    public function generateByCongregation(CongregationInterface $congregation, int $serviceYear): S13
     {
         $territories = $this->territoryRepository->findByCongregation($congregation);
 
         $s13 = new S13();
         $count = 1;
-        $page = new Page($theocraticYear);
+        $page = new Page($serviceYear);
         foreach ($territories as $territory) {
             if ($count > Page::MAX_ROWS_ALLOWED) {
                 $s13->addPage($page);
                 $count = 1;
-                $page = new Page($theocraticYear);
+                $page = new Page($serviceYear);
             }
             $row = new Row($territory);
-            $lastAssignment = $this->getLastAssignmentOfPreviousTheocraticYear($territory, $theocraticYear);
+            $lastAssignment = $this->getLastAssignmentOfPreviousTheocraticYear($territory, $serviceYear);
             $row->setLastRevocationDate($lastAssignment?->getRevocationDate());
             $row->setTerritoryAssignments(
-                $this->getLatestAssignmentsOfCurrentTheocraticYear($territory, $theocraticYear)
+                $this->getLatestAssignmentsOfCurrentTheocraticYear($territory, $serviceYear)
             );
             $page->addRow($row);
             $count++;

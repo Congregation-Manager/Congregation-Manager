@@ -9,5 +9,5 @@ use CongregationManager\Domain\Territory\S13\S13;
 
 interface S13GeneratorInterface
 {
-    public function generateByCongregation(CongregationInterface $congregation, int $theocraticYear): S13;
+    public function generateByCongregation(CongregationInterface $congregation, int $serviceYear): S13;
 }

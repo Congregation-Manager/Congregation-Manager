@@ -131,6 +131,8 @@ cm:
         create_territory_assignment: 'Crea assegnazione territorio'
         territory: 'Territorio'
         edit: 'Modifica'
+        download_s_13: 'Scarica S-13'
+        service_year: 'Anno di servizio'
     change_password:
         meta_title: 'Cambia password'
         title: 'Cambia password'

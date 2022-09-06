@@ -72,7 +72,7 @@ final class WordS13Renderer implements S13RendererInterface
 
         // Service year
         $serviceYearTable = $pageSection->addTable();
-        $this->addServiceYear($serviceYearTable, (string) $page->getYear());
+        $this->addServiceYear($serviceYearTable, (string) $page->getServiceYear());
         $pageSection->addTextBreak();
 
         // Assignments table

@@ -1,0 +1,18 @@
+<div>
+    {{ form_start(form, {
+        'action': path('app_territory_s_13'),
+        'method': 'POST',
+        'attr': {
+            'class': 'row row-cols-lg-auto g-3 align-items-center'
+        }
+    }) }}
+    <div class="col-6 mb-3">
+        {{ form_row(form) }}
+    </div>
+    
+    <div class="col-6">
+        <button type="submit" class="btn btn-primary">{{ 'cm.ui.download_s_13'|trans }}</button>
+    </div>
+    
+    {{ form_end(form) }}
+</div>

@@ -18,19 +18,19 @@ final class Page
     private Collection $rows;
 
     public function __construct(
-        private int $year,
+        private int $serviceYear,
     ) {
         $this->rows = new ArrayCollection();
     }
 
-    public function getYear(): int
+    public function getServiceYear(): int
     {
-        return $this->year;
+        return $this->serviceYear;
     }
 
-    public function setYear(int $year): void
+    public function setServiceYear(int $serviceYear): void
     {
-        $this->year = $year;
+        $this->serviceYear = $serviceYear;
     }
 
     /**

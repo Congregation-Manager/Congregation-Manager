@@ -192,7 +192,7 @@ class S13GeneratorTest extends TestCase
 
         $firstPage = $s13->getPages()
             ->first();
-        self::assertEquals(2023, $firstPage->getYear());
+        self::assertEquals(2023, $firstPage->getServiceYear());
         self::assertCount(20, $firstPage->getRows());
         self::assertCount(20, $s13->getPages()->get(1)->getRows());
         self::assertCount(10, $s13->getPages()->get(2)->getRows());
