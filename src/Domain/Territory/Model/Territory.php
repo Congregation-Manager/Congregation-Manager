@@ -7,6 +7,7 @@ namespace CongregationManager\Domain\Territory\Model;
 use ArrayIterator;
 use CongregationManager\Domain\Common\Model\AggregateRoot;
 use CongregationManager\Domain\Congregation\Model\CongregationInterface;
+use DateTimeInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use RuntimeException;
@@ -161,6 +162,38 @@ class Territory extends AggregateRoot implements TerritoryInterface
         }
 
         return $latestAssignment;
+    }
+
+    /**
+     * @todo test function
+     */
+    public function hasAssignmentBetweenDates(
+        DateTimeInterface $assignmentDate,
+        ?DateTimeInterface $revocationDate = null,
+        ?TerritoryAssignmentInterface $assignmentToSkip = null,
+    ): bool {
+        foreach ($this->getTerritoryAssignments() as $existingAssignment) {
+            if ($existingAssignment === $assignmentToSkip) {
+                continue;
+            }
+            if ($revocationDate === null && $existingAssignment->getRevocationDate() === null) {
+                return true;
+            }
+            if ($revocationDate === null && $assignmentDate <= $existingAssignment->getRevocationDate()) {
+                return true;
+            }
+            if ($existingAssignment->getAssignmentDate() > $revocationDate) {
+                continue;
+            }
+            if ($existingAssignment->getRevocationDate() === null) {
+                return true;
+            }
+            if ($existingAssignment->getRevocationDate() >= $revocationDate) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     public function isAvailable(): bool

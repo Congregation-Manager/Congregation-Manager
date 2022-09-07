@@ -51,3 +51,8 @@ services:
             - '@doctrine'
         tags:
             - { name: 'form.type' }
+
+    cm.form.type.territory_assignment:
+        class: CongregationManager\Infrastructure\Territory\Form\TerritoryAssignmentFormType
+        tags:
+            - { name: 'form.type' }

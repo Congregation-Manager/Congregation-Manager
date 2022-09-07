@@ -113,7 +113,8 @@ services:
         arguments:
             - '@cm.repository.territory'
             - '@cm.repository.territory_assignment'
-            - '@doctrine.orm.entity_manager'
+            - '@cm.command.handler.create_territory_assignment'
+            - '@cm.command.handler.update_territory_assignment'
         calls:
             - [ setContainer, [ '@Psr\Container\ContainerInterface' ] ]
         tags: [ 'container.service_subscriber', 'controller.service_arguments' ]

@@ -6,6 +6,7 @@ namespace CongregationManager\Domain\Territory\Model;
 
 use CongregationManager\Domain\Common\Model\AggregateRootInterface;
 use CongregationManager\Domain\Congregation\Model\CongregationInterface;
+use DateTimeInterface;
 use Doctrine\Common\Collections\Collection;
 
 interface TerritoryInterface extends AggregateRootInterface
@@ -45,4 +46,10 @@ interface TerritoryInterface extends AggregateRootInterface
     public function isAvailable(): bool;
 
     public function getLatestAssignment(): ?TerritoryAssignmentInterface;
+
+    public function hasAssignmentBetweenDates(
+        DateTimeInterface $assignmentDate,
+        ?DateTimeInterface $revocationDate = null,
+        ?TerritoryAssignmentInterface $assignmentToSkip = null,
+    ): bool;
 }

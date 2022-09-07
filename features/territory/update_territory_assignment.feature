@@ -33,10 +33,10 @@ Feature: Update territory assignment
     Then I should be informed that the territory is conflicting another
     When I view the territory "01" page
     Then I should see 2 territory assignment
-    And the first territory assignment should be assigned starting from "2022-06-14"
-    And the first territory assignment should be assigned to brother "Dylan Martinez"
-    And the last one territory assignment should be assigned starting from "2022-04-30"
-    And the last one territory assignment should be assigned to brother "Christian Martinez"
+    And the first territory assignment should be assigned starting from "2022-04-30"
+    And the first territory assignment should be assigned to brother "Christian Martinez"
+    And the last one territory assignment should be assigned starting from "2022-06-14"
+    And the last one territory assignment should be assigned to brother "Dylan Martinez"
 
   @ui @app
   Scenario: Prevent updating territory assignment with revocation date before assignment date

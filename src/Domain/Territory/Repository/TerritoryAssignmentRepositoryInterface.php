@@ -19,4 +19,6 @@ interface TerritoryAssignmentRepositoryInterface
     public function find(int $id);
 
     public function add(TerritoryAssignmentInterface $territoryAssignment): void;
+
+    public function flush(): void;
 }

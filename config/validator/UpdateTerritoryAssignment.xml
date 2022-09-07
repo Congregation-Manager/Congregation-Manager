@@ -4,12 +4,11 @@
                     xsi:schemaLocation="http://symfony.com/schema/dic/constraint-mapping
         https://symfony.com/schema/dic/constraint-mapping/constraint-mapping-1.0.xsd">
 
-    <class name="CongregationManager\Domain\Territory\Model\TerritoryAssignment">
-        <getter property="valid">
-            <constraint name="IsTrue">
-                <option name="message">congregation_manager.territory_assignment.valid</option>
-            </constraint>
-        </getter>
+    <class name="CongregationManager\Application\Territory\Command\UpdateTerritoryAssignment">
+        <constraint name="CongregationManager\Infrastructure\Territory\Validator\ValidTerritoryAssignments"/>
+        <property name="territory">
+            <constraint name="NotBlank"/>
+        </property>
         <property name="assignmentDate">
             <constraint name="NotBlank"/>
             <constraint name="Type">

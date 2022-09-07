@@ -4,23 +4,27 @@ declare(strict_types=1);
 
 namespace CongregationManager\Infrastructure\Territory\Controller;
 
-use CongregationManager\Domain\Territory\Model\TerritoryAssignmentInterface;
+use CongregationManager\Application\Territory\Command\CreateTerritoryAssignment;
+use CongregationManager\Application\Territory\Command\CreateTerritoryAssignmentHandler;
+use CongregationManager\Application\Territory\Command\UpdateTerritoryAssignment;
+use CongregationManager\Application\Territory\Command\UpdateTerritoryAssignmentHandler;
 use CongregationManager\Domain\Territory\Repository\TerritoryAssignmentRepositoryInterface;
 use CongregationManager\Domain\Territory\Repository\TerritoryRepositoryInterface;
-use CongregationManager\Infrastructure\Territory\Form\TerritoryAssignmentFormType;
-use Doctrine\ORM\EntityManagerInterface;
+use CongregationManager\Infrastructure\Territory\Form\CreateTerritoryAssignmentType;
+use CongregationManager\Infrastructure\Territory\Form\UpdateTerritoryAssignmentType;
+use DateTimeImmutable;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Webmozart\Assert\Assert;
 
 /** @psalm-suppress PropertyNotSetInConstructor */
 final class TerritoryAssignmentController extends AbstractController
 {
     public function __construct(
-        private TerritoryRepositoryInterface $territoryRepository,
-        private TerritoryAssignmentRepositoryInterface $territoryAssignmentRepository,
-        private EntityManagerInterface $entityManager,
+        private readonly TerritoryRepositoryInterface $territoryRepository,
+        private readonly TerritoryAssignmentRepositoryInterface $territoryAssignmentRepository,
+        private readonly CreateTerritoryAssignmentHandler $createTerritoryAssignmentHandler,
+        private readonly UpdateTerritoryAssignmentHandler $updateTerritoryAssignmentHandler,
     ) {
     }
 
@@ -31,15 +35,11 @@ final class TerritoryAssignmentController extends AbstractController
         if ($territoryId !== 0) {
             $territory = $this->territoryRepository->find($territoryId);
         }
-        $form = $this->createForm(TerritoryAssignmentFormType::class, null, [
-            'territory' => $territory,
-        ]);
+        $command = new CreateTerritoryAssignment($territory, new DateTimeImmutable());
+        $form = $this->createForm(CreateTerritoryAssignmentType::class, $command);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            $territoryAssignment = $form->getData();
-            Assert::isInstanceOf($territoryAssignment, TerritoryAssignmentInterface::class);
-            $this->territoryAssignmentRepository->add($territoryAssignment);
-            $this->entityManager->flush();
+            $this->createTerritoryAssignmentHandler->__invoke($command);
 
             $this->addFlash('success', 'Territory assignment created');
 
@@ -59,10 +59,11 @@ final class TerritoryAssignmentController extends AbstractController
         if ($territoryAssignment === null) {
             throw $this->createNotFoundException();
         }
-        $form = $this->createForm(TerritoryAssignmentFormType::class, $territoryAssignment);
+        $command = UpdateTerritoryAssignment::createFromTerritoryAssignment($territoryAssignment);
+        $form = $this->createForm(UpdateTerritoryAssignmentType::class, $command);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->entityManager->flush();
+            $this->updateTerritoryAssignmentHandler->__invoke($command);
 
             $this->addFlash('success', 'Territory assignment updated');
 

@@ -96,7 +96,7 @@ final class TerritoryAssignmentContext implements Context
     {
         Assert::true(
             $this->assignPage->hasErrorMessage($this->translator->trans(
-                'congregation_manager.territory_assignment.valid',
+                'cm.valid_territory_assignments',
                 [],
                 'validators'
             ))

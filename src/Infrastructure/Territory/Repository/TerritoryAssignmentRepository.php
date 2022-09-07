@@ -31,6 +31,13 @@ final class TerritoryAssignmentRepository extends ServiceEntityRepository implem
 
     public function add(TerritoryAssignmentInterface $territoryAssignment): void
     {
-        $this->_em->persist($territoryAssignment);
+        $this->getEntityManager()
+            ->persist($territoryAssignment);
+    }
+
+    public function flush(): void
+    {
+        $this->getEntityManager()
+            ->flush();
     }
 }

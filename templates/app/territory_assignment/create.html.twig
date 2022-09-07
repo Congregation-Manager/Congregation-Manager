@@ -10,7 +10,7 @@
             </div>
         </div>
         <dl class="row mt-4">
-            {{ form_start(form) }}
+            {{ form_start(form, {'attr': {'novalidate': true}}) }}
             {{ form_errors(form, test_form_attribute('errors')) }}
             {{ form_row(form.territory, test_form_attribute('territory')) }}
             {{ form_row(form.assignmentDate, test_form_attribute('assignment-date')) }}

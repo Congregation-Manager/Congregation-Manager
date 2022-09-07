@@ -1,4 +1,4 @@
-congregation_manager:
+cm:
     email:
         not_blank: 'Please enter your email.'
         email: 'This value is not a valid email address.'
@@ -6,5 +6,4 @@ congregation_manager:
         not_blank: 'Please enter a password.'
         length: 'Your password should be at least {{ limit }} characters.'
         must_match: 'The password fields must match.'
-    territory_assignment:
-        valid: 'This territory assignment conflicts with another assignment already existing!'
+    valid_territory_assignments: 'This territory assignment conflicts with another assignment already existing!'
