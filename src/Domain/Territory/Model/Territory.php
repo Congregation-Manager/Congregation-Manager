@@ -164,9 +164,6 @@ class Territory extends AggregateRoot implements TerritoryInterface
         return $latestAssignment;
     }
 
-    /**
-     * @todo test function
-     */
     public function hasAssignmentBetweenDates(
         DateTimeInterface $assignmentDate,
         ?DateTimeInterface $revocationDate = null,
@@ -188,7 +185,7 @@ class Territory extends AggregateRoot implements TerritoryInterface
             if ($existingAssignment->getRevocationDate() === null) {
                 return true;
             }
-            if ($existingAssignment->getRevocationDate() >= $revocationDate) {
+            if ($existingAssignment->getRevocationDate() >= $assignmentDate) {
                 return true;
             }
         }

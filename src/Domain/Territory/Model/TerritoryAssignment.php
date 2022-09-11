@@ -101,31 +101,4 @@ class TerritoryAssignment extends AggregateRoot implements TerritoryAssignmentIn
         return $this->getAssignmentDate() == $territoryAssignment->getAssignmentDate() &&
             $this->getRevocationDate() == $territoryAssignment->getRevocationDate();
     }
-
-    public function isValid(): bool
-    {
-        $territory = $this->getTerritory();
-        foreach ($territory->getTerritoryAssignments() as $existingAssignment) {
-            if ($existingAssignment === $this) {
-                continue;
-            }
-            if ($this->getRevocationDate() === null && $existingAssignment->getRevocationDate() === null) {
-                return false;
-            }
-            if ($this->getRevocationDate() === null && $this->getAssignmentDate() <= $existingAssignment->getRevocationDate()) {
-                return false;
-            }
-            if ($existingAssignment->getAssignmentDate() > $this->getRevocationDate()) {
-                continue;
-            }
-            if ($existingAssignment->getRevocationDate() === null) {
-                return false;
-            }
-            if ($existingAssignment->getRevocationDate() >= $this->getAssignmentDate()) {
-                return false;
-            }
-        }
-
-        return true;
-    }
 }
