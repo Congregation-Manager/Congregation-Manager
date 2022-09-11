@@ -10,6 +10,7 @@ use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
 use Symfony\Component\Validator\Exception\UnexpectedTypeException;
 use Symfony\Component\Validator\Exception\UnexpectedValueException;
+use Webmozart\Assert\Assert;
 
 final class ValidTerritoryAssignmentsValidator extends ConstraintValidator
 {
@@ -31,10 +32,14 @@ final class ValidTerritoryAssignmentsValidator extends ConstraintValidator
         }
 
         $territory = $value->getTerritory();
+        if ($territory === null) {
+            return;
+        }
+        Assert::notNull($value->getAssignmentDate());
         if ($territory->hasAssignmentBetweenDates(
             $value->getAssignmentDate(),
             $value->getRevocationDate(),
-            $value->getTerritoryAssignment()
+            $value instanceof UpdateTerritoryAssignment ? $value->getTerritoryAssignment() : null,
         )) {
             $this->context->buildViolation($constraint->message)
                 ->addViolation();

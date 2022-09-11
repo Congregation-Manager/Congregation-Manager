@@ -22,7 +22,7 @@ final class UpdateTerritoryAssignmentHandler
         if (! $territory instanceof TerritoryInterface) {
             throw new InvalidArgumentException(sprintf(
                 'Unable to update territory assignment %s: territory should be an instance of "%s", given "%s".',
-                $command->getTerritoryAssignment()
+                (string) $command->getTerritoryAssignment()
                     ->getId(),
                 TerritoryInterface::class,
                 get_debug_type($territory),
@@ -32,7 +32,7 @@ final class UpdateTerritoryAssignmentHandler
         if (! $assignmentDate instanceof DateTimeInterface) {
             throw new InvalidArgumentException(sprintf(
                 'Unable to update territory assignment %s: assignment date should be an instance of "%s", given "%s".',
-                $command->getTerritoryAssignment()
+                (string) $command->getTerritoryAssignment()
                     ->getId(),
                 DateTimeInterface::class,
                 get_debug_type($assignmentDate),
