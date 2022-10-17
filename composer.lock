@@ -9398,16 +9398,16 @@
         },
         {
             "name": "phparkitect/phparkitect",
-            "version": "0.2.31",
+            "version": "0.2.32",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phparkitect/arkitect.git",
-                "reference": "45323070334699f7d752209e527636ede4593d5f"
+                "reference": "66b5f5ee0f2da606ee50cfb58be52f73fd76c148"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phparkitect/arkitect/zipball/45323070334699f7d752209e527636ede4593d5f",
-                "reference": "45323070334699f7d752209e527636ede4593d5f",
+                "url": "https://api.github.com/repos/phparkitect/arkitect/zipball/66b5f5ee0f2da606ee50cfb58be52f73fd76c148",
+                "reference": "66b5f5ee0f2da606ee50cfb58be52f73fd76c148",
                 "shasum": ""
             },
             "require": {
@@ -9421,7 +9421,7 @@
                 "webmozart/assert": "^1.9"
             },
             "require-dev": {
-                "friendsofphp/php-cs-fixer": "^2.16",
+                "friendsofphp/php-cs-fixer": "^3.0",
                 "mikey179/vfsstream": "^1.6",
                 "phpspec/prophecy": "^1.10",
                 "phpunit/phpunit": "^7.5|^9.0",
@@ -9463,9 +9463,9 @@
             "description": "Enforce architectural constraints in your PHP applications",
             "support": {
                 "issues": "https://github.com/phparkitect/arkitect/issues",
-                "source": "https://github.com/phparkitect/arkitect/tree/0.2.31"
+                "source": "https://github.com/phparkitect/arkitect/tree/0.2.32"
             },
-            "time": "2022-09-17T13:03:56+00:00"
+            "time": "2022-10-11T16:36:19+00:00"
         },
         {
             "name": "phpspec/prophecy",
