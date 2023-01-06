@@ -18,7 +18,8 @@
         "allow-plugins": {
             "composer/package-versions-deprecated": true,
             "symfony/flex": true,
-            "symfony/runtime": true
+            "symfony/runtime": true,
+            "phpstan/extension-installer": true
         }
     },
     "conflict": {
@@ -127,6 +128,7 @@
         "symfony/phpunit-bridge": "^6.0",
         "symfony/web-profiler-bundle": "^6.0",
         "symplify/easy-coding-standard": "^11.0",
+        "symplify/monorepo-builder": "11.1.28.72",
         "vimeo/psalm": "^4.12"
     },
     "scripts": {
