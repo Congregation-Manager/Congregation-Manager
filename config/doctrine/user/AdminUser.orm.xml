@@ -4,10 +4,10 @@
                   xsi:schemaLocation="https://doctrine-project.org/schemas/orm/doctrine-mapping
                           https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
 
-    <entity name="CongregationManager\Infrastructure\User\Model\AdminUser" table="admin_user"
-            repository-class="CongregationManager\Infrastructure\User\Repository\AdminUserRepository">
+    <entity name="CongregationManager\Bundle\User\Model\AdminUser" table="admin_user"
+            repository-class="CongregationManager\Bundle\User\Repository\AdminUserRepository">
 
-        <id name="id" type="integer" column="id">
+        <id name="id" type="integer_aggregate_root_id" column="id">
             <generator strategy="AUTO"/>
         </id>
 

@@ -4,24 +4,24 @@
                   xsi:schemaLocation="https://doctrine-project.org/schemas/orm/doctrine-mapping
                           https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
 
-    <entity name="CongregationManager\Domain\Congregation\Model\Congregation" table="congregation"
-            repository-class="CongregationManager\Infrastructure\Congregation\Repository\CongregationRepository">
+    <entity name="CongregationManager\Component\Congregation\Domain\Congregation" table="congregation"
+            repository-class="CongregationManager\Bundle\Congregation\Repository\CongregationRepository">
 
-        <id name="id" type="integer" column="id">
+        <id name="id" type="integer_aggregate_root_id" column="id">
             <generator strategy="AUTO"/>
         </id>
 
         <field name="name" type="string" length="255"/>
 
-        <one-to-many field="brothers" target-entity="CongregationManager\Domain\Congregation\Model\Brother" mapped-by="congregation" />
+        <one-to-many field="brothers" target-entity="CongregationManager\Component\Congregation\Domain\Brother" mapped-by="congregation" />
 
-        <one-to-many field="provinces" target-entity="CongregationManager\Domain\Territory\Model\Province" mapped-by="congregation" />
+        <one-to-many field="provinces" target-entity="CongregationManager\Component\TerritoryManager\Domain\Province" mapped-by="congregation" />
 
-        <one-to-many field="municipalities" target-entity="CongregationManager\Domain\Territory\Model\Municipality" mapped-by="congregation" />
+        <one-to-many field="municipalities" target-entity="CongregationManager\Component\TerritoryManager\Domain\Municipality" mapped-by="congregation" />
 
-        <one-to-many field="areas" target-entity="CongregationManager\Domain\Territory\Model\Area" mapped-by="congregation" />
+        <one-to-many field="areas" target-entity="CongregationManager\Component\TerritoryManager\Domain\Area" mapped-by="congregation" />
 
-        <one-to-many field="territories" target-entity="CongregationManager\Domain\Territory\Model\Territory" mapped-by="congregation" />
+        <one-to-many field="territories" target-entity="CongregationManager\Component\TerritoryManager\Domain\Territory" mapped-by="congregation" />
     </entity>
 
 </doctrine-mapping>

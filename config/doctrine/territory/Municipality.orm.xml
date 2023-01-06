@@ -4,10 +4,10 @@
                   xsi:schemaLocation="https://doctrine-project.org/schemas/orm/doctrine-mapping
                           https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
 
-    <entity name="CongregationManager\Domain\Territory\Model\Municipality" table="municipality"
-            repository-class="CongregationManager\Infrastructure\Territory\Repository\MunicipalityRepository">
+    <entity name="CongregationManager\Component\TerritoryManager\Domain\Municipality" table="municipality"
+            repository-class="CongregationManager\Bundle\TerritoryManager\Repository\MunicipalityRepository">
 
-        <id name="id" type="integer" column="id">
+        <id name="id" type="integer_aggregate_root_id" column="id">
             <generator strategy="AUTO"/>
         </id>
 
@@ -15,17 +15,17 @@
 
         <field name="description" type="string" length="255" nullable="true"/>
 
-        <many-to-one field="congregation" target-entity="CongregationManager\Domain\Congregation\Model\Congregation"
+        <many-to-one field="congregation" target-entity="CongregationManager\Component\Congregation\Domain\Congregation"
                      inversed-by="municipalities">
             <join-column name="congregation_id" referenced-column-name="id" nullable="false" on-delete="CASCADE"/>
         </many-to-one>
 
-        <many-to-one field="province" target-entity="CongregationManager\Domain\Territory\Model\Province"
+        <many-to-one field="province" target-entity="CongregationManager\Component\TerritoryManager\Domain\Province"
                      inversed-by="municipalities">
             <join-column name="province_id" referenced-column-name="id" nullable="false" on-delete="CASCADE"/>
         </many-to-one>
 
-        <one-to-many field="areas" target-entity="CongregationManager\Domain\Territory\Model\Area" mapped-by="municipality" />
+        <one-to-many field="areas" target-entity="CongregationManager\Component\TerritoryManager\Domain\Area" mapped-by="municipality" />
     </entity>
 
 </doctrine-mapping>

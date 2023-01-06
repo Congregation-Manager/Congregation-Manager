@@ -4,10 +4,10 @@
                   xsi:schemaLocation="https://doctrine-project.org/schemas/orm/doctrine-mapping
                           https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
 
-    <entity name="CongregationManager\Domain\Congregation\Model\Brother" table="brother"
-            repository-class="CongregationManager\Infrastructure\Congregation\Repository\BrotherRepository">
+    <entity name="CongregationManager\Component\Congregation\Domain\Brother" table="brother"
+            repository-class="CongregationManager\Bundle\Congregation\Repository\BrotherRepository">
 
-        <id name="id" type="integer" column="id">
+        <id name="id" type="integer_aggregate_root_id" column="id">
             <generator strategy="AUTO"/>
         </id>
 
@@ -27,15 +27,15 @@
             </options>
         </field>
 
-        <one-to-one field="user" target-entity="CongregationManager\Infrastructure\User\Model\AppUser" mapped-by="brother" />
+        <one-to-one field="user" target-entity="CongregationManager\Bundle\User\Model\AppUser" mapped-by="brother" />
 
-        <one-to-one field="invitation" target-entity="CongregationManager\Infrastructure\User\Model\AppUserInvitation" mapped-by="brother" />
+        <one-to-one field="invitation" target-entity="CongregationManager\Bundle\User\Model\AppUserInvitation" mapped-by="brother" />
 
-        <many-to-one field="congregation" target-entity="CongregationManager\Domain\Congregation\Model\Congregation" inversed-by="brothers">
+        <many-to-one field="congregation" target-entity="CongregationManager\Component\Congregation\Domain\Congregation" inversed-by="brothers">
             <join-column name="congregation_id" referenced-column-name="id" nullable="false" on-delete="CASCADE" />
         </many-to-one>
 
-        <one-to-many field="territoryAssignments" target-entity="CongregationManager\Domain\Territory\Model\TerritoryAssignment" mapped-by="brother" />
+        <one-to-many field="territoryAssignments" target-entity="CongregationManager\Component\TerritoryManager\Domain\TerritoryAssignment" mapped-by="brother" />
     </entity>
 
 </doctrine-mapping>

@@ -6,6 +6,8 @@ doctrine:
                 url: '%env(resolve:DATABASE_URL)%'
             old_cm:
                 url: '%env(resolve:OLD_CM_DATABASE_URL)%'
+        types:
+            integer_aggregate_root_id: CongregationManager\Bundle\Resource\Doctrine\DBAL\Types\IntegerAggregateRootIdType
 
     orm:
         auto_generate_proxy_classes: true
@@ -16,18 +18,18 @@ doctrine:
                 is_bundle: false
                 type: xml
                 dir: '%kernel.project_dir%/config/doctrine/user'
-                prefix: 'CongregationManager\Infrastructure\User\Model'
-                alias: CongregationManager\User
+                prefix: 'CongregationManager\Bundle\User\Model'
+                alias: CongregationManager\Bundle\User
             Congregation:
                 is_bundle: false
                 type: xml
                 dir: '%kernel.project_dir%/config/doctrine/congregation'
-                prefix: 'CongregationManager\Domain\Congregation\Model'
-                alias: CongregationManager\Congregation
-            Territory:
+                prefix: 'CongregationManager\Component\Congregation\Domain'
+                alias: CongregationManager\Component\Congregation
+            TerritoryManager:
                 is_bundle: false
                 type: xml
                 dir: '%kernel.project_dir%/config/doctrine/territory'
-                prefix: 'CongregationManager\Domain\Territory\Model'
-                alias: CongregationManager\Territory
+                prefix: 'CongregationManager\Component\TerritoryManager\Domain'
+                alias: CongregationManager\Component\TerritoryManager
 

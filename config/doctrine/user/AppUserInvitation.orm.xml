@@ -4,12 +4,12 @@
                   xsi:schemaLocation="https://doctrine-project.org/schemas/orm/doctrine-mapping
                           https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
 
-    <entity name="CongregationManager\Infrastructure\User\Model\AppUserInvitation" table="app_user_invitation"
-            repository-class="CongregationManager\Infrastructure\User\Repository\AppUserInvitationRepository">
+    <entity name="CongregationManager\Bundle\User\Model\AppUserInvitation" table="app_user_invitation"
+            repository-class="CongregationManager\Bundle\User\Repository\AppUserInvitationRepository">
 
         <id association-key="true" name="brother" />
 
-        <one-to-one field="brother" target-entity="CongregationManager\Domain\Congregation\Model\Brother" inversed-by="invitation">
+        <one-to-one field="brother" target-entity="CongregationManager\Component\Congregation\Domain\Brother" inversed-by="invitation">
             <join-column name="brother_id" nullable="false" on-delete="CASCADE" />
         </one-to-one>
 
