@@ -1,0 +1,30 @@
+{
+    "name": "lruozzi9/core",
+    "type": "library",
+    "description": "Congregation Manager suite for PHP applications.",
+    "keywords": [
+        "congregation-manager",
+        "php"
+    ],
+    "homepage": "https://github.com/lruozzi9/congregation-manager",
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "Lorenzo Ruozzi",
+            "homepage": "https://lruozzi9.github.io"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "CongregationManager\\Component\\Core\\": ""
+        }
+    },
+    "repositories": [
+        {
+            "type": "path",
+            "url": "../../*/*"
+        }
+    ],
+    "minimum-stability": "stable",
+    "prefer-stable": true
+}

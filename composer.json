@@ -1,8 +1,19 @@
 {
+    "authors": [
+        {
+            "name": "Lorenzo Ruozzi",
+            "homepage": "https://lruozzi9.github.io"
+        }
+    ],
     "autoload": {
         "psr-4": {
-            "CongregationManager\\": "src/"
-        }
+            "CongregationManager\\Bundle\\": "src/CongregationManager/Bundle/",
+            "CongregationManager\\Component\\": "src/CongregationManager/Component/",
+            "CongregationManager\\Contract\\": "src/CongregationManager/Constract/"
+        },
+        "exclude-from-classmap": [
+            "src/CongregationManager/*/*/tests/"
+        ]
     },
     "autoload-dev": {
         "psr-4": {
@@ -27,6 +38,9 @@
     },
     "description": "Tool to manage Congregation based on Symfony framework.",
     "extra": {
+        "branch-alias": {
+            "dev-master": "0.1-dev"
+        },
         "symfony": {
             "allow-contrib": false,
             "require": "^6.0"
@@ -36,7 +50,22 @@
     "minimum-stability": "stable",
     "name": "lruozzi9/congregation-manager",
     "prefer-stable": true,
+    "repositories": [
+        {
+            "type": "path",
+            "url": "*/*"
+        }
+    ],
     "replace": {
+        "lruozzi9/congregation": "self.version",
+        "lruozzi9/congregation-bundle": "self.version",
+        "lruozzi9/core": "self.version",
+        "lruozzi9/core-bundle": "self.version",
+        "lruozzi9/resource-contract": "self.version",
+        "lruozzi9/territory-manager": "self.version",
+        "lruozzi9/territory-manager-bundle": "self.version",
+        "lruozzi9/user": "self.version",
+        "lruozzi9/user-bundle": "self.version",
         "symfony/polyfill-ctype": "*",
         "symfony/polyfill-iconv": "*",
         "symfony/polyfill-php72": "*"

@@ -1,0 +1,31 @@
+{
+    "name": "lruozzi9/user-bundle",
+    "type": "library",
+    "description": "User Symfony bundle.",
+    "keywords": [
+        "user",
+        "congregation-manager",
+        "symfony"
+    ],
+    "homepage": "https://github.com/lruozzi9/congregation-manager",
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "Lorenzo Ruozzi",
+            "homepage": "https://lruozzi9.github.io"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "CongregationManager\\Bundle\\User\\": ""
+        }
+    },
+    "repositories": [
+        {
+            "type": "path",
+            "url": "../../*/*"
+        }
+    ],
+    "minimum-stability": "stable",
+    "prefer-stable": true
+}
