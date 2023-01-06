@@ -16,7 +16,9 @@ class Brother extends AggregateRoot implements BrotherInterface
 {
     protected ?AppUserInterface $user = null;
 
-    /** @var Collection<array-key, TerritoryAssignmentInterface> */
+    /**
+     * @var Collection<array-key, TerritoryAssignmentInterface>
+     */
     protected Collection $territoryAssignments;
 
     public function __construct(

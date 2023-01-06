@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace CongregationManager\Bundle\Core\Twig;
 
+use function CongregationManager\Infrastructure\Common\Twig\str_starts_with;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
-use function CongregationManager\Infrastructure\Common\Twig\str_starts_with;
 
 final class TestFormAttributeExtension extends AbstractExtension
 {
