@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace CongregationManager\Infrastructure\User\Action;
+namespace CongregationManager\Bundle\User\Action;
 
+use CongregationManager\Bundle\User\Model\AppUserInvitation;
 use CongregationManager\Component\Congregation\Domain\BrotherInterface;
 use CongregationManager\Component\User\Domain\Generator\TokenGeneratorInterface;
 use CongregationManager\Component\User\Domain\Repository\AppUserInvitationRepositoryInterface;
-use CongregationManager\Infrastructure\User\Model\AppUserInvitation;
 
 final class CreateAppUserInvitation
 {

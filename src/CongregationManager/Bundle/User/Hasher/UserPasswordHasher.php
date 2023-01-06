@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace CongregationManager\Infrastructure\User\Hasher;
+namespace CongregationManager\Bundle\User\Hasher;
 
 use CongregationManager\Component\User\Domain\Hasher\UserPasswordHasherInterface;
 use CongregationManager\Component\User\Domain\UserInterface;

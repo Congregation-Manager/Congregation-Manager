@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace CongregationManager\Infrastructure\User\Model;
+namespace CongregationManager\Bundle\User\Model;
 
 trait SymfonyUserTrait
 {

@@ -9,13 +9,13 @@
         <directory name="src"/>
         <ignoreFiles>
             <directory name="vendor"/>
-            <directory name="src/Infrastructure/Common/Repository/OldCM"/>
+            <directory name="src/CongregationManager/Bundle/Core/Repository/OldCM"/>
         </ignoreFiles>
     </projectFiles>
     <issueHandlers>
         <InvalidScalarArgument>
             <errorLevel type="suppress">
-                <file name="src/Infrastructure/Territory/Renderer/WordS13Renderer.php"/>
+                <file name="src/CongregationManager/Bundle/TerritoryManager/Renderer/WordS13Renderer.php"/>
             </errorLevel>
         </InvalidScalarArgument>
     </issueHandlers>

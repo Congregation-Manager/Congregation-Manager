@@ -26,7 +26,13 @@ class TerritoryAssignment extends AggregateRoot implements TerritoryAssignmentIn
 
     public function __toString(): string
     {
-        return sprintf('%s[%s-%s]', self::class, $this->getTerritory(), $this->getAssignmentDate()->format('d-m-Y'));
+        return sprintf(
+            '%s[%s-%s]',
+            self::class,
+            (string) $this->getTerritory(),
+            $this->getAssignmentDate()
+                ->format('d-m-Y')
+        );
     }
 
     public function getTerritory(): TerritoryInterface

@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace CongregationManager\Infrastructure\User\Action;
+namespace CongregationManager\Bundle\User\Action;
 
+use CongregationManager\Bundle\User\Model\AdminUser;
+use CongregationManager\Bundle\User\Model\AdminUserInterface;
 use CongregationManager\Component\User\Domain\Hasher\UserPasswordHasherInterface;
 use CongregationManager\Component\User\Domain\Repository\AdminUserRepositoryInterface;
-use CongregationManager\Infrastructure\User\Model\AdminUser;
-use CongregationManager\Infrastructure\User\Model\AdminUserInterface;
 
 final class CreateAdminUser
 {

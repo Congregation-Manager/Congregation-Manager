@@ -6,7 +6,7 @@ namespace CongregationManager\Bundle\Core\Controller;
 
 use CongregationManager\Bundle\Core\Form\ProfileUpdateFormType;
 use CongregationManager\Bundle\Core\Model\ProfileUpdate;
-use CongregationManager\Infrastructure\User\Model\AppUserInterface;
+use CongregationManager\Bundle\User\Model\AppUserInterface;
 use Doctrine\ORM\EntityManagerInterface;
 use LogicException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;

@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace CongregationManager\Infrastructure\User\Action;
+namespace CongregationManager\Bundle\User\Action;
 
+use CongregationManager\Bundle\User\Model\AppUser;
 use CongregationManager\Component\Congregation\Domain\BrotherInterface;
 use CongregationManager\Component\User\Domain\AppUserInterface;
 use CongregationManager\Component\User\Domain\Hasher\UserPasswordHasherInterface;
 use CongregationManager\Component\User\Domain\Repository\AppUserRepositoryInterface;
-use CongregationManager\Infrastructure\User\Model\AppUser;
 
 final class CreateAppUser
 {

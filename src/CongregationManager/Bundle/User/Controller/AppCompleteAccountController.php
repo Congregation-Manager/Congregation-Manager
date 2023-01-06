@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace CongregationManager\Infrastructure\User\Controller;
+namespace CongregationManager\Bundle\User\Controller;
 
+use CongregationManager\Bundle\User\Action\CreateAppUser;
+use CongregationManager\Bundle\User\Form\CompleteAccountFormType;
+use CongregationManager\Bundle\User\Model\CompleteAccount;
 use CongregationManager\Component\User\Domain\Repository\AppUserInvitationRepositoryInterface;
-use CongregationManager\Infrastructure\User\Action\CreateAppUser;
-use CongregationManager\Infrastructure\User\Form\CompleteAccountFormType;
-use CongregationManager\Infrastructure\User\Model\CompleteAccount;
 use DateInterval;
 use DateTime;
 use Doctrine\ORM\EntityManagerInterface;

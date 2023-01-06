@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace CongregationManager\Infrastructure\User\Controller;
+namespace CongregationManager\Bundle\User\Controller;
 
+use CongregationManager\Bundle\User\Form\ChangePasswordFormType;
+use CongregationManager\Bundle\User\Form\ResetPasswordRequestFormType;
+use CongregationManager\Bundle\User\Model\AdminUser;
+use CongregationManager\Bundle\User\Model\UserInterface;
 use CongregationManager\Component\User\Domain\Exception\UserInstanceNotValid;
-use CongregationManager\Infrastructure\User\Form\ChangePasswordFormType;
-use CongregationManager\Infrastructure\User\Form\ResetPasswordRequestFormType;
-use CongregationManager\Infrastructure\User\Model\AdminUser;
-use CongregationManager\Infrastructure\User\Model\UserInterface;
 use Doctrine\ORM\EntityManagerInterface;
 use Psr\Log\LoggerInterface;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;

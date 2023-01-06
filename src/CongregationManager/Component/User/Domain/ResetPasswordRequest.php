@@ -19,7 +19,7 @@ class ResetPasswordRequest extends AggregateRoot implements ResetPasswordRequest
 
     public function __toString(): string
     {
-        return sprintf('%s[%s]', self::class, $this->getAppUser() ?? $this->getAdminUser());
+        return sprintf('%s[%s]', self::class, (string) ($this->getAppUser() ?? $this->getAdminUser()));
     }
 
     public function getAppUser(): ?AppUserInterface

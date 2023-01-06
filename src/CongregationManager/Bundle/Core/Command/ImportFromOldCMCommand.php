@@ -12,6 +12,7 @@ use CongregationManager\Bundle\Core\Repository\OldCM\MunicipalityRepository;
 use CongregationManager\Bundle\Core\Repository\OldCM\ProvinceRepository;
 use CongregationManager\Bundle\Core\Repository\OldCM\TerritoryAssignmentRepository;
 use CongregationManager\Bundle\Core\Repository\OldCM\TerritoryRepository;
+use CongregationManager\Bundle\User\Action\CreateAppUser;
 use CongregationManager\Component\Congregation\Application\CreateBrother;
 use CongregationManager\Component\Congregation\Application\CreateCongregation;
 use CongregationManager\Component\Congregation\Domain\BrotherInterface;
@@ -21,7 +22,6 @@ use CongregationManager\Component\TerritoryManager\Application\CreateMunicipalit
 use CongregationManager\Component\TerritoryManager\Application\CreateProvince;
 use CongregationManager\Component\TerritoryManager\Application\CreateTerritory;
 use CongregationManager\Component\TerritoryManager\Application\CreateTerritoryAssignment;
-use CongregationManager\Infrastructure\User\Action\CreateAppUser;
 use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
 use InvalidArgumentException;

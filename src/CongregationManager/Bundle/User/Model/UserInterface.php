@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace CongregationManager\Infrastructure\User\Model;
+namespace CongregationManager\Bundle\User\Model;
 
 use CongregationManager\Component\User\Domain\UserInterface as DomainUserInterface;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;

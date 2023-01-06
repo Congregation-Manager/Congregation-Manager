@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace CongregationManager\Infrastructure\User\Repository;
+namespace CongregationManager\Bundle\User\Repository;
 
+use CongregationManager\Bundle\User\Model\AppUserInvitation;
 use CongregationManager\Component\User\Domain\AppUserInvitation as DomainAppUserInvitation;
 use CongregationManager\Component\User\Domain\Repository\AppUserInvitationRepositoryInterface;
-use CongregationManager\Infrastructure\User\Model\AppUserInvitation;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 

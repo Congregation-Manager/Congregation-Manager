@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace CongregationManager\Infrastructure\User\Repository;
+namespace CongregationManager\Bundle\User\Repository;
 
+use CongregationManager\Bundle\User\Model\ResetPasswordRequest;
+use CongregationManager\Bundle\User\Model\ResetPasswordRequestInterface;
 use CongregationManager\Component\User\Domain\AdminUser;
 use CongregationManager\Component\User\Domain\AppUser;
 use CongregationManager\Component\User\Domain\Exception\Factory\UserInstanceNotValidFactory;
 use CongregationManager\Component\User\Domain\Repository\ResetPasswordRequestRepositoryInterface;
 use CongregationManager\Component\User\Domain\UserInterface;
-use CongregationManager\Infrastructure\User\Model\ResetPasswordRequest;
-use CongregationManager\Infrastructure\User\Model\ResetPasswordRequestInterface;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use SymfonyCasts\Bundle\ResetPassword\Model\ResetPasswordRequestInterface as SymfonyResetPasswordRequestInterface;

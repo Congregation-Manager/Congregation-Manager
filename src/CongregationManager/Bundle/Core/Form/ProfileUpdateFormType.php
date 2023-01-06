@@ -6,7 +6,7 @@ namespace CongregationManager\Bundle\Core\Form;
 
 use CongregationManager\Bundle\Congregation\Form\UpdateBrotherFormType;
 use CongregationManager\Bundle\Core\Model\ProfileUpdate;
-use CongregationManager\Infrastructure\User\Form\ChangeEmailFormType;
+use CongregationManager\Bundle\User\Form\ChangeEmailFormType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;

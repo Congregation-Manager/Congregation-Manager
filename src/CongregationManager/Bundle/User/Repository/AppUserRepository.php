@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace CongregationManager\Infrastructure\User\Repository;
+namespace CongregationManager\Bundle\User\Repository;
 
+use CongregationManager\Bundle\User\Model\AppUser;
 use CongregationManager\Component\User\Domain\AppUserInterface;
 use CongregationManager\Component\User\Domain\Repository\AppUserRepositoryInterface;
-use CongregationManager\Infrastructure\User\Model\AppUser;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\Security\Core\Exception\UnsupportedUserException;

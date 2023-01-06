@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace CongregationManager\Bundle\Congregation\Controller;
 
+use CongregationManager\Bundle\User\Action\CreateAppUserInvitation;
+use CongregationManager\Bundle\User\Form\InviteUserFormType;
 use CongregationManager\Component\Congregation\Domain\Repository\BrotherRepositoryInterface;
-use CongregationManager\Infrastructure\User\Action\CreateAppUserInvitation;
-use CongregationManager\Infrastructure\User\Form\InviteUserFormType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;

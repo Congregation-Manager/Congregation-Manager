@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace CongregationManager\Bundle\Core\Model;
 
+use CongregationManager\Bundle\User\Model\AppUserInterface;
 use CongregationManager\Component\Congregation\Domain\BrotherInterface;
-use CongregationManager\Infrastructure\User\Model\AppUserInterface;
 
 final class ProfileUpdate
 {
