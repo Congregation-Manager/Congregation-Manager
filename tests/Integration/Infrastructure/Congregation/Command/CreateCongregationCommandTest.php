@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace CongregationManager\Tests\Integration\Infrastructure\Congregation\Command;
 
-use CongregationManager\Domain\Congregation\Model\CongregationInterface;
+use CongregationManager\Component\Congregation\Domain\CongregationInterface;
 use CongregationManager\Tests\Integration\Infrastructure\Common\Command\AbstractCommandTest;
 use Doctrine\Common\DataFixtures\Purger\ORMPurger;
 

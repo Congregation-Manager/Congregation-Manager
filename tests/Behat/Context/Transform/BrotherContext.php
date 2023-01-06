@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace CongregationManager\Tests\Behat\Context\Transform;
 
 use Behat\Behat\Context\Context;
-use CongregationManager\Domain\Congregation\Model\BrotherInterface;
-use CongregationManager\Domain\Congregation\Repository\BrotherRepositoryInterface;
+use CongregationManager\Component\Congregation\Domain\BrotherInterface;
+use CongregationManager\Component\Congregation\Domain\Repository\BrotherRepositoryInterface;
 use InvalidArgumentException;
 
 final class BrotherContext implements Context

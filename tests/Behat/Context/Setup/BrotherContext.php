@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace CongregationManager\Tests\Behat\Context\Setup;
 
 use Behat\Behat\Context\Context;
-use CongregationManager\Domain\Congregation\Model\Brother;
-use CongregationManager\Domain\Congregation\Model\CongregationInterface;
+use CongregationManager\Component\Congregation\Domain\Brother;
+use CongregationManager\Component\Congregation\Domain\CongregationInterface;
 use CongregationManager\Tests\Behat\Services\SharedStorageInterface;
 use Doctrine\ORM\EntityManagerInterface;
 use Webmozart\Assert\Assert;

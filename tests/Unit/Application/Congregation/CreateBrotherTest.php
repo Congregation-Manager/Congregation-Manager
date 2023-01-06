@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace CongregationManager\Tests\Unit\Application\Congregation;
 
-use CongregationManager\Application\Congregation\CreateBrother;
-use CongregationManager\Domain\Congregation\Model\Congregation;
-use CongregationManager\Domain\Congregation\Repository\BrotherRepositoryInterface;
+use CongregationManager\Component\Congregation\Application\CreateBrother;
+use CongregationManager\Component\Congregation\Domain\Congregation;
+use CongregationManager\Component\Congregation\Domain\Repository\BrotherRepositoryInterface;
 use CongregationManager\Tests\Repository\BrotherRepository;
 use DateTime;
 use PHPUnit\Framework\TestCase;

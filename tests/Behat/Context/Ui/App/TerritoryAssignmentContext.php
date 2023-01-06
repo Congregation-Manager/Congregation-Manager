@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace CongregationManager\Tests\Behat\Context\Ui\App;
 
 use Behat\Behat\Context\Context;
-use CongregationManager\Domain\Congregation\Model\BrotherInterface;
-use CongregationManager\Domain\Territory\Model\TerritoryAssignmentInterface;
-use CongregationManager\Domain\Territory\Model\TerritoryInterface;
+use CongregationManager\Component\Congregation\Domain\BrotherInterface;
+use CongregationManager\Component\TerritoryManager\Domain\TerritoryAssignmentInterface;
+use CongregationManager\Component\TerritoryManager\Domain\TerritoryInterface;
 use CongregationManager\Tests\Behat\Page\App\TerritoryAssignment\CreatePage;
 use CongregationManager\Tests\Behat\Page\App\TerritoryAssignment\UpdatePage;
 use CongregationManager\Tests\Behat\Services\SharedStorageInterface;

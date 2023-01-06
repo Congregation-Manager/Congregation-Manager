@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace CongregationManager\Tests\Unit\Domain\Territory\Generator;
 
-use CongregationManager\Domain\Congregation\Model\Congregation;
-use CongregationManager\Domain\Territory\Generator\S13Generator;
-use CongregationManager\Domain\Territory\Model\Area;
-use CongregationManager\Domain\Territory\Model\Municipality;
-use CongregationManager\Domain\Territory\Model\Province;
-use CongregationManager\Domain\Territory\Model\Territory;
-use CongregationManager\Domain\Territory\Model\TerritoryAssignment;
+use CongregationManager\Component\Congregation\Domain\Congregation;
+use CongregationManager\Component\TerritoryManager\Domain\Area;
+use CongregationManager\Component\TerritoryManager\Domain\Generator\S13Generator;
+use CongregationManager\Component\TerritoryManager\Domain\Municipality;
+use CongregationManager\Component\TerritoryManager\Domain\Province;
+use CongregationManager\Component\TerritoryManager\Domain\Territory;
+use CongregationManager\Component\TerritoryManager\Domain\TerritoryAssignment;
 use CongregationManager\Tests\Repository\TerritoryRepository;
 use DateTimeImmutable;
 use Doctrine\Common\Collections\ArrayCollection;

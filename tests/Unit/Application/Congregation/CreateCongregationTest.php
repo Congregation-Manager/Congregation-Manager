@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace CongregationManager\Tests\Unit\Application\Congregation;
 
-use CongregationManager\Application\Congregation\CreateCongregation;
-use CongregationManager\Domain\Congregation\Repository\CongregationRepositoryInterface;
+use CongregationManager\Component\Congregation\Application\CreateCongregation;
+use CongregationManager\Component\Congregation\Domain\Repository\CongregationRepositoryInterface;
 use CongregationManager\Tests\Repository\CongregationRepository;
 use PHPUnit\Framework\TestCase;
 

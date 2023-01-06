@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace CongregationManager\Tests\Unit\Infrastructure\Common\Utils\Validator;
 
-use CongregationManager\Infrastructure\Common\Utils\Validator\Validator;
+use CongregationManager\Bundle\Core\Utils\Validator\Validator;
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 

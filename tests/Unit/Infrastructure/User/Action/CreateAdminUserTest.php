@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace CongregationManager\Tests\Unit\Infrastructure\User\Action;
 
-use CongregationManager\Domain\User\Hasher\UserPasswordHasherInterface;
-use CongregationManager\Domain\User\Model\UserInterface;
-use CongregationManager\Domain\User\Repository\AdminUserRepositoryInterface;
+use CongregationManager\Component\User\Domain\Hasher\UserPasswordHasherInterface;
+use CongregationManager\Component\User\Domain\Repository\AdminUserRepositoryInterface;
+use CongregationManager\Component\User\Domain\UserInterface;
 use CongregationManager\Infrastructure\User\Action\CreateAdminUser;
 use CongregationManager\Tests\Repository\AdminUserRepository;
 use PHPUnit\Framework\TestCase;

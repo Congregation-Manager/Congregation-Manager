@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace CongregationManager\Tests\Repository;
 
-use CongregationManager\Domain\Congregation\Model\CongregationInterface;
-use CongregationManager\Domain\Territory\Model\Territory;
-use CongregationManager\Domain\Territory\Model\TerritoryInterface;
-use CongregationManager\Domain\Territory\Repository\Filter\TerritoryFilterResultsInterface;
-use CongregationManager\Domain\Territory\Repository\Filter\TerritoryRepositoryFilterInterface;
-use CongregationManager\Domain\Territory\Repository\TerritoryRepositoryInterface;
+use CongregationManager\Component\Congregation\Domain\CongregationInterface;
+use CongregationManager\Component\TerritoryManager\Domain\Repository\Filter\TerritoryFilterResultsInterface;
+use CongregationManager\Component\TerritoryManager\Domain\Repository\Filter\TerritoryRepositoryFilterInterface;
+use CongregationManager\Component\TerritoryManager\Domain\Repository\TerritoryRepositoryInterface;
+use CongregationManager\Component\TerritoryManager\Domain\Territory;
+use CongregationManager\Component\TerritoryManager\Domain\TerritoryInterface;
 use RuntimeException;
 
 final class TerritoryRepository extends InMemoryRepository implements TerritoryRepositoryInterface

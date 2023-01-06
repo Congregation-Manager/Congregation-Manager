@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace CongregationManager\Tests\Behat\Context\Ui\Admin;
 
 use Behat\Behat\Context\Context;
-use CongregationManager\Domain\Congregation\Model\BrotherInterface;
+use CongregationManager\Component\Congregation\Domain\BrotherInterface;
 use CongregationManager\Tests\Behat\Page\Admin\BrotherShowPageInterface;
 use CongregationManager\Tests\Behat\Page\Admin\ChangePasswordPageInterface;
 use CongregationManager\Tests\Behat\Page\Admin\CheckEmailPageInterface;

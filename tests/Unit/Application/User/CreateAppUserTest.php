@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace CongregationManager\Tests\Unit\Application\User;
 
-use CongregationManager\Application\User\CreateAppUser;
-use CongregationManager\Domain\Congregation\Model\Brother;
-use CongregationManager\Domain\Congregation\Model\Congregation;
-use CongregationManager\Domain\User\Hasher\UserPasswordHasherInterface;
-use CongregationManager\Domain\User\Model\UserInterface;
-use CongregationManager\Domain\User\Repository\AppUserRepositoryInterface;
+use CongregationManager\Component\Congregation\Domain\Brother;
+use CongregationManager\Component\Congregation\Domain\Congregation;
+use CongregationManager\Component\User\Application\CreateAppUser;
+use CongregationManager\Component\User\Domain\Hasher\UserPasswordHasherInterface;
+use CongregationManager\Component\User\Domain\Repository\AppUserRepositoryInterface;
+use CongregationManager\Component\User\Domain\UserInterface;
 use CongregationManager\Tests\Repository\AppUserRepository;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;

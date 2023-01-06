@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace CongregationManager\Tests\Behat\Context\Setup;
 
 use Behat\Behat\Context\Context;
-use CongregationManager\Domain\Congregation\Model\BrotherInterface;
-use CongregationManager\Infrastructure\Common\Converter\LocaleConverterInterface;
+use CongregationManager\Bundle\Core\Converter\LocaleConverterInterface;
+use CongregationManager\Component\Congregation\Domain\BrotherInterface;
 use CongregationManager\Infrastructure\User\Action\CreateAppUserInvitation;
 use CongregationManager\Infrastructure\User\Model\AdminUser;
 use CongregationManager\Infrastructure\User\Model\AdminUserInterface;

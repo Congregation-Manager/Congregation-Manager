@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace CongregationManager\Tests\Repository;
 
-use CongregationManager\Domain\User\Model\AdminUser;
-use CongregationManager\Domain\User\Model\AdminUserInterface;
-use CongregationManager\Domain\User\Repository\AdminUserRepositoryInterface;
+use CongregationManager\Component\User\Domain\AdminUser;
+use CongregationManager\Component\User\Domain\AdminUserInterface;
+use CongregationManager\Component\User\Domain\Repository\AdminUserRepositoryInterface;
 
 final class AdminUserRepository extends InMemoryRepository implements AdminUserRepositoryInterface
 {

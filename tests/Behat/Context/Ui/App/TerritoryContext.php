@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace CongregationManager\Tests\Behat\Context\Ui\App;
 
 use Behat\Behat\Context\Context;
-use CongregationManager\Domain\Congregation\Model\BrotherInterface;
-use CongregationManager\Domain\Territory\Model\TerritoryInterface;
+use CongregationManager\Component\Congregation\Domain\BrotherInterface;
+use CongregationManager\Component\TerritoryManager\Domain\TerritoryInterface;
 use CongregationManager\Tests\Behat\Page\App\Territory\ShowPage;
 use DateTimeImmutable;
 use Webmozart\Assert\Assert;

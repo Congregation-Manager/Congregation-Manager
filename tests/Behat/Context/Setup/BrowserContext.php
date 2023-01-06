@@ -6,7 +6,7 @@ namespace CongregationManager\Tests\Behat\Context\Setup;
 
 use Behat\Behat\Context\Context;
 use Behat\Mink\Session;
-use CongregationManager\Infrastructure\Common\Converter\LocaleConverterInterface;
+use CongregationManager\Bundle\Core\Converter\LocaleConverterInterface;
 
 final class BrowserContext implements Context
 {
