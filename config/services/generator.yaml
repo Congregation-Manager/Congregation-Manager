@@ -5,9 +5,9 @@ services:
         public: false
 
     cm.generator.token:
-        class: CongregationManager\Domain\User\Generator\TokenGenerator
+        class: CongregationManager\Component\User\Domain\Generator\TokenGenerator
 
     cm.generator.s_13:
-        class: CongregationManager\Domain\Territory\Generator\S13Generator
+        class: CongregationManager\Component\TerritoryManager\Domain\Generator\S13Generator
         arguments:
             - '@cm.repository.territory'

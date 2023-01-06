@@ -5,4 +5,4 @@ services:
         public: false
 
     cm.utils.validator:
-        class: CongregationManager\Infrastructure\Common\Utils\Validator\Validator
+        class: CongregationManager\Bundle\Core\Utils\Validator\Validator

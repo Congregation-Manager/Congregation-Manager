@@ -5,6 +5,6 @@ services:
         public: false
 
     cm.hasher.user_password:
-        class: CongregationManager\Infrastructure\User\Hasher\UserPasswordHasher
+        class: CongregationManager\Bundle\User\Hasher\UserPasswordHasher
         arguments:
             - '@security.user_password_hasher'

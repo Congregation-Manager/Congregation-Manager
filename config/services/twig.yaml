@@ -5,26 +5,26 @@ services:
         public: false
 
     cm.twig.extension.test_html_attribute:
-        class: CongregationManager\Infrastructure\Common\Twig\TestHtmlAttributeExtension
+        class: CongregationManager\Bundle\Core\Twig\TestHtmlAttributeExtension
         arguments:
             - '%kernel.environment%'
         tags:
             - { name: twig.extension }
 
     cm.twig.extension.test_form_attribute:
-        class: CongregationManager\Infrastructure\Common\Twig\TestFormAttributeExtension
+        class: CongregationManager\Bundle\Core\Twig\TestFormAttributeExtension
         arguments:
             - '%kernel.environment%'
         tags:
             - { name: twig.extension }
 
     cm.twig.extension.locale:
-        class: CongregationManager\Infrastructure\Common\Twig\LocaleExtension
+        class: CongregationManager\Bundle\Core\Twig\LocaleExtension
         tags:
             - { name: twig.extension }
 
     cm.twig.runtime.locale:
-        class: CongregationManager\Infrastructure\Common\Twig\LocaleRuntime
+        class: CongregationManager\Bundle\Core\Twig\LocaleRuntime
         arguments:
             - '@cm.converter.locale'
             - '@cm.context.locale'

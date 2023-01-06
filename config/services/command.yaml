@@ -5,7 +5,7 @@ services:
         public: false
 
     cm.command.create_congregation:
-        class: CongregationManager\Infrastructure\Congregation\Command\CreateCongregationCommand
+        class: CongregationManager\Bundle\Congregation\Command\CreateCongregationCommand
         arguments:
             - '@cm.utils.validator'
             - '@cm.create_congregation'
@@ -15,7 +15,7 @@ services:
             - { name: 'console.command' }
 
     cm.command.create_admin_user:
-        class: CongregationManager\Infrastructure\User\Command\CreateAdminUserCommand
+        class: CongregationManager\Bundle\User\Command\CreateAdminUserCommand
         arguments:
             - '@cm.create_admin_user'
             - '@doctrine.orm.entity_manager'
@@ -27,7 +27,7 @@ services:
             - { name: 'console.command' }
 
     cm.command.import_from_old_cm:
-        class: CongregationManager\Infrastructure\Common\Command\ImportFromOldCMCommand
+        class: CongregationManager\Bundle\Core\Command\ImportFromOldCMCommand
         arguments:
             - '@cm.repository.old_cm.congregation'
             - '@cm.create_congregation'

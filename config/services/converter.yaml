@@ -5,6 +5,6 @@ services:
         public: false
 
     cm.converter.locale:
-        class: CongregationManager\Infrastructure\Common\Converter\LocaleConverter
+        class: CongregationManager\Bundle\Core\Converter\LocaleConverter
         arguments:
             - '%default_locale%'

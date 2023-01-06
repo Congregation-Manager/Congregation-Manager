@@ -5,6 +5,6 @@ services:
         public: false
 
     cm.renderer.word_s_13:
-        class: CongregationManager\Infrastructure\Territory\Renderer\WordS13Renderer
+        class: CongregationManager\Bundle\TerritoryManager\Renderer\WordS13Renderer
         arguments:
             - '@translator'

@@ -5,140 +5,140 @@ services:
         public: false
 
     cm.repository.app_user:
-        alias: 'CongregationManager\Infrastructure\User\Repository\AppUserRepository'
+        alias: 'CongregationManager\Bundle\User\Repository\AppUserRepository'
 
-    CongregationManager\Infrastructure\User\Repository\AppUserRepository:
+    CongregationManager\Bundle\User\Repository\AppUserRepository:
         arguments:
             - '@doctrine'
         tags:
             - { name: doctrine.repository_service }
 
     cm.repository.admin_user:
-        alias: 'CongregationManager\Infrastructure\User\Repository\AdminUserRepository'
+        alias: 'CongregationManager\Bundle\User\Repository\AdminUserRepository'
 
-    CongregationManager\Infrastructure\User\Repository\AdminUserRepository:
+    CongregationManager\Bundle\User\Repository\AdminUserRepository:
         arguments:
             - '@doctrine'
         tags:
             - { name: doctrine.repository_service }
 
     cm.repository.reset_password_request:
-        alias: 'CongregationManager\Infrastructure\User\Repository\ResetPasswordRequestRepository'
+        alias: 'CongregationManager\Bundle\User\Repository\ResetPasswordRequestRepository'
 
-    CongregationManager\Infrastructure\User\Repository\ResetPasswordRequestRepository:
+    CongregationManager\Bundle\User\Repository\ResetPasswordRequestRepository:
         arguments:
             - '@doctrine'
         tags:
             - { name: doctrine.repository_service }
 
     cm.repository.congregation:
-        alias: 'CongregationManager\Infrastructure\Congregation\Repository\CongregationRepository'
+        alias: 'CongregationManager\Bundle\Congregation\Repository\CongregationRepository'
 
-    CongregationManager\Infrastructure\Congregation\Repository\CongregationRepository:
+    CongregationManager\Bundle\Congregation\Repository\CongregationRepository:
         arguments:
             - '@doctrine'
         tags:
             - { name: doctrine.repository_service }
 
     cm.repository.brother:
-        alias: 'CongregationManager\Infrastructure\Congregation\Repository\BrotherRepository'
+        alias: 'CongregationManager\Bundle\Congregation\Repository\BrotherRepository'
 
-    CongregationManager\Infrastructure\Congregation\Repository\BrotherRepository:
+    CongregationManager\Bundle\Congregation\Repository\BrotherRepository:
         arguments:
             - '@doctrine'
         tags:
             - { name: doctrine.repository_service }
 
     cm.repository.app_user_invitation:
-        alias: 'CongregationManager\Infrastructure\User\Repository\AppUserInvitationRepository'
+        alias: 'CongregationManager\Bundle\User\Repository\AppUserInvitationRepository'
 
-    CongregationManager\Infrastructure\User\Repository\AppUserInvitationRepository:
+    CongregationManager\Bundle\User\Repository\AppUserInvitationRepository:
         arguments:
             - '@doctrine'
         tags:
             - { name: doctrine.repository_service }
 
     cm.repository.province:
-        alias: 'CongregationManager\Infrastructure\Territory\Repository\ProvinceRepository'
+        alias: 'CongregationManager\Bundle\TerritoryManager\Repository\ProvinceRepository'
 
-    CongregationManager\Infrastructure\Territory\Repository\ProvinceRepository:
+    CongregationManager\Bundle\TerritoryManager\Repository\ProvinceRepository:
         arguments:
             - '@doctrine'
         tags:
             - { name: doctrine.repository_service }
 
     cm.repository.municipality:
-        alias: 'CongregationManager\Infrastructure\Territory\Repository\MunicipalityRepository'
+        alias: 'CongregationManager\Bundle\TerritoryManager\Repository\MunicipalityRepository'
 
-    CongregationManager\Infrastructure\Territory\Repository\MunicipalityRepository:
+    CongregationManager\Bundle\TerritoryManager\Repository\MunicipalityRepository:
         arguments:
             - '@doctrine'
         tags:
             - { name: doctrine.repository_service }
 
     cm.repository.area:
-        alias: 'CongregationManager\Infrastructure\Territory\Repository\AreaRepository'
+        alias: 'CongregationManager\Bundle\TerritoryManager\Repository\AreaRepository'
 
-    CongregationManager\Infrastructure\Territory\Repository\AreaRepository:
+    CongregationManager\Bundle\TerritoryManager\Repository\AreaRepository:
         arguments:
             - '@doctrine'
         tags:
             - { name: doctrine.repository_service }
 
     cm.repository.territory:
-        alias: 'CongregationManager\Infrastructure\Territory\Repository\TerritoryRepository'
+        alias: 'CongregationManager\Bundle\TerritoryManager\Repository\TerritoryRepository'
 
-    CongregationManager\Infrastructure\Territory\Repository\TerritoryRepository:
+    CongregationManager\Bundle\TerritoryManager\Repository\TerritoryRepository:
         arguments:
             - '@doctrine'
         tags:
             - { name: doctrine.repository_service }
 
     cm.repository.territory_assignment:
-        alias: 'CongregationManager\Infrastructure\Territory\Repository\TerritoryAssignmentRepository'
+        alias: 'CongregationManager\Bundle\TerritoryManager\Repository\TerritoryAssignmentRepository'
 
-    CongregationManager\Infrastructure\Territory\Repository\TerritoryAssignmentRepository:
+    CongregationManager\Bundle\TerritoryManager\Repository\TerritoryAssignmentRepository:
         arguments:
             - '@doctrine'
         tags:
             - { name: doctrine.repository_service }
 
     cm.repository.old_cm.congregation:
-        class: CongregationManager\Infrastructure\Common\Repository\OldCM\CongregationRepository
+        class: CongregationManager\Bundle\Core\Repository\OldCM\CongregationRepository
         arguments:
             - '@doctrine.dbal.old_cm_connection'
 
     cm.repository.old_cm.brother:
-        class: CongregationManager\Infrastructure\Common\Repository\OldCM\BrotherRepository
+        class: CongregationManager\Bundle\Core\Repository\OldCM\BrotherRepository
         arguments:
             - '@doctrine.dbal.old_cm_connection'
 
     cm.repository.old_cm.app_user:
-        class: CongregationManager\Infrastructure\Common\Repository\OldCM\AppUserRepository
+        class: CongregationManager\Bundle\Core\Repository\OldCM\AppUserRepository
         arguments:
             - '@doctrine.dbal.old_cm_connection'
 
     cm.repository.old_cm.province:
-        class: CongregationManager\Infrastructure\Common\Repository\OldCM\ProvinceRepository
+        class: CongregationManager\Bundle\Core\Repository\OldCM\ProvinceRepository
         arguments:
             - '@doctrine.dbal.old_cm_connection'
 
     cm.repository.old_cm.municipality:
-        class: CongregationManager\Infrastructure\Common\Repository\OldCM\MunicipalityRepository
+        class: CongregationManager\Bundle\Core\Repository\OldCM\MunicipalityRepository
         arguments:
             - '@doctrine.dbal.old_cm_connection'
 
     cm.repository.old_cm.area:
-        class: CongregationManager\Infrastructure\Common\Repository\OldCM\AreaRepository
+        class: CongregationManager\Bundle\Core\Repository\OldCM\AreaRepository
         arguments:
             - '@doctrine.dbal.old_cm_connection'
 
     cm.repository.old_cm.territory:
-        class: CongregationManager\Infrastructure\Common\Repository\OldCM\TerritoryRepository
+        class: CongregationManager\Bundle\Core\Repository\OldCM\TerritoryRepository
         arguments:
             - '@doctrine.dbal.old_cm_connection'
 
     cm.repository.old_cm.territory_assignment:
-        class: CongregationManager\Infrastructure\Common\Repository\OldCM\TerritoryAssignmentRepository
+        class: CongregationManager\Bundle\Core\Repository\OldCM\TerritoryAssignmentRepository
         arguments:
             - '@doctrine.dbal.old_cm_connection'
