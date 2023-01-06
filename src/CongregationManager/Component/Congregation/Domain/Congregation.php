@@ -49,6 +49,11 @@ class Congregation extends AggregateRoot implements CongregationInterface
         $this->territories = new ArrayCollection();
     }
 
+    public function __toString(): string
+    {
+        return sprintf('%s[%s]', self::class, $this->getName());
+    }
+
     public function getName(): string
     {
         return $this->name;

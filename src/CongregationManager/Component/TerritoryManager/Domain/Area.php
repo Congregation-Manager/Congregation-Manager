@@ -25,6 +25,11 @@ class Area extends AggregateRoot implements AreaInterface
         $this->territories = new ArrayCollection();
     }
 
+    public function __toString(): string
+    {
+        return sprintf('%s[%s]', self::class, $this->getName());
+    }
+
     public function getCongregation(): CongregationInterface
     {
         return $this->congregation;

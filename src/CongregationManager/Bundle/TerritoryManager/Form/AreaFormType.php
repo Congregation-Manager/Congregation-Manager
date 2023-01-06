@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace CongregationManager\Bundle\TerritoryManager\Form;
 
-use CongregationManager\Component\Core\Context\CongregationContextInterface;
+use CongregationManager\Component\Core\Domain\Context\CongregationContextInterface;
 use Doctrine\ORM\EntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use RuntimeException;

@@ -14,4 +14,9 @@ abstract class AggregateRoot implements AggregateRootInterface
     {
         return $this->id;
     }
+
+    public function setId(?AggregateRootId $id): void
+    {
+        $this->id = $id;
+    }
 }

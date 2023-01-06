@@ -34,6 +34,11 @@ class Territory extends AggregateRoot implements TerritoryInterface
         $this->territoryAssignments = new ArrayCollection();
     }
 
+    public function __toString(): string
+    {
+        return sprintf('%s[%s]', self::class, $this->getNumber());
+    }
+
     public function getCongregation(): CongregationInterface
     {
         return $this->congregation;

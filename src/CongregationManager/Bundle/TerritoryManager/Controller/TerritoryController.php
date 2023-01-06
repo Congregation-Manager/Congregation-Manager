@@ -6,7 +6,7 @@ namespace CongregationManager\Bundle\TerritoryManager\Controller;
 
 use CongregationManager\Bundle\TerritoryManager\Form\TerritoryFiltersFormType;
 use CongregationManager\Bundle\TerritoryManager\Repository\Filter\QueryBuilderTerritoryRepositoryFilter;
-use CongregationManager\Component\Core\Context\CongregationContextInterface;
+use CongregationManager\Component\Core\Domain\Context\CongregationContextInterface;
 use CongregationManager\Component\TerritoryManager\Domain\Generator\S13GeneratorInterface;
 use CongregationManager\Component\TerritoryManager\Domain\Renderer\S13RendererInterface;
 use CongregationManager\Component\TerritoryManager\Domain\Repository\TerritoryRepositoryInterface;

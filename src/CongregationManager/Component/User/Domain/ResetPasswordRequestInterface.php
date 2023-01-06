@@ -4,14 +4,11 @@ declare(strict_types=1);
 
 namespace CongregationManager\Component\User\Domain;
 
+use CongregationManager\Contract\Resource\AggregateRootInterface;
 use DateTimeInterface;
 
-interface ResetPasswordRequestInterface
+interface ResetPasswordRequestInterface extends AggregateRootInterface
 {
-    public function getId(): ?int;
-
-    public function setId(?int $id): void;
-
     public function getAppUser(): ?AppUserInterface;
 
     public function setAppUser(?AppUserInterface $appUser): void;

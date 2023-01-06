@@ -9,8 +9,6 @@ use DateTimeInterface;
 
 class ResetPasswordRequest extends AggregateRoot implements ResetPasswordRequestInterface
 {
-    protected ?int $id = null;
-
     public function __construct(
         protected DateTimeInterface $expiresAt,
         protected string $hashedToken,
@@ -19,14 +17,9 @@ class ResetPasswordRequest extends AggregateRoot implements ResetPasswordRequest
     ) {
     }
 
-    public function getId(): ?int
+    public function __toString(): string
     {
-        return $this->id;
-    }
-
-    public function setId(?int $id): void
-    {
-        $this->id = $id;
+        return sprintf('%s[%s]', self::class, $this->getAppUser() ?? $this->getAdminUser());
     }
 
     public function getAppUser(): ?AppUserInterface

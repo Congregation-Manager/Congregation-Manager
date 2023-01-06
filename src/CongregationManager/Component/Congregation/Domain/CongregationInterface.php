@@ -8,12 +8,11 @@ use CongregationManager\Component\TerritoryManager\Domain\AreaInterface;
 use CongregationManager\Component\TerritoryManager\Domain\MunicipalityInterface;
 use CongregationManager\Component\TerritoryManager\Domain\ProvinceInterface;
 use CongregationManager\Component\TerritoryManager\Domain\TerritoryInterface;
+use CongregationManager\Contract\Resource\AggregateRootInterface;
 use Doctrine\Common\Collections\Collection;
 
-interface CongregationInterface
+interface CongregationInterface extends AggregateRootInterface
 {
-    public function getId(): ?int;
-
     public function getName(): string;
 
     public function setName(string $name): void;

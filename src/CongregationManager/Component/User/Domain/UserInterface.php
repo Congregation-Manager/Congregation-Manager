@@ -4,12 +4,10 @@ declare(strict_types=1);
 
 namespace CongregationManager\Component\User\Domain;
 
-interface UserInterface
+use CongregationManager\Contract\Resource\AggregateRootInterface;
+
+interface UserInterface extends AggregateRootInterface
 {
-    public function getId(): ?int;
-
-    public function setId(?int $id): void;
-
     public function getEmail(): string;
 
     public function setEmail(string $email): void;

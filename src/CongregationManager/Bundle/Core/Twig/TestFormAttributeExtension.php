@@ -4,14 +4,13 @@ declare(strict_types=1);
 
 namespace CongregationManager\Bundle\Core\Twig;
 
-use function CongregationManager\Infrastructure\Common\Twig\str_starts_with;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
 
 final class TestFormAttributeExtension extends AbstractExtension
 {
     public function __construct(
-        private string $env
+        private readonly string $env
     ) {
     }
 

@@ -24,6 +24,11 @@ class TerritoryAssignment extends AggregateRoot implements TerritoryAssignmentIn
         }
     }
 
+    public function __toString(): string
+    {
+        return sprintf('%s[%s-%s]', self::class, $this->getTerritory(), $this->getAssignmentDate()->format('d-m-Y'));
+    }
+
     public function getTerritory(): TerritoryInterface
     {
         return $this->territory;
@@ -97,11 +102,19 @@ class TerritoryAssignment extends AggregateRoot implements TerritoryAssignmentIn
         if ($this === $territoryAssignment) {
             return true;
         }
+        if ($this->getAssignmentDate()->diff($territoryAssignment->getAssignmentDate())->days !== 0) {
+            return false;
+        }
+        $thisRevocationDate = $this->getRevocationDate();
+        $otherRevocationDate = $territoryAssignment->getRevocationDate();
+        if (! $thisRevocationDate instanceof DateTimeInterface) {
+            return $otherRevocationDate === null;
+        }
+        if (! $otherRevocationDate instanceof DateTimeInterface) {
+            return false;
+        }
+        $diff = $thisRevocationDate->diff($otherRevocationDate);
 
-        return $this->getAssignmentDate()
-            ->diff($territoryAssignment->getAssignmentDate())
-            ->days === 0 &&
-                        $this->getRevocationDate()?->diff($territoryAssignment->getRevocationDate())
-->days === 0;
+        return $diff->days === 0;
     }
 }

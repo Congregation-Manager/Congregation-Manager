@@ -25,6 +25,11 @@ class Municipality extends AggregateRoot implements MunicipalityInterface
         $this->areas = new ArrayCollection();
     }
 
+    public function __toString(): string
+    {
+        return sprintf('%s[%s]', self::class, $this->getName());
+    }
+
     public function getCongregation(): CongregationInterface
     {
         return $this->congregation;

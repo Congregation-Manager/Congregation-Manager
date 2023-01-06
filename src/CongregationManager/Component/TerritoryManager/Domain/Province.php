@@ -24,6 +24,11 @@ class Province extends AggregateRoot implements ProvinceInterface
         $this->municipalities = new ArrayCollection();
     }
 
+    public function __toString(): string
+    {
+        return sprintf('%s[%s]', self::class, $this->getName());
+    }
+
     public function getCongregation(): CongregationInterface
     {
         return $this->congregation;

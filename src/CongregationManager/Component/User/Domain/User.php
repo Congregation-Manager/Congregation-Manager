@@ -15,9 +15,9 @@ abstract class User extends AggregateRoot implements UserInterface
     ) {
     }
 
-    public function setId(?int $id): void
+    public function __toString(): string
     {
-        $this->id = $id;
+        return sprintf('%s[%s]', self::class, $this->getEmail());
     }
 
     public function getEmail(): string
