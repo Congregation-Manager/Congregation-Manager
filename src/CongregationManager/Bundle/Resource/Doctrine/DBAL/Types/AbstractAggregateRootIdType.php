@@ -25,6 +25,10 @@ abstract class AbstractAggregateRootIdType extends Type
         if ($value === null) {
             return null;
         }
+        // @TODO Is this the right way? See features/account/app_accept_invite.feature:12 scenario
+        if (is_string($value)) {
+            return $value;
+        }
         if ($value instanceof AggregateRootId) {
             return $value->convertToDatabaseValue();
         }
