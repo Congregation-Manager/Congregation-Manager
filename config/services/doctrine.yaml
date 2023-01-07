@@ -1,9 +1,0 @@
-services:
-    _defaults:
-        autowire: false
-        autoconfigure: false
-        public: false
-
-    cm.doctrine.dbal.types.integer_aggregate_root_id:
-        class: CongregationManager\Bundle\Resource\Doctrine\DBAL\Types\IntegerAggregateRootIdType
-
