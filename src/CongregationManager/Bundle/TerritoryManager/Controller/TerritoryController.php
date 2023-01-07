@@ -10,6 +10,7 @@ use CongregationManager\Component\Core\Domain\Context\CongregationContextInterfa
 use CongregationManager\Component\TerritoryManager\Domain\Generator\S13GeneratorInterface;
 use CongregationManager\Component\TerritoryManager\Domain\Renderer\S13RendererInterface;
 use CongregationManager\Component\TerritoryManager\Domain\Repository\TerritoryRepositoryInterface;
+use CongregationManager\Contract\Resource\IntegerAggregateRootId;
 use DateTimeImmutable;
 use Knp\Component\Pager\Event\Subscriber\Paginate\Callback\CallbackPagination;
 use Knp\Component\Pager\PaginatorInterface;
@@ -71,7 +72,7 @@ final class TerritoryController extends AbstractController
 
     public function show(int $id, Request $request): Response
     {
-        $territory = $this->territoryRepository->find($id);
+        $territory = $this->territoryRepository->findOneById(new IntegerAggregateRootId($id));
         if ($territory === null) {
             throw new NotFoundHttpException();
         }

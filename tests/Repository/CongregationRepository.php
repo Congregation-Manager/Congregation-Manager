@@ -7,6 +7,7 @@ namespace CongregationManager\Tests\Repository;
 use CongregationManager\Component\Congregation\Domain\Congregation;
 use CongregationManager\Component\Congregation\Domain\CongregationInterface;
 use CongregationManager\Component\Congregation\Domain\Repository\CongregationRepositoryInterface;
+use CongregationManager\Contract\Resource\AggregateRootId;
 
 final class CongregationRepository extends InMemoryRepository implements CongregationRepositoryInterface
 {
@@ -18,6 +19,11 @@ final class CongregationRepository extends InMemoryRepository implements Congreg
     public function getClassName(): string
     {
         return Congregation::class;
+    }
+
+    public function findOneById(AggregateRootId $id): ?CongregationInterface
+    {
+        return $this->find($id);
     }
 
     protected function getIdProperty(): string

@@ -10,6 +10,7 @@ use CongregationManager\Component\TerritoryManager\Domain\Repository\Filter\Terr
 use CongregationManager\Component\TerritoryManager\Domain\Repository\TerritoryRepositoryInterface;
 use CongregationManager\Component\TerritoryManager\Domain\Territory;
 use CongregationManager\Component\TerritoryManager\Domain\TerritoryInterface;
+use CongregationManager\Contract\Resource\AggregateRootId;
 use RuntimeException;
 
 final class TerritoryRepository extends InMemoryRepository implements TerritoryRepositoryInterface
@@ -27,6 +28,11 @@ final class TerritoryRepository extends InMemoryRepository implements TerritoryR
     public function filter(TerritoryRepositoryFilterInterface $filter): TerritoryFilterResultsInterface
     {
         throw new RuntimeException('TODO');
+    }
+
+    public function findOneById(AggregateRootId $id): ?TerritoryInterface
+    {
+        return $this->find($id);
     }
 
     public function findOneByNumber(int $number): ?TerritoryInterface

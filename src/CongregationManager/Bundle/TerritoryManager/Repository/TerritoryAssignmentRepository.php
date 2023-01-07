@@ -7,6 +7,7 @@ namespace CongregationManager\Bundle\TerritoryManager\Repository;
 use CongregationManager\Component\TerritoryManager\Domain\Repository\TerritoryAssignmentRepositoryInterface;
 use CongregationManager\Component\TerritoryManager\Domain\TerritoryAssignment;
 use CongregationManager\Component\TerritoryManager\Domain\TerritoryAssignmentInterface;
+use CongregationManager\Contract\Resource\AggregateRootId;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -33,6 +34,11 @@ final class TerritoryAssignmentRepository extends ServiceEntityRepository implem
     {
         $this->getEntityManager()
             ->persist($territoryAssignment);
+    }
+
+    public function findOneById(AggregateRootId $id): ?TerritoryAssignmentInterface
+    {
+        return $this->find($id);
     }
 
     public function flush(): void

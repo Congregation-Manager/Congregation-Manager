@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace CongregationManager\Component\Congregation\Domain\Repository;
 
 use CongregationManager\Component\Congregation\Domain\BrotherInterface;
+use CongregationManager\Contract\Resource\AggregateRootId;
 
 interface BrotherRepositoryInterface
 {
@@ -13,10 +14,7 @@ interface BrotherRepositoryInterface
      */
     public function findAll();
 
-    /**
-     * @return BrotherInterface|null
-     */
-    public function find(int $id);
+    public function findOneById(AggregateRootId $id): ?BrotherInterface;
 
     /**
      * @return BrotherInterface|null

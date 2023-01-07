@@ -7,6 +7,7 @@ namespace CongregationManager\Bundle\TerritoryManager\Repository;
 use CongregationManager\Component\TerritoryManager\Domain\Province;
 use CongregationManager\Component\TerritoryManager\Domain\ProvinceInterface;
 use CongregationManager\Component\TerritoryManager\Domain\Repository\ProvinceRepositoryInterface;
+use CongregationManager\Contract\Resource\AggregateRootId;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -27,6 +28,11 @@ final class ProvinceRepository extends ServiceEntityRepository implements Provin
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Province::class);
+    }
+
+    public function findOneById(AggregateRootId $id): ?ProvinceInterface
+    {
+        return $this->find($id);
     }
 
     public function add(ProvinceInterface $province): void

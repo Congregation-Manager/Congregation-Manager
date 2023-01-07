@@ -7,6 +7,7 @@ namespace CongregationManager\Bundle\TerritoryManager\Repository;
 use CongregationManager\Component\TerritoryManager\Domain\Area;
 use CongregationManager\Component\TerritoryManager\Domain\AreaInterface;
 use CongregationManager\Component\TerritoryManager\Domain\Repository\AreaRepositoryInterface;
+use CongregationManager\Contract\Resource\AggregateRootId;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -27,6 +28,11 @@ final class AreaRepository extends ServiceEntityRepository implements AreaReposi
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Area::class);
+    }
+
+    public function findOneById(AggregateRootId $id): ?AreaInterface
+    {
+        return $this->find($id);
     }
 
     public function add(AreaInterface $area): void

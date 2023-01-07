@@ -7,6 +7,7 @@ namespace CongregationManager\Bundle\User\Repository;
 use CongregationManager\Bundle\User\Model\AppUser;
 use CongregationManager\Component\User\Domain\AppUserInterface;
 use CongregationManager\Component\User\Domain\Repository\AppUserRepositoryInterface;
+use CongregationManager\Contract\Resource\AggregateRootId;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
@@ -35,6 +36,11 @@ class AppUserRepository extends ServiceEntityRepository implements AppUserReposi
     public function add(AppUserInterface $appUser): void
     {
         $this->_em->persist($appUser);
+    }
+
+    public function findOneById(AggregateRootId $id): ?AppUserInterface
+    {
+        return $this->find($id);
     }
 
     /**

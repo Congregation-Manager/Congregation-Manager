@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace CongregationManager\Tests\Behat\Context\Transform;
 
 use Behat\Behat\Context\Context;
+use CongregationManager\Bundle\User\Model\AdminUser;
+use CongregationManager\Bundle\User\Model\AppUser;
+use CongregationManager\Bundle\User\Model\AppUserInterface;
 use CongregationManager\Component\User\Domain\AdminUserInterface;
-use CongregationManager\Infrastructure\User\Model\AdminUser;
-use CongregationManager\Infrastructure\User\Model\AppUser;
-use CongregationManager\Infrastructure\User\Model\AppUserInterface;
 use Doctrine\ORM\EntityManagerInterface;
 use InvalidArgumentException;
 

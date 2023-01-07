@@ -7,6 +7,7 @@ namespace CongregationManager\Tests\Repository;
 use CongregationManager\Component\Congregation\Domain\Brother;
 use CongregationManager\Component\Congregation\Domain\BrotherInterface;
 use CongregationManager\Component\Congregation\Domain\Repository\BrotherRepositoryInterface;
+use CongregationManager\Contract\Resource\AggregateRootId;
 
 final class BrotherRepository extends InMemoryRepository implements BrotherRepositoryInterface
 {
@@ -18,6 +19,11 @@ final class BrotherRepository extends InMemoryRepository implements BrotherRepos
     public function getClassName(): string
     {
         return Brother::class;
+    }
+
+    public function findOneById(AggregateRootId $id): ?BrotherInterface
+    {
+        return $this->find($id);
     }
 
     protected function getIdProperty(): string

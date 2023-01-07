@@ -7,6 +7,7 @@ namespace CongregationManager\Bundle\Congregation\Repository;
 use CongregationManager\Component\Congregation\Domain\Congregation;
 use CongregationManager\Component\Congregation\Domain\CongregationInterface;
 use CongregationManager\Component\Congregation\Domain\Repository\CongregationRepositoryInterface;
+use CongregationManager\Contract\Resource\AggregateRootId;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -27,6 +28,11 @@ final class CongregationRepository extends ServiceEntityRepository implements Co
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Congregation::class);
+    }
+
+    public function findOneById(AggregateRootId $id): ?CongregationInterface
+    {
+        return $this->find($id);
     }
 
     public function add(CongregationInterface $congregation): void

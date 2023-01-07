@@ -7,6 +7,7 @@ namespace CongregationManager\Bundle\Congregation\Controller;
 use CongregationManager\Bundle\User\Action\CreateAppUserInvitation;
 use CongregationManager\Bundle\User\Form\InviteUserFormType;
 use CongregationManager\Component\Congregation\Domain\Repository\BrotherRepositoryInterface;
+use CongregationManager\Contract\Resource\IntegerAggregateRootId;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -38,7 +39,7 @@ final class AdminBrotherController extends AbstractController
 
     public function show(Request $request, int $id): Response
     {
-        $brother = $this->brotherRepository->find($id);
+        $brother = $this->brotherRepository->findOneById(new IntegerAggregateRootId($id));
         if ($brother === null) {
             throw new NotFoundHttpException();
         }
@@ -50,7 +51,7 @@ final class AdminBrotherController extends AbstractController
 
     public function invite(Request $request, int $id): Response
     {
-        $brother = $this->brotherRepository->find($id);
+        $brother = $this->brotherRepository->findOneById(new IntegerAggregateRootId($id));
         if ($brother === null) {
             throw new NotFoundHttpException();
         }

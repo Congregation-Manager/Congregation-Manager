@@ -7,6 +7,7 @@ namespace CongregationManager\Bundle\TerritoryManager\Repository;
 use CongregationManager\Component\TerritoryManager\Domain\Municipality;
 use CongregationManager\Component\TerritoryManager\Domain\MunicipalityInterface;
 use CongregationManager\Component\TerritoryManager\Domain\Repository\MunicipalityRepositoryInterface;
+use CongregationManager\Contract\Resource\AggregateRootId;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -27,6 +28,11 @@ final class MunicipalityRepository extends ServiceEntityRepository implements Mu
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Municipality::class);
+    }
+
+    public function findOneById(AggregateRootId $id): ?MunicipalityInterface
+    {
+        return $this->find($id);
     }
 
     public function add(MunicipalityInterface $municipality): void

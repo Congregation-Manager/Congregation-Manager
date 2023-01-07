@@ -8,6 +8,7 @@ use CongregationManager\Component\Congregation\Domain\CongregationInterface;
 use CongregationManager\Component\TerritoryManager\Domain\Repository\Filter\TerritoryFilterResultsInterface;
 use CongregationManager\Component\TerritoryManager\Domain\Repository\Filter\TerritoryRepositoryFilterInterface;
 use CongregationManager\Component\TerritoryManager\Domain\TerritoryInterface;
+use CongregationManager\Contract\Resource\AggregateRootId;
 
 interface TerritoryRepositoryInterface
 {
@@ -16,10 +17,7 @@ interface TerritoryRepositoryInterface
      */
     public function findAll();
 
-    /**
-     * @return TerritoryInterface|null
-     */
-    public function find(int $id);
+    public function findOneById(AggregateRootId $id): ?TerritoryInterface;
 
     public function add(TerritoryInterface $territory): void;
 

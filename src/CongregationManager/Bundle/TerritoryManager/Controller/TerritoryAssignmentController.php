@@ -12,6 +12,7 @@ use CongregationManager\Component\TerritoryManager\Application\Command\UpdateTer
 use CongregationManager\Component\TerritoryManager\Application\Command\UpdateTerritoryAssignmentHandler;
 use CongregationManager\Component\TerritoryManager\Domain\Repository\TerritoryAssignmentRepositoryInterface;
 use CongregationManager\Component\TerritoryManager\Domain\Repository\TerritoryRepositoryInterface;
+use CongregationManager\Contract\Resource\IntegerAggregateRootId;
 use DateTimeImmutable;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -33,7 +34,7 @@ final class TerritoryAssignmentController extends AbstractController
         $territory = null;
         $territoryId = $request->query->getInt('territoryId');
         if ($territoryId !== 0) {
-            $territory = $this->territoryRepository->find($territoryId);
+            $territory = $this->territoryRepository->findOneById(new IntegerAggregateRootId($territoryId));
         }
         $command = new CreateTerritoryAssignment($territory, new DateTimeImmutable());
         $form = $this->createForm(CreateTerritoryAssignmentType::class, $command);
@@ -55,7 +56,7 @@ final class TerritoryAssignmentController extends AbstractController
 
     public function update(Request $request, int $id): Response
     {
-        $territoryAssignment = $this->territoryAssignmentRepository->find($id);
+        $territoryAssignment = $this->territoryAssignmentRepository->findOneById(new IntegerAggregateRootId($id));
         if ($territoryAssignment === null) {
             throw $this->createNotFoundException();
         }

@@ -7,6 +7,7 @@ namespace CongregationManager\Bundle\Congregation\Repository;
 use CongregationManager\Component\Congregation\Domain\Brother;
 use CongregationManager\Component\Congregation\Domain\BrotherInterface;
 use CongregationManager\Component\Congregation\Domain\Repository\BrotherRepositoryInterface;
+use CongregationManager\Contract\Resource\AggregateRootId;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -27,6 +28,11 @@ final class BrotherRepository extends ServiceEntityRepository implements Brother
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Brother::class);
+    }
+
+    public function findOneById(AggregateRootId $id): ?BrotherInterface
+    {
+        return $this->find($id);
     }
 
     public function add(BrotherInterface $brother): void
