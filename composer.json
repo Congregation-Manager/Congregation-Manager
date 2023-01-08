@@ -61,6 +61,7 @@
         "lruozzi9/congregation-bundle": "self.version",
         "lruozzi9/core": "self.version",
         "lruozzi9/core-bundle": "self.version",
+        "lruozzi9/resource-bundle": "self.version",
         "lruozzi9/resource-contract": "self.version",
         "lruozzi9/territory-manager": "self.version",
         "lruozzi9/territory-manager-bundle": "self.version",
