@@ -8,6 +8,7 @@
     "autoload": {
         "psr-4": {
             "CongregationManager\\Bundle\\": "src/CongregationManager/Bundle/",
+            "CongregationManager\\Bundle\\Congregation\\": "src/CongregationManager/Bundle/Congregation/src/",
             "CongregationManager\\Component\\": "src/CongregationManager/Component/",
             "CongregationManager\\Contract\\": "src/CongregationManager/Constract/"
         },
