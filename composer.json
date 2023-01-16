@@ -113,7 +113,7 @@
         "friends-of-behat/page-object-extension": "^0.3.2",
         "friends-of-behat/symfony-extension": "^2.3",
         "pds/skeleton": "^1.0",
-        "phparkitect/phparkitect": "^0.2.15",
+        "phparkitect/phparkitect": "^0.3.10",
         "phpspec/prophecy": "^1.15",
         "phpspec/prophecy-phpunit": "^2.0",
         "phpstan/phpstan": "^1.1",
