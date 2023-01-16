@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2140e97fb11f5e511d07212f91a3499c",
+    "content-hash": "c21efa97aba2d1e6af1deffb5fdaed05",
     "packages": [
         {
             "name": "composer/package-versions-deprecated",
@@ -9339,16 +9339,16 @@
         },
         {
             "name": "nikic/php-parser",
-            "version": "v4.15.1",
+            "version": "v4.15.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nikic/PHP-Parser.git",
-                "reference": "0ef6c55a3f47f89d7a374e6f835197a0b5fcf900"
+                "reference": "f59bbe44bf7d96f24f3e2b4ddc21cd52c1d2adbc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/0ef6c55a3f47f89d7a374e6f835197a0b5fcf900",
-                "reference": "0ef6c55a3f47f89d7a374e6f835197a0b5fcf900",
+                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/f59bbe44bf7d96f24f3e2b4ddc21cd52c1d2adbc",
+                "reference": "f59bbe44bf7d96f24f3e2b4ddc21cd52c1d2adbc",
                 "shasum": ""
             },
             "require": {
@@ -9389,9 +9389,9 @@
             ],
             "support": {
                 "issues": "https://github.com/nikic/PHP-Parser/issues",
-                "source": "https://github.com/nikic/PHP-Parser/tree/v4.15.1"
+                "source": "https://github.com/nikic/PHP-Parser/tree/v4.15.2"
             },
-            "time": "2022-09-04T07:30:47+00:00"
+            "time": "2022-11-12T15:38:23+00:00"
         },
         {
             "name": "openlss/lib-array2xml",
@@ -9594,22 +9594,23 @@
         },
         {
             "name": "phparkitect/phparkitect",
-            "version": "0.2.32",
+            "version": "0.3.10",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phparkitect/arkitect.git",
-                "reference": "66b5f5ee0f2da606ee50cfb58be52f73fd76c148"
+                "reference": "dc5b5a1c62cce75e1537aaaa9b190feff7609e2e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phparkitect/arkitect/zipball/66b5f5ee0f2da606ee50cfb58be52f73fd76c148",
-                "reference": "66b5f5ee0f2da606ee50cfb58be52f73fd76c148",
+                "url": "https://api.github.com/repos/phparkitect/arkitect/zipball/dc5b5a1c62cce75e1537aaaa9b190feff7609e2e",
+                "reference": "dc5b5a1c62cce75e1537aaaa9b190feff7609e2e",
                 "shasum": ""
             },
             "require": {
                 "ext-json": "*",
                 "nikic/php-parser": "~4",
                 "php": "^7.1|^8",
+                "phpstan/phpdoc-parser": "^1.2",
                 "symfony/console": "^3.0|^4.0|^5.0|^6.0",
                 "symfony/event-dispatcher": "^3.0|^4.0|^5.0|^6.0",
                 "symfony/finder": "^3.0|^4.0|^5.0|^6.0",
@@ -9659,9 +9660,9 @@
             "description": "Enforce architectural constraints in your PHP applications",
             "support": {
                 "issues": "https://github.com/phparkitect/arkitect/issues",
-                "source": "https://github.com/phparkitect/arkitect/tree/0.2.32"
+                "source": "https://github.com/phparkitect/arkitect/tree/0.3.10"
             },
-            "time": "2022-10-11T16:36:19+00:00"
+            "time": "2023-01-03T21:54:38+00:00"
         },
         {
             "name": "phpspec/prophecy",
@@ -9781,6 +9782,51 @@
                 "source": "https://github.com/phpspec/prophecy-phpunit/tree/v2.0.1"
             },
             "time": "2020-07-09T08:33:42+00:00"
+        },
+        {
+            "name": "phpstan/phpdoc-parser",
+            "version": "1.15.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/phpstan/phpdoc-parser.git",
+                "reference": "61800f71a5526081d1b5633766aa88341f1ade76"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/phpstan/phpdoc-parser/zipball/61800f71a5526081d1b5633766aa88341f1ade76",
+                "reference": "61800f71a5526081d1b5633766aa88341f1ade76",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.2 || ^8.0"
+            },
+            "require-dev": {
+                "php-parallel-lint/php-parallel-lint": "^1.2",
+                "phpstan/extension-installer": "^1.0",
+                "phpstan/phpstan": "^1.5",
+                "phpstan/phpstan-phpunit": "^1.1",
+                "phpstan/phpstan-strict-rules": "^1.0",
+                "phpunit/phpunit": "^9.5",
+                "symfony/process": "^5.2"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "PHPStan\\PhpDocParser\\": [
+                        "src/"
+                    ]
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "PHPDoc parser with support for nullable, intersection and generic types",
+            "support": {
+                "issues": "https://github.com/phpstan/phpdoc-parser/issues",
+                "source": "https://github.com/phpstan/phpdoc-parser/tree/1.15.3"
+            },
+            "time": "2022-12-20T20:56:55+00:00"
         },
         {
             "name": "phpstan/phpstan",
