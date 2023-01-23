@@ -12409,16 +12409,16 @@
         },
         {
             "name": "symplify/easy-coding-standard",
-            "version": "11.1.16",
+            "version": "11.2.4.72",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symplify/easy-coding-standard.git",
-                "reference": "32ebd57f0f47713540df8ea39134adaa9d912fae"
+                "reference": "313027a266b6343479d4bb7380fd4ca449107f54"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symplify/easy-coding-standard/zipball/32ebd57f0f47713540df8ea39134adaa9d912fae",
-                "reference": "32ebd57f0f47713540df8ea39134adaa9d912fae",
+                "url": "https://api.github.com/repos/symplify/easy-coding-standard/zipball/313027a266b6343479d4bb7380fd4ca449107f54",
+                "reference": "313027a266b6343479d4bb7380fd4ca449107f54",
                 "shasum": ""
             },
             "require": {
@@ -12432,11 +12432,6 @@
                 "bin/ecs"
             ],
             "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-main": "10.3-dev"
-                }
-            },
             "autoload": {
                 "files": [
                     "bootstrap.php"
@@ -12446,9 +12441,10 @@
             "license": [
                 "MIT"
             ],
-            "description": "Prefixed scoped version of ECS package",
+            "description": "Use Coding Standard with 0-knowledge of PHP-CS-Fixer and PHP_CodeSniffer",
             "support": {
-                "source": "https://github.com/symplify/easy-coding-standard/tree/11.1.16"
+                "issues": "https://github.com/symplify/easy-coding-standard/issues",
+                "source": "https://github.com/symplify/easy-coding-standard/tree/11.2.4.72"
             },
             "funding": [
                 {
@@ -12460,7 +12456,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2022-10-27T10:48:13+00:00"
+            "time": "2023-01-21T14:47:36+00:00"
         },
         {
             "name": "theseer/tokenizer",
