@@ -17,7 +17,12 @@
     ],
     "autoload": {
         "psr-4": {
-            "CongregationManager\\Bundle\\TerritoryManager\\": ""
+            "CongregationManager\\Bundle\\TerritoryManager\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "CongregationManager\\Bundle\\TerritoryManager\\Tests\\": "tests/"
         }
     },
     "repositories": [

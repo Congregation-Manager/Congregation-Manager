@@ -17,7 +17,12 @@
     ],
     "autoload": {
         "psr-4": {
-            "CongregationManager\\Bundle\\Resource\\": ""
+            "CongregationManager\\Bundle\\Resource\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "CongregationManager\\Bundle\\Resource\\Tests\\": "tests/"
         }
     },
     "repositories": [

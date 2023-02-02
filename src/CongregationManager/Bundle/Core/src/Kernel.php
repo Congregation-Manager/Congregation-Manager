@@ -14,6 +14,6 @@ class Kernel extends BaseKernel
 
     public function getProjectDir(): string
     {
-        return dirname(__DIR__, 4);
+        return dirname(__DIR__, 5);
     }
 }
