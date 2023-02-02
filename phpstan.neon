@@ -2,10 +2,11 @@ parameters:
 	level: max
 	paths:
 		- src
+	symfony:
+	    container_xml_path: var/cache/dev/CongregationManager_Bundle_Core_KernelDevDebugContainer.xml
+	scanDirectories:
+	    - var/cache/dev/Symfony/Config
 	ignoreErrors:
 		-
 			message: '#^Parameter \#1 \$width of method PhpOffice\\PhpWord\\Element\\Table\:\:addCell\(\) expects int\|null, float given\.$#'
-			path: src/CongregationManager/Bundle/TerritoryManager/Renderer/WordS13Renderer
-
-includes:
-    - vendor/phpstan/phpstan-webmozart-assert/extension.neon
+			path: src/CongregationManager/Bundle/TerritoryManager/src/Renderer/WordS13Renderer

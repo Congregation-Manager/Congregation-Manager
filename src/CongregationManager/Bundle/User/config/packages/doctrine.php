@@ -2,14 +2,17 @@
 
 declare(strict_types=1);
 
+use Symfony\Config\Doctrine\Orm\EntityManagerConfig\MappingConfig;
 use Symfony\Config\DoctrineConfig;
 
 return static function (DoctrineConfig $doctrine) {
-    $emDefault = $doctrine->orm()->entityManager('default');
+    $emDefault = $doctrine->orm()
+        ->entityManager('default');
 
     $emDefault->autoMapping(true);
-    $emDefault
-        ->mapping('CongregationManagerUserBundle')
+    /** @var MappingConfig $mapping */
+    $mapping = $emDefault->mapping('CongregationManagerUserBundle');
+    $mapping
         ->isBundle(true)
         ->type('xml')
         ->dir('config/doctrine')
