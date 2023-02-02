@@ -9,14 +9,26 @@
         <directory name="src"/>
         <ignoreFiles>
             <directory name="vendor"/>
-            <directory name="src/CongregationManager/Bundle/Core/Repository/OldCM"/>
+            <directory name="src/CongregationManager/Bundle/Core/src/Repository/OldCM"/>
+            <file name="src/CongregationManager/Bundle/Congregation/config/packages/doctrine.php"/>
+            <file name="src/CongregationManager/Bundle/Resource/config/packages/doctrine.php"/>
+            <file name="src/CongregationManager/Bundle/TerritoryManager/config/packages/doctrine.php"/>
+            <file name="src/CongregationManager/Bundle/User/config/packages/doctrine.php"/>
         </ignoreFiles>
     </projectFiles>
     <issueHandlers>
         <InvalidScalarArgument>
             <errorLevel type="suppress">
-                <file name="src/CongregationManager/Bundle/TerritoryManager/Renderer/WordS13Renderer.php"/>
+                <file name="src/CongregationManager/Bundle/TerritoryManager/src/Renderer/WordS13Renderer.php"/>
             </errorLevel>
         </InvalidScalarArgument>
     </issueHandlers>
+    <plugins>
+        <pluginClass class="Psalm\SymfonyPsalmPlugin\Plugin">
+            <containerXml>var/cache/dev/CongregationManager_Bundle_Core_KernelDevDebugContainer.xml</containerXml>
+            <extraFiles>
+                <directory name="var/cache/dev/Symfony/Config" /> <!-- https://github.com/psalm/psalm-plugin-symfony/issues/201 -->
+            </extraFiles>
+        </pluginClass>
+    </plugins>
 </psalm>

@@ -106,7 +106,9 @@ final class ImportFromOldCMCommand extends Command
 
     protected function interact(InputInterface $input, OutputInterface $output): void
     {
-        if ($input->getArgument(self::OLD_CONGREGATION_ID_ARGUMENT_CODE) !== null) {
+        /** @var mixed $oldCongregationIdArgument */
+        $oldCongregationIdArgument = $input->getArgument(self::OLD_CONGREGATION_ID_ARGUMENT_CODE);
+        if ($oldCongregationIdArgument !== null) {
             return;
         }
 
@@ -121,7 +123,7 @@ final class ImportFromOldCMCommand extends Command
         ]);
 
         /** @var mixed|null $oldCongregationId */
-        $oldCongregationId = $input->getArgument(self::OLD_CONGREGATION_ID_ARGUMENT_CODE);
+        $oldCongregationId = $oldCongregationIdArgument;
         if ($oldCongregationId === null) {
             /** @var int $oldCongregationId */
             $oldCongregationId = $this->io->ask('Old congregation id', null, [$this, 'validateOldCongregationId']);

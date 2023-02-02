@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 use Symfony\Config\DoctrineConfig;
 
+/** @psalm-suppress UndefinedClass */
 return static function (DoctrineConfig $doctrine) {
     $doctrine
         ->dbal()

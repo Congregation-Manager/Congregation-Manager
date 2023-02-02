@@ -156,6 +156,7 @@
         "phpstan/phpstan-symfony": "^1.2",
         "phpstan/phpstan-webmozart-assert": "^1.0",
         "phpunit/phpunit": "^9.5",
+        "psalm/plugin-symfony": "^4.0",
         "roave/security-advisories": "dev-latest",
         "symfony/browser-kit": "^6.0",
         "symfony/css-selector": "^6.0",

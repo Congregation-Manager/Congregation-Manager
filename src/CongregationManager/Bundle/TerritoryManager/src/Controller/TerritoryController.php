@@ -43,7 +43,7 @@ final class TerritoryController extends AbstractController
         $form = $this->createForm(TerritoryFiltersFormType::class, $filters, [
             'method' => 'GET',
         ]);
-        $sort = (string) $request->query->get('sort', 't.number');
+        $sort = $request->query->get('sort', 't.number');
         $direction = $request->query->getAlpha('direction', 'ASC');
         $form->handleRequest($request);
         $query = $this->territoryRepository->filter($filters);
