@@ -9348,16 +9348,16 @@
         },
         {
             "name": "nikic/php-parser",
-            "version": "v4.15.2",
+            "version": "v4.15.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nikic/PHP-Parser.git",
-                "reference": "f59bbe44bf7d96f24f3e2b4ddc21cd52c1d2adbc"
+                "reference": "6bb5176bc4af8bcb7d926f88718db9b96a2d4290"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/f59bbe44bf7d96f24f3e2b4ddc21cd52c1d2adbc",
-                "reference": "f59bbe44bf7d96f24f3e2b4ddc21cd52c1d2adbc",
+                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/6bb5176bc4af8bcb7d926f88718db9b96a2d4290",
+                "reference": "6bb5176bc4af8bcb7d926f88718db9b96a2d4290",
                 "shasum": ""
             },
             "require": {
@@ -9398,9 +9398,9 @@
             ],
             "support": {
                 "issues": "https://github.com/nikic/PHP-Parser/issues",
-                "source": "https://github.com/nikic/PHP-Parser/tree/v4.15.2"
+                "source": "https://github.com/nikic/PHP-Parser/tree/v4.15.4"
             },
-            "time": "2022-11-12T15:38:23+00:00"
+            "time": "2023-03-05T19:49:14+00:00"
         },
         {
             "name": "openlss/lib-array2xml",
@@ -9603,16 +9603,16 @@
         },
         {
             "name": "phparkitect/phparkitect",
-            "version": "0.3.10",
+            "version": "0.3.20",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phparkitect/arkitect.git",
-                "reference": "dc5b5a1c62cce75e1537aaaa9b190feff7609e2e"
+                "reference": "d79472222b84289b4e09fe29e65b137ee81ee77a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phparkitect/arkitect/zipball/dc5b5a1c62cce75e1537aaaa9b190feff7609e2e",
-                "reference": "dc5b5a1c62cce75e1537aaaa9b190feff7609e2e",
+                "url": "https://api.github.com/repos/phparkitect/arkitect/zipball/d79472222b84289b4e09fe29e65b137ee81ee77a",
+                "reference": "d79472222b84289b4e09fe29e65b137ee81ee77a",
                 "shasum": ""
             },
             "require": {
@@ -9630,7 +9630,7 @@
                 "friendsofphp/php-cs-fixer": "^3.0",
                 "mikey179/vfsstream": "^1.6",
                 "phpspec/prophecy": "^1.10",
-                "phpunit/phpunit": "^7.5|^9.0",
+                "phpunit/phpunit": "^7.5|^9.0|^10.0",
                 "roave/security-advisories": "dev-master",
                 "symfony/var-dumper": "^3.0|^4.0|^5.0|^6.0",
                 "vimeo/psalm": "^4.6"
@@ -9669,9 +9669,19 @@
             "description": "Enforce architectural constraints in your PHP applications",
             "support": {
                 "issues": "https://github.com/phparkitect/arkitect/issues",
-                "source": "https://github.com/phparkitect/arkitect/tree/0.3.10"
+                "source": "https://github.com/phparkitect/arkitect/tree/0.3.20"
             },
-            "time": "2023-01-03T21:54:38+00:00"
+            "funding": [
+                {
+                    "url": "https://github.com/AlessandroMinoccheri",
+                    "type": "github"
+                },
+                {
+                    "url": "https://github.com/micheleorselli",
+                    "type": "github"
+                }
+            ],
+            "time": "2023-03-22T20:38:32+00:00"
         },
         {
             "name": "phpspec/prophecy",
@@ -9794,16 +9804,16 @@
         },
         {
             "name": "phpstan/phpdoc-parser",
-            "version": "1.15.3",
+            "version": "1.16.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpdoc-parser.git",
-                "reference": "61800f71a5526081d1b5633766aa88341f1ade76"
+                "reference": "e27e92d939e2e3636f0a1f0afaba59692c0bf571"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpdoc-parser/zipball/61800f71a5526081d1b5633766aa88341f1ade76",
-                "reference": "61800f71a5526081d1b5633766aa88341f1ade76",
+                "url": "https://api.github.com/repos/phpstan/phpdoc-parser/zipball/e27e92d939e2e3636f0a1f0afaba59692c0bf571",
+                "reference": "e27e92d939e2e3636f0a1f0afaba59692c0bf571",
                 "shasum": ""
             },
             "require": {
@@ -9833,9 +9843,9 @@
             "description": "PHPDoc parser with support for nullable, intersection and generic types",
             "support": {
                 "issues": "https://github.com/phpstan/phpdoc-parser/issues",
-                "source": "https://github.com/phpstan/phpdoc-parser/tree/1.15.3"
+                "source": "https://github.com/phpstan/phpdoc-parser/tree/1.16.1"
             },
-            "time": "2022-12-20T20:56:55+00:00"
+            "time": "2023-02-07T18:11:17+00:00"
         },
         {
             "name": "phpstan/phpstan",
