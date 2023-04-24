@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace CongregationManager\Component\Core\Repository\Filter;
+namespace CongregationManager\Component\Core\Domain\Repository\Filter;
 
 use CongregationManager\Component\TerritoryManager\Domain\TerritoryInterface;
 
