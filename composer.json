@@ -13,7 +13,7 @@
             "CongregationManager\\Bundle\\TerritoryManager\\": "src/CongregationManager/Bundle/TerritoryManager/src/",
             "CongregationManager\\Bundle\\User\\": "src/CongregationManager/Bundle/User/src/",
             "CongregationManager\\Component\\": "src/CongregationManager/Component/",
-            "CongregationManager\\Contract\\": "src/CongregationManager/Constract/"
+            "CongregationManager\\Contract\\": "src/CongregationManager/Contract/"
         },
         "exclude-from-classmap": [
             "src/CongregationManager/*/*/tests/"
