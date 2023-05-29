@@ -4,7 +4,7 @@
                   xsi:schemaLocation="https://doctrine-project.org/schemas/orm/doctrine-mapping
                           https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
 
-    <entity name="CongregationManager\Bundle\User\Model\AppUserInvitation" table="app_user_invitation"
+    <entity name="CongregationManager\Bundle\User\Entity\AppUserInvitation" table="app_user_invitation"
             repository-class="CongregationManager\Bundle\User\Repository\AppUserInvitationRepository">
 
         <id association-key="true" name="brother" />

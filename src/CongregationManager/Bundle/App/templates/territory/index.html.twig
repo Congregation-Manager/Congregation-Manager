@@ -1,0 +1,32 @@
+{% extends '@CongregationManagerApp/base.html.twig' %}
+
+{% block title %}{{ 'cm.meta_title.territory_index'|trans }}{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h1>{{ 'cm.ui.territories'|trans }}</h1>
+            </div>
+        </div>
+        <div class="row mt-4">
+            <div class="col-12 col-lg-3">
+                {{ include('@CongregationManagerApp/territory/index/_filters.html.twig') }}
+                <div class="mt-5">
+                    {{ render(controller('cm.controller.app_territory::s13')) }}
+                </div>
+            </div>
+            <div class="col-12 col-lg-9">
+                <div class="table-responsive-xl">
+                    {{ include('@CongregationManagerApp/territory/index/_table.html.twig') }}
+                </div>
+                
+                {# display navigation #}
+                <div class="navigation">
+                    {{ knp_pagination_render(pagination) }}
+                </div>
+            </div>
+        
+        </div>
+    </div>
+{% endblock %}

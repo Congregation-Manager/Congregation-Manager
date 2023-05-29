@@ -1,0 +1,20 @@
+{% extends '@CongregationManagerAdmin/base.html.twig' %}
+
+{% block title %}{{ 'cm.admin_check_email.meta_title'|trans }}{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-md-8 col-lg-6 m-auto text-center mt-5">
+
+                <p>
+                    {{ 'cm.admin_check_email.instructions'|trans({'{expiresIn}': resetToken.expirationMessageKey|trans(resetToken.expirationMessageData, 'ResetPasswordBundle')})|raw }}
+                </p>
+                <p>
+                    {{ 'cm.admin_check_email.try_again'|trans({'{link}': path('admin_forgot_password_request')})|raw }}
+                </p>
+
+            </div>
+        </div>
+    </div>
+{% endblock %}

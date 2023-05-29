@@ -1,0 +1,28 @@
+{% extends '@CongregationManagerApp/base.html.twig' %}
+
+{% block title %}{{ 'cm.app_complete_account.meta_title'|trans }}{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-md-8 col-lg-6">
+                <h1>{{ 'cm.complete_account.title'|trans }}</h1>
+            </div>
+        </div>
+        {{ form_start(completeAccount) }}
+        <div class="row">
+            <div class="col-12 col-md-8 col-lg-6">
+                {{ form_errors(completeAccount) }}
+                {{ form_row(completeAccount.brother.firstName, test_form_attribute('first-name')) }}
+                {{ form_row(completeAccount.brother.middleName, test_form_attribute('middle-name')) }}
+                {{ form_row(completeAccount.brother.lastName, test_form_attribute('last-name')) }}
+                {{ form_row(completeAccount.brother.birthDate, test_form_attribute('birth-date')) }}
+                {{ form_row(completeAccount.brother.baptismDate, test_form_attribute('baptism-date')) }}
+                {{ form_row(completeAccount.email, test_form_attribute('email')) }}
+                {{ form_row(completeAccount.plainPassword, test_form_attribute('plain-password')) }}
+                {{ form_row(completeAccount.submit, test_form_attribute('submit')) }}
+            </div>
+        </div>
+        {{ form_end(completeAccount) }}
+    </div>
+{% endblock %}

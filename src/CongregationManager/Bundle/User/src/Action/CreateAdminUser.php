@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace CongregationManager\Bundle\User\Action;
 
-use CongregationManager\Bundle\User\Model\AdminUser;
-use CongregationManager\Bundle\User\Model\AdminUserInterface;
+use CongregationManager\Bundle\User\Entity\AdminUser;
+use CongregationManager\Bundle\User\Entity\AdminUserInterface;
 use CongregationManager\Component\User\Domain\Hasher\UserPasswordHasherInterface;
 use CongregationManager\Component\User\Domain\Repository\AdminUserRepositoryInterface;
 

@@ -16,7 +16,7 @@ return static function (DoctrineConfig $doctrine) {
         ->isBundle(true)
         ->type('xml')
         ->dir('config/doctrine')
-        ->prefix('CongregationManager\Bundle\User\Model')
+        ->prefix('CongregationManager\Bundle\User\Entity')
         ->alias('CongregationManagerUserBundle')
     ;
 };

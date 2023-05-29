@@ -1,0 +1,23 @@
+{% extends '@CongregationManagerApp/base.html.twig' %}
+
+{% block title %}{{ 'cm.meta_title.territory_assignment.create'|trans }}{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h1>{{ 'cm.ui.create_territory_assignment'|trans }}</h1>
+            </div>
+        </div>
+        <dl class="row mt-4">
+            {{ form_start(form, {'attr': {'novalidate': true}}) }}
+            {{ form_errors(form, test_form_attribute('errors')) }}
+            {{ form_row(form.territory, test_form_attribute('territory')) }}
+            {{ form_row(form.assignmentDate, test_form_attribute('assignment-date')) }}
+            {{ form_row(form.brother, test_form_attribute('brother')) }}
+            {{ form_row(form.revocationDate, test_form_attribute('revocation-date')) }}
+            {{ form_row(form.save, test_form_attribute('save')) }}
+            {{ form_end(form) }}
+        </dl>
+    </div>
+{% endblock %}

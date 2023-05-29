@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace CongregationManager\Bundle\User\Form;
 
 use CongregationManager\Bundle\Congregation\Form\UpdateBrotherFormType;
-use CongregationManager\Bundle\User\Model\CompleteAccount;
+use CongregationManager\Bundle\User\Entity\CompleteAccount;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;

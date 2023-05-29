@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace CongregationManager\Bundle\User\Repository;
 
-use CongregationManager\Bundle\User\Model\ResetPasswordRequest;
-use CongregationManager\Bundle\User\Model\ResetPasswordRequestInterface;
+use CongregationManager\Bundle\User\Entity\ResetPasswordRequest;
+use CongregationManager\Bundle\User\Entity\ResetPasswordRequestInterface;
 use CongregationManager\Component\User\Domain\AdminUser;
 use CongregationManager\Component\User\Domain\AppUser;
 use CongregationManager\Component\User\Domain\Exception\Factory\UserInstanceNotValidFactory;

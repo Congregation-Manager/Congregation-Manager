@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace CongregationManager\Tests\Behat\Context\Transform;
 
 use Behat\Behat\Context\Context;
-use CongregationManager\Bundle\User\Model\AdminUser;
-use CongregationManager\Bundle\User\Model\AppUser;
-use CongregationManager\Bundle\User\Model\AppUserInterface;
+use CongregationManager\Bundle\User\Entity\AdminUser;
+use CongregationManager\Bundle\User\Entity\AppUser;
+use CongregationManager\Bundle\User\Entity\AppUserInterface;
 use CongregationManager\Component\User\Domain\AdminUserInterface;
 use Doctrine\ORM\EntityManagerInterface;
 use InvalidArgumentException;

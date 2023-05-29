@@ -5,7 +5,7 @@ services:
         public: false
 
     cm.controller.homepage:
-        class: CongregationManager\Bundle\Core\Controller\HomePageController
+        class: CongregationManager\Bundle\App\Controller\HomePageController
         arguments:
             - '%supported_locales%'
         calls:
@@ -13,7 +13,7 @@ services:
         tags: [ 'container.service_subscriber', 'controller.service_arguments' ]
 
     cm.controller.app_locale:
-        class: CongregationManager\Bundle\Core\Controller\AppLocaleController
+        class: CongregationManager\Bundle\App\Controller\AppLocaleController
         arguments:
             - '%supported_locales%'
             - '@request_stack'
@@ -24,7 +24,7 @@ services:
         tags: [ 'container.service_subscriber', 'controller.service_arguments' ]
 
     cm.controller.app_user_login:
-        class: CongregationManager\Bundle\User\Controller\AppUserLoginController
+        class: CongregationManager\Bundle\App\Controller\AppUserLoginController
         arguments:
             - '@security.authentication_utils'
         calls:
@@ -32,7 +32,7 @@ services:
         tags: [ 'container.service_subscriber', 'controller.service_arguments' ]
 
     cm.controller.app_complete_account:
-        class: CongregationManager\Bundle\User\Controller\AppCompleteAccountController
+        class: CongregationManager\Bundle\App\Controller\AppCompleteAccountController
         arguments:
             - '@request_stack'
             - '@cm.repository.app_user_invitation'
@@ -43,13 +43,13 @@ services:
         tags: [ 'container.service_subscriber', 'controller.service_arguments' ]
 
     cm.controller.app_dashboard:
-        class: CongregationManager\Bundle\Core\Controller\AppDashboardController
+        class: CongregationManager\Bundle\App\Controller\AppDashboardController
         calls:
             - [ setContainer, [ '@Psr\Container\ContainerInterface' ] ]
         tags: [ 'container.service_subscriber', 'controller.service_arguments' ]
 
     cm.controller.admin_locale:
-        class: CongregationManager\Bundle\Core\Controller\AdminLocaleController
+        class: CongregationManager\Bundle\Admin\Controller\AdminLocaleController
         arguments:
             - '%supported_locales%'
             - '@request_stack'
@@ -60,7 +60,7 @@ services:
         tags: [ 'container.service_subscriber', 'controller.service_arguments' ]
 
     cm.controller.admin_user_login:
-        class: CongregationManager\Bundle\User\Controller\AdminUserLoginController
+        class: CongregationManager\Bundle\Admin\Controller\AdminUserLoginController
         arguments:
             - '@security.authentication_utils'
         calls:
@@ -68,13 +68,13 @@ services:
         tags: [ 'container.service_subscriber', 'controller.service_arguments' ]
 
     cm.controller.admin_dashboard:
-        class: CongregationManager\Bundle\Core\Controller\AdminDashboardController
+        class: CongregationManager\Bundle\Admin\Controller\AdminDashboardController
         calls:
             - [ setContainer, [ '@Psr\Container\ContainerInterface' ] ]
         tags: [ 'container.service_subscriber', 'controller.service_arguments' ]
 
     cm.controller.reset_app_password:
-        class: CongregationManager\Bundle\User\Controller\ResetAppPasswordController
+        class: CongregationManager\Bundle\App\Controller\ResetAppPasswordController
         arguments:
             - '@symfonycasts.reset_password.helper'
             - '@doctrine.orm.entity_manager'
@@ -86,7 +86,7 @@ services:
         tags: [ 'container.service_subscriber', 'controller.service_arguments' ]
 
     cm.controller.app_change_password:
-        class: CongregationManager\Bundle\User\Controller\AppChangePasswordController
+        class: CongregationManager\Bundle\App\Controller\AppChangePasswordController
         arguments:
             - '@security.helper'
             - '@doctrine.orm.entity_manager'
@@ -97,7 +97,7 @@ services:
         tags: [ 'container.service_subscriber', 'controller.service_arguments' ]
 
     cm.controller.app_territory:
-        class: CongregationManager\Bundle\TerritoryManager\Controller\TerritoryController
+        class: CongregationManager\Bundle\App\Controller\TerritoryController
         arguments:
             - '@cm.repository.territory'
             - '@knp_paginator'
@@ -109,7 +109,7 @@ services:
         tags: [ 'container.service_subscriber', 'controller.service_arguments' ]
 
     cm.controller.app_territory_assignment:
-        class: CongregationManager\Bundle\TerritoryManager\Controller\TerritoryAssignmentController
+        class: CongregationManager\Bundle\App\Controller\TerritoryAssignmentController
         arguments:
             - '@cm.repository.territory'
             - '@cm.repository.territory_assignment'
@@ -120,7 +120,7 @@ services:
         tags: [ 'container.service_subscriber', 'controller.service_arguments' ]
 
     cm.controller.reset_admin_password:
-        class: CongregationManager\Bundle\User\Controller\ResetAdminPasswordController
+        class: CongregationManager\Bundle\Admin\Controller\ResetAdminPasswordController
         arguments:
             - '@symfonycasts.reset_password.helper'
             - '@doctrine.orm.entity_manager'
@@ -132,7 +132,7 @@ services:
         tags: [ 'container.service_subscriber', 'controller.service_arguments' ]
 
     cm.controller.app_profile:
-        class: CongregationManager\Bundle\Core\Controller\AppProfileController
+        class: CongregationManager\Bundle\App\Controller\AppProfileController
         arguments:
             - '@security.helper'
             - '@doctrine.orm.entity_manager'
@@ -142,7 +142,7 @@ services:
         tags: [ 'container.service_subscriber', 'controller.service_arguments' ]
 
     cm.controller.admin_profile:
-        class: CongregationManager\Bundle\User\Controller\AdminProfileController
+        class: CongregationManager\Bundle\Admin\Controller\AdminProfileController
         arguments:
             - '@security.helper'
             - '@doctrine.orm.entity_manager'
@@ -152,7 +152,7 @@ services:
         tags: [ 'container.service_subscriber', 'controller.service_arguments' ]
 
     cm.controller.admin_change_password:
-        class: CongregationManager\Bundle\User\Controller\AdminChangePasswordController
+        class: CongregationManager\Bundle\Admin\Controller\AdminChangePasswordController
         arguments:
             - '@security.helper'
             - '@doctrine.orm.entity_manager'
@@ -163,7 +163,7 @@ services:
         tags: [ 'container.service_subscriber', 'controller.service_arguments' ]
 
     cm.controller.admin_congregation:
-        class: CongregationManager\Bundle\Congregation\Controller\AdminCongregationController
+        class: CongregationManager\Bundle\Admin\Controller\AdminCongregationController
         arguments:
             - '@cm.repository.congregation'
         calls:
@@ -171,7 +171,7 @@ services:
         tags: [ 'container.service_subscriber', 'controller.service_arguments' ]
 
     cm.controller.admin_brother:
-        class: CongregationManager\Bundle\Congregation\Controller\AdminBrotherController
+        class: CongregationManager\Bundle\Admin\Controller\AdminBrotherController
         arguments:
             - '@cm.repository.brother'
             - '@cm.create_app_user_invitation'

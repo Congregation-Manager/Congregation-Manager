@@ -1,0 +1,26 @@
+{% extends '@CongregationManagerApp/base.html.twig' %}
+
+{% block title %}{{ 'cm.profile_update.meta_title'|trans }}{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-md-8 col-lg-6">
+                <h1>{{ 'cm.profile_update.title'|trans }}</h1>
+            </div>
+        </div>
+        {{ form_start(updateProfileForm) }}
+        <div class="row">
+            <div class="col-12 col-md-8 col-lg-6">
+                {{ form_row(updateProfileForm.brother.firstName, test_form_attribute('brother-first-name')) }}
+                {{ form_row(updateProfileForm.brother.middleName, test_form_attribute('brother-middle-name')) }}
+                {{ form_row(updateProfileForm.brother.lastName, test_form_attribute('brother-last-name')) }}
+                {{ form_row(updateProfileForm.brother.birthDate, test_form_attribute('brother-birth-date')) }}
+                {{ form_row(updateProfileForm.brother.baptismDate, test_form_attribute('brother-baptism-date')) }}
+                {{ form_row(updateProfileForm.appUser.email, test_form_attribute('user-email')) }}
+                {{ form_row(updateProfileForm.submit, test_form_attribute('submit')) }}
+            </div>
+        </div>
+        {{ form_end(updateProfileForm) }}
+    </div>
+{% endblock %}

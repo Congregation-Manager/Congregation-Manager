@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace CongregationManager\Bundle\User\Repository;
 
-use CongregationManager\Bundle\User\Model\AppUser;
+use CongregationManager\Bundle\User\Entity\AppUser;
 use CongregationManager\Component\User\Domain\AppUserInterface;
 use CongregationManager\Component\User\Domain\Repository\AppUserRepositoryInterface;
 use CongregationManager\Contract\Resource\AggregateRootId;
