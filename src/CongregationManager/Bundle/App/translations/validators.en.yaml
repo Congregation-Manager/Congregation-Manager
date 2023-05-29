@@ -1,0 +1,9 @@
+cm:
+    email:
+        not_blank: 'Please enter your email.'
+        email: 'This value is not a valid email address.'
+    password:
+        not_blank: 'Please enter a password.'
+        length: 'Your password should be at least {{ limit }} characters.'
+        must_match: 'The password fields must match.'
+    valid_territory_assignments: 'This territory assignment conflicts with another assignment already existing!'

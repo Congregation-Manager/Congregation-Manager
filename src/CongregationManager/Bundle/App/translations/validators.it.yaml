@@ -1,0 +1,9 @@
+cm:
+    email:
+        not_blank: 'Per favore, inserisci la tua email.'
+        email: 'Questo valore non è un indirizzo email valido.'
+    password:
+        not_blank: 'Per favore, inserisci la nuova password.'
+        length: 'La tua password deve essere di almeno {{ limit }} caratteri.'
+        must_match: 'I campi Nuova Password e Ripeti Password devono combaciare.'
+    valid_territory_assignments: 'Questa assegnazione territorio ha un conflitto con un altra assegnazione già esistente!'
