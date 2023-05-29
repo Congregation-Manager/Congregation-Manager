@@ -7,7 +7,7 @@
     <entity name="CongregationManager\Bundle\User\Model\AppUser" table="app_user"
             repository-class="CongregationManager\Bundle\User\Repository\AppUserRepository">
 
-        <id name="id" type="integer_aggregate_root_id" column="id">
+        <id name="id" type="integer" column="id">
             <generator strategy="AUTO"/>
         </id>
 

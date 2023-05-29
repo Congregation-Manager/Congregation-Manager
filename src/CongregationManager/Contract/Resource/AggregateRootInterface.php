@@ -8,7 +8,7 @@ use Stringable;
 
 interface AggregateRootInterface extends Stringable
 {
-    public function getId(): ?AggregateRootId;
+    public function getId(): ?int;
 
-    public function setId(?AggregateRootId $id): void;
+    public function setId(?int $id): void;
 }

@@ -7,7 +7,7 @@
     <entity name="CongregationManager\Component\Congregation\Domain\Congregation" table="congregation"
             repository-class="CongregationManager\Bundle\Congregation\Repository\CongregationRepository">
 
-        <id name="id" type="integer_aggregate_root_id" column="id">
+        <id name="id" type="integer" column="id">
             <generator strategy="AUTO"/>
         </id>
 
