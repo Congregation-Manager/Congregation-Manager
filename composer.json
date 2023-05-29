@@ -9,6 +9,8 @@
         "psr-4": {
             "CongregationManager\\Bundle\\Congregation\\": "src/CongregationManager/Bundle/Congregation/src/",
             "CongregationManager\\Bundle\\Core\\": "src/CongregationManager/Bundle/Core/src/",
+            "CongregationManager\\Bundle\\App\\": "src/CongregationManager/Bundle/App/src/",
+            "CongregationManager\\Bundle\\Admin\\": "src/CongregationManager/Bundle/Admin/src/",
             "CongregationManager\\Bundle\\Resource\\": "src/CongregationManager/Bundle/Resource/src/",
             "CongregationManager\\Bundle\\TerritoryManager\\": "src/CongregationManager/Bundle/TerritoryManager/src/",
             "CongregationManager\\Bundle\\User\\": "src/CongregationManager/Bundle/User/src/",
