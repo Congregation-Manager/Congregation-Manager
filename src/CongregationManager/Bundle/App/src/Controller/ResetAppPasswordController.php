@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace CongregationManager\Bundle\App\Controller;
 
-use CongregationManager\Bundle\User\Form\ChangePasswordFormType;
-use CongregationManager\Bundle\User\Form\ResetPasswordRequestFormType;
 use CongregationManager\Bundle\User\Entity\AppUser;
 use CongregationManager\Bundle\User\Entity\UserInterface;
+use CongregationManager\Bundle\User\Form\ChangePasswordFormType;
+use CongregationManager\Bundle\User\Form\ResetPasswordRequestFormType;
 use CongregationManager\Component\User\Domain\Exception\UserInstanceNotValid;
 use Doctrine\ORM\EntityManagerInterface;
 use Psr\Log\LoggerInterface;

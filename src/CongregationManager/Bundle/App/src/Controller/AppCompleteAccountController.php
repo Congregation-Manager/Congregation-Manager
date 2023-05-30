@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace CongregationManager\Bundle\App\Controller;
 
 use CongregationManager\Bundle\User\Action\CreateAppUser;
-use CongregationManager\Bundle\User\Form\CompleteAccountFormType;
 use CongregationManager\Bundle\User\Entity\CompleteAccount;
+use CongregationManager\Bundle\User\Form\CompleteAccountFormType;
 use CongregationManager\Component\User\Domain\Repository\AppUserInvitationRepositoryInterface;
 use DateInterval;
 use DateTime;

@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace CongregationManager\Bundle\App\Controller;
 
-use CongregationManager\Bundle\User\Form\ChangePasswordFormType;
 use CongregationManager\Bundle\User\Entity\UserInterface;
+use CongregationManager\Bundle\User\Form\ChangePasswordFormType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;

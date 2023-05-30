@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace CongregationManager\Bundle\Admin\Controller;
 
-use CongregationManager\Bundle\User\Form\ChangeEmailFormType;
 use CongregationManager\Bundle\User\Entity\UserInterface;
+use CongregationManager\Bundle\User\Form\ChangeEmailFormType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
