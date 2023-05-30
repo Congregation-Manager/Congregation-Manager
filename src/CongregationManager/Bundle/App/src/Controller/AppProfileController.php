@@ -10,10 +10,10 @@ use CongregationManager\Bundle\User\Entity\AppUserInterface;
 use Doctrine\ORM\EntityManagerInterface;
 use LogicException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
-use Symfony\Component\Security\Core\Security;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 /** @psalm-suppress PropertyNotSetInConstructor */

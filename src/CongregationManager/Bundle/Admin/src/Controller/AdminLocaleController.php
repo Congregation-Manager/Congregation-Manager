@@ -7,10 +7,10 @@ namespace CongregationManager\Bundle\Admin\Controller;
 use CongregationManager\Bundle\User\Entity\UserInterface;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Security\Core\Security;
 
 /** @psalm-suppress PropertyNotSetInConstructor */
 final class AdminLocaleController extends AbstractController

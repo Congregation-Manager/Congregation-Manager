@@ -8,7 +8,7 @@ use CongregationManager\Component\Congregation\Domain\CongregationInterface;
 use CongregationManager\Component\Core\Domain\Context\CongregationContextInterface;
 use CongregationManager\Component\User\Domain\AppUserInterface;
 use RuntimeException;
-use Symfony\Component\Security\Core\Security;
+use Symfony\Bundle\SecurityBundle\Security;
 
 final class CongregationContext implements CongregationContextInterface
 {
