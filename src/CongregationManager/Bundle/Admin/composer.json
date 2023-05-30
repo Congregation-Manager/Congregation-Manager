@@ -4,7 +4,7 @@
     "description": "Congregation Manager administration on Symfony.",
     "keywords": [
         "admin",
-        "congregation-manager",
+        "congregation-manager"
     ],
     "homepage": "https://github.com/lruozzi9/congregation-manager",
     "license": "proprietary",
