@@ -35,7 +35,7 @@ jobs:
                 if: "!startsWith(github.ref, 'refs/tags/')"
                 uses: "symplify/monorepo-split-github-action@2.1"
                 with:
-                    package_directory: 'packages/${{ matrix.package.local_path }}'
+                    package_directory: '${{ matrix.package.local_path }}'
 
                     repository_organization: 'Congregation-Manager'
                     repository_name: '${{ matrix.package.split_repository }}'
@@ -50,7 +50,7 @@ jobs:
                 with:
                     tag: ${GITHUB_REF#refs/tags/}
 
-                    package_directory: 'packages/${{ matrix.package.local_path }}'
+                    package_directory: '${{ matrix.package.local_path }}'
 
                     repository_organization: 'Congregation-Manager'
                     repository_name: '${{ matrix.package.split_repository }}'
