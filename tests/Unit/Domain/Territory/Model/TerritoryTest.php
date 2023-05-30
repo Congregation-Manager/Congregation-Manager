@@ -23,6 +23,8 @@ final class TerritoryTest extends TestCase
 
     private TerritoryAssignment $territoryAssignment3;
 
+    private TerritoryAssignment $territoryAssignment4;
+
     private Territory $territory2;
 
     protected function setUp(): void

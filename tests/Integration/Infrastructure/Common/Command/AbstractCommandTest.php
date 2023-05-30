@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace CongregationManager\Tests\Integration\Infrastructure\Common\Command;
 
+use Doctrine\Common\DataFixtures\Purger\ORMPurger;
 use Symfony\Bundle\FrameworkBundle\Console\Application;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Symfony\Component\Console\Command\Command;
@@ -11,6 +12,14 @@ use Symfony\Component\Console\Tester\CommandTester;
 
 abstract class AbstractCommandTest extends KernelTestCase
 {
+    protected function setUp(): void
+    {
+        parent::setUp();
+        $appEntityManager = self::getContainer()->get('doctrine.orm.entity_manager');
+        $purger = new ORMPurger($appEntityManager);
+        $purger->purge();
+    }
+
     /**
      * This helper method abstracts the boilerplate code needed to test the execution of a command.
      *

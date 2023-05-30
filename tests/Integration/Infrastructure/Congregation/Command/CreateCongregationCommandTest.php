@@ -6,25 +6,15 @@ namespace CongregationManager\Tests\Integration\Infrastructure\Congregation\Comm
 
 use CongregationManager\Component\Congregation\Domain\CongregationInterface;
 use CongregationManager\Tests\Integration\Infrastructure\Common\Command\AbstractCommandTest;
-use Doctrine\Common\DataFixtures\Purger\ORMPurger;
 
 /**
  * @internal
- * @coversNothing
  */
 final class CreateCongregationCommandTest extends AbstractCommandTest
 {
     private array $congregationData = [
         'name' => 'Carrollton',
     ];
-
-    protected function setUp(): void
-    {
-        parent::setUp();
-        $appEntityManager = self::getContainer()->get('doctrine.orm.entity_manager');
-        $purger = new ORMPurger($appEntityManager);
-        $purger->purge();
-    }
 
     public function testCreateAppUserInteractive(): void
     {
