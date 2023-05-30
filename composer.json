@@ -6,23 +6,30 @@
         }
     ],
     "autoload": {
+        "exclude-from-classmap": [
+            "src/CongregationManager/*/*/tests/"
+        ],
         "psr-4": {
+            "CongregationManager\\Bundle\\Admin\\": "src/CongregationManager/Bundle/Admin/src/",
+            "CongregationManager\\Bundle\\App\\": "src/CongregationManager/Bundle/App/src/",
             "CongregationManager\\Bundle\\Congregation\\": "src/CongregationManager/Bundle/Congregation/src/",
             "CongregationManager\\Bundle\\Core\\": "src/CongregationManager/Bundle/Core/src/",
-            "CongregationManager\\Bundle\\App\\": "src/CongregationManager/Bundle/App/src/",
-            "CongregationManager\\Bundle\\Admin\\": "src/CongregationManager/Bundle/Admin/src/",
             "CongregationManager\\Bundle\\Resource\\": "src/CongregationManager/Bundle/Resource/src/",
             "CongregationManager\\Bundle\\TerritoryManager\\": "src/CongregationManager/Bundle/TerritoryManager/src/",
             "CongregationManager\\Bundle\\User\\": "src/CongregationManager/Bundle/User/src/",
             "CongregationManager\\Component\\": "src/CongregationManager/Component/",
             "CongregationManager\\Contract\\": "src/CongregationManager/Contract/"
-        },
-        "exclude-from-classmap": [
-            "src/CongregationManager/*/*/tests/"
-        ]
+        }
     },
     "autoload-dev": {
         "psr-4": {
+            "CongregationManager\\Bundle\\Admin\\Tests\\": "src/CongregationManager/Bundle/Admin/tests/",
+            "CongregationManager\\Bundle\\App\\Tests\\": "src/CongregationManager/Bundle/App/tests/",
+            "CongregationManager\\Bundle\\Congregation\\Tests\\": "src/CongregationManager/Bundle/Congregation/tests/",
+            "CongregationManager\\Bundle\\Core\\Tests\\": "src/CongregationManager/Bundle/Core/tests/",
+            "CongregationManager\\Bundle\\Resource\\Tests\\": "src/CongregationManager/Bundle/Resource/tests/",
+            "CongregationManager\\Bundle\\TerritoryManager\\Tests\\": "src/CongregationManager/Bundle/TerritoryManager/tests/",
+            "CongregationManager\\Bundle\\User\\Tests\\": "src/CongregationManager/Bundle/User/tests/",
             "CongregationManager\\Tests\\": "tests/"
         }
     },
@@ -53,9 +60,7 @@
         }
     },
     "license": "proprietary",
-    "minimum-stability": "stable",
     "name": "lruozzi9/congregation-manager",
-    "prefer-stable": true,
     "repositories": [
         {
             "type": "path",
@@ -63,6 +68,8 @@
         }
     ],
     "replace": {
+        "lruozzi9/admin-bundle": "self.version",
+        "lruozzi9/app-bundle": "self.version",
         "lruozzi9/congregation": "self.version",
         "lruozzi9/congregation-bundle": "self.version",
         "lruozzi9/core": "self.version",
@@ -199,5 +206,7 @@
             "@behat"
         ]
     },
-    "type": "project"
+    "type": "project",
+    "minimum-stability": "stable",
+    "prefer-stable": true
 }
