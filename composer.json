@@ -17,8 +17,11 @@
             "CongregationManager\\Bundle\\Resource\\": "src/CongregationManager/Bundle/Resource/src/",
             "CongregationManager\\Bundle\\TerritoryManager\\": "src/CongregationManager/Bundle/TerritoryManager/src/",
             "CongregationManager\\Bundle\\User\\": "src/CongregationManager/Bundle/User/src/",
-            "CongregationManager\\Component\\": "src/CongregationManager/Component/",
-            "CongregationManager\\Contract\\": "src/CongregationManager/Contract/"
+            "CongregationManager\\Component\\Congregation\\": "src/CongregationManager/Component/Congregation/",
+            "CongregationManager\\Component\\User\\": "src/CongregationManager/Component/User/",
+            "CongregationManager\\Component\\Core\\": "src/CongregationManager/Component/Core/",
+            "CongregationManager\\Contract\\Resource\\": "src/CongregationManager/Contract/Resource/",
+            "CongregationManager\\Component\\TerritoryManager\\": "src/CongregationManager/Component/TerritoryManager/"
         }
     },
     "autoload-dev": {
