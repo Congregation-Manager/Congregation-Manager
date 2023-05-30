@@ -4,8 +4,8 @@
                     xsi:schemaLocation="http://symfony.com/schema/dic/constraint-mapping
         https://symfony.com/schema/dic/constraint-mapping/constraint-mapping-1.0.xsd">
 
-    <class name="CongregationManager\Application\Territory\Command\CreateTerritoryAssignment">
-        <constraint name="CongregationManager\Infrastructure\Territory\Validator\ValidTerritoryAssignments"/>
+    <class name="CongregationManager\Component\TerritoryManager\Application\Command\CreateTerritoryAssignment">
+        <constraint name="CongregationManager\Bundle\TerritoryManager\Validator\ValidTerritoryAssignments"/>
         <property name="territory">
             <constraint name="NotBlank"/>
         </property>

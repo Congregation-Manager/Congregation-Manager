@@ -5,6 +5,6 @@ services:
         public: false
 
     cm.validator.valid_territory_assignments:
-        class: CongregationManager\Infrastructure\Territory\Validator\ValidTerritoryAssignmentsValidator
+        class: CongregationManager\Bundle\TerritoryManager\Validator\ValidTerritoryAssignmentsValidator
         tags:
             - { name: 'validator.constraint_validator' }

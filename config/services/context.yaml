@@ -5,11 +5,11 @@ services:
         public: false
 
     cm.context.locale:
-        class: CongregationManager\Infrastructure\Common\Context\LocaleContext
+        class: CongregationManager\Bundle\Core\Context\LocaleContext
         arguments:
             - '@request_stack'
 
     cm.context.congregation:
-        class: CongregationManager\Infrastructure\Common\Context\CongregationContext
+        class: CongregationManager\Bundle\Core\Context\CongregationContext
         arguments:
             - '@security.helper'

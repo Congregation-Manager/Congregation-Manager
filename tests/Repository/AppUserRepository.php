@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace CongregationManager\Tests\Repository;
 
-use CongregationManager\Domain\User\Model\AppUser;
-use CongregationManager\Domain\User\Model\AppUserInterface;
-use CongregationManager\Domain\User\Repository\AppUserRepositoryInterface;
+use CongregationManager\Component\User\Domain\AppUser;
+use CongregationManager\Component\User\Domain\AppUserInterface;
+use CongregationManager\Component\User\Domain\Repository\AppUserRepositoryInterface;
 
 final class AppUserRepository extends InMemoryRepository implements AppUserRepositoryInterface
 {

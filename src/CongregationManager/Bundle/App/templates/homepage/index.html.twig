@@ -1,0 +1,34 @@
+{% extends '@CongregationManagerApp/base.html.twig' %}
+
+{% block title %}{{ 'cm.homepage.meta_title'|trans }}{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="px-4 py-5 my-5 text-center">
+            <img class="d-block mx-auto mb-4" src="https://via.placeholder.com/72x57" alt="" width="72" height="57">
+            <h1 class="display-5 fw-bold">{{ 'cm.homepage.title'|trans }}</h1>
+            <div class="col-lg-6 mx-auto">
+                <p class="lead mb-4">{{ 'cm.homepage.subtitle'|trans }}</p>
+                <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+                    <a href="{{ path('app_login') }}">
+                        <button type="button"
+                                class="btn btn-primary btn-lg px-4 gap-3">{{ 'cm.homepage.login'|trans }}</button>
+                    </a>
+                    <a href="{{ path('app_homepage') }}">
+                        <button type="button"
+                                class="btn btn-outline-secondary btn-lg px-4">{{ 'cm.homepage.register'|trans }}</button>
+                    </a>
+                </div>
+                
+                <div {{ test_html_attribute('locale-selector') }}>
+                    {% for locale in locales %}
+                        <a href="{{ path('app_switch_locale', {'locale': locale}) }}" {{ test_html_attribute('available-locale', locale) }}
+                            {% if locale == active %}{{ test_html_attribute('active-locale', active) }} class="active text-decoration-underline" {% endif %}>
+                            {{ locale|locale_name }} [{{ locale|locale_name(locale) }}]
+                        </a>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

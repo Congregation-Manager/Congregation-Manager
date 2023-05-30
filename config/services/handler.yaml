@@ -5,12 +5,12 @@ services:
         public: false
 
     cm.command.handler.create_territory_assignment:
-        class: CongregationManager\Application\Territory\Command\CreateTerritoryAssignmentHandler
+        class: CongregationManager\Component\TerritoryManager\Application\Command\CreateTerritoryAssignmentHandler
         arguments:
             - '@cm.factory.territory_assignment'
             - '@cm.repository.territory_assignment'
 
     cm.command.handler.update_territory_assignment:
-        class: CongregationManager\Application\Territory\Command\UpdateTerritoryAssignmentHandler
+        class: CongregationManager\Component\TerritoryManager\Application\Command\UpdateTerritoryAssignmentHandler
         arguments:
             - '@cm.repository.territory_assignment'

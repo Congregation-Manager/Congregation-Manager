@@ -1,0 +1,9 @@
+<h1>{{ 'cm.email.app_user_invitation.hello'|trans }}</h1>
+
+<p>{{ 'cm.email.app_user_invitation.intro'|trans }}</p>
+
+<a href="{{ url('app_complete_account', {token: invitationToken}) }}">{{ url('app_complete_account', {token: invitationToken}) }}</a>
+
+<p>{{ 'cm.email.app_user_invitation.expire'|trans({'{expireIn}': 2 }) }}</p>
+
+<p>{{ 'cm.email.app_user_invitation.greetings'|trans }}</p>

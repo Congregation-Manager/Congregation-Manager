@@ -1,0 +1,35 @@
+{
+    "name": "lruozzi9/admin-bundle",
+    "type": "library",
+    "description": "Congregation Manager administration on Symfony.",
+    "keywords": [
+        "admin",
+        "congregation-manager"
+    ],
+    "homepage": "https://github.com/lruozzi9/congregation-manager",
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "Lorenzo Ruozzi",
+            "homepage": "https://lruozzi9.github.io"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "CongregationManager\\Bundle\\Admin\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "CongregationManager\\Bundle\\Admin\\Tests\\": "tests/"
+        }
+    },
+    "repositories": [
+        {
+            "type": "path",
+            "url": "../../*/*"
+        }
+    ],
+    "minimum-stability": "stable",
+    "prefer-stable": true
+}

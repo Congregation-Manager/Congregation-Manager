@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace CongregationManager\Tests\Behat\Context\Setup;
 
 use Behat\Behat\Context\Context;
-use CongregationManager\Domain\Congregation\Model\Congregation;
+use CongregationManager\Component\Congregation\Domain\Congregation;
 use CongregationManager\Tests\Behat\Services\SharedStorageInterface;
 use Doctrine\ORM\EntityManagerInterface;
 

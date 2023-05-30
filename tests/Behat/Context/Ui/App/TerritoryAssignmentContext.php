@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace CongregationManager\Tests\Behat\Context\Ui\App;
 
 use Behat\Behat\Context\Context;
-use CongregationManager\Domain\Congregation\Model\BrotherInterface;
-use CongregationManager\Domain\Territory\Model\TerritoryAssignmentInterface;
-use CongregationManager\Domain\Territory\Model\TerritoryInterface;
+use CongregationManager\Component\Congregation\Domain\BrotherInterface;
+use CongregationManager\Component\TerritoryManager\Domain\TerritoryAssignmentInterface;
+use CongregationManager\Component\TerritoryManager\Domain\TerritoryInterface;
 use CongregationManager\Tests\Behat\Page\App\TerritoryAssignment\CreatePage;
 use CongregationManager\Tests\Behat\Page\App\TerritoryAssignment\UpdatePage;
 use CongregationManager\Tests\Behat\Services\SharedStorageInterface;
@@ -113,7 +113,7 @@ final class TerritoryAssignmentContext implements Context
             $this->assignPage->hasErrorMessage($this->translator->trans(
                 'This value should be greater than or equal to {{ compared_value }}.',
                 [
-                    '{{ compared_value }}' => (new DateTimeImmutable($assignmentDate))->format('M d, Y, h:i A'),
+                    '{{ compared_value }}' => (new DateTimeImmutable($assignmentDate))->format('M d, Y, h:i A'),
                 ],
                 'validators'
             ))

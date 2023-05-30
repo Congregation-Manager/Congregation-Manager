@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace CongregationManager\Tests\Behat\Services;
 
-use CongregationManager\Infrastructure\User\Model\UserInterface;
+use CongregationManager\Bundle\User\Entity\UserInterface;
 use CongregationManager\Tests\Behat\Services\Setter\CookieSetterInterface;
 use Symfony\Component\HttpFoundation\Session\SessionFactoryInterface;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;

@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace CongregationManager\Tests\Repository;
 
-use CongregationManager\Domain\Congregation\Model\Brother;
-use CongregationManager\Domain\Congregation\Model\BrotherInterface;
-use CongregationManager\Domain\Congregation\Repository\BrotherRepositoryInterface;
+use CongregationManager\Component\Congregation\Domain\Brother;
+use CongregationManager\Component\Congregation\Domain\BrotherInterface;
+use CongregationManager\Component\Congregation\Domain\Repository\BrotherRepositoryInterface;
 
 final class BrotherRepository extends InMemoryRepository implements BrotherRepositoryInterface
 {
@@ -18,6 +18,11 @@ final class BrotherRepository extends InMemoryRepository implements BrotherRepos
     public function getClassName(): string
     {
         return Brother::class;
+    }
+
+    public function findOneById(int $id): ?BrotherInterface
+    {
+        return $this->find($id);
     }
 
     protected function getIdProperty(): string

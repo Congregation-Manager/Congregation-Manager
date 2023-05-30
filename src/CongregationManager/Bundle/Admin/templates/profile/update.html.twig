@@ -1,0 +1,21 @@
+{% extends '@CongregationManagerAdmin/base.html.twig' %}
+
+{% block title %}{{ 'cm.profile_update.meta_title'|trans }}{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row mb-3">
+            <div class="col-12 col-md-8 col-lg-6">
+                <h1>{{ 'cm.profile_update.title'|trans }}</h1>
+            </div>
+        </div>
+        {{ form_start(changeEmailForm) }}
+        <div class="row">
+            <div class="col-12 col-md-8 col-lg-6">
+                {{ form_row(changeEmailForm.email) }}
+                {{ form_row(changeEmailForm.submit) }}
+            </div>
+        </div>
+        {{ form_end(changeEmailForm) }}
+    </div>
+{% endblock %}

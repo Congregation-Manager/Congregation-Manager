@@ -6,7 +6,7 @@ default:
         FriendsOfBehat\SymfonyExtension:
             bootstrap: tests/bootstrap.php
             kernel:
-                class: 'CongregationManager\Infrastructure\Kernel'
+                class: 'CongregationManager\Bundle\Core\Kernel'
 
         Behat\MinkExtension:
             base_url: "https://localhost:8080/"
@@ -15,7 +15,7 @@ default:
                     symfony: ~
 
         FriendsOfBehat\MinkDebugExtension:
-            directory: "%paths.base%/etc/build/"
+            directory: "%paths.base%/etc/build"
             screenshot: true
             clean_start: true
 

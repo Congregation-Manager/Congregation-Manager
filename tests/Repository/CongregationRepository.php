@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace CongregationManager\Tests\Repository;
 
-use CongregationManager\Domain\Congregation\Model\Congregation;
-use CongregationManager\Domain\Congregation\Model\CongregationInterface;
-use CongregationManager\Domain\Congregation\Repository\CongregationRepositoryInterface;
+use CongregationManager\Component\Congregation\Domain\Congregation;
+use CongregationManager\Component\Congregation\Domain\CongregationInterface;
+use CongregationManager\Component\Congregation\Domain\Repository\CongregationRepositoryInterface;
 
 final class CongregationRepository extends InMemoryRepository implements CongregationRepositoryInterface
 {
@@ -18,6 +18,11 @@ final class CongregationRepository extends InMemoryRepository implements Congreg
     public function getClassName(): string
     {
         return Congregation::class;
+    }
+
+    public function findOneById(int $id): ?CongregationInterface
+    {
+        return $this->find($id);
     }
 
     protected function getIdProperty(): string

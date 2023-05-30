@@ -5,54 +5,49 @@ services:
         public: false
 
     cm.form.type.reset_password_request:
-        class: CongregationManager\Infrastructure\User\Form\ResetPasswordRequestFormType
+        class: CongregationManager\Bundle\User\Form\ResetPasswordRequestFormType
         tags:
             - { name: 'form.type' }
 
     cm.form.type.change_password:
-        class: CongregationManager\Infrastructure\User\Form\ChangePasswordFormType
+        class: CongregationManager\Bundle\User\Form\ChangePasswordFormType
         tags:
             - { name: 'form.type' }
 
     cm.form.type.brother:
-        class: CongregationManager\Infrastructure\Congregation\Form\UpdateBrotherFormType
+        class: CongregationManager\Bundle\Congregation\Form\UpdateBrotherFormType
         tags:
             - { name: 'form.type' }
 
     cm.form.type.email:
-        class: CongregationManager\Infrastructure\User\Form\ChangeEmailFormType
+        class: CongregationManager\Bundle\User\Form\ChangeEmailFormType
         tags:
             - { name: 'form.type' }
 
     cm.form.type.profile_update:
-        class: CongregationManager\Infrastructure\Common\Form\ProfileUpdateFormType
+        class: CongregationManager\Bundle\Core\Form\ProfileUpdateFormType
         tags:
             - { name: 'form.type' }
 
     cm.form.type.user_invite:
-        class: CongregationManager\Infrastructure\User\Form\InviteUserFormType
+        class: CongregationManager\Bundle\User\Form\InviteUserFormType
         tags:
             - { name: 'form.type' }
 
     cm.form.type.complete_account:
-        class: CongregationManager\Infrastructure\User\Form\CompleteAccountFormType
+        class: CongregationManager\Bundle\User\Form\CompleteAccountFormType
         tags:
             - { name: 'form.type' }
 
     cm.form.type.territory_filters:
-        class: CongregationManager\Infrastructure\Territory\Form\TerritoryFiltersFormType
+        class: CongregationManager\Bundle\TerritoryManager\Form\TerritoryFiltersFormType
         tags:
             - { name: 'form.type' }
 
     cm.form.type.area:
-        class: CongregationManager\Infrastructure\Territory\Form\AreaFormType
+        class: CongregationManager\Bundle\TerritoryManager\Form\AreaFormType
         arguments:
             - '@cm.context.congregation'
             - '@doctrine'
-        tags:
-            - { name: 'form.type' }
-
-    cm.form.type.territory_assignment:
-        class: CongregationManager\Infrastructure\Territory\Form\TerritoryAssignmentFormType
         tags:
             - { name: 'form.type' }

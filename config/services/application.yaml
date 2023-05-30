@@ -5,54 +5,54 @@ services:
         public: false
 
     cm.create_congregation:
-        class: CongregationManager\Application\Congregation\CreateCongregation
+        class: CongregationManager\Component\Congregation\Application\CreateCongregation
         arguments:
             - '@cm.repository.congregation'
 
     cm.create_brother:
-        class: CongregationManager\Application\Congregation\CreateBrother
+        class: CongregationManager\Component\Congregation\Application\CreateBrother
         arguments:
             - '@cm.repository.brother'
 
     cm.create_app_user:
-        class: CongregationManager\Infrastructure\User\Action\CreateAppUser
+        class: CongregationManager\Bundle\User\Action\CreateAppUser
         arguments:
             - '@cm.repository.app_user'
             - '@cm.hasher.user_password'
 
     cm.create_admin_user:
-        class: CongregationManager\Infrastructure\User\Action\CreateAdminUser
+        class: CongregationManager\Bundle\User\Action\CreateAdminUser
         arguments:
             - '@cm.repository.admin_user'
             - '@cm.hasher.user_password'
 
     cm.create_app_user_invitation:
-        class: CongregationManager\Infrastructure\User\Action\CreateAppUserInvitation
+        class: CongregationManager\Bundle\User\Action\CreateAppUserInvitation
         arguments:
             - '@cm.generator.token'
             - '@cm.repository.app_user_invitation'
 
     cm.create_province:
-        class: CongregationManager\Application\Territory\CreateProvince
+        class: CongregationManager\Component\TerritoryManager\Application\CreateProvince
         arguments:
             - '@cm.repository.province'
 
     cm.create_municipality:
-        class: CongregationManager\Application\Territory\CreateMunicipality
+        class: CongregationManager\Component\TerritoryManager\Application\CreateMunicipality
         arguments:
             - '@cm.repository.municipality'
 
     cm.create_area:
-        class: CongregationManager\Application\Territory\CreateArea
+        class: CongregationManager\Component\TerritoryManager\Application\CreateArea
         arguments:
             - '@cm.repository.area'
 
     cm.create_territory:
-        class: CongregationManager\Application\Territory\CreateTerritory
+        class: CongregationManager\Component\TerritoryManager\Application\CreateTerritory
         arguments:
             - '@cm.repository.territory'
 
     cm.create_territory_assignment:
-        class: CongregationManager\Application\Territory\CreateTerritoryAssignment
+        class: CongregationManager\Component\TerritoryManager\Application\CreateTerritoryAssignment
         arguments:
             - '@cm.repository.territory_assignment'

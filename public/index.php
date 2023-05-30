@@ -1,6 +1,6 @@
 <?php
 
-use CongregationManager\Infrastructure\Kernel;
+use CongregationManager\Bundle\Core\Kernel;
 
 require_once dirname(__DIR__).'/vendor/autoload_runtime.php';
 

@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace CongregationManager\Tests\Behat\Context\Transform;
 
 use Behat\Behat\Context\Context;
-use CongregationManager\Domain\Territory\Model\TerritoryInterface;
-use CongregationManager\Domain\Territory\Repository\TerritoryRepositoryInterface;
+use CongregationManager\Component\TerritoryManager\Domain\Repository\TerritoryRepositoryInterface;
+use CongregationManager\Component\TerritoryManager\Domain\TerritoryInterface;
 use Webmozart\Assert\Assert;
 
 final class TerritoryContext implements Context

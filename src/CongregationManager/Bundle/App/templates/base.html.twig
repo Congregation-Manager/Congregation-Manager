@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="{{ app.request.locale|slice(0, 2) }}">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    {% block stylesheets %}
+        {{ encore_entry_link_tags('app') }}
+    {% endblock %}
+
+    <title>{% block title %}{{ 'cm.meta_title.default'|trans }}{% endblock %}</title>
+</head>
+<body>
+    {% block body %}
+        <header>
+            <nav class="navbar navbar-expand-md navbar-dark bg-dark {{ app.session.flashbag.peek('success')|length > 0 or app.session.flashbag.peek('danger')|length > 0 ? '' : 'mb-3' }}">
+                <div class="container">
+                    <a class="navbar-brand" href="{{ path('app_dashboard') }}">{{ 'cm.app_nav.title'|trans }}</a>
+                    
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#top-navbar" aria-controls="top-navbar" aria-expanded="false" aria-label="{{ 'cm.app_nav.toggle'|trans }}">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    
+                    
+                    <div class="collapse navbar-collapse" id="top-navbar">
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ path('app_territory_index') }}">{{ 'cm.ui.territories'|trans }}</a>
+                            </li>
+                        </ul>
+                        
+                        
+                        <div class="float-end m:w-100">
+                            <div class="float-start">
+                                {{ render(controller('cm.controller.app_locale::renderAction')) }}
+                            </div>
+                            <div class="float-end">
+                                <div class="dropdown ">
+                                    <a class="d-block text-decoration-none dropdown-toggle text-white" href="#" id="dropdown-user" data-bs-toggle="dropdown" aria-expanded="false" {{ test_html_attribute('logged-in-brother-full-name', app.user.brother) }}>
+                                        <img src="https://via.placeholder.com/35" alt="mdo" width="35" height="35" class="rounded-circle">
+                                        {{ app.user.brother }}
+                                    </a>
+                                    <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end" aria-labelledby="dropdown-user">
+                                        <li><a class="dropdown-item" href="{{ path('app_profile_update') }}">{{ 'cm.profile_update.title'|trans }}</a></li>
+                                        <li><a class="dropdown-item" href="{{ path('app_change_password') }}">{{ 'cm.change_password.title'|trans }}</a></li>
+                                        <li><hr class="dropdown-divider"></li>
+                                        <li><a class="dropdown-item" href="{{ path('app_logout') }}" {{ test_html_attribute('logout-button') }}>{{ 'cm.app_nav.logout'|trans }}</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    
+                    </div>
+                </div>
+            </nav>
+        </header>
+
+
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-success" role="alert" {{ test_html_attribute('success-alert') }}>
+                {{ message }}
+            </div>
+        {% endfor %}
+        {% for message in app.flashes('danger') %}
+            <div class="alert alert-danger" role="alert" {{ test_html_attribute('danger-alert') }}>
+                {{ message }}
+            </div>
+        {% endfor %}
+    
+        {% block content %}{% endblock %}
+    {% endblock %}
+    
+    {% block javascripts %}
+        {{ encore_entry_script_tags('app') }}
+    {% endblock %}
+</body>
+</html>

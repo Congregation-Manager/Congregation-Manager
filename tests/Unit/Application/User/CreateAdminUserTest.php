@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace CongregationManager\Tests\Unit\Application\User;
 
-use CongregationManager\Application\User\CreateAdminUser;
-use CongregationManager\Domain\User\Hasher\UserPasswordHasherInterface;
-use CongregationManager\Domain\User\Model\UserInterface;
-use CongregationManager\Domain\User\Repository\AdminUserRepositoryInterface;
+use CongregationManager\Component\User\Application\CreateAdminUser;
+use CongregationManager\Component\User\Domain\Hasher\UserPasswordHasherInterface;
+use CongregationManager\Component\User\Domain\Repository\AdminUserRepositoryInterface;
+use CongregationManager\Component\User\Domain\UserInterface;
 use CongregationManager\Tests\Repository\AdminUserRepository;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;

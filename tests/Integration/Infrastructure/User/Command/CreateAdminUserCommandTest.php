@@ -9,7 +9,6 @@ use InvalidArgumentException;
 
 /**
  * @internal
- * @coversNothing
  */
 final class CreateAdminUserCommandTest extends AbstractCommandTest
 {

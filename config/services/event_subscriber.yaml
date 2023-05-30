@@ -5,7 +5,7 @@ services:
         public: false
 
     cm.event_subscriber.locale:
-        class: CongregationManager\Infrastructure\Common\EventSubscriber\LocaleSubscriber
+        class: CongregationManager\Bundle\Core\EventSubscriber\LocaleSubscriber
         arguments:
             - '%default_locale%'
             - '%supported_locales%'
@@ -13,7 +13,7 @@ services:
             - { name: kernel.event_subscriber }
 
     cm.event_subscriber.user_locale:
-        class: CongregationManager\Infrastructure\Common\EventSubscriber\UserLocaleSubscriber
+        class: CongregationManager\Bundle\Core\EventSubscriber\UserLocaleSubscriber
         arguments:
             - '@request_stack'
             - '%supported_locales%'

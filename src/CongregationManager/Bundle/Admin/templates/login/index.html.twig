@@ -1,0 +1,53 @@
+{% extends '@CongregationManagerAdmin/base.html.twig' %}
+
+{% block title %}{{ 'cm.admin_login.meta_title'|trans }}{% endblock %}
+
+{% block body %}
+
+    <div class="row">
+        <div class="col-12 col-md-8 col-lg-6 m-auto text-center mt-5">
+
+            {% if error %}
+                <div class="alert alert-danger" role="alert">
+                    {{ error.messageKey|trans(error.messageData, 'security') }}
+                </div>
+            {% endif %}
+
+            <form action="{{ path('admin_login_check') }}" method="post">
+                <img class="mb-4" src="https://via.placeholder.com/72x57" alt="" width="72" height="57">
+                <h1 class="h3 mb-3 fw-normal">{{ 'cm.admin_login.title'|trans }}</h1>
+
+                <div class="form-floating">
+                    <input type="email" class="form-control" id="username" name="_username" value="{{ last_username }}" placeholder="{{ 'cm.admin_login.email_placeholder'|trans }}" >
+                    <label for="username">{{ 'cm.label.email_address'|trans }}</label>
+                </div>
+
+                <div class="form-floating">
+                    <input type="password" class="form-control" id="password" name="_password" placeholder="{{ 'cm.admin_login.password_placeholder'|trans }}">
+                    <label for="password">{{ 'cm.label.password'|trans }}</label>
+                </div>
+
+                <div class="checkbox mt-2 mb-3">
+                    <label>
+                        <input type="checkbox" id="remember_me" name="_remember_me"> {{ 'cm.label.remember_me'|trans }}
+                    </label>
+                </div>
+
+                <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
+                <button class="w-100 btn btn-lg btn-primary" type="submit">{{ 'cm.label.signin'|trans }}</button>
+            </form>
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 col-md-8 col-lg-6 m-auto text-center mt-5">
+            <a href="{{ path('admin_forgot_password_request') }}">{{ 'cm.admin_login.forgot_password'|trans }}</a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 col-md-8 col-lg-6 m-auto text-center mt-5">
+            {{ render(controller('cm.controller.admin_locale::renderAction')) }}
+        </div>
+    </div>
+{% endblock %}

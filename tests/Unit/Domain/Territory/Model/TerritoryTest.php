@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace CongregationManager\Tests\Unit\Domain\Territory\Model;
 
-use CongregationManager\Domain\Congregation\Model\Congregation;
-use CongregationManager\Domain\Territory\Model\Area;
-use CongregationManager\Domain\Territory\Model\Municipality;
-use CongregationManager\Domain\Territory\Model\Province;
-use CongregationManager\Domain\Territory\Model\Territory;
-use CongregationManager\Domain\Territory\Model\TerritoryAssignment;
+use CongregationManager\Component\Congregation\Domain\Congregation;
+use CongregationManager\Component\TerritoryManager\Domain\Area;
+use CongregationManager\Component\TerritoryManager\Domain\Municipality;
+use CongregationManager\Component\TerritoryManager\Domain\Province;
+use CongregationManager\Component\TerritoryManager\Domain\Territory;
+use CongregationManager\Component\TerritoryManager\Domain\TerritoryAssignment;
 use DateTimeImmutable;
 use PHPUnit\Framework\TestCase;
 
@@ -22,6 +22,8 @@ final class TerritoryTest extends TestCase
     private TerritoryAssignment $territoryAssignment2;
 
     private TerritoryAssignment $territoryAssignment3;
+
+    private TerritoryAssignment $territoryAssignment4;
 
     private Territory $territory2;
 

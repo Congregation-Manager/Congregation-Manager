@@ -1,0 +1,23 @@
+{% extends '@CongregationManagerAdmin/base.html.twig' %}
+
+{% block title %}{{ 'cm.change_password.meta_title'|trans }}{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row mb-3">
+            <div class="col-12 col-md-8 col-lg-6">
+                <h1>{{ 'cm.change_password.title'|trans }}</h1>
+            </div>
+        </div>
+        {{ form_start(changePasswordForm) }}
+        <div class="row">
+            <div class="col-12 col-md-8 col-lg-6">
+                {{ form_row(changePasswordForm.oldPassword) }}
+                {{ form_row(changePasswordForm.plainPassword) }}
+                
+                <button class="w-100 btn btn-lg btn-primary" type="submit">{{ 'cm.change_password.submit'|trans }}</button>
+            </div>
+        </div>
+        {{ form_end(changePasswordForm) }}
+    </div>
+{% endblock %}

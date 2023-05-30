@@ -20,13 +20,12 @@ Encore
      * Each entry will result in one JavaScript file (e.g. app.js)
      * and one CSS file (e.g. app.css) if your JavaScript imports CSS.
      */
-    .addEntry('common', './resources/assets/common.js')
-    .addEntry('app', './resources/assets/app.js')
-    .addEntry('homepage', './resources/assets/homepage.js')
-    .addEntry('admin', './resources/assets/admin.js')
+    .addEntry('app', './src/CongregationManager/Bundle/App/assets/app.js')
+    .addEntry('admin', './src/CongregationManager/Bundle/Admin/assets/admin.js')
 
     // enables the Symfony UX Stimulus bridge (used in assets/bootstrap.js)
-    .enableStimulusBridge('./resources/assets/controllers.json')
+    .enableStimulusBridge('./src/CongregationManager/Bundle/App/assets/controllers.json')
+    .enableStimulusBridge('./src/CongregationManager/Bundle/Admin/assets/controllers.json')
 
     // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.
     .splitEntryChunks()

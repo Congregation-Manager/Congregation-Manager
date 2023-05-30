@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace CongregationManager\Tests\Unit\Domain\Territory\Model;
 
-use CongregationManager\Domain\Congregation\Model\BrotherInterface;
-use CongregationManager\Domain\Territory\Model\TerritoryAssignment;
-use CongregationManager\Domain\Territory\Model\TerritoryInterface;
+use CongregationManager\Component\Congregation\Domain\BrotherInterface;
+use CongregationManager\Component\TerritoryManager\Domain\TerritoryAssignment;
+use CongregationManager\Component\TerritoryManager\Domain\TerritoryInterface;
 use DateTimeImmutable;
 use PHPUnit\Framework\TestCase;
 use Prophecy\PhpUnit\ProphecyTrait;

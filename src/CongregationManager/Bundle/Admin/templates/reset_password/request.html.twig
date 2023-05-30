@@ -1,0 +1,38 @@
+{% extends '@CongregationManagerAdmin/base.html.twig' %}
+
+{% block title %}{{ 'cm.admin_forgot_password.meta_title'|trans }}{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-md-8 col-lg-6 m-auto text-center mt-5">
+
+                {% for flashError in app.flashes('reset_password_error') %}
+                    <div class="alert alert-danger" role="alert">
+                        {{ flashError }}
+                    </div>
+                {% endfor %}
+
+                {{ form_start(requestForm) }}
+                    <img class="mb-4" src="https://via.placeholder.com/72x57" alt="" width="72" height="57">
+                    <h1 class="h3 mb-3 fw-normal">{{ 'cm.admin_forgot_password.title'|trans }}</h1>
+
+                    {{ form_row(requestForm.email) }}
+
+                    <div class="mt-2 mb-2">
+                        <small>
+                            {{ 'cm.admin_forgot_password.help'|trans }}
+                        </small>
+                    </div>
+
+                    <button class="w-100 btn btn-lg btn-primary" type="submit">{{ 'cm.admin_forgot_password.submit'|trans }}</button>
+                {{ form_end(requestForm) }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 col-md-8 col-lg-6 m-auto text-center mt-5">
+                <a href="{{ path('admin_login') }}">{{ 'cm.admin_forgot_password.signin'|trans }}</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

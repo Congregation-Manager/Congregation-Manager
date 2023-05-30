@@ -1,0 +1,45 @@
+{% extends '@CongregationManagerApp/base.html.twig' %}
+
+{% block title %}{{ 'cm.meta_title.territory_show'|trans({':number': territory.number}) }}{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h1>{{ 'cm.ui.territory_with_number'|trans({':number': territory.number}) }} <span
+                        class="badge badge-{% if territory.available %}success{% else %}secondary{% endif %}">
+                        {% if territory.available %}{{ 'cm.ui.not_assigned'|trans }}{% else %}{{ 'cm.ui.assigned'|trans }}{% endif %}
+                    </span></h1>
+            </div>
+        </div>
+        <dl class="row mt-4">
+            <dt class="col-sm-2">{{ 'cm.ui.area'|trans }}</dt>
+            <dd class="col-sm-10">{{ territory.area.name }}</dd>
+            
+            <dt class="col-sm-2">{{ 'cm.ui.description'|trans }}</dt>
+            <dd class="col-sm-10">{{ territory.description }}</dd>
+        </dl>
+        <div class="row mt-4">
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th scope="col">{{ 'cm.ui.brother'|trans }}</th>
+                    <th scope="col">{{ 'cm.ui.assignment_date'|trans }}</th>
+                    <th scope="col">{{ 'cm.ui.revocation_date'|trans }}</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for territoryAssignment in territory.sortedTerritoryAssignments %}
+                    <tr {{ test_html_attribute('territory-assignment', territoryAssignment.id) }}>
+                        <th scope="row" {{ test_html_attribute('territory-assignment-brother', territoryAssignment.brother) }}>{{ territoryAssignment.brother }}</th>
+                        <td {{ test_html_attribute('territory-assignment-assignment-date', territoryAssignment.assignmentDate|date()) }}>{{ territoryAssignment.assignmentDate|format_date }}</td>
+                        <td>{{ territoryAssignment.revocationDate ? territoryAssignment.revocationDate|format_date : '' }}</td>
+                        <td><a href="{{ path('app_territory_assignment_update', {'id': territoryAssignment.id}) }}">{{ 'cm.ui.edit'|trans }}</a> </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

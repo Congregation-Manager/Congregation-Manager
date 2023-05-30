@@ -1,0 +1,18 @@
+{% extends '@CongregationManagerAdmin/base.html.twig' %}
+
+{% block title %}{{ 'cm.brother.invite_app_user.meta_title'|trans({'{name}': brother}) }}{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row mb-3">
+            <div class="col-12 col-md-8 col-lg-6">
+                <h1>{{ 'cm.brother.invite_app_user.title'|trans({'{name}': brother}) }}</h1>
+            </div>
+        </div>
+        
+        {{ form_start(inviteUserForm) }}
+        {{ form_row(inviteUserForm.email, test_form_attribute('email')) }}
+        {{ form_row(inviteUserForm.submit, test_form_attribute('submit')) }}
+        {{ form_end(inviteUserForm) }}
+    </div>
+{% endblock %}
