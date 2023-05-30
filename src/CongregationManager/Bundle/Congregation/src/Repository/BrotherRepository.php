@@ -7,7 +7,6 @@ namespace CongregationManager\Bundle\Congregation\Repository;
 use CongregationManager\Component\Congregation\Domain\Brother;
 use CongregationManager\Component\Congregation\Domain\BrotherInterface;
 use CongregationManager\Component\Congregation\Domain\Repository\BrotherRepositoryInterface;
-use CongregationManager\Contract\Resource\AggregateRootId;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 

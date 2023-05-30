@@ -7,7 +7,6 @@ namespace CongregationManager\Tests\Repository;
 use CongregationManager\Component\Congregation\Domain\Brother;
 use CongregationManager\Component\Congregation\Domain\BrotherInterface;
 use CongregationManager\Component\Congregation\Domain\Repository\BrotherRepositoryInterface;
-use CongregationManager\Contract\Resource\AggregateRootId;
 
 final class BrotherRepository extends InMemoryRepository implements BrotherRepositoryInterface
 {

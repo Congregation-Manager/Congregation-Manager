@@ -8,7 +8,6 @@ use CongregationManager\Component\Congregation\Domain\CongregationInterface;
 use CongregationManager\Component\TerritoryManager\Domain\Repository\Filter\TerritoryFilterResultsInterface;
 use CongregationManager\Component\TerritoryManager\Domain\Repository\Filter\TerritoryRepositoryFilterInterface;
 use CongregationManager\Component\TerritoryManager\Domain\TerritoryInterface;
-use CongregationManager\Contract\Resource\AggregateRootId;
 
 interface TerritoryRepositoryInterface
 {

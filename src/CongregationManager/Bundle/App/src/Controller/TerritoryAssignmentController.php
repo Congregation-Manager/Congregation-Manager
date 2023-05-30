@@ -12,7 +12,6 @@ use CongregationManager\Component\TerritoryManager\Application\Command\UpdateTer
 use CongregationManager\Component\TerritoryManager\Application\Command\UpdateTerritoryAssignmentHandler;
 use CongregationManager\Component\TerritoryManager\Domain\Repository\TerritoryAssignmentRepositoryInterface;
 use CongregationManager\Component\TerritoryManager\Domain\Repository\TerritoryRepositoryInterface;
-use CongregationManager\Contract\Resource\IntegerAggregateRootId;
 use DateTimeImmutable;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;

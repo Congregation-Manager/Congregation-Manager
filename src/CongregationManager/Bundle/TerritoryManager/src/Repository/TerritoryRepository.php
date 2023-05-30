@@ -11,7 +11,6 @@ use CongregationManager\Component\TerritoryManager\Domain\Repository\TerritoryRe
 use CongregationManager\Component\TerritoryManager\Domain\Territory;
 use CongregationManager\Component\TerritoryManager\Domain\TerritoryAssignment;
 use CongregationManager\Component\TerritoryManager\Domain\TerritoryInterface;
-use CongregationManager\Contract\Resource\AggregateRootId;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\Query\Expr\Join;
 use Doctrine\Persistence\ManagerRegistry;

@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace CongregationManager\Component\Congregation\Domain\Repository;
 
 use CongregationManager\Component\Congregation\Domain\CongregationInterface;
-use CongregationManager\Contract\Resource\AggregateRootId;
 
 interface CongregationRepositoryInterface
 {

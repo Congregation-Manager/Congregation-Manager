@@ -7,7 +7,6 @@ namespace CongregationManager\Tests\Repository;
 use CongregationManager\Component\Congregation\Domain\Congregation;
 use CongregationManager\Component\Congregation\Domain\CongregationInterface;
 use CongregationManager\Component\Congregation\Domain\Repository\CongregationRepositoryInterface;
-use CongregationManager\Contract\Resource\AggregateRootId;
 
 final class CongregationRepository extends InMemoryRepository implements CongregationRepositoryInterface
 {

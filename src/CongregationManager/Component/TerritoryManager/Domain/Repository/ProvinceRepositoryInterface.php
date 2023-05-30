@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace CongregationManager\Component\TerritoryManager\Domain\Repository;
 
 use CongregationManager\Component\TerritoryManager\Domain\ProvinceInterface;
-use CongregationManager\Contract\Resource\AggregateRootId;
 
 interface ProvinceRepositoryInterface
 {

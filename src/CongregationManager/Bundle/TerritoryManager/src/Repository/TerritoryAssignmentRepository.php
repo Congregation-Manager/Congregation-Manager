@@ -7,7 +7,6 @@ namespace CongregationManager\Bundle\TerritoryManager\Repository;
 use CongregationManager\Component\TerritoryManager\Domain\Repository\TerritoryAssignmentRepositoryInterface;
 use CongregationManager\Component\TerritoryManager\Domain\TerritoryAssignment;
 use CongregationManager\Component\TerritoryManager\Domain\TerritoryAssignmentInterface;
-use CongregationManager\Contract\Resource\AggregateRootId;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 

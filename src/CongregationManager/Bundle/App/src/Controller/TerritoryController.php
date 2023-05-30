@@ -10,7 +10,6 @@ use CongregationManager\Component\Core\Domain\Context\CongregationContextInterfa
 use CongregationManager\Component\TerritoryManager\Domain\Generator\S13GeneratorInterface;
 use CongregationManager\Component\TerritoryManager\Domain\Renderer\S13RendererInterface;
 use CongregationManager\Component\TerritoryManager\Domain\Repository\TerritoryRepositoryInterface;
-use CongregationManager\Contract\Resource\IntegerAggregateRootId;
 use DateTimeImmutable;
 use Knp\Component\Pager\Event\Subscriber\Paginate\Callback\CallbackPagination;
 use Knp\Component\Pager\PaginatorInterface;

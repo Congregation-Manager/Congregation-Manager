@@ -7,7 +7,6 @@ namespace CongregationManager\Bundle\Admin\Controller;
 use CongregationManager\Bundle\User\Action\CreateAppUserInvitation;
 use CongregationManager\Bundle\User\Form\InviteUserFormType;
 use CongregationManager\Component\Congregation\Domain\Repository\BrotherRepositoryInterface;
-use CongregationManager\Contract\Resource\IntegerAggregateRootId;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
