@@ -14,7 +14,7 @@ interface MunicipalityRepositoryInterface
      */
     public function findAll();
 
-    public function findOneById(AggregateRootId $id): ?MunicipalityInterface;
+    public function findOneById(int $id): ?MunicipalityInterface;
 
     public function add(MunicipalityInterface $municipality): void;
 }

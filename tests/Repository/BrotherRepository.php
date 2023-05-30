@@ -21,7 +21,7 @@ final class BrotherRepository extends InMemoryRepository implements BrotherRepos
         return Brother::class;
     }
 
-    public function findOneById(AggregateRootId $id): ?BrotherInterface
+    public function findOneById(int $id): ?BrotherInterface
     {
         return $this->find($id);
     }

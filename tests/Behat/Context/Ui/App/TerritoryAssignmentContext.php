@@ -113,7 +113,7 @@ final class TerritoryAssignmentContext implements Context
             $this->assignPage->hasErrorMessage($this->translator->trans(
                 'This value should be greater than or equal to {{ compared_value }}.',
                 [
-                    '{{ compared_value }}' => (new DateTimeImmutable($assignmentDate))->format('M d, Y, h:i A'),
+                    '{{ compared_value }}' => (new DateTimeImmutable($assignmentDate))->format('M d, Y, h:i A'),
                 ],
                 'validators'
             ))

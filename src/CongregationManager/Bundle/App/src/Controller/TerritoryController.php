@@ -72,12 +72,12 @@ final class TerritoryController extends AbstractController
 
     public function show(int $id, Request $request): Response
     {
-        $territory = $this->territoryRepository->findOneById(new IntegerAggregateRootId($id));
+        $territory = $this->territoryRepository->findOneById($id);
         if ($territory === null) {
             throw new NotFoundHttpException();
         }
 
-        return $this->render('app/territory/show.html.twig', [
+        return $this->render('@CongregationManagerApp/territory/show.html.twig', [
             'territory' => $territory,
         ]);
     }

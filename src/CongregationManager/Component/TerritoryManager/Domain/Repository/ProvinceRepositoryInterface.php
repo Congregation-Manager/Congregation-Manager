@@ -14,7 +14,7 @@ interface ProvinceRepositoryInterface
      */
     public function findAll();
 
-    public function findOneById(AggregateRootId $id): ?ProvinceInterface;
+    public function findOneById(int $id): ?ProvinceInterface;
 
     public function add(ProvinceInterface $province): void;
 }

@@ -30,7 +30,7 @@ final class ProvinceRepository extends ServiceEntityRepository implements Provin
         parent::__construct($registry, Province::class);
     }
 
-    public function findOneById(AggregateRootId $id): ?ProvinceInterface
+    public function findOneById(int $id): ?ProvinceInterface
     {
         return $this->find($id);
     }

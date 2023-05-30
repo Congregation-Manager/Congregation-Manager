@@ -17,7 +17,7 @@ interface TerritoryRepositoryInterface
      */
     public function findAll();
 
-    public function findOneById(AggregateRootId $id): ?TerritoryInterface;
+    public function findOneById(int $id): ?TerritoryInterface;
 
     public function add(TerritoryInterface $territory): void;
 

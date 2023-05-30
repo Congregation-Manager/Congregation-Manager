@@ -25,7 +25,7 @@ final class AppUserLoginController extends AbstractController
         $error = $this->authenticationUtils->getLastAuthenticationError();
         $lastUsername = $this->authenticationUtils->getLastUsername();
 
-        return $this->render('app/login/index.html.twig', [
+        return $this->render('@CongregationManagerApp/login/index.html.twig', [
             'last_username' => $lastUsername,
             'error' => $error,
         ]);

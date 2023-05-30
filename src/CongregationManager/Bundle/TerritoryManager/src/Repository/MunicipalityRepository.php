@@ -30,7 +30,7 @@ final class MunicipalityRepository extends ServiceEntityRepository implements Mu
         parent::__construct($registry, Municipality::class);
     }
 
-    public function findOneById(AggregateRootId $id): ?MunicipalityInterface
+    public function findOneById(int $id): ?MunicipalityInterface
     {
         return $this->find($id);
     }

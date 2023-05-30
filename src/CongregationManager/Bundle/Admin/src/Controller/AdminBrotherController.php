@@ -39,7 +39,7 @@ final class AdminBrotherController extends AbstractController
 
     public function show(Request $request, int $id): Response
     {
-        $brother = $this->brotherRepository->findOneById(new IntegerAggregateRootId($id));
+        $brother = $this->brotherRepository->findOneById($id);
         if ($brother === null) {
             throw new NotFoundHttpException();
         }
@@ -51,7 +51,7 @@ final class AdminBrotherController extends AbstractController
 
     public function invite(Request $request, int $id): Response
     {
-        $brother = $this->brotherRepository->findOneById(new IntegerAggregateRootId($id));
+        $brother = $this->brotherRepository->findOneById($id);
         if ($brother === null) {
             throw new NotFoundHttpException();
         }

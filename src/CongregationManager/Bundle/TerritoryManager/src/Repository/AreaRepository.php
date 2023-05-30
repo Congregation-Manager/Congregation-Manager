@@ -30,7 +30,7 @@ final class AreaRepository extends ServiceEntityRepository implements AreaReposi
         parent::__construct($registry, Area::class);
     }
 
-    public function findOneById(AggregateRootId $id): ?AreaInterface
+    public function findOneById(int $id): ?AreaInterface
     {
         return $this->find($id);
     }

@@ -14,7 +14,7 @@ interface BrotherRepositoryInterface
      */
     public function findAll();
 
-    public function findOneById(AggregateRootId $id): ?BrotherInterface;
+    public function findOneById(int $id): ?BrotherInterface;
 
     /**
      * @return BrotherInterface|null

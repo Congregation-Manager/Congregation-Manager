@@ -59,7 +59,7 @@ class ResetAppPasswordController extends AbstractController
             return $this->processSendingPasswordResetEmail($emailFormData, $this->mailer);
         }
 
-        return $this->render('app/reset_password/request.html.twig', [
+        return $this->render('@CongregationManagerApp/reset_password/request.html.twig', [
             'requestForm' => $form->createView(),
         ]);
     }
@@ -76,7 +76,7 @@ class ResetAppPasswordController extends AbstractController
             $resetToken = $this->resetPasswordHelper->generateFakeResetToken();
         }
 
-        return $this->render('app/reset_password/check_email.html.twig', [
+        return $this->render('@CongregationManagerApp/reset_password/check_email.html.twig', [
             'resetToken' => $resetToken,
         ]);
     }
@@ -147,7 +147,7 @@ class ResetAppPasswordController extends AbstractController
             return $this->redirectToRoute('app_dashboard');
         }
 
-        return $this->render('app/reset_password/reset.html.twig', [
+        return $this->render('@CongregationManagerApp/reset_password/reset.html.twig', [
             'resetForm' => $form->createView(),
         ]);
     }
@@ -189,7 +189,7 @@ class ResetAppPasswordController extends AbstractController
             ->from(new Address('no-reply@congregation-manager.org', 'Congregation Manager'))
             ->to($user->getEmail())
             ->subject('Your password reset request')
-            ->htmlTemplate('email/app/reset_password.html.twig')
+            ->htmlTemplate('@CongregationManagerApp/email/reset_password.html.twig')
             ->context([
                 'resetToken' => $resetToken,
             ])

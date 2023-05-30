@@ -14,7 +14,7 @@ interface CongregationRepositoryInterface
      */
     public function findAll();
 
-    public function findOneById(AggregateRootId $id): ?CongregationInterface;
+    public function findOneById(int $id): ?CongregationInterface;
 
     public function add(CongregationInterface $congregation): void;
 }

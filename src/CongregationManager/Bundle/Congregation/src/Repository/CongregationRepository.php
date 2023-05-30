@@ -30,7 +30,7 @@ final class CongregationRepository extends ServiceEntityRepository implements Co
         parent::__construct($registry, Congregation::class);
     }
 
-    public function findOneById(AggregateRootId $id): ?CongregationInterface
+    public function findOneById(int $id): ?CongregationInterface
     {
         return $this->find($id);
     }

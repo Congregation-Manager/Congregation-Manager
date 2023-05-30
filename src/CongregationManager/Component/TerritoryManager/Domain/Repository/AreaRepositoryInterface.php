@@ -14,7 +14,7 @@ interface AreaRepositoryInterface
      */
     public function findAll();
 
-    public function findOneById(AggregateRootId $id): ?AreaInterface;
+    public function findOneById(int $id): ?AreaInterface;
 
     public function add(AreaInterface $area): void;
 }

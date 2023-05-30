@@ -40,7 +40,7 @@ final class TerritoryRepository extends ServiceEntityRepository implements Terri
         $this->_em->persist($territory);
     }
 
-    public function findOneById(AggregateRootId $id): ?TerritoryInterface
+    public function findOneById(int $id): ?TerritoryInterface
     {
         return $this->find($id);
     }

@@ -189,7 +189,7 @@ class ResetAdminPasswordController extends AbstractController
             ->from(new Address('no-reply@congregation-manager.org', 'Congregation Manager'))
             ->to($user->getEmail())
             ->subject('Your password reset request')
-            ->htmlTemplate('email/admin/reset_password.html.twig')
+            ->htmlTemplate('@CongregationManagerAdmin/email/reset_password.html.twig')
             ->context([
                 'resetToken' => $resetToken,
             ])

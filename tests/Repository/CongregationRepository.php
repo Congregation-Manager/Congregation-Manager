@@ -21,7 +21,7 @@ final class CongregationRepository extends InMemoryRepository implements Congreg
         return Congregation::class;
     }
 
-    public function findOneById(AggregateRootId $id): ?CongregationInterface
+    public function findOneById(int $id): ?CongregationInterface
     {
         return $this->find($id);
     }

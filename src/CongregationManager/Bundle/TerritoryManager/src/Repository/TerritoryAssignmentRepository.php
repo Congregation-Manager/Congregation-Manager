@@ -36,7 +36,7 @@ final class TerritoryAssignmentRepository extends ServiceEntityRepository implem
             ->persist($territoryAssignment);
     }
 
-    public function findOneById(AggregateRootId $id): ?TerritoryAssignmentInterface
+    public function findOneById(int $id): ?TerritoryAssignmentInterface
     {
         return $this->find($id);
     }
