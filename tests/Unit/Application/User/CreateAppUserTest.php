@@ -10,7 +10,7 @@ use CongregationManager\Component\User\Application\CreateAppUser;
 use CongregationManager\Component\User\Domain\Hasher\UserPasswordHasherInterface;
 use CongregationManager\Component\User\Domain\Repository\AppUserRepositoryInterface;
 use CongregationManager\Component\User\Domain\UserInterface;
-use CongregationManager\Tests\Repository\AppUserRepository;
+use CongregationManager\Component\User\Infrastructure\InMemory\Repository\AppUserRepository;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
@@ -52,28 +52,31 @@ final class CreateAppUserTest extends TestCase
         $this->assertSame('info@email.com', $appUser->getEmail());
         $this->assertSame('3r34fQDEWw3d', $appUser->getPassword());
         $this->assertSame('it_IT', $appUser->getLocaleCode());
-        $this->assertSame($this->appUserRepository->findAll()->first(), $appUser);
+        $appUsers = $this->appUserRepository->appUsers;
+        $this->assertSame(reset($appUsers), $appUser);
     }
 
     public function testThatItCreatesANewAppUserWithoutPasswordIfNotSpecified(): void
     {
         $brother = new Brother('John', 'Ritz', new Congregation('Carrollton'));
-        $adminUser = $this->createAppUser->create($brother, 'info@email.com', null, 'it_IT');
+        $appUser = $this->createAppUser->create($brother, 'info@email.com', null, 'it_IT');
 
-        $this->assertSame('info@email.com', $adminUser->getEmail());
-        $this->assertNull($adminUser->getPassword());
-        $this->assertSame('it_IT', $adminUser->getLocaleCode());
-        $this->assertSame($this->appUserRepository->findAll()->first(), $adminUser);
+        $this->assertSame('info@email.com', $appUser->getEmail());
+        $this->assertNull($appUser->getPassword());
+        $this->assertSame('it_IT', $appUser->getLocaleCode());
+        $appUsers = $this->appUserRepository->appUsers;
+        $this->assertSame(reset($appUsers), $appUser);
     }
 
     public function testThatItCreatesANewAppUserWithoutLocaleIfNotSpecified(): void
     {
         $brother = new Brother('John', 'Ritz', new Congregation('Carrollton'));
-        $adminUser = $this->createAppUser->create($brother, 'info@email.com', 'p455w0rd', null);
+        $appUser = $this->createAppUser->create($brother, 'info@email.com', 'p455w0rd', null);
 
-        $this->assertSame('info@email.com', $adminUser->getEmail());
-        $this->assertSame('3r34fQDEWw3d', $adminUser->getPassword());
-        $this->assertNull($adminUser->getLocaleCode());
-        $this->assertSame($this->appUserRepository->findAll()->first(), $adminUser);
+        $this->assertSame('info@email.com', $appUser->getEmail());
+        $this->assertSame('3r34fQDEWw3d', $appUser->getPassword());
+        $this->assertNull($appUser->getLocaleCode());
+        $appUsers = $this->appUserRepository->appUsers;
+        $this->assertSame(reset($appUsers), $appUser);
     }
 }

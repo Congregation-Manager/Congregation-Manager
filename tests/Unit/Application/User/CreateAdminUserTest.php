@@ -6,9 +6,8 @@ namespace CongregationManager\Tests\Unit\Application\User;
 
 use CongregationManager\Component\User\Application\CreateAdminUser;
 use CongregationManager\Component\User\Domain\Hasher\UserPasswordHasherInterface;
-use CongregationManager\Component\User\Domain\Repository\AdminUserRepositoryInterface;
 use CongregationManager\Component\User\Domain\UserInterface;
-use CongregationManager\Tests\Repository\AdminUserRepository;
+use CongregationManager\Component\User\Infrastructure\InMemory\Repository\AdminUserRepository;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
@@ -22,7 +21,7 @@ final class CreateAdminUserTest extends TestCase
 {
     use ProphecyTrait;
 
-    private AdminUserRepositoryInterface $adminUserRepository;
+    private AdminUserRepository $adminUserRepository;
 
     private CreateAdminUser $createAdminUser;
 
@@ -48,7 +47,8 @@ final class CreateAdminUserTest extends TestCase
         $this->assertSame('info@email.com', $adminUser->getEmail());
         $this->assertSame('3r34fQDEWw3d', $adminUser->getPassword());
         $this->assertSame('it_IT', $adminUser->getLocaleCode());
-        $this->assertSame($this->adminUserRepository->findAll()->first(), $adminUser);
+        $adminUsers = $this->adminUserRepository->adminUsers;
+        $this->assertSame(reset($adminUsers), $adminUser);
     }
 
     public function testThatItCreatesANewAdminUserWithoutPasswordIfNotSpecified(): void
@@ -58,7 +58,8 @@ final class CreateAdminUserTest extends TestCase
         $this->assertSame('info@email.com', $adminUser->getEmail());
         $this->assertNull($adminUser->getPassword());
         $this->assertSame('it_IT', $adminUser->getLocaleCode());
-        $this->assertSame($this->adminUserRepository->findAll()->first(), $adminUser);
+        $adminUsers = $this->adminUserRepository->adminUsers;
+        $this->assertSame(reset($adminUsers), $adminUser);
     }
 
     public function testThatItCreatesANewAdminUserWithoutLocaleIfNotSpecified(): void
@@ -68,6 +69,7 @@ final class CreateAdminUserTest extends TestCase
         $this->assertSame('info@email.com', $adminUser->getEmail());
         $this->assertSame('3r34fQDEWw3d', $adminUser->getPassword());
         $this->assertNull($adminUser->getLocaleCode());
-        $this->assertSame($this->adminUserRepository->findAll()->first(), $adminUser);
+        $adminUsers = $this->adminUserRepository->adminUsers;
+        $this->assertSame(reset($adminUsers), $adminUser);
     }
 }

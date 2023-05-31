@@ -6,7 +6,7 @@ namespace CongregationManager\Tests\Unit\Application\Congregation;
 
 use CongregationManager\Component\Congregation\Application\CreateCongregation;
 use CongregationManager\Component\Congregation\Domain\Repository\CongregationRepositoryInterface;
-use CongregationManager\Tests\Repository\CongregationRepository;
+use CongregationManager\Component\Congregation\Infrastructure\Repository\InMemory\CongregationRepository;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -30,6 +30,7 @@ final class CreateCongregationTest extends TestCase
         $congregation = $this->createCongregation->create('Carrollton');
 
         $this->assertSame('Carrollton', $congregation->getName());
-        $this->assertSame($this->congregationRepository->findAll()->first(), $congregation);
+        $congregations = $this->congregationRepository->findAll();
+        $this->assertSame(reset($congregations), $congregation);
     }
 }

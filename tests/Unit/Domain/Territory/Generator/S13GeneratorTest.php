@@ -11,9 +11,8 @@ use CongregationManager\Component\TerritoryManager\Domain\Municipality;
 use CongregationManager\Component\TerritoryManager\Domain\Province;
 use CongregationManager\Component\TerritoryManager\Domain\Territory;
 use CongregationManager\Component\TerritoryManager\Domain\TerritoryAssignment;
-use CongregationManager\Tests\Repository\TerritoryRepository;
+use CongregationManager\Component\TerritoryManager\Infrastructure\Repository\InMemory\TerritoryRepository;
 use DateTimeImmutable;
-use Doctrine\Common\Collections\ArrayCollection;
 use PHPUnit\Framework\TestCase;
 
 class S13GeneratorTest extends TestCase
@@ -176,11 +175,12 @@ class S13GeneratorTest extends TestCase
         $this->carrolltonTerritory3->addTerritoryAssignment($this->carrolltonTerritory3Assignment6);
         $this->carrolltonTerritory3->addTerritoryAssignment($this->carrolltonTerritory3Assignment7);
 
-        $this->territoryRepository = new TerritoryRepository(new ArrayCollection([
+        $this->territoryRepository = new TerritoryRepository();
+        $this->territoryRepository->territories = [
             $this->carrolltonTerritory1,
             $this->carrolltonTerritory2,
             $this->carrolltonTerritory3,
-        ]));
+        ];
         $this->generateTerritories(50, $this->carrolltonCongregation, $area, 4);
         $this->s13Generator = new S13Generator($this->territoryRepository);
     }

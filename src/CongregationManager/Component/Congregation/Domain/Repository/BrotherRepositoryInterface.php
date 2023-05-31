@@ -16,8 +16,8 @@ interface BrotherRepositoryInterface
     public function findOneById(int $id): ?BrotherInterface;
 
     /**
+     * @param array<string, string> $criteria
      * @return BrotherInterface|null
-     * @phpstan-ignore-next-line
      */
     public function findOneBy(array $criteria);
 
