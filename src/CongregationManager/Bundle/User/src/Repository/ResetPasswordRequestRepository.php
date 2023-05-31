@@ -66,7 +66,7 @@ class ResetPasswordRequestRepository extends ServiceEntityRepository implements 
 
         /** @var SymfonyResetPasswordRequestInterface|null $resetPasswordRequest */
         $resetPasswordRequest = $queryBuilder
-            ->setParameter('user', $user, Types::INTEGER)
+            ->setParameter('user', $user)
             ->orderBy('t.requestedAt', 'DESC')
             ->setMaxResults(1)
             ->getQuery()
