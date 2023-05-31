@@ -27,7 +27,7 @@ apache_vhosts:
       extra_parameters: |
           ProxyPassMatch ^/(.*\.php(/.*)?)$ "fcgi://127.0.0.1:9000{{ apache_web_dir }}"
 
-php_version: '8.1'
+php_version: '8.2'
 php_default_version_debian: "{{ php_version }}"
 php_packages:
     - php{{ php_version }}-fpm
