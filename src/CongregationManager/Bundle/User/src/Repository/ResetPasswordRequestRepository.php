@@ -12,7 +12,6 @@ use CongregationManager\Component\User\Domain\Exception\Factory\UserInstanceNotV
 use CongregationManager\Component\User\Domain\Repository\ResetPasswordRequestRepositoryInterface;
 use CongregationManager\Component\User\Domain\UserInterface;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Doctrine\DBAL\Types\Types;
 use Doctrine\Persistence\ManagerRegistry;
 use SymfonyCasts\Bundle\ResetPassword\Model\ResetPasswordRequestInterface as SymfonyResetPasswordRequestInterface;
 use SymfonyCasts\Bundle\ResetPassword\Persistence\Repository\ResetPasswordRequestRepositoryTrait;
