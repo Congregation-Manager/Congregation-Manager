@@ -1,3 +1,0 @@
-_admin:
-    resource: "_admin/*.yaml"
-    prefix: '/%app_admin.path_name%'
