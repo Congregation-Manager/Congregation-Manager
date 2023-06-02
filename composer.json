@@ -19,7 +19,7 @@
             "CongregationManager\\Bundle\\User\\": "src/CongregationManager/Bundle/User/src/",
             "CongregationManager\\Component\\Congregation\\": "src/CongregationManager/Component/Congregation/src",
             "CongregationManager\\Component\\User\\": "src/CongregationManager/Component/User/src/",
-            "CongregationManager\\Component\\Core\\": "src/CongregationManager/Component/Core/",
+            "CongregationManager\\Component\\Core\\": "src/CongregationManager/Component/Core/src/",
             "CongregationManager\\Contract\\Resource\\": "src/CongregationManager/Contract/Resource/",
             "CongregationManager\\Component\\TerritoryManager\\": "src/CongregationManager/Component/TerritoryManager/src/"
         }
@@ -36,6 +36,7 @@
             "CongregationManager\\Component\\Congregation\\Tests\\": "src/CongregationManager/Component/Congregation/tests/",
             "CongregationManager\\Component\\User\\Tests\\": "src/CongregationManager/Component/User/tests/",
             "CongregationManager\\Component\\TerritoryManager\\Tests\\": "src/CongregationManager/Component/TerritoryManager/tests/",
+            "CongregationManager\\Component\\Core\\Tests\\": "src/CongregationManager/Component/Core/tests/",
             "CongregationManager\\Tests\\": "tests/"
         }
     },
