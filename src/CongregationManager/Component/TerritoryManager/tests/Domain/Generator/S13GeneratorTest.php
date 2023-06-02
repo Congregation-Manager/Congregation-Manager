@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace CongregationManager\Tests\Unit\Domain\Territory\Generator;
+namespace CongregationManager\Component\TerritoryManager\Tests\Domain\Generator;
 
 use CongregationManager\Component\Congregation\Domain\Congregation;
 use CongregationManager\Component\TerritoryManager\Domain\Area;
