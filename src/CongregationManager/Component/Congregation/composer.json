@@ -18,7 +18,12 @@
     ],
     "autoload": {
         "psr-4": {
-            "CongregationManager\\Component\\Congregation\\": ""
+            "CongregationManager\\Component\\Congregation\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "CongregationManager\\Component\\Congregation\\Tests\\": "tests"
         }
     },
     "repositories": [
