@@ -37,7 +37,7 @@
             "CongregationManager\\Component\\User\\Tests\\": "src/CongregationManager/Component/User/tests/",
             "CongregationManager\\Component\\TerritoryManager\\Tests\\": "src/CongregationManager/Component/TerritoryManager/tests/",
             "CongregationManager\\Component\\Core\\Tests\\": "src/CongregationManager/Component/Core/tests/",
-            "CongregationManager\\Contract\\Resource\\Tests": "src/CongregationManager/Contract/Resource/tests/",
+            "CongregationManager\\Contract\\Resource\\Tests\\": "src/CongregationManager/Contract/Resource/tests/",
             "CongregationManager\\Tests\\": "tests/"
         }
     },

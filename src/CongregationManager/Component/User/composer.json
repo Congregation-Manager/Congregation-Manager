@@ -22,7 +22,7 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "CongregationManager\\Component\\User\\Tests": "tests"
+            "CongregationManager\\Component\\User\\Tests\\": "tests"
         }
     },
     "repositories": [
