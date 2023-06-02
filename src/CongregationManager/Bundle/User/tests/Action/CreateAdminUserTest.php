@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace CongregationManager\Tests\Unit\Infrastructure\User\Action;
+namespace CongregationManager\Bundle\User\Tests\Action;
 
 use CongregationManager\Bundle\User\Action\CreateAdminUser;
 use CongregationManager\Component\User\Domain\Hasher\UserPasswordHasherInterface;
