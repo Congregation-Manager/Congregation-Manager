@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace CongregationManager\Tests\Unit\Application\User;
+namespace CongregationManager\Component\User\Tests\Application;
 
 use CongregationManager\Component\Congregation\Domain\Brother;
 use CongregationManager\Component\Congregation\Domain\Congregation;
