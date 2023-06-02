@@ -1,5 +1,5 @@
 {
-    "name": "lruozzi9/congregation-bundle",
+    "name": "congregation-manager/congregation-bundle",
     "type": "library",
     "description": "Congregation base for Symfony applications.",
     "keywords": [
@@ -7,7 +7,7 @@
         "congregation-manager",
         "brother"
     ],
-    "homepage": "https://github.com/lruozzi9/congregation-manager",
+    "homepage": "https://github.com/congregation-manager/congregation-manager",
     "license": "proprietary",
     "authors": [
         {

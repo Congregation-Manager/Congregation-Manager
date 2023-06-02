@@ -1,12 +1,12 @@
 {
-    "name": "lruozzi9/admin-bundle",
+    "name": "congregation-manager/admin-bundle",
     "type": "library",
     "description": "Congregation Manager administration on Symfony.",
     "keywords": [
         "admin",
         "congregation-manager"
     ],
-    "homepage": "https://github.com/lruozzi9/congregation-manager",
+    "homepage": "https://github.com/congregation-manager/congregation-manager",
     "license": "proprietary",
     "authors": [
         {

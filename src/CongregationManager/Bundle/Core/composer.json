@@ -1,12 +1,12 @@
 {
-    "name": "lruozzi9/core-bundle",
+    "name": "congregation-manager/core-bundle",
     "type": "library",
     "description": "Congregation Manager core Symfony bundle. It integrates all other bundles into a full stack Symfony solution.",
     "keywords": [
         "congregation-manager",
         "symfony"
     ],
-    "homepage": "https://github.com/lruozzi9/congregation-manager",
+    "homepage": "https://github.com/congregation-manager/congregation-manager",
     "license": "proprietary",
     "authors": [
         {

@@ -1,5 +1,5 @@
 {
-    "name": "lruozzi9/territory-manager",
+    "name": "congregation-manager/territory-manager",
     "type": "library",
     "description": "Territory Manager for PHP applications.",
     "keywords": [
@@ -8,7 +8,7 @@
         "territory-manager",
         "php"
     ],
-    "homepage": "https://github.com/lruozzi9/congregation-manager",
+    "homepage": "https://github.com/congregation-manager/congregation-manager",
     "license": "proprietary",
     "authors": [
         {

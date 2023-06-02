@@ -1,12 +1,12 @@
 {
-    "name": "lruozzi9/app-bundle",
+    "name": "congregation-manager/app-bundle",
     "type": "library",
     "description": "Congregation Manager application on Symfony.",
     "keywords": [
         "app",
         "congregation-manager"
     ],
-    "homepage": "https://github.com/lruozzi9/congregation-manager",
+    "homepage": "https://github.com/congregation-manager/congregation-manager",
     "license": "proprietary",
     "authors": [
         {

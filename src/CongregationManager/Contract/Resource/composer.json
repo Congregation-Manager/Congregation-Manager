@@ -1,5 +1,5 @@
 {
-    "name": "lruozzi9/resource-contract",
+    "name": "congregation-manager/resource-contract",
     "type": "library",
     "description": "Generic resource base for models on PHP applications.",
     "keywords": [
@@ -7,7 +7,7 @@
         "congregation-manager",
         "php"
     ],
-    "homepage": "https://github.com/lruozzi9/congregation-manager",
+    "homepage": "https://github.com/congregation-manager/congregation-manager",
     "license": "proprietary",
     "authors": [
         {

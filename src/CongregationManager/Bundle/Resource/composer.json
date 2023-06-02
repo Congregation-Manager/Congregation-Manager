@@ -1,5 +1,5 @@
 {
-    "name": "lruozzi9/resource-bundle",
+    "name": "congregation-manager/resource-bundle",
     "type": "library",
     "description": "Resource contract Symfony bundle.",
     "keywords": [
@@ -7,7 +7,7 @@
         "symfony",
         "resource"
     ],
-    "homepage": "https://github.com/lruozzi9/congregation-manager",
+    "homepage": "https://github.com/congregation-manager/congregation-manager",
     "license": "proprietary",
     "authors": [
         {

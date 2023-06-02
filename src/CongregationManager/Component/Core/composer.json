@@ -1,12 +1,12 @@
 {
-    "name": "lruozzi9/core",
+    "name": "congregation-manager/core",
     "type": "library",
     "description": "Congregation Manager suite for PHP applications.",
     "keywords": [
         "congregation-manager",
         "php"
     ],
-    "homepage": "https://github.com/lruozzi9/congregation-manager",
+    "homepage": "https://github.com/congregation-manager/congregation-manager",
     "license": "proprietary",
     "authors": [
         {
