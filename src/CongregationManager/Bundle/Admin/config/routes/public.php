@@ -19,13 +19,15 @@ return static function (RoutingConfigurator $routes) {
     ;
 
     $routes->add('admin_switch_locale', '/switch-locale/{locale}')
-        ->controller(['cm.controller.admin_locale', 'switchLocale'])
-        ->defaults(['locale' => '%supported_locales%'])
+        ->controller(['congregation_manager_admin.controller.locale', 'switchLocale'])
+        ->defaults([
+            'locale' => '%supported_locales%',
+        ])
         ->methods(['GET'])
     ;
 
     $routes->add('admin_login', '/login')
-        ->controller(['cm.controller.admin_user_login', 'index'])
+        ->controller(['congregation_manager_admin.controller.login', 'index'])
         ->methods(['GET'])
     ;
 
@@ -38,18 +40,20 @@ return static function (RoutingConfigurator $routes) {
     ;
 
     $routes->add('admin_forgot_password_request', '/reset-password')
-        ->controller(['cm.controller.reset_admin_password', 'request'])
+        ->controller(['congregation_manager_admin.controller.reset_password', 'request'])
         ->methods(['GET', 'POST'])
     ;
 
     $routes->add('admin_check_email', '/reset-password/check-email')
-        ->controller(['cm.controller.reset_admin_password', 'checkEmail'])
+        ->controller(['congregation_manager_admin.controller.reset_password', 'checkEmail'])
         ->methods(['GET'])
     ;
 
     $routes->add('admin_reset_password', '/reset-password/reset/{token}')
-        ->controller(['cm.controller.reset_admin_password', 'reset'])
-        ->defaults(['token' => null])
+        ->controller(['congregation_manager_admin.controller.reset_password', 'reset'])
+        ->defaults([
+            'token' => null,
+        ])
         ->methods(['GET', 'POST'])
     ;
 };

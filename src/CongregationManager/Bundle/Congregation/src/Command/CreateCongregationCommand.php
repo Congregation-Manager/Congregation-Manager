@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace CongregationManager\Bundle\Congregation\Command;
 
-use CongregationManager\Bundle\Core\Utils\Validator\Validator;
 use CongregationManager\Component\Congregation\Application\CreateCongregation;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Command\LockableTrait;
+use Symfony\Component\Console\Exception\InvalidArgumentException;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
@@ -32,7 +32,6 @@ final class CreateCongregationCommand extends Command
     private string $congregationName;
 
     public function __construct(
-        private Validator $validator,
         private CreateCongregation $createCongregation,
         private EntityManagerInterface $entityManager,
         string $name = null
@@ -58,7 +57,7 @@ final class CreateCongregationCommand extends Command
         $this->io->title('Create Congregation command interactive wizard');
         $this->io->text(['Now we\'ll ask you for the value of the necessary arguments.']);
 
-        $congregationName = $this->io->ask('Congregation name', null, [$this->validator, 'validateString']);
+        $congregationName = $this->io->ask('Congregation name', null, [$this, 'validateString']);
         Assert::string($congregationName);
         $this->congregationName = $congregationName;
     }
@@ -101,5 +100,14 @@ final class CreateCongregationCommand extends Command
 
             The command will ask you to provide the necessary arguments like the name of the congregation.
         CODE_SAMPLE;
+    }
+
+    private function validateString(?string $string): string
+    {
+        if (empty($string)) {
+            throw new InvalidArgumentException('The string can not be empty.');
+        }
+
+        return $string;
     }
 }

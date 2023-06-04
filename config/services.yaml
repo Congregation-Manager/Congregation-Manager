@@ -3,9 +3,6 @@ parameters:
     default_locale: 'en'
     supported_locales: en|it
 
-imports:
-    - { resource: "services/*.yaml" }
-
 services:
     _defaults:
         autowire: false

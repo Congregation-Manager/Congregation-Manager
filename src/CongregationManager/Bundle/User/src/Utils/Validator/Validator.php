@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace CongregationManager\Bundle\Core\Utils\Validator;
+namespace CongregationManager\Bundle\User\Utils\Validator;
 
 use Symfony\Component\Console\Exception\InvalidArgumentException;
 use function Symfony\Component\String\u;

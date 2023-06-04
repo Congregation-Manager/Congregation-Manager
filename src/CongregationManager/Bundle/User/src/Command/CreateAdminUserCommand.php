@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace CongregationManager\Bundle\User\Command;
 
-use CongregationManager\Bundle\Core\Utils\Validator\Validator;
 use CongregationManager\Bundle\User\Action\CreateAdminUser;
+use CongregationManager\Bundle\User\Utils\Validator\Validator;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Command\LockableTrait;
