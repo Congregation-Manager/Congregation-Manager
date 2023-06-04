@@ -28,7 +28,8 @@ final class CreateAdminUserCommandTest extends KernelTestCase
     {
         $this->executeCommand([], ['admin@cm.org', 'password', 'en']);
 
-        $adminUsers = self::getContainer()->get('cm.repository.admin_user')->findAll();
+        $adminUserRepository = self::getContainer()->get('congregation_manager_user.repository.admin_user');
+        $adminUsers = $adminUserRepository->findAll();
         $this->assertCount(1, $adminUsers);
 
         $adminUser = $adminUsers[0];
@@ -43,7 +44,8 @@ final class CreateAdminUserCommandTest extends KernelTestCase
     {
         $this->executeCommand([], ['admin@cm.org', 'password', null]);
 
-        $adminUsers = self::getContainer()->get('cm.repository.admin_user')->findAll();
+        $adminUserRepository = self::getContainer()->get('congregation_manager_user.repository.admin_user');
+        $adminUsers = $adminUserRepository->findAll();
         $this->assertCount(1, $adminUsers);
 
         $adminUser = $adminUsers[0];
@@ -72,7 +74,7 @@ final class CreateAdminUserCommandTest extends KernelTestCase
 
         // this uses a special testing container that allows you to fetch private services
         /** @var Command $command */
-        $command = static::getContainer()->get('cm.command.create_admin_user');
+        $command = static::getContainer()->get('congregation_manager_user.command.craete_admin_user');
         $command->setApplication(new Application(self::$kernel));
 
         $commandTester = new CommandTester($command);

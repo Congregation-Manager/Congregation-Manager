@@ -36,7 +36,9 @@ final class CreateCongregationCommandTest extends KernelTestCase
     {
         $this->executeCommand([], array_values($this->congregationData));
 
-        $congregations = self::getContainer()->get('cm.repository.congregation')->findAll();
+        $congregations = self::getContainer()->get(
+            'congregation_manager_congregation.repository.congregation'
+        )->findAll();
         $this->assertCount(1, $congregations);
         $congregation = $congregations[0];
         $this->assertInstanceOf(CongregationInterface::class, $congregation);
@@ -57,7 +59,7 @@ final class CreateCongregationCommandTest extends KernelTestCase
 
         // this uses a special testing container that allows you to fetch private services
         /** @var Command $command */
-        $command = static::getContainer()->get('cm.command.create_congregation');
+        $command = static::getContainer()->get('congregation_manager_congregation.command.create_congregation');
         $command->setApplication(new Application(self::$kernel));
 
         $commandTester = new CommandTester($command);

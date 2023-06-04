@@ -51,7 +51,7 @@ final class AdminChangePasswordController extends AbstractController
                 ));
             }
             // Encode(hash) the plain password, and set it.
-            $encodedPassword = $this->userPasswordHasher->hashPassword($user, $plainPassword);
+            $encodedPassword = $this->userPasswordHasher->hashPasswordForUser($plainPassword, $user);
 
             $user->setPassword($encodedPassword);
             $this->entityManager->flush();

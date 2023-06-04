@@ -9,6 +9,7 @@ use CongregationManager\Component\Congregation\Domain\Congregation;
 use CongregationManager\Component\Congregation\Domain\Repository\BrotherRepositoryInterface;
 use CongregationManager\Component\Congregation\Infrastructure\Repository\InMemory\BrotherRepository;
 use DateTime;
+use DateTimeInterface;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -45,8 +46,12 @@ final class CreateBrotherTest extends TestCase
         $this->assertSame('Junior', $brother->getMiddleName());
         $this->assertSame($congregation, $brother->getCongregation());
         $this->assertTrue($brother->isMale());
-        $this->assertSame((new DateTime('1976-04-23'))->format('d/m/Y'), $brother->getBirthDate()->format('d/m/Y'));
-        $this->assertSame((new DateTime('1988-06-12'))->format('d/m/Y'), $brother->getBaptismDate()->format('d/m/Y'));
+        $birthDate = $brother->getBirthDate();
+        self::assertInstanceOf(DateTimeInterface::class, $birthDate);
+        $this->assertSame((new DateTime('1976-04-23'))->format('d/m/Y'), $birthDate->format('d/m/Y'));
+        $baptismDate = $brother->getBaptismDate();
+        self::assertInstanceOf(DateTimeInterface::class, $baptismDate);
+        $this->assertSame((new DateTime('1988-06-12'))->format('d/m/Y'), $baptismDate->format('d/m/Y'));
         $brothers = $this->brotherRepository->findAll();
         $this->assertSame(reset($brothers), $brother);
     }

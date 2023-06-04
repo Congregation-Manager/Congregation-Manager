@@ -22,6 +22,12 @@
                 <file name="src/CongregationManager/Bundle/TerritoryManager/src/Renderer/WordS13Renderer.php"/>
             </errorLevel>
         </InvalidScalarArgument>
+        <PropertyNotSetInConstructor>
+            <errorLevel type="suppress">
+                <directory name="src/CongregationManager/Bundle/*/tests"/>
+                <directory name="src/CongregationManager/Component/*/tests"/>
+            </errorLevel>
+        </PropertyNotSetInConstructor>
     </issueHandlers>
     <plugins>
         <pluginClass class="Psalm\SymfonyPsalmPlugin\Plugin">

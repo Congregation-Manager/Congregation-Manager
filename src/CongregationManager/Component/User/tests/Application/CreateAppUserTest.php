@@ -7,40 +7,26 @@ namespace CongregationManager\Component\User\Tests\Application;
 use CongregationManager\Component\Congregation\Domain\Brother;
 use CongregationManager\Component\Congregation\Domain\Congregation;
 use CongregationManager\Component\User\Application\CreateAppUser;
-use CongregationManager\Component\User\Domain\Hasher\UserPasswordHasherInterface;
-use CongregationManager\Component\User\Domain\Repository\AppUserRepositoryInterface;
-use CongregationManager\Component\User\Domain\UserInterface;
+use CongregationManager\Component\User\Infrastructure\InMemory\Hasher\UserPasswordHasher;
 use CongregationManager\Component\User\Infrastructure\InMemory\Repository\AppUserRepository;
 use PHPUnit\Framework\TestCase;
-use Prophecy\Argument;
-use Prophecy\PhpUnit\ProphecyTrait;
-use Prophecy\Prophecy\ObjectProphecy;
 
 /**
  * @internal
- * @coversNothing
  */
 final class CreateAppUserTest extends TestCase
 {
-    use ProphecyTrait;
-
-    private AppUserRepositoryInterface $appUserRepository;
+    private AppUserRepository $appUserRepository;
 
     private CreateAppUser $createAppUser;
 
-    /**
-     * @var ObjectProphecy|UserPasswordHasherInterface
-     */
-    private $userPasswordHasher;
+    private UserPasswordHasher $userPasswordHasher;
 
     protected function setUp(): void
     {
         $this->appUserRepository = new AppUserRepository();
-        $this->userPasswordHasher = $this->prophesize(UserPasswordHasherInterface::class);
-        $this->userPasswordHasher->hashPasswordForUser('p455w0rd', Argument::type(UserInterface::class))->willReturn(
-            '3r34fQDEWw3d'
-        );
-        $this->createAppUser = new CreateAppUser($this->appUserRepository, $this->userPasswordHasher->reveal());
+        $this->userPasswordHasher = new UserPasswordHasher();
+        $this->createAppUser = new CreateAppUser($this->appUserRepository, $this->userPasswordHasher);
     }
 
     public function testThatItCreatesANewAppUser(): void
@@ -50,7 +36,10 @@ final class CreateAppUserTest extends TestCase
 
         $this->assertSame($brother, $appUser->getBrother());
         $this->assertSame('info@email.com', $appUser->getEmail());
-        $this->assertSame('3r34fQDEWw3d', $appUser->getPassword());
+        $this->assertSame(
+            $this->userPasswordHasher->hashPasswordForUser('p455w0rd', $appUser),
+            $appUser->getPassword()
+        );
         $this->assertSame('it_IT', $appUser->getLocaleCode());
         $appUsers = $this->appUserRepository->appUsers;
         $this->assertSame(reset($appUsers), $appUser);
@@ -74,7 +63,10 @@ final class CreateAppUserTest extends TestCase
         $appUser = $this->createAppUser->create($brother, 'info@email.com', 'p455w0rd', null);
 
         $this->assertSame('info@email.com', $appUser->getEmail());
-        $this->assertSame('3r34fQDEWw3d', $appUser->getPassword());
+        $this->assertSame(
+            $this->userPasswordHasher->hashPasswordForUser('p455w0rd', $appUser),
+            $appUser->getPassword()
+        );
         $this->assertNull($appUser->getLocaleCode());
         $appUsers = $this->appUserRepository->appUsers;
         $this->assertSame(reset($appUsers), $appUser);

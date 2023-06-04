@@ -9,6 +9,8 @@ use CongregationManager\Component\TerritoryManager\Domain\Area;
 use CongregationManager\Component\TerritoryManager\Domain\Generator\S13Generator;
 use CongregationManager\Component\TerritoryManager\Domain\Municipality;
 use CongregationManager\Component\TerritoryManager\Domain\Province;
+use CongregationManager\Component\TerritoryManager\Domain\S13\Page;
+use CongregationManager\Component\TerritoryManager\Domain\S13\Row;
 use CongregationManager\Component\TerritoryManager\Domain\Territory;
 use CongregationManager\Component\TerritoryManager\Domain\TerritoryAssignment;
 use CongregationManager\Component\TerritoryManager\Infrastructure\Repository\InMemory\TerritoryRepository;
@@ -192,13 +194,21 @@ class S13GeneratorTest extends TestCase
 
         $firstPage = $s13->getPages()
             ->first();
+        self::assertInstanceOf(Page::class, $firstPage);
         self::assertEquals(2023, $firstPage->getServiceYear());
         self::assertCount(20, $firstPage->getRows());
-        self::assertCount(20, $s13->getPages()->get(1)->getRows());
-        self::assertCount(10, $s13->getPages()->get(2)->getRows());
+        $secondPage = $s13->getPages()
+            ->get(1);
+        self::assertInstanceOf(Page::class, $secondPage);
+        self::assertCount(20, $secondPage->getRows());
+        $thirdPage = $s13->getPages()
+            ->get(2);
+        self::assertInstanceOf(Page::class, $thirdPage);
+        self::assertCount(10, $thirdPage->getRows());
 
         $territory1Row = $firstPage->getRows()
             ->get(0);
+        self::assertInstanceOf(Row::class, $territory1Row);
         self::assertEquals($this->carrolltonTerritory1, $territory1Row->getTerritory());
         self::assertEquals(
             $this->carrolltonTerritory1Assignment1->getRevocationDate(),
@@ -211,6 +221,7 @@ class S13GeneratorTest extends TestCase
 
         $territory2Row = $firstPage->getRows()
             ->get(1);
+        self::assertInstanceOf(Row::class, $territory2Row);
         self::assertEquals($this->carrolltonTerritory2, $territory2Row->getTerritory());
         self::assertNull($territory2Row->getLastRevocationDate());
         self::assertEquals($this->carrolltonTerritory2Assignment1, $territory2Row->getTerritoryAssignments()->get(1));
@@ -220,6 +231,7 @@ class S13GeneratorTest extends TestCase
 
         $territory3Row = $firstPage->getRows()
             ->get(2);
+        self::assertInstanceOf(Row::class, $territory3Row);
         self::assertEquals($this->carrolltonTerritory3, $territory3Row->getTerritory());
         self::assertEquals(
             $this->carrolltonTerritory3Assignment1->getRevocationDate(),

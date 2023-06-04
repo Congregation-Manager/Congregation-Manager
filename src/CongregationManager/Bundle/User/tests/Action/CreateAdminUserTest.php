@@ -6,12 +6,10 @@ namespace CongregationManager\Bundle\User\Tests\Action;
 
 use CongregationManager\Bundle\User\Action\CreateAdminUser;
 use CongregationManager\Component\User\Domain\Hasher\UserPasswordHasherInterface;
-use CongregationManager\Component\User\Domain\UserInterface;
+use CongregationManager\Component\User\Infrastructure\InMemory\Hasher\UserPasswordHasher;
 use CongregationManager\Component\User\Infrastructure\InMemory\Repository\AdminUserRepository;
 use PHPUnit\Framework\TestCase;
-use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
-use Prophecy\Prophecy\ObjectProphecy;
 
 /**
  * @internal
@@ -25,19 +23,13 @@ final class CreateAdminUserTest extends TestCase
 
     private CreateAdminUser $createAdminUser;
 
-    /**
-     * @var ObjectProphecy|UserPasswordHasherInterface
-     */
-    private $userPasswordHasher;
+    private UserPasswordHasherInterface $userPasswordHasher;
 
     protected function setUp(): void
     {
         $this->adminUserRepository = new AdminUserRepository();
-        $this->userPasswordHasher = $this->prophesize(UserPasswordHasherInterface::class);
-        $this->userPasswordHasher->hashPasswordForUser('p455w0rd', Argument::type(UserInterface::class))->willReturn(
-            '3r34fQDEWw3d'
-        );
-        $this->createAdminUser = new CreateAdminUser($this->adminUserRepository, $this->userPasswordHasher->reveal());
+        $this->userPasswordHasher = new UserPasswordHasher();
+        $this->createAdminUser = new CreateAdminUser($this->adminUserRepository, $this->userPasswordHasher);
     }
 
     public function testThatItCreatesANewAdminUser(): void
@@ -45,7 +37,10 @@ final class CreateAdminUserTest extends TestCase
         $adminUser = $this->createAdminUser->create('info@email.com', 'p455w0rd', 'it_IT');
 
         $this->assertSame('info@email.com', $adminUser->getEmail());
-        $this->assertSame('3r34fQDEWw3d', $adminUser->getPassword());
+        $this->assertSame(
+            $this->userPasswordHasher->hashPasswordForUser('p455w0rd', $adminUser),
+            $adminUser->getPassword()
+        );
         $this->assertSame('it_IT', $adminUser->getLocaleCode());
         $adminUsers = $this->adminUserRepository->adminUsers;
         $this->assertSame(reset($adminUsers), $adminUser);
@@ -67,7 +62,10 @@ final class CreateAdminUserTest extends TestCase
         $adminUser = $this->createAdminUser->create('info@email.com', 'p455w0rd', null);
 
         $this->assertSame('info@email.com', $adminUser->getEmail());
-        $this->assertSame('3r34fQDEWw3d', $adminUser->getPassword());
+        $this->assertSame(
+            $this->userPasswordHasher->hashPasswordForUser('p455w0rd', $adminUser),
+            $adminUser->getPassword()
+        );
         $this->assertNull($adminUser->getLocaleCode());
         $adminUsers = $this->adminUserRepository->adminUsers;
         $this->assertSame(reset($adminUsers), $adminUser);
