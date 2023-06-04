@@ -12,9 +12,9 @@ services:
     cm.test.behat.context.transform.brother:
         class: CongregationManager\Tests\Behat\Context\Transform\BrotherContext
         arguments:
-            - '@cm.repository.brother'
+            - '@congregation_manager_congregation.repository.brother'
 
     cm.test.behat.context.transform.territory:
         class: CongregationManager\Tests\Behat\Context\Transform\TerritoryContext
         arguments:
-            - '@cm.repository.territory'
+            - '@congregation_manager_territory_manager.repository.territory'
