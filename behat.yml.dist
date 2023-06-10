@@ -1,5 +1,5 @@
 imports:
-    - tests/Behat/Resources/config/suites.yaml
+    - src/CongregationManager/Behat/config/suites.yaml
 
 default:
     extensions:

@@ -26,8 +26,24 @@
             <errorLevel type="suppress">
                 <directory name="src/CongregationManager/Bundle/*/tests"/>
                 <directory name="src/CongregationManager/Component/*/tests"/>
+                <directory name="src/CongregationManager/Behat/"/>
             </errorLevel>
         </PropertyNotSetInConstructor>
+        <MixedReturnTypeCoercion>
+            <errorLevel type="suppress">
+                <directory name="src/CongregationManager/Behat/"/>
+            </errorLevel>
+        </MixedReturnTypeCoercion>
+        <InternalMethod>
+            <errorLevel type="suppress">
+                <directory name="src/CongregationManager/Behat/"/>
+            </errorLevel>
+        </InternalMethod>
+        <NonInvariantDocblockPropertyType>
+            <errorLevel type="suppress">
+                <directory name="src/CongregationManager/Behat/"/>
+            </errorLevel>
+        </NonInvariantDocblockPropertyType>
     </issueHandlers>
     <plugins>
         <pluginClass class="Psalm\SymfonyPsalmPlugin\Plugin">

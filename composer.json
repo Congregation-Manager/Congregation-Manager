@@ -38,7 +38,8 @@
             "CongregationManager\\Component\\TerritoryManager\\Tests\\": "src/CongregationManager/Component/TerritoryManager/tests/",
             "CongregationManager\\Component\\Core\\Tests\\": "src/CongregationManager/Component/Core/tests/",
             "CongregationManager\\Contract\\Resource\\Tests\\": "src/CongregationManager/Contract/Resource/tests/",
-            "CongregationManager\\Tests\\": "tests/"
+            "CongregationManager\\Behat\\": "src/CongregationManager/Behat/src/",
+            "CongregationManager\\Behat\\Tests\\": "src/CongregationManager/Behat/tests/"
         }
     },
     "config": {

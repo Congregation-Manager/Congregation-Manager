@@ -1,0 +1,35 @@
+{
+    "name": "congregation-manager/behat",
+    "type": "library",
+    "description": "Congregation Manager Behat suite.",
+    "keywords": [
+        "behat",
+        "congregation-manager"
+    ],
+    "homepage": "https://github.com/congregation-manager/congregation-manager",
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "Lorenzo Ruozzi",
+            "homepage": "https://lruozzi9.github.io"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "CongregationManager\\Behat\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "CongregationManager\\Behat\\Tests\\": "tests/"
+        }
+    },
+    "repositories": [
+        {
+            "type": "path",
+            "url": "../../*/*"
+        }
+    ],
+    "minimum-stability": "stable",
+    "prefer-stable": true
+}

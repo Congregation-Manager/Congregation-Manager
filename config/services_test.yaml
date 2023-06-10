@@ -1,5 +1,5 @@
 imports:
-    - { resource: "../tests/Behat/Resources/config/services/**/*.yaml" }
+    - { resource: "../src/CongregationManager/Behat/config/services.php" }
 
 services:
     _defaults:

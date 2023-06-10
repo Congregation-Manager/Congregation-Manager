@@ -1,0 +1,31 @@
+default:
+    suites:
+        ui_app_locales_features:
+            contexts:
+                - congregation_manager_behat.context.hook.doctrine
+
+                - congregation_manager_behat.context.transform.user
+
+                - congregation_manager_behat.context.setup.account
+                - congregation_manager_behat.context.setup.browser
+                - congregation_manager_behat.context.setup.brother
+                - congregation_manager_behat.context.setup.congregation
+
+                - congregation_manager_behat.context.ui.app.account
+                - congregation_manager_behat.context.ui.app.locale
+            filters:
+                tags: "@locales&&@ui&&@app"
+
+        ui_admin_locales_features:
+            contexts:
+                - congregation_manager_behat.context.hook.doctrine
+
+                - congregation_manager_behat.context.transform.user
+
+                - congregation_manager_behat.context.setup.account
+                - congregation_manager_behat.context.setup.browser
+
+                - congregation_manager_behat.context.ui.admin.account
+                - congregation_manager_behat.context.ui.admin.locale
+            filters:
+                tags: "@locales&&@ui&&@admin"

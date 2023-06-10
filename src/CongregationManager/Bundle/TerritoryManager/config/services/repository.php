@@ -38,7 +38,8 @@ return static function (ContainerConfigurator $containerConfigurator) {
         ->tag('doctrine.repository_service')
     ;
 
-    $services->set('congregation_manager_territory_manager.repository.territory', TerritoryRepository::class)
+    $services->alias('congregation_manager_territory_manager.repository.territory', TerritoryRepository::class);
+    $services->set(TerritoryRepository::class)
         ->args([service('doctrine')])
         ->tag('doctrine.repository_service')
     ;

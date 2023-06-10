@@ -1,0 +1,19 @@
+default:
+    suites:
+        ui_app_territory_features:
+            contexts:
+                - congregation_manager_behat.context.hook.doctrine
+
+                - congregation_manager_behat.context.transform.brother
+                - congregation_manager_behat.context.transform.territory
+
+                - congregation_manager_behat.context.setup.account
+                - congregation_manager_behat.context.setup.brother
+                - congregation_manager_behat.context.setup.congregation
+                - congregation_manager_behat.context.setup.territory
+                - congregation_manager_behat.context.setup.territory_assignment
+
+                - congregation_manager_behat.context.ui.app.territory
+                - congregation_manager_behat.context.ui.app.territory_assignment
+            filters:
+                tags: "@territory&&@ui&&@app"

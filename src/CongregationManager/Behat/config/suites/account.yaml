@@ -1,0 +1,31 @@
+default:
+    suites:
+        ui_app_account_features:
+            contexts:
+                - congregation_manager_behat.context.hook.doctrine
+                - congregation_manager_behat.context.hook.email_spool
+
+                - congregation_manager_behat.context.setup.account
+                - congregation_manager_behat.context.setup.brother
+                - congregation_manager_behat.context.setup.congregation
+
+                - congregation_manager_behat.context.ui.app.account
+                - congregation_manager_behat.context.ui.email
+            filters:
+                tags: "@account&&@ui&&@app"
+
+        ui_admin_account_features:
+            contexts:
+                - congregation_manager_behat.context.hook.doctrine
+                - congregation_manager_behat.context.hook.email_spool
+
+                - congregation_manager_behat.context.transform.brother
+
+                - congregation_manager_behat.context.setup.account
+                - congregation_manager_behat.context.setup.brother
+                - congregation_manager_behat.context.setup.congregation
+
+                - congregation_manager_behat.context.ui.admin.account
+                - congregation_manager_behat.context.ui.email
+            filters:
+                tags: "@account&&@ui&&@admin"
