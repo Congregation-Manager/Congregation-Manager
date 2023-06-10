@@ -26,6 +26,7 @@
     },
     "autoload-dev": {
         "psr-4": {
+            "CongregationManager\\": "src/",
             "CongregationManager\\Bundle\\Admin\\Tests\\": "src/CongregationManager/Bundle/Admin/tests/",
             "CongregationManager\\Bundle\\App\\Tests\\": "src/CongregationManager/Bundle/App/tests/",
             "CongregationManager\\Bundle\\Congregation\\Tests\\": "src/CongregationManager/Bundle/Congregation/tests/",
