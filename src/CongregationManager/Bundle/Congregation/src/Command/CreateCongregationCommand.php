@@ -102,7 +102,7 @@ final class CreateCongregationCommand extends Command
         CODE_SAMPLE;
     }
 
-    private function validateString(?string $string): string
+    public function validateString(?string $string): string
     {
         if (empty($string)) {
             throw new InvalidArgumentException('The string can not be empty.');
