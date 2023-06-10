@@ -15,6 +15,6 @@ return static function (ContainerConfigurator $containerConfigurator) {
     ;
 
     $services->set('congregation_manager_core.converter.locale', LocaleConverter::class)
-        ->arg('$defaultLocale', (string) param('%default_locale%'))
+        ->arg('$defaultLocale', (string) param('default_locale'))
     ;
 };
