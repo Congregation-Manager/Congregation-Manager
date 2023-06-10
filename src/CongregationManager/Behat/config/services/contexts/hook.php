@@ -9,7 +9,8 @@ use CongregationManager\Behat\Context\Hook\EmailSpoolContext;
 
 return static function (ContainerConfigurator $containerConfigurator) {
     $services = $containerConfigurator->services();
-    $services->defaults()->public();
+    $services->defaults()
+        ->public();
 
     $services->set('congregation_manager_behat.context.hook.doctrine', DoctrineORMContext::class)
         ->args([service('doctrine.orm.entity_manager')])

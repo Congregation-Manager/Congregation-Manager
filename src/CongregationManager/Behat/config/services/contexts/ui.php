@@ -11,7 +11,8 @@ use CongregationManager\Behat\Context\Ui\EmailContext;
 
 return static function (ContainerConfigurator $containerConfigurator) {
     $services = $containerConfigurator->services();
-    $services->defaults()->public();
+    $services->defaults()
+        ->public();
 
     $services->set('congregation_manager_behat.context.ui.app.account', AccountContext::class)
         ->args([

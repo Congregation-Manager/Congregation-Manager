@@ -39,6 +39,15 @@ final class CreateCongregationCommand extends Command
         parent::__construct($name);
     }
 
+    public function validateString(?string $string): string
+    {
+        if (empty($string)) {
+            throw new InvalidArgumentException('The string can not be empty.');
+        }
+
+        return $string;
+    }
+
     protected function configure(): void
     {
         $this
@@ -100,14 +109,5 @@ final class CreateCongregationCommand extends Command
 
             The command will ask you to provide the necessary arguments like the name of the congregation.
         CODE_SAMPLE;
-    }
-
-    public function validateString(?string $string): string
-    {
-        if (empty($string)) {
-            throw new InvalidArgumentException('The string can not be empty.');
-        }
-
-        return $string;
     }
 }

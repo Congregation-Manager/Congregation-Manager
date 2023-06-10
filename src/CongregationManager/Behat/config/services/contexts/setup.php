@@ -13,7 +13,8 @@ use CongregationManager\Behat\Context\Setup\TerritoryContext;
 
 return static function (ContainerConfigurator $containerConfigurator) {
     $services = $containerConfigurator->services();
-    $services->defaults()->public();
+    $services->defaults()
+        ->public();
 
     $services->set('congregation_manager_behat.context.setup.account', AccountContext::class)
         ->args([
