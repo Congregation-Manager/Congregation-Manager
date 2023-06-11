@@ -345,7 +345,7 @@ final class TerritoryTest extends TestCase
         $territoryAssignment = new TerritoryAssignment($this->territory2, new DateTimeImmutable(
             '2022-06-10'
         ), null, new DateTimeImmutable('2022-06-25'));
-        $this->territory2->addTerritoryAssignment($territoryAssignment,);
+        $this->territory2->addTerritoryAssignment($territoryAssignment);
         self::assertFalse(
             $this->territory2->hasAssignmentBetweenDates(new DateTimeImmutable('2022-06-10'), new DateTimeImmutable(
                 '2022-06-25'

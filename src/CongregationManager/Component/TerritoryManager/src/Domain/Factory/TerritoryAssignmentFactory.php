@@ -18,6 +18,6 @@ final class TerritoryAssignmentFactory implements TerritoryAssignmentFactoryInte
         ?BrotherInterface $brother = null,
         ?DateTimeInterface $revocationDate = null
     ): TerritoryAssignmentInterface {
-        return new TerritoryAssignment($territory, $assignmentDate, $brother, $revocationDate,);
+        return new TerritoryAssignment($territory, $assignmentDate, $brother, $revocationDate);
     }
 }
