@@ -80,7 +80,7 @@ final class AppCompleteAccountController extends AbstractController
             return $this->redirectToRoute('app_login');
         }
 
-        return $this->renderForm('@CongregationManagerApp/complete_account/complete.html.twig', [
+        return $this->render('@CongregationManagerApp/complete_account/complete.html.twig', [
             'completeAccount' => $completeAccountForm,
         ]);
     }

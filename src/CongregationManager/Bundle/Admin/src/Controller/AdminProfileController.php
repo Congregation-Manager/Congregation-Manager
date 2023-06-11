@@ -43,7 +43,7 @@ final class AdminProfileController extends AbstractController
             return $this->redirectToRoute('admin_dashboard');
         }
 
-        return $this->renderForm('@CongregationManagerAdmin/profile/update.html.twig', [
+        return $this->render('@CongregationManagerAdmin/profile/update.html.twig', [
             'changeEmailForm' => $changeEmailForm,
         ]);
     }

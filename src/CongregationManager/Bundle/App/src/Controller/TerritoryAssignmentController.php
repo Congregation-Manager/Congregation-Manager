@@ -48,7 +48,7 @@ final class TerritoryAssignmentController extends AbstractController
             ]);
         }
 
-        return $this->renderForm('@CongregationManagerApp/territory_assignment/create.html.twig', [
+        return $this->render('@CongregationManagerApp/territory_assignment/create.html.twig', [
             'form' => $form,
         ]);
     }
@@ -73,7 +73,7 @@ final class TerritoryAssignmentController extends AbstractController
             ]);
         }
 
-        return $this->renderForm('@CongregationManagerApp/territory_assignment/update.html.twig', [
+        return $this->render('@CongregationManagerApp/territory_assignment/update.html.twig', [
             'form' => $form,
         ]);
     }

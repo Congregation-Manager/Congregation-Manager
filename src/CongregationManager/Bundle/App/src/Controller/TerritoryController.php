@@ -63,7 +63,7 @@ final class TerritoryController extends AbstractController
             ]
         );
 
-        return $this->renderForm('@CongregationManagerApp/territory/index.html.twig', [
+        return $this->render('@CongregationManagerApp/territory/index.html.twig', [
             'pagination' => $pagination,
             'form' => $form,
         ]);
@@ -128,7 +128,7 @@ final class TerritoryController extends AbstractController
             return $response;
         }
 
-        return $this->renderForm('@CongregationManagerApp/territory/components/s_13.html.twig', [
+        return $this->render('@CongregationManagerApp/territory/components/s_13.html.twig', [
             'form' => $form,
         ]);
     }
