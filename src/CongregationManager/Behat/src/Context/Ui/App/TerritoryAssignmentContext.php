@@ -7,7 +7,6 @@ namespace CongregationManager\Behat\Context\Ui\App;
 use Behat\Behat\Context\Context;
 use CongregationManager\Behat\Page\App\TerritoryAssignment\CreatePage;
 use CongregationManager\Behat\Page\App\TerritoryAssignment\UpdatePage;
-use CongregationManager\Behat\Services\SharedStorageInterface;
 use CongregationManager\Component\Congregation\Domain\BrotherInterface;
 use CongregationManager\Component\TerritoryManager\Domain\TerritoryAssignmentInterface;
 use CongregationManager\Component\TerritoryManager\Domain\TerritoryInterface;
@@ -20,7 +19,6 @@ final class TerritoryAssignmentContext implements Context
     public function __construct(
         private CreatePage $assignPage,
         private UpdatePage $updatePage,
-        private SharedStorageInterface $sharedStorage,
         private TranslatorInterface $translator,
     ) {
     }
@@ -76,20 +74,6 @@ final class TerritoryAssignmentContext implements Context
     }
 
     /**
-     * @Given I am on the territory assignment update page
-     */
-    public function iAmOnTheTerritoryAssignmentUpdatePage(): void
-    {
-        /** @var TerritoryAssignmentInterface|null $territoryAssignment */
-        $territoryAssignment = $this->sharedStorage->get('territory_assignment');
-        Assert::isInstanceOf($territoryAssignment, TerritoryAssignmentInterface::class);
-
-        $this->updatePage->open([
-            'id' => $territoryAssignment->getId(),
-        ]);
-    }
-
-    /**
      * @Given I should be informed that the territory is conflicting another
      */
     public function iShouldBeInformedThatTheTerritoryIsConflictingAnother(): void
@@ -109,14 +93,16 @@ final class TerritoryAssignmentContext implements Context
     public function iShouldBeInformedThatRevocationDateShouldBeGreaterOrEqualThanAssignmentDate(
         string $assignmentDate
     ): void {
+        $errorMessage = $this->translator->trans(
+            'This value should be greater than or equal to {{ compared_value }}.',
+            [
+                '{{ compared_value }}' => (new DateTimeImmutable($assignmentDate))->format('M d, Y, h:i A'),
+            ],
+            'validators'
+        );
         Assert::true(
-            $this->assignPage->hasErrorMessage($this->translator->trans(
-                'This value should be greater than or equal to {{ compared_value }}.',
-                [
-                    '{{ compared_value }}' => (new DateTimeImmutable($assignmentDate))->format('M d, Y, h:i A'),
-                ],
-                'validators'
-            ))
+            $this->assignPage->hasErrorMessage($errorMessage),
+            'Failed asserting that page contains the error message: ' . $errorMessage,
         );
     }
 
@@ -132,5 +118,16 @@ final class TerritoryAssignmentContext implements Context
                 'validators'
             ))
         );
+    }
+
+    /**
+     * @Given /^I am on the update page of (assignment of territory "[^"]+" of "[^"]+" starting on "[^"]+")$/
+     */
+    public function iAmOnTheUpdatePageOfAssignmentOfTerritoryOfStartingOn(
+        TerritoryAssignmentInterface $territoryAssignment
+    ): void {
+        $this->updatePage->open([
+            'id' => $territoryAssignment->getId(),
+        ]);
     }
 }

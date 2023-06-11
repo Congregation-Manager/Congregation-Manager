@@ -14,7 +14,7 @@ Feature: Update territory assignment
 
   @ui @app
   Scenario: Update territory assignment
-    Given I am on the territory assignment update page
+    Given I am on the update page of assignment of territory "01" of "Dylan Martinez" starting on "2022-06-14"
     Then I should see that the territory "01" is selected
     When I select brother "Christian Martinez"
     And I set revocation date as "2022-07-10"
@@ -27,7 +27,7 @@ Feature: Update territory assignment
   @ui @app
   Scenario: Prevent updating territory assignment by making it conflict with another assignment
     Given the territory "01" has been assigned to brother "Christian Martinez" from "2022-04-30" to "2022-05-31"
-    And I am on the territory assignment update page
+    And I am on the update page of assignment of territory "01" of "Dylan Martinez" starting on "2022-06-14"
     When I set assignment date as "2022-05-25"
     And I save territory assignment
     Then I should be informed that the territory is conflicting another
@@ -40,7 +40,7 @@ Feature: Update territory assignment
 
   @ui @app
   Scenario: Prevent updating territory assignment with revocation date before assignment date
-    And I am on the territory assignment update page
+    Given I am on the update page of assignment of territory "01" of "Dylan Martinez" starting on "2022-06-14"
     When I set assignment date as "2022-06-14"
     And I set revocation date as "2022-06-12"
     And I save territory assignment

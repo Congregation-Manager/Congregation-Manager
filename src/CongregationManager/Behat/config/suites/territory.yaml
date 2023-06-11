@@ -6,6 +6,7 @@ default:
 
                 - congregation_manager_behat.context.transform.brother
                 - congregation_manager_behat.context.transform.territory
+                - congregation_manager_behat.context.transform.territory_assignment
 
                 - congregation_manager_behat.context.setup.account
                 - congregation_manager_behat.context.setup.brother

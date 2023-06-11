@@ -43,7 +43,6 @@ return static function (ContainerConfigurator $containerConfigurator) {
         ->args([
             service('congregation_manager_behat.page.app.territory_assignment_create'),
             service('congregation_manager_behat.page.app.territory_assignment_update'),
-            service('congregation_manager_behat.shared_storage'),
             service('translator'),
         ])
     ;
