@@ -61,7 +61,7 @@ final class AdminChangePasswordController extends AbstractController
             return $this->redirectToRoute('admin_dashboard');
         }
 
-        return $this->renderForm('@CongregationManagerAdmin/password/update.html.twig', [
+        return $this->render('@CongregationManagerAdmin/password/update.html.twig', [
             'changePasswordForm' => $changePasswordForm,
         ]);
     }

@@ -81,7 +81,7 @@ final class AdminBrotherController extends AbstractController
             ]);
         }
 
-        return $this->renderForm('@CongregationManagerAdmin/brother/invite.html.twig', [
+        return $this->render('@CongregationManagerAdmin/brother/invite.html.twig', [
             'brother' => $brother,
             'inviteUserForm' => $inviteUserForm,
         ]);

@@ -47,7 +47,7 @@ final class AppProfileController extends AbstractController
             return $this->redirectToRoute('app_dashboard');
         }
 
-        return $this->renderForm('@CongregationManagerApp/profile/update.html.twig', [
+        return $this->render('@CongregationManagerApp/profile/update.html.twig', [
             'updateProfileForm' => $updateProfileForm,
         ]);
     }
