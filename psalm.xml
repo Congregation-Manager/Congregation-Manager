@@ -47,7 +47,7 @@
     </issueHandlers>
     <plugins>
         <pluginClass class="Psalm\SymfonyPsalmPlugin\Plugin">
-            <containerXml>var/cache/dev/CongregationManager_Bundle_Core_KernelDevDebugContainer.xml</containerXml>
+            <containerXml>var/cache/dev/CongregationManager_KernelDevDebugContainer.xml</containerXml>
             <extraFiles>
                 <directory name="var/cache/dev/Symfony/Config" /> <!-- https://github.com/psalm/psalm-plugin-symfony/issues/201 -->
             </extraFiles>
