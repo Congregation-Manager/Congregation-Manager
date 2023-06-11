@@ -123,7 +123,7 @@ final class TerritoryController extends AbstractController
 
             // Send the temporal file as response (as an attachment)
             $response = new BinaryFileResponse($tempFile);
-            $response->setContentDisposition(ResponseHeaderBag::DISPOSITION_ATTACHMENT, $fileName,);
+            $response->setContentDisposition(ResponseHeaderBag::DISPOSITION_ATTACHMENT, $fileName);
 
             return $response;
         }

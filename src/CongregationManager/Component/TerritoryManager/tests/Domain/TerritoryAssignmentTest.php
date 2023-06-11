@@ -86,7 +86,7 @@ final class TerritoryAssignmentTest extends TestCase
 
     public function testItDoesNotHaveSameDateToDifferentAssignmentWithoutRevocationDate(): void
     {
-        $otherAssignment = new TerritoryAssignment($this->territory, new DateTimeImmutable('2022-06-10'),);
+        $otherAssignment = new TerritoryAssignment($this->territory, new DateTimeImmutable('2022-06-10'));
         self::assertFalse($this->territoryAssignmentWithRevocationDate->hasSameDatesTo($otherAssignment));
     }
 
@@ -189,13 +189,13 @@ final class TerritoryAssignmentTest extends TestCase
 
     public function testItIsGreaterThanAssignmentWithoutRevocationDateAndNotGreaterAssignmentDateIfWithoutRevocationDate(): void
     {
-        $otherAssignment = new TerritoryAssignment($this->territory, new DateTimeImmutable('2022-06-08'),);
+        $otherAssignment = new TerritoryAssignment($this->territory, new DateTimeImmutable('2022-06-08'));
         self::assertTrue($this->territoryAssignmentWithoutRevocationDate->isGreaterThan($otherAssignment));
     }
 
     public function testItIsNotGreaterThanAssignmentWithoutRevocationDateAndGreaterAssignmentDateIfWithoutRevocationDate(): void
     {
-        $otherAssignment = new TerritoryAssignment($this->territory, new DateTimeImmutable('2022-06-12'),);
+        $otherAssignment = new TerritoryAssignment($this->territory, new DateTimeImmutable('2022-06-12'));
         self::assertFalse($this->territoryAssignmentWithoutRevocationDate->isGreaterThan($otherAssignment));
     }
 }
