@@ -10508,16 +10508,16 @@
         },
         {
             "name": "psalm/plugin-symfony",
-            "version": "v4.0.2",
+            "version": "v4.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/psalm/psalm-plugin-symfony.git",
-                "reference": "83ede57320c4dc6d07cfabe8b76cd28164c9ee8d"
+                "reference": "2aa596491c1ade315cb9ac14a29788e7466c8444"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/psalm/psalm-plugin-symfony/zipball/83ede57320c4dc6d07cfabe8b76cd28164c9ee8d",
-                "reference": "83ede57320c4dc6d07cfabe8b76cd28164c9ee8d",
+                "url": "https://api.github.com/repos/psalm/psalm-plugin-symfony/zipball/2aa596491c1ade315cb9ac14a29788e7466c8444",
+                "reference": "2aa596491c1ade315cb9ac14a29788e7466c8444",
                 "shasum": ""
             },
             "require": {
@@ -10567,9 +10567,9 @@
             "description": "Psalm Plugin for Symfony",
             "support": {
                 "issues": "https://github.com/psalm/psalm-plugin-symfony/issues",
-                "source": "https://github.com/psalm/psalm-plugin-symfony/tree/v4.0.2"
+                "source": "https://github.com/psalm/psalm-plugin-symfony/tree/v4.0.4"
             },
-            "time": "2023-01-08T18:52:07+00:00"
+            "time": "2023-04-14T18:04:54+00:00"
         },
         {
             "name": "roave/security-advisories",
