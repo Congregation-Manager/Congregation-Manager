@@ -99,7 +99,7 @@
         "ext-ctype": "*",
         "composer/package-versions-deprecated": "^1.11.99.5",
         "doctrine/annotations": "^1.14.3",
-        "doctrine/collections": "^1.8",
+        "doctrine/collections": "^2.1",
         "doctrine/dbal": "^3.6.1",
         "doctrine/doctrine-bundle": "^2.8.3",
         "doctrine/doctrine-migrations-bundle": "^3.2.2",
