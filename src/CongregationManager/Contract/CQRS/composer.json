@@ -1,0 +1,36 @@
+{
+    "name": "congregation-manager/cqrs-contract",
+    "type": "library",
+    "description": "Generic event base for PHP applications.",
+    "keywords": [
+        "event",
+        "congregation-manager",
+        "php"
+    ],
+    "homepage": "https://github.com/congregation-manager/congregation-manager",
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "Lorenzo Ruozzi",
+            "homepage": "https://lruozzi9.github.io"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "CongregationManager\\Contract\\CQRS\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "CongregationManager\\Contract\\CQRS\\Tests\\": "tests"
+        }
+    },
+    "repositories": [
+        {
+            "type": "path",
+            "url": "../../*/*"
+        }
+    ],
+    "minimum-stability": "stable",
+    "prefer-stable": true
+}
