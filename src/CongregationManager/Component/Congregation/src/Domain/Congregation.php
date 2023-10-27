@@ -4,11 +4,13 @@ declare(strict_types=1);
 
 namespace CongregationManager\Component\Congregation\Domain;
 
+use CongregationManager\Component\Congregation\Domain\Event\CongregationWasCreatedEvent;
 use CongregationManager\Component\TerritoryManager\Domain\AreaInterface;
 use CongregationManager\Component\TerritoryManager\Domain\MunicipalityInterface;
 use CongregationManager\Component\TerritoryManager\Domain\ProvinceInterface;
 use CongregationManager\Component\TerritoryManager\Domain\TerritoryInterface;
 use CongregationManager\Contract\Resource\AggregateRoot;
+use CongregationManager\Contract\Resource\Id;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 
@@ -40,13 +42,17 @@ class Congregation extends AggregateRoot implements CongregationInterface
     protected Collection $territories;
 
     public function __construct(
+        Id $id,
         protected string $name
     ) {
+        parent::__construct($id);
         $this->brothers = new ArrayCollection();
         $this->provinces = new ArrayCollection();
         $this->municipalities = new ArrayCollection();
         $this->areas = new ArrayCollection();
         $this->territories = new ArrayCollection();
+
+        $this->recordThat(new CongregationWasCreatedEvent($this->name));
     }
 
     public function __toString(): string

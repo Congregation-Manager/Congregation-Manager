@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace CongregationManager\Component\Congregation\Domain\Repository;
 
 use CongregationManager\Component\Congregation\Domain\BrotherInterface;
+use CongregationManager\Contract\Resource\Id;
 
 interface BrotherRepositoryInterface
 {
@@ -13,7 +14,7 @@ interface BrotherRepositoryInterface
      */
     public function findAll();
 
-    public function findOneById(int $id): ?BrotherInterface;
+    public function findOneById(Id $id): ?BrotherInterface;
 
     /**
      * @param array<string, string> $criteria

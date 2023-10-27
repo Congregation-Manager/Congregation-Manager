@@ -4,10 +4,11 @@ declare(strict_types=1);
 
 namespace CongregationManager\Component\Congregation\Tests\Application;
 
+use CongregationManager\Bundle\Resource\UuidV4;
 use CongregationManager\Component\Congregation\Application\CreateBrother;
 use CongregationManager\Component\Congregation\Domain\Congregation;
 use CongregationManager\Component\Congregation\Domain\Repository\BrotherRepositoryInterface;
-use CongregationManager\Component\Congregation\Infrastructure\Repository\InMemory\BrotherRepository;
+use CongregationManager\Component\Congregation\Infrastructure\InMemory\Repository\BrotherRepository;
 use DateTime;
 use DateTimeInterface;
 use PHPUnit\Framework\TestCase;
@@ -30,7 +31,7 @@ final class CreateBrotherTest extends TestCase
 
     public function testThatItCreatesANewBrother(): void
     {
-        $congregation = new Congregation('Carrollton');
+        $congregation = new Congregation(new UuidV4(), 'Carrollton');
         $brother = $this->createBrother->create(
             'Samuel',
             'Finch',

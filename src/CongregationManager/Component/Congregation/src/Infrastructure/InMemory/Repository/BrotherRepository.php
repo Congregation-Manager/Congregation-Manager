@@ -2,10 +2,11 @@
 
 declare(strict_types=1);
 
-namespace CongregationManager\Component\Congregation\Infrastructure\Repository\InMemory;
+namespace CongregationManager\Component\Congregation\Infrastructure\InMemory\Repository;
 
 use CongregationManager\Component\Congregation\Domain\BrotherInterface;
 use CongregationManager\Component\Congregation\Domain\Repository\BrotherRepositoryInterface;
+use CongregationManager\Contract\Resource\Id;
 use RuntimeException;
 
 final class BrotherRepository implements BrotherRepositoryInterface
@@ -29,10 +30,10 @@ final class BrotherRepository implements BrotherRepositoryInterface
         return $this->brothers;
     }
 
-    public function findOneById(int $id): ?BrotherInterface
+    public function findOneById(Id $id): ?BrotherInterface
     {
         foreach ($this->brothers as $brother) {
-            if ($brother->getId() === $id) {
+            if ($brother->getId()->equals($id)) {
                 return $brother;
             }
         }
