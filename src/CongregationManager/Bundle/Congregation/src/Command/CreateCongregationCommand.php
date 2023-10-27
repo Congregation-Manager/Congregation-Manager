@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 namespace CongregationManager\Bundle\Congregation\Command;
 
-use CongregationManager\Component\Congregation\Application\CreateCongregation;
+use CongregationManager\Component\Congregation\Application\Command\CreateCongregation\CreateCongregationCommand;
+use CongregationManager\Contract\CQRS\CommandBusInterface;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Command\LockableTrait;
@@ -32,8 +33,7 @@ final class CreateCongregationCommand extends Command
     private string $congregationName;
 
     public function __construct(
-        private CreateCongregation $createCongregation,
-        private EntityManagerInterface $entityManager,
+        private readonly CommandBusInterface $commandBus,
         string $name = null
     ) {
         parent::__construct($name);
@@ -81,8 +81,7 @@ final class CreateCongregationCommand extends Command
         $stopwatch = new Stopwatch();
         $stopwatch->start(self::CREATE_CONGREGATION_COMMAND_EVENT_NAME);
 
-        $this->createCongregation->create($this->congregationName);
-        $this->entityManager->flush();
+        $this->commandBus->dispatch(new CreateCongregationCommand($this->congregationName));
 
         $this->io->success('Congregation successfully created');
         $event = $stopwatch->stop(self::CREATE_CONGREGATION_COMMAND_EVENT_NAME);

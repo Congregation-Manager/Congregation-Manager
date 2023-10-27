@@ -36,6 +36,13 @@ final class CongregationRepository extends ServiceEntityRepository implements Co
 
     public function add(CongregationInterface $congregation): void
     {
-        $this->_em->persist($congregation);
+        $this->getEntityManager()
+            ->persist($congregation);
+    }
+
+    public function flush(): void
+    {
+        $this->getEntityManager()
+            ->flush();
     }
 }

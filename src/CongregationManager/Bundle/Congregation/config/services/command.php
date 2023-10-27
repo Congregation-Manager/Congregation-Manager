@@ -12,7 +12,6 @@ return static function (ContainerConfigurator $containerConfigurator) {
     $services->set('congregation_manager_congregation.command.create_congregation', CreateCongregationCommand::class)
         ->args([
             service('congregation_manager_congregation.create_congregation'),
-            service('doctrine.orm.entity_manager'),
             'app:create-congregation',
         ])
         ->tag('console.command')
