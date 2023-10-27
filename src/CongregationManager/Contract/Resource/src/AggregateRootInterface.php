@@ -4,11 +4,10 @@ declare(strict_types=1);
 
 namespace CongregationManager\Contract\Resource;
 
-use Stringable;
-
-interface AggregateRootInterface extends Stringable
+interface AggregateRootInterface extends ResourceInterface
 {
-    public function getId(): ?int;
-
-    public function setId(?int $id): void;
+    /**
+     * @return list<EventInterface>
+     */
+    public function releaseEvents(): array;
 }

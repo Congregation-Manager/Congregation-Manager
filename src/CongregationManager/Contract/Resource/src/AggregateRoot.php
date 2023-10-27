@@ -4,19 +4,26 @@ declare(strict_types=1);
 
 namespace CongregationManager\Contract\Resource;
 
-abstract class AggregateRoot implements AggregateRootInterface
+abstract class AggregateRoot extends AbstractResource implements AggregateRootInterface
 {
-    protected ?int $id = null;
+    /**
+     * @var list<EventInterface>
+     */
+    private array $recordedEvents = [];
 
-    abstract public function __toString(): string;
-
-    public function getId(): ?int
+    /**
+     * @return list<EventInterface>
+     */
+    public function releaseEvents(): array
     {
-        return $this->id;
+        $events = $this->recordedEvents;
+        $this->recordedEvents = [];
+
+        return $events;
     }
 
-    public function setId(?int $id): void
+    protected function recordThat(EventInterface $event): void
     {
-        $this->id = $id;
+        $this->recordedEvents[] = $event;
     }
 }

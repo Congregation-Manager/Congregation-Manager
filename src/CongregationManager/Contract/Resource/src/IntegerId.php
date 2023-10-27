@@ -6,7 +6,7 @@ namespace CongregationManager\Contract\Resource;
 
 use InvalidArgumentException;
 
-final class IntegerAggregateRootId implements AggregateRootId
+final class IntegerId implements Id
 {
     public function __construct(
         private readonly int $id
@@ -30,7 +30,7 @@ final class IntegerAggregateRootId implements AggregateRootId
         return new self((int) $databaseValue);
     }
 
-    public function equals(AggregateRootId $otherId): bool
+    public function equals(Id $otherId): bool
     {
         if (! $otherId instanceof self) {
             return false;

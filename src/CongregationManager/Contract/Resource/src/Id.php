@@ -6,13 +6,11 @@ namespace CongregationManager\Contract\Resource;
 
 use Stringable;
 
-interface AggregateRootId extends Stringable
+interface Id extends Stringable
 {
-    public function __toString(): string;
+    public function equals(self $otherId): bool;
 
     public static function convertToPHPValue(mixed $databaseValue): self;
-
-    public function equals(self $otherId): bool;
 
     public function convertToDatabaseValue(): string;
 }
