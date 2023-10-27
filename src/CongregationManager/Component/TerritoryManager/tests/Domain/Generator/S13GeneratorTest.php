@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace CongregationManager\Component\TerritoryManager\Tests\Domain\Generator;
 
+use CongregationManager\Bundle\Resource\UuidV4;
 use CongregationManager\Component\Congregation\Domain\Congregation;
 use CongregationManager\Component\TerritoryManager\Domain\Area;
 use CongregationManager\Component\TerritoryManager\Domain\Generator\S13Generator;
@@ -13,7 +14,7 @@ use CongregationManager\Component\TerritoryManager\Domain\S13\Page;
 use CongregationManager\Component\TerritoryManager\Domain\S13\Row;
 use CongregationManager\Component\TerritoryManager\Domain\Territory;
 use CongregationManager\Component\TerritoryManager\Domain\TerritoryAssignment;
-use CongregationManager\Component\TerritoryManager\Infrastructure\Repository\InMemory\TerritoryRepository;
+use CongregationManager\Component\TerritoryManager\Infrastructure\InMemory\Repository\TerritoryRepository;
 use DateTimeImmutable;
 use PHPUnit\Framework\TestCase;
 
@@ -61,7 +62,7 @@ class S13GeneratorTest extends TestCase
 
     protected function setUp(): void
     {
-        $this->carrolltonCongregation = new Congregation('Carrollton');
+        $this->carrolltonCongregation = new Congregation(new UuidV4(), 'Carrollton');
         $province = new Province($this->carrolltonCongregation, 'Carrollton');
         $municipality = new Municipality($this->carrolltonCongregation, $province, 'Carrollton');
         $area = new Area($this->carrolltonCongregation, $municipality, 'Carrollton');

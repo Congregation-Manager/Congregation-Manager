@@ -2,13 +2,14 @@
 
 declare(strict_types=1);
 
-namespace CongregationManager\Component\TerritoryManager\Infrastructure\Repository\InMemory;
+namespace CongregationManager\Component\TerritoryManager\Infrastructure\InMemory\Repository;
 
 use CongregationManager\Component\Congregation\Domain\CongregationInterface;
 use CongregationManager\Component\TerritoryManager\Domain\Repository\Filter\TerritoryFilterResultsInterface;
 use CongregationManager\Component\TerritoryManager\Domain\Repository\Filter\TerritoryRepositoryFilterInterface;
 use CongregationManager\Component\TerritoryManager\Domain\Repository\TerritoryRepositoryInterface;
 use CongregationManager\Component\TerritoryManager\Domain\TerritoryInterface;
+use CongregationManager\Contract\Resource\Id;
 use RuntimeException;
 
 final class TerritoryRepository implements TerritoryRepositoryInterface
@@ -23,10 +24,10 @@ final class TerritoryRepository implements TerritoryRepositoryInterface
         return $this->territories;
     }
 
-    public function findOneById(int $id): ?TerritoryInterface
+    public function findOneById(Id $id): ?TerritoryInterface
     {
         foreach ($this->territories as $territory) {
-            if ($territory->getId() === $id) {
+            if ($territory->getId()->equals($id)) {
                 return $territory;
             }
         }

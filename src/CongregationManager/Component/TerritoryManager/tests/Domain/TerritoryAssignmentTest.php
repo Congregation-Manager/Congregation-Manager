@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace CongregationManager\Component\TerritoryManager\Tests\Domain;
 
+use CongregationManager\Bundle\Resource\UuidV4;
 use CongregationManager\Component\Congregation\Domain\Brother;
 use CongregationManager\Component\Congregation\Domain\BrotherInterface;
 use CongregationManager\Component\Congregation\Domain\Congregation;
@@ -34,7 +35,7 @@ final class TerritoryAssignmentTest extends TestCase
 
     protected function setUp(): void
     {
-        $congregation = new Congregation('congregation');
+        $congregation = new Congregation(new UuidV4(), 'congregation');
         $province = new Province($congregation, 'province');
         $municipality = new Municipality($congregation, $province, 'province');
         $this->territory = new Territory($congregation, new Area($congregation, $municipality, 'area'), 1);
