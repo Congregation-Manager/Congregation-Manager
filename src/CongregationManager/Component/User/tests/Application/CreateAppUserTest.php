@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace CongregationManager\Component\User\Tests\Application;
 
+use CongregationManager\Bundle\Resource\UuidV4;
 use CongregationManager\Component\Congregation\Domain\Brother;
 use CongregationManager\Component\Congregation\Domain\Congregation;
 use CongregationManager\Component\User\Application\CreateAppUser;
@@ -31,7 +32,7 @@ final class CreateAppUserTest extends TestCase
 
     public function testThatItCreatesANewAppUser(): void
     {
-        $brother = new Brother('John', 'Ritz', new Congregation('Carrollton'));
+        $brother = new Brother('John', 'Ritz', new Congregation(new UuidV4(), 'Carrollton'));
         $appUser = $this->createAppUser->create($brother, 'info@email.com', 'p455w0rd', 'it_IT');
 
         $this->assertSame($brother, $appUser->getBrother());
@@ -47,7 +48,7 @@ final class CreateAppUserTest extends TestCase
 
     public function testThatItCreatesANewAppUserWithoutPasswordIfNotSpecified(): void
     {
-        $brother = new Brother('John', 'Ritz', new Congregation('Carrollton'));
+        $brother = new Brother('John', 'Ritz', new Congregation(new UuidV4(), 'Carrollton'));
         $appUser = $this->createAppUser->create($brother, 'info@email.com', null, 'it_IT');
 
         $this->assertSame('info@email.com', $appUser->getEmail());
@@ -59,7 +60,7 @@ final class CreateAppUserTest extends TestCase
 
     public function testThatItCreatesANewAppUserWithoutLocaleIfNotSpecified(): void
     {
-        $brother = new Brother('John', 'Ritz', new Congregation('Carrollton'));
+        $brother = new Brother('John', 'Ritz', new Congregation(new UuidV4(), 'Carrollton'));
         $appUser = $this->createAppUser->create($brother, 'info@email.com', 'p455w0rd', null);
 
         $this->assertSame('info@email.com', $appUser->getEmail());
