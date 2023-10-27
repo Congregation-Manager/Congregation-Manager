@@ -12,8 +12,7 @@ return static function (ContainerConfigurator $containerConfigurator) {
     $services->set('congregation_manager_core.command.import_from_old_cm', ImportFromOldCMCommand::class)
         ->args([
             service('congregation_manager_core.old_cm.repository.congregation'),
-            service('congregation_manager_congregation.create_congregation'),
-            service('doctrine.orm.entity_manager'),
+            service('congregation_manager_cqrs.messenger_command_bus'),
             service('congregation_manager_core.old_cm.repository.brother'),
             service('congregation_manager_congregation.create_brother'),
             service('congregation_manager_core.old_cm.repository.app_user'),

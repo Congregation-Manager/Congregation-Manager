@@ -9,4 +9,5 @@ return static function (ContainerConfigurator $containerConfigurator) {
     $containerConfigurator->import('@CongregationManagerResourceBundle/config/config.php');
     $containerConfigurator->import('@CongregationManagerTerritoryManagerBundle/config/config.php');
     $containerConfigurator->import('@CongregationManagerUserBundle/config/config.php');
+    $containerConfigurator->import('@CongregationManagerCQRSBundle/config/config.php');
 };
