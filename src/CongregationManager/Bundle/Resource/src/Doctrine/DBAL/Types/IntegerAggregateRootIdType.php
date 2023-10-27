@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace CongregationManager\Bundle\Resource\Doctrine\DBAL\Types;
 
-use CongregationManager\Contract\Resource\AggregateRootId;
-use CongregationManager\Contract\Resource\IntegerAggregateRootId;
+use CongregationManager\Contract\Resource\Id;
+use CongregationManager\Contract\Resource\IntegerId;
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 
 final class IntegerAggregateRootIdType extends AbstractAggregateRootIdType
@@ -22,8 +22,8 @@ final class IntegerAggregateRootIdType extends AbstractAggregateRootIdType
         return $platform->getIntegerTypeDeclarationSQL($column);
     }
 
-    protected function getCurrentTypeConvertToPHPValueImplementation(mixed $value): AggregateRootId
+    protected function getCurrentTypeConvertToPHPValueImplementation(mixed $value): Id
     {
-        return IntegerAggregateRootId::convertToPHPValue($value);
+        return IntegerId::convertToPHPValue($value);
     }
 }
