@@ -8,7 +8,7 @@ use CongregationManager\Bundle\User\Entity\AdminUser;
 use CongregationManager\Bundle\User\Entity\AdminUserInterface;
 use CongregationManager\Component\User\Domain\AdminUserInterface as DomainAdminUserInterface;
 use CongregationManager\Component\User\Domain\Repository\AdminUserRepositoryInterface;
-use CongregationManager\Contract\Resource\AggregateRootId;
+use CongregationManager\Contract\Resource\Id;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
@@ -39,7 +39,7 @@ class AdminUserRepository extends ServiceEntityRepository implements AdminUserRe
         $this->_em->persist($adminUser);
     }
 
-    public function findOneById(AggregateRootId $id): ?DomainAdminUserInterface
+    public function findOneById(Id $id): ?DomainAdminUserInterface
     {
         return $this->find($id);
     }
