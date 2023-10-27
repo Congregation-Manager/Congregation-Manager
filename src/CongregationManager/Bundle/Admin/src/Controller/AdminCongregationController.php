@@ -14,7 +14,7 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 final class AdminCongregationController extends AbstractController
 {
     public function __construct(
-        private CongregationRepositoryInterface $congregationRepository
+        private readonly CongregationRepositoryInterface $congregationRepository
     ) {
     }
 
