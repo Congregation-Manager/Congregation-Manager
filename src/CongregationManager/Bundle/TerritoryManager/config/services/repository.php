@@ -9,7 +9,7 @@ use CongregationManager\Bundle\TerritoryManager\Repository\MunicipalityRepositor
 use CongregationManager\Bundle\TerritoryManager\Repository\ProvinceRepository;
 use CongregationManager\Bundle\TerritoryManager\Repository\TerritoryAssignmentRepository;
 use CongregationManager\Bundle\TerritoryManager\Repository\TerritoryRepository;
-use CongregationManager\Component\TerritoryManager\Infrastructure\Repository\InMemory\TerritoryRepository as InMemoryTerritoryRepository;
+use CongregationManager\Component\TerritoryManager\Infrastructure\InMemory\Repository\TerritoryRepository as InMemoryTerritoryRepository;
 
 return static function (ContainerConfigurator $containerConfigurator) {
     $services = $containerConfigurator->services();

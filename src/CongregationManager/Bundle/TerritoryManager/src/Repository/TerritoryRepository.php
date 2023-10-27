@@ -11,6 +11,7 @@ use CongregationManager\Component\TerritoryManager\Domain\Repository\TerritoryRe
 use CongregationManager\Component\TerritoryManager\Domain\Territory;
 use CongregationManager\Component\TerritoryManager\Domain\TerritoryAssignment;
 use CongregationManager\Component\TerritoryManager\Domain\TerritoryInterface;
+use CongregationManager\Contract\Resource\Id;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\Query\Expr\Join;
 use Doctrine\Persistence\ManagerRegistry;
@@ -39,7 +40,7 @@ final class TerritoryRepository extends ServiceEntityRepository implements Terri
         $this->_em->persist($territory);
     }
 
-    public function findOneById(int $id): ?TerritoryInterface
+    public function findOneById(Id $id): ?TerritoryInterface
     {
         return $this->find($id);
     }
