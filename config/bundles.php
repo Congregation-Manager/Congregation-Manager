@@ -21,6 +21,7 @@ return [
     CongregationManager\Bundle\Resource\CongregationManagerResourceBundle::class => ['all' => true],
     CongregationManager\Bundle\Congregation\CongregationManagerCongregationBundle::class  => ['all' => true],
     CongregationManager\Bundle\TerritoryManager\CongregationManagerTerritoryManagerBundle::class => ['all' => true],
+    CongregationManager\Bundle\CQRS\CongregationManagerCQRSBundle::class => ['all' => true],
     CongregationManager\Bundle\User\CongregationManagerUserBundle::class => ['all' => true],
     CongregationManager\Bundle\Core\CongregationManagerCoreBundle::class => ['all' => true],
     CongregationManager\Bundle\App\CongregationManagerAppBundle::class  => ['all' => true],

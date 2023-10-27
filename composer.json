@@ -17,11 +17,14 @@
             "CongregationManager\\Bundle\\Resource\\": "src/CongregationManager/Bundle/Resource/src/",
             "CongregationManager\\Bundle\\TerritoryManager\\": "src/CongregationManager/Bundle/TerritoryManager/src/",
             "CongregationManager\\Bundle\\User\\": "src/CongregationManager/Bundle/User/src/",
+            "CongregationManager\\Bundle\\CQRS\\": "src/CongregationManager/Bundle/CQRS/src/",
             "CongregationManager\\Component\\Congregation\\": "src/CongregationManager/Component/Congregation/src",
             "CongregationManager\\Component\\User\\": "src/CongregationManager/Component/User/src/",
             "CongregationManager\\Component\\Core\\": "src/CongregationManager/Component/Core/src/",
             "CongregationManager\\Component\\TerritoryManager\\": "src/CongregationManager/Component/TerritoryManager/src/",
-            "CongregationManager\\Contract\\Resource\\": "src/CongregationManager/Contract/Resource/src"
+            "CongregationManager\\Contract\\Resource\\": "src/CongregationManager/Contract/Resource/src",
+            "CongregationManager\\Contract\\CQRS\\": "src/CongregationManager/Contract/CQRS/src",
+            "CongregationManager\\Contract\\Exception\\": "src/CongregationManager/Contract/Exception/src"
         }
     },
     "autoload-dev": {
@@ -39,6 +42,8 @@
             "CongregationManager\\Component\\TerritoryManager\\Tests\\": "src/CongregationManager/Component/TerritoryManager/tests/",
             "CongregationManager\\Component\\Core\\Tests\\": "src/CongregationManager/Component/Core/tests/",
             "CongregationManager\\Contract\\Resource\\Tests\\": "src/CongregationManager/Contract/Resource/tests/",
+            "CongregationManager\\Contract\\CQRS\\Tests\\": "src/CongregationManager/Contract/CQRS/tests/",
+            "CongregationManager\\Contract\\Exception\\Tests\\": "src/CongregationManager/Contract/Exception/tests/",
             "CongregationManager\\Behat\\": "src/CongregationManager/Behat/src/",
             "CongregationManager\\Behat\\Tests\\": "src/CongregationManager/Behat/tests/"
         }
@@ -126,6 +131,7 @@
         "symfony/intl": "^6.2",
         "symfony/lock": "^6.2.8",
         "symfony/mailer": "^6.2",
+        "symfony/messenger": "^6.0",
         "symfony/mime": "^6.2.7",
         "symfony/monolog-bundle": "^3.8",
         "symfony/options-resolver": "^6.2",
@@ -146,6 +152,7 @@
         "symfony/translation-contracts": "^3.2.1",
         "symfony/twig-bridge": "^6.2.5",
         "symfony/twig-bundle": "^6.2.7",
+        "symfony/uid": "^6.0",
         "symfony/validator": "^6.2.2",
         "symfony/web-link": "^6.2",
         "symfony/webpack-encore-bundle": "^1.16",
