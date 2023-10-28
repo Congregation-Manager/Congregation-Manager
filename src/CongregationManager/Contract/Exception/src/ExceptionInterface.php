@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace CongregationManager\CongregationManager\Contract\Exception\src;
+namespace CongregationManager\Contract\Exception;
 
 use Throwable;
 

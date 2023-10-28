@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace CongregationManager\CongregationManager\Contract\Exception\src;
+namespace CongregationManager\Contract\Exception;
 
 use Exception as CoreException;
 
-final class Exception extends CoreException implements ExceptionInterface
+class Exception extends CoreException implements ExceptionInterface
 {
 }
