@@ -10,6 +10,9 @@ return static function (ContainerConfigurator $containerConfigurator) {
     $services = $containerConfigurator->services();
 
     $services->set('congregation_manager_congregation.persister.congregation', CongregationPersister::class)
-        ->args([service('congregation_manager_congregation.repository.congregation'), service('')])
+        ->args([
+            service('congregation_manager_congregation.repository.congregation'),
+            service('congregation_manager_resource.event_dispatcher.messenger'),
+        ])
     ;
 };

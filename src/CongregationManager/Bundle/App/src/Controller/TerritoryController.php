@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace CongregationManager\Bundle\App\Controller;
 
+use CongregationManager\Bundle\Resource\UuidV4;
 use CongregationManager\Bundle\TerritoryManager\Form\TerritoryFiltersFormType;
 use CongregationManager\Bundle\TerritoryManager\Repository\Filter\QueryBuilderTerritoryRepositoryFilter;
 use CongregationManager\Component\Core\Domain\Context\CongregationContextInterface;
@@ -69,8 +70,9 @@ final class TerritoryController extends AbstractController
         ]);
     }
 
-    public function show(int $id, Request $request): Response
+    public function show(string $id, Request $request): Response
     {
+        $id = UuidV4::generateFromString($id);
         $territory = $this->territoryRepository->findOneById($id);
         if ($territory === null) {
             throw new NotFoundHttpException();

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace CongregationManager\Bundle\App\Controller;
 
+use CongregationManager\Bundle\Resource\UuidV4;
 use CongregationManager\Bundle\TerritoryManager\Form\CreateTerritoryAssignmentType;
 use CongregationManager\Bundle\TerritoryManager\Form\UpdateTerritoryAssignmentType;
 use CongregationManager\Component\TerritoryManager\Application\Command\CreateTerritoryAssignment;
@@ -31,8 +32,9 @@ final class TerritoryAssignmentController extends AbstractController
     public function create(Request $request): Response
     {
         $territory = null;
-        $territoryId = $request->query->getInt('territoryId');
-        if ($territoryId !== 0) {
+        $territoryId = $request->query->getString('territoryId');
+        if ($territoryId !== '') {
+            $territoryId = UuidV4::generateFromString($territoryId);
             $territory = $this->territoryRepository->findOneById($territoryId);
         }
         $command = new CreateTerritoryAssignment($territory, new DateTimeImmutable());

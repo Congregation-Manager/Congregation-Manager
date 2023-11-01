@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace CongregationManager\Bundle\Admin\Controller;
 
+use CongregationManager\Bundle\Resource\UuidV4;
 use CongregationManager\Component\Congregation\Domain\Repository\CongregationRepositoryInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -27,8 +28,9 @@ final class AdminCongregationController extends AbstractController
         ]);
     }
 
-    public function show(Request $request, int $id): Response
+    public function show(Request $request, string $id): Response
     {
+        $id = UuidV4::generateFromString($id);
         $congregation = $this->congregationRepository->findOneById($id);
         if ($congregation === null) {
             throw new NotFoundHttpException();

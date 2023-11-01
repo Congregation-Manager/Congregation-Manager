@@ -15,7 +15,7 @@ interface CongregationInterface extends AggregateRootInterface
 {
     public function getName(): string;
 
-    public function setName(string $name): void;
+    public function rename(string $name): void;
 
     /**
      * @return Collection<array-key, BrotherInterface>

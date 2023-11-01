@@ -15,6 +15,11 @@ final class UuidV4 extends SymfonyUuidV4 implements Id
         return $this->toRfc4122();
     }
 
+    public static function generateFromString(string $uuid): self
+    {
+        return parent::fromString($uuid);
+    }
+
     public function equals(mixed $otherId): bool
     {
         if (! $otherId instanceof self) {

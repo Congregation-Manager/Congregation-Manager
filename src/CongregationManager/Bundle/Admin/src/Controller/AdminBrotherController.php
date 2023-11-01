@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace CongregationManager\Bundle\Admin\Controller;
 
+use CongregationManager\Bundle\Resource\UuidV4;
 use CongregationManager\Bundle\User\Action\CreateAppUserInvitation;
 use CongregationManager\Bundle\User\Form\InviteUserFormType;
 use CongregationManager\Component\Congregation\Domain\Repository\BrotherRepositoryInterface;
@@ -36,8 +37,9 @@ final class AdminBrotherController extends AbstractController
         ]);
     }
 
-    public function show(Request $request, int $id): Response
+    public function show(Request $request, string $id): Response
     {
+        $id = UuidV4::generateFromString($id);
         $brother = $this->brotherRepository->findOneById($id);
         if ($brother === null) {
             throw new NotFoundHttpException();
@@ -48,8 +50,9 @@ final class AdminBrotherController extends AbstractController
         ]);
     }
 
-    public function invite(Request $request, int $id): Response
+    public function invite(Request $request, string $id): Response
     {
+        $id = UuidV4::generateFromString($id);
         $brother = $this->brotherRepository->findOneById($id);
         if ($brother === null) {
             throw new NotFoundHttpException();

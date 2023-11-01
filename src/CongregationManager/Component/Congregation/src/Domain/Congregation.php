@@ -4,15 +4,18 @@ declare(strict_types=1);
 
 namespace CongregationManager\Component\Congregation\Domain;
 
-use CongregationManager\Component\Congregation\Domain\Event\CongregationWasCreatedEvent;
+use CongregationManager\Component\Congregation\Domain\Event\CongregationCreated;
+use CongregationManager\Component\Congregation\Domain\Event\CongregationRenamed;
 use CongregationManager\Component\TerritoryManager\Domain\AreaInterface;
 use CongregationManager\Component\TerritoryManager\Domain\MunicipalityInterface;
 use CongregationManager\Component\TerritoryManager\Domain\ProvinceInterface;
 use CongregationManager\Component\TerritoryManager\Domain\TerritoryInterface;
 use CongregationManager\Contract\Resource\AggregateRoot;
+use CongregationManager\Contract\Resource\Exception\InvalidEventException;
 use CongregationManager\Contract\Resource\Id;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Exception;
 
 class Congregation extends AggregateRoot implements CongregationInterface
 {
@@ -52,7 +55,18 @@ class Congregation extends AggregateRoot implements CongregationInterface
         $this->areas = new ArrayCollection();
         $this->territories = new ArrayCollection();
 
-        $this->recordThat(new CongregationWasCreatedEvent($this->name));
+        $this->raise(CongregationCreated::class, [
+            'name' => $name,
+        ]);
+    }
+
+    public function rename(string $name): void
+    {
+        $this->name = $name;
+
+        $this->raise(CongregationRenamed::class, [
+            'name' => $name,
+        ]);
     }
 
     public function __toString(): string
@@ -63,11 +77,6 @@ class Congregation extends AggregateRoot implements CongregationInterface
     public function getName(): string
     {
         return $this->name;
-    }
-
-    public function setName(string $name): void
-    {
-        $this->name = $name;
     }
 
     /**

@@ -25,10 +25,10 @@ return static function (ContainerConfigurator $containerConfigurator) {
     ;
 
     $services->set('congregation_manager_cqrs.messenger_command_bus', MessengerCommandBus::class)
-        ->args([service('messenger.command_bus')])
+        ->args([service('command.bus')])
     ;
 
-    $services->set('congregation_manager_cqrs.messenger_command_bus', MessengerQueryBus::class)
-        ->args([service('messenger.query_bus')])
+    $services->set('congregation_manager_cqrs.messenger_query_bus', MessengerQueryBus::class)
+        ->args([service('query.bus')])
     ;
 };
