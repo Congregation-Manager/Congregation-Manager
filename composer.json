@@ -183,7 +183,7 @@
         "phpstan/phpstan-symfony": "^1.2.21",
         "phpstan/phpstan-webmozart-assert": "^1.2.2",
         "phpunit/phpunit": "^9.5.26",
-        "psalm/plugin-symfony": "^4.0.2",
+        "psalm/plugin-symfony": "^5.0",
         "roave/security-advisories": "dev-latest",
         "symfony/browser-kit": "^6.2",
         "symfony/css-selector": "^6.2.3",
@@ -193,7 +193,7 @@
         "symfony/web-profiler-bundle": "^6.2.4",
         "symplify/easy-coding-standard": "^11.1.16",
         "symplify/monorepo-builder": "11.2.17",
-        "vimeo/psalm": "^4.29"
+        "vimeo/psalm": "^5.15"
     },
     "scripts": {
         "auto-scripts": {

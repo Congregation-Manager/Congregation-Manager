@@ -199,9 +199,6 @@
     "nikic/php-parser": {
         "version": "v4.13.1"
     },
-    "openlss/lib-array2xml": {
-        "version": "1.0.0"
-    },
     "phar-io/manifest": {
         "version": "2.0.3"
     },
@@ -763,8 +760,5 @@
     },
     "webmozart/assert": {
         "version": "1.10.0"
-    },
-    "webmozart/path-util": {
-        "version": "2.3.0"
     }
 }
