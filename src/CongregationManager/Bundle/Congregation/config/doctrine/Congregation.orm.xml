@@ -8,9 +8,7 @@
             repository-class="CongregationManager\Bundle\Congregation\Repository\CongregationRepository"
             change-tracking-policy="DEFERRED_EXPLICIT">
 
-        <id name="id" type="integer" column="id">
-            <generator strategy="AUTO"/>
-        </id>
+        <id name="id" type="integer_aggregate_root_id" column="id"/>
 
         <field name="name" type="string" length="255"/>
 
