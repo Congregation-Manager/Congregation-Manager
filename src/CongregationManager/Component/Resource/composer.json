@@ -1,0 +1,36 @@
+{
+    "name": "congregation-manager/resource",
+    "type": "library",
+    "description": "Base classes for resources.",
+    "keywords": [
+        "resource",
+        "congregation-manager",
+        "php"
+    ],
+    "homepage": "https://github.com/congregation-manager/congregation-manager",
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "Lorenzo Ruozzi",
+            "homepage": "https://lruozzi9.github.io"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "CongregationManager\\Component\\Resource\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "CongregationManager\\Component\\Resource\\Tests\\": "tests"
+        }
+    },
+    "repositories": [
+        {
+            "type": "path",
+            "url": "../../*/*"
+        }
+    ],
+    "minimum-stability": "stable",
+    "prefer-stable": true
+}

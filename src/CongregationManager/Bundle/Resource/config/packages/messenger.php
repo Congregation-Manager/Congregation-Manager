@@ -17,11 +17,13 @@ return static function (FrameworkConfig $framework): void {
     $eventBus->middleware()
         ->id('validation');
 
-    $transport = $framework->messenger()->transport('sync');
+    $transport = $framework->messenger()
+        ->transport('sync');
     Assert::isInstanceOf($transport, TransportConfig::class);
     $transport->dsn('sync://');
 
-    $routing = $framework->messenger()->routing(EventInterface::class);
+    $routing = $framework->messenger()
+        ->routing(EventInterface::class);
     Assert::isInstanceOf($routing, RoutingConfig::class);
     $routing->senders(['sync']);
 };

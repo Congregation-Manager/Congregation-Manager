@@ -11,11 +11,9 @@ use CongregationManager\Component\TerritoryManager\Domain\MunicipalityInterface;
 use CongregationManager\Component\TerritoryManager\Domain\ProvinceInterface;
 use CongregationManager\Component\TerritoryManager\Domain\TerritoryInterface;
 use CongregationManager\Contract\Resource\AggregateRoot;
-use CongregationManager\Contract\Resource\Exception\InvalidEventException;
 use CongregationManager\Contract\Resource\Id;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
-use Exception;
 
 class Congregation extends AggregateRoot implements CongregationInterface
 {
@@ -60,6 +58,11 @@ class Congregation extends AggregateRoot implements CongregationInterface
         ]);
     }
 
+    public function __toString(): string
+    {
+        return sprintf('%s[%s]', self::class, $this->getName());
+    }
+
     public function rename(string $name): void
     {
         $this->name = $name;
@@ -67,11 +70,6 @@ class Congregation extends AggregateRoot implements CongregationInterface
         $this->raise(CongregationRenamed::class, [
             'name' => $name,
         ]);
-    }
-
-    public function __toString(): string
-    {
-        return sprintf('%s[%s]', self::class, $this->getName());
     }
 
     public function getName(): string

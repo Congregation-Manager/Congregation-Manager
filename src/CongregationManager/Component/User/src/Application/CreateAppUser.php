@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace CongregationManager\Component\User\Application;
 
+use CongregationManager\Bundle\Resource\UuidV4;
 use CongregationManager\Component\Congregation\Domain\BrotherInterface;
 use CongregationManager\Component\User\Domain\AppUser;
 use CongregationManager\Component\User\Domain\AppUserInterface;
@@ -24,7 +25,7 @@ final class CreateAppUser
         ?string $plainPassword = null,
         ?string $localeCode = null
     ): AppUserInterface {
-        $appUser = new AppUser($brother, $email, null, $localeCode);
+        $appUser = new AppUser(new UuidV4(), $brother, $email, null, $localeCode);
         if ($plainPassword !== null) {
             $appUser->setPassword($this->userPasswordHasher->hashPasswordForUser($plainPassword, $appUser));
         }

@@ -32,7 +32,7 @@ final class CreateAppUserTest extends TestCase
 
     public function testThatItCreatesANewAppUser(): void
     {
-        $brother = new Brother('John', 'Ritz', new Congregation(new UuidV4(), 'Carrollton'));
+        $brother = new Brother(new UuidV4(), 'John', 'Ritz', new Congregation(new UuidV4(), 'Carrollton'));
         $appUser = $this->createAppUser->create($brother, 'info@email.com', 'p455w0rd', 'it_IT');
 
         $this->assertSame($brother, $appUser->getBrother());
@@ -48,7 +48,7 @@ final class CreateAppUserTest extends TestCase
 
     public function testThatItCreatesANewAppUserWithoutPasswordIfNotSpecified(): void
     {
-        $brother = new Brother('John', 'Ritz', new Congregation(new UuidV4(), 'Carrollton'));
+        $brother = new Brother(new UuidV4(), 'John', 'Ritz', new Congregation(new UuidV4(), 'Carrollton'));
         $appUser = $this->createAppUser->create($brother, 'info@email.com', null, 'it_IT');
 
         $this->assertSame('info@email.com', $appUser->getEmail());
@@ -60,7 +60,7 @@ final class CreateAppUserTest extends TestCase
 
     public function testThatItCreatesANewAppUserWithoutLocaleIfNotSpecified(): void
     {
-        $brother = new Brother('John', 'Ritz', new Congregation(new UuidV4(), 'Carrollton'));
+        $brother = new Brother(new UuidV4(), 'John', 'Ritz', new Congregation(new UuidV4(), 'Carrollton'));
         $appUser = $this->createAppUser->create($brother, 'info@email.com', 'p455w0rd', null);
 
         $this->assertSame('info@email.com', $appUser->getEmail());

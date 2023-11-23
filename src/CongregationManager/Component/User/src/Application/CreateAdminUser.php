@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace CongregationManager\Component\User\Application;
 
+use CongregationManager\Bundle\Resource\UuidV4;
 use CongregationManager\Component\User\Domain\AdminUser;
 use CongregationManager\Component\User\Domain\AdminUserInterface;
 use CongregationManager\Component\User\Domain\Hasher\UserPasswordHasherInterface;
@@ -22,7 +23,7 @@ final class CreateAdminUser
         ?string $plainPassword = null,
         ?string $localeCode = null
     ): AdminUserInterface {
-        $adminUser = new AdminUser($email, null, $localeCode);
+        $adminUser = new AdminUser(new UuidV4(), $email, null, $localeCode);
         if ($plainPassword !== null) {
             $adminUser->setPassword($this->userPasswordHasher->hashPasswordForUser($plainPassword, $adminUser));
         }

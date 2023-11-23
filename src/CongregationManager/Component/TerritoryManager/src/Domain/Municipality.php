@@ -6,6 +6,7 @@ namespace CongregationManager\Component\TerritoryManager\Domain;
 
 use CongregationManager\Component\Congregation\Domain\CongregationInterface;
 use CongregationManager\Contract\Resource\AggregateRoot;
+use CongregationManager\Contract\Resource\Id;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 
@@ -17,11 +18,13 @@ class Municipality extends AggregateRoot implements MunicipalityInterface
     protected Collection $areas;
 
     public function __construct(
+        protected Id $id,
         private CongregationInterface $congregation,
         private ProvinceInterface $province,
         private string $name,
         private ?string $description = null
     ) {
+        parent::__construct($id);
         $this->areas = new ArrayCollection();
     }
 

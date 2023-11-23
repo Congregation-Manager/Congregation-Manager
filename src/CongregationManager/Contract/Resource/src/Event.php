@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace CongregationManager\Contract\Resource;
 
+/**
+ * @psalm-consistent-constructor
+ */
 abstract readonly class Event implements EventInterface
 {
     /**
@@ -11,7 +14,7 @@ abstract readonly class Event implements EventInterface
      * @param mixed[] $context
      * @param ?string $aggregate
      */
-    public function __construct(
+    final public function __construct(
         private array $payload = [],
         private array $context = [],
         private ?string $aggregate = null,

@@ -31,30 +31,34 @@ final class TerritoryTest extends TestCase
     protected function setUp(): void
     {
         $congregation = new Congregation(new UuidV4(), 'Carrollton');
-        $province = new Province($congregation, 'Carrollton');
-        $municipality = new Municipality($congregation, $province, 'Carrollton');
-        $area = new Area($congregation, $municipality, 'Carrollton');
-        $this->territory1 = new Territory($congregation, $area, 1);
-        $this->territory2 = new Territory($congregation, $area, 2);
+        $province = new Province(new UuidV4(), $congregation, 'Carrollton');
+        $municipality = new Municipality(new UuidV4(), $congregation, $province, 'Carrollton');
+        $area = new Area(new UuidV4(), $congregation, $municipality, 'Carrollton');
+        $this->territory1 = new Territory(new UuidV4(), $congregation, $area, 1);
+        $this->territory2 = new Territory(new UuidV4(), $congregation, $area, 2);
         $this->territoryAssignment1 = new TerritoryAssignment(
+            new UuidV4(),
             $this->territory1,
             new DateTimeImmutable('2022-05-01'),
             null,
             new DateTimeImmutable('2022-05-20')
         );
         $this->territoryAssignment2 = new TerritoryAssignment(
+            new UuidV4(),
             $this->territory1,
             new DateTimeImmutable('2022-09-01'),
             null,
             new DateTimeImmutable('2022-09-20')
         );
         $this->territoryAssignment3 = new TerritoryAssignment(
+            new UuidV4(),
             $this->territory1,
             new DateTimeImmutable('2022-10-01'),
             null,
             new DateTimeImmutable('2022-10-20')
         );
         $this->territoryAssignment4 = new TerritoryAssignment(
+            new UuidV4(),
             $this->territory1,
             new DateTimeImmutable('2022-12-01'),
             null,
@@ -108,9 +112,9 @@ final class TerritoryTest extends TestCase
     public function testItDoesNotHaveAssignmentsBetweenDatesWhenTerritoryHasOnlyAPreviousOneAssignmentRevoked(): void
     {
         $this->territory2->addTerritoryAssignment(
-            new TerritoryAssignment($this->territory2, new DateTimeImmutable('2022-04-01'), null, new DateTimeImmutable(
+            new TerritoryAssignment(new UuidV4(), $this->territory2, new DateTimeImmutable(
                 '2022-04-01'
-            )),
+            ), null, new DateTimeImmutable('2022-04-01')),
         );
         self::assertFalse(
             $this->territory2->hasAssignmentBetweenDates(new DateTimeImmutable('2022-06-10'), new DateTimeImmutable(
@@ -122,9 +126,9 @@ final class TerritoryTest extends TestCase
     public function testItDoesNotHaveAssignmentsStartingFromADateWhenTerritoryHasOnlyAPreviousOneAssignmentRevoked(): void
     {
         $this->territory2->addTerritoryAssignment(
-            new TerritoryAssignment($this->territory2, new DateTimeImmutable('2022-04-01'), null, new DateTimeImmutable(
+            new TerritoryAssignment(new UuidV4(), $this->territory2, new DateTimeImmutable(
                 '2022-04-01'
-            )),
+            ), null, new DateTimeImmutable('2022-04-01')),
         );
         self::assertFalse($this->territory2->hasAssignmentBetweenDates(new DateTimeImmutable('2022-06-10')));
     }
@@ -132,14 +136,14 @@ final class TerritoryTest extends TestCase
     public function testItDoesNotHaveAssignmentsBetweenDatesWhenTerritoryHasAPreviousOneAssignmentRevokedAndALaterOne(): void
     {
         $this->territory2->addTerritoryAssignment(
-            new TerritoryAssignment($this->territory2, new DateTimeImmutable('2022-04-01'), null, new DateTimeImmutable(
-                '2022-04-30'
-            )),
+            new TerritoryAssignment(new UuidV4(), $this->territory2, new DateTimeImmutable(
+                '2022-04-01'
+            ), null, new DateTimeImmutable('2022-04-30')),
         );
         $this->territory2->addTerritoryAssignment(
-            new TerritoryAssignment($this->territory2, new DateTimeImmutable('2022-07-01'), null, new DateTimeImmutable(
-                '2022-08-01'
-            )),
+            new TerritoryAssignment(new UuidV4(), $this->territory2, new DateTimeImmutable(
+                '2022-07-01'
+            ), null, new DateTimeImmutable('2022-08-01')),
         );
         self::assertFalse(
             $this->territory2->hasAssignmentBetweenDates(new DateTimeImmutable('2022-06-10'), new DateTimeImmutable(
@@ -151,14 +155,14 @@ final class TerritoryTest extends TestCase
     public function testItHasAssignmentsStartingFromADateWhenTerritoryHasAPreviousOneAssignmentRevokedAndALaterOne(): void
     {
         $this->territory2->addTerritoryAssignment(
-            new TerritoryAssignment($this->territory2, new DateTimeImmutable('2022-04-01'), null, new DateTimeImmutable(
-                '2022-04-30'
-            )),
+            new TerritoryAssignment(new UuidV4(), $this->territory2, new DateTimeImmutable(
+                '2022-04-01'
+            ), null, new DateTimeImmutable('2022-04-30')),
         );
         $this->territory2->addTerritoryAssignment(
-            new TerritoryAssignment($this->territory2, new DateTimeImmutable('2022-07-01'), null, new DateTimeImmutable(
-                '2022-08-01'
-            )),
+            new TerritoryAssignment(new UuidV4(), $this->territory2, new DateTimeImmutable(
+                '2022-07-01'
+            ), null, new DateTimeImmutable('2022-08-01')),
         );
         self::assertTrue($this->territory2->hasAssignmentBetweenDates(new DateTimeImmutable('2022-06-10')));
     }
@@ -166,12 +170,12 @@ final class TerritoryTest extends TestCase
     public function testItDoesNotHaveAssignmentsBetweenDatesWhenTerritoryHasAPreviousOneAssignmentRevokedAndALaterOneWithoutEnds(): void
     {
         $this->territory2->addTerritoryAssignment(
-            new TerritoryAssignment($this->territory2, new DateTimeImmutable('2022-04-01'), null, new DateTimeImmutable(
+            new TerritoryAssignment(new UuidV4(), $this->territory2, new DateTimeImmutable(
                 '2022-04-01'
-            )),
+            ), null, new DateTimeImmutable('2022-04-01')),
         );
         $this->territory2->addTerritoryAssignment(
-            new TerritoryAssignment($this->territory2, new DateTimeImmutable('2022-07-01'), null, null),
+            new TerritoryAssignment(new UuidV4(), $this->territory2, new DateTimeImmutable('2022-07-01'), null, null),
         );
         self::assertFalse(
             $this->territory2->hasAssignmentBetweenDates(new DateTimeImmutable('2022-06-10'), new DateTimeImmutable(
@@ -183,12 +187,12 @@ final class TerritoryTest extends TestCase
     public function testItHasAssignmentsStartingFromADateWhenTerritoryHasAPreviousOneAssignmentRevokedAndALaterOneWithoutEnds(): void
     {
         $this->territory2->addTerritoryAssignment(
-            new TerritoryAssignment($this->territory2, new DateTimeImmutable('2022-04-01'), null, new DateTimeImmutable(
+            new TerritoryAssignment(new UuidV4(), $this->territory2, new DateTimeImmutable(
                 '2022-04-01'
-            )),
+            ), null, new DateTimeImmutable('2022-04-01')),
         );
         $this->territory2->addTerritoryAssignment(
-            new TerritoryAssignment($this->territory2, new DateTimeImmutable('2022-07-01'), null, null),
+            new TerritoryAssignment(new UuidV4(), $this->territory2, new DateTimeImmutable('2022-07-01'), null, null),
         );
         self::assertTrue($this->territory2->hasAssignmentBetweenDates(new DateTimeImmutable('2022-06-10')));
     }
@@ -196,7 +200,7 @@ final class TerritoryTest extends TestCase
     public function testItHasAssignmentsBetweenDatesWhenTerritoryHasAPreviousOneAssignmentThatHasNotBeenRevoked(): void
     {
         $this->territory2->addTerritoryAssignment(
-            new TerritoryAssignment($this->territory2, new DateTimeImmutable('2022-04-01'), null, null),
+            new TerritoryAssignment(new UuidV4(), $this->territory2, new DateTimeImmutable('2022-04-01'), null, null),
         );
         self::assertTrue(
             $this->territory2->hasAssignmentBetweenDates(new DateTimeImmutable('2022-06-10'), new DateTimeImmutable(
@@ -208,7 +212,7 @@ final class TerritoryTest extends TestCase
     public function testItHasAssignmentsStartingFromADateWhenTerritoryHasAPreviousOneAssignmentThatHasNotBeenRevoked(): void
     {
         $this->territory2->addTerritoryAssignment(
-            new TerritoryAssignment($this->territory2, new DateTimeImmutable('2022-04-01'), null, null),
+            new TerritoryAssignment(new UuidV4(), $this->territory2, new DateTimeImmutable('2022-04-01'), null, null),
         );
         self::assertTrue($this->territory2->hasAssignmentBetweenDates(new DateTimeImmutable('2022-06-10')));
     }
@@ -216,9 +220,9 @@ final class TerritoryTest extends TestCase
     public function testItHasAssignmentsBetweenDatesWhenTerritoryHasAPreviousOneAssignmentRevokedDuringThePeriodOfTheNewOne(): void
     {
         $this->territory2->addTerritoryAssignment(
-            new TerritoryAssignment($this->territory2, new DateTimeImmutable('2022-04-01'), null, new DateTimeImmutable(
-                '2022-06-10'
-            )),
+            new TerritoryAssignment(new UuidV4(), $this->territory2, new DateTimeImmutable(
+                '2022-04-01'
+            ), null, new DateTimeImmutable('2022-06-10')),
         );
         self::assertTrue(
             $this->territory2->hasAssignmentBetweenDates(new DateTimeImmutable('2022-06-10'), new DateTimeImmutable(
@@ -230,9 +234,9 @@ final class TerritoryTest extends TestCase
     public function testItHasAssignmentsStartingFromADateWhenTerritoryHasAPreviousOneAssignmentRevokedDuringThePeriodOfTheNewOne(): void
     {
         $this->territory2->addTerritoryAssignment(
-            new TerritoryAssignment($this->territory2, new DateTimeImmutable('2022-04-01'), null, new DateTimeImmutable(
-                '2022-06-10'
-            )),
+            new TerritoryAssignment(new UuidV4(), $this->territory2, new DateTimeImmutable(
+                '2022-04-01'
+            ), null, new DateTimeImmutable('2022-06-10')),
         );
         self::assertTrue($this->territory2->hasAssignmentBetweenDates(new DateTimeImmutable('2022-06-10')));
     }
@@ -240,9 +244,9 @@ final class TerritoryTest extends TestCase
     public function testItHasAssignmentsBetweenDatesWhenTerritoryHasAnAssignmentThatStartedDuringThePeriodOfTheNewOneAndEndedLater(): void
     {
         $this->territory2->addTerritoryAssignment(
-            new TerritoryAssignment($this->territory2, new DateTimeImmutable('2022-06-20'), null, new DateTimeImmutable(
-                '2022-07-10'
-            )),
+            new TerritoryAssignment(new UuidV4(), $this->territory2, new DateTimeImmutable(
+                '2022-06-20'
+            ), null, new DateTimeImmutable('2022-07-10')),
         );
         self::assertTrue(
             $this->territory2->hasAssignmentBetweenDates(new DateTimeImmutable('2022-06-10'), new DateTimeImmutable(
@@ -254,9 +258,9 @@ final class TerritoryTest extends TestCase
     public function testItHasAssignmentsStartingFromADateWhenTerritoryHasAnAssignmentThatStartedDuringThePeriodOfTheNewOneAndEndedLater(): void
     {
         $this->territory2->addTerritoryAssignment(
-            new TerritoryAssignment($this->territory2, new DateTimeImmutable('2022-06-20'), null, new DateTimeImmutable(
-                '2022-07-10'
-            )),
+            new TerritoryAssignment(new UuidV4(), $this->territory2, new DateTimeImmutable(
+                '2022-06-20'
+            ), null, new DateTimeImmutable('2022-07-10')),
         );
         self::assertTrue($this->territory2->hasAssignmentBetweenDates(new DateTimeImmutable('2022-06-10')));
     }
@@ -264,7 +268,7 @@ final class TerritoryTest extends TestCase
     public function testItHasAssignmentsBetweenDatesWhenTerritoryHasAnAssignmentThatStartedDuringThePeriodOfTheNewOneAndIsStillNotRevoked(): void
     {
         $this->territory2->addTerritoryAssignment(
-            new TerritoryAssignment($this->territory2, new DateTimeImmutable('2022-06-20'), null, null),
+            new TerritoryAssignment(new UuidV4(), $this->territory2, new DateTimeImmutable('2022-06-20'), null, null),
         );
         self::assertTrue(
             $this->territory2->hasAssignmentBetweenDates(new DateTimeImmutable('2022-06-10'), new DateTimeImmutable(
@@ -276,7 +280,7 @@ final class TerritoryTest extends TestCase
     public function testItHasAssignmentsStartingFromADateWhenTerritoryHasAnAssignmentThatStartedDuringThePeriodOfTheNewOneAndIsStillNotRevoked(): void
     {
         $this->territory2->addTerritoryAssignment(
-            new TerritoryAssignment($this->territory2, new DateTimeImmutable('2022-06-20'), null, null),
+            new TerritoryAssignment(new UuidV4(), $this->territory2, new DateTimeImmutable('2022-06-20'), null, null),
         );
         self::assertTrue($this->territory2->hasAssignmentBetweenDates(new DateTimeImmutable('2022-06-10')));
     }
@@ -284,9 +288,9 @@ final class TerritoryTest extends TestCase
     public function testItHasAssignmentsBetweenDatesWhenTerritoryHasAnAssignmentWithinThePeriodOfTheNewOne(): void
     {
         $this->territory2->addTerritoryAssignment(
-            new TerritoryAssignment($this->territory2, new DateTimeImmutable('2022-06-15'), null, new DateTimeImmutable(
-                '2022-06-20'
-            )),
+            new TerritoryAssignment(new UuidV4(), $this->territory2, new DateTimeImmutable(
+                '2022-06-15'
+            ), null, new DateTimeImmutable('2022-06-20')),
         );
         self::assertTrue(
             $this->territory2->hasAssignmentBetweenDates(new DateTimeImmutable('2022-06-10'), new DateTimeImmutable(
@@ -298,9 +302,9 @@ final class TerritoryTest extends TestCase
     public function testItHasAssignmentsStartingFromADateWhenTerritoryHasAnAssignmentWithinThePeriodOfTheNewOne(): void
     {
         $this->territory2->addTerritoryAssignment(
-            new TerritoryAssignment($this->territory2, new DateTimeImmutable('2022-06-15'), null, new DateTimeImmutable(
-                '2022-06-20'
-            )),
+            new TerritoryAssignment(new UuidV4(), $this->territory2, new DateTimeImmutable(
+                '2022-06-15'
+            ), null, new DateTimeImmutable('2022-06-20')),
         );
         self::assertTrue($this->territory2->hasAssignmentBetweenDates(new DateTimeImmutable('2022-06-10')));
     }
@@ -308,9 +312,9 @@ final class TerritoryTest extends TestCase
     public function testItHasAssignmentsBetweenDatesWhenTerritoryHasAnAssignmentWithTheSameDates(): void
     {
         $this->territory2->addTerritoryAssignment(
-            new TerritoryAssignment($this->territory2, new DateTimeImmutable('2022-06-10'), null, new DateTimeImmutable(
-                '2022-06-25'
-            )),
+            new TerritoryAssignment(new UuidV4(), $this->territory2, new DateTimeImmutable(
+                '2022-06-10'
+            ), null, new DateTimeImmutable('2022-06-25')),
         );
         self::assertTrue(
             $this->territory2->hasAssignmentBetweenDates(new DateTimeImmutable('2022-06-10'), new DateTimeImmutable(
@@ -322,7 +326,7 @@ final class TerritoryTest extends TestCase
     public function testItHasAssignmentsStartingFromADateWhenTerritoryHasAnAssignmentWithTheSameDates(): void
     {
         $this->territory2->addTerritoryAssignment(
-            new TerritoryAssignment($this->territory2, new DateTimeImmutable('2022-06-10'), null, null),
+            new TerritoryAssignment(new UuidV4(), $this->territory2, new DateTimeImmutable('2022-06-10'), null, null),
         );
         self::assertTrue($this->territory2->hasAssignmentBetweenDates(new DateTimeImmutable('2022-06-10')));
     }
@@ -330,9 +334,9 @@ final class TerritoryTest extends TestCase
     public function testItHasAssignmentsBetweenDatesWhenTerritoryHasAnAssignmentStartedBeforeTheNewOneAndEndedLater(): void
     {
         $this->territory2->addTerritoryAssignment(
-            new TerritoryAssignment($this->territory2, new DateTimeImmutable('2022-06-01'), null, new DateTimeImmutable(
-                '2022-07-05'
-            )),
+            new TerritoryAssignment(new UuidV4(), $this->territory2, new DateTimeImmutable(
+                '2022-06-01'
+            ), null, new DateTimeImmutable('2022-07-05')),
         );
         self::assertTrue(
             $this->territory2->hasAssignmentBetweenDates(new DateTimeImmutable('2022-06-10'), new DateTimeImmutable(
@@ -343,7 +347,7 @@ final class TerritoryTest extends TestCase
 
     public function testItDoesNotHaveAssignmentsWhenTerritoryContainsTheSameInstance(): void
     {
-        $territoryAssignment = new TerritoryAssignment($this->territory2, new DateTimeImmutable(
+        $territoryAssignment = new TerritoryAssignment(new UuidV4(), $this->territory2, new DateTimeImmutable(
             '2022-06-10'
         ), null, new DateTimeImmutable('2022-06-25'));
         $this->territory2->addTerritoryAssignment($territoryAssignment);

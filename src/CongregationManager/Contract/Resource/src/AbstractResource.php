@@ -8,19 +8,18 @@ use CongregationManager\Contract\Resource\Exception\InvalidEventException;
 use DateTimeImmutable;
 use DateTimeInterface;
 use DateTimeZone;
-use Exception;
 
 abstract class AbstractResource implements ResourceInterface
 {
     protected DateTimeInterface $createdAt;
+
     protected ?DateTimeInterface $updatedAt = null;
 
-    /** @var Event[] */
+    /**
+     * @var Event[]
+     */
     private array $events = [];
 
-    /**
-     * @throws Exception Emits Exception in case of an error while generating new DateTimeImmutable object.
-     */
     public function __construct(
         protected Id $id,
     ) {
@@ -38,12 +37,12 @@ abstract class AbstractResource implements ResourceInterface
      * @param class-string $event
      * @param mixed[] $payload
      * @param mixed[] $context
-     * @throws InvalidEventException Emits InvalidEventException in case of an invalid event class name that not implements CongregationManager\Contract\Resource\Event class.
-     * @throws Exception Emits Exception in case of an error while generating new DateTimeImmutable object.
+     *
+     * @psalm-suppress UnsafeInstantiation
      */
     final public function raise(string $event, array $payload = [], array $context = []): void
     {
-        if (!is_a($event, Event::class, true)) {
+        if (! is_a($event, Event::class, true)) {
             throw new InvalidEventException(
                 sprintf('Provided event class name was not an instance of %s.', Event::class),
             );
@@ -65,9 +64,6 @@ abstract class AbstractResource implements ResourceInterface
         return $pendingEvents;
     }
 
-    /**
-     * @throws Exception Emits Exception in case of an error while generating new DateTimeImmutable object.
-     */
     final protected function changeLastUpdatedToNow(): void
     {
         $this->updatedAt = new DateTimeImmutable('now', new DateTimeZone('UTC'));

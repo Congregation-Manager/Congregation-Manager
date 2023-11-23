@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace CongregationManager\Component\Congregation\Domain\Factory;
 
-use CongregationManager\Component\Congregation\Domain\CongregationInterface;
+use CongregationManager\Component\Congregation\Domain\BrotherInterface;
 use CongregationManager\CongregationManager\Contract\Resource\src\IdGeneratorInterface;
 use Webmozart\Assert\Assert;
 
-final readonly class CongregationFactory implements CongregationFactoryInterface
+final class BrotherFactory implements BrotherFactoryInterface
 {
     /**
      * @param class-string $fqcn
@@ -22,11 +22,11 @@ final readonly class CongregationFactory implements CongregationFactoryInterface
     /**
      * @psalm-suppress MixedMethodCall
      */
-    public function createNew(string $name): CongregationInterface
+    public function createNew(string $name): BrotherInterface
     {
-        $congregation = new $this->fqcn($this->idGenerator->generateNew(), $name);
-        Assert::isInstanceOf($congregation, CongregationInterface::class);
+        $brother = new $this->fqcn($this->idGenerator->generateNew(), $name);
+        Assert::isInstanceOf($brother, BrotherInterface::class);
 
-        return $congregation;
+        return $brother;
     }
 }

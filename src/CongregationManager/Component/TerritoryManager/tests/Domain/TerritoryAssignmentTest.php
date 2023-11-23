@@ -36,17 +36,24 @@ final class TerritoryAssignmentTest extends TestCase
     protected function setUp(): void
     {
         $congregation = new Congregation(new UuidV4(), 'congregation');
-        $province = new Province($congregation, 'province');
-        $municipality = new Municipality($congregation, $province, 'province');
-        $this->territory = new Territory($congregation, new Area($congregation, $municipality, 'area'), 1);
-        $this->jhonBarrBrother = new Brother('Jhon', 'Barr', $congregation);
+        $province = new Province(new UuidV4(), $congregation, 'province');
+        $municipality = new Municipality(new UuidV4(), $congregation, $province, 'province');
+        $this->territory = new Territory(new UuidV4(), $congregation, new Area(
+            new UuidV4(),
+            $congregation,
+            $municipality,
+            'area'
+        ), 1);
+        $this->jhonBarrBrother = new Brother(new UuidV4(), 'Jhon', 'Barr', $congregation);
         $this->territoryAssignmentWithRevocationDate = new TerritoryAssignment(
+            new UuidV4(),
             $this->territory,
             new DateTimeImmutable('2022-06-10'),
             $this->jhonBarrBrother,
             new DateTimeImmutable('2022-06-25'),
         );
         $this->territoryAssignmentWithoutRevocationDate = new TerritoryAssignment(
+            new UuidV4(),
             $this->territory,
             new DateTimeImmutable('2022-06-10'),
             $this->jhonBarrBrother,
@@ -66,6 +73,7 @@ final class TerritoryAssignmentTest extends TestCase
     public function testItHasSameDateToDifferentAssignmentWithSameDates(): void
     {
         $otherAssignment = new TerritoryAssignment(
+            new UuidV4(),
             $this->territory,
             new DateTimeImmutable('2022-06-10'),
             null,
@@ -77,6 +85,7 @@ final class TerritoryAssignmentTest extends TestCase
     public function testItDoesNotHaveSameDateToDifferentAssignmentWithDifferentDates(): void
     {
         $otherAssignment = new TerritoryAssignment(
+            new UuidV4(),
             $this->territory,
             new DateTimeImmutable('2022-06-10'),
             null,
@@ -87,13 +96,14 @@ final class TerritoryAssignmentTest extends TestCase
 
     public function testItDoesNotHaveSameDateToDifferentAssignmentWithoutRevocationDate(): void
     {
-        $otherAssignment = new TerritoryAssignment($this->territory, new DateTimeImmutable('2022-06-10'));
+        $otherAssignment = new TerritoryAssignment(new UuidV4(), $this->territory, new DateTimeImmutable('2022-06-10'));
         self::assertFalse($this->territoryAssignmentWithRevocationDate->hasSameDatesTo($otherAssignment));
     }
 
     public function testItIsGreaterThanAssignmentWithPreviousAssignmentDate(): void
     {
         $otherAssignment = new TerritoryAssignment(
+            new UuidV4(),
             $this->territory,
             new DateTimeImmutable('2022-06-08'),
             null,
@@ -105,6 +115,7 @@ final class TerritoryAssignmentTest extends TestCase
     public function testItIsGreaterThanAssignmentWithPreviousRevocationDate(): void
     {
         $otherAssignment = new TerritoryAssignment(
+            new UuidV4(),
             $this->territory,
             new DateTimeImmutable('2022-06-10'),
             null,
@@ -116,6 +127,7 @@ final class TerritoryAssignmentTest extends TestCase
     public function testItIsNotGreaterThanAssignmentWithoutRevocationDate(): void
     {
         $otherAssignment = new TerritoryAssignment(
+            new UuidV4(),
             $this->territory,
             new DateTimeImmutable('2022-06-10'),
             null,
@@ -127,6 +139,7 @@ final class TerritoryAssignmentTest extends TestCase
     public function testItIsNotGreaterThanAssignmentWithGreaterRevocationDate(): void
     {
         $otherAssignment = new TerritoryAssignment(
+            new UuidV4(),
             $this->territory,
             new DateTimeImmutable('2022-06-10'),
             null,
@@ -138,6 +151,7 @@ final class TerritoryAssignmentTest extends TestCase
     public function testItIsNotGreaterThanAssignmentWithGreaterAssignmentDate(): void
     {
         $otherAssignment = new TerritoryAssignment(
+            new UuidV4(),
             $this->territory,
             new DateTimeImmutable('2022-06-11'),
             null,
@@ -149,6 +163,7 @@ final class TerritoryAssignmentTest extends TestCase
     public function testItIsNotGreaterThanAssignmentWithSameDates(): void
     {
         $otherAssignment = new TerritoryAssignment(
+            new UuidV4(),
             $this->territory,
             new DateTimeImmutable('2022-06-10'),
             null,
@@ -169,6 +184,7 @@ final class TerritoryAssignmentTest extends TestCase
     public function testItIsNotGreaterThanAssignmentWithSameDatesIfWithoutRevocationDate(): void
     {
         $otherAssignment = new TerritoryAssignment(
+            new UuidV4(),
             $this->territory,
             new DateTimeImmutable('2022-06-10'),
             null,
@@ -180,6 +196,7 @@ final class TerritoryAssignmentTest extends TestCase
     public function testItIsGreaterThanAssignmentWithDatesIfWithoutRevocationDate(): void
     {
         $otherAssignment = new TerritoryAssignment(
+            new UuidV4(),
             $this->territory,
             new DateTimeImmutable('2022-06-10'),
             null,
@@ -190,13 +207,13 @@ final class TerritoryAssignmentTest extends TestCase
 
     public function testItIsGreaterThanAssignmentWithoutRevocationDateAndNotGreaterAssignmentDateIfWithoutRevocationDate(): void
     {
-        $otherAssignment = new TerritoryAssignment($this->territory, new DateTimeImmutable('2022-06-08'));
+        $otherAssignment = new TerritoryAssignment(new UuidV4(), $this->territory, new DateTimeImmutable('2022-06-08'));
         self::assertTrue($this->territoryAssignmentWithoutRevocationDate->isGreaterThan($otherAssignment));
     }
 
     public function testItIsNotGreaterThanAssignmentWithoutRevocationDateAndGreaterAssignmentDateIfWithoutRevocationDate(): void
     {
-        $otherAssignment = new TerritoryAssignment($this->territory, new DateTimeImmutable('2022-06-12'));
+        $otherAssignment = new TerritoryAssignment(new UuidV4(), $this->territory, new DateTimeImmutable('2022-06-12'));
         self::assertFalse($this->territoryAssignmentWithoutRevocationDate->isGreaterThan($otherAssignment));
     }
 }

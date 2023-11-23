@@ -12,5 +12,5 @@ return static function (ContainerConfigurator $containerConfigurator) {
     $services->set(
         'congregation_manager_territory_manager.factory.territory_assignment',
         TerritoryAssignmentFactory::class
-    );
+    )->args([service('congregation_manager_resource.generator.uuidv4')]);
 };

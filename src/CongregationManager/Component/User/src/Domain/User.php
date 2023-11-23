@@ -5,14 +5,17 @@ declare(strict_types=1);
 namespace CongregationManager\Component\User\Domain;
 
 use CongregationManager\Contract\Resource\AggregateRoot;
+use CongregationManager\Contract\Resource\Id;
 
 abstract class User extends AggregateRoot implements UserInterface
 {
     public function __construct(
+        protected Id $id,
         protected string $email,
         protected ?string $password = null,
         protected ?string $localeCode = null
     ) {
+        parent::__construct($id);
     }
 
     public function __toString(): string

@@ -15,9 +15,8 @@ final class MessengerQueryBus implements QueryBusInterface
         handle as handleQuery;
     }
 
-    public function __construct(
-        MessageBusInterface $messageBus,
-    ) {
+    public function __construct(MessageBusInterface $messageBus)
+    {
         $this->messageBus = $messageBus;
     }
 
