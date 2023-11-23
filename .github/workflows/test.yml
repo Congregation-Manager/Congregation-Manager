@@ -89,7 +89,7 @@ jobs:
                 run: vendor/bin/phparkitect check
             -
                 name: Analyse code with phpstan
-                run: vendor/bin/phpstan analyse -c phpstan.neon
+                run: vendor/bin/phpstan analyse
             -
                 name: Analyse code with psalm
                 run: vendor/bin/psalm

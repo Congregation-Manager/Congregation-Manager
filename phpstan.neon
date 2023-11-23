@@ -3,7 +3,7 @@ parameters:
 	paths:
 		- src
 	symfony:
-	    container_xml_path: var/cache/dev/CongregationManager_KernelDevDebugContainer.xml
+	    container_xml_path: var/cache/dev/KernelDevDebugContainer.xml
 	scanDirectories:
 	    - var/cache/dev/Symfony/Config
 	ignoreErrors:
