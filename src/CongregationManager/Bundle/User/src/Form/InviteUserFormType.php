@@ -9,6 +9,9 @@ use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 
+/**
+ * @extends AbstractType<array>
+ */
 final class InviteUserFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void

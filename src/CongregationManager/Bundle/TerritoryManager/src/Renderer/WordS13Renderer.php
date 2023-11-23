@@ -94,6 +94,9 @@ final class WordS13Renderer implements S13RendererInterface
         $footer->addText($this->translator->trans('cm.s_13.code') . '  ' . self::DOCUMENT_PRINTED_DATE);
     }
 
+    /**
+     * @psalm-suppress InvalidArgument
+     */
     private function addServiceYear(Table $serviceYearTable, string $year): void
     {
         $serviceYearTable->addRow();
@@ -125,6 +128,9 @@ final class WordS13Renderer implements S13RendererInterface
         );
     }
 
+    /**
+     * @psalm-suppress InvalidArgument
+     */
     private function addAssignmentsTableHeader(Table $assignmentsTable): void
     {
         // First row
@@ -247,6 +253,9 @@ final class WordS13Renderer implements S13RendererInterface
         }
     }
 
+    /**
+     * @psalm-suppress InvalidArgument
+     */
     private function addAssignmentsTableRow(Table $assignmentsTable, Row $row, bool $isLast = false): void
     {
         $lastRowParagraphStyle = [];
