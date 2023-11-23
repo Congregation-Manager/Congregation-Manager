@@ -29,7 +29,6 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "CongregationManager\\": "src/",
             "CongregationManager\\Bundle\\Admin\\Tests\\": "src/CongregationManager/Bundle/Admin/tests/",
             "CongregationManager\\Bundle\\App\\Tests\\": "src/CongregationManager/Bundle/App/tests/",
             "CongregationManager\\Bundle\\Congregation\\Tests\\": "src/CongregationManager/Bundle/Congregation/tests/",
@@ -46,7 +45,10 @@
             "CongregationManager\\Contract\\Exception\\Tests\\": "src/CongregationManager/Contract/Exception/tests/",
             "CongregationManager\\Behat\\": "src/CongregationManager/Behat/src/",
             "CongregationManager\\Behat\\Tests\\": "src/CongregationManager/Behat/tests/"
-        }
+        },
+        "classmap": [
+            "src/Kernel.php"
+        ]
     },
     "config": {
         "optimize-autoloader": true,
