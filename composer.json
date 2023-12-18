@@ -146,7 +146,7 @@
         "symfony/twig-bridge": "^6.4.0",
         "symfony/twig-bundle": "^6.4.0",
         "symfony/validator": "^6.4.0",
-        "symfony/web-link": "^6.4",
+        "symfony/web-link": "^7.0",
         "symfony/webpack-encore-bundle": "^2.1.1",
         "symfony/yaml": "^6.4.0",
         "symfonycasts/reset-password-bundle": "^1.19.0",
