@@ -178,7 +178,7 @@
         "psalm/plugin-symfony": "^5.1",
         "roave/security-advisories": "dev-latest",
         "symfony/browser-kit": "^6.4",
-        "symfony/css-selector": "^6.4.0",
+        "symfony/css-selector": "^7.0.0",
         "symfony/debug-bundle": "^6.4.0",
         "symfony/maker-bundle": "^1.52",
         "symfony/phpunit-bridge": "^6.4.1",
