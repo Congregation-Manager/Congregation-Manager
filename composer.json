@@ -136,7 +136,7 @@
         "symfony/routing": "^6.4.1",
         "symfony/runtime": "^6.4",
         "symfony/security-bundle": "^6.4.0",
-        "symfony/security-core": "^6.4.0",
+        "symfony/security-core": "^7.0.1",
         "symfony/security-http": "^6.4.0",
         "symfony/serializer": "^6.4.1",
         "symfony/stopwatch": "^6.4.0",
