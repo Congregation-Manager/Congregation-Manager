@@ -72,7 +72,7 @@ final class CreatePage extends SymfonyPage
     protected function getDefinedElements(): array
     {
         return array_merge(parent::getDefinedElements(), [
-            'errors' => '.invalid-feedback',
+            'errors' => '.invalid-feedback, .alert.alert-danger',
             'brother' => '[data-test-brother]',
             'assignment-date' => '[data-test-assignment-date]',
             'revocation-date' => '[data-test-revocation-date]',
