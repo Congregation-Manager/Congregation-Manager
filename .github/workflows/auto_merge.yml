@@ -1,19 +1,28 @@
-name: Auto-merge Dependabot PR
-
+name: Dependabot auto-approve & auto-merge
 on:
-    pull_request_target: ~
+    pull_request:
+
+permissions:
+    pull-requests: write
+    contents: write
 
 jobs:
-    auto-merge:
+    auto-merge-dependabot-pr:
         runs-on: ubuntu-latest
         timeout-minutes: 1
-
+        # Checking the author will prevent this Action run failing on non-Dependabot PRs
+        if: ${{ github.actor == 'dependabot[bot]' }}
         steps:
-            -   uses: actions/checkout@v2
-
             -
-                name: Auto-merge minor dependencies upgrades
-                uses: ahmadnassri/action-dependabot-auto-merge@v2
-                with:
-                    target: minor
-                    github-token: ${{ secrets.DEPENDABOT_TOKEN }}
+                name: Dependabot metadata
+                id: dependabot-metadata
+                uses: dependabot/fetch-metadata@v1.3.1
+            -
+                uses: actions/checkout@v4
+            -
+                name: Approve the PR
+                run:
+                    gh pr review "$PR_URL" --approve -b "@dependabot merge"
+                env:
+                    PR_URL: ${{ github.event.pull_request.html_url }}
+                    GITHUB_TOKEN: ${{ secrets.DEPENDABOT_TOKEN }}
