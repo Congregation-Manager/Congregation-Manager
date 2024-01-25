@@ -3541,11 +3541,11 @@ postcss-normalize-timing-functions@^5.1.0:
     postcss-value-parser "^4.2.0"
 
 postcss-normalize-unicode@^5.1.0:
-  version "5.1.0"
-  resolved "https://registry.yarnpkg.com/postcss-normalize-unicode/-/postcss-normalize-unicode-5.1.0.tgz#3d23aede35e160089a285e27bf715de11dc9db75"
-  integrity sha512-J6M3MizAAZ2dOdSjy2caayJLQT8E8K9XjLce8AUQMwOrCvjCHv24aLC/Lps1R1ylOfol5VIDMaM/Lo9NGlk1SQ==
+  version "5.1.1"
+  resolved "https://registry.yarnpkg.com/postcss-normalize-unicode/-/postcss-normalize-unicode-5.1.1.tgz#f67297fca3fea7f17e0d2caa40769afc487aa030"
+  integrity sha512-qnCL5jzkNUmKVhZoENp1mJiGNPcsJCs1aaRmURmeJGES23Z/ajaln+EPTD+rBeNkSryI+2WTdW+lwcVdOikrpA==
   dependencies:
-    browserslist "^4.16.6"
+    browserslist "^4.21.4"
     postcss-value-parser "^4.2.0"
 
 postcss-normalize-url@^5.1.0:
