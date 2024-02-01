@@ -1706,7 +1706,7 @@ braces@^3.0.2, braces@~3.0.2:
   dependencies:
     fill-range "^7.0.1"
 
-browserslist@^4.0.0, browserslist@^4.14.5, browserslist@^4.16.6, browserslist@^4.20.2, browserslist@^4.20.4:
+browserslist@^4.0.0, browserslist@^4.14.5, browserslist@^4.20.2, browserslist@^4.20.4:
   version "4.20.4"
   resolved "https://registry.yarnpkg.com/browserslist/-/browserslist-4.20.4.tgz#98096c9042af689ee1e0271333dbc564b8ce4477"
   integrity sha512-ok1d+1WpnU24XYN7oC3QWgTyMhY/avPJ/r9T00xxvUOIparA/gc+UPUMaod3i+G6s+nI2nUb9xZ5k794uIwShw==
@@ -3431,11 +3431,11 @@ postcss-merge-longhand@^5.1.6:
     stylehacks "^5.1.1"
 
 postcss-merge-rules@^5.1.2:
-  version "5.1.2"
-  resolved "https://registry.yarnpkg.com/postcss-merge-rules/-/postcss-merge-rules-5.1.2.tgz#7049a14d4211045412116d79b751def4484473a5"
-  integrity sha512-zKMUlnw+zYCWoPN6yhPjtcEdlJaMUZ0WyVcxTAmw3lkkN/NDMRkOkiuctQEoWAOvH7twaxUUdvBWl0d4+hifRQ==
+  version "5.1.4"
+  resolved "https://registry.yarnpkg.com/postcss-merge-rules/-/postcss-merge-rules-5.1.4.tgz#2f26fa5cacb75b1402e213789f6766ae5e40313c"
+  integrity sha512-0R2IuYpgU93y9lhVbO/OylTtKMVcHb67zjWIfCiKR9rWL3GUk1677LAqD/BcHizukdZEjT8Ru3oHRoAYoJy44g==
   dependencies:
-    browserslist "^4.16.6"
+    browserslist "^4.21.4"
     caniuse-api "^3.0.0"
     cssnano-utils "^3.1.0"
     postcss-selector-parser "^6.0.5"
