@@ -10,6 +10,8 @@ use Symfony\Bundle\FrameworkBundle\Console\Application;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Tester\CommandTester;
+use Symfony\Component\HttpKernel\KernelInterface;
+use Webmozart\Assert\Assert;
 
 /**
  * @internal
@@ -59,8 +61,10 @@ final class CreateCongregationCommandTest extends KernelTestCase
 
         // this uses a special testing container that allows you to fetch private services
         /** @var Command $command */
-        $command = static::getContainer()->get('congregation_manager_congregation.command.create_congregation');
-        $command->setApplication(new Application(self::$kernel));
+        $command = self::getContainer()->get('congregation_manager_congregation.command.create_congregation');
+        $kernel = self::$kernel;
+        Assert::isInstanceOf($kernel, KernelInterface::class);
+        $command->setApplication(new Application($kernel));
 
         $commandTester = new CommandTester($command);
         $commandTester->setInputs($inputs);

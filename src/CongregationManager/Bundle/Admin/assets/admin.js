@@ -1,10 +1,5 @@
 import './styles/admin.css';
 
-/* globals Chart:false, feather:false */
-
-// start the Stimulus application
-import './bootstrap';
-
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';

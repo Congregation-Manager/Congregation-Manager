@@ -10,6 +10,8 @@ use Symfony\Bundle\FrameworkBundle\Console\Application;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Tester\CommandTester;
+use Symfony\Component\HttpKernel\KernelInterface;
+use Webmozart\Assert\Assert;
 
 /**
  * @psalm-suppress PropertyNotSetInConstructor
@@ -74,8 +76,10 @@ final class CreateAdminUserCommandTest extends KernelTestCase
 
         // this uses a special testing container that allows you to fetch private services
         /** @var Command $command */
-        $command = static::getContainer()->get('congregation_manager_user.command.craete_admin_user');
-        $command->setApplication(new Application(self::$kernel));
+        $command = self::getContainer()->get('congregation_manager_user.command.craete_admin_user');
+        $kernel = self::$kernel;
+        Assert::isInstanceOf($kernel, KernelInterface::class);
+        $command->setApplication(new Application($kernel));
 
         $commandTester = new CommandTester($command);
         $commandTester->setInputs($inputs);

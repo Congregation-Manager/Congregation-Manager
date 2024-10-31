@@ -9,7 +9,7 @@ use Symfony\Component\Routing\Loader\Configurator\RoutingConfigurator;
 
 return static function (RoutingConfigurator $routes) {
     $routes->add('admin_index', '/')
-        ->controller([RedirectController::class])
+        ->controller([RedirectController::class, 'redirectAction'])
         ->defaults([
             'route' => 'admin_login',
             'permanent' => true,
