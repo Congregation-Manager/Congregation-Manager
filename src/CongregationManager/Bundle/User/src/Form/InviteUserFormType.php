@@ -10,7 +10,7 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 
 /**
- * @extends AbstractType<array>
+ * @extends AbstractType<array{email: string}>
  */
 final class InviteUserFormType extends AbstractType
 {

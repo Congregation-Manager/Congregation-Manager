@@ -193,8 +193,8 @@ final class ImportFromOldCMCommand extends Command
                 $congregation,
                 (bool) $oldBrother['male'],
                 $oldBrother['middle_name'],
-                $oldBrother['birth_date'] ? new DateTime($oldBrother['birth_date']) : null,
-                $oldBrother['baptism_date'] ? new DateTime($oldBrother['baptism_date']) : null,
+                $oldBrother['birth_date'] !== null ? new DateTime($oldBrother['birth_date']) : null,
+                $oldBrother['baptism_date'] !== null ? new DateTime($oldBrother['baptism_date']) : null,
             );
             $this->oldBrotherIds[(int) $oldBrother['id']] = $brother;
             $oldAppUser = $this->oldAppUserRepository->findOneByBrother((int) $oldBrother['id']);

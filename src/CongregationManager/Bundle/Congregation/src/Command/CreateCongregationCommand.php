@@ -41,7 +41,7 @@ final class CreateCongregationCommand extends Command
 
     public function validateString(?string $string): string
     {
-        if (empty($string)) {
+        if ($string === '' || $string === null) {
             throw new InvalidArgumentException('The string can not be empty.');
         }
 

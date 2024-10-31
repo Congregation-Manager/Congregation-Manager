@@ -12,7 +12,7 @@ use Symfony\Component\Validator\Constraints\Email;
 use Symfony\Component\Validator\Constraints\NotBlank;
 
 /**
- * @extends AbstractType<array>
+ * @extends AbstractType<array{email: string}>
  */
 class ResetPasswordRequestFormType extends AbstractType
 {
