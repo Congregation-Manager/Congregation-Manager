@@ -12,7 +12,7 @@ First, you have to configure your env variables by creating the .env.local file.
 
 Now you need to copy the local runtime docker-compose.override.yml example.
 
-    cp docker.compose.override.local-runtime-sample.yml docker.compose.override.yml
+    cp compose.override.local-runtime-sample.yaml compose.override.yaml
 
 Then change the env variables with the previous one.
 

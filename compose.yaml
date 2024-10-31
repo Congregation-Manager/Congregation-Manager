@@ -1,5 +1,3 @@
-version: '3'
-
 services:
     ###> doctrine/doctrine-bundle ###
     database:
@@ -17,12 +15,12 @@ services:
     ###< doctrine/doctrine-bundle ###
     mail:
         container_name: mail
-        image: mailhog/mailhog
+        image: axllent/mailpit
         labels:
             com.symfony.server.service-prefix: 'MAILER'
         ports:
-            - "18025:8025"
-            - "11025:1025"
+            - "8025:8025"
+            - "1025:1025"
 
 volumes:
     ###> doctrine/doctrine-bundle ###

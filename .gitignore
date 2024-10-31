@@ -17,7 +17,8 @@
 ###< symfony/phpunit-bridge ###
 
 ###> docker <###
-docker-compose.override.yml
+docker-compose.override.yaml
+compose.override.yaml
 ###> docker <###
 
 ansible/vars/.password
