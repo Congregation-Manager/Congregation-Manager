@@ -11,7 +11,7 @@ return static function (MBConfig $mbConfig): void {
     // what extra parts to add after merge?
     $mbConfig->dataToAppend([
         ComposerJsonSection::REQUIRE => [
-            'php' => '^8.2',
+            'php' => '^8.3',
         ],
         ComposerJsonSection::MINIMUM_STABILITY => 'stable',
         ComposerJsonSection::REQUIRE_DEV => [
