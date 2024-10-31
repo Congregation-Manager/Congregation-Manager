@@ -40,11 +40,11 @@ jobs:
                     tools: symfony, composer-require-checker, composer-unused
             -
                 name: Setup Node
-                uses: actions/setup-node@v1
+                uses: actions/setup-node@v4
                 with:
-                    node-version: "16"
+                    node-version: "22"
             -
-                uses: actions/checkout@v2
+                uses: actions/checkout@v4
             -
                 name: Copy .env.test.local
                 run: php -r "file_exists('.env.test.local') || copy('.env.test', '.env.test.local');"
