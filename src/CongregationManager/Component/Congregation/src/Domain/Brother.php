@@ -158,6 +158,8 @@ class Brother extends AggregateRoot implements BrotherInterface
 
     public function getFullName(): string
     {
-        return $this->getFirstName() . ' ' . ($this->getMiddleName() ? $this->getMiddleName() . ' ' : '') . $this->getLastName();
+        $middleName = $this->getMiddleName();
+
+        return $this->getFirstName() . ' ' . ($middleName !== null ? $middleName . ' ' : '') . $this->getLastName();
     }
 }

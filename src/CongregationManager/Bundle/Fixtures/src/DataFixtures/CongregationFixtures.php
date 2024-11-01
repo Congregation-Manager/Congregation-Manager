@@ -9,8 +9,14 @@ use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Bundle\FixturesBundle\FixtureGroupInterface;
 use Doctrine\Persistence\ObjectManager;
 
+/**
+ * @psalm-type CongregationFixtureData = array{name: string}
+ */
 final class CongregationFixtures extends Fixture implements FixtureGroupInterface
 {
+    /**
+     * @param array<array-key, CongregationFixtureData> $congregationFixtureData
+     */
     public function __construct(
         private readonly array $congregationFixtureData,
     ) {

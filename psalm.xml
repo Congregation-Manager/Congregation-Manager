@@ -34,6 +34,16 @@
                 <directory name="src/CongregationManager/Behat/"/>
             </errorLevel>
         </MixedReturnTypeCoercion>
+        <MixedMethodCall>
+            <errorLevel type="suppress">
+                <file name="src/CongregationManager/Bundle/Fixtures/src/CongregationManagerFixturesBundle.php"/>
+            </errorLevel>
+        </MixedMethodCall>
+        <UndefinedMethod>
+            <errorLevel type="suppress">
+                <file name="src/CongregationManager/Bundle/Fixtures/src/CongregationManagerFixturesBundle.php"/>
+            </errorLevel>
+        </UndefinedMethod>
         <InternalMethod>
             <errorLevel type="suppress">
                 <directory name="src/CongregationManager/Behat/"/>

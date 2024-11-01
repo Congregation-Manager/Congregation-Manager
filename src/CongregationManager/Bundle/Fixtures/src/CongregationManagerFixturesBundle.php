@@ -138,7 +138,9 @@ final class CongregationManagerFixturesBundle extends AbstractBundle
                                     ->end()
                                     ->scalarNode('locale')
                                         ->defaultNull()
-                                        ->info('The locale of the user, default is the default locale of the application')
+                                        ->info(
+                                            'The locale of the user, default is the default locale of the application'
+                                        )
                                     ->end()
                                 ->end()
                             ->end()

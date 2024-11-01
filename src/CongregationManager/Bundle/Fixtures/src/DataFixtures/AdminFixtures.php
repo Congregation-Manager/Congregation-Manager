@@ -10,8 +10,14 @@ use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Bundle\FixturesBundle\FixtureGroupInterface;
 use Doctrine\Persistence\ObjectManager;
 
+/**
+ * @psalm-type AdminFixtureData = array{email: string, password: string, locale: ?string, super_admin: bool}
+ */
 final class AdminFixtures extends Fixture implements FixtureGroupInterface
 {
+    /**
+     * @param array<array-key, AdminFixtureData> $adminFixtureData
+     */
     public function __construct(
         private readonly array $adminFixtureData,
         private readonly string $defaultLocale,

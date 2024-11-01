@@ -10,3 +10,5 @@ parameters:
 		-
 			message: '#^Parameter \#1 \$width of method PhpOffice\\PhpWord\\Element\\Table\:\:addCell\(\) expects int\|null, float given\.$#'
 			path: src/CongregationManager/Bundle/TerritoryManager/src/Renderer/WordS13Renderer
+		-
+		    message: '#^Call to an undefined method Symfony\\Component\\Config\\Definition\\Builder\\NodeDefinition\:\:children\(\)\.$#'
