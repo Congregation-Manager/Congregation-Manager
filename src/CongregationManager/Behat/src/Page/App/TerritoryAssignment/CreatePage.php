@@ -13,6 +13,7 @@ use Webmozart\Assert\Assert;
 
 final class CreatePage extends SymfonyPage
 {
+    #[\Override]
     public function getRouteName(): string
     {
         return 'app_territory_assignment_create';
@@ -69,6 +70,7 @@ final class CreatePage extends SymfonyPage
     /**
      * @return array<string, string|string[]>
      */
+    #[\Override]
     protected function getDefinedElements(): array
     {
         return array_merge(parent::getDefinedElements(), [

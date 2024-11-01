@@ -29,11 +29,13 @@ final class ProvinceRepository extends ServiceEntityRepository implements Provin
         parent::__construct($registry, Province::class);
     }
 
+    #[\Override]
     public function findOneById(int $id): ?ProvinceInterface
     {
         return $this->find($id);
     }
 
+    #[\Override]
     public function add(ProvinceInterface $province): void
     {
         $this->_em->persist($province);

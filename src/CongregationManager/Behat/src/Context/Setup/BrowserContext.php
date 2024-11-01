@@ -8,7 +8,7 @@ use Behat\Behat\Context\Context;
 use Behat\Mink\Session;
 use CongregationManager\Bundle\Core\Converter\LocaleConverterInterface;
 
-final class BrowserContext implements Context
+final readonly class BrowserContext implements Context
 {
     public function __construct(
         private Session $session,

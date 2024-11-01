@@ -19,6 +19,7 @@ final class CreateCongregationTest extends TestCase
 
     private CreateCongregation $createCongregation;
 
+    #[\Override]
     protected function setUp(): void
     {
         $this->congregationRepository = new CongregationRepository();

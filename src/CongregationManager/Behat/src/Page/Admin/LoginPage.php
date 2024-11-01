@@ -16,11 +16,13 @@ final class LoginPage extends SymfonyPage implements LoginPageInterface
         '_locale' => 'en',
     ];
 
+    #[\Override]
     public function getRouteName(): string
     {
         return 'admin_login';
     }
 
+    #[\Override]
     public function specifyEmail(string $email): void
     {
         $this->getElement('username')
@@ -28,6 +30,7 @@ final class LoginPage extends SymfonyPage implements LoginPageInterface
         ;
     }
 
+    #[\Override]
     public function specifyPassword(string $password): void
     {
         $this->getElement('password')
@@ -35,6 +38,7 @@ final class LoginPage extends SymfonyPage implements LoginPageInterface
         ;
     }
 
+    #[\Override]
     public function signIn(): void
     {
         $this->getElement('signin_button')
@@ -42,6 +46,7 @@ final class LoginPage extends SymfonyPage implements LoginPageInterface
         ;
     }
 
+    #[\Override]
     public function getActiveLocale(): string
     {
         return $this->getElement('active_locale')
@@ -49,17 +54,17 @@ final class LoginPage extends SymfonyPage implements LoginPageInterface
         ;
     }
 
+    #[\Override]
     public function getAvailableLocales(): array
     {
         return array_map(
-            static function (NodeElement $element) {
-                return $element->getText();
-            },
+            static fn (NodeElement $element) => $element->getText(),
             $this->getElement('locale_selector')
                 ->findAll('css', '[data-test-available-locale]')
         );
     }
 
+    #[\Override]
     public function switchLocale(string $locale): void
     {
         $this->getElement('locale_selector')
@@ -70,6 +75,7 @@ final class LoginPage extends SymfonyPage implements LoginPageInterface
     /**
      * @return array<string, string|string[]>
      */
+    #[\Override]
     protected function getDefinedElements(): array
     {
         return array_merge(parent::getDefinedElements(), [

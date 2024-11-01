@@ -14,6 +14,7 @@ final class CongregationRepository implements CongregationRepositoryInterface
      */
     public array $congregations = [];
 
+    #[\Override]
     public function add(CongregationInterface $congregation): void
     {
         if (in_array($congregation, $this->congregations, true)) {
@@ -23,11 +24,13 @@ final class CongregationRepository implements CongregationRepositoryInterface
         $this->congregations[] = $congregation;
     }
 
+    #[\Override]
     public function findAll(): array
     {
         return $this->congregations;
     }
 
+    #[\Override]
     public function findOneById(int $id): ?CongregationInterface
     {
         foreach ($this->congregations as $congregation) {

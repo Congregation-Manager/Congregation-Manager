@@ -8,13 +8,14 @@ use CongregationManager\Component\TerritoryManager\Domain\Repository\Filter\Terr
 use Doctrine\ORM\QueryBuilder;
 use Webmozart\Assert\Assert;
 
-final class TerritoryFilterResults implements TerritoryFilterResultsInterface
+final readonly class TerritoryFilterResults implements TerritoryFilterResultsInterface
 {
     public function __construct(
         private QueryBuilder $queryBuilder
     ) {
     }
 
+    #[\Override]
     public function getTotalCount(): int
     {
         $qb = clone $this->queryBuilder;
@@ -31,6 +32,7 @@ final class TerritoryFilterResults implements TerritoryFilterResultsInterface
      * @psalm-suppress MixedInferredReturnType
      * @psalm-suppress MixedReturnStatement
      */
+    #[\Override]
     public function getResults(
         ?int $limit = null,
         ?int $offset = null,

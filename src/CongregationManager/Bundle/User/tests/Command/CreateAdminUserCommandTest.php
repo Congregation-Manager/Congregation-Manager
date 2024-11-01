@@ -18,6 +18,7 @@ use Webmozart\Assert\Assert;
  */
 final class CreateAdminUserCommandTest extends KernelTestCase
 {
+    #[\Override]
     protected function setUp(): void
     {
         parent::setUp();

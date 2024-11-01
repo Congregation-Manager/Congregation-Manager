@@ -29,11 +29,13 @@ final class AreaRepository extends ServiceEntityRepository implements AreaReposi
         parent::__construct($registry, Area::class);
     }
 
+    #[\Override]
     public function findOneById(int $id): ?AreaInterface
     {
         return $this->find($id);
     }
 
+    #[\Override]
     public function add(AreaInterface $area): void
     {
         $this->_em->persist($area);

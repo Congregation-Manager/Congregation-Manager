@@ -27,6 +27,7 @@ final class TerritoryTest extends TestCase
 
     private Territory $territory2;
 
+    #[\Override]
     protected function setUp(): void
     {
         $congregation = new Congregation('Carrollton');

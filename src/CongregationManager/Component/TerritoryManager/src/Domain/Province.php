@@ -24,36 +24,43 @@ class Province extends AggregateRoot implements ProvinceInterface
         $this->municipalities = new ArrayCollection();
     }
 
+    #[\Override]
     public function __toString(): string
     {
         return sprintf('%s[%s]', self::class, $this->getName());
     }
 
+    #[\Override]
     public function getCongregation(): CongregationInterface
     {
         return $this->congregation;
     }
 
+    #[\Override]
     public function setCongregation(CongregationInterface $congregation): void
     {
         $this->congregation = $congregation;
     }
 
+    #[\Override]
     public function getName(): string
     {
         return $this->name;
     }
 
+    #[\Override]
     public function setName(string $name): void
     {
         $this->name = $name;
     }
 
+    #[\Override]
     public function getDescription(): ?string
     {
         return $this->description;
     }
 
+    #[\Override]
     public function setDescription(?string $description): void
     {
         $this->description = $description;
@@ -62,11 +69,13 @@ class Province extends AggregateRoot implements ProvinceInterface
     /**
      * @return Collection<array-key, MunicipalityInterface>
      */
+    #[\Override]
     public function getMunicipalities(): Collection
     {
         return $this->municipalities;
     }
 
+    #[\Override]
     public function addMunicipality(MunicipalityInterface $municipality): void
     {
         if (!$this->municipalities->contains($municipality)) {
@@ -74,6 +83,7 @@ class Province extends AggregateRoot implements ProvinceInterface
         }
     }
 
+    #[\Override]
     public function removeMunicipality(MunicipalityInterface $municipality): void
     {
         if ($this->municipalities->contains($municipality)) {

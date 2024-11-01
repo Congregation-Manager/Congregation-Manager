@@ -25,11 +25,13 @@ final class AdminFixtures extends Fixture implements FixtureGroupInterface
     ) {
     }
 
+    #[\Override]
     public static function getGroups(): array
     {
         return ['congregation_manager_sample_data', 'congregation_manager_sample_admin_data'];
     }
 
+    #[\Override]
     public function load(ObjectManager $manager): void
     {
         foreach ($this->adminFixtureData as $adminData) {

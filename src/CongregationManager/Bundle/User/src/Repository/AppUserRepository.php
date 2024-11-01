@@ -33,6 +33,7 @@ class AppUserRepository extends ServiceEntityRepository implements AppUserReposi
         parent::__construct($registry, AppUser::class);
     }
 
+    #[\Override]
     public function add(AppUserInterface $appUser): void
     {
         $this->_em->persist($appUser);
@@ -46,10 +47,11 @@ class AppUserRepository extends ServiceEntityRepository implements AppUserReposi
     /**
      * Used to upgrade (rehash) the user's password automatically over time.
      */
+    #[\Override]
     public function upgradePassword(PasswordAuthenticatedUserInterface $user, string $newHashedPassword): void
     {
         if (!$user instanceof AppUser) {
-            throw new UnsupportedUserException(sprintf('Instances of "%s" are not supported.', \get_class($user)));
+            throw new UnsupportedUserException(sprintf('Instances of "%s" are not supported.', $user::class));
         }
 
         $user->setPassword($newHashedPassword);

@@ -15,11 +15,13 @@ final class LoginPage extends SymfonyPage implements LoginPageInterface
         '_locale' => 'en',
     ];
 
+    #[\Override]
     public function getRouteName(): string
     {
         return 'app_login';
     }
 
+    #[\Override]
     public function specifyEmail(string $email): void
     {
         $this->getElement('username')
@@ -27,6 +29,7 @@ final class LoginPage extends SymfonyPage implements LoginPageInterface
         ;
     }
 
+    #[\Override]
     public function specifyPassword(string $password): void
     {
         $this->getElement('password')
@@ -34,6 +37,7 @@ final class LoginPage extends SymfonyPage implements LoginPageInterface
         ;
     }
 
+    #[\Override]
     public function signIn(): void
     {
         $this->getElement('signin_button')
@@ -44,6 +48,7 @@ final class LoginPage extends SymfonyPage implements LoginPageInterface
     /**
      * @return array<string, string|string[]>
      */
+    #[\Override]
     protected function getDefinedElements(): array
     {
         return array_merge(parent::getDefinedElements(), [

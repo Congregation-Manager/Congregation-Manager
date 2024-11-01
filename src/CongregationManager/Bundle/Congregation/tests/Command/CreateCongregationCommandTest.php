@@ -26,6 +26,7 @@ final class CreateCongregationCommandTest extends KernelTestCase
         'name' => 'Carrollton',
     ];
 
+    #[\Override]
     protected function setUp(): void
     {
         parent::setUp();

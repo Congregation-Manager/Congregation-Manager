@@ -49,16 +49,19 @@ class Congregation extends AggregateRoot implements CongregationInterface
         $this->territories = new ArrayCollection();
     }
 
+    #[\Override]
     public function __toString(): string
     {
         return sprintf('%s[%s]', self::class, $this->getName());
     }
 
+    #[\Override]
     public function getName(): string
     {
         return $this->name;
     }
 
+    #[\Override]
     public function setName(string $name): void
     {
         $this->name = $name;
@@ -67,11 +70,13 @@ class Congregation extends AggregateRoot implements CongregationInterface
     /**
      * @return Collection<array-key, BrotherInterface>
      */
+    #[\Override]
     public function getBrothers(): Collection
     {
         return $this->brothers;
     }
 
+    #[\Override]
     public function addBrother(BrotherInterface $brother): void
     {
         if (!$this->brothers->contains($brother)) {
@@ -79,6 +84,7 @@ class Congregation extends AggregateRoot implements CongregationInterface
         }
     }
 
+    #[\Override]
     public function removeBrother(BrotherInterface $brother): void
     {
         if ($this->brothers->contains($brother)) {
@@ -89,11 +95,13 @@ class Congregation extends AggregateRoot implements CongregationInterface
     /**
      * @return Collection<array-key, ProvinceInterface>
      */
+    #[\Override]
     public function getProvinces(): Collection
     {
         return $this->provinces;
     }
 
+    #[\Override]
     public function addProvince(ProvinceInterface $province): void
     {
         if (!$this->provinces->contains($province)) {
@@ -101,6 +109,7 @@ class Congregation extends AggregateRoot implements CongregationInterface
         }
     }
 
+    #[\Override]
     public function removeProvince(ProvinceInterface $province): void
     {
         if ($this->provinces->contains($province)) {
@@ -111,6 +120,7 @@ class Congregation extends AggregateRoot implements CongregationInterface
     /**
      * @return Collection<array-key, MunicipalityInterface>
      */
+    #[\Override]
     public function getMunicipalities(): Collection
     {
         return $this->municipalities;
@@ -119,6 +129,7 @@ class Congregation extends AggregateRoot implements CongregationInterface
     /**
      * @return Collection<array-key, AreaInterface>
      */
+    #[\Override]
     public function getAreas(): Collection
     {
         return $this->areas;
@@ -127,6 +138,7 @@ class Congregation extends AggregateRoot implements CongregationInterface
     /**
      * @return Collection<array-key, TerritoryInterface>
      */
+    #[\Override]
     public function getTerritories(): Collection
     {
         return $this->territories;

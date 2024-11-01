@@ -14,6 +14,7 @@ use Symfony\Component\Form\FormBuilderInterface;
  */
 final class InviteUserFormType extends AbstractType
 {
+    #[\Override]
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder

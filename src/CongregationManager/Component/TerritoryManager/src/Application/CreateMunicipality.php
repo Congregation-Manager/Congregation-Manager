@@ -10,7 +10,7 @@ use CongregationManager\Component\TerritoryManager\Domain\MunicipalityInterface;
 use CongregationManager\Component\TerritoryManager\Domain\ProvinceInterface;
 use CongregationManager\Component\TerritoryManager\Domain\Repository\MunicipalityRepositoryInterface;
 
-final class CreateMunicipality
+final readonly class CreateMunicipality
 {
     public function __construct(
         private MunicipalityRepositoryInterface $municipalityRepository

@@ -29,11 +29,13 @@ final class BrotherRepository extends ServiceEntityRepository implements Brother
         parent::__construct($registry, Brother::class);
     }
 
+    #[\Override]
     public function findOneById(int $id): ?BrotherInterface
     {
         return $this->find($id);
     }
 
+    #[\Override]
     public function add(BrotherInterface $brother): void
     {
         $this->_em->persist($brother);

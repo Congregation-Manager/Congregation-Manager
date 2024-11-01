@@ -8,6 +8,7 @@ use Symfony\Component\Mailer\SentMessage;
 
 final class EmailChecker implements EmailCheckerInterface
 {
+    #[\Override]
     public function hasMessageTo(string $message, string $recipient): bool
     {
         foreach (FakeMailerTransport::$sentMessages as $sentMessage) {

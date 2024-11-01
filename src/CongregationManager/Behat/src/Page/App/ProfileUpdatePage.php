@@ -15,11 +15,13 @@ final class ProfileUpdatePage extends SymfonyPage implements ProfileUpdatePageIn
         '_locale' => 'en',
     ];
 
+    #[\Override]
     public function getRouteName(): string
     {
         return 'app_profile_update';
     }
 
+    #[\Override]
     public function specifyEmail(string $email): void
     {
         $this->getElement('email')
@@ -27,6 +29,7 @@ final class ProfileUpdatePage extends SymfonyPage implements ProfileUpdatePageIn
         ;
     }
 
+    #[\Override]
     public function update(): void
     {
         $this->getElement('save_button')
@@ -34,6 +37,7 @@ final class ProfileUpdatePage extends SymfonyPage implements ProfileUpdatePageIn
         ;
     }
 
+    #[\Override]
     public function specifyFirstName(string $firstName): void
     {
         $this->getElement('first_name')
@@ -41,6 +45,7 @@ final class ProfileUpdatePage extends SymfonyPage implements ProfileUpdatePageIn
         ;
     }
 
+    #[\Override]
     public function specifyMiddleName(string $middleName): void
     {
         $this->getElement('middle_name')
@@ -48,6 +53,7 @@ final class ProfileUpdatePage extends SymfonyPage implements ProfileUpdatePageIn
         ;
     }
 
+    #[\Override]
     public function specifyLastName(string $lastName): void
     {
         $this->getElement('last_name')
@@ -58,6 +64,7 @@ final class ProfileUpdatePage extends SymfonyPage implements ProfileUpdatePageIn
     /**
      * @return array<string, string|string[]>
      */
+    #[\Override]
     protected function getDefinedElements(): array
     {
         return array_merge(parent::getDefinedElements(), [

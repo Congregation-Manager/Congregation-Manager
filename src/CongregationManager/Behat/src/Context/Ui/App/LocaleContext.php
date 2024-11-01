@@ -8,7 +8,7 @@ use Behat\Behat\Context\Context;
 use CongregationManager\Behat\Page\App\HomePageInterface;
 use Webmozart\Assert\Assert;
 
-final class LocaleContext implements Context
+final readonly class LocaleContext implements Context
 {
     public function __construct(
         private HomePageInterface $homePage

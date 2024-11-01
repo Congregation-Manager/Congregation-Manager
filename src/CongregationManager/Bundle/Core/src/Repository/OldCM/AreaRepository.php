@@ -6,7 +6,7 @@ namespace CongregationManager\Bundle\Core\Repository\OldCM;
 
 use Doctrine\DBAL\Connection;
 
-final class AreaRepository
+final readonly class AreaRepository
 {
     public function __construct(
         private Connection $connection

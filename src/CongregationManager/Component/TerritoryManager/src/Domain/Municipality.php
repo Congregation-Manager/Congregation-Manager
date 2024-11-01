@@ -25,46 +25,55 @@ class Municipality extends AggregateRoot implements MunicipalityInterface
         $this->areas = new ArrayCollection();
     }
 
+    #[\Override]
     public function __toString(): string
     {
         return sprintf('%s[%s]', self::class, $this->getName());
     }
 
+    #[\Override]
     public function getCongregation(): CongregationInterface
     {
         return $this->congregation;
     }
 
+    #[\Override]
     public function setCongregation(CongregationInterface $congregation): void
     {
         $this->congregation = $congregation;
     }
 
+    #[\Override]
     public function getProvince(): ProvinceInterface
     {
         return $this->province;
     }
 
+    #[\Override]
     public function setProvince(ProvinceInterface $province): void
     {
         $this->province = $province;
     }
 
+    #[\Override]
     public function getName(): string
     {
         return $this->name;
     }
 
+    #[\Override]
     public function setName(string $name): void
     {
         $this->name = $name;
     }
 
+    #[\Override]
     public function getDescription(): ?string
     {
         return $this->description;
     }
 
+    #[\Override]
     public function setDescription(?string $description): void
     {
         $this->description = $description;
@@ -73,11 +82,13 @@ class Municipality extends AggregateRoot implements MunicipalityInterface
     /**
      * @return Collection<array-key, AreaInterface>
      */
+    #[\Override]
     public function getAreas(): Collection
     {
         return $this->areas;
     }
 
+    #[\Override]
     public function addArea(AreaInterface $area): void
     {
         if (!$this->areas->contains($area)) {
@@ -85,6 +96,7 @@ class Municipality extends AggregateRoot implements MunicipalityInterface
         }
     }
 
+    #[\Override]
     public function removeArea(AreaInterface $area): void
     {
         if ($this->areas->contains($area)) {

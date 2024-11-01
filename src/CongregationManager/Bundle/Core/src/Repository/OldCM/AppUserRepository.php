@@ -6,13 +6,14 @@ namespace CongregationManager\Bundle\Core\Repository\OldCM;
 
 use Doctrine\DBAL\Connection;
 
-final class AppUserRepository implements AppUserRepositoryInterface
+final readonly class AppUserRepository implements AppUserRepositoryInterface
 {
     public function __construct(
         private Connection $connection
     ) {
     }
 
+    #[\Override]
     public function findOneByBrother(int $brotherId): array
     {
         /* @phpstan-ignore-next-line */

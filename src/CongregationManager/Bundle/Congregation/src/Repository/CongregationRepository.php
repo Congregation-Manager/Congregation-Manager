@@ -29,11 +29,13 @@ final class CongregationRepository extends ServiceEntityRepository implements Co
         parent::__construct($registry, Congregation::class);
     }
 
+    #[\Override]
     public function findOneById(int $id): ?CongregationInterface
     {
         return $this->find($id);
     }
 
+    #[\Override]
     public function add(CongregationInterface $congregation): void
     {
         $this->_em->persist($congregation);

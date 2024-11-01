@@ -8,6 +8,7 @@ use function strlen;
 
 final class TokenGenerator implements TokenGeneratorInterface
 {
+    #[\Override]
     public function generate(): string
     {
         $string = '';

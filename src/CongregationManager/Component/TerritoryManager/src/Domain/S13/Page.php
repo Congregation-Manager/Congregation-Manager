@@ -10,7 +10,7 @@ use InvalidArgumentException;
 
 final class Page
 {
-    public const MAX_ROWS_ALLOWED = 20;
+    public const int MAX_ROWS_ALLOWED = 20;
 
     /**
      * @var Collection<int, Row>

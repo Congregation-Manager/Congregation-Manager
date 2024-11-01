@@ -10,13 +10,14 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface as Symfo
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Webmozart\Assert\Assert;
 
-final class UserPasswordHasher implements UserPasswordHasherInterface
+final readonly class UserPasswordHasher implements UserPasswordHasherInterface
 {
     public function __construct(
         private SymfonyUserPasswordHasherInterface $symfonyUserPasswordHasher
     ) {
     }
 
+    #[\Override]
     public function hashPasswordForUser(string $plainPassword, UserInterface $user): string
     {
         Assert::isInstanceOf($user, PasswordAuthenticatedUserInterface::class);

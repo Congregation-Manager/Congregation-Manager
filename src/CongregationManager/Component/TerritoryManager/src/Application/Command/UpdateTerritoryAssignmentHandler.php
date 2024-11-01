@@ -9,10 +9,10 @@ use CongregationManager\Component\TerritoryManager\Domain\TerritoryInterface;
 use DateTimeInterface;
 use InvalidArgumentException;
 
-final class UpdateTerritoryAssignmentHandler
+final readonly class UpdateTerritoryAssignmentHandler
 {
     public function __construct(
-        private readonly TerritoryAssignmentRepositoryInterface $territoryAssignmentRepository,
+        private TerritoryAssignmentRepositoryInterface $territoryAssignmentRepository,
     ) {
     }
 

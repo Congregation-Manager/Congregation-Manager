@@ -12,6 +12,7 @@ use DateTimeInterface;
 
 final class TerritoryAssignmentFactory implements TerritoryAssignmentFactoryInterface
 {
+    #[\Override]
     public function createNew(
         TerritoryInterface $territory,
         DateTimeInterface $assignmentDate,

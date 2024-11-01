@@ -19,10 +19,10 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 final class AdminChangePasswordController extends AbstractController
 {
     public function __construct(
-        private Security $security,
-        private EntityManagerInterface $entityManager,
-        private TranslatorInterface $translator,
-        private UserPasswordHasherInterface $userPasswordHasher
+        private readonly Security $security,
+        private readonly EntityManagerInterface $entityManager,
+        private readonly TranslatorInterface $translator,
+        private readonly UserPasswordHasherInterface $userPasswordHasher
     ) {
     }
 

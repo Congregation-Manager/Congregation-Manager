@@ -15,6 +15,7 @@ final class BrotherRepository implements BrotherRepositoryInterface
      */
     public array $brothers = [];
 
+    #[\Override]
     public function add(BrotherInterface $brother): void
     {
         if (in_array($brother, $this->brothers, true)) {
@@ -24,11 +25,13 @@ final class BrotherRepository implements BrotherRepositoryInterface
         $this->brothers[] = $brother;
     }
 
+    #[\Override]
     public function findAll(): array
     {
         return $this->brothers;
     }
 
+    #[\Override]
     public function findOneById(int $id): ?BrotherInterface
     {
         foreach ($this->brothers as $brother) {
@@ -40,7 +43,8 @@ final class BrotherRepository implements BrotherRepositoryInterface
         return null;
     }
 
-    public function findOneBy(array $criteria)
+    #[\Override]
+    public function findOneBy(array $criteria): never
     {
         throw new RuntimeException('Not implemented');
     }

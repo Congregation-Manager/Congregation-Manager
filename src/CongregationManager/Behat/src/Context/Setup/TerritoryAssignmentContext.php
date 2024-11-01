@@ -13,7 +13,7 @@ use CongregationManager\Component\TerritoryManager\Domain\TerritoryInterface;
 use DateTimeImmutable;
 use Doctrine\ORM\EntityManagerInterface;
 
-final class TerritoryAssignmentContext implements Context
+final readonly class TerritoryAssignmentContext implements Context
 {
     public function __construct(
         private SharedStorageInterface $sharedStorage,

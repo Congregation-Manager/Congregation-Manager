@@ -6,18 +6,20 @@ namespace CongregationManager\Contract\Resource;
 
 use InvalidArgumentException;
 
-final class IntegerAggregateRootId implements AggregateRootId
+final readonly class IntegerAggregateRootId implements AggregateRootId
 {
     public function __construct(
-        private readonly int $id
+        private int $id
     ) {
     }
 
+    #[\Override]
     public function __toString(): string
     {
         return (string) $this->id;
     }
 
+    #[\Override]
     public static function convertToPHPValue(mixed $databaseValue): self
     {
         if (!is_string($databaseValue) && !is_numeric($databaseValue)) {
@@ -30,6 +32,7 @@ final class IntegerAggregateRootId implements AggregateRootId
         return new self((int) $databaseValue);
     }
 
+    #[\Override]
     public function equals(AggregateRootId $otherId): bool
     {
         if (!$otherId instanceof self) {
@@ -39,6 +42,7 @@ final class IntegerAggregateRootId implements AggregateRootId
         return $this->id === $otherId->id;
     }
 
+    #[\Override]
     public function convertToDatabaseValue(): string
     {
         return (string) $this;

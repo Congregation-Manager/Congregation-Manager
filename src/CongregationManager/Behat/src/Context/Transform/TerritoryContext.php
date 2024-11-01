@@ -9,10 +9,10 @@ use CongregationManager\Component\TerritoryManager\Domain\Repository\TerritoryRe
 use CongregationManager\Component\TerritoryManager\Domain\TerritoryInterface;
 use Webmozart\Assert\Assert;
 
-final class TerritoryContext implements Context
+final readonly class TerritoryContext implements Context
 {
     public function __construct(
-        private readonly TerritoryRepositoryInterface $territoryRepository
+        private TerritoryRepositoryInterface $territoryRepository
     ) {
     }
 

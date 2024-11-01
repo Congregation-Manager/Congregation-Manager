@@ -34,6 +34,7 @@ class Brother extends AggregateRoot implements BrotherInterface
         $this->territoryAssignments = new ArrayCollection();
     }
 
+    #[\Override]
     public function __toString(): string
     {
         return sprintf(
@@ -44,91 +45,109 @@ class Brother extends AggregateRoot implements BrotherInterface
         );
     }
 
+    #[\Override]
     public function getMiddleName(): ?string
     {
         return $this->middleName;
     }
 
+    #[\Override]
     public function setMiddleName(?string $middleName): void
     {
         $this->middleName = $middleName;
     }
 
+    #[\Override]
     public function getBirthDate(): ?DateTimeInterface
     {
         return $this->birthDate;
     }
 
+    #[\Override]
     public function setBirthDate(?DateTimeInterface $birthDate): void
     {
         $this->birthDate = $birthDate;
     }
 
+    #[\Override]
     public function getBaptismDate(): ?DateTimeInterface
     {
         return $this->baptismDate;
     }
 
+    #[\Override]
     public function setBaptismDate(?DateTimeInterface $baptismDate): void
     {
         $this->baptismDate = $baptismDate;
     }
 
+    #[\Override]
     public function getUser(): ?AppUserInterface
     {
         return $this->user;
     }
 
+    #[\Override]
     public function setUser(?AppUserInterface $user): void
     {
         $this->user = $user;
     }
 
+    #[\Override]
     public function getFirstName(): string
     {
         return $this->firstName;
     }
 
+    #[\Override]
     public function setFirstName(string $firstName): void
     {
         $this->firstName = $firstName;
     }
 
+    #[\Override]
     public function getLastName(): string
     {
         return $this->lastName;
     }
 
+    #[\Override]
     public function setLastName(string $lastName): void
     {
         $this->lastName = $lastName;
     }
 
+    #[\Override]
     public function getCongregation(): CongregationInterface
     {
         return $this->congregation;
     }
 
+    #[\Override]
     public function setCongregation(CongregationInterface $congregation): void
     {
         $this->congregation = $congregation;
     }
 
+    #[\Override]
     public function isMale(): bool
     {
         return $this->male;
     }
 
+    #[\Override]
     public function setMale(bool $male): void
     {
         $this->male = $male;
     }
 
+    #[\Override]
     public function getInvitation(): ?AppUserInvitation
     {
         return $this->invitation;
     }
 
+    #[\Override]
     public function setInvitation(?AppUserInvitation $invitation): void
     {
         $this->invitation = $invitation;

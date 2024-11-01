@@ -8,7 +8,7 @@ use Behat\Behat\Context\Context;
 use CongregationManager\Behat\Page\Admin\LoginPageInterface;
 use Webmozart\Assert\Assert;
 
-final class LocaleContext implements Context
+final readonly class LocaleContext implements Context
 {
     public function __construct(
         private LoginPageInterface $loginPage

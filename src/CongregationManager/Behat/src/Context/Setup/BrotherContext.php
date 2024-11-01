@@ -11,7 +11,7 @@ use CongregationManager\Component\Congregation\Domain\CongregationInterface;
 use Doctrine\ORM\EntityManagerInterface;
 use Webmozart\Assert\Assert;
 
-final class BrotherContext implements Context
+final readonly class BrotherContext implements Context
 {
     public function __construct(
         private EntityManagerInterface $entityManager,

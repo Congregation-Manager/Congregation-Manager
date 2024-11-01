@@ -22,7 +22,7 @@ use SymfonyCasts\Bundle\ResetPassword\Generator\ResetPasswordTokenGenerator;
 use SymfonyCasts\Bundle\ResetPassword\Persistence\ResetPasswordRequestRepositoryInterface;
 use Webmozart\Assert\Assert;
 
-final class AccountContext implements Context
+final readonly class AccountContext implements Context
 {
     public function __construct(
         private EntityManagerInterface $entityManager,

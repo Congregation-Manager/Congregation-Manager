@@ -18,7 +18,7 @@ use CongregationManager\Component\TerritoryManager\Domain\Territory;
 use Doctrine\ORM\EntityManagerInterface;
 use Webmozart\Assert\Assert;
 
-final class TerritoryContext implements Context
+final readonly class TerritoryContext implements Context
 {
     public function __construct(
         private SharedStorageInterface $sharedStorage,

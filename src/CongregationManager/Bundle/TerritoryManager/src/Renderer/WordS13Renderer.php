@@ -16,25 +16,26 @@ use PhpOffice\PhpWord\SimpleType\Jc;
 use PhpOffice\PhpWord\SimpleType\TextAlignment;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
-final class WordS13Renderer implements S13RendererInterface
+final readonly class WordS13Renderer implements S13RendererInterface
 {
-    private const TERRITORY_COLUMN_CM = 1.25;
+    private const float TERRITORY_COLUMN_CM = 1.25;
 
-    private const LAST_DATE_COMPLETED_COLUMN_CM = 2.25;
+    private const float LAST_DATE_COMPLETED_COLUMN_CM = 2.25;
 
-    private const DATE_ASSIGNED_COLUMN_CM = 2;
+    private const int DATE_ASSIGNED_COLUMN_CM = 2;
 
-    private const DATE_COMPLETED_COLUMN_CM = 1.75;
+    private const float DATE_COMPLETED_COLUMN_CM = 1.75;
 
-    private const HEADER_BACKGROUND_COLOR = 'd9d9d9';
+    private const string HEADER_BACKGROUND_COLOR = 'd9d9d9';
 
-    private const DOCUMENT_PRINTED_DATE = '1/22';
+    private const string DOCUMENT_PRINTED_DATE = '1/22';
 
     public function __construct(
-        private readonly TranslatorInterface $translator,
+        private TranslatorInterface $translator,
     ) {
     }
 
+    #[\Override]
     public function render(S13 $s13): PhpWord
     {
         $wordFile = new PhpWord();

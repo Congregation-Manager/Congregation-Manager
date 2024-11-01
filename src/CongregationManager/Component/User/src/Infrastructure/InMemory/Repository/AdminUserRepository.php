@@ -14,6 +14,7 @@ final class AdminUserRepository implements AdminUserRepositoryInterface
      */
     public array $adminUsers = [];
 
+    #[\Override]
     public function add(AdminUserInterface $adminUser): void
     {
         if (in_array($adminUser, $this->adminUsers, true)) {

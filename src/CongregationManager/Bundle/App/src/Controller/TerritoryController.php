@@ -47,12 +47,8 @@ final class TerritoryController extends AbstractController
         $form->handleRequest($request);
         $query = $this->territoryRepository->filter($filters);
 
-        $count = static function () use ($query): int {
-            return $query->getTotalCount();
-        };
-        $items = static function (int $offset, int $limit) use ($query, $sort, $direction): array {
-            return $query->getResults($limit, $offset, $sort, $direction);
-        };
+        $count = static fn (): int => $query->getTotalCount();
+        $items = static fn (int $offset, int $limit): array => $query->getResults($limit, $offset, $sort, $direction);
         $pagination = $this->paginator->paginate(
             new CallbackPagination($count, $items),
             $request->query->getInt('page', 1),

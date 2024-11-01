@@ -9,7 +9,7 @@ use CongregationManager\Component\Congregation\Domain\BrotherInterface;
 use CongregationManager\Component\Congregation\Domain\Repository\BrotherRepositoryInterface;
 use InvalidArgumentException;
 
-final class BrotherContext implements Context
+final readonly class BrotherContext implements Context
 {
     public function __construct(
         private BrotherRepositoryInterface $brotherRepository

@@ -15,6 +15,7 @@ final class CheckEmailPage extends SymfonyPage implements CheckEmailPageInterfac
         '_locale' => 'en',
     ];
 
+    #[\Override]
     public function getRouteName(): string
     {
         return 'admin_check_email';

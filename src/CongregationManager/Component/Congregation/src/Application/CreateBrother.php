@@ -10,7 +10,7 @@ use CongregationManager\Component\Congregation\Domain\CongregationInterface;
 use CongregationManager\Component\Congregation\Domain\Repository\BrotherRepositoryInterface;
 use DateTimeInterface;
 
-final class CreateBrother
+final readonly class CreateBrother
 {
     public function __construct(
         private BrotherRepositoryInterface $brotherRepository

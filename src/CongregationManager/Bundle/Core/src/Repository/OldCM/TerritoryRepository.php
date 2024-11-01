@@ -6,7 +6,7 @@ namespace CongregationManager\Bundle\Core\Repository\OldCM;
 
 use Doctrine\DBAL\Connection;
 
-final class TerritoryRepository
+final readonly class TerritoryRepository
 {
     public function __construct(
         private Connection $connection

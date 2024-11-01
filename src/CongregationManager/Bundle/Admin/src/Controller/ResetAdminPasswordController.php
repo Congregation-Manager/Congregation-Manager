@@ -119,7 +119,7 @@ class ResetAdminPasswordController extends AbstractController
             if (!$user instanceof UserInterface) {
                 throw new UserInstanceNotValid(sprintf(
                     'User instance not valid. Provided "%s", expected "%s"',
-                    get_class($user),
+                    $user::class,
                     UserInterface::class
                 ));
             }

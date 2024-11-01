@@ -20,15 +20,17 @@ final class FakeMailerTransport implements TransportInterface
     public static array $sentMessages = [];
 
     public function __construct(
-        private Environment $twig
+        private readonly Environment $twig
     ) {
     }
 
+    #[\Override]
     public function __toString(): string
     {
         return 'behat';
     }
 
+    #[\Override]
     public function send(RawMessage $message, Envelope $envelope = null): ?SentMessage
     {
         if ($message instanceof TemplatedEmail) {

@@ -20,13 +20,13 @@ use Symfony\Component\HttpFoundation\Session\SessionInterface;
 /** @psalm-suppress PropertyNotSetInConstructor */
 final class AppCompleteAccountController extends AbstractController
 {
-    private SessionInterface $session;
+    private readonly SessionInterface $session;
 
     public function __construct(
-        private RequestStack $requestStack,
-        private AppUserInvitationRepositoryInterface $appUserInvitationRepository,
-        private CreateAppUser $createAppUser,
-        private EntityManagerInterface $entityManager
+        private readonly RequestStack $requestStack,
+        private readonly AppUserInvitationRepositoryInterface $appUserInvitationRepository,
+        private readonly CreateAppUser $createAppUser,
+        private readonly EntityManagerInterface $entityManager
     ) {
         $this->session = $requestStack->getSession();
     }

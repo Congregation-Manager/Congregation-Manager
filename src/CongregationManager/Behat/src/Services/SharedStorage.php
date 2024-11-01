@@ -11,11 +11,13 @@ final class SharedStorage implements SharedStorageInterface
      */
     private array $storage = [];
 
+    #[\Override]
     public function get(string $key): mixed
     {
         return $this->storage[$key] ?? null;
     }
 
+    #[\Override]
     public function set(string $key, mixed $resource): void
     {
         $this->storage[$key] = $resource;

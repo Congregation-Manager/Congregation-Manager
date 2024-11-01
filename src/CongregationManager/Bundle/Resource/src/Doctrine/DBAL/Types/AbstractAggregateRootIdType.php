@@ -11,6 +11,7 @@ use InvalidArgumentException;
 
 abstract class AbstractAggregateRootIdType extends Type
 {
+    #[\Override]
     public function convertToPHPValue($value, AbstractPlatform $platform): ?AggregateRootId
     {
         if ($value === null) {
@@ -20,6 +21,7 @@ abstract class AbstractAggregateRootIdType extends Type
         return $this->getCurrentTypeConvertToPHPValueImplementation($value);
     }
 
+    #[\Override]
     public function convertToDatabaseValue($value, AbstractPlatform $platform): ?string
     {
         if ($value === null) {

@@ -9,7 +9,7 @@ use CongregationManager\Component\TerritoryManager\Domain\Province;
 use CongregationManager\Component\TerritoryManager\Domain\ProvinceInterface;
 use CongregationManager\Component\TerritoryManager\Domain\Repository\ProvinceRepositoryInterface;
 
-final class CreateProvince
+final readonly class CreateProvince
 {
     public function __construct(
         private ProvinceRepositoryInterface $provinceRepository

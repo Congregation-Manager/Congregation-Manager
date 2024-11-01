@@ -18,11 +18,13 @@ final class TerritoryRepository implements TerritoryRepositoryInterface
      */
     public array $territories = [];
 
+    #[\Override]
     public function findAll(): array
     {
         return $this->territories;
     }
 
+    #[\Override]
     public function findOneById(int $id): ?TerritoryInterface
     {
         foreach ($this->territories as $territory) {
@@ -34,6 +36,7 @@ final class TerritoryRepository implements TerritoryRepositoryInterface
         return null;
     }
 
+    #[\Override]
     public function add(TerritoryInterface $territory): void
     {
         if (in_array($territory, $this->territories, true)) {
@@ -43,11 +46,13 @@ final class TerritoryRepository implements TerritoryRepositoryInterface
         $this->territories[] = $territory;
     }
 
+    #[\Override]
     public function filter(TerritoryRepositoryFilterInterface $filter): TerritoryFilterResultsInterface
     {
         throw new RuntimeException('Not implemented');
     }
 
+    #[\Override]
     public function findOneByNumber(int $number): ?TerritoryInterface
     {
         foreach ($this->territories as $territory) {
@@ -59,6 +64,7 @@ final class TerritoryRepository implements TerritoryRepositoryInterface
         return null;
     }
 
+    #[\Override]
     public function findByCongregation(CongregationInterface $congregation): array
     {
         $territories = [];

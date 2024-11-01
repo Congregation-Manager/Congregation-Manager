@@ -11,7 +11,7 @@ use Symfony\Component\Security\Core\User\UserInterface as SymfonyUserInterface;
 use Symfony\Component\Security\Http\Event\InteractiveLoginEvent;
 use Symfony\Component\Security\Http\SecurityEvents;
 
-final class UserLocaleSubscriber implements EventSubscriberInterface
+final readonly class UserLocaleSubscriber implements EventSubscriberInterface
 {
     /**
      * @var string[]
@@ -25,6 +25,7 @@ final class UserLocaleSubscriber implements EventSubscriberInterface
         $this->availableLocales = explode('|', $availableLocales);
     }
 
+    #[\Override]
     public static function getSubscribedEvents(): array
     {
         return [

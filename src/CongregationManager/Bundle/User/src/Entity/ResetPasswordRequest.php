@@ -27,12 +27,13 @@ class ResetPasswordRequest extends DomainResetPasswordRequest implements ResetPa
         } elseif ($user instanceof AppUserInterface) {
             parent::__construct($expiresAt, $hashedToken, $user, null);
         } else {
-            throw UserInstanceNotValidFactory::createWithInstanceClass(get_class($user));
+            throw UserInstanceNotValidFactory::createWithInstanceClass($user::class);
         }
 
         $this->requestedAt = new DateTimeImmutable('now');
     }
 
+    #[\Override]
     public function getUser(): object
     {
         $adminUser = $this->getAdminUser();
@@ -48,6 +49,7 @@ class ResetPasswordRequest extends DomainResetPasswordRequest implements ResetPa
         throw new \LogicException('Unable to determine the user to return.');
     }
 
+    #[\Override]
     public function getRequestedAt(): DateTimeInterface
     {
         return $this->requestedAt;

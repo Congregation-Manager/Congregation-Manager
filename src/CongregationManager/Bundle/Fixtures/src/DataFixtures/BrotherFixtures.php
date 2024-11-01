@@ -29,16 +29,19 @@ final class BrotherFixtures extends Fixture implements FixtureGroupInterface, De
     ) {
     }
 
+    #[\Override]
     public function getDependencies(): array
     {
         return [CongregationFixtures::class];
     }
 
+    #[\Override]
     public static function getGroups(): array
     {
         return ['congregation_manager_sample_data', 'congregation_manager_sample_congregation_data'];
     }
 
+    #[\Override]
     public function load(ObjectManager $manager): void
     {
         foreach ($this->brotherFixtureData as $brotherData) {

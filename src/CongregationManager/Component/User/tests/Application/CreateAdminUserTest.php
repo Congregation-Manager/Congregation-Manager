@@ -20,6 +20,7 @@ final class CreateAdminUserTest extends TestCase
 
     private UserPasswordHasher $userPasswordHasher;
 
+    #[\Override]
     protected function setUp(): void
     {
         $this->adminUserRepository = new AdminUserRepository();

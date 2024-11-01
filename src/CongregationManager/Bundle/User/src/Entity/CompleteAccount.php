@@ -9,7 +9,7 @@ use CongregationManager\Component\Congregation\Domain\BrotherInterface;
 final class CompleteAccount
 {
     public function __construct(
-        private BrotherInterface $brother,
+        private readonly BrotherInterface $brother,
         private string $email,
         private string $plainPassword
     ) {

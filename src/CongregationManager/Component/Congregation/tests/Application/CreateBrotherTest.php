@@ -22,6 +22,7 @@ final class CreateBrotherTest extends TestCase
 
     private CreateBrother $createBrother;
 
+    #[\Override]
     protected function setUp(): void
     {
         $this->brotherRepository = new BrotherRepository();

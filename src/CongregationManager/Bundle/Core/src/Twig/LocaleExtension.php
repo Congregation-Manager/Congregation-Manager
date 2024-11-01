@@ -12,6 +12,7 @@ final class LocaleExtension extends AbstractExtension
     /**
      * @return TwigFilter[]
      */
+    #[\Override]
     public function getFilters(): array
     {
         return [new TwigFilter('locale_name', [LocaleRuntime::class, 'convertCodeToName'])];

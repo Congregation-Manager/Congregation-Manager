@@ -15,16 +15,19 @@ final class DashboardPage extends SymfonyPage implements DashboardPageInterface
         '_locale' => 'en',
     ];
 
+    #[\Override]
     public function getRouteName(): string
     {
         return 'admin_dashboard';
     }
 
+    #[\Override]
     public function hasLogoutButton(): bool
     {
         return $this->hasElement('logout_button');
     }
 
+    #[\Override]
     public function signOut(): void
     {
         $this->getElement('logout_button')
@@ -35,6 +38,7 @@ final class DashboardPage extends SymfonyPage implements DashboardPageInterface
     /**
      * @return array<string, string|string[]>
      */
+    #[\Override]
     protected function getDefinedElements(): array
     {
         return array_merge(parent::getDefinedElements(), [

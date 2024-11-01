@@ -59,6 +59,7 @@ class S13GeneratorTest extends TestCase
 
     private TerritoryAssignment $carrolltonTerritory3Assignment7;
 
+    #[\Override]
     protected function setUp(): void
     {
         $this->carrolltonCongregation = new Congregation('Carrollton');

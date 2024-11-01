@@ -19,7 +19,7 @@ final class CreateAdminUserCommand extends Command
 {
     use LockableTrait;
 
-    private const CREATE_ADMIN_USER_COMMAND_EVENT_NAME = 'create-admin-user-command';
+    private const string CREATE_ADMIN_USER_COMMAND_EVENT_NAME = 'create-admin-user-command';
 
     /**
      * @psalm-suppress PropertyNotSetInConstructor
@@ -58,6 +58,7 @@ final class CreateAdminUserCommand extends Command
         parent::__construct($name);
     }
 
+    #[\Override]
     protected function configure(): void
     {
         $this
@@ -66,34 +67,37 @@ final class CreateAdminUserCommand extends Command
         ;
     }
 
+    #[\Override]
     protected function initialize(InputInterface $input, OutputInterface $output): void
     {
         $this->io = new SymfonyStyle($input, $output);
     }
 
+    #[\Override]
     protected function interact(InputInterface $input, OutputInterface $output): void
     {
         $this->io->title('Create admin user command interactive wizard');
         $this->io->text(['Now we\'ll ask you for the value of the necessary arguments.']);
 
-        $userEmail = $this->io->ask('Email', null, [$this->validator, 'validateEmail']);
+        $userEmail = $this->io->ask('Email', null, $this->validator->validateEmail(...));
         Assert::string($userEmail);
         $this->userEmail = $userEmail;
 
-        $userPassword = $this->io->ask('Password', null, [$this->validator, 'validatePassword']);
+        $userPassword = $this->io->ask('Password', null, $this->validator->validatePassword(...));
         Assert::string($userPassword);
         $this->userPassword = $userPassword;
 
         $userLocale = $this->io->ask(
             sprintf('Locale [%s]', implode(',', $this->locales)),
             $this->defaultLocale,
-            [$this->validator, 'validateString']
+            $this->validator->validateString(...)
         );
         Assert::string($userLocale);
         Assert::inArray($userLocale, $this->locales);
         $this->userLocale = $userLocale;
     }
 
+    #[\Override]
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         if (!$this->lock()) {

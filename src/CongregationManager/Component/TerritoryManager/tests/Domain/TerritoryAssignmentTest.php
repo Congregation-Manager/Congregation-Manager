@@ -32,6 +32,7 @@ final class TerritoryAssignmentTest extends TestCase
 
     private TerritoryAssignment $territoryAssignmentWithoutRevocationDate;
 
+    #[\Override]
     protected function setUp(): void
     {
         $congregation = new Congregation('congregation');

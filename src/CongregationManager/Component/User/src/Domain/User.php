@@ -15,36 +15,43 @@ abstract class User extends AggregateRoot implements UserInterface
     ) {
     }
 
+    #[\Override]
     public function __toString(): string
     {
         return sprintf('%s[%s]', self::class, $this->getEmail());
     }
 
+    #[\Override]
     public function getEmail(): string
     {
         return $this->email;
     }
 
+    #[\Override]
     public function setEmail(string $email): void
     {
         $this->email = $email;
     }
 
+    #[\Override]
     public function getPassword(): ?string
     {
         return $this->password;
     }
 
+    #[\Override]
     public function setPassword(?string $password): void
     {
         $this->password = $password;
     }
 
+    #[\Override]
     public function getLocaleCode(): ?string
     {
         return $this->localeCode;
     }
 
+    #[\Override]
     public function setLocaleCode(?string $localeCode): void
     {
         $this->localeCode = $localeCode;

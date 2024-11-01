@@ -8,11 +8,13 @@ use FriendsOfBehat\PageObjectExtension\Page\SymfonyPage;
 
 final class CompleteAccountPage extends SymfonyPage implements CompleteAccountPageInterface
 {
+    #[\Override]
     public function getRouteName(): string
     {
         return 'app_complete_account';
     }
 
+    #[\Override]
     public function specifyPassword(string $password): void
     {
         $this->getElement('password')
@@ -20,6 +22,7 @@ final class CompleteAccountPage extends SymfonyPage implements CompleteAccountPa
         ;
     }
 
+    #[\Override]
     public function confirmPassword(string $password): void
     {
         $this->getElement('confirm_password')
@@ -27,6 +30,7 @@ final class CompleteAccountPage extends SymfonyPage implements CompleteAccountPa
         ;
     }
 
+    #[\Override]
     public function complete(): void
     {
         $this->getElement('submit_button')
@@ -37,6 +41,7 @@ final class CompleteAccountPage extends SymfonyPage implements CompleteAccountPa
     /**
      * @return array<string, string|string[]>
      */
+    #[\Override]
     protected function getDefinedElements(): array
     {
         return array_merge(parent::getDefinedElements(), [

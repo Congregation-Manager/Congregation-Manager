@@ -11,6 +11,7 @@ use Symfony\Component\HttpKernel\Bundle\AbstractBundle;
 
 final class CongregationManagerFixturesBundle extends AbstractBundle
 {
+    #[\Override]
     public function configure(DefinitionConfigurator $definition): void
     {
         $this->addAdminDefinitions($definition);
@@ -21,6 +22,7 @@ final class CongregationManagerFixturesBundle extends AbstractBundle
     /**
      * @param mixed[] $config
      */
+    #[\Override]
     public function loadExtension(array $config, ContainerConfigurator $container, ContainerBuilder $builder): void
     {
         $container->import('../config/services.php');

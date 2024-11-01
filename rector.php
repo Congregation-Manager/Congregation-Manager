@@ -11,6 +11,6 @@ return RectorConfig::configure()
         __DIR__ . '/src',
         __DIR__ . '/tests',
     ])
-    // uncomment to reach your current PHP version
-    // ->withPhpSets()
-    ->withTypeCoverageLevel(0);
+    ->withPhpSets(true)
+    ->withTypeCoverageLevel(0)
+;

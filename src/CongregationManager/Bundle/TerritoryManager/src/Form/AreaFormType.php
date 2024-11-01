@@ -14,12 +14,13 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 final class AreaFormType extends EntityType
 {
     public function __construct(
-        private CongregationContextInterface $congregationContext,
+        private readonly CongregationContextInterface $congregationContext,
         ManagerRegistry $registry
     ) {
         parent::__construct($registry);
     }
 
+    #[\Override]
     public function configureOptions(OptionsResolver $resolver): void
     {
         parent::configureOptions($resolver);

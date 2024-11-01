@@ -39,7 +39,7 @@ final class ImportFromOldCMCommand extends Command
 {
     use LockableTrait;
 
-    private const OLD_CONGREGATION_ID_ARGUMENT_CODE = 'old-congregation-id';
+    private const string OLD_CONGREGATION_ID_ARGUMENT_CODE = 'old-congregation-id';
 
     /**
      * @psalm-suppress PropertyNotSetInConstructor
@@ -87,6 +87,7 @@ final class ImportFromOldCMCommand extends Command
         return (int) $oldCongregationId;
     }
 
+    #[\Override]
     protected function configure(): void
     {
         $this
@@ -99,11 +100,13 @@ final class ImportFromOldCMCommand extends Command
         ;
     }
 
+    #[\Override]
     protected function initialize(InputInterface $input, OutputInterface $output): void
     {
         $this->io = new SymfonyStyle($input, $output);
     }
 
+    #[\Override]
     protected function interact(InputInterface $input, OutputInterface $output): void
     {
         /** @var mixed $oldCongregationIdArgument */
@@ -126,11 +129,12 @@ final class ImportFromOldCMCommand extends Command
         $oldCongregationId = $oldCongregationIdArgument;
         if ($oldCongregationId === null) {
             /** @var int $oldCongregationId */
-            $oldCongregationId = $this->io->ask('Old congregation id', null, [$this, 'validateOldCongregationId']);
+            $oldCongregationId = $this->io->ask('Old congregation id', null, $this->validateOldCongregationId(...));
             $input->setArgument(self::OLD_CONGREGATION_ID_ARGUMENT_CODE, $oldCongregationId);
         }
     }
 
+    #[\Override]
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         if (!$this->lock()) {

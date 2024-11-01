@@ -6,13 +6,14 @@ namespace CongregationManager\Bundle\Core\Repository\OldCM;
 
 use Doctrine\DBAL\Connection;
 
-final class BrotherRepository implements BrotherRepositoryInterface
+final readonly class BrotherRepository implements BrotherRepositoryInterface
 {
     public function __construct(
         private Connection $connection
     ) {
     }
 
+    #[\Override]
     public function findAllByCongregation(int $congregationId): array
     {
         /* @phpstan-ignore-next-line */

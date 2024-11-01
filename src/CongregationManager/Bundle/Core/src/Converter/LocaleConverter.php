@@ -9,13 +9,14 @@ use Symfony\Component\Intl\Exception\MissingResourceException;
 use Symfony\Component\Intl\Locales;
 use Webmozart\Assert\Assert;
 
-final class LocaleConverter implements LocaleConverterInterface
+final readonly class LocaleConverter implements LocaleConverterInterface
 {
     public function __construct(
         private string $defaultLocale
     ) {
     }
 
+    #[\Override]
     public function convertNameToCode(string $name, ?string $locale = null): string
     {
         $names = Locales::getNames($locale ?? $this->defaultLocale);
@@ -26,6 +27,7 @@ final class LocaleConverter implements LocaleConverterInterface
         return $code;
     }
 
+    #[\Override]
     public function convertCodeToName(string $code, ?string $locale = null): string
     {
         try {

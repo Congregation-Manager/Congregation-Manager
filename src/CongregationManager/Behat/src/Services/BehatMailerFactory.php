@@ -12,10 +12,11 @@ use Symfony\Component\Mailer\Transport\TransportInterface;
 final class BehatMailerFactory extends AbstractTransportFactory
 {
     public function __construct(
-        private TransportInterface $fakeMailerTransport
+        private readonly TransportInterface $fakeMailerTransport
     ) {
     }
 
+    #[\Override]
     public function create(Dsn $dsn): TransportInterface
     {
         if (!\in_array($dsn->getScheme(), $this->getSupportedSchemes(), true)) {
@@ -28,6 +29,7 @@ final class BehatMailerFactory extends AbstractTransportFactory
     /**
      * @return array<int, string>
      */
+    #[\Override]
     protected function getSupportedSchemes(): array
     {
         return ['behat'];

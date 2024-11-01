@@ -8,7 +8,7 @@ use Behat\Behat\Context\Context;
 use CongregationManager\Behat\Services\EmailCheckerInterface;
 use Webmozart\Assert\Assert;
 
-final class EmailContext implements Context
+final readonly class EmailContext implements Context
 {
     public function __construct(
         private EmailCheckerInterface $emailChecker

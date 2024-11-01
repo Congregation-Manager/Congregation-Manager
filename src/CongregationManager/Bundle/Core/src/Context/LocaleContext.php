@@ -6,13 +6,14 @@ namespace CongregationManager\Bundle\Core\Context;
 
 use Symfony\Component\HttpFoundation\RequestStack;
 
-final class LocaleContext implements LocaleContextInterface
+final readonly class LocaleContext implements LocaleContextInterface
 {
     public function __construct(
         private RequestStack $requestStack
     ) {
     }
 
+    #[\Override]
     public function getLocaleCode(): string
     {
         $request = $this->requestStack->getMainRequest();

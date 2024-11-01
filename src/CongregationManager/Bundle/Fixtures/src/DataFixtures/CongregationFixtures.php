@@ -22,11 +22,13 @@ final class CongregationFixtures extends Fixture implements FixtureGroupInterfac
     ) {
     }
 
+    #[\Override]
     public static function getGroups(): array
     {
         return ['congregation_manager_sample_data', 'congregation_manager_sample_congregation_data'];
     }
 
+    #[\Override]
     public function load(ObjectManager $manager): void
     {
         foreach ($this->congregationFixtureData as $congregationData) {

@@ -29,11 +29,13 @@ final class MunicipalityRepository extends ServiceEntityRepository implements Mu
         parent::__construct($registry, Municipality::class);
     }
 
+    #[\Override]
     public function findOneById(int $id): ?MunicipalityInterface
     {
         return $this->find($id);
     }
 
+    #[\Override]
     public function add(MunicipalityInterface $municipality): void
     {
         $this->_em->persist($municipality);

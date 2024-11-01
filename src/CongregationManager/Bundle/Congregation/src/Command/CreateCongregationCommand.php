@@ -19,7 +19,7 @@ final class CreateCongregationCommand extends Command
 {
     use LockableTrait;
 
-    private const CREATE_CONGREGATION_COMMAND_EVENT_NAME = 'create-congregation-command';
+    private const string CREATE_CONGREGATION_COMMAND_EVENT_NAME = 'create-congregation-command';
 
     /**
      * @psalm-suppress PropertyNotSetInConstructor
@@ -48,6 +48,7 @@ final class CreateCongregationCommand extends Command
         return $string;
     }
 
+    #[\Override]
     protected function configure(): void
     {
         $this
@@ -56,21 +57,24 @@ final class CreateCongregationCommand extends Command
         ;
     }
 
+    #[\Override]
     protected function initialize(InputInterface $input, OutputInterface $output): void
     {
         $this->io = new SymfonyStyle($input, $output);
     }
 
+    #[\Override]
     protected function interact(InputInterface $input, OutputInterface $output): void
     {
         $this->io->title('Create Congregation command interactive wizard');
         $this->io->text(['Now we\'ll ask you for the value of the necessary arguments.']);
 
-        $congregationName = $this->io->ask('Congregation name', null, [$this, 'validateString']);
+        $congregationName = $this->io->ask('Congregation name', null, $this->validateString(...));
         Assert::string($congregationName);
         $this->congregationName = $congregationName;
     }
 
+    #[\Override]
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         if (!$this->lock()) {

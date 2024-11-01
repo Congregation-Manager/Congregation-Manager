@@ -38,6 +38,7 @@ class ResetPasswordRequestRepository extends ServiceEntityRepository implements 
         parent::__construct($registry, ResetPasswordRequest::class);
     }
 
+    #[\Override]
     public function createResetPasswordRequest(
         object $user,
         \DateTimeInterface $expiresAt,
@@ -45,12 +46,13 @@ class ResetPasswordRequestRepository extends ServiceEntityRepository implements 
         string $hashedToken
     ): ResetPasswordRequestInterface {
         if (!$user instanceof UserInterface) {
-            throw UserInstanceNotValidFactory::createWithInstanceClass(get_class($user));
+            throw UserInstanceNotValidFactory::createWithInstanceClass($user::class);
         }
 
         return new ResetPasswordRequest($user, $expiresAt, $selector, $hashedToken);
     }
 
+    #[\Override]
     public function getMostRecentNonExpiredRequestDate(object $user): ?\DateTimeInterface
     {
         // Normally there is only 1 max request per use, but written to be flexible
@@ -60,7 +62,7 @@ class ResetPasswordRequestRepository extends ServiceEntityRepository implements 
         } elseif ($user instanceof AppUser) {
             $queryBuilder->where('t.appUser = :user');
         } else {
-            throw UserInstanceNotValidFactory::createWithInstanceClass(get_class($user));
+            throw UserInstanceNotValidFactory::createWithInstanceClass($user::class);
         }
 
         /** @var SymfonyResetPasswordRequestInterface|null $resetPasswordRequest */
@@ -79,6 +81,7 @@ class ResetPasswordRequestRepository extends ServiceEntityRepository implements 
         return null;
     }
 
+    #[\Override]
     public function removeResetPasswordRequest(SymfonyResetPasswordRequestInterface $resetPasswordRequest): void
     {
         $queryBuilder = $this->createQueryBuilder('t');
@@ -87,7 +90,7 @@ class ResetPasswordRequestRepository extends ServiceEntityRepository implements 
         } elseif ($resetPasswordRequest->getUser() instanceof AppUser) {
             $queryBuilder->where('t.appUser = :user');
         } else {
-            throw UserInstanceNotValidFactory::createWithInstanceClass(get_class($resetPasswordRequest->getUser()));
+            throw UserInstanceNotValidFactory::createWithInstanceClass($resetPasswordRequest->getUser()::class);
         }
 
         $queryBuilder

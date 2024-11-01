@@ -14,6 +14,7 @@ final class AppUserRepository implements AppUserRepositoryInterface
      */
     public array $appUsers = [];
 
+    #[\Override]
     public function add(AppUserInterface $appUser): void
     {
         if (in_array($appUser, $this->appUsers, true)) {

@@ -8,11 +8,13 @@ use FriendsOfBehat\PageObjectExtension\Page\SymfonyPage;
 
 final class InviteAppUserPage extends SymfonyPage implements InviteAppUserPageInterface
 {
+    #[\Override]
     public function getRouteName(): string
     {
         return 'admin_invite_app_user';
     }
 
+    #[\Override]
     public function specifyEmail(string $email): void
     {
         $this->getElement('email')
@@ -20,6 +22,7 @@ final class InviteAppUserPage extends SymfonyPage implements InviteAppUserPageIn
         ;
     }
 
+    #[\Override]
     public function sendInvite(): void
     {
         $this->getElement('submit')
@@ -30,6 +33,7 @@ final class InviteAppUserPage extends SymfonyPage implements InviteAppUserPageIn
     /**
      * @return array<string, string|string[]>
      */
+    #[\Override]
     protected function getDefinedElements(): array
     {
         return array_merge(parent::getDefinedElements(), [

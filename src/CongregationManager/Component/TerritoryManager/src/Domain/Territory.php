@@ -34,46 +34,55 @@ class Territory extends AggregateRoot implements TerritoryInterface
         $this->territoryAssignments = new ArrayCollection();
     }
 
+    #[\Override]
     public function __toString(): string
     {
         return sprintf('%s[%s]', self::class, $this->getNumber());
     }
 
+    #[\Override]
     public function getCongregation(): CongregationInterface
     {
         return $this->congregation;
     }
 
+    #[\Override]
     public function setCongregation(CongregationInterface $congregation): void
     {
         $this->congregation = $congregation;
     }
 
+    #[\Override]
     public function getArea(): AreaInterface
     {
         return $this->area;
     }
 
+    #[\Override]
     public function setArea(AreaInterface $area): void
     {
         $this->area = $area;
     }
 
+    #[\Override]
     public function getNumber(): int
     {
         return $this->number;
     }
 
+    #[\Override]
     public function setNumber(int $number): void
     {
         $this->number = $number;
     }
 
+    #[\Override]
     public function getDescription(): ?string
     {
         return $this->description;
     }
 
+    #[\Override]
     public function setDescription(?string $description): void
     {
         $this->description = $description;
@@ -82,11 +91,13 @@ class Territory extends AggregateRoot implements TerritoryInterface
     /**
      * @return Collection<array-key, TerritoryAssignmentInterface>
      */
+    #[\Override]
     public function getTerritoryAssignments(): Collection
     {
         return $this->territoryAssignments;
     }
 
+    #[\Override]
     public function getSortedTerritoryAssignments(): Collection
     {
         if ($this->sortedTerritoryAssignments !== null) {
@@ -127,6 +138,7 @@ class Territory extends AggregateRoot implements TerritoryInterface
         return $sortedTerritoryAssignments;
     }
 
+    #[\Override]
     public function addTerritoryAssignment(TerritoryAssignmentInterface $territoryAssignment): void
     {
         if (!$this->territoryAssignments->contains($territoryAssignment)) {
@@ -134,6 +146,7 @@ class Territory extends AggregateRoot implements TerritoryInterface
         }
     }
 
+    #[\Override]
     public function removeTerritoryAssignment(TerritoryAssignmentInterface $territoryAssignment): void
     {
         if ($this->territoryAssignments->contains($territoryAssignment)) {
@@ -141,6 +154,7 @@ class Territory extends AggregateRoot implements TerritoryInterface
         }
     }
 
+    #[\Override]
     public function getCurrentAssignment(): ?TerritoryAssignmentInterface
     {
         $actualAssignment = $this->getSortedTerritoryAssignments()
@@ -153,13 +167,12 @@ class Territory extends AggregateRoot implements TerritoryInterface
         return $actualAssignment;
     }
 
+    #[\Override]
     public function getLatestAssignment(): ?TerritoryAssignmentInterface
     {
         $latestAssignment = $this->getSortedTerritoryAssignments()
             ->filter(
-                function (TerritoryAssignmentInterface $territoryAssignment) {
-                    return $territoryAssignment->getRevocationDate() !== null;
-                }
+                fn (TerritoryAssignmentInterface $territoryAssignment) => $territoryAssignment->getRevocationDate() !== null
             )->last();
 
         if (!$latestAssignment instanceof TerritoryAssignmentInterface) {
@@ -169,6 +182,7 @@ class Territory extends AggregateRoot implements TerritoryInterface
         return $latestAssignment;
     }
 
+    #[\Override]
     public function hasAssignmentBetweenDates(
         DateTimeInterface $assignmentDate,
         ?DateTimeInterface $revocationDate = null,
@@ -198,6 +212,7 @@ class Territory extends AggregateRoot implements TerritoryInterface
         return false;
     }
 
+    #[\Override]
     public function isAvailable(): bool
     {
         return $this->getCurrentAssignment() === null;

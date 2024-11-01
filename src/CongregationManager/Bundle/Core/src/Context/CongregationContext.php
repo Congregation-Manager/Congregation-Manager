@@ -10,13 +10,14 @@ use CongregationManager\Component\User\Domain\AppUserInterface;
 use RuntimeException;
 use Symfony\Bundle\SecurityBundle\Security;
 
-final class CongregationContext implements CongregationContextInterface
+final readonly class CongregationContext implements CongregationContextInterface
 {
     public function __construct(
         private Security $security
     ) {
     }
 
+    #[\Override]
     public function getCongregation(): CongregationInterface
     {
         $user = $this->security->getUser();

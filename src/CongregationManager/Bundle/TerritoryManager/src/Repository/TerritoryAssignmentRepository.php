@@ -29,17 +29,20 @@ final class TerritoryAssignmentRepository extends ServiceEntityRepository implem
         parent::__construct($registry, TerritoryAssignment::class);
     }
 
+    #[\Override]
     public function add(TerritoryAssignmentInterface $territoryAssignment): void
     {
         $this->getEntityManager()
             ->persist($territoryAssignment);
     }
 
+    #[\Override]
     public function findOneById(int $id): ?TerritoryAssignmentInterface
     {
         return $this->find($id);
     }
 
+    #[\Override]
     public function flush(): void
     {
         $this->getEntityManager()

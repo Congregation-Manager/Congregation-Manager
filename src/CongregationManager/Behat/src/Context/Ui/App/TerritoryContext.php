@@ -11,7 +11,7 @@ use CongregationManager\Component\TerritoryManager\Domain\TerritoryInterface;
 use DateTimeImmutable;
 use Webmozart\Assert\Assert;
 
-final class TerritoryContext implements Context
+final readonly class TerritoryContext implements Context
 {
     public function __construct(
         private ShowPage $showPage,

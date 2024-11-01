@@ -17,6 +17,7 @@ class AppUser extends User implements AppUserInterface
         parent::__construct($email, $password, $localeCode);
     }
 
+    #[\Override]
     public function getBrother(): BrotherInterface
     {
         return $this->brother;

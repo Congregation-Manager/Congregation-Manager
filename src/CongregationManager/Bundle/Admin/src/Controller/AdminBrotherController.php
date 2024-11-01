@@ -20,10 +20,10 @@ use Symfony\Component\Mime\Address;
 final class AdminBrotherController extends AbstractController
 {
     public function __construct(
-        private BrotherRepositoryInterface $brotherRepository,
-        private CreateAppUserInvitation $createAppUserInvitation,
-        private EntityManagerInterface $entityManager,
-        private MailerInterface $mailer
+        private readonly BrotherRepositoryInterface $brotherRepository,
+        private readonly CreateAppUserInvitation $createAppUserInvitation,
+        private readonly EntityManagerInterface $entityManager,
+        private readonly MailerInterface $mailer
     ) {
     }
 

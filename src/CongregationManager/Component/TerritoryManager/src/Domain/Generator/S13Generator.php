@@ -15,13 +15,14 @@ use DateTimeImmutable;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 
-final class S13Generator implements S13GeneratorInterface
+final readonly class S13Generator implements S13GeneratorInterface
 {
     public function __construct(
-        private readonly TerritoryRepositoryInterface $territoryRepository,
+        private TerritoryRepositoryInterface $territoryRepository,
     ) {
     }
 
+    #[\Override]
     public function generateByCongregation(CongregationInterface $congregation, int $serviceYear): S13
     {
         $territories = $this->territoryRepository->findByCongregation($congregation);
@@ -61,12 +62,10 @@ final class S13Generator implements S13GeneratorInterface
         }
         $territoryAssignmentsBeforeCurrentTheocraticYear = $territoryAssignments
             ->filter(
-                static function (TerritoryAssignmentInterface $territoryAssignment) use ($currentTheocraticYear): bool {
-                    return $territoryAssignment->getRevocationDate() !== null &&
-                        $territoryAssignment->getRevocationDate() < new DateTimeImmutable(
-                            $currentTheocraticYear - 1 . '-09-01'
-                        );
-                }
+                static fn (TerritoryAssignmentInterface $territoryAssignment): bool => $territoryAssignment->getRevocationDate() !== null &&
+                    $territoryAssignment->getRevocationDate() < new DateTimeImmutable(
+                        $currentTheocraticYear - 1 . '-09-01'
+                    )
             );
         if ($territoryAssignmentsBeforeCurrentTheocraticYear->count() === 0) {
             return null;
@@ -95,17 +94,15 @@ final class S13Generator implements S13GeneratorInterface
         }
         $territoryAssignmentsOfCurrentTheocraticYear = $territoryAssignments
             ->filter(
-                static function (TerritoryAssignmentInterface $territoryAssignment) use ($currentTheocraticYear): bool {
-                    return $territoryAssignment->getAssignmentDate() < new DateTimeImmutable(
-                        $currentTheocraticYear . '-09-01'
-                    ) &&
-                        (
-                            $territoryAssignment->getRevocationDate() === null ||
-                            $territoryAssignment->getRevocationDate() > new DateTimeImmutable(
-                                $currentTheocraticYear - 1 . '-08-31'
-                            )
-                        );
-                }
+                static fn (TerritoryAssignmentInterface $territoryAssignment): bool => $territoryAssignment->getAssignmentDate() < new DateTimeImmutable(
+                    $currentTheocraticYear . '-09-01'
+                ) &&
+                    (
+                        $territoryAssignment->getRevocationDate() === null ||
+                        $territoryAssignment->getRevocationDate() > new DateTimeImmutable(
+                            $currentTheocraticYear - 1 . '-08-31'
+                        )
+                    )
             )
         ;
         if ($territoryAssignmentsOfCurrentTheocraticYear->count() === 0) {

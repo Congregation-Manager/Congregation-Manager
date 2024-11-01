@@ -34,16 +34,19 @@ final class TerritoryRepository extends ServiceEntityRepository implements Terri
         parent::__construct($registry, Territory::class);
     }
 
+    #[\Override]
     public function add(TerritoryInterface $territory): void
     {
         $this->_em->persist($territory);
     }
 
+    #[\Override]
     public function findOneById(int $id): ?TerritoryInterface
     {
         return $this->find($id);
     }
 
+    #[\Override]
     public function filter(TerritoryRepositoryFilterInterface $filter): TerritoryFilterResults
     {
         $latestCompletedAssignmentQb = $this->_em->createQueryBuilder()
@@ -90,6 +93,7 @@ final class TerritoryRepository extends ServiceEntityRepository implements Terri
         return new TerritoryFilterResults($qb);
     }
 
+    #[\Override]
     public function findOneByNumber(int $number): ?TerritoryInterface
     {
         return $this->findOneBy([
@@ -97,6 +101,7 @@ final class TerritoryRepository extends ServiceEntityRepository implements Terri
         ]);
     }
 
+    #[\Override]
     public function findByCongregation(CongregationInterface $congregation): array
     {
         return $this->findBy([

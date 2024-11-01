@@ -11,7 +11,7 @@ use CongregationManager\Component\TerritoryManager\Domain\TerritoryAssignmentInt
 use CongregationManager\Component\TerritoryManager\Domain\TerritoryInterface;
 use DateTimeInterface;
 
-final class CreateTerritoryAssignment
+final readonly class CreateTerritoryAssignment
 {
     public function __construct(
         private TerritoryAssignmentRepositoryInterface $territoryAssignmentRepository

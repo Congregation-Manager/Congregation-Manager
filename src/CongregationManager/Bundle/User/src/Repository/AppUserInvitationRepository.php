@@ -29,11 +29,13 @@ class AppUserInvitationRepository extends ServiceEntityRepository implements App
         parent::__construct($registry, AppUserInvitation::class);
     }
 
+    #[\Override]
     public function add(DomainAppUserInvitation $appUserInvitation): void
     {
         $this->_em->persist($appUserInvitation);
     }
 
+    #[\Override]
     public function findByToken(string $token): ?DomainAppUserInvitation
     {
         return $this->findOneBy([
@@ -41,6 +43,7 @@ class AppUserInvitationRepository extends ServiceEntityRepository implements App
         ]);
     }
 
+    #[\Override]
     public function remove(DomainAppUserInvitation $appUserInvitation): void
     {
         $this->_em->remove($appUserInvitation);

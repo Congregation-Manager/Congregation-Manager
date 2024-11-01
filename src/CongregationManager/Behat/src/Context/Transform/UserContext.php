@@ -12,7 +12,7 @@ use CongregationManager\Component\User\Domain\AdminUserInterface;
 use Doctrine\ORM\EntityManagerInterface;
 use InvalidArgumentException;
 
-final class UserContext implements Context
+final readonly class UserContext implements Context
 {
     public function __construct(
         private EntityManagerInterface $entityManager

@@ -10,7 +10,7 @@ use CongregationManager\Component\TerritoryManager\Domain\Repository\TerritoryRe
 use CongregationManager\Component\TerritoryManager\Domain\Territory;
 use CongregationManager\Component\TerritoryManager\Domain\TerritoryInterface;
 
-final class CreateTerritory
+final readonly class CreateTerritory
 {
     public function __construct(
         private TerritoryRepositoryInterface $territoryRepository

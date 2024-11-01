@@ -15,11 +15,13 @@ final class ForgotPasswordPage extends SymfonyPage implements ForgotPasswordPage
         '_locale' => 'en',
     ];
 
+    #[\Override]
     public function getRouteName(): string
     {
         return 'app_forgot_password_request';
     }
 
+    #[\Override]
     public function specifyEmail(string $email): void
     {
         $this->getElement('email')
@@ -27,6 +29,7 @@ final class ForgotPasswordPage extends SymfonyPage implements ForgotPasswordPage
         ;
     }
 
+    #[\Override]
     public function submit(): void
     {
         $this->getElement('submit_button')
@@ -37,6 +40,7 @@ final class ForgotPasswordPage extends SymfonyPage implements ForgotPasswordPage
     /**
      * @return array<string, string|string[]>
      */
+    #[\Override]
     protected function getDefinedElements(): array
     {
         return array_merge(parent::getDefinedElements(), [

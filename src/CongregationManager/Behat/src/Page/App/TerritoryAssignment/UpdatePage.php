@@ -8,6 +8,7 @@ use FriendsOfBehat\PageObjectExtension\Page\SymfonyPage;
 
 final class UpdatePage extends SymfonyPage
 {
+    #[\Override]
     public function getRouteName(): string
     {
         return 'app_territory_assignment_update';

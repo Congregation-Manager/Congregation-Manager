@@ -14,7 +14,7 @@ use DateTimeImmutable;
 use Symfony\Contracts\Translation\TranslatorInterface;
 use Webmozart\Assert\Assert;
 
-final class TerritoryAssignmentContext implements Context
+final readonly class TerritoryAssignmentContext implements Context
 {
     public function __construct(
         private CreatePage $assignPage,

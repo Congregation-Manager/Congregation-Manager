@@ -9,7 +9,7 @@ use CongregationManager\Behat\Services\SharedStorageInterface;
 use CongregationManager\Component\Congregation\Domain\Congregation;
 use Doctrine\ORM\EntityManagerInterface;
 
-final class CongregationContext implements Context
+final readonly class CongregationContext implements Context
 {
     public function __construct(
         private EntityManagerInterface $entityManager,

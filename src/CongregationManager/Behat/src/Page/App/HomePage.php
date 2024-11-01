@@ -16,11 +16,13 @@ final class HomePage extends SymfonyPage implements HomePageInterface
         '_locale' => 'en',
     ];
 
+    #[\Override]
     public function getRouteName(): string
     {
         return 'app_homepage';
     }
 
+    #[\Override]
     public function getActiveLocale(): string
     {
         return $this->getElement('active_locale')
@@ -28,17 +30,17 @@ final class HomePage extends SymfonyPage implements HomePageInterface
         ;
     }
 
+    #[\Override]
     public function getAvailableLocales(): array
     {
         return array_map(
-            static function (NodeElement $element) {
-                return $element->getText();
-            },
+            static fn (NodeElement $element) => $element->getText(),
             $this->getElement('locale_selector')
                 ->findAll('css', '[data-test-available-locale]')
         );
     }
 
+    #[\Override]
     public function switchLocale(string $locale): void
     {
         $this->getElement('locale_selector')
@@ -49,6 +51,7 @@ final class HomePage extends SymfonyPage implements HomePageInterface
     /**
      * @return array<string, string|string[]>
      */
+    #[\Override]
     protected function getDefinedElements(): array
     {
         return array_merge(parent::getDefinedElements(), [

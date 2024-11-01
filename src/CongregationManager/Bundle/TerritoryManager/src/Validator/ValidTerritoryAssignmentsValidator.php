@@ -14,6 +14,7 @@ use Webmozart\Assert\Assert;
 
 final class ValidTerritoryAssignmentsValidator extends ConstraintValidator
 {
+    #[\Override]
     public function validate(mixed $value, Constraint $constraint): void
     {
         if (!$constraint instanceof ValidTerritoryAssignments) {

@@ -13,7 +13,7 @@ use InvalidArgumentException;
 
 final class Row
 {
-    public const MAX_COLUMNS_ALLOWED = 4;
+    public const int MAX_COLUMNS_ALLOWED = 4;
 
     private ?DateTimeInterface $lastRevocationDate = null;
 

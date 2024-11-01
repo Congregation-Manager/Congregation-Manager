@@ -9,7 +9,7 @@ use CongregationManager\Component\User\Domain\AdminUserInterface;
 use CongregationManager\Component\User\Domain\Hasher\UserPasswordHasherInterface;
 use CongregationManager\Component\User\Domain\Repository\AdminUserRepositoryInterface;
 
-final class CreateAdminUser
+final readonly class CreateAdminUser
 {
     public function __construct(
         private AdminUserRepositoryInterface $adminUserRepository,

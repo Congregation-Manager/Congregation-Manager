@@ -34,6 +34,7 @@ class AdminUserRepository extends ServiceEntityRepository implements AdminUserRe
         parent::__construct($registry, AdminUser::class);
     }
 
+    #[\Override]
     public function add(DomainAdminUserInterface $adminUser): void
     {
         $this->_em->persist($adminUser);
@@ -47,10 +48,11 @@ class AdminUserRepository extends ServiceEntityRepository implements AdminUserRe
     /**
      * Used to upgrade (rehash) the user's password automatically over time.
      */
+    #[\Override]
     public function upgradePassword(PasswordAuthenticatedUserInterface $user, string $newHashedPassword): void
     {
         if (!$user instanceof AdminUser) {
-            throw new UnsupportedUserException(sprintf('Instances of "%s" are not supported.', \get_class($user)));
+            throw new UnsupportedUserException(sprintf('Instances of "%s" are not supported.', $user::class));
         }
 
         $user->setPassword($newHashedPassword);

@@ -9,6 +9,7 @@ class Kernel extends BaseKernel
 {
     use MicroKernelTrait;
 
+    #[\Override]
     public function getProjectDir(): string
     {
         return dirname(__DIR__);

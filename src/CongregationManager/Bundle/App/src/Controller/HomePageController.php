@@ -14,7 +14,7 @@ final class HomePageController extends AbstractController
     /**
      * @var string[]
      */
-    private array $availableLocales;
+    private readonly array $availableLocales;
 
     public function __construct(string $availableLocales)
     {

@@ -10,7 +10,7 @@ use CongregationManager\Component\User\Domain\AppUserInterface;
 use CongregationManager\Component\User\Domain\Hasher\UserPasswordHasherInterface;
 use CongregationManager\Component\User\Domain\Repository\AppUserRepositoryInterface;
 
-final class CreateAppUser
+final readonly class CreateAppUser
 {
     public function __construct(
         private AppUserRepositoryInterface $appUserRepository,

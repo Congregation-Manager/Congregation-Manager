@@ -22,6 +22,7 @@ final class CreateAppUserTest extends TestCase
 
     private UserPasswordHasher $userPasswordHasher;
 
+    #[\Override]
     protected function setUp(): void
     {
         $this->appUserRepository = new AppUserRepository();

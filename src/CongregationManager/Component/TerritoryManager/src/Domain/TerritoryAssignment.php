@@ -24,6 +24,7 @@ class TerritoryAssignment extends AggregateRoot implements TerritoryAssignmentIn
         }
     }
 
+    #[\Override]
     public function __toString(): string
     {
         return sprintf(
@@ -35,46 +36,55 @@ class TerritoryAssignment extends AggregateRoot implements TerritoryAssignmentIn
         );
     }
 
+    #[\Override]
     public function getTerritory(): TerritoryInterface
     {
         return $this->territory;
     }
 
+    #[\Override]
     public function setTerritory(TerritoryInterface $territory): void
     {
         $this->territory = $territory;
     }
 
+    #[\Override]
     public function getAssignmentDate(): DateTimeInterface
     {
         return $this->assignmentDate;
     }
 
+    #[\Override]
     public function setAssignmentDate(DateTimeInterface $assignmentDate): void
     {
         $this->assignmentDate = $assignmentDate;
     }
 
+    #[\Override]
     public function getBrother(): ?BrotherInterface
     {
         return $this->brother;
     }
 
+    #[\Override]
     public function setBrother(?BrotherInterface $brother): void
     {
         $this->brother = $brother;
     }
 
+    #[\Override]
     public function getRevocationDate(): ?DateTimeInterface
     {
         return $this->revocationDate;
     }
 
+    #[\Override]
     public function setRevocationDate(?DateTimeInterface $revocationDate): void
     {
         $this->revocationDate = $revocationDate;
     }
 
+    #[\Override]
     public function getExpirationDate(): ?DateTimeInterface
     {
         $expirationDate = new DateTime($this->getAssignmentDate()->format('Y-m-d H:i:s'), $this->getAssignmentDate()
@@ -83,6 +93,7 @@ class TerritoryAssignment extends AggregateRoot implements TerritoryAssignmentIn
         return $expirationDate->add(new DateInterval('P4M'));
     }
 
+    #[\Override]
     public function isGreaterThan(TerritoryAssignmentInterface $territoryAssignment): bool
     {
         if ($this->getRevocationDate() === null && $territoryAssignment->getRevocationDate() === null) {
@@ -103,6 +114,7 @@ class TerritoryAssignment extends AggregateRoot implements TerritoryAssignmentIn
         return false;
     }
 
+    #[\Override]
     public function hasSameDatesTo(TerritoryAssignmentInterface $territoryAssignment): bool
     {
         if ($this === $territoryAssignment) {

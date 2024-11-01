@@ -17,10 +17,11 @@ final class TestHtmlAttributeExtension extends AbstractExtension
     /**
      * @return TwigFunction[]
      */
+    #[\Override]
     public function getFunctions(): array
     {
         return [
-            new TwigFunction('test_html_attribute', [$this, 'testHtmlAttribute'], [
+            new TwigFunction('test_html_attribute', $this->testHtmlAttribute(...), [
                 'is_safe' => ['html'],
             ]),
         ];

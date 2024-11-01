@@ -13,6 +13,7 @@ final class CongregationManagerAdminBundle extends AbstractBundle
     /**
      * @param mixed[] $config
      */
+    #[\Override]
     public function loadExtension(array $config, ContainerConfigurator $container, ContainerBuilder $builder): void
     {
         $container->services()

@@ -15,11 +15,13 @@ final class ResetPasswordPage extends SymfonyPage implements ResetPasswordPageIn
         '_locale' => 'en',
     ];
 
+    #[\Override]
     public function getRouteName(): string
     {
         return 'app_reset_password';
     }
 
+    #[\Override]
     public function specifyPassword(string $password): void
     {
         $this->getElement('password')
@@ -27,6 +29,7 @@ final class ResetPasswordPage extends SymfonyPage implements ResetPasswordPageIn
         ;
     }
 
+    #[\Override]
     public function confirmPassword(string $password): void
     {
         $this->getElement('confirm_password')
@@ -34,6 +37,7 @@ final class ResetPasswordPage extends SymfonyPage implements ResetPasswordPageIn
         ;
     }
 
+    #[\Override]
     public function submit(): void
     {
         $this->getElement('submit_button')
@@ -44,6 +48,7 @@ final class ResetPasswordPage extends SymfonyPage implements ResetPasswordPageIn
     /**
      * @return array<string, string|string[]>
      */
+    #[\Override]
     protected function getDefinedElements(): array
     {
         return array_merge(parent::getDefinedElements(), [

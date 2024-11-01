@@ -41,16 +41,13 @@ final readonly class TerritoryAssignmentContext implements Context
         Assert::isInstanceOf($brother, BrotherInterface::class);
 
         $territoryAssignments = $this->territoryAssignmentRepository->findAll();
-        $territoryAssignments = array_filter($territoryAssignments, static function ($territoryAssignment) use (
-            $territory,
-            $brother,
-            $assignmentDate
-        ) {
-            return $territoryAssignment->getTerritory() === $territory
-                && $territoryAssignment->getBrother() === $brother
-                && $territoryAssignment->getAssignmentDate()
-                    ->format('Y-m-d') === $assignmentDate;
-        });
+        $territoryAssignments = array_filter(
+            $territoryAssignments,
+            static fn ($territoryAssignment) => $territoryAssignment->getTerritory() === $territory
+            && $territoryAssignment->getBrother() === $brother
+            && $territoryAssignment->getAssignmentDate()
+                ->format('Y-m-d') === $assignmentDate
+        );
         $territoryAssignment = reset($territoryAssignments);
         Assert::isInstanceOf($territoryAssignment, TerritoryAssignmentInterface::class);
 

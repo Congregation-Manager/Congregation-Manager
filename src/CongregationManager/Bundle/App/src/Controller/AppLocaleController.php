@@ -16,10 +16,10 @@ use Symfony\Component\HttpFoundation\Response;
 final class AppLocaleController extends AbstractController
 {
     public function __construct(
-        private string $availableLocales,
-        private RequestStack $requestStack,
-        private Security $security,
-        private EntityManagerInterface $entityManager
+        private readonly string $availableLocales,
+        private readonly RequestStack $requestStack,
+        private readonly Security $security,
+        private readonly EntityManagerInterface $entityManager
     ) {
     }
 

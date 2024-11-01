@@ -11,6 +11,7 @@ final class ValidTerritoryAssignments extends Constraint
 {
     public string $message = 'cm.valid_territory_assignments';
 
+    #[\Override]
     public function getTargets(): string
     {
         return self::CLASS_CONSTRAINT;

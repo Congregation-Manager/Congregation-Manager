@@ -17,10 +17,11 @@ final class TestFormAttributeExtension extends AbstractExtension
     /**
      * @return TwigFunction[]
      */
+    #[\Override]
     public function getFunctions(): array
     {
         return [
-            new TwigFunction('test_form_attribute', [$this, 'testFormAttribute'], [
+            new TwigFunction('test_form_attribute', $this->testFormAttribute(...), [
                 'is_safe' => ['html'],
             ]),
         ];

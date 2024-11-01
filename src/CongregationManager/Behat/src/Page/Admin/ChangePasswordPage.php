@@ -15,11 +15,13 @@ final class ChangePasswordPage extends SymfonyPage implements ChangePasswordPage
         '_locale' => 'en',
     ];
 
+    #[\Override]
     public function getRouteName(): string
     {
         return 'admin_change_password';
     }
 
+    #[\Override]
     public function specifyActualPassword(string $password): void
     {
         $this->getElement('old_password')
@@ -27,6 +29,7 @@ final class ChangePasswordPage extends SymfonyPage implements ChangePasswordPage
         ;
     }
 
+    #[\Override]
     public function specifyPassword(string $password): void
     {
         $this->getElement('password')
@@ -34,6 +37,7 @@ final class ChangePasswordPage extends SymfonyPage implements ChangePasswordPage
         ;
     }
 
+    #[\Override]
     public function confirmPassword(string $password): void
     {
         $this->getElement('confirm_password')
@@ -41,6 +45,7 @@ final class ChangePasswordPage extends SymfonyPage implements ChangePasswordPage
         ;
     }
 
+    #[\Override]
     public function update(): void
     {
         $this->getElement('submit_button')
@@ -51,6 +56,7 @@ final class ChangePasswordPage extends SymfonyPage implements ChangePasswordPage
     /**
      * @return array<string, string|string[]>
      */
+    #[\Override]
     protected function getDefinedElements(): array
     {
         return array_merge(parent::getDefinedElements(), [

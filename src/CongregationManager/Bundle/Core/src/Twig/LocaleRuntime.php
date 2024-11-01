@@ -10,7 +10,7 @@ use CongregationManager\Bundle\Core\Converter\LocaleConverterInterface;
 use InvalidArgumentException;
 use Twig\Extension\RuntimeExtensionInterface;
 
-final class LocaleRuntime implements RuntimeExtensionInterface
+final readonly class LocaleRuntime implements RuntimeExtensionInterface
 {
     public function __construct(
         private LocaleConverterInterface $localeConverter,
@@ -22,7 +22,7 @@ final class LocaleRuntime implements RuntimeExtensionInterface
     {
         try {
             return $this->localeConverter->convertCodeToName($code, $this->getLocaleCode($localeCode));
-        } catch (InvalidArgumentException $e) {
+        } catch (InvalidArgumentException) {
             return $code;
         }
     }
@@ -35,7 +35,7 @@ final class LocaleRuntime implements RuntimeExtensionInterface
 
         try {
             return $this->localeContext->getLocaleCode();
-        } catch (LocaleNotFoundException $exception) {
+        } catch (LocaleNotFoundException) {
             return null;
         }
     }

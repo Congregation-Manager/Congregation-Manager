@@ -10,7 +10,7 @@ use CongregationManager\Component\TerritoryManager\Domain\AreaInterface;
 use CongregationManager\Component\TerritoryManager\Domain\MunicipalityInterface;
 use CongregationManager\Component\TerritoryManager\Domain\Repository\AreaRepositoryInterface;
 
-final class CreateArea
+final readonly class CreateArea
 {
     public function __construct(
         private AreaRepositoryInterface $areaRepository

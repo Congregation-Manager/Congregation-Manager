@@ -9,7 +9,7 @@ use CongregationManager\Component\Congregation\Domain\BrotherInterface;
 use CongregationManager\Component\User\Domain\Generator\TokenGeneratorInterface;
 use CongregationManager\Component\User\Domain\Repository\AppUserInvitationRepositoryInterface;
 
-final class CreateAppUserInvitation
+final readonly class CreateAppUserInvitation
 {
     public function __construct(
         private TokenGeneratorInterface $tokenGenerator,

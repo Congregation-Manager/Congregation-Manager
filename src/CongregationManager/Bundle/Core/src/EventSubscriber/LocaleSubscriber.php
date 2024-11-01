@@ -17,12 +17,13 @@ final class LocaleSubscriber implements EventSubscriberInterface
     private array $availableLocaleCodes = [];
 
     public function __construct(
-        private string $defaultLocale,
+        private readonly string $defaultLocale,
         string $supportedLocales
     ) {
         $this->availableLocaleCodes = explode('|', $supportedLocales);
     }
 
+    #[\Override]
     public static function getSubscribedEvents(): array
     {
         return [

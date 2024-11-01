@@ -6,13 +6,14 @@ namespace CongregationManager\Bundle\Core\Repository\OldCM;
 
 use Doctrine\DBAL\Connection;
 
-final class CongregationRepository implements CongregationRepositoryInterface
+final readonly class CongregationRepository implements CongregationRepositoryInterface
 {
     public function __construct(
         private Connection $connection
     ) {
     }
 
+    #[\Override]
     public function findOneById(int $id): array
     {
         /* @phpstan-ignore-next-line */

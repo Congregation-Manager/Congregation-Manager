@@ -18,7 +18,7 @@ use CongregationManager\Behat\Services\SharedStorageInterface;
 use CongregationManager\Component\Congregation\Domain\BrotherInterface;
 use Webmozart\Assert\Assert;
 
-final class AccountContext implements Context
+final readonly class AccountContext implements Context
 {
     public function __construct(
         private LoginPageInterface $loginPage,

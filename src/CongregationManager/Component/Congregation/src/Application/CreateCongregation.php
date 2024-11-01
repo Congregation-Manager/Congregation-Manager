@@ -8,7 +8,7 @@ use CongregationManager\Component\Congregation\Domain\Congregation;
 use CongregationManager\Component\Congregation\Domain\CongregationInterface;
 use CongregationManager\Component\Congregation\Domain\Repository\CongregationRepositoryInterface;
 
-final class CreateCongregation
+final readonly class CreateCongregation
 {
     public function __construct(
         private CongregationRepositoryInterface $congregationRepository

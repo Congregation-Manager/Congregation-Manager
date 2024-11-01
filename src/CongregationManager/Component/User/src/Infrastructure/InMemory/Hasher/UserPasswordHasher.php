@@ -9,6 +9,7 @@ use CongregationManager\Component\User\Domain\UserInterface;
 
 final class UserPasswordHasher implements UserPasswordHasherInterface
 {
+    #[\Override]
     public function hashPasswordForUser(string $plainPassword, UserInterface $user): string
     {
         return hash('sha256', $plainPassword);

@@ -16,7 +16,7 @@ use CongregationManager\Behat\Page\App\ResetPasswordPageInterface;
 use CongregationManager\Behat\Services\SharedStorageInterface;
 use Webmozart\Assert\Assert;
 
-final class AccountContext implements Context
+final readonly class AccountContext implements Context
 {
     public function __construct(
         private LoginPageInterface $loginPage,

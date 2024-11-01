@@ -12,6 +12,7 @@ use Webmozart\Assert\Assert;
 
 final class ShowPage extends SymfonyPage
 {
+    #[\Override]
     public function getRouteName(): string
     {
         return 'app_territory_show';
@@ -64,6 +65,7 @@ final class ShowPage extends SymfonyPage
     /**
      * @return array<string, string|string[]>
      */
+    #[\Override]
     protected function getDefinedElements(): array
     {
         return array_merge(parent::getDefinedElements(), [
