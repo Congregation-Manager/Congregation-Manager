@@ -4,17 +4,17 @@
     <div class="container">
         <div class="px-4 py-5 my-5 text-center">
             {{ block('logo') }}
-            <h1 class="display-5 fw-bold">{{ 'cm.homepage.title'|trans }}</h1>
+            <h1 class="display-5 fw-bold">{{ 'cm.homepage.title'|trans_app }}</h1>
             <div class="col-lg-6 mx-auto">
-                <p class="lead mb-4">{{ 'cm.homepage.subtitle'|trans }}</p>
+                <p class="lead mb-4">{{ 'cm.homepage.subtitle'|trans_app }}</p>
                 <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
                     <a href="{{ path('app_login') }}">
                         <button type="button"
-                                class="btn btn-primary btn-lg px-4 gap-3">{{ 'cm.homepage.login'|trans }}</button>
+                                class="btn btn-primary btn-lg px-4 gap-3">{{ 'cm.homepage.login'|trans_app }}</button>
                     </a>
                     <a href="{{ path('app_homepage') }}">
                         <button type="button"
-                                class="btn btn-outline-secondary btn-lg px-4">{{ 'cm.homepage.register'|trans }}</button>
+                                class="btn btn-outline-secondary btn-lg px-4">{{ 'cm.homepage.register'|trans_app }}</button>
                     </a>
                 </div>
 

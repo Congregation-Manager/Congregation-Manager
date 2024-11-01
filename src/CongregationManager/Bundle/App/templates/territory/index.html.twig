@@ -1,12 +1,12 @@
 {% extends '@CongregationManagerApp/base.html.twig' %}
 
-{% block title %}{{ 'cm.meta_title.territory_index'|trans }}{% endblock %}
+{% block title %}{{ 'cm.meta_title.territory_index'|trans_app }}{% endblock %}
 
 {% block content %}
     <div class="container">
         <div class="row">
             <div class="col-12">
-                <h1>{{ 'cm.ui.territories'|trans }}</h1>
+                <h1>{{ 'cm.ui.territories'|trans_app }}</h1>
             </div>
         </div>
         <div class="row mt-4">
@@ -20,13 +20,13 @@
                 <div class="table-responsive-xl">
                     {{ include('@CongregationManagerApp/territory/index/_table.html.twig') }}
                 </div>
-                
+
                 {# display navigation #}
                 <div class="navigation">
                     {{ knp_pagination_render(pagination) }}
                 </div>
             </div>
-        
+
         </div>
     </div>
 {% endblock %}

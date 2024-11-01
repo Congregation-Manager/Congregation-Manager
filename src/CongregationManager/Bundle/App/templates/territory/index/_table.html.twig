@@ -1,29 +1,29 @@
 <table class="table table-striped caption-top">
-    <caption>{{ 'cm.ui.count_territories'|trans({':count': pagination.totalItemCount}) }}</caption>
+    <caption>{{ 'cm.ui.count_territories'|trans_app({':count': pagination.totalItemCount}) }}</caption>
     <thead>
     <tr>
         {# sorting of properties based on query components #}
-        <th>{{ knp_pagination_sortable(pagination, 'cm.ui.number'|trans, 't.number') }}</th>
+        <th>{{ knp_pagination_sortable(pagination, 'cm.ui.number'|trans_app, 't.number') }}</th>
         <th{% if pagination.isSorted('t.area') %} class="sorted"{% endif %}>
-            {{ knp_pagination_sortable(pagination, 'cm.ui.area'|trans, 'a.name', {'translationDomain': 'cm'}) }}
+            {{ knp_pagination_sortable(pagination, 'cm.ui.area'|trans_app, 'a.name', {'trans_applationDomain': 'cm'}) }}
         </th>
         <th>
-            {{ 'cm.ui.status'|trans }}
+            {{ 'cm.ui.status'|trans_app }}
         </th>
         <th{% if pagination.isSorted('latest_assignment.assignmentDate') %} class="sorted"{% endif %}>
-            {{ knp_pagination_sortable(pagination, 'cm.ui.assignment_date'|trans, 'latest_assignment.assignmentDate') }}
+            {{ knp_pagination_sortable(pagination, 'cm.ui.assignment_date'|trans_app, 'latest_assignment.assignmentDate') }}
         </th>
         <th>
-            {{ 'cm.ui.expiration_date'|trans }}
+            {{ 'cm.ui.expiration_date'|trans_app }}
         </th>
         <th{% if pagination.isSorted('latest_assignment.brother') %} class="sorted"{% endif %}>
-            {{ knp_pagination_sortable(pagination, 'cm.ui.assigned_to'|trans, 'latest_assignment.brother') }}
+            {{ knp_pagination_sortable(pagination, 'cm.ui.assigned_to'|trans_app, 'latest_assignment.brother') }}
         </th>
         <th{% if pagination.isSorted('latest_assignment.revocationDate') %} class="sorted"{% endif %}>
-            {{ knp_pagination_sortable(pagination, 'cm.ui.latest_assignment_revocation_date'|trans, 'latest_assignment.revocationDate') }}
+            {{ knp_pagination_sortable(pagination, 'cm.ui.latest_assignment_revocation_date'|trans_app, 'latest_assignment.revocationDate') }}
         </th>
         <th{% if pagination.isSorted('latest_assignment.brother') %} class="sorted"{% endif %}>
-            {{ knp_pagination_sortable(pagination, 'cm.ui.latest_assignment_assigned_to'|trans, 'latest_assignment.brother') }}
+            {{ knp_pagination_sortable(pagination, 'cm.ui.latest_assignment_assigned_to'|trans_app, 'latest_assignment.brother') }}
         </th>
         <th></th>
     </tr>
@@ -42,9 +42,9 @@
             </td>
             <td>
                 {% if territory.available %}
-                    <span class="badge bg-success">{{ 'cm.ui.not_assigned'|trans }}</span>
+                    <span class="badge bg-success">{{ 'cm.ui.not_assigned'|trans_app }}</span>
                 {% else %}
-                    <span class="badge bg-secondary">{{ 'cm.ui.assigned'|trans }}</span>
+                    <span class="badge bg-secondary">{{ 'cm.ui.assigned'|trans_app }}</span>
                 {% endif %}
             </td>
             <td>
@@ -68,17 +68,17 @@
             </td>
             <td>
                 <a href="{{ path('app_territory_show', {id: territory.id}) }}">
-                    {{ 'cm.ui.show'|trans }}
+                    {{ 'cm.ui.show'|trans_app }}
                 </a>
                 <a href="{{ path('app_territory_assignment_create', {territoryId: territory.id}) }}">
-                    {{ 'cm.ui.assign'|trans }}
+                    {{ 'cm.ui.assign'|trans_app }}
                 </a>
             </td>
         </tr>
     {% else %}
         <tr>
             <td colspan="9" class="text-center">
-                {{ 'cm.ui.no_results'|trans }}
+                {{ 'cm.ui.no_results'|trans_app }}
             </td>
         </tr>
     {% endfor %}
