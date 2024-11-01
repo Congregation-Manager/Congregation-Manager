@@ -9,7 +9,7 @@ use CongregationManager\Bundle\Core\Twig\LocaleRuntime;
 use CongregationManager\Bundle\Core\Twig\TestFormAttributeExtension;
 use CongregationManager\Bundle\Core\Twig\TestHtmlAttributeExtension;
 
-return static function (ContainerConfigurator $containerConfigurator) {
+return static function (ContainerConfigurator $containerConfigurator): void {
     $services = $containerConfigurator->services();
 
     $services->set('congregation_manager_core.twig_extension.locale', LocaleExtension::class)

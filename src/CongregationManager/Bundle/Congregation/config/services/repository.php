@@ -7,7 +7,7 @@ namespace Symfony\Component\DependencyInjection\Loader\Configurator;
 use CongregationManager\Bundle\Congregation\Repository\BrotherRepository;
 use CongregationManager\Bundle\Congregation\Repository\CongregationRepository;
 
-return static function (ContainerConfigurator $containerConfigurator) {
+return static function (ContainerConfigurator $containerConfigurator): void {
     $services = $containerConfigurator->services();
 
     $services->alias('congregation_manager_congregation.repository.brother', BrotherRepository::class);

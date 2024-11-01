@@ -6,7 +6,7 @@ namespace Symfony\Component\DependencyInjection\Loader\Configurator;
 
 use CongregationManager\Component\User\Domain\Generator\TokenGenerator;
 
-return static function (ContainerConfigurator $containerConfigurator) {
+return static function (ContainerConfigurator $containerConfigurator): void {
     $services = $containerConfigurator->services();
 
     $services->set('congregation_manager_user.generator.token', TokenGenerator::class);

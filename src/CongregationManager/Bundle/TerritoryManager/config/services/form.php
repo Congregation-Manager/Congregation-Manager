@@ -9,7 +9,7 @@ use CongregationManager\Bundle\TerritoryManager\Form\CreateTerritoryAssignmentTy
 use CongregationManager\Bundle\TerritoryManager\Form\TerritoryFiltersFormType;
 use CongregationManager\Bundle\TerritoryManager\Form\UpdateTerritoryAssignmentType;
 
-return static function (ContainerConfigurator $containerConfigurator) {
+return static function (ContainerConfigurator $containerConfigurator): void {
     $services = $containerConfigurator->services();
 
     $services->set('congregation_manager_territory_manager.form.area', AreaFormType::class)

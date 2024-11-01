@@ -8,7 +8,7 @@ use CongregationManager\Bundle\User\Action\CreateAdminUser;
 use CongregationManager\Bundle\User\Action\CreateAppUser;
 use CongregationManager\Bundle\User\Action\CreateAppUserInvitation;
 
-return static function (ContainerConfigurator $containerConfigurator) {
+return static function (ContainerConfigurator $containerConfigurator): void {
     $services = $containerConfigurator->services();
 
     $services->set('congregation_manager_user.create_admin_user', CreateAdminUser::class)

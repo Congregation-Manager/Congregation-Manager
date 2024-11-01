@@ -14,7 +14,7 @@ use CongregationManager\Behat\Page\Admin\LoginPage;
 use CongregationManager\Behat\Page\Admin\ProfileUpdatePage;
 use CongregationManager\Behat\Page\Admin\ResetPasswordPage;
 
-return static function (ContainerConfigurator $containerConfigurator) {
+return static function (ContainerConfigurator $containerConfigurator): void {
     $services = $containerConfigurator->services();
 
     $services->set('congregation_manager_behat.page.admin.login', LoginPage::class)

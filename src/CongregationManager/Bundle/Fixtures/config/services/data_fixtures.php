@@ -8,7 +8,7 @@ use CongregationManager\Bundle\FixturesBundle\DataFixtures\AdminFixtures;
 use CongregationManager\Bundle\FixturesBundle\DataFixtures\BrotherFixtures;
 use CongregationManager\Bundle\FixturesBundle\DataFixtures\CongregationFixtures;
 
-return static function (ContainerConfigurator $containerConfigurator) {
+return static function (ContainerConfigurator $containerConfigurator): void {
     $services = $containerConfigurator->services();
 
     $services->set('congregation_manager_fixtures.data_fixtures.admin', AdminFixtures::class)

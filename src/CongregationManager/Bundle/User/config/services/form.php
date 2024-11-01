@@ -10,7 +10,7 @@ use CongregationManager\Bundle\User\Form\CompleteAccountFormType;
 use CongregationManager\Bundle\User\Form\InviteUserFormType;
 use CongregationManager\Bundle\User\Form\ResetPasswordRequestFormType;
 
-return static function (ContainerConfigurator $containerConfigurator) {
+return static function (ContainerConfigurator $containerConfigurator): void {
     $services = $containerConfigurator->services();
 
     $services->set('congregation_manager_user.form.change_email', ChangeEmailFormType::class)

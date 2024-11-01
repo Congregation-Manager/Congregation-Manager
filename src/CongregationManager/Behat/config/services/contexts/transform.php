@@ -9,7 +9,7 @@ use CongregationManager\Behat\Context\Transform\TerritoryAssignmentContext;
 use CongregationManager\Behat\Context\Transform\TerritoryContext;
 use CongregationManager\Behat\Context\Transform\UserContext;
 
-return static function (ContainerConfigurator $containerConfigurator) {
+return static function (ContainerConfigurator $containerConfigurator): void {
     $services = $containerConfigurator->services();
     $services->defaults()
         ->public();

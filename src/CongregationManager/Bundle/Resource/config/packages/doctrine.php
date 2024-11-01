@@ -5,7 +5,7 @@ declare(strict_types=1);
 use Symfony\Config\DoctrineConfig;
 
 /** @psalm-suppress UndefinedClass */
-return static function (DoctrineConfig $doctrine) {
+return static function (DoctrineConfig $doctrine): void {
     $doctrine
         ->dbal()
         ->type(

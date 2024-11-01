@@ -7,7 +7,7 @@ namespace Symfony\Component\DependencyInjection\Loader\Configurator;
 use Symfony\Bundle\FrameworkBundle\Controller\RedirectController;
 use Symfony\Component\Routing\Loader\Configurator\RoutingConfigurator;
 
-return static function (RoutingConfigurator $routes) {
+return static function (RoutingConfigurator $routes): void {
     $routes->add('admin_index', '/')
         ->controller([RedirectController::class, 'redirectAction'])
         ->defaults([

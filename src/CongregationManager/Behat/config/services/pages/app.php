@@ -17,7 +17,7 @@ use CongregationManager\Behat\Page\App\Territory\ShowPage;
 use CongregationManager\Behat\Page\App\TerritoryAssignment\CreatePage;
 use CongregationManager\Behat\Page\App\TerritoryAssignment\UpdatePage;
 
-return static function (ContainerConfigurator $containerConfigurator) {
+return static function (ContainerConfigurator $containerConfigurator): void {
     $services = $containerConfigurator->services();
 
     $services->set('congregation_manager_behat.page.app.home', HomePage::class)

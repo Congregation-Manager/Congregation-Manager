@@ -6,7 +6,7 @@ namespace Symfony\Component\DependencyInjection\Loader\Configurator;
 
 use Symfony\Component\Routing\Loader\Configurator\RoutingConfigurator;
 
-return static function (RoutingConfigurator $routes) {
+return static function (RoutingConfigurator $routes): void {
     $routes->import('@CongregationManagerAdminBundle/config/routes.php')
         ->prefix('/%app_admin.path_name%');
 };

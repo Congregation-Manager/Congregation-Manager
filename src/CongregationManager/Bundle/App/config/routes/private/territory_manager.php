@@ -6,7 +6,7 @@ namespace Symfony\Component\DependencyInjection\Loader\Configurator;
 
 use Symfony\Component\Routing\Loader\Configurator\RoutingConfigurator;
 
-return static function (RoutingConfigurator $routes) {
+return static function (RoutingConfigurator $routes): void {
     $routes->add('app_territory_index', '/territories')
         ->controller(['congregation_manager_app.controller.territory', 'index'])
         ->methods(['GET'])

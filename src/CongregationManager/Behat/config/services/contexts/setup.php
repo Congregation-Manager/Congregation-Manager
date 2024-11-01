@@ -11,7 +11,7 @@ use CongregationManager\Behat\Context\Setup\CongregationContext;
 use CongregationManager\Behat\Context\Setup\TerritoryAssignmentContext;
 use CongregationManager\Behat\Context\Setup\TerritoryContext;
 
-return static function (ContainerConfigurator $containerConfigurator) {
+return static function (ContainerConfigurator $containerConfigurator): void {
     $services = $containerConfigurator->services();
     $services->defaults()
         ->public();

@@ -12,7 +12,7 @@ use CongregationManager\Component\TerritoryManager\Application\CreateProvince;
 use CongregationManager\Component\TerritoryManager\Application\CreateTerritory;
 use CongregationManager\Component\TerritoryManager\Application\CreateTerritoryAssignment;
 
-return static function (ContainerConfigurator $containerConfigurator) {
+return static function (ContainerConfigurator $containerConfigurator): void {
     $services = $containerConfigurator->services();
 
     $services->set(

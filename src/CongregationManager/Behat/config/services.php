@@ -11,7 +11,7 @@ use CongregationManager\Behat\Services\SecurityService;
 use CongregationManager\Behat\Services\Setter\CookieSetter;
 use CongregationManager\Behat\Services\SharedStorage;
 
-return static function (ContainerConfigurator $containerConfigurator) {
+return static function (ContainerConfigurator $containerConfigurator): void {
     $containerConfigurator->import('services/*.php');
 
     $services = $containerConfigurator->services();

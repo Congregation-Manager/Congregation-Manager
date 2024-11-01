@@ -9,7 +9,7 @@ use CongregationManager\Behat\Context\Ui\App\LocaleContext;
 use CongregationManager\Behat\Context\Ui\App\TerritoryAssignmentContext;
 use CongregationManager\Behat\Context\Ui\EmailContext;
 
-return static function (ContainerConfigurator $containerConfigurator) {
+return static function (ContainerConfigurator $containerConfigurator): void {
     $services = $containerConfigurator->services();
     $services->defaults()
         ->public();

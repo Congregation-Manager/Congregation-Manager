@@ -16,7 +16,7 @@ use CongregationManager\Bundle\App\Controller\TerritoryAssignmentController;
 use CongregationManager\Bundle\App\Controller\TerritoryController;
 use Psr\Container\ContainerInterface;
 
-return static function (ContainerConfigurator $containerConfigurator) {
+return static function (ContainerConfigurator $containerConfigurator): void {
     $services = $containerConfigurator->services();
 
     $services->set('congregation_manager_app.controller.change_password', AppChangePasswordController::class)

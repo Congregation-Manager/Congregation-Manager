@@ -7,7 +7,7 @@ namespace Symfony\Component\DependencyInjection\Loader\Configurator;
 use CongregationManager\Behat\Context\Hook\DoctrineORMContext;
 use CongregationManager\Behat\Context\Hook\EmailSpoolContext;
 
-return static function (ContainerConfigurator $containerConfigurator) {
+return static function (ContainerConfigurator $containerConfigurator): void {
     $services = $containerConfigurator->services();
     $services->defaults()
         ->public();

@@ -13,7 +13,7 @@ use CongregationManager\Bundle\Core\Repository\OldCM\ProvinceRepository;
 use CongregationManager\Bundle\Core\Repository\OldCM\TerritoryAssignmentRepository;
 use CongregationManager\Bundle\Core\Repository\OldCM\TerritoryRepository;
 
-return static function (ContainerConfigurator $containerConfigurator) {
+return static function (ContainerConfigurator $containerConfigurator): void {
     $services = $containerConfigurator->services();
 
     $services->set('congregation_manager_core.old_cm.repository.app_user', AppUserRepository::class)

@@ -6,7 +6,7 @@ namespace Symfony\Component\DependencyInjection\Loader\Configurator;
 
 use FriendsOfBehat\PageObjectExtension\Page\SymfonyPage;
 
-return static function (ContainerConfigurator $containerConfigurator) {
+return static function (ContainerConfigurator $containerConfigurator): void {
     $containerConfigurator->import('pages/*.php');
 
     $services = $containerConfigurator->services();

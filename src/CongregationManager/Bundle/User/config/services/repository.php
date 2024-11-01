@@ -11,7 +11,7 @@ use CongregationManager\Bundle\User\Repository\ResetPasswordRequestRepository;
 use CongregationManager\Component\User\Infrastructure\InMemory\Repository\AdminUserRepository as InMemoryAdminUserRepository;
 use CongregationManager\Component\User\Infrastructure\InMemory\Repository\AppUserRepository as InMemoryAppUserRepository;
 
-return static function (ContainerConfigurator $containerConfigurator) {
+return static function (ContainerConfigurator $containerConfigurator): void {
     $services = $containerConfigurator->services();
 
     $services->alias('congregation_manager_user.repository.admin_user', AdminUserRepository::class);

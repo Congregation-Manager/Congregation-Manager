@@ -7,7 +7,7 @@ namespace Symfony\Component\DependencyInjection\Loader\Configurator;
 use CongregationManager\Bundle\Core\Context\CongregationContext;
 use CongregationManager\Bundle\Core\Context\LocaleContext;
 
-return static function (ContainerConfigurator $containerConfigurator) {
+return static function (ContainerConfigurator $containerConfigurator): void {
     $services = $containerConfigurator->services();
 
     $services->set('congregation_manager_core.context.congregation', CongregationContext::class)

@@ -11,7 +11,7 @@ use CongregationManager\Bundle\TerritoryManager\Repository\TerritoryAssignmentRe
 use CongregationManager\Bundle\TerritoryManager\Repository\TerritoryRepository;
 use CongregationManager\Component\TerritoryManager\Infrastructure\Repository\InMemory\TerritoryRepository as InMemoryTerritoryRepository;
 
-return static function (ContainerConfigurator $containerConfigurator) {
+return static function (ContainerConfigurator $containerConfigurator): void {
     $services = $containerConfigurator->services();
 
     $services->alias('congregation_manager_territory_manager.repository.area', AreaRepository::class);

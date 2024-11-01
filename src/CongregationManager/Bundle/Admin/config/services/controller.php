@@ -14,7 +14,7 @@ use CongregationManager\Bundle\Admin\Controller\AdminUserLoginController;
 use CongregationManager\Bundle\Admin\Controller\ResetAdminPasswordController;
 use Psr\Container\ContainerInterface;
 
-return static function (ContainerConfigurator $containerConfigurator) {
+return static function (ContainerConfigurator $containerConfigurator): void {
     $services = $containerConfigurator->services();
 
     $services->set('congregation_manager_admin.controller.brother', AdminBrotherController::class)

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Symfony\Component\DependencyInjection\Loader\Configurator;
 
-return static function (ContainerConfigurator $containerConfigurator) {
+return static function (ContainerConfigurator $containerConfigurator): void {
     $containerConfigurator->import('@CongregationManagerCongregationBundle/config/config.php');
     $containerConfigurator->import('@CongregationManagerResourceBundle/config/config.php');
     $containerConfigurator->import('@CongregationManagerTerritoryManagerBundle/config/config.php');
