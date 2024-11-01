@@ -43,6 +43,7 @@ final class DashboardPage extends SymfonyPage implements DashboardPageInterface
         ;
     }
 
+    #[\Override]
     public function getActiveLocale(): string
     {
         return $this->getElement('active_locale')

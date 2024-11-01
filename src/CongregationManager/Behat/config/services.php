@@ -14,7 +14,7 @@ use CongregationManager\Behat\Services\SharedStorage;
 return static function (ContainerConfigurator $containerConfigurator): void {
     $containerConfigurator->extension('framework', [
         'default_locale' => 'en',
-        'enabled_locales' => ['en' , 'it'],
+        'enabled_locales' => ['en', 'it'],
         'translator' => [
             'fallbacks' => ['en'],
         ],

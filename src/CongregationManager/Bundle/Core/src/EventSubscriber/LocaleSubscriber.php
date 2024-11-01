@@ -9,14 +9,14 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Event\RequestEvent;
 use Symfony\Component\HttpKernel\KernelEvents;
 
-final class LocaleSubscriber implements EventSubscriberInterface
+final readonly class LocaleSubscriber implements EventSubscriberInterface
 {
     /**
      * @param string[] $availableLocaleCodes
      */
     public function __construct(
-        private readonly string $defaultLocale,
-        private readonly array $availableLocaleCodes,
+        private string $defaultLocale,
+        private array $availableLocaleCodes,
     ) {
     }
 

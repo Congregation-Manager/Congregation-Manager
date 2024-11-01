@@ -10,6 +10,7 @@ use Twig\TwigFilter;
 
 final class TranslationExtension extends AbstractExtension
 {
+    #[\Override]
     public function getFilters(): array
     {
         return [new TwigFilter('trans_app', [TranslationRuntime::class, 'trans'])];
