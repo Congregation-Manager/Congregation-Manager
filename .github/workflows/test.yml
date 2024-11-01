@@ -62,35 +62,23 @@ jobs:
                 run: yarn install
             -   name: Build Yarn Assets
                 run: yarn build
-            -   name: Validate project's compliance
-                run: vendor/bin/pds-skeleton validate
             -   name: Check composer direct dependencies
                 run: composer-require-checker check
             #            -  TODO: some requested dep are marked as unused because not inside the src directory
             #                name: Check if dependencies are used
             #                run: composer-unused
-            -   name: Run easy coding standard
-                run: vendor/bin/ecs check src tests
-            -   name: Check Clean Architecture
-                run: vendor/bin/phparkitect check
-            -   name: Analyse code with phpstan
-                run: vendor/bin/phpstan analyse
-            -   name: Analyse code with psalm
-                run: vendor/bin/psalm
             -   name: Update Database Schema
                 run: php bin/console doctrine:migrations:migrate
             -   name: Validate database schema
                 run: php bin/console doctrine:schema:validate
             -   name: Run fixtures
                 run: php bin/console doctrine:fixture:load --group=congregation_manager_sample_data --no-interaction
-            -   name: Execute tests (Unit and Feature tests) via PHPUnit
-                run: vendor/bin/phpunit
-            -   name: Execute behavior tests via behat
-                run: vendor/bin/behat --colors --strict --no-interaction -f progress
+            -   name: Run test suite
+                run: composer run test
             -   name: Upload Behat logs
                 uses: actions/upload-artifact@v4
                 if: failure()
                 with:
                     name: "Behat logs"
-                    path: etc/build
+                    path: etc/build var/log
                     if-no-files-found: ignore

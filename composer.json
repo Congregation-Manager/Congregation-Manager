@@ -207,8 +207,9 @@
         ],
         "pds": "vendor/bin/pds-skeleton validate",
         "ecs": "vendor/bin/ecs check src tests",
-        "phpstan": "vendor/bin/phpstan analyse -c phpstan.neon",
+        "phpstan": "vendor/bin/phpstan analyse",
         "psalm": "vendor/bin/psalm",
+        "rector": "vendor/bin/rector",
         "phparkitect": "vendor/bin/phparkitect check",
         "unit": "vendor/bin/phpunit",
         "behat": "vendor/bin/behat",
@@ -218,6 +219,7 @@
             "@phparkitect",
             "@phpstan",
             "@psalm",
+            "@rector",
             "@unit",
             "@behat"
         ]
