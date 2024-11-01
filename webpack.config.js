@@ -11,6 +11,7 @@ Encore
     // public path used by the web server to access the output path
     .setPublicPath('/app/build')
     .addEntry('app', './src/CongregationManager/Bundle/App/assets/app.js')
+    .addEntry('public', './src/CongregationManager/Bundle/App/assets/public.js')
     .splitEntryChunks()
     .enableSingleRuntimeChunk()
     .cleanupOutputBeforeBuild()
