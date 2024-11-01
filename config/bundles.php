@@ -24,4 +24,5 @@ return [
     CongregationManager\Bundle\Core\CongregationManagerCoreBundle::class => ['all' => true],
     CongregationManager\Bundle\App\CongregationManagerAppBundle::class => ['all' => true],
     CongregationManager\Bundle\Admin\CongregationManagerAdminBundle::class => ['all' => true],
+    CongregationManager\Bundle\FixturesBundle\CongregationManagerFixturesBundle::class => ['dev' => true, 'test' => true],
 ];

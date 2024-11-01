@@ -39,9 +39,14 @@
             "CongregationManager\\Component\\Core\\Tests\\": "src/CongregationManager/Component/Core/tests/",
             "CongregationManager\\Contract\\Resource\\Tests\\": "src/CongregationManager/Contract/Resource/tests/",
             "CongregationManager\\Behat\\": "src/CongregationManager/Behat/src/",
-            "CongregationManager\\Behat\\Tests\\": "src/CongregationManager/Behat/tests/"
+            "CongregationManager\\Behat\\Tests\\": "src/CongregationManager/Behat/tests/",
+            "CongregationManager\\Bundle\\FixturesBundle\\": "src/CongregationManager/Bundle/Fixtures/src/",
+            "CongregationManager\\Bundle\\FixturesBundle\\Tests\\": "src/CongregationManager/Bundle/Fixtures/tests/"
         },
-        "classmap": ["src/Kernel.php"]
+        "classmap": [
+            "src/Kernel.php",
+            "src/Locale.php"
+        ]
     },
     "config": {
         "optimize-autoloader": true,
@@ -90,6 +95,7 @@
         "congregation-manager/territory-manager-bundle": "self.version",
         "congregation-manager/user": "self.version",
         "congregation-manager/user-bundle": "self.version",
+        "congregation-manager/fixtures-bundle": "self.version",
         "symfony/polyfill-ctype": "*",
         "symfony/polyfill-iconv": "*",
         "symfony/polyfill-php72": "*"
@@ -157,9 +163,10 @@
     "require-dev": {
         "behat/behat": "^3.13",
         "behat/mink": "^1.11",
+        "congregation-manager/fixtures-bundle": "dev-master",
         "dama/doctrine-test-bundle": "^8.2",
         "deployer/deployer": "^7.0",
-        "doctrine/doctrine-fixtures-bundle": "^3.5.1",
+        "doctrine/doctrine-fixtures-bundle": "^3.6",
         "friends-of-behat/mink-browserkit-driver": "^1.6.1",
         "friends-of-behat/mink-debug-extension": "^2.1",
         "friends-of-behat/mink-extension": "^2.7.4",

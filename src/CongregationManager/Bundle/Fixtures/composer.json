@@ -1,0 +1,36 @@
+{
+    "name": "congregation-manager/fixtures-bundle",
+    "type": "symfony-bundle",
+    "description": "Fixtures Symfony bundle.",
+    "keywords": [
+        "fixtures",
+        "congregation-manager",
+        "symfony"
+    ],
+    "homepage": "https://github.com/congregation-manager/congregation-manager",
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "Lorenzo Ruozzi",
+            "homepage": "https://lruozzi9.github.io"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "CongregationManager\\Bundle\\FixturesBundle\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "CongregationManager\\Bundle\\FixturesBundle\\Tests\\": "tests/"
+        }
+    },
+    "repositories": [
+        {
+            "type": "path",
+            "url": "../../*/*"
+        }
+    ],
+    "minimum-stability": "stable",
+    "prefer-stable": true
+}

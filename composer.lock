@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "fd64f8e6e5e2d609dac7f185741e9d63",
+    "content-hash": "fb4b3b1de38ed3c52bbf218ebf3449d5",
     "packages": [
         {
             "name": "composer/package-versions-deprecated",
@@ -13338,6 +13338,7 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
+        "congregation-manager/fixtures-bundle": 20,
         "roave/security-advisories": 20
     },
     "prefer-stable": true,
