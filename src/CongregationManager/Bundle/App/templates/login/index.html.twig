@@ -1,6 +1,6 @@
-{% extends '@CongregationManagerApp/base.html.twig' %}
+{% extends '@CongregationManagerApp/public.html.twig' %}
 
-{% block title %}{{ 'cm.app_login.meta_title'|trans }}{% endblock %}
+{% block title %}{{ 'cm.login.meta_title'|trans }}{% endblock %}
 
 {% block body %}
     <div class="container">
@@ -14,8 +14,8 @@
                 {% endif %}
 
                 <form action="{{ path('app_login_check') }}" method="post">
-                    <img class="mb-4" src="https://via.placeholder.com/72x57" alt="" width="72" height="57">
-                    <h1 class="h3 mb-3 fw-normal">{{ 'cm.app_login.title'|trans }}</h1>
+                    {{ block('logo') }}
+                    <h1 class="h3 mb-3 fw-normal">{{ 'cm.login.title'|trans }}</h1>
 
                     <div class="form-floating">
                         <input type="email" class="form-control" id="username" name="_username" value="{{ last_username }}" placeholder="{{ 'cm.app_login.email_placeholder'|trans }}" >

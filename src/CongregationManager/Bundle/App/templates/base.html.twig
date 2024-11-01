@@ -1,14 +1,31 @@
 <!doctype html>
-<html lang="{{ app.request.locale|slice(0, 2) }}">
+<html lang="{% block language %}{{ app.request.locale|slice(0, 2) }}{% endblock %}">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="{% block charset %}UTF-8{% endblock %}">
+    <meta name="description" content="{% block meta_description %}{{ 'cm.meta.description'|trans }}{% endblock %}">
+    <meta name="keywords" content="{% block meta_keywords %}{{ 'cm.meta.keywords'|trans }}{% endblock %}">
+    <meta name="author" content="{% block meta_author %}{{ 'cm.meta.author'|trans }}{% endblock %}">
+    <meta name="viewport" content="{% block meta_viewport %}width=device-width, initial-scale=1.0{% endblock %}">
+    <meta name="theme-color" content="{% block meta_theme_color %}#ffffff{% endblock %}">
+    <title>{% block title %}{{ 'cm.meta.title'|trans }}{% endblock %}</title>
+    <link rel="canonical" href="{% block canonical %}{{ app.request.uri }}{% endblock %}" />
+
+    <meta property="og:title" content="{% block meta_og_title %}{{ block('title') }}{% endblock %}" />
+    <meta property="og:description" content="{% block meta_og_description %}{{ block('meta_description') }}{% endblock %}" />
+    <meta property="og:type" content="{% block meta_og_type %}website{% endblock %}" />
+    <meta property="og:url" content="{% block meta_og_url %}{{ block('canonical') }}{% endblock %}" />
+    <meta property="og:image" content="{% block meta_og_image %}{{ asset('app/build/images/logo.jpg', 'app') }}{% endblock %}" />
+
+    {% block favicon %}
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('app/build/favicon/apple-touch-icon.png', 'app') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('app/build/favicon/favicon-32x32.png', 'app') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('app/build/favicon/favicon-16x16.png', 'app') }}">
+    <link rel="manifest" href="{{ asset('app/build/favicon/site.webmanifest', 'app') }}">
+    {% endblock %}
 
     {% block stylesheets %}
         {{ encore_entry_link_tags('app', null, 'app') }}
     {% endblock %}
-
-    <title>{% block title %}{{ 'cm.meta_title.default'|trans }}{% endblock %}</title>
 </head>
 <body>
     {% block body %}

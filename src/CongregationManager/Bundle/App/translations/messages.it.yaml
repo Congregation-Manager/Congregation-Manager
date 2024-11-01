@@ -1,6 +1,19 @@
 cm:
+    meta:
+        title: 'Gestione Congregazione'
+        description: 'Gestione Congregazione è uno strumento online per gestire e semplificare i flussi all''interno di una congregazione.'
+        author: 'Gestione Congregazione'
+        keywords: 'Gestione Congregazione, Congregazione, Territori, Fratelli, Sorelle, Rapporti'
+    logo:
+        alt: 'Logo Gestione Congregazione'
+        title: 'Logo Gestione Congregazione'
+    login:
+        meta_title: 'Accedi'
+        title: 'Per favore, inserisci le tue credenziali ed accedi alla tua congregazione'
+        email_placeholder: 'Indirizzo email'
+        password_placeholder: 'Password'
+        forgot_password: 'Hai dimenticato la password? Clicca qui per recuperarla.'
     meta_title:
-        default: 'Gestione Congregazione'
         territory_index: 'Territori'
         territory_show: 'Territorio :number'
         territory_assignment:
@@ -17,12 +30,6 @@ cm:
         subtitle: 'Gestione Congregazione è uno strumento online per gestire e semplificare i flussi all''interno di una congregazione.'
         login: 'Sei già iscritto? Accedi!'
         register: 'Non hai accesso? Richiedi un accesso per la tua congregazione.'
-    app_login:
-        meta_title: 'Accedi'
-        title: 'Per favore, inserisci le tue credenziali'
-        email_placeholder: 'Indirizzo email'
-        password_placeholder: 'Password'
-        forgot_password: 'Hai dimenticato la password? Clicca qui per recuperarla.'
     admin_login:
         meta_title: 'Accedi'
         title: 'Per favore, inserisci le tue credenziali'

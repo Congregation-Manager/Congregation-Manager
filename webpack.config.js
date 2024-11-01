@@ -18,6 +18,14 @@ Encore
     .enableBuildNotifications()
     .enableSourceMaps(!Encore.isProduction())
     .enableVersioning(Encore.isProduction())
+    .copyFiles({
+        from: './src/CongregationManager/Bundle/App/assets/images',
+        to: 'images/[path][name].[hash:8].[ext]',
+    })
+    .copyFiles({
+        from: './src/CongregationManager/Bundle/App/assets/favicon',
+        to: 'favicon/[path][name].[hash:8].[ext]',
+    })
 ;
 let appConfig = Encore.getWebpackConfig();
 
@@ -33,6 +41,14 @@ Encore
     .enableBuildNotifications()
     .enableSourceMaps(!Encore.isProduction())
     .enableVersioning(Encore.isProduction())
+    .copyFiles({
+        from: './src/CongregationManager/Bundle/Admin/assets/images',
+        to: 'images/[path][name].[hash:8].[ext]',
+    })
+    .copyFiles({
+        from: './src/CongregationManager/Bundle/Admin/assets/favicon',
+        to: 'favicon/[path][name].[hash:8].[ext]',
+    })
 ;
 let adminConfig = Encore.getWebpackConfig();
 

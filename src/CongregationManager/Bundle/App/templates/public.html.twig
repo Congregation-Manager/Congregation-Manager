@@ -1,0 +1,19 @@
+{% extends '@CongregationManagerApp/base.html.twig' %}
+
+{% block stylesheets %}
+    {{ encore_entry_link_tags('public', null, 'app') }}
+{% endblock %}
+
+{% block logo %}
+    <img class="d-block mx-auto mb-4" src="{{ asset('app/build/images/logo.jpg', 'app') }}"
+         alt="{{ 'cm.logo.alt'|trans }}"
+         title="{{ 'cm.logo.title'|trans }}"
+         width="72"
+         height="57"
+         loading="eager"
+    >
+{% endblock %}
+
+{% block javascripts %}
+    {{ encore_entry_script_tags('public', null, 'app') }}
+{% endblock %}
