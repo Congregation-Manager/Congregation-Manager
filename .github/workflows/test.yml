@@ -14,11 +14,11 @@ jobs:
         timeout-minutes: 10
         env:
             APP_ENV: test
-            DATABASE_URL: postgresql://postgres:postgres@localhost:5432/congregation-manager?serverVersion=14&charset=utf8
+            DATABASE_URL: postgresql://postgres:postgres@localhost:5432/congregation-manager?serverVersion=17&charset=utf8
 
         services:
             postgres:
-                image: postgres:14
+                image: postgres:17
                 env:
                     POSTGRES_PASSWORD: postgres
                     POSTGRES_USER: postgres
