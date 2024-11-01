@@ -133,7 +133,7 @@ final class ImportFromOldCMCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        if (! $this->lock()) {
+        if (!$this->lock()) {
             $this->io->error('The command is already running in another process.');
 
             return Command::FAILURE;
@@ -239,7 +239,7 @@ final class ImportFromOldCMCommand extends Command
                         (int) $oldArea['id']
                     ) as $oldTerritory) {
                         $number = $oldTerritory['name'];
-                        if (! is_numeric($number)) {
+                        if (!is_numeric($number)) {
                             continue;
                         }
                         $territory = $this->createTerritory->create(
@@ -253,7 +253,7 @@ final class ImportFromOldCMCommand extends Command
                         ) as $oldTerritoryAssignment) {
                             $brother = null;
                             if ($oldTerritoryAssignment['brother_id'] !== null) {
-                                if (! array_key_exists(
+                                if (!array_key_exists(
                                     (int) $oldTerritoryAssignment['brother_id'],
                                     $this->oldBrotherIds
                                 )) {

@@ -74,7 +74,7 @@ class Congregation extends AggregateRoot implements CongregationInterface
 
     public function addBrother(BrotherInterface $brother): void
     {
-        if (! $this->brothers->contains($brother)) {
+        if (!$this->brothers->contains($brother)) {
             $this->brothers->add($brother);
         }
     }
@@ -96,7 +96,7 @@ class Congregation extends AggregateRoot implements CongregationInterface
 
     public function addProvince(ProvinceInterface $province): void
     {
-        if (! $this->provinces->contains($province)) {
+        if (!$this->provinces->contains($province)) {
             $this->provinces->add($province);
         }
     }

@@ -69,7 +69,7 @@ class Province extends AggregateRoot implements ProvinceInterface
 
     public function addMunicipality(MunicipalityInterface $municipality): void
     {
-        if (! $this->municipalities->contains($municipality)) {
+        if (!$this->municipalities->contains($municipality)) {
             $this->municipalities->add($municipality);
         }
     }

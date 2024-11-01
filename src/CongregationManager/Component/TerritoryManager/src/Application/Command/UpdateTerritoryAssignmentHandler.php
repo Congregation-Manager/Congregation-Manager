@@ -19,7 +19,7 @@ final class UpdateTerritoryAssignmentHandler
     public function __invoke(UpdateTerritoryAssignment $command): void
     {
         $territory = $command->getTerritory();
-        if (! $territory instanceof TerritoryInterface) {
+        if (!$territory instanceof TerritoryInterface) {
             throw new InvalidArgumentException(sprintf(
                 'Unable to update territory assignment %s: territory should be an instance of "%s", given "%s".',
                 (string) $command->getTerritoryAssignment()
@@ -29,7 +29,7 @@ final class UpdateTerritoryAssignmentHandler
             ));
         }
         $assignmentDate = $command->getAssignmentDate();
-        if (! $assignmentDate instanceof DateTimeInterface) {
+        if (!$assignmentDate instanceof DateTimeInterface) {
             throw new InvalidArgumentException(sprintf(
                 'Unable to update territory assignment %s: assignment date should be an instance of "%s", given "%s".',
                 (string) $command->getTerritoryAssignment()

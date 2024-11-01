@@ -80,7 +80,7 @@ class Area extends AggregateRoot implements AreaInterface
 
     public function addTerritory(TerritoryInterface $territory): void
     {
-        if (! $this->territories->contains($territory)) {
+        if (!$this->territories->contains($territory)) {
             $this->territories->add($territory);
         }
     }

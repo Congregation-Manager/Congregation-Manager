@@ -32,7 +32,7 @@ final class AppChangePasswordController extends AbstractController
         if ($user === null) {
             throw new AccessDeniedHttpException();
         }
-        if (! $user instanceof UserInterface) {
+        if (!$user instanceof UserInterface) {
             throw new \LogicException();
         }
         $changePasswordForm = $this->createForm(ChangePasswordFormType::class, $user, [
@@ -44,7 +44,7 @@ final class AppChangePasswordController extends AbstractController
             $plainPassword = $changePasswordForm->get('plainPassword')
                 ->getData()
             ;
-            if (! is_string($plainPassword)) {
+            if (!is_string($plainPassword)) {
                 throw new \InvalidArgumentException(sprintf(
                     'Password input not valid! Expected string, actual %s',
                     gettype($plainPassword)

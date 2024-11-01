@@ -75,7 +75,7 @@ final class Page
 
     public function removeRow(Row $row): void
     {
-        if (! $this->rows->contains($row)) {
+        if (!$this->rows->contains($row)) {
             return;
         }
 

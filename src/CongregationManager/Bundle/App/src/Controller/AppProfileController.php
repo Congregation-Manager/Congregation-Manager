@@ -32,7 +32,7 @@ final class AppProfileController extends AbstractController
         if ($user === null) {
             throw new AccessDeniedHttpException();
         }
-        if (! $user instanceof AppUserInterface) {
+        if (!$user instanceof AppUserInterface) {
             throw new LogicException();
         }
 

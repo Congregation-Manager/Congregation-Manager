@@ -73,7 +73,7 @@ final class CreateCongregationCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        if (! $this->lock()) {
+        if (!$this->lock()) {
             $this->io->error('The command is already running in another process.');
 
             return Command::FAILURE;

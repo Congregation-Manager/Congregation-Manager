@@ -113,10 +113,10 @@ class TerritoryAssignment extends AggregateRoot implements TerritoryAssignmentIn
         }
         $thisRevocationDate = $this->getRevocationDate();
         $otherRevocationDate = $territoryAssignment->getRevocationDate();
-        if (! $thisRevocationDate instanceof DateTimeInterface) {
+        if (!$thisRevocationDate instanceof DateTimeInterface) {
             return $otherRevocationDate === null;
         }
-        if (! $otherRevocationDate instanceof DateTimeInterface) {
+        if (!$otherRevocationDate instanceof DateTimeInterface) {
             return false;
         }
         $diff = $thisRevocationDate->diff($otherRevocationDate);

@@ -18,7 +18,7 @@ final class BehatMailerFactory extends AbstractTransportFactory
 
     public function create(Dsn $dsn): TransportInterface
     {
-        if (! \in_array($dsn->getScheme(), $this->getSupportedSchemes(), true)) {
+        if (!\in_array($dsn->getScheme(), $this->getSupportedSchemes(), true)) {
             throw new UnsupportedSchemeException($dsn, 'behat', $this->getSupportedSchemes());
         }
 

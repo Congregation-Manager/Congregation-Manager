@@ -44,7 +44,7 @@ class ResetPasswordRequestRepository extends ServiceEntityRepository implements 
         string $selector,
         string $hashedToken
     ): ResetPasswordRequestInterface {
-        if (! $user instanceof UserInterface) {
+        if (!$user instanceof UserInterface) {
             throw UserInstanceNotValidFactory::createWithInstanceClass(get_class($user));
         }
 
@@ -72,7 +72,7 @@ class ResetPasswordRequestRepository extends ServiceEntityRepository implements 
             ->getOneorNullResult()
         ;
 
-        if ($resetPasswordRequest !== null && ! $resetPasswordRequest->isExpired()) {
+        if ($resetPasswordRequest !== null && !$resetPasswordRequest->isExpired()) {
             return $resetPasswordRequest->getRequestedAt();
         }
 

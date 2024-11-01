@@ -34,7 +34,7 @@ final class LocaleSubscriber implements EventSubscriberInterface
     public function onKernelRequest(RequestEvent $event): void
     {
         $request = $event->getRequest();
-        if (! $request->hasPreviousSession()) {
+        if (!$request->hasPreviousSession()) {
             $request->setLocale($this->getPreferredLocaleCode($request) ?? $this->defaultLocale);
 
             return;
@@ -85,7 +85,7 @@ final class LocaleSubscriber implements EventSubscriberInterface
         $superLanguageCodes = [];
         foreach ($localeCodes as $localeCode) {
             $languageCode = $this->getLanguageFromLocaleCode($localeCode);
-            if (! in_array($languageCode, $superLanguageCodes, true)) {
+            if (!in_array($languageCode, $superLanguageCodes, true)) {
                 $superLanguageCodes[] = $languageCode;
             }
         }

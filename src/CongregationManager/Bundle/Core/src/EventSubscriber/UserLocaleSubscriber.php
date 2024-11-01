@@ -39,7 +39,7 @@ final class UserLocaleSubscriber implements EventSubscriberInterface
             ->getUser()
         ;
 
-        if (! $user instanceof DomainUserInterface || $user->getLocaleCode() === null || ! in_array(
+        if (!$user instanceof DomainUserInterface || $user->getLocaleCode() === null || !in_array(
             $user->getLocaleCode(),
             $this->availableLocales,
             true

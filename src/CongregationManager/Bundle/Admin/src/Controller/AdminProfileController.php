@@ -30,7 +30,7 @@ final class AdminProfileController extends AbstractController
         if ($user === null) {
             throw new AccessDeniedHttpException();
         }
-        if (! $user instanceof UserInterface) {
+        if (!$user instanceof UserInterface) {
             throw new \LogicException();
         }
         $changeEmailForm = $this->createForm(ChangeEmailFormType::class, $user);

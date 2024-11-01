@@ -46,7 +46,7 @@ final class S13
 
     public function removePage(Page $page): void
     {
-        if (! $this->pages->contains($page)) {
+        if (!$this->pages->contains($page)) {
             return;
         }
 

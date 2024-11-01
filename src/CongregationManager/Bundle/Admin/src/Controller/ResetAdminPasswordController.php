@@ -49,7 +49,7 @@ class ResetAdminPasswordController extends AbstractController
             $emailFormData = $form->get('email')
                 ->getData()
             ;
-            if (! is_string($emailFormData)) {
+            if (!is_string($emailFormData)) {
                 throw new \InvalidArgumentException(sprintf(
                     'Email input not valid! Expected string, actual %s',
                     gettype($emailFormData)
@@ -116,7 +116,7 @@ class ResetAdminPasswordController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            if (! $user instanceof UserInterface) {
+            if (!$user instanceof UserInterface) {
                 throw new UserInstanceNotValid(sprintf(
                     'User instance not valid. Provided "%s", expected "%s"',
                     get_class($user),
@@ -129,7 +129,7 @@ class ResetAdminPasswordController extends AbstractController
             $plainPassword = $form->get('plainPassword')
                 ->getData()
             ;
-            if (! is_string($plainPassword)) {
+            if (!is_string($plainPassword)) {
                 throw new \InvalidArgumentException(sprintf(
                     'Password input not valid! Expected string, actual %s',
                     gettype($plainPassword)
@@ -159,7 +159,7 @@ class ResetAdminPasswordController extends AbstractController
         ]);
 
         // Do not reveal whether a user account was found or not.
-        if (! $user) {
+        if (!$user) {
             return $this->redirectToRoute('admin_check_email');
         }
 

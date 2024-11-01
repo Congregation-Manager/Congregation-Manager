@@ -20,7 +20,7 @@ final class IntegerAggregateRootId implements AggregateRootId
 
     public static function convertToPHPValue(mixed $databaseValue): self
     {
-        if (! is_string($databaseValue) && ! is_numeric($databaseValue)) {
+        if (!is_string($databaseValue) && !is_numeric($databaseValue)) {
             throw new InvalidArgumentException(sprintf(
                 'Expected value to be an convertible to int, got "%s".',
                 get_debug_type($databaseValue)
@@ -32,7 +32,7 @@ final class IntegerAggregateRootId implements AggregateRootId
 
     public function equals(AggregateRootId $otherId): bool
     {
-        if (! $otherId instanceof self) {
+        if (!$otherId instanceof self) {
             return false;
         }
 

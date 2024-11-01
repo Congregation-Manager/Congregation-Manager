@@ -95,7 +95,7 @@ class Territory extends AggregateRoot implements TerritoryInterface
         /** @var Traversable<TerritoryAssignmentInterface>|ArrayIterator<array-key, TerritoryAssignmentInterface> $territoryAssignments */
         $territoryAssignments = $this->getTerritoryAssignments()
             ->getIterator();
-        if (! $territoryAssignments instanceof ArrayIterator) {
+        if (!$territoryAssignments instanceof ArrayIterator) {
             throw new RuntimeException(sprintf(
                 'Unable to sort the assignments for Territory "%s": expected instance of "%s", get "%s".',
                 (string) $this->getId(),
@@ -105,7 +105,7 @@ class Territory extends AggregateRoot implements TerritoryInterface
         }
         $territoryAssignments->uasort(
             static function (mixed $first, mixed $second): int {
-                if (! $first instanceof TerritoryAssignmentInterface || ! $second instanceof TerritoryAssignmentInterface) {
+                if (!$first instanceof TerritoryAssignmentInterface || !$second instanceof TerritoryAssignmentInterface) {
                     throw new RuntimeException(sprintf(
                         'Expected two implementation of territory assignments, got %s and %s',
                         get_debug_type($first),
@@ -129,7 +129,7 @@ class Territory extends AggregateRoot implements TerritoryInterface
 
     public function addTerritoryAssignment(TerritoryAssignmentInterface $territoryAssignment): void
     {
-        if (! $this->territoryAssignments->contains($territoryAssignment)) {
+        if (!$this->territoryAssignments->contains($territoryAssignment)) {
             $this->territoryAssignments->add($territoryAssignment);
         }
     }
@@ -146,7 +146,7 @@ class Territory extends AggregateRoot implements TerritoryInterface
         $actualAssignment = $this->getSortedTerritoryAssignments()
             ->last();
 
-        if (! $actualAssignment instanceof TerritoryAssignmentInterface) {
+        if (!$actualAssignment instanceof TerritoryAssignmentInterface) {
             return null;
         }
 
@@ -162,7 +162,7 @@ class Territory extends AggregateRoot implements TerritoryInterface
                 }
             )->last();
 
-        if (! $latestAssignment instanceof TerritoryAssignmentInterface) {
+        if (!$latestAssignment instanceof TerritoryAssignmentInterface) {
             return null;
         }
 

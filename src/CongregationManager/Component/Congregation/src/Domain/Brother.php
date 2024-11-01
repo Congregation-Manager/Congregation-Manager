@@ -144,7 +144,7 @@ class Brother extends AggregateRoot implements BrotherInterface
 
     public function addTerritoryAssignment(TerritoryAssignmentInterface $territoryAssignment): void
     {
-        if (! $this->territoryAssignments->contains($territoryAssignment)) {
+        if (!$this->territoryAssignments->contains($territoryAssignment)) {
             $this->territoryAssignments->add($territoryAssignment);
         }
     }

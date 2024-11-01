@@ -80,7 +80,7 @@ class Municipality extends AggregateRoot implements MunicipalityInterface
 
     public function addArea(AreaInterface $area): void
     {
-        if (! $this->areas->contains($area)) {
+        if (!$this->areas->contains($area)) {
             $this->areas->add($area);
         }
     }

@@ -48,7 +48,7 @@ class AppUserRepository extends ServiceEntityRepository implements AppUserReposi
      */
     public function upgradePassword(PasswordAuthenticatedUserInterface $user, string $newHashedPassword): void
     {
-        if (! $user instanceof AppUser) {
+        if (!$user instanceof AppUser) {
             throw new UnsupportedUserException(sprintf('Instances of "%s" are not supported.', \get_class($user)));
         }
 

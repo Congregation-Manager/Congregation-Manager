@@ -21,7 +21,7 @@ final class CreateTerritoryAssignmentHandler
     public function __invoke(CreateTerritoryAssignment $command): void
     {
         $territory = $command->getTerritory();
-        if (! $territory instanceof TerritoryInterface) {
+        if (!$territory instanceof TerritoryInterface) {
             throw new InvalidArgumentException(sprintf(
                 'Unable to create a new territory assignment: territory should be an instance of "%s", given "%s".',
                 TerritoryInterface::class,
@@ -29,7 +29,7 @@ final class CreateTerritoryAssignmentHandler
             ));
         }
         $assignmentDate = $command->getAssignmentDate();
-        if (! $assignmentDate instanceof DateTimeInterface) {
+        if (!$assignmentDate instanceof DateTimeInterface) {
             throw new InvalidArgumentException(sprintf(
                 'Unable to create a new territory assignment: assignment date should be an instance of "%s", given "%s".',
                 DateTimeInterface::class,

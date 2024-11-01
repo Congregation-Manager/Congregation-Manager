@@ -16,7 +16,7 @@ final class ValidTerritoryAssignmentsValidator extends ConstraintValidator
 {
     public function validate(mixed $value, Constraint $constraint): void
     {
-        if (! $constraint instanceof ValidTerritoryAssignments) {
+        if (!$constraint instanceof ValidTerritoryAssignments) {
             throw new UnexpectedTypeException($constraint, ValidTerritoryAssignments::class);
         }
 
@@ -24,7 +24,7 @@ final class ValidTerritoryAssignmentsValidator extends ConstraintValidator
             return;
         }
 
-        if (! $value instanceof CreateTerritoryAssignment && ! $value instanceof UpdateTerritoryAssignment) {
+        if (!$value instanceof CreateTerritoryAssignment && !$value instanceof UpdateTerritoryAssignment) {
             throw new UnexpectedValueException(
                 $value,
                 CreateTerritoryAssignment::class . '|' . UpdateTerritoryAssignment::class

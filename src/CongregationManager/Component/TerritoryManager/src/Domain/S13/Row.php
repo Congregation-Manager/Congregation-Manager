@@ -85,7 +85,7 @@ final class Row
 
     public function removeTerritoryAssignment(TerritoryAssignmentInterface $territoryAssignment): void
     {
-        if (! $this->territoryAssignments->contains($territoryAssignment)) {
+        if (!$this->territoryAssignments->contains($territoryAssignment)) {
             return;
         }
 
