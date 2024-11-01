@@ -26,6 +26,8 @@ ansible/vars/.password
 ###> symfony/webpack-encore-bundle ###
 /node_modules/
 /public/build/
+/public/app/build/
+/public/admin/build/
 npm-debug.log
 yarn-error.log
 ###< symfony/webpack-encore-bundle ###

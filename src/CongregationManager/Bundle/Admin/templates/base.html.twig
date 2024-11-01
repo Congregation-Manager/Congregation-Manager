@@ -3,18 +3,18 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    
+
     {% block stylesheets %}
-        {{ encore_entry_link_tags('admin') }}
+        {{ encore_entry_link_tags('admin', null, 'admin') }}
     {% endblock %}
-    
+
     <title>{% block title %}{{ 'cm.meta_title.default'|trans }}{% endblock %}</title>
 </head>
 <body>
     {% block body %}
         <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
             <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="{{ path('admin_dashboard') }}">{{ 'cm.admin_nav.title'|trans }}</a>
-    
+
             <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebar-menu" aria-controls="sidebar-menu" aria-expanded="false" aria-label="{{ 'cm.admin_nav.toggle'|trans }}">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -32,7 +32,7 @@
                 </div>
             </div>
         </header>
-    
+
         <div class="container-fluid">
             <div class="row">
                 <nav id="sidebar-menu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
@@ -57,16 +57,16 @@
                                 </a>
                             </li>
                         </ul>
-        
+
                         <ul class="nav flex-column mt-5">
                             {{ render(controller('congregation_manager_admin.controller.locale::renderAction')) }}
                         </ul>
-                        
+
                     </div>
-        
-        
+
+
                 </nav>
-    
+
                 <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
                     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
                         {% block content %}
@@ -78,7 +78,7 @@
     {% endblock %}
 
     {% block javascripts %}
-        {{ encore_entry_script_tags('admin') }}
+        {{ encore_entry_script_tags('admin', null, 'admin') }}
     {% endblock %}
 
 </body>

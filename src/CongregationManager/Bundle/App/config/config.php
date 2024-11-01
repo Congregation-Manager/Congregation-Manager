@@ -6,4 +6,5 @@ namespace Symfony\Component\DependencyInjection\Loader\Configurator;
 
 return static function (ContainerConfigurator $containerConfigurator): void {
     $containerConfigurator->import('@CongregationManagerCoreBundle/config/config.php');
+    $containerConfigurator->import('packages/*.php');
 };
