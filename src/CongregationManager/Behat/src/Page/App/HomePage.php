@@ -9,17 +9,10 @@ use FriendsOfBehat\PageObjectExtension\Page\SymfonyPage;
 
 final class HomePage extends SymfonyPage implements HomePageInterface
 {
-    /**
-     * @var array<string, string>
-     */
-    protected static $additionalParameters = [
-        '_locale' => 'en',
-    ];
-
     #[\Override]
     public function getRouteName(): string
     {
-        return 'app_homepage';
+        return 'congregation_manager_app_homepage';
     }
 
     #[\Override]

@@ -16,10 +16,14 @@ final readonly class TranslationRuntime implements RuntimeExtensionInterface
     }
 
     /**
-     * @param array|string $arguments Can be the locale as a string when $message is a TranslatableInterface
+     * @param array<string, string>|string $arguments Can be the locale as a string when $message is a TranslatableInterface
      */
-    public function trans(string|\Stringable|TranslatableInterface|null $message, array|string $arguments = [], ?string $locale = null, ?int $count = null): string
-    {
+    public function trans(
+        string|\Stringable|TranslatableInterface|null $message,
+        array|string $arguments = [],
+        ?string $locale = null,
+        ?int $count = null
+    ): string {
         return $this->translationExtension->trans($message, $arguments, 'app', $locale, $count);
     }
 }

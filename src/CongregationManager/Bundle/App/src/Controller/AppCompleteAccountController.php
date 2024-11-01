@@ -38,7 +38,7 @@ final class AppCompleteAccountController extends AbstractController
             // loaded in a browser and potentially leaking the token to 3rd party JavaScript.
             $this->storeTokenInSession($token);
 
-            return $this->redirectToRoute('app_complete_account');
+            return $this->redirectToRoute('congregation_manager_app_complete_account');
         }
         $token = $this->getTokenFromSession();
         if ($token === null) {
@@ -77,7 +77,7 @@ final class AppCompleteAccountController extends AbstractController
             // The session is cleaned up after the password has been changed.
             $this->cleanSessionAfterReset();
 
-            return $this->redirectToRoute('app_login');
+            return $this->redirectToRoute('congregation_manager_app_login');
         }
 
         return $this->render('@CongregationManagerApp/complete_account/complete.html.twig', [

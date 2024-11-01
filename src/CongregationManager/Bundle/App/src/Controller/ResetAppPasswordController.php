@@ -91,7 +91,7 @@ class ResetAppPasswordController extends AbstractController
             // loaded in a browser and potentially leaking the token to 3rd party JavaScript.
             $this->storeTokenInSession($token);
 
-            return $this->redirectToRoute('app_reset_password');
+            return $this->redirectToRoute('congregation_manager_app_reset_password');
         }
 
         $token = $this->getTokenFromSession();
@@ -108,7 +108,7 @@ class ResetAppPasswordController extends AbstractController
                 $e->getReason()
             ));
 
-            return $this->redirectToRoute('app_forgot_password_request');
+            return $this->redirectToRoute('congregation_manager_app_forgot_password_request');
         }
 
         // The token is valid; allow the user to change their password.
@@ -160,14 +160,14 @@ class ResetAppPasswordController extends AbstractController
 
         // Do not reveal whether a user account was found or not.
         if (!$user) {
-            return $this->redirectToRoute('app_check_email');
+            return $this->redirectToRoute('congregation_manager_app_check_email');
         }
 
         try {
             $resetToken = $this->resetPasswordHelper->generateResetToken($user);
         } catch (ResetPasswordExceptionInterface $e) {
             // If you want to tell the user why a reset email was not sent, uncomment
-            // the lines below and change the redirect to 'app_forgot_password_request'.
+            // the lines below and change the redirect to 'congregation_manager_app_forgot_password_request'.
             // Caution: This may reveal if a user is registered or not.
             //
             // $this->addFlash('reset_password_error', sprintf(
@@ -182,7 +182,7 @@ class ResetAppPasswordController extends AbstractController
                 )
             );
 
-            return $this->redirectToRoute('app_check_email');
+            return $this->redirectToRoute('congregation_manager_app_check_email');
         }
 
         $email = (new TemplatedEmail())
@@ -200,6 +200,6 @@ class ResetAppPasswordController extends AbstractController
         // Store the token object in session for retrieval in check-email route.
         $this->setTokenObjectInSession($resetToken);
 
-        return $this->redirectToRoute('app_check_email');
+        return $this->redirectToRoute('congregation_manager_app_check_email');
     }
 }

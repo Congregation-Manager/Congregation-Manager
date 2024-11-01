@@ -7,6 +7,9 @@ namespace Symfony\Component\DependencyInjection\Loader\Configurator;
 use CongregationManager\Locale;
 
 return static function (ContainerConfigurator $containerConfigurator): void {
+    if ('dev' !== $containerConfigurator->env()) {
+        return;
+    }
     $containerConfigurator->extension('congregation_manager_fixtures', [
         'admins' => [
             [

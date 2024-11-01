@@ -7,7 +7,12 @@ namespace Symfony\Component\DependencyInjection\Loader\Configurator;
 use Symfony\Component\Routing\Loader\Configurator\RoutingConfigurator;
 
 return static function (RoutingConfigurator $routes): void {
-    $routes->add('app_homepage', '/')
+    $routes->add('congregation_manager_app_entrypoint', '/')
+        ->controller(['congregation_manager_app.controller.entrypoint', 'index'])
+        ->methods(['GET'])
+    ;
+
+    $routes->add('congregation_manager_app_homepage', '/{_locale}')
         ->controller(['congregation_manager_app.controller.homepage', 'index'])
         ->methods(['GET'])
     ;
@@ -20,30 +25,30 @@ return static function (RoutingConfigurator $routes): void {
         ->methods(['GET'])
     ;
 
-    $routes->add('app_login', '/login')
+    $routes->add('congregation_manager_app_login', '/{_locale}/login')
         ->controller(['congregation_manager_app.controller.login', 'index'])
         ->methods(['GET'])
     ;
 
-    $routes->add('app_login_check', '/login-check')
+    $routes->add('congregation_manager_app_login_check', '/{_locale}/login-check')
         ->methods(['POST'])
     ;
 
-    $routes->add('app_logout', '/logout')
+    $routes->add('congregation_manager_app_logout', '/{_locale}/logout')
         ->methods(['GET'])
     ;
 
-    $routes->add('app_forgot_password_request', '/reset-password')
+    $routes->add('congregation_manager_app_forgot_password_request', '/{_locale}/reset-password')
         ->controller(['congregation_manager_app.controller.reset_password', 'request'])
         ->methods(['GET', 'POST'])
     ;
 
-    $routes->add('app_check_email', '/reset-password/check-email')
+    $routes->add('congregation_manager_app_check_email', '/{_locale}/reset-password/check-email')
         ->controller(['congregation_manager_app.controller.reset_password', 'checkEmail'])
         ->methods(['GET'])
     ;
 
-    $routes->add('app_reset_password', '/reset-password/reset/{token}')
+    $routes->add('congregation_manager_app_reset_password', '/{_locale}/reset-password/reset/{token}')
         ->controller(['congregation_manager_app.controller.reset_password', 'reset'])
         ->defaults([
             'token' => null,
@@ -51,7 +56,7 @@ return static function (RoutingConfigurator $routes): void {
         ->methods(['GET', 'POST'])
     ;
 
-    $routes->add('app_complete_account', '/complete/account/{token}')
+    $routes->add('congregation_manager_app_complete_account', '/{_locale}/complete/account/{token}')
         ->controller(['congregation_manager_app.controller.complete_account', 'complete'])
         ->defaults([
             'token' => null,

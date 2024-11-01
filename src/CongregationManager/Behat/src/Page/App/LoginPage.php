@@ -8,17 +8,10 @@ use FriendsOfBehat\PageObjectExtension\Page\SymfonyPage;
 
 final class LoginPage extends SymfonyPage implements LoginPageInterface
 {
-    /**
-     * @var array<string, string>
-     */
-    protected static $additionalParameters = [
-        '_locale' => 'en',
-    ];
-
     #[\Override]
     public function getRouteName(): string
     {
-        return 'app_login';
+        return 'congregation_manager_app_login';
     }
 
     #[\Override]

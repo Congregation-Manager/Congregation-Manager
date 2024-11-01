@@ -41,6 +41,6 @@ final class AppLocaleController extends AbstractController
         $session = $this->requestStack->getSession();
         $session->set('_locale', $locale);
 
-        return $this->redirectToRoute('app_homepage');
+        return $this->redirectToRoute('congregation_manager_app_homepage');
     }
 }

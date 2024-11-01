@@ -13,17 +13,17 @@
                     </div>
                 {% endif %}
 
-                <form action="{{ path('app_login_check') }}" method="post">
+                <form action="{{ path('congregation_manager_app_login_check') }}" method="post">
                     {{ block('logo') }}
                     <h1 class="h3 mb-3 fw-normal">{{ 'cm.login.title'|trans_app }}</h1>
 
                     <div class="form-floating">
-                        <input type="email" class="form-control" id="username" name="_username" value="{{ last_username }}" placeholder="{{ 'cm.app_login.email_placeholder'|trans_app }}" >
+                        <input type="email" class="form-control" id="username" name="_username" value="{{ last_username }}" placeholder="{{ 'cm.congregation_manager_app_login.email_placeholder'|trans_app }}" >
                         <label for="username">{{ 'cm.label.email_address'|trans_app }}</label>
                     </div>
 
                     <div class="form-floating">
-                        <input type="password" class="form-control" id="password" name="_password" placeholder="{{ 'cm.app_login.password_placeholder'|trans_app }}">
+                        <input type="password" class="form-control" id="password" name="_password" placeholder="{{ 'cm.congregation_manager_app_login.password_placeholder'|trans_app }}">
                         <label for="password">{{ 'cm.label.password'|trans_app }}</label>
                     </div>
 
@@ -41,7 +41,7 @@
         </div>
         <div class="row">
             <div class="col-12 col-md-8 col-lg-6 m-auto text-center mt-5">
-                <a href="{{ path('app_forgot_password_request') }}">{{ 'cm.app_login.forgot_password'|trans_app }}</a>
+                <a href="{{ path('congregation_manager_app_forgot_password_request') }}">{{ 'cm.congregation_manager_app_login.forgot_password'|trans_app }}</a>
             </div>
         </div>
     </div>

@@ -10,6 +10,7 @@ use CongregationManager\Bundle\App\Controller\AppDashboardController;
 use CongregationManager\Bundle\App\Controller\AppLocaleController;
 use CongregationManager\Bundle\App\Controller\AppProfileController;
 use CongregationManager\Bundle\App\Controller\AppUserLoginController;
+use CongregationManager\Bundle\App\Controller\EntrypointController;
 use CongregationManager\Bundle\App\Controller\HomePageController;
 use CongregationManager\Bundle\App\Controller\ResetAppPasswordController;
 use CongregationManager\Bundle\App\Controller\TerritoryAssignmentController;
@@ -75,8 +76,15 @@ return static function (ContainerConfigurator $containerConfigurator): void {
         ->tag('controller.service_arguments')
     ;
 
+    $services->set('congregation_manager_app.controller.entrypoint', EntrypointController::class)
+        ->args([param('kernel.enabled_locales'), param('kernel.default_locale')])
+        ->call('setContainer', [service(ContainerInterface::class)])
+        ->tag('container.service_subscriber')
+        ->tag('controller.service_arguments')
+    ;
+
     $services->set('congregation_manager_app.controller.homepage', HomePageController::class)
-        ->args([param('supported_locales')])
+        ->args([param('kernel.enabled_locales')])
         ->call('setContainer', [service(ContainerInterface::class)])
         ->tag('container.service_subscriber')
         ->tag('controller.service_arguments')

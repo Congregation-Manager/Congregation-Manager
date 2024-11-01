@@ -2,7 +2,7 @@
 
 <p>{{ 'cm.email.app_user_invitation.intro'|trans }}</p>
 
-<a href="{{ url('app_complete_account', {token: invitationToken}) }}">{{ url('app_complete_account', {token: invitationToken}) }}</a>
+<a href="{{ url('congregation_manager_app_complete_account', {token: invitationToken}) }}">{{ url('congregation_manager_app_complete_account', {token: invitationToken}) }}</a>
 
 <p>{{ 'cm.email.app_user_invitation.expire'|trans({'{expireIn}': 2 }) }}</p>
 

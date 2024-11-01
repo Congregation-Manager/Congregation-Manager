@@ -14,6 +14,7 @@
             <file name="src/CongregationManager/Bundle/Resource/config/packages/doctrine.php"/>
             <file name="src/CongregationManager/Bundle/TerritoryManager/config/packages/doctrine.php"/>
             <file name="src/CongregationManager/Bundle/User/config/packages/doctrine.php"/>
+            <file name="src/CongregationManager/Bundle/**/config/packages/**.php"/>
         </ignoreFiles>
     </projectFiles>
     <issueHandlers>

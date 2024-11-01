@@ -11,7 +11,7 @@ return static function (ContainerConfigurator $containerConfigurator): void {
     $services = $containerConfigurator->services();
 
     $services->set('congregation_manager_core.event_subscriber.locale', LocaleSubscriber::class)
-        ->args([param('default_locale'), param('supported_locales')])
+        ->args([param('kernel.default_locale'), param('supported_locales')])
         ->tag('kernel.event_subscriber')
     ;
 

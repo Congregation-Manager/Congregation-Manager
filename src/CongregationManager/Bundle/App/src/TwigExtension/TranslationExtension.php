@@ -12,9 +12,6 @@ final class TranslationExtension extends AbstractExtension
 {
     public function getFilters(): array
     {
-        return [
-            new TwigFilter('trans_app', [TranslationRuntime::class, 'trans']),
-        ];
+        return [new TwigFilter('trans_app', [TranslationRuntime::class, 'trans'])];
     }
-
 }

@@ -1,7 +1,7 @@
 parameters:
     security.admin_regex: "^/%app_admin.path_name%"
     security.admin_with_locale_regex: "%security.admin_regex%/(%supported_locales%)"
-    security.app_regex: "^/(?!%app_admin.path_name%)"
+    security.app_regex: "^/(?!%supported_locales%|%app_admin.path_name%)"
 
 security:
     # https://symfony.com/doc/current/security.html#registering-the-user-hashing-passwords
@@ -49,13 +49,13 @@ security:
             lazy: true
             provider: app_user_provider
             form_login:
-                login_path: app_login
-                check_path: app_login_check
+                login_path: congregation_manager_app_login
+                check_path: congregation_manager_app_login_check
                 enable_csrf: true
                 default_target_path: app_dashboard
             logout:
-                path: app_logout
-                target: app_homepage
+                path: congregation_manager_app_logout
+                target: congregation_manager_app_homepage
                 invalidate_session: false
             remember_me:
                 secret: '%kernel.secret%'

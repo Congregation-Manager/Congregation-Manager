@@ -11,7 +11,7 @@ final class CompleteAccountPage extends SymfonyPage implements CompleteAccountPa
     #[\Override]
     public function getRouteName(): string
     {
-        return 'app_complete_account';
+        return 'congregation_manager_app_complete_account';
     }
 
     #[\Override]

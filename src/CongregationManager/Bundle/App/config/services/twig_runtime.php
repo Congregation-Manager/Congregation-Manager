@@ -10,9 +10,7 @@ return static function (ContainerConfigurator $containerConfigurator): void {
     $services = $containerConfigurator->services();
 
     $services->set('congregation_manager_app.twig_runtime.translation', TranslationRuntime::class)
-        ->args([
-            service('twig.extension.trans'),
-        ])
+        ->args([service('twig.extension.trans')])
         ->tag('twig.runtime')
     ;
 };

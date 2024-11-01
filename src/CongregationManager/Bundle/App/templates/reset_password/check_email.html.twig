@@ -1,6 +1,6 @@
 {% extends '@CongregationManagerApp/base.html.twig' %}
 
-{% block title %}{{ 'cm.app_check_email.meta_title'|trans_app }}{% endblock %}
+{% block title %}{{ 'cm.congregation_manager_app_check_email.meta_title'|trans_app }}{% endblock %}
 
 {% block body %}
     <div class="container">
@@ -8,10 +8,10 @@
             <div class="col-12 col-md-8 col-lg-6 m-auto text-center mt-5">
 
                 <p>
-                    {{ 'cm.app_check_email.instructions'|trans_app({'{expiresIn}': resetToken.expirationMessageKey|trans_app(resetToken.expirationMessageData, 'ResetPasswordBundle')})|raw }}
+                    {{ 'cm.congregation_manager_app_check_email.instructions'|trans_app({'{expiresIn}': resetToken.expirationMessageKey|trans_app(resetToken.expirationMessageData, 'ResetPasswordBundle')})|raw }}
                 </p>
                 <p>
-                    {{ 'cm.app_check_email.try_again'|trans_app({'{link}': path('app_forgot_password_request')})|raw }}
+                    {{ 'cm.congregation_manager_app_check_email.try_again'|trans_app({'{link}': path('congregation_manager_app_forgot_password_request')})|raw }}
                 </p>
 
             </div>

@@ -12,13 +12,11 @@ use Symfony\Component\HttpFoundation\Response;
 final class HomePageController extends AbstractController
 {
     /**
-     * @var string[]
+     * @param string[] $availableLocales
      */
-    private readonly array $availableLocales;
-
-    public function __construct(string $availableLocales)
-    {
-        $this->availableLocales = explode('|', $availableLocales);
+    public function __construct(
+        private readonly array $availableLocales,
+    ) {
     }
 
     public function index(Request $request): Response
