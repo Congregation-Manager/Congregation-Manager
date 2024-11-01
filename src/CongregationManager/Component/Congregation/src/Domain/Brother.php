@@ -155,4 +155,9 @@ class Brother extends AggregateRoot implements BrotherInterface
             $this->territoryAssignments->removeElement($territoryAssignment);
         }
     }
+
+    public function getFullName(): string
+    {
+        return $this->getFirstName() . ' ' . ($this->getMiddleName() ? $this->getMiddleName() . ' ' : '') . $this->getLastName();
+    }
 }
