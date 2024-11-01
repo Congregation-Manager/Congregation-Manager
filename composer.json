@@ -44,8 +44,7 @@
             "CongregationManager\\Bundle\\FixturesBundle\\Tests\\": "src/CongregationManager/Bundle/Fixtures/tests/"
         },
         "classmap": [
-            "src/Kernel.php",
-            "src/Locale.php"
+            "src/Kernel.php"
         ]
     },
     "config": {

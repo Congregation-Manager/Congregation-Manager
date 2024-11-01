@@ -8,6 +8,7 @@ use CongregationManager\Behat\Page\App\ChangePasswordPage;
 use CongregationManager\Behat\Page\App\CheckEmailPage;
 use CongregationManager\Behat\Page\App\CompleteAccountPage;
 use CongregationManager\Behat\Page\App\DashboardPage;
+use CongregationManager\Behat\Page\App\EntrypointPage;
 use CongregationManager\Behat\Page\App\ForgotPasswordPage;
 use CongregationManager\Behat\Page\App\HomePage;
 use CongregationManager\Behat\Page\App\LoginPage;
@@ -19,6 +20,10 @@ use CongregationManager\Behat\Page\App\TerritoryAssignment\UpdatePage;
 
 return static function (ContainerConfigurator $containerConfigurator): void {
     $services = $containerConfigurator->services();
+
+    $services->set('congregation_manager_behat.page.app.entrypoint', EntrypointPage::class)
+        ->parent('congregation_manager_behat.page.symfony')
+    ;
 
     $services->set('congregation_manager_behat.page.app.home', HomePage::class)
         ->parent('congregation_manager_behat.page.symfony')

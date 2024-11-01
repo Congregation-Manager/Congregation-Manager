@@ -20,6 +20,9 @@ final readonly class LocaleContext implements LocaleContextInterface
         if ($request === null) {
             throw new LocaleNotFoundException('No master request available.');
         }
+        if ($request->getLocale()) {
+            return $request->getLocale();
+        }
 
         /** @var string|null $localeCode */
         $localeCode = $request->getSession()

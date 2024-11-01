@@ -21,7 +21,7 @@ return static function (RoutingConfigurator $routes): void {
     $routes->add('admin_switch_locale', '/switch-locale/{locale}')
         ->controller(['congregation_manager_admin.controller.locale', 'switchLocale'])
         ->defaults([
-            'locale' => '%supported_locales%',
+            'locale' => '%congregation_manager_core.available_locales_regex%',
         ])
         ->methods(['GET'])
     ;

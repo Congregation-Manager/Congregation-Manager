@@ -8,6 +8,13 @@ use FriendsOfBehat\PageObjectExtension\Page\SymfonyPage;
 
 final class ResetPasswordPage extends SymfonyPage implements ResetPasswordPageInterface
 {
+    /**
+     * @var array<string, string>
+     */
+    protected static $additionalParameters = [
+        '_locale' => 'en',
+    ];
+
     #[\Override]
     public function getRouteName(): string
     {

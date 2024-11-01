@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Symfony\Component\DependencyInjection\Loader\Configurator;
 
-use CongregationManager\Locale;
+use CongregationManager\Bundle\Core\Enum\Locale;
 
 return static function (ContainerConfigurator $containerConfigurator): void {
     if ('dev' !== $containerConfigurator->env()) {

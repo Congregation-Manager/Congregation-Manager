@@ -13,4 +13,6 @@ interface DashboardPageInterface extends SymfonyPageInterface
     public function signOut(): void;
 
     public function getLoggedInBrotherFullName(): string;
+
+    public function getActiveLocale(): string;
 }

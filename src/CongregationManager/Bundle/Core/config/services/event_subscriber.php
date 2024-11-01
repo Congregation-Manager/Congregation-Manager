@@ -11,12 +11,14 @@ return static function (ContainerConfigurator $containerConfigurator): void {
     $services = $containerConfigurator->services();
 
     $services->set('congregation_manager_core.event_subscriber.locale', LocaleSubscriber::class)
-        ->args([param('kernel.default_locale'), param('supported_locales')])
+        ->args(
+            [param('congregation_manager_core.default_locale'), param('congregation_manager_core.available_locales')]
+        )
         ->tag('kernel.event_subscriber')
     ;
 
     $services->set('congregation_manager_core.event_subscriber.user_locale', UserLocaleSubscriber::class)
-        ->args([service('request_stack'), param('supported_locales')])
+        ->args([service('request_stack'), param('congregation_manager_core.available_locales')])
         ->tag('kernel.event_subscriber')
     ;
 };

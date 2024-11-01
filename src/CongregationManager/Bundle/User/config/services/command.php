@@ -14,8 +14,8 @@ return static function (ContainerConfigurator $containerConfigurator): void {
             service('congregation_manager_user.create_admin_user'),
             service('doctrine.orm.entity_manager'),
             service('congregation_manager_user.validator'),
-            param('kernel.default_locale'),
-            param('supported_locales'),
+            param('congregation_manager_core.default_locale'),
+            param('congregation_manager_core.available_locales'),
             'app:create-admin-user',
         ])
         ->tag('console.command')

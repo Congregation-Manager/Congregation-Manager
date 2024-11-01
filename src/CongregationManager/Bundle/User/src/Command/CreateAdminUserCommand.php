@@ -42,19 +42,16 @@ final class CreateAdminUserCommand extends Command
     private string $userLocale;
 
     /**
-     * @var string[]
+     * @param string[] $locales
      */
-    private array $locales;
-
     public function __construct(
         private CreateAdminUser $createAdminUser,
         private EntityManagerInterface $entityManager,
         private Validator $validator,
         private string $defaultLocale,
-        string $locales,
+        private array $locales,
         string $name
     ) {
-        $this->locales = explode('|', $locales);
         parent::__construct($name);
     }
 

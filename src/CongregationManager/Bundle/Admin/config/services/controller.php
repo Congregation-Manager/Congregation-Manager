@@ -56,7 +56,7 @@ return static function (ContainerConfigurator $containerConfigurator): void {
 
     $services->set('congregation_manager_admin.controller.locale', AdminLocaleController::class)
         ->args([
-            param('supported_locales'),
+            param('congregation_manager_core.available_locales'),
             service('request_stack'),
             service('security.helper'),
             service('doctrine.orm.entity_manager'),

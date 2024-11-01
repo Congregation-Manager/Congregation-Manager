@@ -14,15 +14,12 @@ use Symfony\Component\Security\Http\SecurityEvents;
 final readonly class UserLocaleSubscriber implements EventSubscriberInterface
 {
     /**
-     * @var string[]
+     * @param string[] $availableLocales
      */
-    private array $availableLocales;
-
     public function __construct(
         private RequestStack $requestStack,
-        string $availableLocales
+        private array $availableLocales
     ) {
-        $this->availableLocales = explode('|', $availableLocales);
     }
 
     #[\Override]

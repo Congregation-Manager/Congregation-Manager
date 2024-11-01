@@ -13,7 +13,7 @@ return static function (ContainerConfigurator $containerConfigurator): void {
 
     $services->set('congregation_manager_fixtures.data_fixtures.admin', AdminFixtures::class)
         ->args([
-            '$defaultLocale' => param('kernel.default_locale'),
+            '$defaultLocale' => param('congregation_manager_core.default_locale'),
             '$userPasswordHasher' => service('congregation_manager_user.hasher.user_password'),
         ])
         ->tag('doctrine.fixture.orm')
@@ -25,7 +25,7 @@ return static function (ContainerConfigurator $containerConfigurator): void {
 
     $services->set('congregation_manager_fixtures.data_fixtures.brother', BrotherFixtures::class)
         ->args([
-            '$defaultLocale' => param('kernel.default_locale'),
+            '$defaultLocale' => param('congregation_manager_core.default_locale'),
             '$userPasswordHasher' => service('congregation_manager_user.hasher.user_password'),
         ])
         ->tag('doctrine.fixture.orm')

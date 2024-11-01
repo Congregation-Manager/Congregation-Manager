@@ -52,7 +52,7 @@ return static function (ContainerConfigurator $containerConfigurator): void {
 
     $services->set('congregation_manager_app.controller.locale', AppLocaleController::class)
         ->args([
-            param('supported_locales'),
+            param('congregation_manager_core.available_locales'),
             service('request_stack'),
             service('security.helper'),
             service('doctrine.orm.entity_manager'),
@@ -77,14 +77,16 @@ return static function (ContainerConfigurator $containerConfigurator): void {
     ;
 
     $services->set('congregation_manager_app.controller.entrypoint', EntrypointController::class)
-        ->args([param('kernel.enabled_locales'), param('kernel.default_locale')])
+        ->args(
+            [param('congregation_manager_core.available_locales'), param('congregation_manager_core.default_locale')]
+        )
         ->call('setContainer', [service(ContainerInterface::class)])
         ->tag('container.service_subscriber')
         ->tag('controller.service_arguments')
     ;
 
     $services->set('congregation_manager_app.controller.homepage', HomePageController::class)
-        ->args([param('kernel.enabled_locales')])
+        ->args([param('congregation_manager_core.available_locales')])
         ->call('setContainer', [service(ContainerInterface::class)])
         ->tag('container.service_subscriber')
         ->tag('controller.service_arguments')

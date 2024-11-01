@@ -5,13 +5,17 @@ declare(strict_types=1);
 namespace CongregationManager\Behat\Context\Ui\App;
 
 use Behat\Behat\Context\Context;
+use CongregationManager\Behat\Page\App\DashboardPageInterface;
+use CongregationManager\Behat\Page\App\EntrypointPageInterface;
 use CongregationManager\Behat\Page\App\HomePageInterface;
 use Webmozart\Assert\Assert;
 
 final readonly class LocaleContext implements Context
 {
     public function __construct(
-        private HomePageInterface $homePage
+        private EntrypointPageInterface $entrypointPage,
+        private HomePageInterface $homePage,
+        private DashboardPageInterface $dashboardPage,
     ) {
     }
 
@@ -20,7 +24,8 @@ final readonly class LocaleContext implements Context
      */
     public function iVisitTheHomepage(): void
     {
-        $this->homePage->open();
+        $this->entrypointPage->tryToOpen();
+        $this->homePage->verify();
     }
 
     /**
@@ -28,7 +33,7 @@ final readonly class LocaleContext implements Context
      */
     public function iShouldUsingTheLocale(string $locale): void
     {
-        Assert::eq($this->homePage->getActiveLocale(), $locale);
+        Assert::eq($this->dashboardPage->getActiveLocale(), $locale);
     }
 
     /**

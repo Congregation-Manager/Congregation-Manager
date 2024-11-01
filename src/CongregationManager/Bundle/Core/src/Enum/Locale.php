@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace CongregationManager;
+namespace CongregationManager\Bundle\Core\Enum;
 
 enum Locale: string
 {

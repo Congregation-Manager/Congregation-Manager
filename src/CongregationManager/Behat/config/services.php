@@ -12,6 +12,20 @@ use CongregationManager\Behat\Services\Setter\CookieSetter;
 use CongregationManager\Behat\Services\SharedStorage;
 
 return static function (ContainerConfigurator $containerConfigurator): void {
+    $containerConfigurator->extension('framework', [
+        'default_locale' => 'en',
+        'enabled_locales' => ['en' , 'it'],
+        'translator' => [
+            'fallbacks' => ['en'],
+        ],
+    ]);
+
+    $containerConfigurator->parameters()
+        ->set('congregation_manager_core.default_locale', 'en')
+        ->set('congregation_manager_core.available_locales', ['en', 'it'])
+        ->set('congregation_manager_core.available_locales_regex', 'en|it')
+    ;
+
     $containerConfigurator->import('services/*.php');
 
     $services = $containerConfigurator->services();

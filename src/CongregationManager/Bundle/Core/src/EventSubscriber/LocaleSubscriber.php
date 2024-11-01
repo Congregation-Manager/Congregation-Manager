@@ -12,15 +12,12 @@ use Symfony\Component\HttpKernel\KernelEvents;
 final class LocaleSubscriber implements EventSubscriberInterface
 {
     /**
-     * @var string[]
+     * @param string[] $availableLocaleCodes
      */
-    private array $availableLocaleCodes = [];
-
     public function __construct(
         private readonly string $defaultLocale,
-        string $supportedLocales
+        private readonly array $availableLocaleCodes,
     ) {
-        $this->availableLocaleCodes = explode('|', $supportedLocales);
     }
 
     #[\Override]

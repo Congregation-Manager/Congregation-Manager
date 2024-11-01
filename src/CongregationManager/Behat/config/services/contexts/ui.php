@@ -29,7 +29,11 @@ return static function (ContainerConfigurator $containerConfigurator): void {
     ;
 
     $services->set('congregation_manager_behat.context.ui.app.locale', LocaleContext::class)
-        ->args([service('congregation_manager_behat.page.app.home')])
+        ->args([
+            service('congregation_manager_behat.page.app.entrypoint'),
+            service('congregation_manager_behat.page.app.home'),
+            service('congregation_manager_behat.page.app.dashboard'),
+        ])
     ;
 
     $services->set(

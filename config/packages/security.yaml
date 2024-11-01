@@ -1,7 +1,7 @@
 parameters:
     security.admin_regex: "^/%app_admin.path_name%"
-    security.admin_with_locale_regex: "%security.admin_regex%/(%supported_locales%)"
-    security.app_regex: "^/(?!%supported_locales%|%app_admin.path_name%)"
+    security.admin_with_locale_regex: "%security.admin_regex%/(%congregation_manager_core.available_locales_regex%)"
+    security.app_regex: "^/(?!%congregation_manager_core.available_locales_regex%|%app_admin.path_name%)"
 
 security:
     # https://symfony.com/doc/current/security.html#registering-the-user-hashing-passwords
@@ -38,7 +38,7 @@ security:
                 default_target_path: admin_dashboard
             logout:
                 path: admin_logout
-                target: app_homepage
+                target: congregation_manager_app_homepage
                 invalidate_session: false
             remember_me:
                 secret: '%kernel.secret%'

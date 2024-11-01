@@ -6,18 +6,16 @@ namespace CongregationManager\Behat\Page\App;
 
 use FriendsOfBehat\PageObjectExtension\Page\SymfonyPage;
 
-final class CheckEmailPage extends SymfonyPage implements CheckEmailPageInterface
+final class EntrypointPage extends SymfonyPage implements EntrypointPageInterface
 {
     /**
      * @var array<string, string>
      */
-    protected static $additionalParameters = [
-        '_locale' => 'en',
-    ];
+    protected static $additionalParameters = [];
 
     #[\Override]
     public function getRouteName(): string
     {
-        return 'congregation_manager_app_check_email';
+        return 'congregation_manager_app_entrypoint';
     }
 }

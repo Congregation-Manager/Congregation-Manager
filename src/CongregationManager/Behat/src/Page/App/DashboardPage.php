@@ -8,6 +8,13 @@ use FriendsOfBehat\PageObjectExtension\Page\SymfonyPage;
 
 final class DashboardPage extends SymfonyPage implements DashboardPageInterface
 {
+    /**
+     * @var array<string, string>
+     */
+    protected static $additionalParameters = [
+        '_locale' => 'en',
+    ];
+
     #[\Override]
     public function getRouteName(): string
     {
@@ -36,6 +43,13 @@ final class DashboardPage extends SymfonyPage implements DashboardPageInterface
         ;
     }
 
+    public function getActiveLocale(): string
+    {
+        return $this->getElement('active_locale')
+            ->getText()
+        ;
+    }
+
     /**
      * @return array<string, string|string[]>
      */
@@ -45,6 +59,7 @@ final class DashboardPage extends SymfonyPage implements DashboardPageInterface
         return array_merge(parent::getDefinedElements(), [
             'logged_in_brother' => '[data-test-logged-in-brother-full-name]',
             'logout_button' => '[data-test-logout-button]',
+            'active_locale' => '[data-test-active-locale]',
         ]);
     }
 }

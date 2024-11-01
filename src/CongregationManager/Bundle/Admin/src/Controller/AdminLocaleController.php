@@ -15,8 +15,11 @@ use Symfony\Component\HttpFoundation\Response;
 /** @psalm-suppress PropertyNotSetInConstructor */
 final class AdminLocaleController extends AbstractController
 {
+    /**
+     * @param string[] $availableLocales
+     */
     public function __construct(
-        private readonly string $availableLocales,
+        private readonly array $availableLocales,
         private readonly RequestStack $requestStack,
         private readonly Security $security,
         private readonly EntityManagerInterface $entityManager
@@ -27,7 +30,7 @@ final class AdminLocaleController extends AbstractController
     {
         return $this->render('@CongregationManagerAdmin/components/_switch_locale.html.twig', [
             'active' => $request->getLocale(),
-            'locales' => explode('|', $this->availableLocales),
+            'locales' => $this->availableLocales,
         ]);
     }
 

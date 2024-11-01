@@ -15,8 +15,11 @@ use Symfony\Component\HttpFoundation\Response;
 /** @psalm-suppress PropertyNotSetInConstructor */
 final class AppLocaleController extends AbstractController
 {
+    /**
+     * @param string[] $availableLocales
+     */
     public function __construct(
-        private readonly string $availableLocales,
+        private readonly array $availableLocales,
         private readonly RequestStack $requestStack,
         private readonly Security $security,
         private readonly EntityManagerInterface $entityManager
@@ -27,7 +30,7 @@ final class AppLocaleController extends AbstractController
     {
         return $this->render('@CongregationManagerApp/components/_switch_locale.html.twig', [
             'active' => $request->getLocale(),
-            'locales' => explode('|', $this->availableLocales),
+            'locales' => $this->availableLocales,
         ]);
     }
 
@@ -41,6 +44,6 @@ final class AppLocaleController extends AbstractController
         $session = $this->requestStack->getSession();
         $session->set('_locale', $locale);
 
-        return $this->redirectToRoute('congregation_manager_app_homepage');
+        return $this->redirectToRoute('app_dashboard');
     }
 }
