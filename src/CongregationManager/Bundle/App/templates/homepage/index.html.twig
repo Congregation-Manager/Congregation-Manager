@@ -1,6 +1,6 @@
 {% extends '@CongregationManagerApp/public.html.twig' %}
 
-{% block body %}
+{% block content %}
     <div class="container">
         <div class="px-4 py-5 my-5 text-center">
             {{ block('logo') }}
@@ -16,15 +16,6 @@
                         <button type="button"
                                 class="btn btn-outline-secondary btn-lg px-4">{{ 'cm.homepage.register'|trans_app }}</button>
                     </a>
-                </div>
-
-                <div {{ test_html_attribute('locale-selector') }}>
-                    {% for locale in locales %}
-                        <a href="{{ path('congregation_manager_app_homepage', {'_locale': locale}) }}" {{ test_html_attribute('available-locale', locale) }}
-                            {% if locale == active %}{{ test_html_attribute('active-locale', active) }} class="active text-decoration-underline" {% endif %}>
-                            {{ locale|locale_name }} [{{ locale|locale_name(locale) }}]
-                        </a>
-                    {% endfor %}
                 </div>
             </div>
         </div>

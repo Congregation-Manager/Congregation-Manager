@@ -17,14 +17,6 @@ return static function (RoutingConfigurator $routes): void {
         ->methods(['GET'])
     ;
 
-    $routes->add('app_switch_locale', '/switch-locale/{locale}')
-        ->controller(['congregation_manager_app.controller.locale', 'switchLocale'])
-        ->defaults([
-            'locale' => '%congregation_manager_core.available_locales_regex%',
-        ])
-        ->methods(['GET'])
-    ;
-
     $routes->add('congregation_manager_app_login', '/{_locale}/login')
         ->controller(['congregation_manager_app.controller.login', 'index'])
         ->methods(['GET'])

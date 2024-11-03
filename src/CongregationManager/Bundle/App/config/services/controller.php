@@ -7,11 +7,11 @@ namespace Symfony\Component\DependencyInjection\Loader\Configurator;
 use CongregationManager\Bundle\App\Controller\AppChangePasswordController;
 use CongregationManager\Bundle\App\Controller\AppCompleteAccountController;
 use CongregationManager\Bundle\App\Controller\AppDashboardController;
-use CongregationManager\Bundle\App\Controller\AppLocaleController;
 use CongregationManager\Bundle\App\Controller\AppProfileController;
 use CongregationManager\Bundle\App\Controller\AppUserLoginController;
 use CongregationManager\Bundle\App\Controller\EntrypointController;
 use CongregationManager\Bundle\App\Controller\HomePageController;
+use CongregationManager\Bundle\App\Controller\LocaleController;
 use CongregationManager\Bundle\App\Controller\ResetAppPasswordController;
 use CongregationManager\Bundle\App\Controller\TerritoryAssignmentController;
 use CongregationManager\Bundle\App\Controller\TerritoryController;
@@ -53,7 +53,7 @@ return static function (ContainerConfigurator $containerConfigurator): void {
         ->tag('controller.service_arguments')
     ;
 
-    $services->set('congregation_manager_app.controller.locale', AppLocaleController::class)
+    $services->set('congregation_manager_app.controller.locale', LocaleController::class)
         ->args([
             param('congregation_manager_core.available_locales'),
             service('request_stack'),

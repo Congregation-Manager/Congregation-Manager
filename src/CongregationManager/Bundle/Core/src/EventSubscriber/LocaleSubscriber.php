@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace CongregationManager\Bundle\Core\EventSubscriber;
 
+use CongregationManager\Bundle\App\Controller\RequestPreferredLocaleTrait;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Event\RequestEvent;
@@ -11,6 +12,8 @@ use Symfony\Component\HttpKernel\KernelEvents;
 
 final readonly class LocaleSubscriber implements EventSubscriberInterface
 {
+    use RequestPreferredLocaleTrait;
+
     /**
      * @param string[] $availableLocaleCodes
      */
@@ -33,7 +36,7 @@ final readonly class LocaleSubscriber implements EventSubscriberInterface
     {
         $request = $event->getRequest();
         if (!$request->hasPreviousSession()) {
-            $request->setLocale($this->getPreferredLocaleCode($request) ?? $this->defaultLocale);
+            $request->setLocale($this->getRightLocaleCodeForVisitor($request));
 
             return;
         }
@@ -48,56 +51,16 @@ final readonly class LocaleSubscriber implements EventSubscriberInterface
         }
     }
 
-    private function getPreferredLocaleCode(Request $request): ?string
+    private function getDefaultLocale(): string
     {
-        $availableLocaleCodesWithSuperLanguage = array_merge(
-            $this->availableLocaleCodes,
-            $this->getSuperLanguageCodesFromLocaleCodes($this->availableLocaleCodes)
-        );
-        $preferredLocaleCode = $request->getPreferredLanguage($availableLocaleCodesWithSuperLanguage);
-        if ($preferredLocaleCode === null) {
-            return null;
-        }
-        if (in_array($preferredLocaleCode, $this->availableLocaleCodes, true)) {
-            return $preferredLocaleCode;
-        }
-        $preferredLanguage = $this->getLanguageFromLocaleCode($preferredLocaleCode);
-
-        foreach ($this->availableLocaleCodes as $localeCode) {
-            $language = $this->getLanguageFromLocaleCode($localeCode);
-            if ($language === $preferredLanguage) {
-                return $localeCode;
-            }
-        }
-
-        return null;
+        return $this->defaultLocale;
     }
 
     /**
-     * @param string[] $localeCodes
-     *
      * @return string[]
      */
-    private function getSuperLanguageCodesFromLocaleCodes(array $localeCodes): array
+    private function getAvailableLocales(): array
     {
-        $superLanguageCodes = [];
-        foreach ($localeCodes as $localeCode) {
-            $languageCode = $this->getLanguageFromLocaleCode($localeCode);
-            if (!in_array($languageCode, $superLanguageCodes, true)) {
-                $superLanguageCodes[] = $languageCode;
-            }
-        }
-
-        return $superLanguageCodes;
-    }
-
-    private function getLanguageFromLocaleCode(string $localeCode): string
-    {
-        $position = strpos($localeCode, '_');
-        if ($position !== false) {
-            return substr($localeCode, 0, $position);
-        }
-
-        return $localeCode;
+        return $this->availableLocaleCodes;
     }
 }

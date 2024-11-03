@@ -13,7 +13,7 @@ use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Response;
 
 /** @psalm-suppress PropertyNotSetInConstructor */
-final class AppLocaleController extends AbstractController
+final class LocaleController extends AbstractController
 {
     /**
      * @param string[] $availableLocales
@@ -26,9 +26,22 @@ final class AppLocaleController extends AbstractController
     ) {
     }
 
-    public function renderAction(Request $request): Response
+    /**
+     * @param array<string, string> $routeParameters
+     */
+    public function renderPublicAction(Request $request, string $routeName, array $routeParameters): Response
     {
-        return $this->render('@CongregationManagerApp/components/_switch_locale.html.twig', [
+        return $this->render('@CongregationManagerApp/components/locale/_public_switch_locale.html.twig', [
+            'active' => $request->getLocale(),
+            'locales' => $this->availableLocales,
+            'route_name' => $routeName,
+            'route_parameters' => $routeParameters,
+        ]);
+    }
+
+    public function renderLoggedInAction(Request $request): Response
+    {
+        return $this->render('@CongregationManagerApp/components/locale/_logged_in_switch_locale.html.twig', [
             'active' => $request->getLocale(),
             'locales' => $this->availableLocales,
         ]);

@@ -8,7 +8,21 @@ use Symfony\Component\HttpFoundation\Request;
 
 trait RequestPreferredLocaleTrait
 {
-    public function getVisitorPreferredLocaleCode(Request $request): ?string
+    abstract private function getDefaultLocale(): string;
+
+    /**
+     * @return string[]
+     */
+    abstract private function getAvailableLocales(): array;
+
+    private function getRightLocaleCodeForVisitor(Request $request): string
+    {
+        $localeCodeToUse = $this->getVisitorPreferredLocaleCode($request);
+
+        return $localeCodeToUse ?? $this->getDefaultLocale();
+    }
+
+    private function getVisitorPreferredLocaleCode(Request $request): ?string
     {
         $availableLocaleCodes = $this->getAvailableLocales();
         $availableLocaleCodesWithSuperLanguage = array_merge(
@@ -32,19 +46,6 @@ trait RequestPreferredLocaleTrait
         }
 
         return null;
-    }
-    abstract private function getDefaultLocale(): string;
-
-    /**
-     * @return string[]
-     */
-    abstract private function getAvailableLocales(): array;
-
-    private function getRightLocaleCodeForVisitor(Request $request): string
-    {
-        $localeCodeToUse = $this->getVisitorPreferredLocaleCode($request);
-
-        return $localeCodeToUse ?? $this->getDefaultLocale();
     }
 
     /**

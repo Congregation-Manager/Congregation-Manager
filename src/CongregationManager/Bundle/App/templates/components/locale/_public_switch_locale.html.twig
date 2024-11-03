@@ -1,0 +1,26 @@
+{% if locales|length > 1 %}
+    <div class="dropdown language-navbar me-3 mt-1" {{ test_html_attribute('locale-selector') }}>
+        <a class="d-block text-decoration-none dropdown-toggle text-white"
+           href="#"
+           id="dropdown-locale"
+           data-bs-toggle="dropdown"
+           aria-expanded="false"
+           {{ test_html_attribute('active-locale', active) }}>
+            <i class="bi bi-translate"></i> {{ active|locale_name }}
+        </a>
+        <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end"
+            aria-labelledby="dropdown-locale">
+            {% for locale in locales %}
+                {% if locale is not same as(active) %}
+                    <li>
+                        <a class="dropdown-item"
+                           href="{{ path(route_name, route_parameters|merge({'_locale': locale})) }}"
+                           {{ test_html_attribute('available-locale', locale) }}>
+                            {{ locale|locale_name }} <span style="font-style: italic">{{ locale|locale_name(locale) }}</span>
+                        </a>
+                    </li>
+                {% endif %}
+            {% endfor %}
+        </ul>
+    </div>
+{% endif %}

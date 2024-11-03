@@ -14,6 +14,45 @@
     >
 {% endblock %}
 
+{% block header %}
+    <header>
+        <nav class="navbar navbar-expand-md navbar-dark bg-dark {{ app.session.flashbag.peek('success')|length > 0 or app.session.flashbag.peek('danger')|length > 0 ? '' : 'mb-3' }}">
+            <div class="container">
+                <a class="navbar-brand" href="{{ path('app_dashboard') }}">
+                    {{ 'cm.app_nav.title'|trans_app }}
+                </a>
+
+                <button class="navbar-toggler"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#top-navbar"
+                        aria-controls="top-navbar"
+                        aria-expanded="false"
+                        aria-label="{{ 'cm.app_nav.toggle'|trans_app }}">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="top-navbar">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    </ul>
+
+                    <div class="float-end m:w-100">
+                        <div class="float-start">
+                        </div>
+                        <div class="float-end">
+                            {{ render(controller('congregation_manager_app.controller.locale::renderPublicAction', {
+                                'routeName': app.request.attributes.get('_route'),
+                                'routeParameters': app.request.attributes.get('_route_params'),
+                            })) }}
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </nav>
+    </header>
+{% endblock %}
+
 {% block javascripts %}
     {{ encore_entry_script_tags('public', null, 'app') }}
 {% endblock %}
