@@ -8,6 +8,8 @@ use CongregationManager\Bundle\Core\Twig\LocaleExtension;
 use CongregationManager\Bundle\Core\Twig\LocaleRuntime;
 use CongregationManager\Bundle\Core\Twig\TestFormAttributeExtension;
 use CongregationManager\Bundle\Core\Twig\TestHtmlAttributeExtension;
+use CongregationManager\Bundle\Core\TwigExtension\ThemeExtension;
+use CongregationManager\Bundle\Core\TwigRuntime\ThemeRuntime;
 
 return static function (ContainerConfigurator $containerConfigurator): void {
     $services = $containerConfigurator->services();
@@ -32,5 +34,14 @@ return static function (ContainerConfigurator $containerConfigurator): void {
     $services->set('congregation_manager_core.twig_extension.test_html_attribute', TestHtmlAttributeExtension::class)
         ->args([param('kernel.environment')])
         ->tag('twig.extension')
+    ;
+
+    $services->set('congregation_manager_core.twig_extension.theme', ThemeExtension::class)
+        ->tag('twig.extension')
+    ;
+
+    $services->set('congregation_manager_core.twig_runtime.theme', ThemeRuntime::class)
+        ->args([service('congregation_manager_core.context.theme')])
+        ->tag('twig.runtime')
     ;
 };

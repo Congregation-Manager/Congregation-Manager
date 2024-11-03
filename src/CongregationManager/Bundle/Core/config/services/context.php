@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Symfony\Component\DependencyInjection\Loader\Configurator;
 
 use CongregationManager\Bundle\Core\Context\CongregationContext;
+use CongregationManager\Bundle\Core\Context\DateTimeThemeContext;
 use CongregationManager\Bundle\Core\Context\LocaleContext;
 
 return static function (ContainerConfigurator $containerConfigurator): void {
@@ -17,4 +18,13 @@ return static function (ContainerConfigurator $containerConfigurator): void {
     $services->set('congregation_manager_core.context.locale', LocaleContext::class)
         ->args([service('request_stack')])
     ;
+
+    $services->set('congregation_manager_core.context.date_time_theme', DateTimeThemeContext::class)
+        ->args([service('request_stack')])
+    ;
+
+    $services->alias(
+        'congregation_manager_core.context.theme',
+        'congregation_manager_core.context.date_time_theme',
+    );
 };
