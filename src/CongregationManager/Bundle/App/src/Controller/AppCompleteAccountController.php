@@ -16,17 +16,26 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 /** @psalm-suppress PropertyNotSetInConstructor */
 final class AppCompleteAccountController extends AbstractController
 {
+    use RequestPreferredLocaleTrait;
+
     private readonly SessionInterface $session;
 
+    /**
+     * @param string[] $availableLocales
+     */
     public function __construct(
-        private readonly RequestStack $requestStack,
+        RequestStack $requestStack,
         private readonly AppUserInvitationRepositoryInterface $appUserInvitationRepository,
         private readonly CreateAppUser $createAppUser,
-        private readonly EntityManagerInterface $entityManager
+        private readonly EntityManagerInterface $entityManager,
+        private readonly TranslatorInterface $translator,
+        private readonly string $defaultLocale,
+        private readonly array $availableLocales,
     ) {
         $this->session = $requestStack->getSession();
     }
@@ -38,7 +47,9 @@ final class AppCompleteAccountController extends AbstractController
             // loaded in a browser and potentially leaking the token to 3rd party JavaScript.
             $this->storeTokenInSession($token);
 
-            return $this->redirectToRoute('congregation_manager_app_complete_account');
+            return $this->redirectToRoute('congregation_manager_app_complete_account_localized', [
+                '_locale' => $this->getVisitorPreferredLocaleCode($request),
+            ]);
         }
         $token = $this->getTokenFromSession();
         if ($token === null) {
@@ -64,12 +75,11 @@ final class AppCompleteAccountController extends AbstractController
             // An app user invitation token should be used only once, remove it.
             $this->appUserInvitationRepository->remove($appUserInvitation);
 
-            $currentRequest = $this->requestStack->getCurrentRequest();
             $this->createAppUser->create(
                 $completeAccount->getBrother(),
                 $completeAccount->getEmail(),
                 $completeAccount->getPlainPassword(),
-                $currentRequest?->getLocale()
+                $request->getLocale()
             );
 
             $this->entityManager->flush();
@@ -77,7 +87,11 @@ final class AppCompleteAccountController extends AbstractController
             // The session is cleaned up after the password has been changed.
             $this->cleanSessionAfterReset();
 
-            return $this->redirectToRoute('congregation_manager_app_login');
+            $this->addFlash('success', $this->translator->trans('cm.ui.account_created_successfully', [], 'app'));
+
+            return $this->redirectToRoute('congregation_manager_app_login', [
+                '_locale' => $request->getLocale(),
+            ]);
         }
 
         return $this->render('@CongregationManagerApp/complete_account/complete.html.twig', [
@@ -104,5 +118,18 @@ final class AppCompleteAccountController extends AbstractController
     private function cleanSessionAfterReset(): void
     {
         $this->session->remove('CompleteAccountToken');
+    }
+
+    private function getDefaultLocale(): string
+    {
+        return $this->defaultLocale;
+    }
+
+    /**
+     * @return string[]
+     */
+    private function getAvailableLocales(): array
+    {
+        return $this->availableLocales;
     }
 }

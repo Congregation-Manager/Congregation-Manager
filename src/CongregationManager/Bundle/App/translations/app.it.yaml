@@ -142,6 +142,7 @@ cm:
         edit: 'Modifica'
         download_s_13: 'Scarica S-13'
         service_year: 'Anno di servizio'
+        account_created_successfully: 'Account creato con successo! Effettua il login per iniziare ad utilizzare Gestione Congregazione.'
     change_password:
         meta_title: 'Cambia password'
         title: 'Cambia password'

@@ -4,17 +4,15 @@ declare(strict_types=1);
 
 namespace CongregationManager\Bundle\Admin\Controller;
 
+use CongregationManager\Bundle\Admin\Notificator\MessageNotificatorInterface;
 use CongregationManager\Bundle\User\Action\CreateAppUserInvitation;
 use CongregationManager\Bundle\User\Form\InviteUserFormType;
 use CongregationManager\Component\Congregation\Domain\Repository\BrotherRepositoryInterface;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use Symfony\Component\Mailer\MailerInterface;
-use Symfony\Component\Mime\Address;
 
 /** @psalm-suppress PropertyNotSetInConstructor */
 final class AdminBrotherController extends AbstractController
@@ -23,7 +21,7 @@ final class AdminBrotherController extends AbstractController
         private readonly BrotherRepositoryInterface $brotherRepository,
         private readonly CreateAppUserInvitation $createAppUserInvitation,
         private readonly EntityManagerInterface $entityManager,
-        private readonly MailerInterface $mailer
+        private readonly MessageNotificatorInterface $messageNotificator,
     ) {
     }
 
@@ -65,16 +63,7 @@ final class AdminBrotherController extends AbstractController
             $this->entityManager->persist($appUserInvitation);
             $this->entityManager->flush();
 
-            $email = (new TemplatedEmail())
-                ->from(new Address('no-reply@congregation-manager.org', 'Congregation Manager'))
-                ->to($email)
-                ->subject('Your Congregation Manager invitation')
-                ->htmlTemplate('@CongregationManagerAdmin/email/app_user_invitation.html.twig')
-                ->context([
-                    'invitationToken' => $appUserInvitation->getToken(),
-                ])
-            ;
-            $this->mailer->send($email);
+            $this->messageNotificator->notifyAppUserInvitation($appUserInvitation, $request->getLocale());
 
             return $this->redirectToRoute('admin_brother_show', [
                 'id' => $brother->getId(),

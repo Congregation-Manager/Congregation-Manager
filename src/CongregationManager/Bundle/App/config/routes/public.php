@@ -56,11 +56,13 @@ return static function (RoutingConfigurator $routes): void {
         ->methods(['GET', 'POST'])
     ;
 
-    $routes->add('congregation_manager_app_complete_account', '/{_locale}/complete/account/{token}')
+    $routes->add('congregation_manager_app_complete_account', '/complete/account/{token}')
         ->controller(['congregation_manager_app.controller.complete_account', 'complete'])
-        ->defaults([
-            'token' => null,
-        ])
+        ->methods(['GET'])
+    ;
+
+    $routes->add('congregation_manager_app_complete_account_localized', '/{_locale}/complete/account')
+        ->controller(['congregation_manager_app.controller.complete_account', 'complete'])
         ->methods(['GET', 'POST'])
     ;
 };

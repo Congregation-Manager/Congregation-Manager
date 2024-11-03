@@ -1,9 +1,10 @@
-<h1>{{ 'cm.email.app_user_invitation.hello'|trans }}</h1>
+<h1>{{ 'cm.email.app_user_invitation.hello'|trans({}, null, localeCode) }}</h1>
 
-<p>{{ 'cm.email.app_user_invitation.intro'|trans }}</p>
+<p>{{ 'cm.email.app_user_invitation.intro'|trans({}, null, localeCode) }}</p>
 
-<a href="{{ url('congregation_manager_app_complete_account', {token: invitationToken}) }}">{{ url('congregation_manager_app_complete_account', {token: invitationToken}) }}</a>
+{% set url = url('congregation_manager_app_complete_account', {token: invitationToken}) %}
+<a href="{{ url }}">{{ url }}</a>
 
-<p>{{ 'cm.email.app_user_invitation.expire'|trans({'{expireIn}': 2 }) }}</p>
+<p>{{ 'cm.email.app_user_invitation.expire'|trans({'{expireIn}': 2 }, null, localeCode) }}</p>
 
-<p>{{ 'cm.email.app_user_invitation.greetings'|trans }}</p>
+<p>{{ 'cm.email.app_user_invitation.greetings'|trans({}, null, localeCode) }}</p>

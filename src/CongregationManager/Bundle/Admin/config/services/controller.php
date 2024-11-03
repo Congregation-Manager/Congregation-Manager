@@ -22,6 +22,7 @@ return static function (ContainerConfigurator $containerConfigurator): void {
             service('congregation_manager_congregation.repository.brother'),
             service('congregation_manager_user.create.app_user_invitation'),
             service('doctrine.orm.entity_manager'),
+            service('congregation_manager_admin.notificator.message'),
             service('mailer'),
         ])
         ->call('setContainer', [service(ContainerInterface::class)])

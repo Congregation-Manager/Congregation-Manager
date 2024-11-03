@@ -38,6 +38,9 @@ return static function (ContainerConfigurator $containerConfigurator): void {
             service('congregation_manager_user.repository.app_user_invitation'),
             service('congregation_manager_user.create_app_user'),
             service('doctrine.orm.entity_manager'),
+            service('translator'),
+            param('congregation_manager_core.default_locale'),
+            param('congregation_manager_core.available_locales'),
         ])
         ->call('setContainer', [service(ContainerInterface::class)])
         ->tag('container.service_subscriber')
