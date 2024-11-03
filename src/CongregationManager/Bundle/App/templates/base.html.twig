@@ -8,7 +8,7 @@
     <meta name="viewport" content="{% block meta_viewport %}width=device-width, initial-scale=1.0{% endblock %}">
     <meta name="theme-color" content="{% block meta_theme_color %}#ffffff{% endblock %}">
     <title>{% block title %}{{ 'cm.meta.title'|trans_app }}{% endblock %}</title>
-    <link rel="canonical" href="{% block canonical %}{{ app.request.uri }}{% endblock %}" />
+    <link rel="canonical" href="{% block canonical %}{{ app.request.uri }}{% endblock %}"/>
 
     <meta property="og:title" content="{% block meta_og_title %}{{ block('title') }}{% endblock %}" />
     <meta property="og:description" content="{% block meta_og_description %}{{ block('meta_description') }}{% endblock %}" />

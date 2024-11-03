@@ -21,6 +21,7 @@ final readonly class EmailMessageNotificator implements MessageNotificatorInterf
     ) {
     }
 
+    #[\Override]
     public function notifyAppUserInvitation(AppUserInvitation $appUserInvitation, string $localeCode): void
     {
         $email = (new TemplatedEmail())

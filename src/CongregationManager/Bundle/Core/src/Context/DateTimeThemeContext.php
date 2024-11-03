@@ -14,6 +14,7 @@ final readonly class DateTimeThemeContext implements ThemeContextInterface
     ) {
     }
 
+    #[\Override]
     public function useDarkTheme(): bool
     {
         $clientTimezone = $this->requestStack->getMainRequest()
