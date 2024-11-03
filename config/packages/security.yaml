@@ -1,7 +1,7 @@
 parameters:
-    security.admin_regex: "^/%app_admin.path_name%"
+    security.admin_regex: "^/%congregation_manager_admin.path_name%"
     security.admin_with_locale_regex: "%security.admin_regex%/(%congregation_manager_core.available_locales_regex%)"
-    security.app_regex: "^/(?!%congregation_manager_core.available_locales_regex%|%app_admin.path_name%)"
+    security.app_regex: "^/(?!%congregation_manager_core.available_locales_regex%|%congregation_manager_admin.path_name%)"
 
 security:
     # https://symfony.com/doc/current/security.html#registering-the-user-hashing-passwords
@@ -44,7 +44,7 @@ security:
                 secret: '%kernel.secret%'
                 name: ADMIN_REMEMBER_ME
                 lifetime: 2629746
-                path: '/%app_admin.path_name%'
+                path: '/%congregation_manager_admin.path_name%'
         app:
             lazy: true
             provider: app_user_provider

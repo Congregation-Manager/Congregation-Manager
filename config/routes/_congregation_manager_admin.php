@@ -8,5 +8,5 @@ use Symfony\Component\Routing\Loader\Configurator\RoutingConfigurator;
 
 return static function (RoutingConfigurator $routes): void {
     $routes->import('@CongregationManagerAdminBundle/config/routes.php')
-        ->prefix('/%app_admin.path_name%');
+        ->prefix('/%congregation_manager_admin.path_name%');
 };
