@@ -9,10 +9,14 @@
                 <h1>{{ 'cm.brother.invite_app_user.title'|trans({'{name}': brother}) }}</h1>
             </div>
         </div>
-        
-        {{ form_start(inviteUserForm) }}
-        {{ form_row(inviteUserForm.email, test_form_attribute('email')) }}
-        {{ form_row(inviteUserForm.submit, test_form_attribute('submit')) }}
-        {{ form_end(inviteUserForm) }}
+
+        <div class="row">
+            <div class="col-12 col-md-8 col-lg-6">
+                {{ form_start(inviteUserForm) }}
+                {{ form_row(inviteUserForm.email, test_form_attribute('email')) }}
+                {{ form_row(inviteUserForm.submit, test_form_attribute('submit')) }}
+                {{ form_end(inviteUserForm) }}
+            </div>
+        </div>
     </div>
 {% endblock %}

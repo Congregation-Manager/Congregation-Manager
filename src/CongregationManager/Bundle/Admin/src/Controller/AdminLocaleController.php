@@ -43,7 +43,11 @@ final class AdminLocaleController extends AbstractController
         }
         $session = $this->requestStack->getSession();
         $session->set('_locale', $locale);
+        $referer = $request->headers->get('referer');
+        if ($referer !== null) {
+            return $this->redirect($referer);
+        }
 
-        return $this->redirectToRoute('admin_dashboard');
+        return $this->redirectToRoute('congregation_manager_admin_dashboard');
     }
 }

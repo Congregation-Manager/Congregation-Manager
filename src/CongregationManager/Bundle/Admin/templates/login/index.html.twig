@@ -1,9 +1,8 @@
-{% extends '@CongregationManagerAdmin/base.html.twig' %}
+{% extends '@CongregationManagerAdmin/public.html.twig' %}
 
 {% block title %}{{ 'cm.admin_login.meta_title'|trans }}{% endblock %}
 
-{% block body %}
-
+{% block content %}
     <div class="row">
         <div class="col-12 col-md-8 col-lg-6 m-auto text-center mt-5">
 
@@ -13,8 +12,8 @@
                 </div>
             {% endif %}
 
-            <form action="{{ path('admin_login_check') }}" method="post">
-                <img class="mb-4" src="https://via.placeholder.com/72x57" alt="" width="72" height="57">
+            <form action="{{ path('congregation_manager_admin_login_check') }}" method="post">
+                {{ block('logo') }}
                 <h1 class="h3 mb-3 fw-normal">{{ 'cm.admin_login.title'|trans }}</h1>
 
                 <div class="form-floating">
@@ -42,12 +41,7 @@
     </div>
     <div class="row">
         <div class="col-12 col-md-8 col-lg-6 m-auto text-center mt-5">
-            <a href="{{ path('admin_forgot_password_request') }}">{{ 'cm.admin_login.forgot_password'|trans }}</a>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-12 col-md-8 col-lg-6 m-auto text-center mt-5">
-            {{ render(controller('congregation_manager_admin.controller.locale::renderAction')) }}
+            <a href="{{ path('congregation_manager_admin_forgot_password_request') }}">{{ 'cm.admin_login.forgot_password'|trans }}</a>
         </div>
     </div>
 {% endblock %}

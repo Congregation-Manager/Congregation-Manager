@@ -18,7 +18,7 @@ final class ResetPasswordPage extends SymfonyPage implements ResetPasswordPageIn
     #[\Override]
     public function getRouteName(): string
     {
-        return 'admin_reset_password';
+        return 'congregation_manager_admin_reset_password';
     }
 
     #[\Override]

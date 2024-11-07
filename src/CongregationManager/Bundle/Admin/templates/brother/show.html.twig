@@ -9,7 +9,7 @@
                 <h1>{{ brother }}</h1>
             </div>
         </div>
-        
+
         <div class="row mb-3">
             <div class="col-12 col-md-8 col-lg-6">
                 <ul>
@@ -18,7 +18,7 @@
                 </ul>
             </div>
         </div>
-        
+
         {% if brother.user %}
             <div class="card" style="width: 18rem;">
                 <div class="card-body">
@@ -36,7 +36,7 @@
             <div class="card" style="width: 18rem;">
                 <div class="card-body">
                     <h5 class="card-title">{{ 'cm.label.invite_user'|trans }}</h5>
-                    <a href="{{ path('admin_invite_app_user', {id: brother.id}) }}" class="btn btn-primary" {{ test_html_attribute('invite-user-button') }}>{{ 'cm.label.invite'|trans }}</a>
+                    <a href="{{ path('congregation_manager_admin_invite_app_user', {id: brother.id}) }}" class="btn btn-primary" {{ test_html_attribute('invite-user-button') }}>{{ 'cm.label.invite'|trans }}</a>
                 </div>
             </div>
         {% endif %}

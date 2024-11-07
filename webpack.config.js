@@ -35,6 +35,7 @@ Encore
     // public path used by the web server to access the output path
     .setPublicPath('/admin/build')
     .addEntry('admin', './src/CongregationManager/Bundle/Admin/assets/admin.js')
+    .addEntry('public', './src/CongregationManager/Bundle/Admin/assets/public.js')
     .splitEntryChunks()
     .enableSingleRuntimeChunk()
     .cleanupOutputBeforeBuild()

@@ -19,9 +19,7 @@ return static function (ContainerConfigurator $containerConfigurator): void {
         ->args([service('request_stack')])
     ;
 
-    $services->set('congregation_manager_core.context.date_time_theme', DateTimeThemeContext::class)
-        ->args([service('request_stack')])
-    ;
+    $services->set('congregation_manager_core.context.date_time_theme', DateTimeThemeContext::class);
 
     $services->alias(
         'congregation_manager_core.context.theme',

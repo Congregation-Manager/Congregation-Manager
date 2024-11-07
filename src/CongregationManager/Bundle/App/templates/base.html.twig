@@ -16,6 +16,8 @@
     <meta property="og:url" content="{% block meta_og_url %}{{ block('canonical') }}{% endblock %}" />
     <meta property="og:image" content="{% block meta_og_image %}{{ asset('app/build/images/logo.jpg', 'app') }}{% endblock %}" />
 
+    <meta name="robots" content="{% block meta_robots %}noindex,nofollow{% endblock %}">
+
     {% block favicon %}
     <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('app/build/favicon/apple-touch-icon.png', 'app') }}">
     <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('app/build/favicon/favicon-32x32.png', 'app') }}">

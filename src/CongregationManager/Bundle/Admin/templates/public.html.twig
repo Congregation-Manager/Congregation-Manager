@@ -1,0 +1,33 @@
+{% extends '@CongregationManagerAdmin/base.html.twig' %}
+
+{% block stylesheets %}
+    {{ encore_entry_link_tags('public', null, 'admin') }}
+{% endblock %}
+
+{% block logo %}
+    <img class="d-block mx-auto mb-4" src="{{ asset('admin/build/images/logo.jpg', 'admin') }}"
+         alt="{{ 'cm.logo.alt'|trans_admin }}"
+         title="{{ 'cm.logo.title'|trans_admin }}"
+         width="72"
+         height="57"
+         loading="eager"
+    >
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        {% block content %}
+        {% endblock %}
+    </div>
+
+    <div class="row">
+        <div class="col-12 col-md-8 col-lg-6 m-auto text-center mt-5">
+            {{ render(controller('congregation_manager_admin.controller.locale::renderAction')) }}
+        </div>
+    </div>
+{% endblock %}
+
+
+{% block javascripts %}
+    {{ encore_entry_script_tags('public', null, 'admin') }}
+{% endblock %}

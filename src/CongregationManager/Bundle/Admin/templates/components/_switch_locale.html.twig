@@ -1,23 +1,26 @@
 {% if locales|length > 1 %}
-    <li class="nav-item">
-        <div class="dropdown" {{ test_html_attribute('locale-selector') }}>
-            <a class="nav-link" href="#" id="dropdown-locale" data-bs-toggle="dropdown"
-               aria-expanded="false" {{ test_html_attribute('active-locale', active) }}>
-                <i class="bi bi-translate"></i>
-                {{ active|locale_name }}
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="dropdown-locale">
-                {% for locale in locales %}
-                    {% if locale is not same as(active) %}
-                        <li>
-                            <a class="dropdown-item"
-                               href="{{ path('admin_switch_locale', {'locale': locale}) }}" {{ test_html_attribute('available-locale', locale) }}>
-                                {{ locale|locale_name }} [{{ locale|locale_name(locale) }}]
-                            </a>
-                        </li>
-                    {% endif %}
-                {% endfor %}
-            </ul>
-        </div>
-    </li>
+    <div class="dropdown-center" {{ test_html_attribute('locale-selector') }}>
+        <a class="btn btn-primary dropdown-toggle btn-lg"
+           type="button"
+           id="dropdown-locale"
+           data-bs-toggle="dropdown"
+           aria-expanded="false"
+           {{ test_html_attribute('active-locale', active) }}>
+            <i class="bi bi-translate"></i>
+            {{ active|locale_name }}
+        </a>
+        <ul class="dropdown-menu" aria-labelledby="dropdown-locale">
+            {% for locale in locales %}
+                {% if locale is not same as(active) %}
+                    <li>
+                        <a class="dropdown-item"
+                           href="{{ path('congregation_manager_admin_switch_locale', {'locale': locale}) }}"
+                           {{ test_html_attribute('available-locale', locale) }}>
+                            {{ locale|locale_name }} <span style="font-style: italic">{{ locale|locale_name(locale) }}</span>
+                        </a>
+                    </li>
+                {% endif %}
+            {% endfor %}
+        </ul>
+    </div>
 {% endif %}

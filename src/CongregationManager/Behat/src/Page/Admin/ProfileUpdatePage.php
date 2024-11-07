@@ -18,7 +18,7 @@ final class ProfileUpdatePage extends SymfonyPage implements ProfileUpdatePageIn
     #[\Override]
     public function getRouteName(): string
     {
-        return 'admin_profile_update';
+        return 'congregation_manager_admin_profile_update';
     }
 
     #[\Override]

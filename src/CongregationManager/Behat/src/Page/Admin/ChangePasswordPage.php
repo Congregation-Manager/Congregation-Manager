@@ -18,7 +18,7 @@ final class ChangePasswordPage extends SymfonyPage implements ChangePasswordPage
     #[\Override]
     public function getRouteName(): string
     {
-        return 'admin_change_password';
+        return 'congregation_manager_admin_change_password';
     }
 
     #[\Override]

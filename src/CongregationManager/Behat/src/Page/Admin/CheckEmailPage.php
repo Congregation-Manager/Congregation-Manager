@@ -18,6 +18,6 @@ final class CheckEmailPage extends SymfonyPage implements CheckEmailPageInterfac
     #[\Override]
     public function getRouteName(): string
     {
-        return 'admin_check_email';
+        return 'congregation_manager_admin_check_email';
     }
 }

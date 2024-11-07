@@ -16,7 +16,7 @@
     <meta property="og:url" content="{% block meta_og_url %}{{ block('canonical') }}{% endblock %}" />
     <meta property="og:image" content="{% block meta_og_image %}{{ asset('admin/build/images/logo.jpg', 'admin') }}{% endblock %}" />
 
-    <meta name="robots" content="noindex,nofollow">
+    <meta name="robots" content="{% block meta_robots %}noindex,nofollow{% endblock %}">
 
     {% block favicon %}
         <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('admin/build/favicon/apple-touch-icon.png', 'admin') }}">
@@ -34,7 +34,7 @@
         {% block header %}
         <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
             <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3"
-               href="{{ path('admin_dashboard') }}">
+               href="{{ path('congregation_manager_admin_dashboard') }}">
                 {{ 'cm.admin_nav.title'|trans }}
             </a>
 
@@ -51,13 +51,13 @@
             <div class="w-100 row text-center">
                 <div class="col">
                     <a class="d-block text-decoration-none text-white"
-                       href="{{ path('admin_profile_update') }}">
+                       href="{{ path('congregation_manager_admin_profile_update') }}">
                         {{ 'cm.profile_update.title'|trans }}
                     </a>
                 </div>
                 <div class="col">
                     <a class="d-block text-decoration-none text-white"
-                       href="{{ path('admin_change_password') }}">
+                       href="{{ path('congregation_manager_admin_change_password') }}">
                         {{ 'cm.change_password.title'|trans }}
                     </a>
                 </div>
@@ -65,7 +65,7 @@
             <div class="navbar-nav">
                 <div class="nav-item text-nowrap">
                     <a class="nav-link px-3"
-                       href="{{ path('admin_logout') }}"
+                       href="{{ path('congregation_manager_admin_logout') }}"
                        {{ test_html_attribute('logout-button') }}>
                         {{ 'cm.admin_nav.logout'|trans }}
                     </a>
@@ -80,28 +80,28 @@
                     <div class="position-sticky pt-3">
                         <ul class="nav flex-column">
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ path('admin_dashboard') }}">
+                                <a class="nav-link" href="{{ path('congregation_manager_admin_dashboard') }}">
                                     <i class="bi bi-speedometer2"></i>
                                     {{ 'cm.label.dashboard'|trans }}
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ path('admin_congregation_index') }}">
+                                <a class="nav-link" href="{{ path('congregation_manager_admin_congregation_index') }}">
                                     <i class="bi bi-house-door"></i>
                                     {{ 'cm.congregation.title'|trans }}
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ path('admin_brother_index') }}">
+                                <a class="nav-link" href="{{ path('congregation_manager_admin_brother_index') }}">
                                     <i class="bi bi-people"></i>
                                     {{ 'cm.brother.title'|trans }}
                                 </a>
                             </li>
                         </ul>
 
-                        <ul class="nav flex-column mt-5">
+                        <div class="mt-5 d-flex justify-content-center">
                             {{ render(controller('congregation_manager_admin.controller.locale::renderAction')) }}
-                        </ul>
+                        </div>
                     </div>
                 </nav>
 

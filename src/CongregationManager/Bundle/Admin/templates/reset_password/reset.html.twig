@@ -1,21 +1,20 @@
-{% extends '@CongregationManagerAdmin/base.html.twig' %}
+{% extends '@CongregationManagerAdmin/public.html.twig' %}
 
 {% block title %}{{ 'cm.admin_reset_password.meta_title'|trans }}{% endblock %}
 
-{% block body %}
+{% block content %}
     <div class="container">
         <div class="row">
             <div class="col-12 col-md-8 col-lg-6 m-auto text-center mt-5">
-
-                {{ form_start(resetForm) }}
-                <img class="mb-4" src="https://via.placeholder.com/72x57" alt="" width="72" height="57">
+                {{ block('logo') }}
                 <h1 class="h3 mb-3 fw-normal">{{ 'cm.admin_reset_password.title'|trans }}</h1>
 
+                {{ form_start(resetForm) }}
                 {{ form_row(resetForm.plainPassword) }}
-
-                <button class="w-100 btn btn-lg btn-primary" type="submit">{{ 'cm.admin_reset_password.submit'|trans }}</button>
+                <button class="w-100 btn btn-lg btn-primary" type="submit">
+                    {{ 'cm.admin_reset_password.submit'|trans }}
+                </button>
                 {{ form_end(resetForm) }}
-
             </div>
         </div>
     </div>

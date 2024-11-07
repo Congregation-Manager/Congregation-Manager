@@ -91,7 +91,7 @@ class ResetAdminPasswordController extends AbstractController
             // loaded in a browser and potentially leaking the token to 3rd party JavaScript.
             $this->storeTokenInSession($token);
 
-            return $this->redirectToRoute('admin_reset_password');
+            return $this->redirectToRoute('congregation_manager_admin_reset_password');
         }
 
         $token = $this->getTokenFromSession();
@@ -108,7 +108,7 @@ class ResetAdminPasswordController extends AbstractController
                 $e->getReason()
             ));
 
-            return $this->redirectToRoute('admin_forgot_password_request');
+            return $this->redirectToRoute('congregation_manager_admin_forgot_password_request');
         }
 
         // The token is valid; allow the user to change their password.
@@ -144,7 +144,7 @@ class ResetAdminPasswordController extends AbstractController
             // The session is cleaned up after the password has been changed.
             $this->cleanSessionAfterReset();
 
-            return $this->redirectToRoute('admin_dashboard');
+            return $this->redirectToRoute('congregation_manager_admin_dashboard');
         }
 
         return $this->render('@CongregationManagerAdmin/reset_password/reset.html.twig', [
@@ -160,7 +160,7 @@ class ResetAdminPasswordController extends AbstractController
 
         // Do not reveal whether a user account was found or not.
         if (!$user) {
-            return $this->redirectToRoute('admin_check_email');
+            return $this->redirectToRoute('congregation_manager_admin_check_email');
         }
 
         try {
@@ -182,7 +182,7 @@ class ResetAdminPasswordController extends AbstractController
                 )
             );
 
-            return $this->redirectToRoute('admin_check_email');
+            return $this->redirectToRoute('congregation_manager_admin_check_email');
         }
 
         $email = (new TemplatedEmail())
@@ -200,6 +200,6 @@ class ResetAdminPasswordController extends AbstractController
         // Store the token object in session for retrieval in check-email route.
         $this->setTokenObjectInSession($resetToken);
 
-        return $this->redirectToRoute('admin_check_email');
+        return $this->redirectToRoute('congregation_manager_admin_check_email');
     }
 }

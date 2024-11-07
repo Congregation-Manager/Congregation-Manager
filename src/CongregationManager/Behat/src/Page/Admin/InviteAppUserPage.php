@@ -11,7 +11,7 @@ final class InviteAppUserPage extends SymfonyPage implements InviteAppUserPageIn
     #[\Override]
     public function getRouteName(): string
     {
-        return 'admin_invite_app_user';
+        return 'congregation_manager_admin_invite_app_user';
     }
 
     #[\Override]

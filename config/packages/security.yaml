@@ -32,12 +32,12 @@ security:
             provider: admin_user_provider
             pattern: "%security.admin_regex%"
             form_login:
-                login_path: admin_login
-                check_path: admin_login_check
+                login_path: congregation_manager_admin_login
+                check_path: congregation_manager_admin_login_check
                 enable_csrf: true
-                default_target_path: admin_dashboard
+                default_target_path: congregation_manager_admin_dashboard
             logout:
-                path: admin_logout
+                path: congregation_manager_admin_logout
                 target: congregation_manager_app_homepage
                 invalidate_session: false
             remember_me:

@@ -12,7 +12,7 @@ final class BrotherShowPage extends SymfonyPage implements BrotherShowPageInterf
     #[\Override]
     public function getRouteName(): string
     {
-        return 'admin_brother_show';
+        return 'congregation_manager_admin_brother_show';
     }
 
     #[\Override]

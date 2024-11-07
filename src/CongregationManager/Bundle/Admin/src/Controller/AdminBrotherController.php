@@ -65,7 +65,7 @@ final class AdminBrotherController extends AbstractController
 
             $this->messageNotificator->notifyAppUserInvitation($appUserInvitation, $request->getLocale());
 
-            return $this->redirectToRoute('admin_brother_show', [
+            return $this->redirectToRoute('congregation_manager_admin_brother_show', [
                 'id' => $brother->getId(),
             ]);
         }

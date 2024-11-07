@@ -9,7 +9,7 @@
                 <h1>{{ 'cm.congregation.title'|trans }}</h1>
             </div>
         </div>
-        
+
         <div class="row mb-3">
             <div class="col-12 col-md-8 col-lg-6">
                 <table class="table">
@@ -17,6 +17,7 @@
                     <tr>
                         <th scope="col">{{ 'cm.label.id'|trans }}</th>
                         <th scope="col">{{ 'cm.label.name'|trans }}</th>
+                        <th scope="col">{{ 'cm.label.actions'|trans }}</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -24,7 +25,7 @@
                         <tr>
                             <th scope="row">{{ congregation.id }}</th>
                             <td>{{ congregation.name }}</td>
-                            <td><a href="{{ path('admin_congregation_show', {id: congregation.id}) }}">{{ 'cm.label.view'|trans }}</a></td>
+                            <td><a href="{{ path('congregation_manager_admin_congregation_show', {id: congregation.id}) }}">{{ 'cm.label.view'|trans }}</a></td>
                         </tr>
                     {% endfor %}
                     </tbody>

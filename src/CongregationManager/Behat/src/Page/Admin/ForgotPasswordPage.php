@@ -18,7 +18,7 @@ final class ForgotPasswordPage extends SymfonyPage implements ForgotPasswordPage
     #[\Override]
     public function getRouteName(): string
     {
-        return 'admin_forgot_password_request';
+        return 'congregation_manager_admin_forgot_password_request';
     }
 
     #[\Override]
