@@ -87,7 +87,10 @@ final class AppCompleteAccountController extends AbstractController
             // The session is cleaned up after the password has been changed.
             $this->cleanSessionAfterReset();
 
-            $this->addFlash('success', $this->translator->trans('cm.ui.account_created_successfully', [], 'app'));
+            $this->addFlash(
+                'success',
+                $this->translator->trans('congregation_manager_app.ui.account_created_successfully', [], 'app')
+            );
 
             return $this->redirectToRoute('congregation_manager_app_login', [
                 '_locale' => $request->getLocale(),

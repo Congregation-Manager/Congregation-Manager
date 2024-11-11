@@ -24,7 +24,7 @@ final readonly class EmailMessageNotificator implements MessageNotificatorInterf
     }
 
     #[\Override]
-    public function notifyAppUserInvitation(AppUserInvitation $appUserInvitation, string $localeCode): void
+    public function notifyAppInvitation(AppUserInvitation $appUserInvitation, string $localeCode): void
     {
         $email = (new TemplatedEmail())
             ->from(new Address(
@@ -55,7 +55,7 @@ final readonly class EmailMessageNotificator implements MessageNotificatorInterf
     }
 
     #[\Override]
-    public function notifyAdminUserNotifyToken(
+    public function notifyUserResetPasswordToken(
         AdminUserInterface $user,
         ResetPasswordToken $resetPasswordToken,
         string $localeCode,

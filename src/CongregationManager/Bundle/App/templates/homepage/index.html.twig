@@ -4,17 +4,19 @@
     <div class="container">
         <div class="px-4 py-5 my-5 text-center">
             {{ block('logo') }}
-            <h1 class="display-5 fw-bold">{{ 'cm.homepage.title'|trans_app }}</h1>
+            <h1 class="display-5 fw-bold">{{ 'congregation_manager_app.ui.congregation_manager'|trans_app }}</h1>
             <div class="col-lg-6 mx-auto">
-                <p class="lead mb-4">{{ 'cm.homepage.subtitle'|trans_app }}</p>
+                <p class="lead mb-4">{{ 'congregation_manager_app.ui.short_caption'|trans_app }}</p>
                 <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
                     <a href="{{ path('congregation_manager_app_login') }}">
-                        <button type="button"
-                                class="btn btn-primary btn-lg px-4 gap-3">{{ 'cm.homepage.login'|trans_app }}</button>
+                        <button type="button" class="btn btn-primary btn-lg px-4 gap-3">
+                            {{ 'congregation_manager_app.ui.already_subscribed_login'|trans_app }}
+                        </button>
                     </a>
                     <a href="{{ path('congregation_manager_app_homepage') }}">
-                        <button type="button"
-                                class="btn btn-outline-secondary btn-lg px-4">{{ 'cm.homepage.register'|trans_app }}</button>
+                        <button type="button" class="btn btn-outline-secondary btn-lg px-4">
+                            {{ 'congregation_manager_app.ui.request_access'|trans_app }}
+                        </button>
                     </a>
                 </div>
             </div>

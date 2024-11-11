@@ -1,6 +1,8 @@
 {% extends '@CongregationManagerApp/public.html.twig' %}
 
-{% block title %}{{ 'cm.app_forgot_password.meta_title'|trans_app }}{% endblock %}
+{% block title %}{{ 'congregation_manager_app.ui.forgot_password'|trans_app }}{% endblock %}
+
+{% block meta_robots %}noindex,nofollow{% endblock %}
 
 {% block content %}
     <div class="container">
@@ -13,25 +15,29 @@
                     </div>
                 {% endfor %}
 
+                {{ block('logo') }}
+                <h1 class="h3 mb-3 fw-normal">{{ 'congregation_manager_app.ui.forgot_password'|trans_app }}</h1>
+
                 {{ form_start(requestForm) }}
-                    <img class="mb-4" src="https://via.placeholder.com/72x57" alt="" width="72" height="57">
-                    <h1 class="h3 mb-3 fw-normal">{{ 'cm.app_forgot_password.title'|trans_app }}</h1>
+                {{ form_row(requestForm.email) }}
 
-                    {{ form_row(requestForm.email) }}
+                <div class="mt-2 mb-2">
+                    <small>
+                        {{ 'congregation_manager_app.ui.insert_your_email_to_recover_password'|trans_app }}
+                    </small>
+                </div>
 
-                    <div class="mt-2 mb-2">
-                        <small>
-                            {{ 'cm.app_forgot_password.help'|trans_app }}
-                        </small>
-                    </div>
-
-                    <button class="w-100 btn btn-lg btn-primary" type="submit">{{ 'cm.app_forgot_password.submit'|trans_app }}</button>
+                <button class="w-100 btn btn-lg btn-primary" type="submit">
+                    {{ 'congregation_manager_app.ui.recover_password'|trans_app }}
+                </button>
                 {{ form_end(requestForm) }}
             </div>
         </div>
         <div class="row">
             <div class="col-12 col-md-8 col-lg-6 m-auto text-center mt-5">
-                <a href="{{ path('congregation_manager_app_login') }}">{{ 'cm.app_forgot_password.signin'|trans_app }}</a>
+                <a href="{{ path('congregation_manager_app_login') }}">
+                    {{ 'congregation_manager_app.ui.click_here_if_you_already_have_credentials'|trans_app }}
+                </a>
             </div>
         </div>
     </div>

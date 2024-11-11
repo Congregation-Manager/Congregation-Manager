@@ -1,0 +1,55 @@
+<?php
+
+declare(strict_types=1);
+
+return [
+    'congregation_manager_app' => [
+        'email' => [
+            'from_name' => 'Gestione Congregazione',
+            'reset_password' => [
+                'subject' => 'Richiesta di recupero della parola chiave segreta (password)',
+                'hello' => 'Ciao!',
+                'intro' => 'Hai ricevuto questa email perché abbiamo ricevuto una richiesta di recupero della tua parola chiave segreta (password) per il tuo utente.',
+                'action' => 'Per recuperare la tua parola chiave segreta (password), clicca sul seguente collegamento:',
+                'expire' => 'Questo collegamento scadrà automaticamente entro {expireIn}.',
+                'ignore_request' => 'Se non hai richiesto un recupero della tua parola chiave segreta (password), non è necessario fare nulla. La tua parola chiave segreta (password) rimarrà invariata.',
+                'greetings' => 'Saluti!',
+            ],
+        ],
+        'meta' => [
+            'description' => "Gestione Congregazione è uno strumento online per gestire e semplificare i flussi all'interno di una congregazione.",
+            'keywords' => 'Gestione Congregazione, Congregazione, Territori, Fratelli, Sorelle, Rapporti',
+            'author' => 'Gestione Congregazione',
+            'title' => 'Gestione Congregazione',
+        ],
+        'ui' => [
+            'congregation_manager' => 'Gestione Congregazione',
+            'toggle' => 'Attiva/Disattiva navigazione',
+            'congregation_manager_logo' => 'Logo Gestione Congregazione',
+            'short_caption' => "Gestione Congregazione è uno strumento online per gestire e semplificare i flussi all'interno di una congregazione.",
+            'already_subscribed_login' => 'Sei già iscritto? Accedi!',
+            'request_access' => 'Non hai le credenziali? Richiedi un accesso per la tua congregazione.',
+            'sign_in_to_start_use_congregation_manager' => 'Accedi per iniziare ad utilizzare Gestione Congregazione',
+            'email_address' => 'Indirizzo di posta elettronica (email)',
+            'email_placeholder' => 'Inserisci il tuo indirizzo di posta elettronica (email)',
+            'password' => 'Parola chiave segreta (password)',
+            'password_placeholder' => 'Inserisci la tua parola chiave segreta (password)',
+            'remember_me_on_this_device' => 'Ricordami su questo dispositivo (assicurarsi di selezionare questa spunta solo quando ci si sta autenticando su dispositivi personali protetti da un sistema di autenticazione)',
+            'signin' => 'Autenticati',
+            'login' => 'Accedi',
+            'forgot_password' => 'Hai dimenticato la tua parola chiave (password)?',
+            'insert_your_email_to_recover_password' => 'Inserisci il tuo indirizzo di posta elettronica e ti invieremo un collegamento per generare una nuova parola chiave (password).',
+            'recover_password' => 'Recupera parola chiave (password)',
+            'click_here_if_you_already_have_credentials' => 'Clicca qui per autenticarti se hai già delle credenziali',
+            'check_your_email' => 'Controlla la tua posta elettronica (email)',
+            'reset_password_instructions' => "Se esiste un utente con l'indirizzo di posta elettronica che hai inserito, allora una email è stata inviata con al suo interno un collegamento che puoi usare per generare una nuova password. Questo collegamento scadrà automaticamente entro {expiresIn}.",
+            'reset_password_try_again' => "Se non hai ricevuto l'email, ti preghiamo di controllare la tua cartella di posta indesiderata o di <a href=\"{link}\">riprovare</a> fra qualche minuto.",
+            'reset_password' => 'Genera una nuova parola chiave (password) per accedere a Gestione Congregazione',
+            'save' => 'Salva',
+            'current_password' => 'Parola chiave segreta (password) attuale',
+            'new_password' => 'Nuova parola chiave segreta (password)',
+            'repeat_password' => 'Ripeti la nuova parola chiave segreta (password)',
+            'password_restored_successfully' => 'La tua parola chiave segreta (password) è stata reimpostata con successo!',
+        ],
+    ],
+];

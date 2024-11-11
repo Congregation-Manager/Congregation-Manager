@@ -56,7 +56,7 @@ final class AppChangePasswordController extends AbstractController
             $user->setPassword($encodedPassword);
             $this->entityManager->flush();
 
-            $this->addFlash('success', $this->translator->trans('cm.ui.update_success'));
+            $this->addFlash('success', $this->translator->trans('congregation_manager_app.ui.update_success'));
 
             return $this->redirectToRoute('app_dashboard');
         }

@@ -99,9 +99,9 @@ return static function (ContainerConfigurator $containerConfigurator): void {
         ->args([
             service('symfonycasts.reset_password.helper'),
             service('doctrine.orm.entity_manager'),
-            service('mailer'),
             service('security.user_password_hasher'),
             service('logger'),
+            service('congregation_manager_app.notificator.message'),
         ])
         ->call('setContainer', [service(ContainerInterface::class)])
         ->tag('container.service_subscriber')

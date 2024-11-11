@@ -84,7 +84,7 @@ return [
             'invite_user_to_app' => 'Invite user to Congregation Manager',
             'invite' => 'Invite',
             'invitation_sent' => 'Invitation sent',
-            'invitation_sent_successfully' => "The invitation has been sent successfully!",
+            'invitation_sent_successfully' => 'The invitation has been sent successfully!',
             'user' => 'User',
             'name' => 'Name',
             'congregation_with_name' => 'Congregation {name}',

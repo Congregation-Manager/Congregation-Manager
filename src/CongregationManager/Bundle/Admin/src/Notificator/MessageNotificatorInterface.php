@@ -10,9 +10,9 @@ use SymfonyCasts\Bundle\ResetPassword\Model\ResetPasswordToken;
 
 interface MessageNotificatorInterface
 {
-    public function notifyAppUserInvitation(AppUserInvitation $appUserInvitation, string $localeCode): void;
+    public function notifyAppInvitation(AppUserInvitation $appUserInvitation, string $localeCode): void;
 
-    public function notifyAdminUserNotifyToken(
+    public function notifyUserResetPasswordToken(
         AdminUserInterface $user,
         ResetPasswordToken $resetPasswordToken,
         string $localeCode,

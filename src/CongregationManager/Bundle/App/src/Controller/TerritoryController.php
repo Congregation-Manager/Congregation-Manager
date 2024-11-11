@@ -92,7 +92,7 @@ final class TerritoryController extends AbstractController
             'choices' => $years,
             'placeholder' => false,
             'required' => true,
-            'label' => 'cm.ui.service_year',
+            'label' => 'congregation_manager_app.ui.service_year',
         ]);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {

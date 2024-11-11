@@ -4,7 +4,7 @@
         {% set accordionSelected = form.areas.vars['value'] is not empty %}
         <h2 class="accordion-header" id="area-heading">
             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-area" aria-expanded="true" aria-controls="collapse-area">
-                {{ 'cm.ui.area'|trans_app }}{% if accordionSelected %} <span class="me-1 badge bg-primary">{{ form.areas.vars['value']|length }}</span>{%endif%}
+                {{ 'congregation_manager_app.ui.area'|trans_app }}{% if accordionSelected %} <span class="me-1 badge bg-primary">{{ form.areas.vars['value']|length }}</span>{%endif%}
             </button>
         </h2>
         <div id="collapse-area" class="accordion-collapse collapse" aria-labelledby="area-heading" data-bs-parent="#accordion-filter">
@@ -17,7 +17,7 @@
         {% set accordionSelected = form.notAssigned.vars['value'] is not empty or form.assignedTo.vars['value'] is not empty %}
         <h2 class="accordion-header" id="assignment-heading">
             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-assignment" aria-expanded="true" aria-controls="collapse-assignment">
-                {{ 'cm.ui.status'|trans_app }}{% if accordionSelected %} <span class="me-1 badge bg-primary">{{ form.notAssigned.vars['value']|length + (form.assignedTo.vars['value'] is not empty ? 1 : 0) }}</span>{%endif%}
+                {{ 'congregation_manager_app.ui.status'|trans_app }}{% if accordionSelected %} <span class="me-1 badge bg-primary">{{ form.notAssigned.vars['value']|length + (form.assignedTo.vars['value'] is not empty ? 1 : 0) }}</span>{%endif%}
             </button>
         </h2>
         <div id="collapse-assignment" class="accordion-collapse collapse" aria-labelledby="assignment-heading" data-bs-parent="#accordion-filter">
@@ -31,7 +31,7 @@
 <div class="d-grid gap-2 mt-2">
     {{ form_widget(form.filter) }}
     <a class="btn btn-secondary" href="{{ path('app_territory_index') }}">
-        {{ 'cm.ui.show_all'|trans_app }}
+        {{ 'congregation_manager_app.ui.show_all'|trans_app }}
     </a>
 </div>
 {{ form_end(form) }}

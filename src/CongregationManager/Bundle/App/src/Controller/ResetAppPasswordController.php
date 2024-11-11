@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace CongregationManager\Bundle\App\Controller;
 
+use CongregationManager\Bundle\App\Notificator\MessageNotificatorInterface;
 use CongregationManager\Bundle\User\Entity\AppUser;
 use CongregationManager\Bundle\User\Entity\UserInterface;
 use CongregationManager\Bundle\User\Form\ChangePasswordFormType;
@@ -11,13 +12,10 @@ use CongregationManager\Bundle\User\Form\ResetPasswordRequestFormType;
 use CongregationManager\Component\User\Domain\Exception\UserInstanceNotValid;
 use Doctrine\ORM\EntityManagerInterface;
 use Psr\Log\LoggerInterface;
-use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Mailer\MailerInterface;
-use Symfony\Component\Mime\Address;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use SymfonyCasts\Bundle\ResetPassword\Controller\ResetPasswordControllerTrait;
 use SymfonyCasts\Bundle\ResetPassword\Exception\ResetPasswordExceptionInterface;
@@ -29,11 +27,11 @@ class ResetAppPasswordController extends AbstractController
     use ResetPasswordControllerTrait;
 
     public function __construct(
-        private ResetPasswordHelperInterface $resetPasswordHelper,
-        private EntityManagerInterface $entityManager,
-        private MailerInterface $mailer,
-        private UserPasswordHasherInterface $userPasswordHasher,
-        private LoggerInterface $logger
+        private readonly ResetPasswordHelperInterface $resetPasswordHelper,
+        private readonly EntityManagerInterface $entityManager,
+        private readonly UserPasswordHasherInterface $userPasswordHasher,
+        private readonly LoggerInterface $logger,
+        private readonly MessageNotificatorInterface $messageNotificator,
     ) {
     }
 
@@ -56,7 +54,7 @@ class ResetAppPasswordController extends AbstractController
                 ));
             }
 
-            return $this->processSendingPasswordResetEmail($emailFormData, $this->mailer);
+            return $this->processSendingPasswordResetEmail($emailFormData, $request->getLocale());
         }
 
         return $this->render('@CongregationManagerApp/reset_password/request.html.twig', [
@@ -152,8 +150,10 @@ class ResetAppPasswordController extends AbstractController
         ]);
     }
 
-    private function processSendingPasswordResetEmail(string $emailFormData, MailerInterface $mailer): RedirectResponse
-    {
+    private function processSendingPasswordResetEmail(
+        string $emailFormData,
+        string $currentLocaleCode
+    ): RedirectResponse {
         $user = $this->entityManager->getRepository(AppUser::class)->findOneBy([
             'email' => $emailFormData,
         ]);
@@ -185,17 +185,11 @@ class ResetAppPasswordController extends AbstractController
             return $this->redirectToRoute('congregation_manager_app_check_email');
         }
 
-        $email = (new TemplatedEmail())
-            ->from(new Address('no-reply@congregation-manager.org', 'Congregation Manager'))
-            ->to($user->getEmail())
-            ->subject('Your password reset request')
-            ->htmlTemplate('@CongregationManagerApp/email/reset_password.html.twig')
-            ->context([
-                'resetToken' => $resetToken,
-            ])
-        ;
-
-        $mailer->send($email);
+        $this->messageNotificator->notifyUserResetPasswordToken(
+            $user,
+            $resetToken,
+            $user->getLocaleCode() ?? $currentLocaleCode
+        );
 
         // Store the token object in session for retrieval in check-email route.
         $this->setTokenObjectInSession($resetToken);

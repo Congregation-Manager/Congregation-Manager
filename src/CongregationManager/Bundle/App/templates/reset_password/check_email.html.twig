@@ -1,19 +1,24 @@
 {% extends '@CongregationManagerApp/public.html.twig' %}
 
-{% block title %}{{ 'cm.congregation_manager_app_check_email.meta_title'|trans_app }}{% endblock %}
+{% block title %}{{ 'congregation_manager_app.ui.check_your_email'|trans_app }}{% endblock %}
+
+{% block meta_robots %}noindex,nofollow{% endblock %}
 
 {% block content %}
     <div class="container">
         <div class="row">
             <div class="col-12 col-md-8 col-lg-6 m-auto text-center mt-5">
 
+                {{ block('logo') }}
+                <h1 class="h3 mb-3 fw-normal">{{ 'congregation_manager_app.ui.check_your_email'|trans_app }}</h1>
+
                 <p>
-                    {{ 'cm.congregation_manager_app_check_email.instructions'|trans_app({
-                        '{expiresIn}': resetToken.expirationMessageKey|trans_app(resetToken.expirationMessageData, 'ResetPasswordBundle'),
+                    {{ 'congregation_manager_app.ui.reset_password_instructions'|trans_app({
+                        '{expiresIn}': resetToken.expirationMessageKey|trans(resetToken.expirationMessageData, 'ResetPasswordBundle'),
                     })|raw }}
                 </p>
                 <p>
-                    {{ 'cm.congregation_manager_app_check_email.try_again'|trans_app({
+                    {{ 'congregation_manager_app.ui.reset_password_try_again'|trans_app({
                         '{link}': path('congregation_manager_app_forgot_password_request'),
                     })|raw }}
                 </p>

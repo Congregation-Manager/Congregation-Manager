@@ -190,7 +190,7 @@ class ResetAdminPasswordController extends AbstractController
             return $this->redirectToRoute('congregation_manager_admin_check_email');
         }
 
-        $this->messageNotificator->notifyAdminUserNotifyToken(
+        $this->messageNotificator->notifyUserResetPasswordToken(
             $user,
             $resetToken,
             $user->getLocaleCode() ?? $currentLocale,

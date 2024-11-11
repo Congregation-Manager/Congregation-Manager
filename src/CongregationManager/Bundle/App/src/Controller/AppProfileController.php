@@ -42,7 +42,7 @@ final class AppProfileController extends AbstractController
 
         if ($updateProfileForm->isSubmitted() && $updateProfileForm->isValid()) {
             $this->entityManager->flush();
-            $this->addFlash('success', $this->translator->trans('cm.ui.update_success'));
+            $this->addFlash('success', $this->translator->trans('congregation_manager_app.ui.update_success'));
 
             return $this->redirectToRoute('app_dashboard');
         }

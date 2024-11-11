@@ -65,7 +65,7 @@ final class AdminBrotherController extends AbstractController
             $this->entityManager->persist($appUserInvitation);
             $this->entityManager->flush();
 
-            $this->messageNotificator->notifyAppUserInvitation($appUserInvitation, $request->getLocale());
+            $this->messageNotificator->notifyAppInvitation($appUserInvitation, $request->getLocale());
 
             $this->addFlash(
                 'success',

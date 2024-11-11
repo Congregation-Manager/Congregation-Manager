@@ -1,31 +1,31 @@
 {% extends '@CongregationManagerApp/base.html.twig' %}
 
-{% block title %}{{ 'cm.meta_title.territory_show'|trans_app({':number': territory.number}) }}{% endblock %}
+{% block title %}{{ 'congregation_manager_app.meta_title.territory_show'|trans_app({':number': territory.number}) }}{% endblock %}
 
 {% block content %}
     <div class="container">
         <div class="row">
             <div class="col-12">
-                <h1>{{ 'cm.ui.territory_with_number'|trans_app({':number': territory.number}) }} <span
+                <h1>{{ 'congregation_manager_app.ui.territory_with_number'|trans_app({':number': territory.number}) }} <span
                         class="badge badge-{% if territory.available %}success{% else %}secondary{% endif %}">
-                        {% if territory.available %}{{ 'cm.ui.not_assigned'|trans_app }}{% else %}{{ 'cm.ui.assigned'|trans_app }}{% endif %}
+                        {% if territory.available %}{{ 'congregation_manager_app.ui.not_assigned'|trans_app }}{% else %}{{ 'congregation_manager_app.ui.assigned'|trans_app }}{% endif %}
                     </span></h1>
             </div>
         </div>
         <dl class="row mt-4">
-            <dt class="col-sm-2">{{ 'cm.ui.area'|trans_app }}</dt>
+            <dt class="col-sm-2">{{ 'congregation_manager_app.ui.area'|trans_app }}</dt>
             <dd class="col-sm-10">{{ territory.area.name }}</dd>
 
-            <dt class="col-sm-2">{{ 'cm.ui.description'|trans_app }}</dt>
+            <dt class="col-sm-2">{{ 'congregation_manager_app.ui.description'|trans_app }}</dt>
             <dd class="col-sm-10">{{ territory.description }}</dd>
         </dl>
         <div class="row mt-4">
             <table class="table table-striped">
                 <thead>
                 <tr>
-                    <th scope="col">{{ 'cm.ui.brother'|trans_app }}</th>
-                    <th scope="col">{{ 'cm.ui.assignment_date'|trans_app }}</th>
-                    <th scope="col">{{ 'cm.ui.revocation_date'|trans_app }}</th>
+                    <th scope="col">{{ 'congregation_manager_app.ui.brother'|trans_app }}</th>
+                    <th scope="col">{{ 'congregation_manager_app.ui.assignment_date'|trans_app }}</th>
+                    <th scope="col">{{ 'congregation_manager_app.ui.revocation_date'|trans_app }}</th>
                     <th></th>
                 </tr>
                 </thead>
@@ -35,7 +35,7 @@
                         <th scope="row" {{ test_html_attribute('territory-assignment-brother', territoryAssignment.brother) }}>{{ territoryAssignment.brother }}</th>
                         <td {{ test_html_attribute('territory-assignment-assignment-date', territoryAssignment.assignmentDate|date()) }}>{{ territoryAssignment.assignmentDate|format_date }}</td>
                         <td>{{ territoryAssignment.revocationDate ? territoryAssignment.revocationDate|format_date : '' }}</td>
-                        <td><a href="{{ path('app_territory_assignment_update', {'id': territoryAssignment.id}) }}">{{ 'cm.ui.edit'|trans_app }}</a> </td>
+                        <td><a href="{{ path('app_territory_assignment_update', {'id': territoryAssignment.id}) }}">{{ 'congregation_manager_app.ui.edit'|trans_app }}</a> </td>
                     </tr>
                 {% endfor %}
                 </tbody>

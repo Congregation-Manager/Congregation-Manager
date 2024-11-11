@@ -1,12 +1,4 @@
 cm:
-    meta:
-        title: 'Gestione Congregazione'
-        description: 'Gestione Congregazione è uno strumento online per gestire e semplificare i flussi all''interno di una congregazione.'
-        author: 'Gestione Congregazione'
-        keywords: 'Gestione Congregazione, Congregazione, Territori, Fratelli, Sorelle, Rapporti'
-    logo:
-        alt: 'Logo Gestione Congregazione'
-        title: 'Logo Gestione Congregazione'
     login:
         meta_title: 'Accedi'
         title: 'Per favore, inserisci le tue credenziali ed accedi alla tua congregazione'
@@ -24,12 +16,6 @@ cm:
             meta_title: 'Congregazioni'
         show:
             meta_title: 'Congregazione {name}'
-    homepage:
-        meta_title: 'Gestione Congregazione'
-        title: 'Gestione Congregazione'
-        subtitle: 'Gestione Congregazione è uno strumento online per gestire e semplificare i flussi all''interno di una congregazione.'
-        login: 'Sei già iscritto? Accedi!'
-        register: 'Non hai accesso? Richiedi un accesso per la tua congregazione.'
     admin_login:
         meta_title: 'Accedi'
         title: 'Per favore, inserisci le tue credenziali'

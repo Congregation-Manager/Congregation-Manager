@@ -2,12 +2,12 @@
 <html lang="{% block language %}{{ app.request.locale|slice(0, 2) }}{% endblock %}" {% if use_dark_theme() %}data-bs-theme="dark"{% endif %}>
 <head>
     <meta charset="{% block charset %}UTF-8{% endblock %}">
-    <meta name="description" content="{% block meta_description %}{{ 'cm.meta.description'|trans_app }}{% endblock %}">
-    <meta name="keywords" content="{% block meta_keywords %}{{ 'cm.meta.keywords'|trans_app }}{% endblock %}">
-    <meta name="author" content="{% block meta_author %}{{ 'cm.meta.author'|trans_app }}{% endblock %}">
+    <meta name="description" content="{% block meta_description %}{{ 'congregation_manager_app.meta.description'|trans_app }}{% endblock %}">
+    <meta name="keywords" content="{% block meta_keywords %}{{ 'congregation_manager_app.meta.keywords'|trans_app }}{% endblock %}">
+    <meta name="author" content="{% block meta_author %}{{ 'congregation_manager_app.meta.author'|trans_app }}{% endblock %}">
     <meta name="viewport" content="{% block meta_viewport %}width=device-width, initial-scale=1.0{% endblock %}">
     <meta name="theme-color" content="{% block meta_theme_color %}#ffffff{% endblock %}">
-    <title>{% block title %}{{ 'cm.meta.title'|trans_app }}{% endblock %}</title>
+    <title>{% block title %}{{ 'congregation_manager_app.meta.title'|trans_app }}{% endblock %}</title>
     <link rel="canonical" href="{% block canonical %}{{ app.request.uri }}{% endblock %}"/>
 
     <meta property="og:title" content="{% block meta_og_title %}{{ block('title') }}{% endblock %}" />
@@ -35,9 +35,9 @@
         <header>
             <nav class="navbar navbar-expand-md navbar-dark bg-dark {{ app.session.flashbag.peek('success')|length > 0 or app.session.flashbag.peek('danger')|length > 0 ? '' : 'mb-3' }}">
                 <div class="container">
-                    <a class="navbar-brand" href="{{ path('app_dashboard') }}">{{ 'cm.app_nav.title'|trans_app }}</a>
+                    <a class="navbar-brand" href="{{ path('app_dashboard') }}">{{ 'congregation_manager_app.app_nav.title'|trans_app }}</a>
 
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#top-navbar" aria-controls="top-navbar" aria-expanded="false" aria-label="{{ 'cm.app_nav.toggle'|trans_app }}">
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#top-navbar" aria-controls="top-navbar" aria-expanded="false" aria-label="{{ 'congregation_manager_app.app_nav.toggle'|trans_app }}">
                         <span class="navbar-toggler-icon"></span>
                     </button>
 
@@ -45,7 +45,7 @@
                     <div class="collapse navbar-collapse" id="top-navbar">
                         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ path('app_territory_index') }}">{{ 'cm.ui.territories'|trans_app }}</a>
+                                <a class="nav-link" href="{{ path('app_territory_index') }}">{{ 'congregation_manager_app.ui.territories'|trans_app }}</a>
                             </li>
                         </ul>
 
@@ -60,10 +60,10 @@
                                         {{ app.user.brother }}
                                     </a>
                                     <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end" aria-labelledby="dropdown-user">
-                                        <li><a class="dropdown-item" href="{{ path('app_profile_update') }}">{{ 'cm.profile_update.title'|trans_app }}</a></li>
-                                        <li><a class="dropdown-item" href="{{ path('app_change_password') }}">{{ 'cm.change_password.title'|trans_app }}</a></li>
+                                        <li><a class="dropdown-item" href="{{ path('app_profile_update') }}">{{ 'congregation_manager_app.profile_update.title'|trans_app }}</a></li>
+                                        <li><a class="dropdown-item" href="{{ path('app_change_password') }}">{{ 'congregation_manager_app.change_password.title'|trans_app }}</a></li>
                                         <li><hr class="dropdown-divider"></li>
-                                        <li><a class="dropdown-item" href="{{ path('congregation_manager_app_logout') }}" {{ test_html_attribute('logout-button') }}>{{ 'cm.app_nav.logout'|trans_app }}</a></li>
+                                        <li><a class="dropdown-item" href="{{ path('congregation_manager_app_logout') }}" {{ test_html_attribute('logout-button') }}>{{ 'congregation_manager_app.app_nav.logout'|trans_app }}</a></li>
                                     </ul>
                                 </div>
                             </div>

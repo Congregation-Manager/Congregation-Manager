@@ -1,6 +1,8 @@
 {% extends '@CongregationManagerApp/public.html.twig' %}
 
-{% block title %}{{ 'cm.login.meta_title'|trans_app }}{% endblock %}
+{% block title %}{{ 'congregation_manager_app.ui.sign_in_to_start_use_congregation_manager'|trans_app }}{% endblock %}
+
+{% block meta_robots %}noindex,nofollow{% endblock %}
 
 {% block content %}
     <div class="container">
@@ -15,33 +17,39 @@
 
                 <form action="{{ path('congregation_manager_app_login_check') }}" method="post">
                     {{ block('logo') }}
-                    <h1 class="h3 mb-3 fw-normal">{{ 'cm.login.title'|trans_app }}</h1>
+                    <h1 class="h3 mb-3 fw-normal">
+                        {{ 'congregation_manager_app.ui.sign_in_to_start_use_congregation_manager'|trans_app }}
+                    </h1>
 
                     <div class="form-floating">
-                        <input type="email" class="form-control" id="username" name="_username" value="{{ last_username }}" placeholder="{{ 'cm.congregation_manager_app_login.email_placeholder'|trans_app }}" >
-                        <label for="username">{{ 'cm.label.email_address'|trans_app }}</label>
+                        <input type="email" class="form-control" id="username" name="_username" value="{{ last_username }}" placeholder="{{ 'congregation_manager_app.ui.email_placeholder'|trans_app }}" >
+                        <label for="username">{{ 'congregation_manager_app.ui.email_address'|trans_app }}</label>
                     </div>
 
                     <div class="form-floating">
-                        <input type="password" class="form-control" id="password" name="_password" placeholder="{{ 'cm.congregation_manager_app_login.password_placeholder'|trans_app }}">
-                        <label for="password">{{ 'cm.label.password'|trans_app }}</label>
+                        <input type="password" class="form-control" id="password" name="_password" placeholder="{{ 'congregation_manager_app.ui.password_placeholder'|trans_app }}">
+                        <label for="password">{{ 'congregation_manager_app.ui.password'|trans_app }}</label>
                     </div>
 
                     <div class="checkbox mt-2 mb-3">
                         <label>
-                            <input type="checkbox" id="remember_me" name="_remember_me"> {{ 'cm.label.remember_me'|trans_app }}
+                            <input type="checkbox" id="remember_me" name="_remember_me"> {{ 'congregation_manager_app.ui.remember_me_on_this_device'|trans_app }}
                         </label>
                     </div>
 
                     <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
 
-                    <button class="w-100 btn btn-lg btn-primary" type="submit">{{ 'cm.label.signin'|trans_app }}</button>
+                    <button class="w-100 btn btn-lg btn-primary" type="submit">
+                        {{ 'congregation_manager_app.ui.signin'|trans_app }}
+                    </button>
                 </form>
             </div>
         </div>
         <div class="row">
             <div class="col-12 col-md-8 col-lg-6 m-auto text-center mt-5">
-                <a href="{{ path('congregation_manager_app_forgot_password_request') }}">{{ 'cm.congregation_manager_app_login.forgot_password'|trans_app }}</a>
+                <a href="{{ path('congregation_manager_app_forgot_password_request') }}">
+                    {{ 'congregation_manager_app.ui.forgot_password'|trans_app }}
+                </a>
             </div>
         </div>
     </div>

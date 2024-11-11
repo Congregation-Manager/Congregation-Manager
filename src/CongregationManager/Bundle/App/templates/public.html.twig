@@ -8,8 +8,8 @@
 
 {% block logo %}
     <img class="d-block mx-auto mb-4" src="{{ asset('app/build/images/logo.jpg', 'app') }}"
-         alt="{{ 'cm.logo.alt'|trans_app }}"
-         title="{{ 'cm.logo.title'|trans_app }}"
+         alt="{{ 'congregation_manager_app.ui.congregation_manager_logo'|trans_app }}"
+         title="{{ 'congregation_manager_app.ui.congregation_manager_logo'|trans_app }}"
          width="72"
          height="57"
          loading="eager"
@@ -21,7 +21,7 @@
         <nav class="navbar navbar-expand-md navbar-dark bg-dark {{ app.session.flashbag.peek('success')|length > 0 or app.session.flashbag.peek('danger')|length > 0 ? '' : 'mb-3' }}">
             <div class="container">
                 <a class="navbar-brand" href="{{ path('app_dashboard') }}">
-                    {{ 'cm.app_nav.title'|trans_app }}
+                    {{ 'congregation_manager_app.ui.congregation_manager'|trans_app }}
                 </a>
 
                 <button class="navbar-toggler"
@@ -30,7 +30,7 @@
                         data-bs-target="#top-navbar"
                         aria-controls="top-navbar"
                         aria-expanded="false"
-                        aria-label="{{ 'cm.app_nav.toggle'|trans_app }}">
+                        aria-label="{{ 'congregation_manager_app.ui.toggle'|trans_app }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
