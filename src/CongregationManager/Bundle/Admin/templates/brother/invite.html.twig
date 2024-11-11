@@ -1,12 +1,14 @@
 {% extends '@CongregationManagerAdmin/base.html.twig' %}
 
-{% block title %}{{ 'cm.brother.invite_app_user.meta_title'|trans({'{name}': brother}) }}{% endblock %}
+{# brother \CongregationManager\Component\Congregation\Domain\Brother #}
+
+{% block title %}{{ 'congregation_manager_admin.ui.invite_brother_with_full_name'|trans_admin({'{full_name}': brother.fullName, 'sex': brother.sex}) }}{% endblock %}
 
 {% block content %}
     <div class="container">
         <div class="row mb-3">
             <div class="col-12 col-md-8 col-lg-6">
-                <h1>{{ 'cm.brother.invite_app_user.title'|trans({'{name}': brother}) }}</h1>
+                <h1>{{ 'congregation_manager_admin.ui.invite_brother_with_full_name'|trans_admin({'{full_name}': brother.fullName, 'sex': brother.sex}) }}</h1>
             </div>
         </div>
 

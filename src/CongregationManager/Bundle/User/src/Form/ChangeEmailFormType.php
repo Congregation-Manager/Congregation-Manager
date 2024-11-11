@@ -22,10 +22,15 @@ final class ChangeEmailFormType extends AbstractType
         $builder
             ->add('email', EmailType::class, [
                 'required' => true,
+                'label' => 'congregation_manager_admin.ui.email',
+                'translation_domain' => 'admin',
             ])
         ;
         if ($options['with_submit']) {
-            $builder->add('submit', SubmitType::class, []);
+            $builder->add('submit', SubmitType::class, [
+                'label' => 'congregation_manager_admin.ui.save',
+                'translation_domain' => 'admin',
+            ]);
         }
     }
 

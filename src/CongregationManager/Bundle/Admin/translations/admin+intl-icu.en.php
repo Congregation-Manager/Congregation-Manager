@@ -1,0 +1,95 @@
+<?php
+
+declare(strict_types=1);
+
+return [
+    'congregation_manager_admin' => [
+        'email' => [
+            'from_name' => 'Congregation Manager',
+            'app_user_invitation' => [
+                'subject' => 'You have been invited to Congregation Manager',
+                'hello' => 'Hello!',
+                'intro' => 'Welcome to Congregation Manager, please click the link below to complete your registration:',
+                'expire' => 'This link will automatically expire in {expireIn}.',
+                'greetings' => 'Greetings!',
+            ],
+            'reset_password' => [
+                'subject' => 'Reset your password',
+                'hello' => 'Hello!',
+                'intro' => 'You are receiving this email because we received a password reset request for your account.',
+                'action' => 'To reset your password, click the link below:',
+                'expire' => 'This link will automatically expire in {expireIn}.',
+                'ignore_request' => 'If you did not request a password reset, no further action is required. The password will remain unchanged.',
+                'greetings' => 'Greetings!',
+            ],
+        ],
+        'meta' => [
+            'description' => "Congregation Manager is a tool that helps you manage your congregation's theocratic activities.",
+            'keywords' => 'Congregation Manager, Congregation, Territories, Brothers, Sisters, Reports',
+            'author' => 'Congregation Manager',
+            'title' => 'Congregation Manager',
+        ],
+        'ui' => [
+            'congregation_manager' => 'Congregation Manager',
+            'toggle' => 'Toggle navigation',
+            'update_profile' => 'Update profile',
+            'change_password' => 'Change password',
+            'logout' => 'Logout',
+            'dashboard' => 'Dashboard',
+            'congregations' => 'Congregations',
+            'brothers' => 'Brothers',
+            'territories' => 'Territories',
+            'congregation_manager_logo' => 'Congregation Manager logo',
+            'login_to_start_using_admin' => "Login to start using Congregation Manager's admin panel",
+            'email_placeholder' => 'example@email.com',
+            'email_address' => 'Email address',
+            'email' => 'Email',
+            'password_placeholder' => 'password',
+            'password' => 'Password',
+            'remember_me_on_this_device' => 'Remember me on this device (please do not use this option on public computers)',
+            'signin' => 'Sign in',
+            'login' => 'Login',
+            'forgot_password' => 'Forgot your password?',
+            'insert_your_email_to_recover_password' => 'Insert your email address and we will send you a link to recover your password',
+            'recover_password' => 'Recover password',
+            'click_here_if_you_already_have_credentials' => 'Click here if you already have credentials',
+            'check_your_email' => 'Check your email',
+            'reset_password_instructions' => "If an account with this email address exists, we'll send you an email with instructions to reset your password.",
+            'reset_password_try_again' => "If you didn't receive the email, please check your spam folder or try again.",
+            'reset_password' => 'Generate new password to access Congregation Manager',
+            'save' => 'Save',
+            'current_password' => 'Current password',
+            'new_password' => 'New password',
+            'repeat_password' => 'Repeat password',
+            'password_restored_successfully' => 'Password restored successfully!',
+            'brothers_and_sisters' => 'Brothers and sisters',
+            'id' => 'Unique identifier (ID)',
+            'first_name' => 'First name',
+            'middle_name' => 'Middle name',
+            'last_name' => 'Last name',
+            'actions' => 'Actions',
+            'details' => 'Details',
+            'brother_with_full_name' => '{sex, select,
+                female {Sister {full_name}}
+                male   {Brother {full_name}}
+                other  {Brother {full_name}}
+            }',
+            'invite_brother_with_full_name' => '{sex, select,
+                female {Invite sister {full_name}}
+                male   {Invite brother {full_name}}
+                other  {Invite brother {full_name}}
+            }',
+            'birth_date' => 'Birth date',
+            'baptism_date' => 'Baptism date',
+            'invite_user_to_app' => 'Invite user to Congregation Manager',
+            'invite' => 'Invite',
+            'invitation_sent' => 'Invitation sent',
+            'invitation_sent_successfully' => "The invitation has been sent successfully!",
+            'user' => 'User',
+            'name' => 'Name',
+            'congregation_with_name' => 'Congregation {name}',
+            'profile_updated_successfully' => 'Profile update successfully!',
+            'password_changed_successfully' => 'Password changed successfully!',
+        ],
+    ],
+];

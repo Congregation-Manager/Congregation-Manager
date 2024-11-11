@@ -56,9 +56,12 @@ final class AdminChangePasswordController extends AbstractController
             $user->setPassword($encodedPassword);
             $this->entityManager->flush();
 
-            $this->addFlash('success', $this->translator->trans('cm.ui.update_success'));
+            $this->addFlash(
+                'success',
+                $this->translator->trans('congregation_manager_admin.ui.password_changed_successfully', [], 'admin')
+            );
 
-            return $this->redirectToRoute('admin_dashboard');
+            return $this->redirectToRoute('congregation_manager_admin_dashboard');
         }
 
         return $this->render('@CongregationManagerAdmin/password/update.html.twig', [

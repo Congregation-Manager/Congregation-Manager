@@ -1,12 +1,12 @@
 {% extends '@CongregationManagerAdmin/base.html.twig' %}
 
-{% block title %}{{ 'cm.congregation.show.meta_title'|trans({'{name}': congregation.name}) }}{% endblock %}
+{% block title %}{{ 'congregation_manager_admin.ui.congregation_with_name'|trans_admin({'{name}': congregation.name}) }}{% endblock %}
 
 {% block content %}
     <div class="container">
         <div class="row mb-3">
             <div class="col-12 col-md-8 col-lg-6">
-                <h1>{{ congregation.name }}</h1>
+                <h1>{{ 'congregation_manager_admin.ui.congregation_with_name'|trans_admin({'{name}': congregation.name}) }}</h1>
             </div>
         </div>
     </div>

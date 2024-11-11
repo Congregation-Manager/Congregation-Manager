@@ -38,9 +38,12 @@ final class AdminProfileController extends AbstractController
 
         if ($changeEmailForm->isSubmitted() && $changeEmailForm->isValid()) {
             $this->entityManager->flush();
-            $this->addFlash('success', $this->translator->trans('cm.ui.update_success'));
+            $this->addFlash(
+                'success',
+                $this->translator->trans('congregation_manager_admin.ui.profile_updated_successfully', [], 'admin')
+            );
 
-            return $this->redirectToRoute('admin_dashboard');
+            return $this->redirectToRoute('congregation_manager_admin_dashboard');
         }
 
         return $this->render('@CongregationManagerAdmin/profile/update.html.twig', [

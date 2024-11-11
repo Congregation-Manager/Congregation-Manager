@@ -1,0 +1,95 @@
+<?php
+
+declare(strict_types=1);
+
+return [
+    'congregation_manager_admin' => [
+        'email' => [
+            'from_name' => 'Gestione Congregazione',
+            'app_user_invitation' => [
+                'subject' => 'Sei stato invitato ad entrare su Gestione Congregazione',
+                'hello' => 'Ciao!',
+                'intro' => 'Benvenuto su Gestione Congregazione, per favore clicca sul seguente collegamento per completare la tua iscrizione:',
+                'expire' => 'Questo collegamento scadrà automaticamente entro {expireIn}.',
+                'greetings' => 'Saluti!',
+            ],
+            'reset_password' => [
+                'subject' => 'Richiesta di recupero della parola chiave segreta (password)',
+                'hello' => 'Ciao!',
+                'intro' => 'Hai ricevuto questa email perché abbiamo ricevuto una richiesta di recupero della tua parola chiave segreta (password) per il tuo utente.',
+                'action' => 'Per recuperare la tua parola chiave segreta (password), clicca sul seguente collegamento:',
+                'expire' => 'Questo collegamento scadrà automaticamente entro {expireIn}.',
+                'ignore_request' => 'Se non hai richiesto un recupero della tua parola chiave segreta (password), non è necessario fare nulla. La tua parola chiave segreta (password) rimarrà invariata.',
+                'greetings' => 'Saluti!',
+            ],
+        ],
+        'meta' => [
+            'description' => "Gestione Congregazione è uno strumento online per gestire e semplificare i flussi all'interno di una congregazione.",
+            'keywords' => 'Gestione Congregazione, Congregazione, Territori, Fratelli, Sorelle, Rapporti',
+            'author' => 'Gestione Congregazione',
+            'title' => 'Gestione Congregazione',
+        ],
+        'ui' => [
+            'congregation_manager' => 'Gestione Congregazione',
+            'toggle' => 'Attiva/Disattiva navigazione',
+            'update_profile' => 'Aggiorna profilo',
+            'change_password' => 'Cambia password',
+            'logout' => 'Disconnettiti',
+            'dashboard' => 'Cruscotto',
+            'congregations' => 'Congregazioni',
+            'brothers' => 'Fratelli',
+            'territories' => 'Territori',
+            'congregation_manager_logo' => 'Logo Gestione Congregazione',
+            'login_to_start_using_admin' => "Accedi per iniziare ad usare l'admin di Gestione Congregazione",
+            'email_placeholder' => 'esempio@email.com',
+            'email_address' => 'Posta elettronica (email)',
+            'email' => 'Posta elettronica (email)',
+            'password_placeholder' => 'la tua parola chiave segreta (password)',
+            'password' => 'Parola chiave segreta (password)',
+            'remember_me_on_this_device' => 'Ricordami su questo dispositivo (assicurarsi di selezionare questa spunta solo quando ci si sta autenticando su dispositivi personali protetti da un sistema di autenticazione)',
+            'signin' => 'Autenticati',
+            'login' => 'Accedi',
+            'forgot_password' => 'Hai dimenticato la tua parola chiave (password)?',
+            'insert_your_email_to_recover_password' => 'Inserisci il tuo indirizzo di posta elettronica e ti invieremo un collegamento per generare una nuova parola chiave (password).',
+            'recover_password' => 'Recupera parola chiave (password)',
+            'click_here_if_you_already_have_credentials' => 'Clicca qui per autenticarti se hai già delle credenziali',
+            'check_your_email' => 'Controlla la tua posta elettronica (email)',
+            'reset_password_instructions' => "Se esiste un utente con l'indirizzo di posta elettronica che hai inserito, allora una email è stata inviata con al suo interno un collegamento che puoi usare per generare una nuova password. Questo collegamento scadrà automaticamente entro {expiresIn}.",
+            'reset_password_try_again' => "Se non hai ricevuto l'email, ti preghiamo di controllare la tua cartella di posta indesiderata o di <a href=\"{link}\">riprovare</a> fra qualche minuto.",
+            'reset_password' => 'Genera una nuova parola chiave (password) per accedere a Gestione Congregazione',
+            'save' => 'Salva',
+            'current_password' => 'Parola chiave segreta (password) attuale',
+            'new_password' => 'Nuova parola chiave segreta (password)',
+            'repeat_password' => 'Ripeti la nuova parola chiave segreta (password)',
+            'password_restored_successfully' => 'La tua parola chiave segreta (password) è stata reimpostata con successo!',
+            'brothers_and_sisters' => 'Fratelli e sorelle',
+            'id' => 'Identificativo univoco (ID)',
+            'first_name' => 'Nome',
+            'middle_name' => 'Secondo nome',
+            'last_name' => 'Cognome',
+            'actions' => 'Azioni',
+            'details' => 'Dettagli',
+            'brother_with_full_name' => '{sex, select,
+                female {Sorella {full_name}}
+                male   {Fratello {full_name}}
+                other  {Fratello {full_name}}
+            }',
+            'invite_brother_with_full_name' => '{sex, select,
+                female {Invita sorella {full_name}}
+                male   {Invita fratello {full_name}}
+                other  {Invita fratello {full_name}}
+            }',
+            'birth_date' => 'Data di nascita',
+            'baptism_date' => 'Data di battesimo',
+            'invite_user_to_app' => 'Invita utente in Gestione Congregazione',
+            'invite' => 'Invita',
+            'invitation_sent' => 'Invito inviato',
+            'invitation_sent_successfully' => "L'invito è stato inviato con successo!",
+            'user' => 'Utente',
+            'name' => 'Nome',
+            'congregation_with_name' => 'Congregazione {name}',
+            'profile_updated_successfully' => 'Profilo aggiornato con successo!',
+            'password_changed_successfully' => 'Parola chiave segreta (password) cambiata con successo!',
+        ],
+    ],
+];

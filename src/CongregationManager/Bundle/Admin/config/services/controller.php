@@ -23,7 +23,7 @@ return static function (ContainerConfigurator $containerConfigurator): void {
             service('congregation_manager_user.create.app_user_invitation'),
             service('doctrine.orm.entity_manager'),
             service('congregation_manager_admin.notificator.message'),
-            service('mailer'),
+            service('translator'),
         ])
         ->call('setContainer', [service(ContainerInterface::class)])
         ->tag('container.service_subscriber')
@@ -85,9 +85,10 @@ return static function (ContainerConfigurator $containerConfigurator): void {
         ->args([
             service('symfonycasts.reset_password.helper'),
             service('doctrine.orm.entity_manager'),
-            service('mailer'),
             service('security.user_password_hasher'),
             service('logger'),
+            service('congregation_manager_admin.notificator.message'),
+            service('translator'),
         ])
         ->call('setContainer', [service(ContainerInterface::class)])
         ->tag('container.service_subscriber')

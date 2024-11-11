@@ -142,6 +142,12 @@ class Brother extends AggregateRoot implements BrotherInterface
     }
 
     #[\Override]
+    public function getSex(): string
+    {
+        return $this->isMale() ? 'male' : 'female';
+    }
+
+    #[\Override]
     public function getInvitation(): ?AppUserInvitation
     {
         return $this->invitation;

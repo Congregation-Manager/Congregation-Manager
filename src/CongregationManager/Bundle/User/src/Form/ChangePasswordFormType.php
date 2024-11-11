@@ -26,7 +26,8 @@ class ChangePasswordFormType extends AbstractType
             $builder->add('oldPassword', PasswordType::class, [
                 'mapped' => false,
                 'constraints' => [new UserPassword()],
-                'label' => 'cm.label.old_password',
+                'label' => 'congregation_manager_admin.ui.current_password',
+                'translation_domain' => 'admin',
             ]);
         }
         $builder
@@ -47,13 +48,15 @@ class ChangePasswordFormType extends AbstractType
                             'max' => 4096,
                         ]),
                     ],
-                    'label' => 'cm.label.new_password',
+                    'label' => 'congregation_manager_admin.ui.new_password',
+                    'translation_domain' => 'admin',
                 ],
                 'second_options' => [
                     'attr' => [
                         'autocomplete' => 'new-password',
                     ],
-                    'label' => 'cm.label.repeat_password',
+                    'label' => 'congregation_manager_admin.ui.repeat_password',
+                    'translation_domain' => 'admin',
                 ],
                 'invalid_message' => 'cm.password.must_match',
                 // Instead of being set onto the object directly,

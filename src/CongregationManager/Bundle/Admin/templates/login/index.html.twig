@@ -1,6 +1,6 @@
 {% extends '@CongregationManagerAdmin/public.html.twig' %}
 
-{% block title %}{{ 'cm.admin_login.meta_title'|trans }}{% endblock %}
+{% block title %}{{ 'congregation_manager_admin.ui.login_to_start_using_admin'|trans_admin }}{% endblock %}
 
 {% block content %}
     <div class="row">
@@ -8,40 +8,62 @@
 
             {% if error %}
                 <div class="alert alert-danger" role="alert">
-                    {{ error.messageKey|trans(error.messageData, 'security') }}
+                    {{ error.messageKey|trans_admin(error.messageData, 'security') }}
                 </div>
             {% endif %}
 
             <form action="{{ path('congregation_manager_admin_login_check') }}" method="post">
                 {{ block('logo') }}
-                <h1 class="h3 mb-3 fw-normal">{{ 'cm.admin_login.title'|trans }}</h1>
+                <h1 class="h3 mb-3 fw-normal">{{ 'congregation_manager_admin.ui.login_to_start_using_admin'|trans_admin }}</h1>
 
                 <div class="form-floating">
-                    <input type="email" class="form-control" id="username" name="_username" value="{{ last_username }}" placeholder="{{ 'cm.admin_login.email_placeholder'|trans }}" >
-                    <label for="username">{{ 'cm.label.email_address'|trans }}</label>
+                    <input type="email"
+                           class="form-control"
+                           id="username"
+                           name="_username"
+                           value="{{ last_username }}"
+                           placeholder="{{ 'congregation_manager_admin.ui.email_placeholder'|trans_admin }}">
+                    <label for="username">
+                        {{ 'congregation_manager_admin.ui.email_address'|trans_admin }}
+                    </label>
                 </div>
 
                 <div class="form-floating">
-                    <input type="password" class="form-control" id="password" name="_password" placeholder="{{ 'cm.admin_login.password_placeholder'|trans }}">
-                    <label for="password">{{ 'cm.label.password'|trans }}</label>
+                    <input type="password"
+                           class="form-control"
+                           id="password"
+                           name="_password"
+                           placeholder="{{ 'congregation_manager_admin.ui.password_placeholder'|trans_admin }}">
+                    <label for="password">
+                        {{ 'congregation_manager_admin.ui.password'|trans_admin }}
+                    </label>
                 </div>
 
                 <div class="checkbox mt-2 mb-3">
                     <label>
-                        <input type="checkbox" id="remember_me" name="_remember_me"> {{ 'cm.label.remember_me'|trans }}
+                        <input type="checkbox"
+                               id="remember_me"
+                               name="_remember_me">
+                        {{ 'congregation_manager_admin.ui.remember_me_on_this_device'|trans_admin }}
                     </label>
                 </div>
 
-                <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+                <input type="hidden"
+                       name="_csrf_token"
+                       value="{{ csrf_token('authenticate') }}">
 
-                <button class="w-100 btn btn-lg btn-primary" type="submit">{{ 'cm.label.signin'|trans }}</button>
+                <button class="w-100 btn btn-lg btn-primary" type="submit">
+                    {{ 'congregation_manager_admin.ui.signin'|trans_admin }}
+                </button>
             </form>
 
         </div>
     </div>
     <div class="row">
         <div class="col-12 col-md-8 col-lg-6 m-auto text-center mt-5">
-            <a href="{{ path('congregation_manager_admin_forgot_password_request') }}">{{ 'cm.admin_login.forgot_password'|trans }}</a>
+            <a href="{{ path('congregation_manager_admin_forgot_password_request') }}">
+                {{ 'congregation_manager_admin.ui.forgot_password'|trans_admin }}
+            </a>
         </div>
     </div>
 {% endblock %}

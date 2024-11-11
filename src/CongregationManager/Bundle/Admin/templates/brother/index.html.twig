@@ -1,12 +1,12 @@
 {% extends '@CongregationManagerAdmin/base.html.twig' %}
 
-{% block title %}{{ 'cm.brother.index.meta_title'|trans }}{% endblock %}
+{% block title %}{{ 'congregation_manager_admin.ui.brothers_and_sisters'|trans_admin }}{% endblock %}
 
 {% block content %}
     <div class="container">
         <div class="row mb-3">
             <div class="col-12 col-md-8 col-lg-6">
-                <h1>{{ 'cm.brother.title'|trans }}</h1>
+                <h1>{{ 'congregation_manager_admin.ui.brothers_and_sisters'|trans_admin }}</h1>
             </div>
         </div>
 
@@ -15,11 +15,12 @@
                 <table class="table">
                     <thead>
                     <tr>
-                        <th scope="col">{{ 'cm.label.id'|trans }}</th>
-                        <th scope="col">{{ 'cm.label.first_name'|trans }}</th>
-                        <th scope="col">{{ 'cm.label.middle_name'|trans }}</th>
-                        <th scope="col">{{ 'cm.label.last_name'|trans }}</th>
-                        <th scope="col">{{ 'cm.label.actions'|trans }}</th>
+                        <th scope="col">{{ 'congregation_manager_admin.ui.id'|trans_admin }}</th>
+                        <th scope="col">{{ 'congregation_manager_admin.ui.first_name'|trans_admin }}</th>
+                        <th scope="col">{{ 'congregation_manager_admin.ui.middle_name'|trans_admin }}</th>
+                        <th scope="col">{{ 'congregation_manager_admin.ui.last_name'|trans_admin }}</th>
+                        <th scope="col">{{ 'congregation_manager_admin.ui.email'|trans_admin }}</th>
+                        <th scope="col">{{ 'congregation_manager_admin.ui.actions'|trans_admin }}</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -29,7 +30,12 @@
                             <td>{{ brother.firstName }}</td>
                             <td>{{ brother.middleName }}</td>
                             <td>{{ brother.lastName }}</td>
-                            <td><a href="{{ path('congregation_manager_admin_brother_show', {id: brother.id}) }}">{{ 'cm.label.view'|trans }}</a></td>
+                            <td>{{ brother.user.email ?? '' }}</td>
+                            <td>
+                                <a href="{{ path('congregation_manager_admin_brother_show', {id: brother.id}) }}">
+                                    {{ 'congregation_manager_admin.ui.details'|trans_admin }}
+                                </a>
+                            </td>
                         </tr>
                     {% endfor %}
                     </tbody>

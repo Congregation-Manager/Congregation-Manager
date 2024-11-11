@@ -21,6 +21,8 @@ class ResetPasswordRequestFormType extends AbstractType
     {
         $builder
             ->add('email', EmailType::class, [
+                'label' => 'congregation_manager_admin.ui.email_address',
+                'translation_domain' => 'admin',
                 'attr' => [
                     'autocomplete' => 'email',
                 ],

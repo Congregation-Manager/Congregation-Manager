@@ -20,8 +20,13 @@ final class InviteUserFormType extends AbstractType
         $builder
             ->add('email', EmailType::class, [
                 'required' => true,
+                'label' => 'congregation_manager_admin.ui.email',
+                'translation_domain' => 'admin',
             ])
-            ->add('submit', SubmitType::class)
+            ->add('submit', SubmitType::class, [
+                'label' => 'congregation_manager_admin.ui.invite',
+                'translation_domain' => 'admin',
+            ])
         ;
     }
 }

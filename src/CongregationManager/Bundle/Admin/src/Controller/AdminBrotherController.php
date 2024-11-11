@@ -13,6 +13,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 /** @psalm-suppress PropertyNotSetInConstructor */
 final class AdminBrotherController extends AbstractController
@@ -22,6 +23,7 @@ final class AdminBrotherController extends AbstractController
         private readonly CreateAppUserInvitation $createAppUserInvitation,
         private readonly EntityManagerInterface $entityManager,
         private readonly MessageNotificatorInterface $messageNotificator,
+        private readonly TranslatorInterface $translator,
     ) {
     }
 
@@ -64,6 +66,11 @@ final class AdminBrotherController extends AbstractController
             $this->entityManager->flush();
 
             $this->messageNotificator->notifyAppUserInvitation($appUserInvitation, $request->getLocale());
+
+            $this->addFlash(
+                'success',
+                $this->translator->trans('congregation_manager_admin.ui.invitation_sent_successfully', [], 'admin')
+            );
 
             return $this->redirectToRoute('congregation_manager_admin_brother_show', [
                 'id' => $brother->getId(),

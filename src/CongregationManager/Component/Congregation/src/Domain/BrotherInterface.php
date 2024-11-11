@@ -43,6 +43,8 @@ interface BrotherInterface extends AggregateRootInterface
 
     public function setMale(bool $male): void;
 
+    public function getSex(): string;
+
     public function getInvitation(): ?AppUserInvitation;
 
     public function setInvitation(?AppUserInvitation $invitation): void;

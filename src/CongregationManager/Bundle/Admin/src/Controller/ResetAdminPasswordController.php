@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace CongregationManager\Bundle\Admin\Controller;
 
+use CongregationManager\Bundle\Admin\Notificator\MessageNotificatorInterface;
 use CongregationManager\Bundle\User\Entity\AdminUser;
 use CongregationManager\Bundle\User\Entity\UserInterface;
 use CongregationManager\Bundle\User\Form\ChangePasswordFormType;
@@ -11,14 +12,12 @@ use CongregationManager\Bundle\User\Form\ResetPasswordRequestFormType;
 use CongregationManager\Component\User\Domain\Exception\UserInstanceNotValid;
 use Doctrine\ORM\EntityManagerInterface;
 use Psr\Log\LoggerInterface;
-use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Mailer\MailerInterface;
-use Symfony\Component\Mime\Address;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
+use Symfony\Contracts\Translation\TranslatorInterface;
 use SymfonyCasts\Bundle\ResetPassword\Controller\ResetPasswordControllerTrait;
 use SymfonyCasts\Bundle\ResetPassword\Exception\ResetPasswordExceptionInterface;
 use SymfonyCasts\Bundle\ResetPassword\ResetPasswordHelperInterface;
@@ -31,9 +30,10 @@ class ResetAdminPasswordController extends AbstractController
     public function __construct(
         private ResetPasswordHelperInterface $resetPasswordHelper,
         private EntityManagerInterface $entityManager,
-        private MailerInterface $mailer,
         private UserPasswordHasherInterface $userPasswordHasher,
-        private LoggerInterface $logger
+        private LoggerInterface $logger,
+        private MessageNotificatorInterface $messageNotificator,
+        private TranslatorInterface $translator,
     ) {
     }
 
@@ -56,7 +56,7 @@ class ResetAdminPasswordController extends AbstractController
                 ));
             }
 
-            return $this->processSendingPasswordResetEmail($emailFormData, $this->mailer);
+            return $this->processSendingPasswordResetEmail($emailFormData, $request->getLocale());
         }
 
         return $this->render('@CongregationManagerAdmin/reset_password/request.html.twig', [
@@ -144,6 +144,11 @@ class ResetAdminPasswordController extends AbstractController
             // The session is cleaned up after the password has been changed.
             $this->cleanSessionAfterReset();
 
+            $this->addFlash(
+                'success',
+                $this->translator->trans('congregation_manager_admin.ui.password_restored_successfully', [], 'admin')
+            );
+
             return $this->redirectToRoute('congregation_manager_admin_dashboard');
         }
 
@@ -152,7 +157,7 @@ class ResetAdminPasswordController extends AbstractController
         ]);
     }
 
-    private function processSendingPasswordResetEmail(string $emailFormData, MailerInterface $mailer): RedirectResponse
+    private function processSendingPasswordResetEmail(string $emailFormData, string $currentLocale): RedirectResponse
     {
         $user = $this->entityManager->getRepository(AdminUser::class)->findOneBy([
             'email' => $emailFormData,
@@ -185,17 +190,11 @@ class ResetAdminPasswordController extends AbstractController
             return $this->redirectToRoute('congregation_manager_admin_check_email');
         }
 
-        $email = (new TemplatedEmail())
-            ->from(new Address('no-reply@congregation-manager.org', 'Congregation Manager'))
-            ->to($user->getEmail())
-            ->subject('Your password reset request')
-            ->htmlTemplate('@CongregationManagerAdmin/email/reset_password.html.twig')
-            ->context([
-                'resetToken' => $resetToken,
-            ])
-        ;
-
-        $mailer->send($email);
+        $this->messageNotificator->notifyAdminUserNotifyToken(
+            $user,
+            $resetToken,
+            $user->getLocaleCode() ?? $currentLocale,
+        );
 
         // Store the token object in session for retrieval in check-email route.
         $this->setTokenObjectInSession($resetToken);
