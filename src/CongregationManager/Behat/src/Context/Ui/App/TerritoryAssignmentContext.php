@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace CongregationManager\Behat\Context\Ui\App;
 
 use Behat\Behat\Context\Context;
-use CongregationManager\Behat\Page\App\TerritoryAssignment\CreatePage;
-use CongregationManager\Behat\Page\App\TerritoryAssignment\UpdatePage;
+use CongregationManager\Behat\Page\App\TerritoryAssignment\CreatePageInterface;
+use CongregationManager\Behat\Page\App\TerritoryAssignment\UpdatePageInterface;
 use CongregationManager\Component\Congregation\Domain\BrotherInterface;
 use CongregationManager\Component\TerritoryManager\Domain\TerritoryAssignmentInterface;
 use CongregationManager\Component\TerritoryManager\Domain\TerritoryInterface;
@@ -17,8 +17,8 @@ use Webmozart\Assert\Assert;
 final readonly class TerritoryAssignmentContext implements Context
 {
     public function __construct(
-        private CreatePage $assignPage,
-        private UpdatePage $updatePage,
+        private CreatePageInterface $assignPage,
+        private UpdatePageInterface $updatePage,
         private TranslatorInterface $translator,
     ) {
     }

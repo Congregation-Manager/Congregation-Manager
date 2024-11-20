@@ -4,10 +4,11 @@ declare(strict_types=1);
 
 namespace Symfony\Component\DependencyInjection\Loader\Configurator;
 
+use CongregationManager\Behat\Context\Ui\Admin\EmailContext as AdminEmailContext;
 use CongregationManager\Behat\Context\Ui\App\AccountContext;
+use CongregationManager\Behat\Context\Ui\App\EmailContext as AppEmailContext;
 use CongregationManager\Behat\Context\Ui\App\LocaleContext;
 use CongregationManager\Behat\Context\Ui\App\TerritoryAssignmentContext;
-use CongregationManager\Behat\Context\Ui\EmailContext;
 
 return static function (ContainerConfigurator $containerConfigurator): void {
     $services = $containerConfigurator->services();
@@ -25,6 +26,7 @@ return static function (ContainerConfigurator $containerConfigurator): void {
             service('congregation_manager_behat.shared_storage'),
             service('congregation_manager_behat.page.app.change_password'),
             service('congregation_manager_behat.page.app.complete_account'),
+            service('congregation_manager_behat.page.app.complete_account_localized'),
         ])
     ;
 
@@ -76,7 +78,11 @@ return static function (ContainerConfigurator $containerConfigurator): void {
         ->args([service('congregation_manager_behat.page.admin.login')])
     ;
 
-    $services->set('congregation_manager_behat.context.ui.email', EmailContext::class)
-        ->args([service('congregation_manager_behat.email_checker')])
+    $services->set('congregation_manager_behat.context.ui.admin.email', AdminEmailContext::class)
+        ->args([service('congregation_manager_behat.email_checker'), service('translator')])
+    ;
+
+    $services->set('congregation_manager_behat.context.ui.app.email', AppEmailContext::class)
+        ->args([service('congregation_manager_behat.email_checker'), service('translator')])
     ;
 };

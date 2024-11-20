@@ -11,7 +11,7 @@ use DateTimeImmutable;
 use FriendsOfBehat\PageObjectExtension\Page\SymfonyPage;
 use Webmozart\Assert\Assert;
 
-final class CreatePage extends SymfonyPage
+final class CreatePage extends SymfonyPage implements CreatePageInterface
 {
     #[\Override]
     public function getRouteName(): string
@@ -19,6 +19,7 @@ final class CreatePage extends SymfonyPage
         return 'app_territory_assignment_create';
     }
 
+    #[\Override]
     public function selectBrother(BrotherInterface $brother): void
     {
         $this->getElement('brother')
@@ -26,6 +27,7 @@ final class CreatePage extends SymfonyPage
         ;
     }
 
+    #[\Override]
     public function isTerritorySelected(TerritoryInterface $territory): bool
     {
         $territorySelectOption = $this->getElement('territory')
@@ -35,6 +37,7 @@ final class CreatePage extends SymfonyPage
         return $territorySelectOption->hasAttribute('selected');
     }
 
+    #[\Override]
     public function specifyAssignmentDate(DateTimeImmutable $assignmentDate): void
     {
         $this->getElement('assignment-date')
@@ -42,6 +45,7 @@ final class CreatePage extends SymfonyPage
         ;
     }
 
+    #[\Override]
     public function specifyRevocationDate(DateTimeImmutable $revocationDate): void
     {
         $this->getElement('revocation-date')
@@ -49,6 +53,7 @@ final class CreatePage extends SymfonyPage
         ;
     }
 
+    #[\Override]
     public function save(): void
     {
         $this->getElement('save')
@@ -56,10 +61,12 @@ final class CreatePage extends SymfonyPage
         ;
     }
 
+    #[\Override]
     public function hasErrorMessage(string $message): bool
     {
         foreach ($this->getDocument()->findAll('css', $this->getDefinedElements()['errors']) as $errorMessage) {
-            if ($message === $errorMessage->getText()) {
+            $cleanedHtmlErrorMessage = str_replace(' ', ' ', $errorMessage->getText());
+            if ($message === $cleanedHtmlErrorMessage) {
                 return true;
             }
         }

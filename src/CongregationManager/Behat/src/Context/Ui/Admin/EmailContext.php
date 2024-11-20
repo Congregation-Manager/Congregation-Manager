@@ -2,16 +2,18 @@
 
 declare(strict_types=1);
 
-namespace CongregationManager\Behat\Context\Ui;
+namespace CongregationManager\Behat\Context\Ui\Admin;
 
 use Behat\Behat\Context\Context;
 use CongregationManager\Behat\Services\EmailCheckerInterface;
+use Symfony\Contracts\Translation\TranslatorInterface;
 use Webmozart\Assert\Assert;
 
 final readonly class EmailContext implements Context
 {
     public function __construct(
-        private EmailCheckerInterface $emailChecker
+        private EmailCheckerInterface $emailChecker,
+        private TranslatorInterface $translator,
     ) {
     }
 
@@ -20,7 +22,10 @@ final readonly class EmailContext implements Context
      */
     public function anEmailWithResetTokenShouldBeSentTo(string $email): void
     {
-        $this->assertEmailContainsMessageTo('To reset your password, please visit the following link', $email);
+        $this->assertEmailContainsMessageTo(
+            $this->translator->trans('congregation_manager_admin.email.reset_password.intro', [], 'admin', 'en'),
+            $email
+        );
     }
 
     /**
@@ -29,7 +34,7 @@ final readonly class EmailContext implements Context
     public function anEmailWithUserInviteShouldBeSentTo(string $email): void
     {
         $this->assertEmailContainsMessageTo(
-            'Welcome to Congregation Manager, please visit the following link to complete your subscription',
+            $this->translator->trans('congregation_manager_admin.email.app_user_invitation.intro', [], 'admin', 'en'),
             $email
         );
     }

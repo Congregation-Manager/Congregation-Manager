@@ -7,6 +7,7 @@ namespace CongregationManager\Behat\Context\Ui\App;
 use Behat\Behat\Context\Context;
 use CongregationManager\Behat\Page\App\ChangePasswordPageInterface;
 use CongregationManager\Behat\Page\App\CheckEmailPageInterface;
+use CongregationManager\Behat\Page\App\CompleteAccountLocalizedPageInterface;
 use CongregationManager\Behat\Page\App\CompleteAccountPageInterface;
 use CongregationManager\Behat\Page\App\DashboardPageInterface;
 use CongregationManager\Behat\Page\App\ForgotPasswordPageInterface;
@@ -27,7 +28,8 @@ final readonly class AccountContext implements Context
         private ProfileUpdatePageInterface $profileUpdatePage,
         private SharedStorageInterface $sharedStorage,
         private ChangePasswordPageInterface $changePasswordPage,
-        private CompleteAccountPageInterface $completeAccountPage
+        private CompleteAccountPageInterface $completeAccountPage,
+        private CompleteAccountLocalizedPageInterface $completeAccountLocalizedPage,
     ) {
     }
 
@@ -295,7 +297,7 @@ final readonly class AccountContext implements Context
         $this->completeAccountPage->tryToOpen([
             'token' => $this->sharedStorage->get('invitation_app_token'),
         ]);
-        $this->completeAccountPage->verify();
+        $this->completeAccountLocalizedPage->verify();
     }
 
     /**
@@ -303,7 +305,7 @@ final readonly class AccountContext implements Context
      */
     public function iSpecifyMyPasswordAs(string $password): void
     {
-        $this->completeAccountPage->specifyPassword($password);
+        $this->completeAccountLocalizedPage->specifyPassword($password);
     }
 
     /**
@@ -311,7 +313,7 @@ final readonly class AccountContext implements Context
      */
     public function iConfirmMyPasswordAs(string $password): void
     {
-        $this->completeAccountPage->confirmPassword($password);
+        $this->completeAccountLocalizedPage->confirmPassword($password);
     }
 
     /**
@@ -319,6 +321,6 @@ final readonly class AccountContext implements Context
      */
     public function iCompleteMyAccount(): void
     {
-        $this->completeAccountPage->complete();
+        $this->completeAccountLocalizedPage->complete();
     }
 }

@@ -8,13 +8,6 @@ use FriendsOfBehat\PageObjectExtension\Page\SymfonyPage;
 
 final class ForgotPasswordPage extends SymfonyPage implements ForgotPasswordPageInterface
 {
-    /**
-     * @var array<string, string>
-     */
-    protected static $additionalParameters = [
-        '_locale' => 'en',
-    ];
-
     #[\Override]
     public function getRouteName(): string
     {

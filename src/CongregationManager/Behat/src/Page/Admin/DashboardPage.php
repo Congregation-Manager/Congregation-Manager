@@ -8,17 +8,10 @@ use FriendsOfBehat\PageObjectExtension\Page\SymfonyPage;
 
 final class DashboardPage extends SymfonyPage implements DashboardPageInterface
 {
-    /**
-     * @var array<string, string>
-     */
-    protected static $additionalParameters = [
-        '_locale' => 'en',
-    ];
-
     #[\Override]
     public function getRouteName(): string
     {
-        return 'admin_dashboard';
+        return 'congregation_manager_admin_dashboard';
     }
 
     #[\Override]

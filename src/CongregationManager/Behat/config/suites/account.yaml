@@ -10,7 +10,7 @@ default:
                 - congregation_manager_behat.context.setup.congregation
 
                 - congregation_manager_behat.context.ui.app.account
-                - congregation_manager_behat.context.ui.email
+                - congregation_manager_behat.context.ui.app.email
             filters:
                 tags: "@account&&@ui&&@app"
 
@@ -26,6 +26,6 @@ default:
                 - congregation_manager_behat.context.setup.congregation
 
                 - congregation_manager_behat.context.ui.admin.account
-                - congregation_manager_behat.context.ui.email
+                - congregation_manager_behat.context.ui.admin.email
             filters:
                 tags: "@account&&@ui&&@admin"

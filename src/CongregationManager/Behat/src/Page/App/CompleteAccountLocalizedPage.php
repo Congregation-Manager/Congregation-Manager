@@ -2,24 +2,23 @@
 
 declare(strict_types=1);
 
-namespace CongregationManager\Behat\Page\Admin;
+namespace CongregationManager\Behat\Page\App;
 
 use FriendsOfBehat\PageObjectExtension\Page\SymfonyPage;
 
-final class ChangePasswordPage extends SymfonyPage implements ChangePasswordPageInterface
+final class CompleteAccountLocalizedPage extends SymfonyPage implements CompleteAccountLocalizedPageInterface
 {
+    /**
+     * @var array<string, string>
+     */
+    protected static $additionalParameters = [
+        '_locale' => 'en',
+    ];
+
     #[\Override]
     public function getRouteName(): string
     {
-        return 'congregation_manager_admin_change_password';
-    }
-
-    #[\Override]
-    public function specifyActualPassword(string $password): void
-    {
-        $this->getElement('old_password')
-            ->setValue($password)
-        ;
+        return 'congregation_manager_app_complete_account_localized';
     }
 
     #[\Override]
@@ -39,7 +38,7 @@ final class ChangePasswordPage extends SymfonyPage implements ChangePasswordPage
     }
 
     #[\Override]
-    public function update(): void
+    public function complete(): void
     {
         $this->getElement('submit_button')
             ->click()
@@ -53,10 +52,9 @@ final class ChangePasswordPage extends SymfonyPage implements ChangePasswordPage
     protected function getDefinedElements(): array
     {
         return array_merge(parent::getDefinedElements(), [
-            'old_password' => '#change_password_form_oldPassword',
-            'password' => '#change_password_form_plainPassword_first',
-            'confirm_password' => '#change_password_form_plainPassword_second',
-            'submit_button' => 'button[type=submit]',
+            'password' => '#complete_account_form_plainPassword_first',
+            'confirm_password' => '#complete_account_form_plainPassword_second',
+            'submit_button' => '[data-test-submit]',
         ]);
     }
 }

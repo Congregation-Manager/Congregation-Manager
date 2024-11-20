@@ -10,7 +10,7 @@ use DateTimeInterface;
 use FriendsOfBehat\PageObjectExtension\Page\SymfonyPage;
 use Webmozart\Assert\Assert;
 
-final class ShowPage extends SymfonyPage
+final class ShowPage extends SymfonyPage implements ShowPageInterface
 {
     #[\Override]
     public function getRouteName(): string
@@ -18,11 +18,13 @@ final class ShowPage extends SymfonyPage
         return 'app_territory_show';
     }
 
+    #[\Override]
     public function getTerritoryAssignmentsCount(): int
     {
         return count($this->getAllTerritoryAssignments());
     }
 
+    #[\Override]
     public function getFirstTerritoryAssignmentBrother(): string
     {
         $firstTerritoryAssignment = $this->getFirstTerritoryAssignment()
@@ -32,6 +34,7 @@ final class ShowPage extends SymfonyPage
         return $firstTerritoryAssignment->getText();
     }
 
+    #[\Override]
     public function getFirstTerritoryAssignmentAssignmentDate(): DateTimeInterface
     {
         $firstTerritoryAssignment = $this->getFirstTerritoryAssignment()
@@ -42,6 +45,7 @@ final class ShowPage extends SymfonyPage
         return new DateTimeImmutable($assignmentDate);
     }
 
+    #[\Override]
     public function getLastTerritoryAssignmentBrother(): string
     {
         $lastTerritoryAssignment = $this->getLastOneTerritoryAssignment()
@@ -51,6 +55,7 @@ final class ShowPage extends SymfonyPage
         return $lastTerritoryAssignment->getText();
     }
 
+    #[\Override]
     public function getLastTerritoryAssignmentAssignmentDate(): DateTimeInterface
     {
         $lastAssignment = $this->getLastOneTerritoryAssignment();

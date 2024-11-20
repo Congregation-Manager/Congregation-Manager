@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace CongregationManager\Behat\Context\Ui\App;
 
 use Behat\Behat\Context\Context;
-use CongregationManager\Behat\Page\App\Territory\ShowPage;
+use CongregationManager\Behat\Page\App\Territory\ShowPageInterface;
 use CongregationManager\Component\Congregation\Domain\BrotherInterface;
 use CongregationManager\Component\TerritoryManager\Domain\TerritoryInterface;
 use DateTimeImmutable;
@@ -14,7 +14,7 @@ use Webmozart\Assert\Assert;
 final readonly class TerritoryContext implements Context
 {
     public function __construct(
-        private ShowPage $showPage,
+        private ShowPageInterface $showPage,
     ) {
     }
 

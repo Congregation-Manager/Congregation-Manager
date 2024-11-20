@@ -18,6 +18,7 @@ final readonly class RequestThemeContext implements ThemeContextInterface
     ) {
     }
 
+    #[\Override]
     public function getTheme(): Theme
     {
         $mainRequest = $this->requestStack->getMainRequest();

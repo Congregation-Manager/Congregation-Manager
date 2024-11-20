@@ -6,6 +6,7 @@ namespace Symfony\Component\DependencyInjection\Loader\Configurator;
 
 use CongregationManager\Behat\Page\App\ChangePasswordPage;
 use CongregationManager\Behat\Page\App\CheckEmailPage;
+use CongregationManager\Behat\Page\App\CompleteAccountLocalizedPage;
 use CongregationManager\Behat\Page\App\CompleteAccountPage;
 use CongregationManager\Behat\Page\App\DashboardPage;
 use CongregationManager\Behat\Page\App\EntrypointPage;
@@ -58,6 +59,13 @@ return static function (ContainerConfigurator $containerConfigurator): void {
     ;
 
     $services->set('congregation_manager_behat.page.app.complete_account', CompleteAccountPage::class)
+        ->parent('congregation_manager_behat.page.symfony')
+    ;
+
+    $services->set(
+        'congregation_manager_behat.page.app.complete_account_localized',
+        CompleteAccountLocalizedPage::class
+    )
         ->parent('congregation_manager_behat.page.symfony')
     ;
 

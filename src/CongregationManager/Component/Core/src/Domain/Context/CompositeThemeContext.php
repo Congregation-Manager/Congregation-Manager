@@ -18,6 +18,7 @@ final readonly class CompositeThemeContext implements ThemeContextInterface
     ) {
     }
 
+    #[\Override]
     public function getTheme(): Theme
     {
         foreach ($this->themeContexts as $themeContext) {
