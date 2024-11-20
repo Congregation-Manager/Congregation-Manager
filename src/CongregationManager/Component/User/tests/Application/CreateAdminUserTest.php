@@ -4,9 +4,10 @@ declare(strict_types=1);
 
 namespace CongregationManager\Component\User\Tests\Application;
 
-use CongregationManager\Component\User\Application\CreateAdminUser;
+use CongregationManager\Component\Core\Application\CreateAdminUser;
+use CongregationManager\Component\Core\Domain\AdminUser;
+use CongregationManager\Component\Core\Infrastructure\InMemory\Repository\AdminUserRepository;
 use CongregationManager\Component\User\Infrastructure\InMemory\Hasher\UserPasswordHasher;
-use CongregationManager\Component\User\Infrastructure\InMemory\Repository\AdminUserRepository;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -14,6 +15,10 @@ use PHPUnit\Framework\TestCase;
  */
 final class CreateAdminUserTest extends TestCase
 {
+    /**
+     * @phpstan-var AdminUserRepository<covariant AdminUser>
+     * @psalm-var AdminUserRepository<AdminUser>
+     */
     private AdminUserRepository $adminUserRepository;
 
     private CreateAdminUser $createAdminUser;

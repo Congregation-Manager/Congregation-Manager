@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace CongregationManager\Behat\Context\Transform;
 
 use Behat\Behat\Context\Context;
-use CongregationManager\Bundle\User\Entity\AdminUser;
-use CongregationManager\Bundle\User\Entity\AppUser;
-use CongregationManager\Bundle\User\Entity\AppUserInterface;
-use CongregationManager\Component\User\Domain\AdminUserInterface;
+use CongregationManager\Bundle\Core\Entity\AdminUser;
+use CongregationManager\Bundle\Core\Entity\AppUIUserInterface;
+use CongregationManager\Bundle\Core\Entity\AppUser;
+use CongregationManager\Component\Core\Domain\AdminUserInterface;
 use Doctrine\ORM\EntityManagerInterface;
 use InvalidArgumentException;
 
@@ -23,7 +23,7 @@ final readonly class UserContext implements Context
      * @Transform :appUser
      * @Transform /^app user "([^"]+)"$/
      */
-    public function getAppUserByEmail(string $email): AppUserInterface
+    public function getAppUserByEmail(string $email): AppUIUserInterface
     {
         $appUserRepository = $this->entityManager->getRepository(AppUser::class);
         $appUser = $appUserRepository->findOneBy([

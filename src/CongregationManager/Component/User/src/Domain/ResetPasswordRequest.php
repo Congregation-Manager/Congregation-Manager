@@ -12,39 +12,26 @@ class ResetPasswordRequest extends AggregateRoot implements ResetPasswordRequest
     public function __construct(
         protected DateTimeInterface $expiresAt,
         protected string $hashedToken,
-        protected ?AppUserInterface $appUser = null,
-        protected ?AdminUserInterface $adminUser = null,
+        protected UIUserInterface $user,
     ) {
     }
 
     #[\Override]
     public function __toString(): string
     {
-        return sprintf('%s[%s]', self::class, (string) ($this->getAppUser() ?? $this->getAdminUser()));
+        return sprintf('%s[%s]', self::class, (string) $this->getUiUser());
     }
 
     #[\Override]
-    public function getAppUser(): ?AppUserInterface
+    public function getUiUser(): UIUserInterface
     {
-        return $this->appUser;
+        return $this->user;
     }
 
     #[\Override]
-    public function setAppUser(?AppUserInterface $appUser): void
+    public function setUser(UIUserInterface $user): void
     {
-        $this->appUser = $appUser;
-    }
-
-    #[\Override]
-    public function getAdminUser(): ?AdminUserInterface
-    {
-        return $this->adminUser;
-    }
-
-    #[\Override]
-    public function setAdminUser(?AdminUserInterface $adminUser): void
-    {
-        $this->adminUser = $adminUser;
+        $this->user = $user;
     }
 
     #[\Override]

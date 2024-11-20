@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace CongregationManager\Component\TerritoryManager\Domain;
 
-use CongregationManager\Component\Congregation\Domain\BrotherInterface;
 use CongregationManager\Contract\Resource\AggregateRoot;
 use DateInterval;
 use DateTime;
@@ -14,10 +13,10 @@ use InvalidArgumentException;
 class TerritoryAssignment extends AggregateRoot implements TerritoryAssignmentInterface
 {
     public function __construct(
-        private TerritoryInterface $territory,
-        private DateTimeInterface $assignmentDate,
-        private ?BrotherInterface $brother = null,
-        private ?DateTimeInterface $revocationDate = null
+        protected TerritoryInterface $territory,
+        protected DateTimeInterface $assignmentDate,
+        protected ?RecipientInterface $recipient = null,
+        protected ?DateTimeInterface $revocationDate = null
     ) {
         if ($this->revocationDate !== null && $this->revocationDate < $this->assignmentDate) {
             throw new InvalidArgumentException('Revocation date can not be less than assignment date.');
@@ -61,15 +60,15 @@ class TerritoryAssignment extends AggregateRoot implements TerritoryAssignmentIn
     }
 
     #[\Override]
-    public function getBrother(): ?BrotherInterface
+    public function getRecipient(): ?RecipientInterface
     {
-        return $this->brother;
+        return $this->recipient;
     }
 
     #[\Override]
-    public function setBrother(?BrotherInterface $brother): void
+    public function setRecipient(?RecipientInterface $recipient): void
     {
-        $this->brother = $brother;
+        $this->recipient = $recipient;
     }
 
     #[\Override]

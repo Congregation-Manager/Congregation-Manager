@@ -5,11 +5,11 @@ declare(strict_types=1);
 namespace CongregationManager\Bundle\App\Controller;
 
 use CongregationManager\Bundle\App\Notificator\MessageNotificatorInterface;
-use CongregationManager\Bundle\User\Entity\AppUser;
-use CongregationManager\Bundle\User\Entity\UserInterface;
+use CongregationManager\Bundle\Core\Entity\AppUser;
+use CongregationManager\Bundle\User\Entity\UIUserInterface;
+use CongregationManager\Bundle\User\Exception\UserInstanceNotValid;
 use CongregationManager\Bundle\User\Form\ChangePasswordFormType;
 use CongregationManager\Bundle\User\Form\ResetPasswordRequestFormType;
-use CongregationManager\Component\User\Domain\Exception\UserInstanceNotValid;
 use Doctrine\ORM\EntityManagerInterface;
 use Psr\Log\LoggerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -98,7 +98,7 @@ class ResetAppPasswordController extends AbstractController
         }
 
         try {
-            /** @var UserInterface $user */
+            /** @var UIUserInterface $user */
             $user = $this->resetPasswordHelper->validateTokenAndFetchUser($token);
         } catch (ResetPasswordExceptionInterface $e) {
             $this->addFlash('reset_password_error', sprintf(
@@ -114,11 +114,11 @@ class ResetAppPasswordController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            if (!$user instanceof UserInterface) {
+            if (!$user instanceof UIUserInterface) {
                 throw new UserInstanceNotValid(sprintf(
                     'User instance not valid. Provided "%s", expected "%s"',
                     $user::class,
-                    UserInterface::class
+                    UIUserInterface::class
                 ));
             }
             // A password reset token should be used only once, remove it.

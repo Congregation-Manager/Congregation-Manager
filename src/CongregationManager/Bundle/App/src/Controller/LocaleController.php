@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace CongregationManager\Bundle\App\Controller;
 
-use CongregationManager\Bundle\User\Entity\UserInterface;
+use CongregationManager\Bundle\User\Entity\UIUserInterface;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Bundle\SecurityBundle\Security;
@@ -50,7 +50,7 @@ final class LocaleController extends AbstractController
     public function switchLocale(Request $request, string $locale): Response
     {
         $user = $this->security->getUser();
-        if ($user instanceof UserInterface) {
+        if ($user instanceof UIUserInterface) {
             $user->setLocaleCode($locale);
             $this->entityManager->flush();
         }

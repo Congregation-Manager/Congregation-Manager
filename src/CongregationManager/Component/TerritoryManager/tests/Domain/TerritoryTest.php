@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace CongregationManager\Component\TerritoryManager\Tests\Domain;
 
-use CongregationManager\Component\Congregation\Domain\Congregation;
 use CongregationManager\Component\TerritoryManager\Domain\Area;
 use CongregationManager\Component\TerritoryManager\Domain\Municipality;
 use CongregationManager\Component\TerritoryManager\Domain\Province;
@@ -30,12 +29,11 @@ final class TerritoryTest extends TestCase
     #[\Override]
     protected function setUp(): void
     {
-        $congregation = new Congregation('Carrollton');
-        $province = new Province($congregation, 'Carrollton');
-        $municipality = new Municipality($congregation, $province, 'Carrollton');
-        $area = new Area($congregation, $municipality, 'Carrollton');
-        $this->territory1 = new Territory($congregation, $area, 1);
-        $this->territory2 = new Territory($congregation, $area, 2);
+        $province = new Province('Carrollton');
+        $municipality = new Municipality($province, 'Carrollton');
+        $area = new Area($municipality, 'Carrollton');
+        $this->territory1 = new Territory($area, 1);
+        $this->territory2 = new Territory($area, 2);
         $this->territoryAssignment1 = new TerritoryAssignment(
             $this->territory1,
             new DateTimeImmutable('2022-05-01'),

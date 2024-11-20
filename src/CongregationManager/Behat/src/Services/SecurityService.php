@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace CongregationManager\Behat\Services;
 
 use CongregationManager\Behat\Services\Setter\CookieSetterInterface;
-use CongregationManager\Bundle\User\Entity\UserInterface;
+use CongregationManager\Bundle\User\Entity\UIUserInterface;
 use Symfony\Component\HttpFoundation\Session\SessionFactoryInterface;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
@@ -26,7 +26,7 @@ final readonly class SecurityService
         $this->sessionTokenVariable = sprintf('_security_%s', $firewallContextName);
     }
 
-    public function logIn(UserInterface $user): void
+    public function logIn(UIUserInterface $user): void
     {
         $token = new UsernamePasswordToken($user, $this->firewallContextName, $user->getRoles());
 

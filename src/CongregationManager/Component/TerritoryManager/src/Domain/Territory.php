@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace CongregationManager\Component\TerritoryManager\Domain;
 
 use ArrayIterator;
-use CongregationManager\Component\Congregation\Domain\CongregationInterface;
 use CongregationManager\Contract\Resource\AggregateRoot;
 use DateTimeInterface;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -26,10 +25,9 @@ class Territory extends AggregateRoot implements TerritoryInterface
     protected ?Collection $sortedTerritoryAssignments = null;
 
     public function __construct(
-        private CongregationInterface $congregation,
-        private AreaInterface $area,
-        private int $number,
-        private ?string $description = null
+        protected AreaInterface $area,
+        protected int $number,
+        protected ?string $description = null
     ) {
         $this->territoryAssignments = new ArrayCollection();
     }
@@ -38,18 +36,6 @@ class Territory extends AggregateRoot implements TerritoryInterface
     public function __toString(): string
     {
         return sprintf('%s[%s]', self::class, $this->getNumber());
-    }
-
-    #[\Override]
-    public function getCongregation(): CongregationInterface
-    {
-        return $this->congregation;
-    }
-
-    #[\Override]
-    public function setCongregation(CongregationInterface $congregation): void
-    {
-        $this->congregation = $congregation;
     }
 
     #[\Override]

@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace CongregationManager\Component\TerritoryManager\Tests\Domain\Generator;
 
-use CongregationManager\Component\Congregation\Domain\Congregation;
 use CongregationManager\Component\TerritoryManager\Domain\Area;
 use CongregationManager\Component\TerritoryManager\Domain\Generator\S13Generator;
 use CongregationManager\Component\TerritoryManager\Domain\Municipality;
@@ -13,61 +12,64 @@ use CongregationManager\Component\TerritoryManager\Domain\S13\Page;
 use CongregationManager\Component\TerritoryManager\Domain\S13\Row;
 use CongregationManager\Component\TerritoryManager\Domain\Territory;
 use CongregationManager\Component\TerritoryManager\Domain\TerritoryAssignment;
-use CongregationManager\Component\TerritoryManager\Infrastructure\Repository\InMemory\TerritoryRepository;
+use CongregationManager\Component\TerritoryManager\Domain\TerritoryAssignmentInterface;
+use CongregationManager\Component\TerritoryManager\Domain\TerritoryInterface;
 use DateTimeImmutable;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\ReadableCollection;
 use PHPUnit\Framework\TestCase;
 
 class S13GeneratorTest extends TestCase
 {
     private S13Generator $s13Generator;
 
-    private TerritoryRepository $territoryRepository;
+    private TerritoryInterface $carrolltonTerritory1;
 
-    private Congregation $carrolltonCongregation;
+    private TerritoryInterface $carrolltonTerritory2;
 
-    private Territory $carrolltonTerritory1;
+    private TerritoryInterface $carrolltonTerritory3;
 
-    private Territory $carrolltonTerritory2;
+    private TerritoryAssignmentInterface $carrolltonTerritory1Assignment1;
 
-    private Territory $carrolltonTerritory3;
+    private TerritoryAssignmentInterface $carrolltonTerritory1Assignment2;
 
-    private TerritoryAssignment $carrolltonTerritory1Assignment1;
+    private TerritoryAssignmentInterface $carrolltonTerritory1Assignment3;
 
-    private TerritoryAssignment $carrolltonTerritory1Assignment2;
+    private TerritoryAssignmentInterface $carrolltonTerritory1Assignment4;
 
-    private TerritoryAssignment $carrolltonTerritory1Assignment3;
+    private TerritoryAssignmentInterface $carrolltonTerritory2Assignment1;
 
-    private TerritoryAssignment $carrolltonTerritory1Assignment4;
+    private TerritoryAssignmentInterface $carrolltonTerritory2Assignment2;
 
-    private TerritoryAssignment $carrolltonTerritory2Assignment1;
+    private TerritoryAssignmentInterface $carrolltonTerritory2Assignment3;
 
-    private TerritoryAssignment $carrolltonTerritory2Assignment2;
+    private TerritoryAssignmentInterface $carrolltonTerritory3Assignment1;
 
-    private TerritoryAssignment $carrolltonTerritory2Assignment3;
+    private TerritoryAssignmentInterface $carrolltonTerritory3Assignment2;
 
-    private TerritoryAssignment $carrolltonTerritory3Assignment1;
+    private TerritoryAssignmentInterface $carrolltonTerritory3Assignment3;
 
-    private TerritoryAssignment $carrolltonTerritory3Assignment2;
+    private TerritoryAssignmentInterface $carrolltonTerritory3Assignment4;
 
-    private TerritoryAssignment $carrolltonTerritory3Assignment3;
+    private TerritoryAssignmentInterface $carrolltonTerritory3Assignment5;
 
-    private TerritoryAssignment $carrolltonTerritory3Assignment4;
+    private TerritoryAssignmentInterface $carrolltonTerritory3Assignment6;
 
-    private TerritoryAssignment $carrolltonTerritory3Assignment5;
+    private TerritoryAssignmentInterface $carrolltonTerritory3Assignment7;
 
-    private TerritoryAssignment $carrolltonTerritory3Assignment6;
-
-    private TerritoryAssignment $carrolltonTerritory3Assignment7;
+    /**
+     * @var ReadableCollection<array-key, TerritoryInterface>
+     */
+    private ReadableCollection $territories;
 
     #[\Override]
     protected function setUp(): void
     {
-        $this->carrolltonCongregation = new Congregation('Carrollton');
-        $province = new Province($this->carrolltonCongregation, 'Carrollton');
-        $municipality = new Municipality($this->carrolltonCongregation, $province, 'Carrollton');
-        $area = new Area($this->carrolltonCongregation, $municipality, 'Carrollton');
+        $province = new Province('Carrollton');
+        $municipality = new Municipality($province, 'Carrollton');
+        $area = new Area($municipality, 'Carrollton');
 
-        $this->carrolltonTerritory1 = new Territory($this->carrolltonCongregation, $area, 1, 'Territory 1');
+        $this->carrolltonTerritory1 = new Territory($area, 1, 'Territory 1');
         $this->carrolltonTerritory1Assignment1 = new TerritoryAssignment(
             $this->carrolltonTerritory1,
             new DateTimeImmutable('2022-08-01'),
@@ -104,7 +106,7 @@ class S13GeneratorTest extends TestCase
         $this->carrolltonTerritory1->addTerritoryAssignment($this->carrolltonTerritory1Assignment3);
         $this->carrolltonTerritory1->addTerritoryAssignment($this->carrolltonTerritory1Assignment4);
 
-        $this->carrolltonTerritory2 = new Territory($this->carrolltonCongregation, $area, 2, 'Territory 2');
+        $this->carrolltonTerritory2 = new Territory($area, 2, 'Territory 2');
         $this->carrolltonTerritory2Assignment1 = new TerritoryAssignment(
             $this->carrolltonTerritory2,
             new DateTimeImmutable('2023-01-10'),
@@ -127,7 +129,7 @@ class S13GeneratorTest extends TestCase
         $this->carrolltonTerritory2->addTerritoryAssignment($this->carrolltonTerritory2Assignment2);
         $this->carrolltonTerritory2->addTerritoryAssignment($this->carrolltonTerritory2Assignment3);
 
-        $this->carrolltonTerritory3 = new Territory($this->carrolltonCongregation, $area, 3, 'Territory 3');
+        $this->carrolltonTerritory3 = new Territory($area, 3, 'Territory 3');
         $this->carrolltonTerritory3Assignment1 = new TerritoryAssignment(
             $this->carrolltonTerritory3,
             new DateTimeImmutable('2022-07-03'),
@@ -178,19 +180,17 @@ class S13GeneratorTest extends TestCase
         $this->carrolltonTerritory3->addTerritoryAssignment($this->carrolltonTerritory3Assignment6);
         $this->carrolltonTerritory3->addTerritoryAssignment($this->carrolltonTerritory3Assignment7);
 
-        $this->territoryRepository = new TerritoryRepository();
-        $this->territoryRepository->territories = [
-            $this->carrolltonTerritory1,
-            $this->carrolltonTerritory2,
-            $this->carrolltonTerritory3,
-        ];
-        $this->generateTerritories(50, $this->carrolltonCongregation, $area, 4);
-        $this->s13Generator = new S13Generator($this->territoryRepository);
+        $territories = $this->generateTerritories(50, $area, 4);
+        $this->territories = new ArrayCollection(array_merge(
+            [$this->carrolltonTerritory1, $this->carrolltonTerritory2, $this->carrolltonTerritory3],
+            $territories,
+        ));
+        $this->s13Generator = new S13Generator();
     }
 
     public function testItGeneratesS13Successfully(): void
     {
-        $s13 = $this->s13Generator->generateByCongregation($this->carrolltonCongregation, 2023);
+        $s13 = $this->s13Generator->generateForTerritoriesAndServiceYear($this->territories, 2023);
         self::assertCount(3, $s13->getPages());
 
         $firstPage = $s13->getPages()
@@ -244,11 +244,17 @@ class S13GeneratorTest extends TestCase
         self::assertEquals($this->carrolltonTerritory3Assignment7, $territory3Row->getTerritoryAssignments()->get(4));
     }
 
-    private function generateTerritories(int $num, Congregation $congregation, Area $area, int $startFrom = 1): void
+    /**
+     * @return TerritoryInterface[]
+     */
+    private function generateTerritories(int $num, Area $area, int $startFrom = 1): array
     {
+        $territories = [];
         for ($startFrom; $startFrom <= $num; $startFrom++) {
-            $territory = new Territory($congregation, $area, $startFrom, 'Territory ' . $startFrom);
-            $this->territoryRepository->add($territory);
+            $territory = new Territory($area, $startFrom, 'Territory ' . $startFrom);
+            $territories[] = $territory;
         }
+
+        return $territories;
     }
 }

@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace CongregationManager\Bundle\App\Controller;
 
+use CongregationManager\Bundle\Core\Entity\AppUIUserInterface;
 use CongregationManager\Bundle\Core\Form\ProfileUpdateFormType;
 use CongregationManager\Bundle\Core\Model\ProfileUpdate;
-use CongregationManager\Bundle\User\Entity\AppUserInterface;
 use Doctrine\ORM\EntityManagerInterface;
 use LogicException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -32,7 +32,7 @@ final class AppProfileController extends AbstractController
         if ($user === null) {
             throw new AccessDeniedHttpException();
         }
-        if (!$user instanceof AppUserInterface) {
+        if (!$user instanceof AppUIUserInterface) {
             throw new LogicException();
         }
 

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace CongregationManager\Component\TerritoryManager\Application\Command;
 
-use CongregationManager\Component\Congregation\Domain\BrotherInterface;
+use CongregationManager\Component\TerritoryManager\Domain\RecipientInterface;
 use CongregationManager\Component\TerritoryManager\Domain\TerritoryAssignmentInterface;
 use CongregationManager\Component\TerritoryManager\Domain\TerritoryInterface;
 use DateTimeInterface;
@@ -15,7 +15,7 @@ final class UpdateTerritoryAssignment
         private readonly TerritoryAssignmentInterface $territoryAssignment,
         private ?TerritoryInterface $territory = null,
         private ?DateTimeInterface $assignmentDate = null,
-        private ?BrotherInterface $brother = null,
+        private ?RecipientInterface $recipient = null,
         private ?DateTimeInterface $revocationDate = null,
     ) {
     }
@@ -45,14 +45,14 @@ final class UpdateTerritoryAssignment
         $this->assignmentDate = $assignmentDate;
     }
 
-    public function getBrother(): ?BrotherInterface
+    public function getRecipient(): ?RecipientInterface
     {
-        return $this->brother;
+        return $this->recipient;
     }
 
-    public function setBrother(?BrotherInterface $brother): void
+    public function setRecipient(?RecipientInterface $recipient): void
     {
-        $this->brother = $brother;
+        $this->recipient = $recipient;
     }
 
     public function getRevocationDate(): ?DateTimeInterface
@@ -71,7 +71,7 @@ final class UpdateTerritoryAssignment
             $territoryAssignment,
             $territoryAssignment->getTerritory(),
             $territoryAssignment->getAssignmentDate(),
-            $territoryAssignment->getBrother(),
+            $territoryAssignment->getRecipient(),
             $territoryAssignment->getRevocationDate()
         );
     }

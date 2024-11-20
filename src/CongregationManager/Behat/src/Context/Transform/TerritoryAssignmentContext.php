@@ -44,7 +44,7 @@ final readonly class TerritoryAssignmentContext implements Context
         $territoryAssignments = array_filter(
             $territoryAssignments,
             static fn ($territoryAssignment) => $territoryAssignment->getTerritory() === $territory
-            && $territoryAssignment->getBrother() === $brother
+            && $territoryAssignment->getRecipient() === $brother
             && $territoryAssignment->getAssignmentDate()
                 ->format('Y-m-d') === $assignmentDate
         );

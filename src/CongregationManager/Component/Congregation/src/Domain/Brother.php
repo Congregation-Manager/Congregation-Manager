@@ -4,23 +4,11 @@ declare(strict_types=1);
 
 namespace CongregationManager\Component\Congregation\Domain;
 
-use CongregationManager\Component\TerritoryManager\Domain\TerritoryAssignmentInterface;
-use CongregationManager\Component\User\Domain\AppUserInterface;
-use CongregationManager\Component\User\Domain\AppUserInvitation;
 use CongregationManager\Contract\Resource\AggregateRoot;
 use DateTimeInterface;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 
 class Brother extends AggregateRoot implements BrotherInterface
 {
-    protected ?AppUserInterface $user = null;
-
-    /**
-     * @var Collection<array-key, TerritoryAssignmentInterface>
-     */
-    protected Collection $territoryAssignments;
-
     public function __construct(
         protected string $firstName,
         protected string $lastName,
@@ -29,9 +17,7 @@ class Brother extends AggregateRoot implements BrotherInterface
         protected ?string $middleName = null,
         protected ?DateTimeInterface $birthDate = null,
         protected ?DateTimeInterface $baptismDate = null,
-        protected ?AppUserInvitation $invitation = null
     ) {
-        $this->territoryAssignments = new ArrayCollection();
     }
 
     #[\Override]
@@ -79,18 +65,6 @@ class Brother extends AggregateRoot implements BrotherInterface
     public function setBaptismDate(?DateTimeInterface $baptismDate): void
     {
         $this->baptismDate = $baptismDate;
-    }
-
-    #[\Override]
-    public function getUser(): ?AppUserInterface
-    {
-        return $this->user;
-    }
-
-    #[\Override]
-    public function setUser(?AppUserInterface $user): void
-    {
-        $this->user = $user;
     }
 
     #[\Override]
@@ -145,40 +119,6 @@ class Brother extends AggregateRoot implements BrotherInterface
     public function getSex(): string
     {
         return $this->isMale() ? 'male' : 'female';
-    }
-
-    #[\Override]
-    public function getInvitation(): ?AppUserInvitation
-    {
-        return $this->invitation;
-    }
-
-    #[\Override]
-    public function setInvitation(?AppUserInvitation $invitation): void
-    {
-        $this->invitation = $invitation;
-    }
-
-    /**
-     * @return Collection<array-key, TerritoryAssignmentInterface>
-     */
-    public function getTerritoryAssignments(): Collection
-    {
-        return $this->territoryAssignments;
-    }
-
-    public function addTerritoryAssignment(TerritoryAssignmentInterface $territoryAssignment): void
-    {
-        if (!$this->territoryAssignments->contains($territoryAssignment)) {
-            $this->territoryAssignments->add($territoryAssignment);
-        }
-    }
-
-    public function removeTerritoryAssignment(TerritoryAssignmentInterface $territoryAssignment): void
-    {
-        if ($this->territoryAssignments->contains($territoryAssignment)) {
-            $this->territoryAssignments->removeElement($territoryAssignment);
-        }
     }
 
     public function getFullName(): string

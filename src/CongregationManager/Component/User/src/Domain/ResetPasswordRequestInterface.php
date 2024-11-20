@@ -9,13 +9,9 @@ use DateTimeInterface;
 
 interface ResetPasswordRequestInterface extends AggregateRootInterface
 {
-    public function getAppUser(): ?AppUserInterface;
+    public function getUiUser(): UIUserInterface;
 
-    public function setAppUser(?AppUserInterface $appUser): void;
-
-    public function getAdminUser(): ?AdminUserInterface;
-
-    public function setAdminUser(?AdminUserInterface $adminUser): void;
+    public function setUser(UIUserInterface $user): void;
 
     public function getExpiresAt(): DateTimeInterface;
 

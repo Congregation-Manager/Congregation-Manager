@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace CongregationManager\Component\TerritoryManager\Domain\Repository\Filter;
 
-use CongregationManager\Component\Congregation\Domain\BrotherInterface;
 use CongregationManager\Component\TerritoryManager\Domain\AreaInterface;
+use CongregationManager\Component\TerritoryManager\Domain\RecipientInterface;
 
 interface TerritoryRepositoryFilterInterface
 {
@@ -23,7 +23,7 @@ interface TerritoryRepositoryFilterInterface
 
     public function setNotAssigned(?bool $notAssigned): void;
 
-    public function getAssignedTo(): ?BrotherInterface;
+    public function getAssignedTo(): ?RecipientInterface;
 
-    public function setAssignedTo(?BrotherInterface $assignedTo): void;
+    public function setAssignedTo(?RecipientInterface $assignedTo): void;
 }

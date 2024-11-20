@@ -6,11 +6,10 @@ namespace CongregationManager\Component\User\Domain;
 
 use CongregationManager\Contract\Resource\AggregateRoot;
 
-abstract class User extends AggregateRoot implements UserInterface
+class User extends AggregateRoot implements UserInterface
 {
     public function __construct(
         protected string $email,
-        protected ?string $password = null,
         protected ?string $localeCode = null
     ) {
     }
@@ -31,18 +30,6 @@ abstract class User extends AggregateRoot implements UserInterface
     public function setEmail(string $email): void
     {
         $this->email = $email;
-    }
-
-    #[\Override]
-    public function getPassword(): ?string
-    {
-        return $this->password;
-    }
-
-    #[\Override]
-    public function setPassword(?string $password): void
-    {
-        $this->password = $password;
     }
 
     #[\Override]

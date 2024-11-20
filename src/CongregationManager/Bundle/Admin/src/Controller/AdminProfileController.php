@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace CongregationManager\Bundle\Admin\Controller;
 
-use CongregationManager\Bundle\User\Entity\UserInterface;
+use CongregationManager\Bundle\User\Entity\UIUserInterface;
 use CongregationManager\Bundle\User\Form\ChangeEmailFormType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -30,7 +30,7 @@ final class AdminProfileController extends AbstractController
         if ($user === null) {
             throw new AccessDeniedHttpException();
         }
-        if (!$user instanceof UserInterface) {
+        if (!$user instanceof UIUserInterface) {
             throw new \LogicException();
         }
         $changeEmailForm = $this->createForm(ChangeEmailFormType::class, $user);

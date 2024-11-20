@@ -8,11 +8,11 @@ use Behat\Behat\Context\Context;
 use CongregationManager\Behat\Services\SecurityService;
 use CongregationManager\Behat\Services\SharedStorageInterface;
 use CongregationManager\Bundle\Core\Converter\LocaleConverterInterface;
+use CongregationManager\Bundle\Core\Entity\AdminUIUserInterface;
+use CongregationManager\Bundle\Core\Entity\AdminUser;
+use CongregationManager\Bundle\Core\Entity\AppUIUserInterface;
+use CongregationManager\Bundle\Core\Entity\AppUser;
 use CongregationManager\Bundle\User\Action\CreateAppUserInvitation;
-use CongregationManager\Bundle\User\Entity\AdminUser;
-use CongregationManager\Bundle\User\Entity\AdminUserInterface;
-use CongregationManager\Bundle\User\Entity\AppUser;
-use CongregationManager\Bundle\User\Entity\AppUserInterface;
 use CongregationManager\Bundle\User\Entity\ResetPasswordRequest;
 use CongregationManager\Component\Congregation\Domain\BrotherInterface;
 use DateTimeImmutable;
@@ -77,7 +77,7 @@ final readonly class AccountContext implements Context
         $adminUser = $adminUserRepository->findOneBy([
             'email' => $email,
         ]);
-        Assert::isInstanceOf($adminUser, AdminUserInterface::class);
+        Assert::isInstanceOf($adminUser, AdminUIUserInterface::class);
 
         $expiresAt = new DateTimeImmutable('tomorrow');
         $hashedVerifierToken = $this->tokenGenerator->createToken(
@@ -106,7 +106,7 @@ final readonly class AccountContext implements Context
         $appUser = $appUserRepository->findOneBy([
             'email' => $email,
         ]);
-        Assert::isInstanceOf($appUser, AppUserInterface::class);
+        Assert::isInstanceOf($appUser, AppUIUserInterface::class);
 
         $expiresAt = new DateTimeImmutable('tomorrow');
         $hashedVerifierToken = $this->tokenGenerator->createToken(
@@ -129,7 +129,7 @@ final readonly class AccountContext implements Context
     /**
      * @Given /^The (app user "[^"]+") has "([^"]*)" as preferred language$/
      */
-    public function theAppUserHasAsPreferredLanguage(AppUserInterface $appUser, string $locale): void
+    public function theAppUserHasAsPreferredLanguage(AppUIUserInterface $appUser, string $locale): void
     {
         $localeCode = $this->localeConverter->convertNameToCode($locale);
         $appUser->setLocaleCode($localeCode);
@@ -139,7 +139,7 @@ final readonly class AccountContext implements Context
     /**
      * @Given /^The (admin user "[^"]+") has "([^"]*)" as preferred language$/
      */
-    public function theAdminUserHasAsPreferredLanguage(AdminUserInterface $adminUser, string $locale): void
+    public function theAdminUserHasAsPreferredLanguage(AdminUIUserInterface $adminUser, string $locale): void
     {
         $localeCode = $this->localeConverter->convertNameToCode($locale);
         $adminUser->setLocaleCode($localeCode);

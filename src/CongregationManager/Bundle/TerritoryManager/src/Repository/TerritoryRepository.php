@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace CongregationManager\Bundle\TerritoryManager\Repository;
 
 use CongregationManager\Bundle\TerritoryManager\Repository\Filter\TerritoryFilterResults;
-use CongregationManager\Component\Congregation\Domain\CongregationInterface;
 use CongregationManager\Component\TerritoryManager\Domain\Repository\Filter\TerritoryRepositoryFilterInterface;
 use CongregationManager\Component\TerritoryManager\Domain\Repository\TerritoryRepositoryInterface;
 use CongregationManager\Component\TerritoryManager\Domain\Territory;
@@ -98,16 +97,6 @@ final class TerritoryRepository extends ServiceEntityRepository implements Terri
     {
         return $this->findOneBy([
             'number' => $number,
-        ]);
-    }
-
-    #[\Override]
-    public function findByCongregation(CongregationInterface $congregation): array
-    {
-        return $this->findBy([
-            'congregation' => $congregation,
-        ], [
-            'number' => 'ASC',
         ]);
     }
 }

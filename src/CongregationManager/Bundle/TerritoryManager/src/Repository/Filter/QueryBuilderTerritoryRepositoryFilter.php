@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace CongregationManager\Bundle\TerritoryManager\Repository\Filter;
 
-use CongregationManager\Component\Congregation\Domain\BrotherInterface;
 use CongregationManager\Component\TerritoryManager\Domain\AreaInterface;
+use CongregationManager\Component\TerritoryManager\Domain\RecipientInterface;
 use CongregationManager\Component\TerritoryManager\Domain\Repository\Filter\TerritoryRepositoryFilterInterface;
 
 final class QueryBuilderTerritoryRepositoryFilter implements TerritoryRepositoryFilterInterface
@@ -17,7 +17,7 @@ final class QueryBuilderTerritoryRepositoryFilter implements TerritoryRepository
 
     private ?bool $notAssigned = null;
 
-    private ?BrotherInterface $assignedTo = null;
+    private ?RecipientInterface $assignedTo = null;
 
     #[\Override]
     public function setAreas(array $areas): void
@@ -44,13 +44,13 @@ final class QueryBuilderTerritoryRepositoryFilter implements TerritoryRepository
     }
 
     #[\Override]
-    public function getAssignedTo(): ?BrotherInterface
+    public function getAssignedTo(): ?RecipientInterface
     {
         return $this->assignedTo;
     }
 
     #[\Override]
-    public function setAssignedTo(?BrotherInterface $assignedTo): void
+    public function setAssignedTo(?RecipientInterface $assignedTo): void
     {
         $this->assignedTo = $assignedTo;
     }

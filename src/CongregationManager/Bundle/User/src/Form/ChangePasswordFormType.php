@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace CongregationManager\Bundle\User\Form;
 
-use CongregationManager\Bundle\User\Entity\UserInterface;
+use CongregationManager\Bundle\User\Entity\UIUserInterface;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
@@ -15,7 +15,7 @@ use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
 
 /**
- * @extends AbstractType<UserInterface>
+ * @extends AbstractType<UIUserInterface>
  */
 class ChangePasswordFormType extends AbstractType
 {

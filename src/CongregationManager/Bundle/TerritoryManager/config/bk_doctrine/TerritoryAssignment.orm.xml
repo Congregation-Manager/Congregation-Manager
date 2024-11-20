@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<doctrine-mapping xmlns="https://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="https://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="https://doctrine-project.org/schemas/orm/doctrine-mapping
+                          https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+    <mapped-superclass name="CongregationManager\Component\TerritoryManager\Domain\TerritoryAssignment" table="territory_assignment">
+        <id name="id" type="integer" column="id">
+            <generator strategy="AUTO"/>
+        </id>
+
+        <many-to-one field="territory" target-entity="CongregationManager\Component\TerritoryManager\Domain\TerritoryInterface"
+                     inversed-by="territoryAssignments">
+            <join-column name="territory_id" referenced-column-name="id" nullable="false" on-delete="CASCADE"/>
+        </many-to-one>
+
+        <field name="assignmentDate" type="date" nullable="false"/>
+
+        <field name="revocationDate" type="date" nullable="true"/>
+    </mapped-superclass>
+</doctrine-mapping>

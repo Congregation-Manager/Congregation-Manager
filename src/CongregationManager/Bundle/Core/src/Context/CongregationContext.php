@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace CongregationManager\Bundle\Core\Context;
 
 use CongregationManager\Component\Congregation\Domain\CongregationInterface;
+use CongregationManager\Component\Core\Domain\AppUserInterface;
 use CongregationManager\Component\Core\Domain\Context\CongregationContextInterface;
-use CongregationManager\Component\User\Domain\AppUserInterface;
 use RuntimeException;
 use Symfony\Bundle\SecurityBundle\Security;
 

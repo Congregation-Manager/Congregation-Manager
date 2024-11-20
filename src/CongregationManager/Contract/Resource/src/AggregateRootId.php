@@ -4,9 +4,7 @@ declare(strict_types=1);
 
 namespace CongregationManager\Contract\Resource;
 
-use Stringable;
-
-interface AggregateRootId extends Stringable
+interface AggregateRootId extends \Stringable
 {
     public function __toString(): string;
 

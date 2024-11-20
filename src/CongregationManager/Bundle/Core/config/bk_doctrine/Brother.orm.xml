@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<doctrine-mapping xmlns="https://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="https://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="https://doctrine-project.org/schemas/orm/doctrine-mapping
+                          https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+    <entity name="CongregationManager\Bundle\Core\Entity\Brother" table="brother">
+        <one-to-one field="user" target-entity="CongregationManager\Bundle\Core\Entity\AppUser" mapped-by="brother"/>
+
+        <one-to-one field="invitation" target-entity="CongregationManager\Bundle\Core\Entity\AppUserInvitation"
+                    mapped-by="brother"/>
+
+        <one-to-many field="territoryAssignments"
+                     target-entity="CongregationManager\Bundle\Core\Entity\TerritoryAssignmentInterface"
+                     mapped-by="brother"/>
+    </entity>
+</doctrine-mapping>

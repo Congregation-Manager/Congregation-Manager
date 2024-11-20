@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace CongregationManager\Component\User\Domain\Generator;
 
-use function strlen;
-
 final class TokenGenerator implements TokenGeneratorInterface
 {
     #[\Override]

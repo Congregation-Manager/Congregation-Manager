@@ -6,9 +6,9 @@ namespace CongregationManager\Component\User\Tests\Application;
 
 use CongregationManager\Component\Congregation\Domain\Brother;
 use CongregationManager\Component\Congregation\Domain\Congregation;
-use CongregationManager\Component\User\Application\CreateAppUser;
+use CongregationManager\Component\Core\Application\CreateAppUser;
+use CongregationManager\Component\Core\Infrastructure\InMemory\Repository\AppUserRepository;
 use CongregationManager\Component\User\Infrastructure\InMemory\Hasher\UserPasswordHasher;
-use CongregationManager\Component\User\Infrastructure\InMemory\Repository\AppUserRepository;
 use PHPUnit\Framework\TestCase;
 
 /**

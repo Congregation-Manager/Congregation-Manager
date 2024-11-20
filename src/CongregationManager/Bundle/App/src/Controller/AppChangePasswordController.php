@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace CongregationManager\Bundle\App\Controller;
 
-use CongregationManager\Bundle\User\Entity\UserInterface;
+use CongregationManager\Bundle\User\Entity\UIUserInterface;
 use CongregationManager\Bundle\User\Form\ChangePasswordFormType;
 use CongregationManager\Component\User\Domain\Hasher\UserPasswordHasherInterface;
 use Doctrine\ORM\EntityManagerInterface;
@@ -32,7 +32,7 @@ final class AppChangePasswordController extends AbstractController
         if ($user === null) {
             throw new AccessDeniedHttpException();
         }
-        if (!$user instanceof UserInterface) {
+        if (!$user instanceof UIUserInterface) {
             throw new \LogicException();
         }
         $changePasswordForm = $this->createForm(ChangePasswordFormType::class, $user, [

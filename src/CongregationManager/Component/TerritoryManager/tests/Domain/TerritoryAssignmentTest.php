@@ -4,9 +4,6 @@ declare(strict_types=1);
 
 namespace CongregationManager\Component\TerritoryManager\Tests\Domain;
 
-use CongregationManager\Component\Congregation\Domain\Brother;
-use CongregationManager\Component\Congregation\Domain\BrotherInterface;
-use CongregationManager\Component\Congregation\Domain\Congregation;
 use CongregationManager\Component\TerritoryManager\Domain\Area;
 use CongregationManager\Component\TerritoryManager\Domain\Municipality;
 use CongregationManager\Component\TerritoryManager\Domain\Province;
@@ -26,8 +23,6 @@ final class TerritoryAssignmentTest extends TestCase
 
     private TerritoryInterface $territory;
 
-    private BrotherInterface $jhonBarrBrother;
-
     private TerritoryAssignment $territoryAssignmentWithRevocationDate;
 
     private TerritoryAssignment $territoryAssignmentWithoutRevocationDate;
@@ -35,21 +30,20 @@ final class TerritoryAssignmentTest extends TestCase
     #[\Override]
     protected function setUp(): void
     {
-        $congregation = new Congregation('congregation');
-        $province = new Province($congregation, 'province');
-        $municipality = new Municipality($congregation, $province, 'province');
-        $this->territory = new Territory($congregation, new Area($congregation, $municipality, 'area'), 1);
-        $this->jhonBarrBrother = new Brother('Jhon', 'Barr', $congregation);
+        $province = new Province('province');
+        $municipality = new Municipality($province, 'province');
+        $this->territory = new Territory(new Area($municipality, 'area'), 1);
+        $jhonBarrBrother = new Recipient();
         $this->territoryAssignmentWithRevocationDate = new TerritoryAssignment(
             $this->territory,
             new DateTimeImmutable('2022-06-10'),
-            $this->jhonBarrBrother,
+            $jhonBarrBrother,
             new DateTimeImmutable('2022-06-25'),
         );
         $this->territoryAssignmentWithoutRevocationDate = new TerritoryAssignment(
             $this->territory,
             new DateTimeImmutable('2022-06-10'),
-            $this->jhonBarrBrother,
+            $jhonBarrBrother,
             null,
         );
     }

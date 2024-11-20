@@ -7,7 +7,7 @@ namespace CongregationManager\Bundle\App\Controller;
 use CongregationManager\Bundle\User\Action\CreateAppUser;
 use CongregationManager\Bundle\User\Entity\CompleteAccount;
 use CongregationManager\Bundle\User\Form\CompleteAccountFormType;
-use CongregationManager\Component\User\Domain\Repository\AppUserInvitationRepositoryInterface;
+use CongregationManager\Component\Core\Domain\Repository\AppUserInvitationRepositoryInterface;
 use DateInterval;
 use DateTime;
 use Doctrine\ORM\EntityManagerInterface;

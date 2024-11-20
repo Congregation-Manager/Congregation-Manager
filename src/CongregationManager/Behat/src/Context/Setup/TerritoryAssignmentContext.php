@@ -6,7 +6,7 @@ namespace CongregationManager\Behat\Context\Setup;
 
 use Behat\Behat\Context\Context;
 use CongregationManager\Behat\Services\SharedStorageInterface;
-use CongregationManager\Component\Congregation\Domain\BrotherInterface;
+use CongregationManager\Component\Core\Domain\BrotherInterface;
 use CongregationManager\Component\TerritoryManager\Domain\Repository\TerritoryAssignmentRepositoryInterface;
 use CongregationManager\Component\TerritoryManager\Domain\TerritoryAssignment;
 use CongregationManager\Component\TerritoryManager\Domain\TerritoryInterface;

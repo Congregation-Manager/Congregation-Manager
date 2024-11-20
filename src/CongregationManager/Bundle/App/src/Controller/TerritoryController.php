@@ -6,11 +6,13 @@ namespace CongregationManager\Bundle\App\Controller;
 
 use CongregationManager\Bundle\TerritoryManager\Form\TerritoryFiltersFormType;
 use CongregationManager\Bundle\TerritoryManager\Repository\Filter\QueryBuilderTerritoryRepositoryFilter;
+use CongregationManager\Component\Core\Domain\CongregationInterface;
 use CongregationManager\Component\Core\Domain\Context\CongregationContextInterface;
+use CongregationManager\Component\Core\Domain\Repository\TerritoryRepositoryInterface;
 use CongregationManager\Component\TerritoryManager\Domain\Generator\S13GeneratorInterface;
 use CongregationManager\Component\TerritoryManager\Domain\Renderer\S13RendererInterface;
-use CongregationManager\Component\TerritoryManager\Domain\Repository\TerritoryRepositoryInterface;
 use DateTimeImmutable;
+use Doctrine\Common\Collections\ArrayCollection;
 use Knp\Component\Pager\Event\Subscriber\Paginate\Callback\CallbackPagination;
 use Knp\Component\Pager\PaginatorInterface;
 use PhpOffice\PhpWord\IOFactory;
@@ -100,8 +102,11 @@ final class TerritoryController extends AbstractController
             /** @var int|mixed $serviceYear */
             $serviceYear = $form->getData();
             Assert::integer($serviceYear);
-            $s13 = $this->s13Generator->generateByCongregation(
-                $this->congregationContext->getCongregation(),
+            $congregation = $this->congregationContext->getCongregation();
+            Assert::isInstanceOf($congregation, CongregationInterface::class);
+            $territories = $this->territoryRepository->findByCongregation($congregation);
+            $s13 = $this->s13Generator->generateForTerritoriesAndServiceYear(
+                new ArrayCollection($territories),
                 $serviceYear
             );
             $wordFile = $this->s13Renderer->render($s13);

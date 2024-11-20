@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace CongregationManager\Bundle\User\Action;
 
-use CongregationManager\Bundle\User\Entity\AppUserInvitation;
+use CongregationManager\Bundle\Core\Entity\AppUserInvitation;
 use CongregationManager\Component\Congregation\Domain\BrotherInterface;
+use CongregationManager\Component\Core\Domain\Repository\AppUserInvitationRepositoryInterface;
 use CongregationManager\Component\User\Domain\Generator\TokenGeneratorInterface;
-use CongregationManager\Component\User\Domain\Repository\AppUserInvitationRepositoryInterface;
 
 final readonly class CreateAppUserInvitation
 {

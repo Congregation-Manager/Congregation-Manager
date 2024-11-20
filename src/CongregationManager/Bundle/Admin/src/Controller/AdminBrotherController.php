@@ -8,6 +8,7 @@ use CongregationManager\Bundle\Admin\Notificator\MessageNotificatorInterface;
 use CongregationManager\Bundle\User\Action\CreateAppUserInvitation;
 use CongregationManager\Bundle\User\Form\InviteUserFormType;
 use CongregationManager\Component\Congregation\Domain\Repository\BrotherRepositoryInterface;
+use CongregationManager\Component\Core\Domain\BrotherInterface;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -51,7 +52,7 @@ final class AdminBrotherController extends AbstractController
     public function invite(Request $request, int $id): Response
     {
         $brother = $this->brotherRepository->findOneById($id);
-        if ($brother === null) {
+        if (!$brother instanceof BrotherInterface) {
             throw new NotFoundHttpException();
         }
         $inviteUserForm = $this->createForm(InviteUserFormType::class);

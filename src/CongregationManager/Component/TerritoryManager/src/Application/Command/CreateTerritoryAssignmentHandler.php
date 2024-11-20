@@ -40,7 +40,7 @@ final readonly class CreateTerritoryAssignmentHandler
         $territoryAssignment = $this->territoryAssignmentFactory->createNew(
             $territory,
             $assignmentDate,
-            $command->getBrother(),
+            $command->getRecipient(),
             $command->getRevocationDate(),
         );
 

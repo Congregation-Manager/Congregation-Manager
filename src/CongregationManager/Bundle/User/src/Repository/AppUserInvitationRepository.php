@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace CongregationManager\Bundle\User\Repository;
 
-use CongregationManager\Bundle\User\Entity\AppUserInvitation;
-use CongregationManager\Component\User\Domain\AppUserInvitation as DomainAppUserInvitation;
-use CongregationManager\Component\User\Domain\Repository\AppUserInvitationRepositoryInterface;
+use CongregationManager\Bundle\Core\Entity\AppUserInvitation;
+use CongregationManager\Component\Core\Domain\AppUserInvitation as DomainAppUserInvitation;
+use CongregationManager\Component\Core\Domain\Repository\AppUserInvitationRepositoryInterface;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 

@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace CongregationManager\Bundle\FixturesBundle\DataFixtures;
 
-use CongregationManager\Bundle\User\Entity\AppUser;
-use CongregationManager\Component\Congregation\Domain\Brother;
+use CongregationManager\Bundle\Core\Entity\AppUser;
 use CongregationManager\Component\Congregation\Domain\CongregationInterface;
+use CongregationManager\Component\Core\Domain\Brother;
 use CongregationManager\Component\User\Domain\Hasher\UserPasswordHasherInterface;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Bundle\FixturesBundle\FixtureGroupInterface;

@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace CongregationManager\Component\TerritoryManager\Infrastructure\Repository\InMemory;
 
-use CongregationManager\Component\Congregation\Domain\CongregationInterface;
 use CongregationManager\Component\TerritoryManager\Domain\Repository\Filter\TerritoryFilterResultsInterface;
 use CongregationManager\Component\TerritoryManager\Domain\Repository\Filter\TerritoryRepositoryFilterInterface;
 use CongregationManager\Component\TerritoryManager\Domain\Repository\TerritoryRepositoryInterface;
@@ -62,18 +61,5 @@ final class TerritoryRepository implements TerritoryRepositoryInterface
         }
 
         return null;
-    }
-
-    #[\Override]
-    public function findByCongregation(CongregationInterface $congregation): array
-    {
-        $territories = [];
-        foreach ($this->territories as $territory) {
-            if ($territory->getCongregation() === $congregation) {
-                $territories[] = $territory;
-            }
-        }
-
-        return $territories;
     }
 }

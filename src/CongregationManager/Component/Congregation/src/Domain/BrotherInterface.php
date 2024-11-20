@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace CongregationManager\Component\Congregation\Domain;
 
-use CongregationManager\Component\User\Domain\AppUserInterface;
-use CongregationManager\Component\User\Domain\AppUserInvitation;
 use CongregationManager\Contract\Resource\AggregateRootInterface;
 use DateTimeInterface;
 
@@ -22,10 +20,6 @@ interface BrotherInterface extends AggregateRootInterface
     public function getBaptismDate(): ?DateTimeInterface;
 
     public function setBaptismDate(?DateTimeInterface $baptismDate): void;
-
-    public function getUser(): ?AppUserInterface;
-
-    public function setUser(?AppUserInterface $user): void;
 
     public function getFirstName(): string;
 
@@ -44,8 +38,4 @@ interface BrotherInterface extends AggregateRootInterface
     public function setMale(bool $male): void;
 
     public function getSex(): string;
-
-    public function getInvitation(): ?AppUserInvitation;
-
-    public function setInvitation(?AppUserInvitation $invitation): void;
 }

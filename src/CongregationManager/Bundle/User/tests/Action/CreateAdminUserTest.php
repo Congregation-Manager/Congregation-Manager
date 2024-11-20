@@ -4,21 +4,28 @@ declare(strict_types=1);
 
 namespace CongregationManager\Bundle\User\Tests\Action;
 
+use CongregationManager\Bundle\Core\Entity\AdminUser;
 use CongregationManager\Bundle\User\Action\CreateAdminUser;
+use CongregationManager\Component\Core\Infrastructure\InMemory\Repository\AdminUserRepository;
 use CongregationManager\Component\User\Domain\Hasher\UserPasswordHasherInterface;
 use CongregationManager\Component\User\Infrastructure\InMemory\Hasher\UserPasswordHasher;
-use CongregationManager\Component\User\Infrastructure\InMemory\Repository\AdminUserRepository;
 use PHPUnit\Framework\TestCase;
 use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @internal
  * @coversNothing
+ * @psalm-suppress PropertyTypeCoercion
+ * @psalm-suppress InvalidArgument
  */
 final class CreateAdminUserTest extends TestCase
 {
     use ProphecyTrait;
 
+    /**
+     * @phpstan-var AdminUserRepository<covariant AdminUser>
+     * @psalm-var AdminUserRepository<AdminUser>
+     */
     private AdminUserRepository $adminUserRepository;
 
     private CreateAdminUser $createAdminUser;

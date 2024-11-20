@@ -6,10 +6,6 @@ doctrine:
                 url: '%env(resolve:DATABASE_URL)%'
                 use_savepoints: true
                 profiling_collect_backtrace: '%kernel.debug%'
-            old_cm:
-                url: '%env(resolve:OLD_CM_DATABASE_URL)%'
-                profiling_collect_backtrace: '%kernel.debug%'
-                use_savepoints: true
 
     orm:
         auto_generate_proxy_classes: true

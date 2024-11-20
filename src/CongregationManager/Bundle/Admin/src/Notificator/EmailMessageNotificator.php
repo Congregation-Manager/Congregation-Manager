@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace CongregationManager\Bundle\Admin\Notificator;
 
 use CongregationManager\Bundle\Admin\Notificator\Exception\MessageNotificatorMessageException;
-use CongregationManager\Bundle\User\Entity\AdminUserInterface;
-use CongregationManager\Bundle\User\Entity\AppUserInvitation;
+use CongregationManager\Bundle\Core\Entity\AdminUIUserInterface;
+use CongregationManager\Bundle\Core\Entity\AppUserInvitation;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
 use Symfony\Component\Mailer\MailerInterface;
@@ -56,9 +56,9 @@ final readonly class EmailMessageNotificator implements MessageNotificatorInterf
 
     #[\Override]
     public function notifyUserResetPasswordToken(
-        AdminUserInterface $user,
-        ResetPasswordToken $resetPasswordToken,
-        string $localeCode,
+        AdminUIUserInterface $user,
+        ResetPasswordToken   $resetPasswordToken,
+        string               $localeCode,
     ): void {
         $email = (new TemplatedEmail())
             ->from(new Address(

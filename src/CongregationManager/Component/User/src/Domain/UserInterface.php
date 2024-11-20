@@ -12,10 +12,6 @@ interface UserInterface extends AggregateRootInterface
 
     public function setEmail(string $email): void;
 
-    public function getPassword(): ?string;
-
-    public function setPassword(?string $password): void;
-
     public function setLocaleCode(?string $localeCode): void;
 
     public function getLocaleCode(): ?string;

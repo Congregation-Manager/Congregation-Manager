@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace CongregationManager\Bundle\App\Controller;
 
-use CongregationManager\Bundle\User\Entity\UserInterface;
+use CongregationManager\Bundle\User\Entity\UIUserInterface;
 use CongregationManager\Component\Core\Domain\Context\ThemeContextInterface;
 use CongregationManager\Component\Core\Domain\Theme;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -39,7 +39,7 @@ final class ThemeController extends AbstractController
             }
         }
         $user = $this->security->getUser();
-        if ($user instanceof UserInterface) {
+        if ($user instanceof UIUserInterface) {
             //@TODO: Implement this
             //$user->setTheme($theme);
             //$this->entityManager->flush();

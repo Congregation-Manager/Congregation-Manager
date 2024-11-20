@@ -6,11 +6,11 @@ namespace CongregationManager\Bundle\User\Repository;
 
 use CongregationManager\Bundle\User\Entity\ResetPasswordRequest;
 use CongregationManager\Bundle\User\Entity\ResetPasswordRequestInterface;
-use CongregationManager\Component\User\Domain\AdminUser;
-use CongregationManager\Component\User\Domain\AppUser;
-use CongregationManager\Component\User\Domain\Exception\Factory\UserInstanceNotValidFactory;
+use CongregationManager\Bundle\User\Exception\Factory\UserInstanceNotValidFactory;
+use CongregationManager\Component\Core\Domain\AdminUser;
+use CongregationManager\Component\Core\Domain\AppUser;
 use CongregationManager\Component\User\Domain\Repository\ResetPasswordRequestRepositoryInterface;
-use CongregationManager\Component\User\Domain\UserInterface;
+use CongregationManager\Component\User\Domain\UIUserInterface;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use SymfonyCasts\Bundle\ResetPassword\Model\ResetPasswordRequestInterface as SymfonyResetPasswordRequestInterface;
@@ -45,7 +45,7 @@ class ResetPasswordRequestRepository extends ServiceEntityRepository implements 
         string $selector,
         string $hashedToken
     ): ResetPasswordRequestInterface {
-        if (!$user instanceof UserInterface) {
+        if (!$user instanceof UIUserInterface) {
             throw UserInstanceNotValidFactory::createWithInstanceClass($user::class);
         }
 

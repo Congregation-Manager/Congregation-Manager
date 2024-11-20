@@ -319,7 +319,7 @@ final readonly class WordS13Renderer implements S13RendererInterface
             $territoryAssignment = $row->getTerritoryAssignments()
                 ->get($i);
             $assignmentsTableAssignedToColumn->addText(
-                $territoryAssignment ? (string) $territoryAssignment->getBrother() : '',
+                $territoryAssignment ? (string) $territoryAssignment->getRecipient() : '',
                 [
                     'size' => 9,
                 ],

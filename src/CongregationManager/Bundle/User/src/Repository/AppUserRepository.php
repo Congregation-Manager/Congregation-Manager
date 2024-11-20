@@ -4,9 +4,10 @@ declare(strict_types=1);
 
 namespace CongregationManager\Bundle\User\Repository;
 
-use CongregationManager\Bundle\User\Entity\AppUser;
-use CongregationManager\Component\User\Domain\AppUserInterface;
-use CongregationManager\Component\User\Domain\Repository\AppUserRepositoryInterface;
+use CongregationManager\Bundle\Core\Entity\AppUIUserInterface;
+use CongregationManager\Bundle\Core\Entity\AppUser;
+use CongregationManager\Component\Core\Domain\Repository\AppUserRepositoryInterface;
+use CongregationManager\Component\User\Domain\UserInterface;
 use CongregationManager\Contract\Resource\AggregateRootId;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
@@ -15,16 +16,17 @@ use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\PasswordUpgraderInterface;
 
 /**
- * @extends ServiceEntityRepository<AppUserInterface>
+ * @extends ServiceEntityRepository<AppUIUserInterface>
+ * @implements AppUserRepositoryInterface<AppUIUserInterface>
  *
- * @method AppUserInterface|null find($id, $lockMode = null, $lockVersion = null)
- * @method AppUserInterface|null findOneBy(array $criteria, array $orderBy = null)
- * @psalm-method list<AppUserInterface> findAll()
+ * @method AppUIUserInterface|null find($id, $lockMode = null, $lockVersion = null)
+ * @method AppUIUserInterface|null findOneBy(array $criteria, array $orderBy = null)
+ * @psalm-method list<AppUIUserInterface> findAll()
  *
- * @method AppUserInterface[] findAll()
- * @psalm-method list<AppUserInterface> findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method AppUIUserInterface[] findAll()
+ * @psalm-method list<AppUIUserInterface> findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  *
- * @method AppUserInterface[] findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method AppUIUserInterface[] findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
 class AppUserRepository extends ServiceEntityRepository implements AppUserRepositoryInterface, PasswordUpgraderInterface
 {
@@ -34,12 +36,15 @@ class AppUserRepository extends ServiceEntityRepository implements AppUserReposi
     }
 
     #[\Override]
-    public function add(AppUserInterface $appUser): void
+    public function add(UserInterface $user): void
     {
-        $this->_em->persist($appUser);
+        if (!$user instanceof AppUIUserInterface) {
+            throw new \InvalidArgumentException(sprintf('Instances of "%s" are not supported.', $user::class));
+        }
+        $this->_em->persist($user);
     }
 
-    public function findOneById(AggregateRootId $id): ?AppUserInterface
+    public function findOneById(AggregateRootId $id): ?AppUIUserInterface
     {
         return $this->find($id);
     }

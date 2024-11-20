@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace CongregationManager\Component\TerritoryManager\Domain\Generator;
 
-use CongregationManager\Component\Congregation\Domain\CongregationInterface;
-use CongregationManager\Component\TerritoryManager\Domain\Repository\TerritoryRepositoryInterface;
 use CongregationManager\Component\TerritoryManager\Domain\S13\Page;
 use CongregationManager\Component\TerritoryManager\Domain\S13\Row;
 use CongregationManager\Component\TerritoryManager\Domain\S13\S13;
@@ -14,19 +12,13 @@ use CongregationManager\Component\TerritoryManager\Domain\TerritoryInterface;
 use DateTimeImmutable;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ReadableCollection;
 
 final readonly class S13Generator implements S13GeneratorInterface
 {
-    public function __construct(
-        private TerritoryRepositoryInterface $territoryRepository,
-    ) {
-    }
-
     #[\Override]
-    public function generateByCongregation(CongregationInterface $congregation, int $serviceYear): S13
+    public function generateForTerritoriesAndServiceYear(ReadableCollection $territories, int $serviceYear): S13
     {
-        $territories = $this->territoryRepository->findByCongregation($congregation);
-
         $s13 = new S13();
         $count = 1;
         $page = new Page($serviceYear);

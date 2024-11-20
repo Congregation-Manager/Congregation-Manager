@@ -4,10 +4,11 @@ declare(strict_types=1);
 
 namespace CongregationManager\Bundle\User\Repository;
 
-use CongregationManager\Bundle\User\Entity\AdminUser;
-use CongregationManager\Bundle\User\Entity\AdminUserInterface;
-use CongregationManager\Component\User\Domain\AdminUserInterface as DomainAdminUserInterface;
-use CongregationManager\Component\User\Domain\Repository\AdminUserRepositoryInterface;
+use CongregationManager\Bundle\Core\Entity\AdminUIUserInterface;
+use CongregationManager\Bundle\Core\Entity\AdminUser;
+use CongregationManager\Component\Core\Domain\AdminUserInterface as DomainAdminUserInterface;
+use CongregationManager\Component\Core\Domain\Repository\AdminUserRepositoryInterface;
+use CongregationManager\Component\User\Domain\UserInterface;
 use CongregationManager\Contract\Resource\AggregateRootId;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
@@ -16,16 +17,17 @@ use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\PasswordUpgraderInterface;
 
 /**
- * @extends ServiceEntityRepository<AdminUserInterface>
+ * @extends ServiceEntityRepository<AdminUIUserInterface>
+ * @implements AdminUserRepositoryInterface<AdminUIUserInterface>
  *
- * @method AdminUserInterface|null find($id, $lockMode = null, $lockVersion = null)
- * @method AdminUserInterface|null findOneBy(array $criteria, array $orderBy = null)
- * @psalm-method list<AdminUserInterface> findAll()
+ * @method AdminUIUserInterface|null find($id, $lockMode = null, $lockVersion = null)
+ * @method AdminUIUserInterface|null findOneBy(array $criteria, array $orderBy = null)
+ * @psalm-method list<AdminUIUserInterface> findAll()
  *
- * @method AdminUserInterface[] findAll()
- * @psalm-method list<AdminUserInterface> findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method AdminUIUserInterface[] findAll()
+ * @psalm-method list<AdminUIUserInterface> findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  *
- * @method AdminUserInterface[] findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method AdminUIUserInterface[] findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
 class AdminUserRepository extends ServiceEntityRepository implements AdminUserRepositoryInterface, PasswordUpgraderInterface
 {
@@ -35,9 +37,12 @@ class AdminUserRepository extends ServiceEntityRepository implements AdminUserRe
     }
 
     #[\Override]
-    public function add(DomainAdminUserInterface $adminUser): void
+    public function add(UserInterface $user): void
     {
-        $this->_em->persist($adminUser);
+        if (!$user instanceof AdminUIUserInterface) {
+            throw new \InvalidArgumentException(sprintf('Instances of "%s" are not supported.', $user::class));
+        }
+        $this->_em->persist($user);
     }
 
     public function findOneById(AggregateRootId $id): ?DomainAdminUserInterface

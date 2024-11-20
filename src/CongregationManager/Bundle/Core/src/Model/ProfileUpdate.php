@@ -4,14 +4,14 @@ declare(strict_types=1);
 
 namespace CongregationManager\Bundle\Core\Model;
 
-use CongregationManager\Bundle\User\Entity\AppUserInterface;
+use CongregationManager\Bundle\Core\Entity\AppUIUserInterface;
 use CongregationManager\Component\Congregation\Domain\BrotherInterface;
 
 final class ProfileUpdate
 {
     public function __construct(
         private BrotherInterface $brother,
-        private AppUserInterface $appUser
+        private AppUIUserInterface $appUser
     ) {
     }
 
@@ -25,12 +25,12 @@ final class ProfileUpdate
         $this->brother = $brother;
     }
 
-    public function getAppUser(): AppUserInterface
+    public function getAppUser(): AppUIUserInterface
     {
         return $this->appUser;
     }
 
-    public function setAppUser(AppUserInterface $appUser): void
+    public function setAppUser(AppUIUserInterface $appUser): void
     {
         $this->appUser = $appUser;
     }

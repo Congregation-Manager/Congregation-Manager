@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace CongregationManager\Bundle\Admin\Notificator;
 
-use CongregationManager\Bundle\User\Entity\AdminUserInterface;
-use CongregationManager\Bundle\User\Entity\AppUserInvitation;
+use CongregationManager\Bundle\Core\Entity\AdminUIUserInterface;
+use CongregationManager\Bundle\Core\Entity\AppUserInvitation;
 use SymfonyCasts\Bundle\ResetPassword\Model\ResetPasswordToken;
 
 interface MessageNotificatorInterface
@@ -13,8 +13,8 @@ interface MessageNotificatorInterface
     public function notifyAppInvitation(AppUserInvitation $appUserInvitation, string $localeCode): void;
 
     public function notifyUserResetPasswordToken(
-        AdminUserInterface $user,
-        ResetPasswordToken $resetPasswordToken,
-        string $localeCode,
+        AdminUIUserInterface $user,
+        ResetPasswordToken   $resetPasswordToken,
+        string               $localeCode,
     ): void;
 }

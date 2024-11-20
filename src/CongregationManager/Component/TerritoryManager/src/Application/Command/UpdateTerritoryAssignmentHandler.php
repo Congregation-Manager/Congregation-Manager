@@ -42,7 +42,7 @@ final readonly class UpdateTerritoryAssignmentHandler
         $territoryAssignment = $command->getTerritoryAssignment();
         $territoryAssignment->setTerritory($territory);
         $territoryAssignment->setAssignmentDate($assignmentDate);
-        $territoryAssignment->setBrother($command->getBrother());
+        $territoryAssignment->setRecipient($command->getRecipient());
         $territoryAssignment->setRevocationDate($command->getRevocationDate());
 
         $this->territoryAssignmentRepository->add($territoryAssignment);

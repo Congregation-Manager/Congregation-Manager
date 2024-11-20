@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace CongregationManager\Component\TerritoryManager\Domain;
 
-use CongregationManager\Component\Congregation\Domain\BrotherInterface;
 use CongregationManager\Contract\Resource\AggregateRootInterface;
 use DateTimeInterface;
 
@@ -18,9 +17,9 @@ interface TerritoryAssignmentInterface extends AggregateRootInterface
 
     public function setAssignmentDate(DateTimeInterface $assignmentDate): void;
 
-    public function getBrother(): ?BrotherInterface;
+    public function getRecipient(): ?RecipientInterface;
 
-    public function setBrother(?BrotherInterface $brother): void;
+    public function setRecipient(?RecipientInterface $recipient): void;
 
     public function getRevocationDate(): ?DateTimeInterface;
 

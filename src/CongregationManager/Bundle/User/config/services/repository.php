@@ -8,8 +8,8 @@ use CongregationManager\Bundle\User\Repository\AdminUserRepository;
 use CongregationManager\Bundle\User\Repository\AppUserInvitationRepository;
 use CongregationManager\Bundle\User\Repository\AppUserRepository;
 use CongregationManager\Bundle\User\Repository\ResetPasswordRequestRepository;
-use CongregationManager\Component\User\Infrastructure\InMemory\Repository\AdminUserRepository as InMemoryAdminUserRepository;
-use CongregationManager\Component\User\Infrastructure\InMemory\Repository\AppUserRepository as InMemoryAppUserRepository;
+use CongregationManager\Component\Core\Infrastructure\InMemory\Repository\AdminUserRepository as InMemoryAdminUserRepository;
+use CongregationManager\Component\Core\Infrastructure\InMemory\Repository\AppUserRepository as InMemoryAppUserRepository;
 
 return static function (ContainerConfigurator $containerConfigurator): void {
     $services = $containerConfigurator->services();

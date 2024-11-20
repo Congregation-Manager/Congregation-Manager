@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace CongregationManager\Contract\Resource;
 
-use InvalidArgumentException;
+use CongregationManager\Contract\Resource\Exception\DatabaseValueNotConvertibleToIntException;
 
 final readonly class IntegerAggregateRootId implements AggregateRootId
 {
@@ -23,7 +23,7 @@ final readonly class IntegerAggregateRootId implements AggregateRootId
     public static function convertToPHPValue(mixed $databaseValue): self
     {
         if (!is_string($databaseValue) && !is_numeric($databaseValue)) {
-            throw new InvalidArgumentException(sprintf(
+            throw new DatabaseValueNotConvertibleToIntException(sprintf(
                 'Expected value to be an convertible to int, got "%s".',
                 get_debug_type($databaseValue)
             ));
