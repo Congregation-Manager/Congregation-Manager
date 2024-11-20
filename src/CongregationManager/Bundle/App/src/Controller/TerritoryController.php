@@ -93,6 +93,7 @@ final class TerritoryController extends AbstractController
             'placeholder' => false,
             'required' => true,
             'label' => 'congregation_manager_app.ui.service_year',
+            'translation_domain' => 'app',
         ]);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {

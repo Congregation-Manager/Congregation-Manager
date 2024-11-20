@@ -25,31 +25,31 @@ final class TerritoryFiltersFormType extends AbstractType
         $builder
             ->add('areas', AreaFormType::class, [
                 'class' => Area::class,
-                'label' => 'cm.ui.area',
+                'label' => 'congregation_manager_territory_manager.ui.area',
                 'choice_label' => 'name',
                 'multiple' => true,
                 'expanded' => true,
             ])
             ->add('notAssigned', ChoiceType::class, [
                 'choices' => [
-                    'cm.ui.any' => null,
-                    'cm.ui.not_assigned' => true,
-                    'cm.ui.assigned' => false,
+                    'congregation_manager_territory_manager.ui.any' => null,
+                    'congregation_manager_territory_manager.ui.not_assigned' => true,
+                    'congregation_manager_territory_manager.ui.assigned' => false,
                 ],
-                'label' => 'cm.ui.status',
+                'label' => 'congregation_manager_territory_manager.ui.status',
                 'expanded' => true,
                 'multiple' => false,
             ])
             ->add('assignedTo', EntityType::class, [
                 'class' => Brother::class,
-                'label' => 'cm.ui.assigned_to',
-                'placeholder' => 'cm.ui.choose_option',
+                'label' => 'congregation_manager_territory_manager.ui.assigned_to',
+                'placeholder' => 'congregation_manager_territory_manager.ui.choose_option',
                 'required' => false,
                 'multiple' => false,
                 'expanded' => false,
             ])
             ->add('filter', SubmitType::class, [
-                'label' => 'cm.ui.filter',
+                'label' => 'congregation_manager_territory_manager.ui.filter',
             ])
         ;
     }

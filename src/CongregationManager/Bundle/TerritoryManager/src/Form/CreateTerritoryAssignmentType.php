@@ -25,7 +25,7 @@ final class CreateTerritoryAssignmentType extends AbstractType
         $builder
             ->add('territory', EntityType::class, [
                 'class' => Territory::class,
-                'label' => 'cm.ui.territory',
+                'label' => 'congregation_manager_territory_manager.ui.territory',
                 'choice_label' => 'number',
                 'placeholder' => 'cm.ui.choose_option',
                 'multiple' => false,

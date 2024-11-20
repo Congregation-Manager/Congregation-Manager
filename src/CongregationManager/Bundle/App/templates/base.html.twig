@@ -35,7 +35,7 @@
         <header>
             <nav class="navbar navbar-expand-md navbar-dark bg-dark {{ app.session.flashbag.peek('success')|length > 0 or app.session.flashbag.peek('danger')|length > 0 ? '' : 'mb-3' }}">
                 <div class="container">
-                    <a class="navbar-brand" href="{{ path('app_dashboard') }}">{{ 'congregation_manager_app.app_nav.title'|trans_app }}</a>
+                    <a class="navbar-brand" href="{{ path('app_dashboard') }}">{{ 'congregation_manager_app.ui.congregation_manager'|trans_app }}</a>
 
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#top-navbar" aria-controls="top-navbar" aria-expanded="false" aria-label="{{ 'congregation_manager_app.app_nav.toggle'|trans_app }}">
                         <span class="navbar-toggler-icon"></span>
