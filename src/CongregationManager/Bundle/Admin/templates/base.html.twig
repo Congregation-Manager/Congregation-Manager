@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="{% block language %}{{ app.request.locale|slice(0, 2) }}{% endblock %}" {% if use_dark_theme() %}data-bs-theme="dark"{% endif %}>
+<html lang="{% block language %}{{ app.request.locale|slice(0, 2) }}{% endblock %}" data-bs-theme="{{ get_theme() }}">
 <head>
     <meta charset="{% block charset %}UTF-8{% endblock %}">
     <meta name="description" content="{% block meta_description %}{{ 'congregation_manager_admin.meta.description'|trans_admin }}{% endblock %}">
@@ -101,6 +101,9 @@
 
                         <div class="mt-5 d-flex justify-content-center">
                             {{ render(controller('congregation_manager_admin.controller.locale::renderAction')) }}
+                        </div>
+                        <div class="mt-1 d-flex justify-content-center">
+                            {{ render(controller('congregation_manager_admin.controller.theme::renderAction')) }}
                         </div>
                     </div>
                 </nav>

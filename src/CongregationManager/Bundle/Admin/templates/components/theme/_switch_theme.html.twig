@@ -1,0 +1,32 @@
+{% if themes|length > 1 %}
+    <div class="dropdown-center" {{ test_html_attribute('theme-selector') }}>
+        <a class="btn btn-primary dropdown-toggle btn-lg"
+           type="button"
+           id="dropdown-theme"
+           data-bs-toggle="dropdown"
+           aria-expanded="false"
+           {{ test_html_attribute('active-theme', active.value) }}>
+            <i class="bi bi-{{ active|theme_bootstrap_icon }}"></i> {{ active|theme_name }}
+        </a>
+        <ul class="dropdown-menu" aria-labelledby="dropdown-theme">
+            {% for theme in themes %}
+                {% if theme is not same as(active) %}
+                    <li>
+                        <a class="dropdown-item"
+                           href="{{ path('congregation_manager_admin_switch_theme', {'theme': theme.value}) }}"
+                           {{ test_html_attribute('available-theme', theme.value) }}>
+                            <i class="bi bi-{{ theme|theme_bootstrap_icon }}"></i> {{ theme|theme_name }}
+                        </a>
+                    </li>
+                {% endif %}
+            {% endfor %}
+            <li>
+                <a class="dropdown-item"
+                   href="{{ path('congregation_manager_admin_switch_theme') }}"
+                    {{ test_html_attribute('available-theme', 'auto') }}>
+                    <i class="bi bi-circle-half"></i> {{ 'congregation_manager_core.theme.auto'|trans }}
+                </a>
+            </li>
+        </ul>
+    </div>
+{% endif %}

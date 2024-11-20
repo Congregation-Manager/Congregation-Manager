@@ -41,7 +41,7 @@ return static function (ContainerConfigurator $containerConfigurator): void {
     ;
 
     $services->set('congregation_manager_core.twig_runtime.theme', ThemeRuntime::class)
-        ->args([service('congregation_manager_core.context.theme')])
+        ->args([service('congregation_manager_core.context.theme'), service('translator')])
         ->tag('twig.runtime')
     ;
 };

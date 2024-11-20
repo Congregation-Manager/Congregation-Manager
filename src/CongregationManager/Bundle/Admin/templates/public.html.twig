@@ -20,9 +20,12 @@
         {% endblock %}
     </div>
 
-    <div class="row">
-        <div class="col-12 col-md-8 col-lg-6 m-auto text-center mt-5">
+    <div class="row mt-5">
+        <div class="col-12 col-md-6 m-auto text-center">
             {{ render(controller('congregation_manager_admin.controller.locale::renderAction')) }}
+        </div>
+        <div class="col-12 mt-1 mt-md-0 col-md-6 m-auto text-center">
+            {{ render(controller('congregation_manager_admin.controller.theme::renderAction')) }}
         </div>
     </div>
 {% endblock %}

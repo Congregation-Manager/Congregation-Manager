@@ -47,6 +47,9 @@
                                 'routeParameters': app.request.attributes.get('_route_params'),
                             })) }}
                         </div>
+                        <div class="float-end">
+                            {{ render(controller('congregation_manager_app.controller.theme::renderAction')) }}
+                        </div>
                     </div>
 
                 </div>

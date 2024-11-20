@@ -15,6 +15,7 @@ use CongregationManager\Bundle\App\Controller\LocaleController;
 use CongregationManager\Bundle\App\Controller\ResetAppPasswordController;
 use CongregationManager\Bundle\App\Controller\TerritoryAssignmentController;
 use CongregationManager\Bundle\App\Controller\TerritoryController;
+use CongregationManager\Bundle\App\Controller\ThemeController;
 use Psr\Container\ContainerInterface;
 
 return static function (ContainerConfigurator $containerConfigurator): void {
@@ -127,6 +128,17 @@ return static function (ContainerConfigurator $containerConfigurator): void {
             service('congregation_manager_territory_manager.generator.S13'),
             service('congregation_manager_core.context.congregation'),
             service('congregation_manager_territory_manager.renderer.word_S13'),
+        ])
+        ->call('setContainer', [service(ContainerInterface::class)])
+        ->tag('container.service_subscriber')
+        ->tag('controller.service_arguments')
+    ;
+
+    $services->set('congregation_manager_app.controller.theme', ThemeController::class)
+        ->args([
+            service('congregation_manager_core.context.theme'),
+            service('request_stack'),
+            service('security.helper'),
         ])
         ->call('setContainer', [service(ContainerInterface::class)])
         ->tag('container.service_subscriber')

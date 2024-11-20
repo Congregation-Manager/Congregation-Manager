@@ -5,8 +5,11 @@ declare(strict_types=1);
 namespace Symfony\Component\DependencyInjection\Loader\Configurator;
 
 use CongregationManager\Bundle\Core\Context\CongregationContext;
-use CongregationManager\Bundle\Core\Context\DateTimeThemeContext;
 use CongregationManager\Bundle\Core\Context\LocaleContext;
+use CongregationManager\Bundle\Core\Context\RequestThemeContext;
+use CongregationManager\Component\Core\Domain\Context\CompositeThemeContext;
+use CongregationManager\Component\Core\Domain\Context\DateTimeThemeContext;
+use CongregationManager\Component\Core\Domain\Context\DefaultThemeContext;
 
 return static function (ContainerConfigurator $containerConfigurator): void {
     $services = $containerConfigurator->services();
@@ -19,10 +22,31 @@ return static function (ContainerConfigurator $containerConfigurator): void {
         ->args([service('request_stack')])
     ;
 
-    $services->set('congregation_manager_core.context.date_time_theme', DateTimeThemeContext::class);
+    $services->set('congregation_manager_core.context.default_theme', DefaultThemeContext::class)
+        ->tag('congregation_manager_core.context.theme', [
+            'priority' => DefaultThemeContext::PRIORITY,
+        ])
+    ;
+
+    $services->set('congregation_manager_core.context.date_time_theme', DateTimeThemeContext::class)
+        ->tag('congregation_manager_core.context.theme', [
+            'priority' => DateTimeThemeContext::PRIORITY,
+        ])
+    ;
+
+    $services->set('congregation_manager_core.context.request_theme', RequestThemeContext::class)
+        ->args([service('request_stack')])
+        ->tag('congregation_manager_core.context.theme', [
+            'priority' => RequestThemeContext::PRIORITY,
+        ])
+    ;
+
+    $services->set('congregation_manager_core.context.composite_theme', CompositeThemeContext::class)
+        ->args([tagged_iterator('congregation_manager_core.context.theme')])
+    ;
 
     $services->alias(
         'congregation_manager_core.context.theme',
-        'congregation_manager_core.context.date_time_theme',
+        'congregation_manager_core.context.composite_theme',
     );
 };

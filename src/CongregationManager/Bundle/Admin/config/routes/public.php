@@ -56,4 +56,12 @@ return static function (RoutingConfigurator $routes): void {
         ])
         ->methods(['GET', 'POST'])
     ;
+
+    $routes->add('congregation_manager_admin_switch_theme', '/switch-theme/{theme}')
+        ->controller(['congregation_manager_admin.controller.theme', 'switchTheme'])
+        ->defaults([
+            'theme' => null,
+        ])
+        ->methods(['GET'])
+    ;
 };

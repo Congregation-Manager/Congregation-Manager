@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="{% block language %}{{ app.request.locale|slice(0, 2) }}{% endblock %}" {% if use_dark_theme() %}data-bs-theme="dark"{% endif %}>
+<html lang="{% block language %}{{ app.request.locale|slice(0, 2) }}{% endblock %}" data-bs-theme="{{ get_theme() }}">
 <head>
     <meta charset="{% block charset %}UTF-8{% endblock %}">
     <meta name="description" content="{% block meta_description %}{{ 'congregation_manager_app.meta.description'|trans_app }}{% endblock %}">
