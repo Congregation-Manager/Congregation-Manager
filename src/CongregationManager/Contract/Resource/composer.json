@@ -11,8 +11,8 @@
     "license": "proprietary",
     "authors": [
         {
-            "name": "Lorenzo Ruozzi",
-            "homepage": "https://lruozzi9.github.io"
+            "name": "Congregation Manager",
+            "homepage": "https://github.com/Congregation-Manager"
         }
     ],
     "autoload": {
@@ -32,5 +32,10 @@
         }
     ],
     "minimum-stability": "stable",
-    "prefer-stable": true
+    "prefer-stable": true,
+    "extra": {
+        "branch-alias": {
+            "dev-master": "2.0-dev"
+        }
+    }
 }

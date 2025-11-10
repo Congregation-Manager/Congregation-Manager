@@ -13406,6 +13406,6 @@
         "php": "^8.3",
         "ext-ctype": "*"
     },
-    "platform-dev": [],
+    "platform-dev": {},
     "plugin-api-version": "2.6.0"
 }

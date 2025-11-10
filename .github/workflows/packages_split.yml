@@ -20,6 +20,9 @@ jobs:
                 # define package to repository map
                 package:
                     -
+                        local_path: 'src/CongregationManager/Contract/Resource'
+                        split_repository: 'resource-contract'
+                    -
                         local_path: 'src/CongregationManager/Bundle/Admin'
                         split_repository: 'admin-bundle'
                     -
