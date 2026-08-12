@@ -15,15 +15,15 @@
 Move to the desired folder and clone the repository by launching one of the following commands:
 
 ```bash
-git clone git@github.com:lruozzi9/congregation-manager.git # for SSH
-git clone https://github.com/lruozzi9/congregation-manager.git # for HTTPS auth
-gh repo clone lruozzi9/congregation-manager # if you have the GitHub CLI
+git clone git@github.com:Congregation-Manager/Congregation-Manager.git # for SSH
+git clone https://github.com/Congregation-Manager/Congregation-Manager.git # for HTTPS auth
+gh repo clone Congregation-Manager/Congregation-Manager # if you have the GitHub CLI
 ```
 
 Move to the project dir:
 
 ```bash
-cd congregation-manager
+cd Congregation-Manager
 ```
 
 Install composer dependencies:
