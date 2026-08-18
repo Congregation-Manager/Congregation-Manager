@@ -21,6 +21,8 @@ interface BrotherInterface extends AggregateRootInterface
 
     public function setBaptismDate(?DateTimeInterface $baptismDate): void;
 
+    public function getFullName(): string;
+
     public function getFirstName(): string;
 
     public function setFirstName(string $firstName): void;

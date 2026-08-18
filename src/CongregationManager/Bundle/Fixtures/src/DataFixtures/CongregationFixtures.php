@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace CongregationManager\Bundle\FixturesBundle\DataFixtures;
 
-use CongregationManager\Component\Congregation\Domain\Congregation;
+use CongregationManager\Component\Congregation\Domain\Factory\CongregationFactoryInterface;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Bundle\FixturesBundle\FixtureGroupInterface;
 use Doctrine\Persistence\ObjectManager;
@@ -19,6 +19,7 @@ final class CongregationFixtures extends Fixture implements FixtureGroupInterfac
      */
     public function __construct(
         private readonly array $congregationFixtureData,
+        private readonly CongregationFactoryInterface $congregationFactory,
     ) {
     }
 
@@ -32,7 +33,7 @@ final class CongregationFixtures extends Fixture implements FixtureGroupInterfac
     public function load(ObjectManager $manager): void
     {
         foreach ($this->congregationFixtureData as $congregationData) {
-            $congregation = new Congregation($congregationData['name']);
+            $congregation = $this->congregationFactory->createNew($congregationData['name']);
 
             $manager->persist($congregation);
 

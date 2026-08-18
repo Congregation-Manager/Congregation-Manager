@@ -4,11 +4,14 @@ declare(strict_types=1);
 
 namespace CongregationManager\Bundle\FixturesBundle\DataFixtures;
 
+use CongregationManager\Bundle\Core\Entity\AdminUIUserInterface;
 use CongregationManager\Bundle\Core\Entity\AdminUser;
+use CongregationManager\Component\Core\Domain\Factory\AdminUserFactoryInterface;
 use CongregationManager\Component\User\Domain\Hasher\UserPasswordHasherInterface;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Bundle\FixturesBundle\FixtureGroupInterface;
 use Doctrine\Persistence\ObjectManager;
+use Webmozart\Assert\Assert;
 
 /**
  * @psalm-type AdminFixtureData = array{email: string, password: string, locale: ?string, super_admin: bool}
@@ -22,6 +25,7 @@ final class AdminFixtures extends Fixture implements FixtureGroupInterface
         private readonly array $adminFixtureData,
         private readonly string $defaultLocale,
         private readonly UserPasswordHasherInterface $userPasswordHasher,
+        private readonly AdminUserFactoryInterface $adminUserFactory,
     ) {
     }
 
@@ -35,7 +39,12 @@ final class AdminFixtures extends Fixture implements FixtureGroupInterface
     public function load(ObjectManager $manager): void
     {
         foreach ($this->adminFixtureData as $adminData) {
-            $admin = new AdminUser($adminData['email'], null, $adminData['locale'] ?? $this->defaultLocale);
+            $admin = $this->adminUserFactory->createNew(
+                $adminData['email'],
+                null,
+                $adminData['locale'] ?? $this->defaultLocale,
+            );
+            Assert::isInstanceOf($admin, AdminUIUserInterface::class);
             $admin->setRoles($adminData['super_admin'] ? [AdminUser::SUPER_ADMIN_ROLE] : [AdminUser::ADMIN_ROLE]);
             $encodedPassword = $this->userPasswordHasher->hashPasswordForUser($adminData['password'], $admin);
             $admin->setPassword($encodedPassword);

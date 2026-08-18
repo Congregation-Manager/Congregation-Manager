@@ -4,9 +4,10 @@ declare(strict_types=1);
 
 namespace CongregationManager\Bundle\FixturesBundle\DataFixtures;
 
-use CongregationManager\Bundle\Core\Entity\AppUser;
-use CongregationManager\Component\Congregation\Domain\CongregationInterface;
-use CongregationManager\Component\Core\Domain\Brother;
+use CongregationManager\Component\Congregation\Domain\Factory\BrotherFactoryInterface;
+use CongregationManager\Component\Core\Domain\BrotherInterface as CoreBrotherInterface;
+use CongregationManager\Component\Core\Domain\Congregation;
+use CongregationManager\Component\Core\Domain\Factory\AppUserFactoryInterface;
 use CongregationManager\Component\User\Domain\Hasher\UserPasswordHasherInterface;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Bundle\FixturesBundle\FixtureGroupInterface;
@@ -26,6 +27,8 @@ final class BrotherFixtures extends Fixture implements FixtureGroupInterface, De
         private readonly array $brotherFixtureData,
         private readonly string $defaultLocale,
         private readonly UserPasswordHasherInterface $userPasswordHasher,
+        private readonly BrotherFactoryInterface $brotherFactory,
+        private readonly AppUserFactoryInterface $appUserFactory,
     ) {
     }
 
@@ -45,10 +48,11 @@ final class BrotherFixtures extends Fixture implements FixtureGroupInterface, De
     public function load(ObjectManager $manager): void
     {
         foreach ($this->brotherFixtureData as $brotherData) {
-            $congregation = $this->getReference('congregation-' . $brotherData['congregation_name']);
-            Assert::isInstanceOf($congregation, CongregationInterface::class);
-
-            $brother = new Brother(
+            $congregation = $this->getReference(
+                'congregation-' . $brotherData['congregation_name'],
+                Congregation::class,
+            );
+            $brother = $this->brotherFactory->createNew(
                 $brotherData['first_name'],
                 $brotherData['last_name'],
                 $congregation,
@@ -57,8 +61,9 @@ final class BrotherFixtures extends Fixture implements FixtureGroupInterface, De
                 $brotherData['birth_date'] !== null ? new \DateTimeImmutable($brotherData['birth_date']) : null,
                 $brotherData['baptism_date'] !== null ? new \DateTimeImmutable($brotherData['baptism_date']) : null,
             );
+            Assert::isInstanceOf($brother, CoreBrotherInterface::class);
             if (array_key_exists('user', $brotherData)) {
-                $user = new AppUser(
+                $user = $this->appUserFactory->createNew(
                     $brother,
                     $brotherData['user']['email'],
                     null,

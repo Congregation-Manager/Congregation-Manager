@@ -121,6 +121,7 @@ class Brother extends AggregateRoot implements BrotherInterface
         return $this->isMale() ? 'male' : 'female';
     }
 
+    #[\Override]
     public function getFullName(): string
     {
         $middleName = $this->getMiddleName();
