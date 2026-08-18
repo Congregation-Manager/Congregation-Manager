@@ -17,6 +17,7 @@ class AppResetPasswordRequest extends ResetPasswordRequest implements AppResetPa
         parent::__construct($expiresAt, $hashedToken, $user);
     }
 
+    #[\Override]
     public function getAppUser(): AppUserInterface
     {
         $user = $this->getUiUser();

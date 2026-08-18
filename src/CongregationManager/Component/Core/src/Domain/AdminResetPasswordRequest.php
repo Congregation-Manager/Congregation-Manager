@@ -17,6 +17,7 @@ class AdminResetPasswordRequest extends ResetPasswordRequest implements AdminRes
         parent::__construct($expiresAt, $hashedToken, $user);
     }
 
+    #[\Override]
     public function getAdminUser(): AdminUserInterface
     {
         $user = $this->getUiUser();

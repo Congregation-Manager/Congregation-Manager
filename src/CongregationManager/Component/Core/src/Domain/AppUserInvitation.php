@@ -19,21 +19,25 @@ class AppUserInvitation implements AppUserInvitationInterface
         $this->createdAt = new DateTimeImmutable('now');
     }
 
+    #[\Override]
     public function getCreatedAt(): DateTimeImmutable
     {
         return $this->createdAt;
     }
 
+    #[\Override]
     public function getBrother(): BrotherInterface
     {
         return $this->brother;
     }
 
+    #[\Override]
     public function getEmail(): string
     {
         return $this->email;
     }
 
+    #[\Override]
     public function getToken(): string
     {
         return $this->token;
