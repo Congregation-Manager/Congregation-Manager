@@ -11,6 +11,9 @@ return RectorConfig::configure()
         __DIR__ . '/src',
         __DIR__ . '/tests',
     ])
+    ->withSkip([
+        __DIR__ . '/public/index.php',
+    ])
     ->withPhpSets(true)
     ->withTypeCoverageLevel(0)
 ;

@@ -3,12 +3,10 @@ parameters:
 	paths:
 		- src
 	symfony:
-	    container_xml_path: var/cache/dev/KernelDevDebugContainer.xml
+	    containerXmlPath: var/cache/dev/KernelDevDebugContainer.xml
 	scanDirectories:
 	    - var/cache/dev/Symfony/Config
 	ignoreErrors:
 		-
 			message: '#^Parameter \#1 \$width of method PhpOffice\\PhpWord\\Element\\Table\:\:addCell\(\) expects int\|null, float given\.$#'
-			path: src/CongregationManager/Bundle/TerritoryManager/src/Renderer/WordS13Renderer
-		-
-		    message: '#^Call to an undefined method Symfony\\Component\\Config\\Definition\\Builder\\NodeDefinition\:\:children\(\)\.$#'
+			path: src/CongregationManager/Bundle/TerritoryManager/src/Renderer/WordS13Renderer.php

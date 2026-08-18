@@ -55,9 +55,9 @@
         "sort-packages": true,
         "allow-plugins": {
             "composer/package-versions-deprecated": true,
+            "phpstan/extension-installer": true,
             "symfony/flex": true,
-            "symfony/runtime": true,
-            "phpstan/extension-installer": true
+            "symfony/runtime": true
         }
     },
     "conflict": {
@@ -160,8 +160,8 @@
         "webmozart/assert": "^1.11"
     },
     "require-dev": {
-        "behat/behat": "^3.13",
-        "behat/mink": "^1.11",
+        "behat/behat": "^3.32",
+        "behat/mink": "^1.13",
         "congregation-manager/fixtures-bundle": "dev-master",
         "dama/doctrine-test-bundle": "^8.2",
         "deployer/deployer": "^7.0",
@@ -172,26 +172,26 @@
         "friends-of-behat/page-object-extension": "^0.3.2",
         "friends-of-behat/symfony-extension": "^2.4.2",
         "pds/skeleton": "^1.0",
-        "phparkitect/phparkitect": "^0.3.25",
+        "phparkitect/phparkitect": "^1.3",
         "phpspec/prophecy": "^1.18",
-        "phpspec/prophecy-phpunit": "^2.1.0",
-        "phpstan/extension-installer": "^1.3.1",
-        "phpstan/phpstan": "^1.10.48",
-        "phpstan/phpstan-symfony": "^1.3.5",
-        "phpstan/phpstan-webmozart-assert": "^1.2.4",
-        "phpunit/phpunit": "^9.6.15",
-        "psalm/plugin-symfony": "^5.1",
-        "rector/rector": "^1.2",
+        "phpspec/prophecy-phpunit": "^2.5",
+        "phpstan/extension-installer": "^1.4",
+        "phpstan/phpstan": "^2.2",
+        "phpstan/phpstan-symfony": "^2.0",
+        "phpstan/phpstan-webmozart-assert": "^2.0",
+        "phpunit/phpunit": "^12.5",
+        "psalm/plugin-symfony": "^5.3",
+        "rector/rector": "^2.6",
         "roave/security-advisories": "dev-latest",
         "symfony/browser-kit": "^7.1",
         "symfony/css-selector": "^7.1.0",
         "symfony/debug-bundle": "^7.1.0",
         "symfony/maker-bundle": "^1.52",
-        "symfony/phpunit-bridge": "^7.1.1",
+        "symfony/phpunit-bridge": "^7.1",
         "symfony/web-profiler-bundle": "^7.1.0",
         "symplify/easy-coding-standard": "^12.0.13",
         "symplify/monorepo-builder": "11.2.19",
-        "vimeo/psalm": "^5.17"
+        "vimeo/psalm": "^6.16"
     },
     "scripts": {
         "auto-scripts": {

@@ -1,14 +1,18 @@
+
 services:
-    ###> doctrine/doctrine-bundle ###
-    database:
-        environment:
-            POSTGRES_DB: congregation-manager
-            POSTGRES_PASSWORD: ChangeMe
-            POSTGRES_USER: webapp
-        ports:
-            - "5432:5432"
-    ###< doctrine/doctrine-bundle ###
-    mail:
-        ports:
-            - "8025:8025"
-            - "1025:1025"
+###> doctrine/doctrine-bundle ###
+  database:
+    ports:
+      - "5432:5432"
+###< doctrine/doctrine-bundle ###
+
+###> symfony/mailer ###
+  mailer:
+    image: axllent/mailpit
+    ports:
+      - "1025:1025"
+      - "8025:8025"
+    environment:
+      MP_SMTP_AUTH_ACCEPT_ANY: 1
+      MP_SMTP_AUTH_ALLOW_INSECURE: 1
+###< symfony/mailer ###

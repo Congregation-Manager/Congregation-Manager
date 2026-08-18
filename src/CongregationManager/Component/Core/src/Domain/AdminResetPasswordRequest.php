@@ -9,11 +9,8 @@ use DateTimeInterface;
 
 class AdminResetPasswordRequest extends ResetPasswordRequest implements AdminResetPasswordRequestInterface
 {
-    public function __construct(
-        DateTimeInterface $expiresAt,
-        string $hashedToken,
-        AdminUserInterface $user,
-    ) {
+    public function __construct(DateTimeInterface $expiresAt, string $hashedToken, AdminUserInterface $user)
+    {
         parent::__construct($expiresAt, $hashedToken, $user);
     }
 

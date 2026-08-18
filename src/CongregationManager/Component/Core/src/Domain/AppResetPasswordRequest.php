@@ -9,11 +9,8 @@ use DateTimeInterface;
 
 class AppResetPasswordRequest extends ResetPasswordRequest implements AppResetPasswordRequestInterface
 {
-    public function __construct(
-        DateTimeInterface $expiresAt,
-        string $hashedToken,
-        AppUserInterface $user,
-    ) {
+    public function __construct(DateTimeInterface $expiresAt, string $hashedToken, AppUserInterface $user)
+    {
         parent::__construct($expiresAt, $hashedToken, $user);
     }
 

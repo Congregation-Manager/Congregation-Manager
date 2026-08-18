@@ -24,6 +24,7 @@ return static function (ECSConfig $ecsConfig): void {
     $ecsConfig->skip([
         StrictComparisonFixer::class => [
             'src/Domain/Territory/Model/TerritoryAssignment.php',
-        ]
+        ],
+        'tests/bootstrap.php',
     ]);
 };
