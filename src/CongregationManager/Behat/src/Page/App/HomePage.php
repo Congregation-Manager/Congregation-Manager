@@ -54,9 +54,12 @@ final class HomePage extends SymfonyPage implements HomePageInterface
     #[\Override]
     protected function getDefinedElements(): array
     {
-        return array_merge(parent::getDefinedElements(), [
+        /** @var array<string, array<string>|string> $elements */
+        $elements = array_merge(parent::getDefinedElements(), [
             'active_locale' => '[data-test-active-locale]',
             'locale_selector' => '[data-test-locale-selector]',
         ]);
+
+        return $elements;
     }
 }

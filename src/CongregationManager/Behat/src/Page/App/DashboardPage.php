@@ -57,10 +57,13 @@ final class DashboardPage extends SymfonyPage implements DashboardPageInterface
     #[\Override]
     protected function getDefinedElements(): array
     {
-        return array_merge(parent::getDefinedElements(), [
+        /** @var array<string, array<string>|string> $elements */
+        $elements = array_merge(parent::getDefinedElements(), [
             'logged_in_brother' => '[data-test-logged-in-brother-full-name]',
             'logout_button' => '[data-test-logout-button]',
             'active_locale' => '[data-test-active-locale]',
         ]);
+
+        return $elements;
     }
 }

@@ -51,6 +51,7 @@ final readonly class LocaleSubscriber implements EventSubscriberInterface
         }
     }
 
+    #[\Override]
     private function getDefaultLocale(): string
     {
         return $this->defaultLocale;
@@ -59,6 +60,7 @@ final readonly class LocaleSubscriber implements EventSubscriberInterface
     /**
      * @return string[]
      */
+    #[\Override]
     private function getAvailableLocales(): array
     {
         return $this->availableLocaleCodes;

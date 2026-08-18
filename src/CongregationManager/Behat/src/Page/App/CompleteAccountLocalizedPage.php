@@ -51,10 +51,13 @@ final class CompleteAccountLocalizedPage extends SymfonyPage implements Complete
     #[\Override]
     protected function getDefinedElements(): array
     {
-        return array_merge(parent::getDefinedElements(), [
+        /** @var array<string, array<string>|string> $elements */
+        $elements = array_merge(parent::getDefinedElements(), [
             'password' => '#complete_account_form_plainPassword_first',
             'confirm_password' => '#complete_account_form_plainPassword_second',
             'submit_button' => '[data-test-submit]',
         ]);
+
+        return $elements;
     }
 }

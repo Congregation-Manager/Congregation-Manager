@@ -14,13 +14,13 @@ use Doctrine\Persistence\ManagerRegistry;
  * @extends ServiceEntityRepository<BrotherInterface>
  *
  * @method BrotherInterface|null find($id, $lockMode = null, $lockVersion = null)
- * @method BrotherInterface|null findOneBy(array $criteria, array $orderBy = null)
+ * @method BrotherInterface|null findOneBy(array<string, mixed> $criteria, array<string, string>|null $orderBy = null)
  * @psalm-method list<BrotherInterface> findAll()
  *
  * @method BrotherInterface[] findAll()
- * @psalm-method list<BrotherInterface> findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @psalm-method list<BrotherInterface> findBy(array<string, mixed> $criteria, array<string, string>|null $orderBy = null, int|null $limit = null, int|null $offset = null)
  *
- * @method BrotherInterface[] findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method BrotherInterface[] findBy(array<string, mixed> $criteria, array<string, string>|null $orderBy = null, int|null $limit = null, int|null $offset = null)
  */
 final class BrotherRepository extends ServiceEntityRepository implements BrotherRepositoryInterface
 {

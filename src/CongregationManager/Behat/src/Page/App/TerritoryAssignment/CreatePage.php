@@ -80,7 +80,8 @@ final class CreatePage extends SymfonyPage implements CreatePageInterface
     #[\Override]
     protected function getDefinedElements(): array
     {
-        return array_merge(parent::getDefinedElements(), [
+        /** @var array<string, array<string>|string> $elements */
+        $elements = array_merge(parent::getDefinedElements(), [
             'errors' => '.invalid-feedback, .alert.alert-danger',
             'brother' => '[data-test-brother]',
             'assignment-date' => '[data-test-assignment-date]',
@@ -88,5 +89,7 @@ final class CreatePage extends SymfonyPage implements CreatePageInterface
             'territory' => '[data-test-territory]',
             'save' => '[data-test-save]',
         ]);
+
+        return $elements;
     }
 }

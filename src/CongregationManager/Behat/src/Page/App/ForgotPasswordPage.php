@@ -43,9 +43,12 @@ final class ForgotPasswordPage extends SymfonyPage implements ForgotPasswordPage
     #[\Override]
     protected function getDefinedElements(): array
     {
-        return array_merge(parent::getDefinedElements(), [
+        /** @var array<string, array<string>|string> $elements */
+        $elements = array_merge(parent::getDefinedElements(), [
             'email' => 'input[type=email]',
             'submit_button' => 'button[type=submit]',
         ]);
+
+        return $elements;
     }
 }

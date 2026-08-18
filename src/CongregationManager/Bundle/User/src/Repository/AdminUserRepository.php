@@ -21,13 +21,13 @@ use Symfony\Component\Security\Core\User\PasswordUpgraderInterface;
  * @implements AdminUserRepositoryInterface<AdminUIUserInterface>
  *
  * @method AdminUIUserInterface|null find($id, $lockMode = null, $lockVersion = null)
- * @method AdminUIUserInterface|null findOneBy(array $criteria, array $orderBy = null)
+ * @method AdminUIUserInterface|null findOneBy(array<string, mixed> $criteria, array<string, string>|null $orderBy = null)
  * @psalm-method list<AdminUIUserInterface> findAll()
  *
  * @method AdminUIUserInterface[] findAll()
- * @psalm-method list<AdminUIUserInterface> findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @psalm-method list<AdminUIUserInterface> findBy(array<string, mixed> $criteria, array<string, string>|null $orderBy = null, int|null $limit = null, int|null $offset = null)
  *
- * @method AdminUIUserInterface[] findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method AdminUIUserInterface[] findBy(array<string, mixed> $criteria, array<string, string>|null $orderBy = null, int|null $limit = null, int|null $offset = null)
  */
 class AdminUserRepository extends ServiceEntityRepository implements AdminUserRepositoryInterface, PasswordUpgraderInterface
 {

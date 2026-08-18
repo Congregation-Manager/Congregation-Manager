@@ -14,13 +14,13 @@ use Doctrine\Persistence\ManagerRegistry;
  * @extends ServiceEntityRepository<AreaInterface>
  *
  * @method AreaInterface|null find($id, $lockMode = null, $lockVersion = null)
- * @method AreaInterface|null findOneBy(array $criteria, array $orderBy = null)
+ * @method AreaInterface|null findOneBy(array<string, mixed> $criteria, array<string, string>|null $orderBy = null)
  * @psalm-method list<AreaInterface> findAll()
  *
  * @method AreaInterface[] findAll()
- * @psalm-method list<AreaInterface> findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @psalm-method list<AreaInterface> findBy(array<string, mixed> $criteria, array<string, string>|null $orderBy = null, int|null $limit = null, int|null $offset = null)
  *
- * @method AreaInterface[] findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method AreaInterface[] findBy(array<string, mixed> $criteria, array<string, string>|null $orderBy = null, int|null $limit = null, int|null $offset = null)
  */
 final class AreaRepository extends ServiceEntityRepository implements AreaRepositoryInterface
 {

@@ -14,13 +14,13 @@ use Doctrine\Persistence\ManagerRegistry;
  * @extends ServiceEntityRepository<AppUserInvitation>
  *
  * @method AppUserInvitation|null find($id, $lockMode = null, $lockVersion = null)
- * @method AppUserInvitation|null findOneBy(array $criteria, array $orderBy = null)
+ * @method AppUserInvitation|null findOneBy(array<string, mixed> $criteria, array<string, string>|null $orderBy = null)
  * @psalm-method list<AppUserInvitation> findAll()
  *
  * @method AppUserInvitation[] findAll()
- * @psalm-method list<AppUserInvitation> findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @psalm-method list<AppUserInvitation> findBy(array<string, mixed> $criteria, array<string, string>|null $orderBy = null, int|null $limit = null, int|null $offset = null)
  *
- * @method AppUserInvitation[] findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method AppUserInvitation[] findBy(array<string, mixed> $criteria, array<string, string>|null $orderBy = null, int|null $limit = null, int|null $offset = null)
  */
 class AppUserInvitationRepository extends ServiceEntityRepository implements AppUserInvitationRepositoryInterface
 {

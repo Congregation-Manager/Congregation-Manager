@@ -21,13 +21,13 @@ use SymfonyCasts\Bundle\ResetPassword\Persistence\ResetPasswordRequestRepository
  * @extends ServiceEntityRepository<ResetPasswordRequestInterface>
  *
  * @method ResetPasswordRequestInterface|null find($id, $lockMode = null, $lockVersion = null)
- * @method ResetPasswordRequestInterface|null findOneBy(array $criteria, array $orderBy = null)
+ * @method ResetPasswordRequestInterface|null findOneBy(array<string, mixed> $criteria, array<string, string>|null $orderBy = null)
  * @psalm-method list<ResetPasswordRequestInterface> findAll()
  *
  * @method ResetPasswordRequestInterface[] findAll()
- * @psalm-method list<ResetPasswordRequestInterface> findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @psalm-method list<ResetPasswordRequestInterface> findBy(array<string, mixed> $criteria, array<string, string>|null $orderBy = null, int|null $limit = null, int|null $offset = null)
  *
- * @method ResetPasswordRequestInterface[] findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method ResetPasswordRequestInterface[] findBy(array<string, mixed> $criteria, array<string, string>|null $orderBy = null, int|null $limit = null, int|null $offset = null)
  */
 class ResetPasswordRequestRepository extends ServiceEntityRepository implements ResetPasswordRequestRepositoryInterface, SymfonyResetPasswordRequestRepositoryInterface
 {

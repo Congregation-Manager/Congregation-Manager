@@ -36,9 +36,12 @@ final class ProfileUpdatePage extends SymfonyPage implements ProfileUpdatePageIn
     #[\Override]
     protected function getDefinedElements(): array
     {
-        return array_merge(parent::getDefinedElements(), [
+        /** @var array<string, array<string>|string> $elements */
+        $elements = array_merge(parent::getDefinedElements(), [
             'email' => 'input[type=email]',
             'save_button' => 'button[type=submit]',
         ]);
+
+        return $elements;
     }
 }

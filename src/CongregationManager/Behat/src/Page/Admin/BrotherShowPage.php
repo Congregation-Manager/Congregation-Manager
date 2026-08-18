@@ -47,9 +47,12 @@ final class BrotherShowPage extends SymfonyPage implements BrotherShowPageInterf
     #[\Override]
     protected function getDefinedElements(): array
     {
-        return array_merge(parent::getDefinedElements(), [
+        /** @var array<string, array<string>|string> $elements */
+        $elements = array_merge(parent::getDefinedElements(), [
             'invite_user' => '[data-test-invite-user-button]',
             'user_invitation' => '[data-test-user-invitation]',
         ]);
+
+        return $elements;
     }
 }

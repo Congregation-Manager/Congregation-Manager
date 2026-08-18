@@ -13,6 +13,7 @@ interface UIUserInterface extends DomainUIUserInterface, SymfonyUserInterface, P
     /**
      * @return string[]
      */
+    #[\Override]
     public function getRoles(): array;
 
     /**

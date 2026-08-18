@@ -14,8 +14,8 @@ final class CongregationManagerCongregationBundle extends AbstractBundle
      * @param mixed[] $config
      */
     #[\Override]
-    public function loadExtension(array $config, ContainerConfigurator $container, ContainerBuilder $builder): void
+    public function loadExtension(array $config, ContainerConfigurator $configurator, ContainerBuilder $container): void
     {
-        $container->import('../config/services.php');
+        $configurator->import('../config/services.php');
     }
 }

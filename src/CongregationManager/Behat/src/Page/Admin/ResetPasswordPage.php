@@ -44,10 +44,13 @@ final class ResetPasswordPage extends SymfonyPage implements ResetPasswordPageIn
     #[\Override]
     protected function getDefinedElements(): array
     {
-        return array_merge(parent::getDefinedElements(), [
+        /** @var array<string, array<string>|string> $elements */
+        $elements = array_merge(parent::getDefinedElements(), [
             'password' => '#change_password_form_plainPassword_first',
             'confirm_password' => '#change_password_form_plainPassword_second',
             'submit_button' => 'button[type=submit]',
         ]);
+
+        return $elements;
     }
 }

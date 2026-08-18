@@ -123,6 +123,7 @@ final class AppCompleteAccountController extends AbstractController
         $this->session->remove('CompleteAccountToken');
     }
 
+    #[\Override]
     private function getDefaultLocale(): string
     {
         return $this->defaultLocale;
@@ -131,6 +132,7 @@ final class AppCompleteAccountController extends AbstractController
     /**
      * @return string[]
      */
+    #[\Override]
     private function getAvailableLocales(): array
     {
         return $this->availableLocales;

@@ -11,13 +11,13 @@ use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
  * @extends ServiceEntityRepository<AppResetPasswordRequestInterface>
  *
  * @method AppResetPasswordRequestInterface|null find($id, $lockMode = null, $lockVersion = null)
- * @method AppResetPasswordRequestInterface|null findOneBy(array $criteria, array $orderBy = null)
+ * @method AppResetPasswordRequestInterface|null findOneBy(array<string, mixed> $criteria, array<string, string>|null $orderBy = null)
  * @psalm-method list<AppResetPasswordRequestInterface> findAll()
  *
  * @method AppResetPasswordRequestInterface[] findAll()
- * @psalm-method list<AppResetPasswordRequestInterface> findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @psalm-method list<AppResetPasswordRequestInterface> findBy(array<string, mixed> $criteria, array<string, string>|null $orderBy = null, int|null $limit = null, int|null $offset = null)
  *
- * @method AppResetPasswordRequestInterface[] findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method AppResetPasswordRequestInterface[] findBy(array<string, mixed> $criteria, array<string, string>|null $orderBy = null, int|null $limit = null, int|null $offset = null)
  */
 class AppResetPasswordRequestRepository extends ServiceEntityRepository
 {

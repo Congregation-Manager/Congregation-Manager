@@ -73,11 +73,14 @@ final class ShowPage extends SymfonyPage implements ShowPageInterface
     #[\Override]
     protected function getDefinedElements(): array
     {
-        return array_merge(parent::getDefinedElements(), [
+        /** @var array<string, array<string>|string> $elements */
+        $elements = array_merge(parent::getDefinedElements(), [
             'territory-assignments' => '[data-test-territory-assignment]',
             'territory-assignment-brother' => '[data-test-territory-assignment-brother]',
             'territory-assignment-assignment-date' => '[data-test-territory-assignment-assignment-date]',
         ]);
+
+        return $elements;
     }
 
     /**

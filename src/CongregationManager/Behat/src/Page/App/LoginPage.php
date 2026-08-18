@@ -51,10 +51,13 @@ final class LoginPage extends SymfonyPage implements LoginPageInterface
     #[\Override]
     protected function getDefinedElements(): array
     {
-        return array_merge(parent::getDefinedElements(), [
+        /** @var array<string, array<string>|string> $elements */
+        $elements = array_merge(parent::getDefinedElements(), [
             'username' => 'input[name=_username]',
             'password' => 'input[name=_password]',
             'signin_button' => 'button[type=submit]',
         ]);
+
+        return $elements;
     }
 }

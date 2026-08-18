@@ -18,13 +18,13 @@ use Doctrine\Persistence\ManagerRegistry;
  * @extends ServiceEntityRepository<TerritoryInterface>
  *
  * @method TerritoryInterface|null find($id, $lockMode = null, $lockVersion = null)
- * @method TerritoryInterface|null findOneBy(array $criteria, array $orderBy = null)
+ * @method TerritoryInterface|null findOneBy(array<string, mixed> $criteria, array<string, string>|null $orderBy = null)
  * @psalm-method list<TerritoryInterface> findAll()
  *
  * @method TerritoryInterface[] findAll()
- * @psalm-method list<TerritoryInterface> findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @psalm-method list<TerritoryInterface> findBy(array<string, mixed> $criteria, array<string, string>|null $orderBy = null, int|null $limit = null, int|null $offset = null)
  *
- * @method TerritoryInterface[] findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method TerritoryInterface[] findBy(array<string, mixed> $criteria, array<string, string>|null $orderBy = null, int|null $limit = null, int|null $offset = null)
  */
 class TerritoryRepository extends ServiceEntityRepository implements TerritoryRepositoryInterface
 {

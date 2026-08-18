@@ -36,9 +36,12 @@ final class InviteAppUserPage extends SymfonyPage implements InviteAppUserPageIn
     #[\Override]
     protected function getDefinedElements(): array
     {
-        return array_merge(parent::getDefinedElements(), [
+        /** @var array<string, array<string>|string> $elements */
+        $elements = array_merge(parent::getDefinedElements(), [
             'email' => '[data-test-email]',
             'submit' => '[data-test-submit]',
         ]);
+
+        return $elements;
     }
 }
