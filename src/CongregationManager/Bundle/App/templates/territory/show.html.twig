@@ -32,7 +32,7 @@
                 <tbody>
                 {% for territoryAssignment in territory.sortedTerritoryAssignments %}
                     <tr {{ test_html_attribute('territory-assignment', territoryAssignment.id) }}>
-                        <th scope="row" {{ test_html_attribute('territory-assignment-brother', territoryAssignment.brother) }}>{{ territoryAssignment.brother }}</th>
+                        <th scope="row" {{ test_html_attribute('territory-assignment-brother', territoryAssignment.recipient) }}>{{ territoryAssignment.recipient }}</th>
                         <td {{ test_html_attribute('territory-assignment-assignment-date', territoryAssignment.assignmentDate|date()) }}>{{ territoryAssignment.assignmentDate|format_date }}</td>
                         <td>{{ territoryAssignment.revocationDate ? territoryAssignment.revocationDate|format_date : '' }}</td>
                         <td><a href="{{ path('app_territory_assignment_update', {'id': territoryAssignment.id}) }}">{{ 'congregation_manager_app.ui.edit'|trans_app }}</a> </td>

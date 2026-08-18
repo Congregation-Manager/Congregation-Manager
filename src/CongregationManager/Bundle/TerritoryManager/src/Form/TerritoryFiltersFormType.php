@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace CongregationManager\Bundle\TerritoryManager\Form;
 
 use CongregationManager\Bundle\TerritoryManager\Repository\Filter\QueryBuilderTerritoryRepositoryFilter;
-use CongregationManager\Component\Congregation\Domain\Brother;
-use CongregationManager\Component\TerritoryManager\Domain\Area;
+use CongregationManager\Component\Core\Domain\Area;
+use CongregationManager\Component\Core\Domain\Brother;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;

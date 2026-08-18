@@ -16,14 +16,14 @@
         <th>
             {{ 'congregation_manager_app.ui.expiration_date'|trans_app }}
         </th>
-        <th{% if pagination.isSorted('latest_assignment.brother') %} class="sorted"{% endif %}>
-            {{ knp_pagination_sortable(pagination, 'congregation_manager_app.ui.assigned_to'|trans_app, 'latest_assignment.brother') }}
+        <th{% if pagination.isSorted('latest_assignment.recipient') %} class="sorted"{% endif %}>
+            {{ knp_pagination_sortable(pagination, 'congregation_manager_app.ui.assigned_to'|trans_app, 'latest_assignment.recipient') }}
         </th>
         <th{% if pagination.isSorted('latest_assignment.revocationDate') %} class="sorted"{% endif %}>
             {{ knp_pagination_sortable(pagination, 'congregation_manager_app.ui.latest_assignment_revocation_date'|trans_app, 'latest_assignment.revocationDate') }}
         </th>
-        <th{% if pagination.isSorted('latest_assignment.brother') %} class="sorted"{% endif %}>
-            {{ knp_pagination_sortable(pagination, 'congregation_manager_app.ui.latest_assignment_assigned_to'|trans_app, 'latest_assignment.brother') }}
+        <th{% if pagination.isSorted('latest_assignment.recipient') %} class="sorted"{% endif %}>
+            {{ knp_pagination_sortable(pagination, 'congregation_manager_app.ui.latest_assignment_assigned_to'|trans_app, 'latest_assignment.recipient') }}
         </th>
         <th></th>
     </tr>

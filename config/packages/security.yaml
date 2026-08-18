@@ -17,11 +17,11 @@ security:
     providers:
         app_user_provider:
             entity:
-                class: CongregationManager\Bundle\User\Entity\AppUser
+                class: CongregationManager\Bundle\Core\Entity\AppUser
                 property: email
         admin_user_provider:
             entity:
-                class: CongregationManager\Bundle\User\Entity\AdminUser
+                class: CongregationManager\Bundle\Core\Entity\AdminUser
                 property: email
     firewalls:
         dev:

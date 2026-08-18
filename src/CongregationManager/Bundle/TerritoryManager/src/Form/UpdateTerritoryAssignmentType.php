@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace CongregationManager\Bundle\TerritoryManager\Form;
 
-use CongregationManager\Component\Congregation\Domain\Brother;
+use CongregationManager\Component\Core\Domain\Brother;
+use CongregationManager\Component\Core\Domain\Territory;
 use CongregationManager\Component\TerritoryManager\Application\Command\UpdateTerritoryAssignment;
-use CongregationManager\Component\TerritoryManager\Domain\Territory;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
@@ -38,6 +38,7 @@ final class UpdateTerritoryAssignmentType extends AbstractType
             ])
             ->add('brother', EntityType::class, [
                 'class' => Brother::class,
+                'property_path' => 'recipient',
                 'label' => 'cm.ui.brother',
                 'multiple' => false,
                 'expanded' => false,
