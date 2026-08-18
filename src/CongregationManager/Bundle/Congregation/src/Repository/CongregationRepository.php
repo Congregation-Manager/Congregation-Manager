@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace CongregationManager\Bundle\Congregation\Repository;
 
-use CongregationManager\Component\Congregation\Domain\Congregation;
+use CongregationManager\Bundle\Core\Entity\Congregation;
 use CongregationManager\Component\Congregation\Domain\CongregationInterface;
 use CongregationManager\Component\Congregation\Domain\Repository\CongregationRepositoryInterface;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;

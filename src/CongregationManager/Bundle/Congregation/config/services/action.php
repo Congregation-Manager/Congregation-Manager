@@ -15,6 +15,9 @@ return static function (ContainerConfigurator $containerConfigurator): void {
     ;
 
     $services->set('congregation_manager_congregation.create_congregation', CreateCongregation::class)
-        ->args([service('congregation_manager_congregation.repository.congregation')])
+        ->args([
+            service('congregation_manager_congregation.factory.congregation'),
+            service('congregation_manager_congregation.repository.congregation'),
+        ])
     ;
 };

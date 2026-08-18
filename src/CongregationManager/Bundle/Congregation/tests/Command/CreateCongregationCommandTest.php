@@ -37,7 +37,6 @@ final class CreateCongregationCommandTest extends KernelTestCase
 
     public function testCreateAppUserInteractive(): void
     {
-        $this->markTestSkipped('This test should be refactored in future');
         $this->executeCommand([], array_values($this->congregationData));
 
         $congregations = self::getContainer()->get(

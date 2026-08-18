@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace CongregationManager\Component\Congregation\Tests\Application;
 
 use CongregationManager\Component\Congregation\Application\CreateCongregation;
+use CongregationManager\Component\Congregation\Domain\Factory\CongregationFactory;
 use CongregationManager\Component\Congregation\Domain\Repository\CongregationRepositoryInterface;
 use CongregationManager\Component\Congregation\Infrastructure\Repository\InMemory\CongregationRepository;
 use PHPUnit\Framework\TestCase;
@@ -23,7 +24,10 @@ final class CreateCongregationTest extends TestCase
     protected function setUp(): void
     {
         $this->congregationRepository = new CongregationRepository();
-        $this->createCongregation = new CreateCongregation($this->congregationRepository);
+        $this->createCongregation = new CreateCongregation(
+            new CongregationFactory(),
+            $this->congregationRepository,
+        );
     }
 
     public function testThatItCreatesANewCongregation(): void
