@@ -11,7 +11,10 @@ return static function (ContainerConfigurator $containerConfigurator): void {
     $services = $containerConfigurator->services();
 
     $services->set('congregation_manager_congregation.create_brother', CreateBrother::class)
-        ->args([service('congregation_manager_congregation.repository.brother')])
+        ->args([
+            service('congregation_manager_congregation.factory.brother'),
+            service('congregation_manager_congregation.repository.brother'),
+        ])
     ;
 
     $services->set('congregation_manager_congregation.create_congregation', CreateCongregation::class)

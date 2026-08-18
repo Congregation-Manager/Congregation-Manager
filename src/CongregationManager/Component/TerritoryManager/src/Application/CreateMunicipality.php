@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace CongregationManager\Component\TerritoryManager\Application;
 
-use CongregationManager\Component\TerritoryManager\Domain\Municipality;
+use CongregationManager\Component\TerritoryManager\Domain\Factory\MunicipalityFactoryInterface;
 use CongregationManager\Component\TerritoryManager\Domain\MunicipalityInterface;
 use CongregationManager\Component\TerritoryManager\Domain\ProvinceInterface;
 use CongregationManager\Component\TerritoryManager\Domain\Repository\MunicipalityRepositoryInterface;
@@ -12,6 +12,7 @@ use CongregationManager\Component\TerritoryManager\Domain\Repository\Municipalit
 final readonly class CreateMunicipality
 {
     public function __construct(
+        private MunicipalityFactoryInterface $municipalityFactory,
         private MunicipalityRepositoryInterface $municipalityRepository
     ) {
     }
@@ -21,7 +22,7 @@ final readonly class CreateMunicipality
         string $name,
         ?string $description
     ): MunicipalityInterface {
-        $municipality = new Municipality($province, $name, $description);
+        $municipality = $this->municipalityFactory->createNew($province, $name, $description);
         $this->municipalityRepository->add($municipality);
 
         return $municipality;

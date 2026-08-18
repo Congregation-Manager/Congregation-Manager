@@ -7,6 +7,7 @@ namespace CongregationManager\Component\User\Tests\Application;
 use CongregationManager\Component\Congregation\Domain\Brother;
 use CongregationManager\Component\Congregation\Domain\Congregation;
 use CongregationManager\Component\Core\Application\CreateAppUser;
+use CongregationManager\Component\Core\Domain\Factory\AppUserFactory;
 use CongregationManager\Component\Core\Infrastructure\InMemory\Repository\AppUserRepository;
 use CongregationManager\Component\User\Infrastructure\InMemory\Hasher\UserPasswordHasher;
 use PHPUnit\Framework\TestCase;
@@ -27,7 +28,11 @@ final class CreateAppUserTest extends TestCase
     {
         $this->appUserRepository = new AppUserRepository();
         $this->userPasswordHasher = new UserPasswordHasher();
-        $this->createAppUser = new CreateAppUser($this->appUserRepository, $this->userPasswordHasher);
+        $this->createAppUser = new CreateAppUser(
+            new AppUserFactory(),
+            $this->appUserRepository,
+            $this->userPasswordHasher
+        );
     }
 
     public function testThatItCreatesANewAppUser(): void

@@ -33,28 +33,43 @@ return static function (ContainerConfigurator $containerConfigurator): void {
     ;
 
     $services->set('congregation_manager_territory_manager.command_handler.create_area', CreateArea::class)
-        ->args([service('congregation_manager_territory_manager.repository.area')])
+        ->args([
+            service('congregation_manager_territory_manager.factory.area'),
+            service('congregation_manager_territory_manager.repository.area'),
+        ])
     ;
 
     $services->set(
         'congregation_manager_territory_manager.command_handler.create_municipality',
         CreateMunicipality::class
     )
-        ->args([service('congregation_manager_territory_manager.repository.municipality')])
+        ->args([
+            service('congregation_manager_territory_manager.factory.municipality'),
+            service('congregation_manager_territory_manager.repository.municipality'),
+        ])
     ;
 
     $services->set('congregation_manager_territory_manager.command_handler.create_province', CreateProvince::class)
-        ->args([service('congregation_manager_territory_manager.repository.province')])
+        ->args([
+            service('congregation_manager_territory_manager.factory.province'),
+            service('congregation_manager_territory_manager.repository.province'),
+        ])
     ;
 
     $services->set('congregation_manager_territory_manager.command_handler.create_territory', CreateTerritory::class)
-        ->args([service('congregation_manager_territory_manager.repository.territory')])
+        ->args([
+            service('congregation_manager_territory_manager.factory.territory'),
+            service('congregation_manager_territory_manager.repository.territory'),
+        ])
     ;
 
     $services->set(
         'congregation_manager_territory_manager.command.create_territory_assignment',
         CreateTerritoryAssignment::class
     )
-        ->args([service('congregation_manager_territory_manager.repository.territory_assignment')])
+        ->args([
+            service('congregation_manager_territory_manager.factory.territory_assignment'),
+            service('congregation_manager_territory_manager.repository.territory_assignment'),
+        ])
     ;
 };

@@ -6,6 +6,7 @@ namespace CongregationManager\Component\Congregation\Tests\Application;
 
 use CongregationManager\Component\Congregation\Application\CreateBrother;
 use CongregationManager\Component\Congregation\Domain\Congregation;
+use CongregationManager\Component\Congregation\Domain\Factory\BrotherFactory;
 use CongregationManager\Component\Congregation\Domain\Repository\BrotherRepositoryInterface;
 use CongregationManager\Component\Congregation\Infrastructure\Repository\InMemory\BrotherRepository;
 use DateTime;
@@ -26,7 +27,7 @@ final class CreateBrotherTest extends TestCase
     protected function setUp(): void
     {
         $this->brotherRepository = new BrotherRepository();
-        $this->createBrother = new CreateBrother($this->brotherRepository);
+        $this->createBrother = new CreateBrother(new BrotherFactory(), $this->brotherRepository);
     }
 
     public function testThatItCreatesANewBrother(): void

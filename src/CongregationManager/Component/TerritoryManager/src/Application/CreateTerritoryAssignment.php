@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace CongregationManager\Component\TerritoryManager\Application;
 
+use CongregationManager\Component\TerritoryManager\Domain\Factory\TerritoryAssignmentFactoryInterface;
 use CongregationManager\Component\TerritoryManager\Domain\RecipientInterface;
 use CongregationManager\Component\TerritoryManager\Domain\Repository\TerritoryAssignmentRepositoryInterface;
-use CongregationManager\Component\TerritoryManager\Domain\TerritoryAssignment;
 use CongregationManager\Component\TerritoryManager\Domain\TerritoryAssignmentInterface;
 use CongregationManager\Component\TerritoryManager\Domain\TerritoryInterface;
 use DateTimeInterface;
@@ -14,6 +14,7 @@ use DateTimeInterface;
 final readonly class CreateTerritoryAssignment
 {
     public function __construct(
+        private TerritoryAssignmentFactoryInterface $territoryAssignmentFactory,
         private TerritoryAssignmentRepositoryInterface $territoryAssignmentRepository
     ) {
     }
@@ -24,7 +25,12 @@ final readonly class CreateTerritoryAssignment
         ?RecipientInterface $recipient = null,
         ?DateTimeInterface $revocationDate = null
     ): TerritoryAssignmentInterface {
-        $territoryAssignment = new TerritoryAssignment($territory, $assignmentDate, $recipient, $revocationDate);
+        $territoryAssignment = $this->territoryAssignmentFactory->createNew(
+            $territory,
+            $assignmentDate,
+            $recipient,
+            $revocationDate
+        );
         $this->territoryAssignmentRepository->add($territoryAssignment);
 
         return $territoryAssignment;

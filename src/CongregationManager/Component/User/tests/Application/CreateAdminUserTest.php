@@ -6,6 +6,7 @@ namespace CongregationManager\Component\User\Tests\Application;
 
 use CongregationManager\Component\Core\Application\CreateAdminUser;
 use CongregationManager\Component\Core\Domain\AdminUser;
+use CongregationManager\Component\Core\Domain\Factory\AdminUserFactory;
 use CongregationManager\Component\Core\Infrastructure\InMemory\Repository\AdminUserRepository;
 use CongregationManager\Component\User\Infrastructure\InMemory\Hasher\UserPasswordHasher;
 use PHPUnit\Framework\TestCase;
@@ -30,7 +31,11 @@ final class CreateAdminUserTest extends TestCase
     {
         $this->adminUserRepository = new AdminUserRepository();
         $this->userPasswordHasher = new UserPasswordHasher();
-        $this->createAdminUser = new CreateAdminUser($this->adminUserRepository, $this->userPasswordHasher);
+        $this->createAdminUser = new CreateAdminUser(
+            new AdminUserFactory(),
+            $this->adminUserRepository,
+            $this->userPasswordHasher
+        );
     }
 
     public function testThatItCreatesANewAdminUser(): void
