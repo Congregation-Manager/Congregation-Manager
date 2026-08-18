@@ -4,10 +4,17 @@ declare(strict_types=1);
 
 namespace CongregationManager\Bundle\User\Entity;
 
+use Webmozart\Assert\Assert;
+
 trait SymfonyUserTrait
 {
+    /**
+     * @return non-empty-string
+     */
     public function getUserIdentifier(): string
     {
+        Assert::stringNotEmpty($this->email);
+
         return $this->email;
     }
 

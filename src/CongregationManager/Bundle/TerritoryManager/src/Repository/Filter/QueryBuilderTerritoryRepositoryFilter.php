@@ -19,6 +19,9 @@ final class QueryBuilderTerritoryRepositoryFilter implements TerritoryRepository
 
     private ?RecipientInterface $assignedTo = null;
 
+    /**
+     * @param array<array-key, AreaInterface> $areas
+     */
     #[\Override]
     public function setAreas(array $areas): void
     {

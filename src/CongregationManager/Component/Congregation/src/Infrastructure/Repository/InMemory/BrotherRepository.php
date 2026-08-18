@@ -43,6 +43,9 @@ final class BrotherRepository implements BrotherRepositoryInterface
         return null;
     }
 
+    /**
+     * @param array<string, string> $criteria
+     */
     #[\Override]
     public function findOneBy(array $criteria): never
     {

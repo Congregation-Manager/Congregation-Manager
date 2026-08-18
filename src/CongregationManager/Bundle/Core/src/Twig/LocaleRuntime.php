@@ -18,7 +18,7 @@ final readonly class LocaleRuntime implements RuntimeExtensionInterface
     ) {
     }
 
-    public function convertCodeToName(string $code, ?string $localeCode = null): ?string
+    public function convertCodeToName(string $code, ?string $localeCode = null): string
     {
         try {
             return $this->localeConverter->convertCodeToName($code, $this->getLocaleCode($localeCode));

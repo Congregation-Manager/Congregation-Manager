@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace CongregationManager\Bundle\User\Hasher;
 
 use CongregationManager\Component\User\Domain\Hasher\UserPasswordHasherInterface;
-use CongregationManager\Component\User\Domain\UserInterface;
+use CongregationManager\Component\User\Domain\UIUserInterface;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface as SymfonyUserPasswordHasherInterface;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Webmozart\Assert\Assert;
@@ -18,7 +18,7 @@ final readonly class UserPasswordHasher implements UserPasswordHasherInterface
     }
 
     #[\Override]
-    public function hashPasswordForUser(string $plainPassword, UserInterface $user): string
+    public function hashPasswordForUser(string $plainPassword, UIUserInterface $user): string
     {
         Assert::isInstanceOf($user, PasswordAuthenticatedUserInterface::class);
 

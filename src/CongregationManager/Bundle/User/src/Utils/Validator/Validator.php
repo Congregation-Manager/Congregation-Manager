@@ -9,16 +9,16 @@ use function Symfony\Component\String\u;
 
 final class Validator
 {
-    public function validateString(?string $string): string
+    public function validateString(mixed $string): string
     {
-        if ($string === '' || $string === null) {
+        if (!is_string($string) || $string === '') {
             throw new InvalidArgumentException('The string can not be empty.');
         }
 
         return $string;
     }
 
-    public function validatePassword(?string $plainPassword): string
+    public function validatePassword(mixed $plainPassword): string
     {
         $plainPassword = $this->validateString($plainPassword);
 
@@ -29,7 +29,7 @@ final class Validator
         return $plainPassword;
     }
 
-    public function validateEmail(?string $email): string
+    public function validateEmail(mixed $email): string
     {
         $email = $this->validateString($email);
 

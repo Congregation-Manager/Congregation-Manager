@@ -41,12 +41,12 @@ class ChangePasswordFormType extends AbstractType
                         new NotBlank([
                             'message' => 'cm.password.not_blank',
                         ]),
-                        new Length([
-                            'min' => 6,
-                            'minMessage' => 'cm.password.length',
+                        new Length(
+                            min: 6,
                             // max length allowed by Symfony for security reasons
-                            'max' => 4096,
-                        ]),
+                            max: 4096,
+                            minMessage: 'cm.password.length',
+                        ),
                     ],
                     'label' => 'congregation_manager_admin.ui.new_password',
                     'translation_domain' => 'admin',

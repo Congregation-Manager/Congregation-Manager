@@ -89,7 +89,7 @@ class Territory extends AggregateRoot implements TerritoryInterface
         if ($this->sortedTerritoryAssignments !== null) {
             return $this->sortedTerritoryAssignments;
         }
-        /** @var Traversable<TerritoryAssignmentInterface>|ArrayIterator<array-key, TerritoryAssignmentInterface> $territoryAssignments */
+        /** @var Traversable<array-key, TerritoryAssignmentInterface>|ArrayIterator<array-key, TerritoryAssignmentInterface> $territoryAssignments */
         $territoryAssignments = $this->getTerritoryAssignments()
             ->getIterator();
         if (!$territoryAssignments instanceof ArrayIterator) {
@@ -117,8 +117,11 @@ class Territory extends AggregateRoot implements TerritoryInterface
             }
         );
 
+        /** @var array<array-key, TerritoryAssignmentInterface> $assignments */
+        $assignments = iterator_to_array($territoryAssignments);
+        $sortedAssignments = array_values($assignments);
         /** @var Collection<array-key, TerritoryAssignmentInterface> $sortedTerritoryAssignments */
-        $sortedTerritoryAssignments = new ArrayCollection(iterator_to_array($territoryAssignments));
+        $sortedTerritoryAssignments = new ArrayCollection($sortedAssignments);
         $this->sortedTerritoryAssignments = $sortedTerritoryAssignments;
 
         return $sortedTerritoryAssignments;

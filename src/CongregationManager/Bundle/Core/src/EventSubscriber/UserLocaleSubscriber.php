@@ -7,7 +7,6 @@ namespace CongregationManager\Bundle\Core\EventSubscriber;
 use CongregationManager\Component\User\Domain\UserInterface as DomainUserInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
-use Symfony\Component\Security\Core\User\UserInterface as SymfonyUserInterface;
 use Symfony\Component\Security\Http\Event\InteractiveLoginEvent;
 use Symfony\Component\Security\Http\SecurityEvents;
 
@@ -32,7 +31,6 @@ final readonly class UserLocaleSubscriber implements EventSubscriberInterface
 
     public function onInteractiveLogin(InteractiveLoginEvent $event): void
     {
-        /** @var SymfonyUserInterface|DomainUserInterface|null $user */
         $user = $event->getAuthenticationToken()
             ->getUser()
         ;

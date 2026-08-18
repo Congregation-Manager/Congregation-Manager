@@ -39,9 +39,9 @@ final class CreateCongregationCommand extends Command
         parent::__construct($name);
     }
 
-    public function validateString(?string $string): string
+    public function validateString(mixed $string): string
     {
-        if ($string === '' || $string === null) {
+        if (!is_string($string) || $string === '') {
             throw new InvalidArgumentException('The string can not be empty.');
         }
 

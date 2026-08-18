@@ -182,7 +182,7 @@ final readonly class WordS13Renderer implements S13RendererInterface
                 ];
             }
             $assignmentsTableAssignedToColumn = $assignmentsTable->addCell(
-                Converter::cmToTwip(self::DATE_ASSIGNED_COLUMN_CM + self::DATE_COMPLETED_COLUMN_CM),
+                Converter::cmToTwip((float) self::DATE_ASSIGNED_COLUMN_CM + self::DATE_COMPLETED_COLUMN_CM),
                 array_merge($lastColumnParagraphStyle, [
                     'gridSpan' => 2,
                     'valign' => TextAlignment::CENTER,
@@ -310,7 +310,7 @@ final readonly class WordS13Renderer implements S13RendererInterface
                 ];
             }
             $assignmentsTableAssignedToColumn = $assignmentsTable->addCell(
-                Converter::cmToTwip(self::DATE_ASSIGNED_COLUMN_CM + self::DATE_COMPLETED_COLUMN_CM),
+                Converter::cmToTwip((float) self::DATE_ASSIGNED_COLUMN_CM + self::DATE_COMPLETED_COLUMN_CM),
                 array_merge($lastColumnParagraphStyle, [
                     'gridSpan' => 2,
                     'valign' => TextAlignment::CENTER,

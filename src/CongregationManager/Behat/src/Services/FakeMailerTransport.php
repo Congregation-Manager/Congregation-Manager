@@ -31,7 +31,7 @@ final class FakeMailerTransport implements TransportInterface
     }
 
     #[\Override]
-    public function send(RawMessage $message, Envelope $envelope = null): ?SentMessage
+    public function send(RawMessage $message, ?Envelope $envelope = null): SentMessage
     {
         if ($message instanceof TemplatedEmail) {
             $sentMessage = new SentMessage(
