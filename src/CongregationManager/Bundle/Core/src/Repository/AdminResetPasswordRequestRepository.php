@@ -4,8 +4,10 @@ declare(strict_types=1);
 
 namespace CongregationManager\Bundle\Core\Repository;
 
+use CongregationManager\Bundle\Core\Entity\AdminResetPasswordRequest;
 use CongregationManager\Component\Core\Domain\AdminResetPasswordRequestInterface;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\Persistence\ManagerRegistry;
 
 /**
  * @extends ServiceEntityRepository<AdminResetPasswordRequestInterface>
@@ -21,4 +23,8 @@ use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
  */
 class AdminResetPasswordRequestRepository extends ServiceEntityRepository
 {
+    public function __construct(ManagerRegistry $registry)
+    {
+        parent::__construct($registry, AdminResetPasswordRequest::class);
+    }
 }

@@ -12,7 +12,6 @@ use CongregationManager\Bundle\Core\Entity\AdminUIUserInterface;
 use CongregationManager\Bundle\Core\Entity\AdminUser;
 use CongregationManager\Bundle\Core\Entity\AppUIUserInterface;
 use CongregationManager\Bundle\Core\Entity\AppUser;
-use CongregationManager\Bundle\User\Entity\ResetPasswordRequest;
 use CongregationManager\Component\Core\Application\CreateAppUserInvitation;
 use CongregationManager\Component\Core\Domain\BrotherInterface;
 use DateTimeImmutable;
@@ -85,14 +84,13 @@ final readonly class AccountContext implements Context
             $this->resetPasswordRequestRepository->getUserIdentifier($adminUser)
         );
 
-        $resetPasswordRequest = new ResetPasswordRequest(
+        $resetPasswordRequest = $this->resetPasswordRequestRepository->createResetPasswordRequest(
             $adminUser,
             $expiresAt,
             $hashedVerifierToken->getSelector(),
             $hashedVerifierToken->getHashedToken()
         );
-        $this->entityManager->persist($resetPasswordRequest);
-        $this->entityManager->flush();
+        $this->resetPasswordRequestRepository->persistResetPasswordRequest($resetPasswordRequest);
 
         $this->sharedStorage->set('forgot_password_token', $hashedVerifierToken->getPublicToken());
     }
@@ -114,14 +112,13 @@ final readonly class AccountContext implements Context
             $this->resetPasswordRequestRepository->getUserIdentifier($appUser)
         );
 
-        $resetPasswordRequest = new ResetPasswordRequest(
+        $resetPasswordRequest = $this->resetPasswordRequestRepository->createResetPasswordRequest(
             $appUser,
             $expiresAt,
             $hashedVerifierToken->getSelector(),
             $hashedVerifierToken->getHashedToken()
         );
-        $this->entityManager->persist($resetPasswordRequest);
-        $this->entityManager->flush();
+        $this->resetPasswordRequestRepository->persistResetPasswordRequest($resetPasswordRequest);
 
         $this->sharedStorage->set('forgot_password_token', $hashedVerifierToken->getPublicToken());
     }

@@ -33,8 +33,7 @@ return static function (ContainerConfigurator $containerConfigurator): void {
 
     $services->set('congregation_manager_user.repository.reset_password_request', ResetPasswordRequestRepository::class)
         ->public()
-        ->args([service('doctrine')])
-        ->tag('doctrine.repository_service')
+        ->args([service('doctrine.orm.entity_manager')])
     ;
 
     $services->set('congregation_manager_user.in_memory_repository.admin_user', InMemoryAdminUserRepository::class);

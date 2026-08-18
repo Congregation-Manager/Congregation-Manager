@@ -4,10 +4,11 @@ declare(strict_types=1);
 
 namespace CongregationManager\Bundle\Core\Entity;
 
+use CongregationManager\Bundle\User\Entity\ResetPasswordRequestInterface;
 use CongregationManager\Component\Core\Domain\AppResetPasswordRequest as BaseAppResetPasswordRequest;
 use CongregationManager\Component\Core\Domain\AppUserInterface;
 
-class AppResetPasswordRequest extends BaseAppResetPasswordRequest
+class AppResetPasswordRequest extends BaseAppResetPasswordRequest implements ResetPasswordRequestInterface
 {
     protected \DateTimeImmutable $requestedAt;
 
@@ -22,8 +23,20 @@ class AppResetPasswordRequest extends BaseAppResetPasswordRequest
         $this->requestedAt = new \DateTimeImmutable('now');
     }
 
+    #[\Override]
     public function getRequestedAt(): \DateTimeImmutable
     {
         return $this->requestedAt;
+    }
+
+    #[\Override]
+    public function getUser(): object
+    {
+        return $this->getUiUser();
+    }
+
+    public function getSelector(): string
+    {
+        return $this->selector;
     }
 }

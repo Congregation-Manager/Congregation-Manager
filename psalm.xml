@@ -47,8 +47,9 @@
         </InvalidArgument>
         <PropertyNotSetInConstructor>
             <errorLevel type="suppress">
-                <!-- Doctrine hydrates the mapped models by reflection; collections come from the parent constructor. -->
+                <!-- Doctrine hydrates the mapped models by reflection; their state comes from the parent constructor. -->
                 <directory name="src/CongregationManager/Component/Core/src/Domain"/>
+                <directory name="src/CongregationManager/Bundle/Core/src/Entity"/>
                 <directory name="src/CongregationManager/Bundle/*/tests"/>
                 <directory name="src/CongregationManager/Component/*/tests"/>
                 <directory name="src/CongregationManager/Behat/"/>

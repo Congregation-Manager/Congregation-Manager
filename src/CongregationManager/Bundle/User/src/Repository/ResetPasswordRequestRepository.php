@@ -4,77 +4,114 @@ declare(strict_types=1);
 
 namespace CongregationManager\Bundle\User\Repository;
 
-use CongregationManager\Bundle\User\Entity\ResetPasswordRequest;
+use CongregationManager\Bundle\Core\Entity\AdminResetPasswordRequest;
+use CongregationManager\Bundle\Core\Entity\AdminUIUserInterface;
+use CongregationManager\Bundle\Core\Entity\AppResetPasswordRequest;
+use CongregationManager\Bundle\Core\Entity\AppUIUserInterface;
 use CongregationManager\Bundle\User\Entity\ResetPasswordRequestInterface;
 use CongregationManager\Bundle\User\Exception\Factory\UserInstanceNotValidFactory;
-use CongregationManager\Component\Core\Domain\AdminUser;
-use CongregationManager\Component\Core\Domain\AppUser;
 use CongregationManager\Component\User\Domain\Repository\ResetPasswordRequestRepositoryInterface;
-use CongregationManager\Component\User\Domain\UIUserInterface;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Doctrine\Persistence\ManagerRegistry;
+use DateTimeInterface;
+use Doctrine\DBAL\Types\Types;
+use Doctrine\ORM\EntityManagerInterface;
+use RuntimeException;
+use Symfony\Component\Clock\Clock;
 use SymfonyCasts\Bundle\ResetPassword\Model\ResetPasswordRequestInterface as SymfonyResetPasswordRequestInterface;
-use SymfonyCasts\Bundle\ResetPassword\Persistence\Repository\ResetPasswordRequestRepositoryTrait;
 use SymfonyCasts\Bundle\ResetPassword\Persistence\ResetPasswordRequestRepositoryInterface as SymfonyResetPasswordRequestRepositoryInterface;
 
 /**
- * @extends ServiceEntityRepository<ResetPasswordRequestInterface>
- *
- * @method ResetPasswordRequestInterface|null find($id, $lockMode = null, $lockVersion = null)
- * @method ResetPasswordRequestInterface|null findOneBy(array<string, mixed> $criteria, array<string, string>|null $orderBy = null)
- * @psalm-method list<ResetPasswordRequestInterface> findAll()
- *
- * @method ResetPasswordRequestInterface[] findAll()
- * @psalm-method list<ResetPasswordRequestInterface> findBy(array<string, mixed> $criteria, array<string, string>|null $orderBy = null, int|null $limit = null, int|null $offset = null)
- *
- * @method ResetPasswordRequestInterface[] findBy(array<string, mixed> $criteria, array<string, string>|null $orderBy = null, int|null $limit = null, int|null $offset = null)
+ * Admin and app users keep their reset requests in their own table, so the repository
+ * picks the class from the user it is given instead of being bound to a single entity.
  */
-class ResetPasswordRequestRepository extends ServiceEntityRepository implements ResetPasswordRequestRepositoryInterface, SymfonyResetPasswordRequestRepositoryInterface
+final readonly class ResetPasswordRequestRepository implements ResetPasswordRequestRepositoryInterface, SymfonyResetPasswordRequestRepositoryInterface
 {
-    use ResetPasswordRequestRepositoryTrait;
+    /**
+     * @var array<class-string<ResetPasswordRequestInterface>>
+     */
+    private const array REQUEST_CLASSES = [AdminResetPasswordRequest::class, AppResetPasswordRequest::class];
 
-    public function __construct(ManagerRegistry $registry)
-    {
-        parent::__construct($registry, ResetPasswordRequest::class);
+    public function __construct(
+        private EntityManagerInterface $entityManager
+    ) {
     }
 
     #[\Override]
     public function createResetPasswordRequest(
         object $user,
-        \DateTimeInterface $expiresAt,
+        DateTimeInterface $expiresAt,
         string $selector,
         string $hashedToken
-    ): ResetPasswordRequestInterface {
-        if (!$user instanceof UIUserInterface) {
-            throw UserInstanceNotValidFactory::createWithInstanceClass($user::class);
+    ): SymfonyResetPasswordRequestInterface {
+        if ($user instanceof AdminUIUserInterface) {
+            return new AdminResetPasswordRequest($expiresAt, $hashedToken, $user, $selector);
+        }
+        if ($user instanceof AppUIUserInterface) {
+            return new AppResetPasswordRequest($expiresAt, $hashedToken, $user, $selector);
         }
 
-        return new ResetPasswordRequest($user, $expiresAt, $selector, $hashedToken);
+        throw UserInstanceNotValidFactory::createWithInstanceClass($user::class);
     }
 
     #[\Override]
-    public function getMostRecentNonExpiredRequestDate(object $user): ?\DateTimeInterface
+    public function getUserIdentifier(object $user): string
     {
-        // Normally there is only 1 max request per use, but written to be flexible
-        $queryBuilder = $this->createQueryBuilder('t');
-        if ($user instanceof AdminUser) {
-            $queryBuilder->where('t.adminUser = :user');
-        } elseif ($user instanceof AppUser) {
-            $queryBuilder->where('t.appUser = :user');
-        } else {
-            throw UserInstanceNotValidFactory::createWithInstanceClass($user::class);
+        $identifier = $this->entityManager
+            ->getUnitOfWork()
+            ->getSingleIdentifierValue($user)
+        ;
+        if (!is_scalar($identifier)) {
+            throw new RuntimeException(sprintf(
+                'Unable to read the identifier of "%s": expected a scalar, got "%s".',
+                $user::class,
+                get_debug_type($identifier)
+            ));
         }
 
+        return (string) $identifier;
+    }
+
+    #[\Override]
+    public function persistResetPasswordRequest(SymfonyResetPasswordRequestInterface $resetPasswordRequest): void
+    {
+        $this->entityManager->persist($resetPasswordRequest);
+        $this->entityManager->flush();
+    }
+
+    #[\Override]
+    public function findResetPasswordRequest(string $selector): ?SymfonyResetPasswordRequestInterface
+    {
+        // The selector alone does not tell which kind of user asked for the reset.
+        foreach (self::REQUEST_CLASSES as $requestClass) {
+            $resetPasswordRequest = $this->entityManager->getRepository($requestClass)
+->findOneBy([
+    'selector' => $selector,
+]);
+            if ($resetPasswordRequest instanceof SymfonyResetPasswordRequestInterface) {
+                return $resetPasswordRequest;
+            }
+        }
+
+        return null;
+    }
+
+    #[\Override]
+    public function getMostRecentNonExpiredRequestDate(object $user): ?DateTimeInterface
+    {
         /** @var SymfonyResetPasswordRequestInterface|null $resetPasswordRequest */
-        $resetPasswordRequest = $queryBuilder
-            ->setParameter('user', $user)
+        $resetPasswordRequest = $this->entityManager->createQueryBuilder()
+            ->select('t')
+            ->from($this->getRequestClassForUser($user), 't')
+            ->where('t.user = :user')
+            ->setParameter('user', $this->getUserId($user), Types::INTEGER)
             ->orderBy('t.requestedAt', 'DESC')
             ->setMaxResults(1)
             ->getQuery()
-            ->getOneorNullResult()
+            ->getOneOrNullResult()
         ;
 
-        if ($resetPasswordRequest !== null && !$resetPasswordRequest->isExpired()) {
+        if ($resetPasswordRequest instanceof SymfonyResetPasswordRequestInterface
+            && !$resetPasswordRequest->isExpired()
+        ) {
             return $resetPasswordRequest->getRequestedAt();
         }
 
@@ -84,20 +121,69 @@ class ResetPasswordRequestRepository extends ServiceEntityRepository implements 
     #[\Override]
     public function removeResetPasswordRequest(SymfonyResetPasswordRequestInterface $resetPasswordRequest): void
     {
-        $queryBuilder = $this->createQueryBuilder('t');
-        if ($resetPasswordRequest->getUser() instanceof AdminUser) {
-            $queryBuilder->where('t.adminUser = :user');
-        } elseif ($resetPasswordRequest->getUser() instanceof AppUser) {
-            $queryBuilder->where('t.appUser = :user');
-        } else {
-            throw UserInstanceNotValidFactory::createWithInstanceClass($resetPasswordRequest->getUser()::class);
+        $this->removeRequests($resetPasswordRequest->getUser());
+    }
+
+    #[\Override]
+    public function removeExpiredResetPasswordRequests(): int
+    {
+        $time = Clock::get()->now()->modify('-1 week');
+        $removed = 0;
+        foreach (self::REQUEST_CLASSES as $requestClass) {
+            /** @var int $deleted */
+            $deleted = $this->entityManager->createQueryBuilder()
+                ->delete($requestClass, 't')
+                ->where('t.expiresAt <= :time')
+                ->setParameter('time', $time, Types::DATETIME_IMMUTABLE)
+                ->getQuery()
+                ->execute()
+            ;
+            $removed += $deleted;
         }
 
-        $queryBuilder
-            ->delete()
-            ->setParameter('user', $resetPasswordRequest->getUser())
+        return $removed;
+    }
+
+    public function removeRequests(object $user): void
+    {
+        $this->entityManager->createQueryBuilder()
+            ->delete($this->getRequestClassForUser($user), 't')
+            ->where('t.user = :user')
+            ->setParameter('user', $this->getUserId($user), Types::INTEGER)
             ->getQuery()
             ->execute()
         ;
+    }
+
+    private function getUserId(object $user): int
+    {
+        $identifier = $this->entityManager
+            ->getUnitOfWork()
+            ->getSingleIdentifierValue($user)
+        ;
+        if (!is_int($identifier)) {
+            throw new RuntimeException(sprintf(
+                'Unable to read the identifier of "%s": expected an int, got "%s".',
+                $user::class,
+                get_debug_type($identifier)
+            ));
+        }
+
+        return $identifier;
+    }
+
+    /**
+     * @return class-string<ResetPasswordRequestInterface>
+     */
+    private function getRequestClassForUser(object $user): string
+    {
+        if ($user instanceof AdminUIUserInterface) {
+            return AdminResetPasswordRequest::class;
+        }
+        if ($user instanceof AppUIUserInterface) {
+            return AppResetPasswordRequest::class;
+        }
+
+        throw UserInstanceNotValidFactory::createWithInstanceClass($user::class);
     }
 }
