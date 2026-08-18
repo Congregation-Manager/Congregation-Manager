@@ -109,4 +109,8 @@ Full Docker and fully local setups are documented in `docs/`.
   model/service, `#[\Override]` attribute on overridden methods.
 - Commit messages: English, imperative ("Add X", continuation of "This commit will...").
   Reference the GitHub issue when possible, e.g. `(#12)`. No Redmine here.
+- Branches are named `issue-<number>`, after the GitHub issue they close.
+- Adding a package under `src/CongregationManager/`: give it its own `composer.json`, register it
+  in the root `composer.json` autoload, and add it to `.github/workflows/packages_split.yml` —
+  the split target is a repo with the same name in the `Congregation-Manager` GitHub org.
 - Never commit or push unless explicitly asked.
