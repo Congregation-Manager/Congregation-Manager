@@ -1,6 +1,9 @@
 <?xml version="1.0"?>
 <psalm
         errorLevel="1"
+        findUnusedCode="false"
+        findUnusedVariablesAndParams="false"
+        findUnusedIssueHandlerSuppression="false"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xmlns="https://getpsalm.org/schema/config"
         xsi:schemaLocation="https://getpsalm.org/schema/config vendor/vimeo/psalm/config.xsd"
@@ -17,28 +20,40 @@
         </ignoreFiles>
     </projectFiles>
     <issueHandlers>
+        <!-- Integration tests fetch private services by id; the plugin can only resolve them
+             against the dev container, where they are not exposed. -->
+        <ArgumentTypeCoercion>
+            <errorLevel type="suppress">
+                <directory name="src/CongregationManager/Bundle/*/tests"/>
+                <directory name="src/CongregationManager/Component/*/tests"/>
+            </errorLevel>
+        </ArgumentTypeCoercion>
+        <!-- psalm-plugin-symfony types TreeBuilder in a way that rejects scalar nodes. -->
+        <InvalidTemplateParam>
+            <errorLevel type="suppress">
+                <file name="src/CongregationManager/Bundle/Fixtures/src/CongregationManagerFixturesBundle.php"/>
+            </errorLevel>
+        </InvalidTemplateParam>
+        <!-- Doctrine needs to subclass the mapped models to build its proxies. -->
+        <ClassMustBeFinal>
+            <errorLevel type="suppress">
+                <directory name="src"/>
+            </errorLevel>
+        </ClassMustBeFinal>
         <InvalidArgument>
             <errorLevel type="suppress">
                 <file name="src/CongregationManager/Component/User/tests/Application/CreateAdminUserTest.php"/>
             </errorLevel>
         </InvalidArgument>
-        <InvalidScalarArgument>
-            <errorLevel type="suppress">
-                <file name="src/CongregationManager/Bundle/TerritoryManager/src/Renderer/WordS13Renderer.php"/>
-            </errorLevel>
-        </InvalidScalarArgument>
         <PropertyNotSetInConstructor>
             <errorLevel type="suppress">
+                <!-- Doctrine hydrates the mapped models by reflection; collections come from the parent constructor. -->
+                <directory name="src/CongregationManager/Component/Core/src/Domain"/>
                 <directory name="src/CongregationManager/Bundle/*/tests"/>
                 <directory name="src/CongregationManager/Component/*/tests"/>
                 <directory name="src/CongregationManager/Behat/"/>
             </errorLevel>
         </PropertyNotSetInConstructor>
-        <MixedReturnTypeCoercion>
-            <errorLevel type="suppress">
-                <directory name="src/CongregationManager/Behat/"/>
-            </errorLevel>
-        </MixedReturnTypeCoercion>
         <MixedMethodCall>
             <errorLevel type="suppress">
                 <file name="src/CongregationManager/Bundle/Fixtures/src/CongregationManagerFixturesBundle.php"/>

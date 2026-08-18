@@ -29,36 +29,36 @@ return static function (Config $config): void {
         $rules[] = Rule::allClasses()
             ->that(new ResideInOneOfTheseNamespaces("CongregationManager\Component\\$component\Domain"))
             ->should(
-                new DependsOnlyOnTheseNamespaces(
-                    'CongregationManager\Contract',
-                    "CongregationManager\Component\\$component\Domain",
-                    'Doctrine\Common\Collections',
-                )
+                new DependsOnlyOnTheseNamespaces([
+                        'CongregationManager\Contract',
+                        "CongregationManager\Component\\$component\Domain",
+                        'Doctrine\Common\Collections',
+                ])
             )
             ->because("$component domain component should depends only from contracts.");
 
         $rules[] = Rule::allClasses()
             ->that(new ResideInOneOfTheseNamespaces("CongregationManager\Component\\$component\Application"))
             ->should(
-                new DependsOnlyOnTheseNamespaces(
-                    'CongregationManager\Contract',
-                    "CongregationManager\Component\\$component\Domain",
-                    "CongregationManager\Component\\$component\Application",
-                    'Doctrine\Common\Collections',
-                )
+                new DependsOnlyOnTheseNamespaces([
+                        'CongregationManager\Contract',
+                        "CongregationManager\Component\\$component\Domain",
+                        "CongregationManager\Component\\$component\Application",
+                        'Doctrine\Common\Collections',
+                ])
             )
             ->because("$component application component should depends only from contracts or domain.");
 
         $rules[] = Rule::allClasses()
             ->that(new ResideInOneOfTheseNamespaces("CongregationManager\Component\\$component\Infrastructure"))
             ->should(
-                new DependsOnlyOnTheseNamespaces(
-                    'CongregationManager\Contract',
-                    "CongregationManager\Component\\$component\Domain",
-                    "CongregationManager\Component\\$component\Application",
-                    "CongregationManager\Component\\$component\Infrastructure",
-                    'Doctrine\Common\Collections',
-                )
+                new DependsOnlyOnTheseNamespaces([
+                        'CongregationManager\Contract',
+                        "CongregationManager\Component\\$component\Domain",
+                        "CongregationManager\Component\\$component\Application",
+                        "CongregationManager\Component\\$component\Infrastructure",
+                        'Doctrine\Common\Collections',
+                ])
             )
             ->because("$component infrastructure component should depends only from contracts, domain or application.");
     }
@@ -74,40 +74,40 @@ return static function (Config $config): void {
     $rules[] = Rule::allClasses()
         ->that(new ResideInOneOfTheseNamespaces('CongregationManager\Component\Core\Domain'))
         ->should(
-            new DependsOnlyOnTheseNamespaces(
-                'CongregationManager\Contract',
-                'CongregationManager\Component\Core\Domain',
-                'Doctrine\Common\Collections',
-                ...$coreDomainDependencies,
-            )
+            new DependsOnlyOnTheseNamespaces([
+                    'CongregationManager\Contract',
+                    'CongregationManager\Component\Core\Domain',
+                    'Doctrine\Common\Collections',
+                    ...$coreDomainDependencies,
+            ])
         )
         ->because("Core domain component should depends only from contracts or other component domains.");
     $rules[] = Rule::allClasses()
         ->that(new ResideInOneOfTheseNamespaces('CongregationManager\Component\Core\Application'))
         ->should(
-            new DependsOnlyOnTheseNamespaces(
-                'CongregationManager\Contract',
-                'CongregationManager\Component\Core\Domain',
-                'CongregationManager\Component\Core\Application',
-                'Doctrine\Common\Collections',
-                ...$coreDomainDependencies,
-                ...$coreApplicationDependencies,
-            )
+            new DependsOnlyOnTheseNamespaces([
+                    'CongregationManager\Contract',
+                    'CongregationManager\Component\Core\Domain',
+                    'CongregationManager\Component\Core\Application',
+                    'Doctrine\Common\Collections',
+                    ...$coreDomainDependencies,
+                    ...$coreApplicationDependencies,
+            ])
         )
         ->because("Core application component should depends only from contracts or other component domains and applications.");
     $rules[] = Rule::allClasses()
         ->that(new ResideInOneOfTheseNamespaces('CongregationManager\Component\Core\Infrastructure'))
         ->should(
-            new DependsOnlyOnTheseNamespaces(
-                'CongregationManager\Contract',
-                'CongregationManager\Component\Core\Domain',
-                'CongregationManager\Component\Core\Application',
-                'CongregationManager\Component\Core\Infrastructure',
-                'Doctrine\Common\Collections',
-                ...$coreDomainDependencies,
-                ...$coreApplicationDependencies,
-                ...$coreInfrastructureDependencies,
-            )
+            new DependsOnlyOnTheseNamespaces([
+                    'CongregationManager\Contract',
+                    'CongregationManager\Component\Core\Domain',
+                    'CongregationManager\Component\Core\Application',
+                    'CongregationManager\Component\Core\Infrastructure',
+                    'Doctrine\Common\Collections',
+                    ...$coreDomainDependencies,
+                    ...$coreApplicationDependencies,
+                    ...$coreInfrastructureDependencies,
+            ])
         )
         ->because("Core infrastructure component should depends only from contracts or other component domains, applications and infrastructures.");
 

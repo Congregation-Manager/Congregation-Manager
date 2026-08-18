@@ -7,6 +7,17 @@ parameters:
 	scanDirectories:
 	    - var/cache/dev/Symfony/Config
 	ignoreErrors:
+		# Runtime guards on interface methods whose PHP signature is wider than the
+		# generic annotation: static analysis proves them redundant, callers do not.
+		-
+			identifier: instanceof.alwaysTrue
+			paths:
+				- src/CongregationManager/Bundle/Admin/src/Controller/ResetAdminPasswordController.php
+				- src/CongregationManager/Bundle/App/src/Controller/ResetAppPasswordController.php
+				- src/CongregationManager/Bundle/User/src/Repository/AdminUserRepository.php
+				- src/CongregationManager/Bundle/User/src/Repository/AppUserRepository.php
+				- src/CongregationManager/Component/Core/src/Infrastructure/InMemory/Repository/AdminUserRepository.php
+				- src/CongregationManager/Component/Core/src/Infrastructure/InMemory/Repository/AppUserRepository.php
 		-
 			message: '#^Parameter \#1 \$width of method PhpOffice\\PhpWord\\Element\\Table\:\:addCell\(\) expects int\|null, float given\.$#'
 			path: src/CongregationManager/Bundle/TerritoryManager/src/Renderer/WordS13Renderer.php
