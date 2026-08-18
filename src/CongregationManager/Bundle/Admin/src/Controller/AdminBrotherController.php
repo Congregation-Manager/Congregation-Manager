@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace CongregationManager\Bundle\Admin\Controller;
 
 use CongregationManager\Bundle\Admin\Notificator\MessageNotificatorInterface;
-use CongregationManager\Bundle\User\Action\CreateAppUserInvitation;
 use CongregationManager\Bundle\User\Form\InviteUserFormType;
 use CongregationManager\Component\Congregation\Domain\Repository\BrotherRepositoryInterface;
+use CongregationManager\Component\Core\Application\CreateAppUserInvitation;
 use CongregationManager\Component\Core\Domain\BrotherInterface;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
