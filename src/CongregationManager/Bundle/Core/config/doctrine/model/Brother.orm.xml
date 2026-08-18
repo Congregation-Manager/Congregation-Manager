@@ -4,7 +4,7 @@
                   xsi:schemaLocation="https://doctrine-project.org/schemas/orm/doctrine-mapping
                           https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
 
-    <entity name="CongregationManager\Bundle\Core\Entity\Brother" table="brother"
+    <entity name="CongregationManager\Component\Core\Domain\Brother" table="brother"
             repository-class="CongregationManager\Bundle\Congregation\Repository\BrotherRepository">
 
         <id name="id" type="integer" column="id">

@@ -6,7 +6,7 @@ namespace CongregationManager\Bundle\Admin\Notificator;
 
 use CongregationManager\Bundle\Admin\Notificator\Exception\MessageNotificatorMessageException;
 use CongregationManager\Bundle\Core\Entity\AdminUIUserInterface;
-use CongregationManager\Bundle\Core\Entity\AppUserInvitation;
+use CongregationManager\Component\Core\Domain\AppUserInvitation;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
 use Symfony\Component\Mailer\MailerInterface;

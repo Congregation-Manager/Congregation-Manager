@@ -4,7 +4,7 @@
                   xsi:schemaLocation="https://doctrine-project.org/schemas/orm/doctrine-mapping
                           https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
 
-    <entity name="CongregationManager\Bundle\Core\Entity\Province" table="province"
+    <entity name="CongregationManager\Component\Core\Domain\Province" table="province"
             repository-class="CongregationManager\Bundle\TerritoryManager\Repository\ProvinceRepository">
 
         <id name="id" type="integer" column="id">

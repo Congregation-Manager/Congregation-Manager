@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace CongregationManager\Bundle\Admin\Notificator;
 
 use CongregationManager\Bundle\Core\Entity\AdminUIUserInterface;
-use CongregationManager\Bundle\Core\Entity\AppUserInvitation;
+use CongregationManager\Component\Core\Domain\AppUserInvitation;
 use SymfonyCasts\Bundle\ResetPassword\Model\ResetPasswordToken;
 
 interface MessageNotificatorInterface

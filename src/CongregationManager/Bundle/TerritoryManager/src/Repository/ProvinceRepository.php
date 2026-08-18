@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace CongregationManager\Bundle\TerritoryManager\Repository;
 
-use CongregationManager\Component\TerritoryManager\Domain\Province;
+use CongregationManager\Component\Core\Domain\Province;
 use CongregationManager\Component\TerritoryManager\Domain\ProvinceInterface;
 use CongregationManager\Component\TerritoryManager\Domain\Repository\ProvinceRepositoryInterface;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;

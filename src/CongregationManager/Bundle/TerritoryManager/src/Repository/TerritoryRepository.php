@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace CongregationManager\Bundle\TerritoryManager\Repository;
 
 use CongregationManager\Bundle\TerritoryManager\Repository\Filter\TerritoryFilterResults;
+use CongregationManager\Component\Core\Domain\Territory;
+use CongregationManager\Component\Core\Domain\TerritoryAssignment;
 use CongregationManager\Component\TerritoryManager\Domain\Repository\Filter\TerritoryRepositoryFilterInterface;
 use CongregationManager\Component\TerritoryManager\Domain\Repository\TerritoryRepositoryInterface;
-use CongregationManager\Component\TerritoryManager\Domain\Territory;
-use CongregationManager\Component\TerritoryManager\Domain\TerritoryAssignment;
 use CongregationManager\Component\TerritoryManager\Domain\TerritoryInterface;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\Query\Expr\Join;
@@ -26,7 +26,7 @@ use Doctrine\Persistence\ManagerRegistry;
  *
  * @method TerritoryInterface[] findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-final class TerritoryRepository extends ServiceEntityRepository implements TerritoryRepositoryInterface
+class TerritoryRepository extends ServiceEntityRepository implements TerritoryRepositoryInterface
 {
     public function __construct(ManagerRegistry $registry)
     {
@@ -84,8 +84,8 @@ final class TerritoryRepository extends ServiceEntityRepository implements Terri
             }
         }
         if ($filter->getAssignedTo() !== null) {
-            $qb->andWhere('actual_assignment.brother = :brother')
-                ->setParameter('brother', $filter->getAssignedTo())
+            $qb->andWhere('actual_assignment.recipient = :recipient')
+                ->setParameter('recipient', $filter->getAssignedTo())
             ;
         }
 

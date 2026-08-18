@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace CongregationManager\Bundle\TerritoryManager\Repository;
 
+use CongregationManager\Component\Core\Domain\TerritoryAssignment;
 use CongregationManager\Component\TerritoryManager\Domain\Repository\TerritoryAssignmentRepositoryInterface;
-use CongregationManager\Component\TerritoryManager\Domain\TerritoryAssignment;
 use CongregationManager\Component\TerritoryManager\Domain\TerritoryAssignmentInterface;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
