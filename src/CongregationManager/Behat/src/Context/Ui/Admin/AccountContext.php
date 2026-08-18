@@ -15,7 +15,7 @@ use CongregationManager\Behat\Page\Admin\LoginPageInterface;
 use CongregationManager\Behat\Page\Admin\ProfileUpdatePageInterface;
 use CongregationManager\Behat\Page\Admin\ResetPasswordPageInterface;
 use CongregationManager\Behat\Services\SharedStorageInterface;
-use CongregationManager\Component\Congregation\Domain\BrotherInterface;
+use CongregationManager\Component\Core\Domain\BrotherInterface;
 use Webmozart\Assert\Assert;
 
 final readonly class AccountContext implements Context

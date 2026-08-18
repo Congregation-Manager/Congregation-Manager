@@ -6,8 +6,8 @@ namespace CongregationManager\Behat\Context\Setup;
 
 use Behat\Behat\Context\Context;
 use CongregationManager\Behat\Services\SharedStorageInterface;
-use CongregationManager\Component\Congregation\Domain\Brother;
 use CongregationManager\Component\Congregation\Domain\CongregationInterface;
+use CongregationManager\Component\Core\Domain\Brother;
 use Doctrine\ORM\EntityManagerInterface;
 use Webmozart\Assert\Assert;
 

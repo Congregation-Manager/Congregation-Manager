@@ -6,7 +6,7 @@ namespace CongregationManager\Behat\Context\Ui\App;
 
 use Behat\Behat\Context\Context;
 use CongregationManager\Behat\Page\App\Territory\ShowPageInterface;
-use CongregationManager\Component\Congregation\Domain\BrotherInterface;
+use CongregationManager\Component\Core\Domain\BrotherInterface;
 use CongregationManager\Component\TerritoryManager\Domain\TerritoryInterface;
 use DateTimeImmutable;
 use Webmozart\Assert\Assert;
