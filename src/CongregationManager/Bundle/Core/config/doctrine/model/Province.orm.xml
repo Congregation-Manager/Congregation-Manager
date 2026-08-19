@@ -7,9 +7,6 @@
     <entity name="CongregationManager\Component\Core\Domain\Province" table="province"
             repository-class="CongregationManager\Bundle\TerritoryManager\Repository\ProvinceRepository">
 
-        <id name="id" type="integer" column="id">
-            <generator strategy="AUTO"/>
-        </id>
 
         <field name="name" type="string" length="255"/>
 

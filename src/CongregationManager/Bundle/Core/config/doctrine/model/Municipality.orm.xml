@@ -7,9 +7,6 @@
     <entity name="CongregationManager\Component\Core\Domain\Municipality" table="municipality"
             repository-class="CongregationManager\Bundle\TerritoryManager\Repository\MunicipalityRepository">
 
-        <id name="id" type="integer" column="id">
-            <generator strategy="AUTO"/>
-        </id>
 
         <field name="name" type="string" length="255"/>
 

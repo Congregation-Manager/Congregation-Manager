@@ -7,9 +7,6 @@
     <entity name="CongregationManager\Component\Core\Domain\TerritoryAssignment" table="territory_assignment"
             repository-class="CongregationManager\Bundle\TerritoryManager\Repository\TerritoryAssignmentRepository">
 
-        <id name="id" type="integer" column="id">
-            <generator strategy="AUTO"/>
-        </id>
 
         <many-to-one field="territory" target-entity="CongregationManager\Component\Core\Domain\Territory"
                      inversed-by="territoryAssignments">

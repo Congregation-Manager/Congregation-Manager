@@ -7,9 +7,6 @@
     <entity name="CongregationManager\Component\Core\Domain\Congregation" table="congregation"
             repository-class="CongregationManager\Bundle\Congregation\Repository\CongregationRepository">
 
-        <id name="id" type="integer" column="id">
-            <generator strategy="AUTO"/>
-        </id>
 
         <field name="name" type="string" length="255"/>
 

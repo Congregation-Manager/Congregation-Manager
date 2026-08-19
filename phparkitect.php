@@ -20,6 +20,7 @@ return static function (Config $config): void {
             ->that(new ResideInOneOfTheseNamespaces("CongregationManager\Contract\\$contract"))
             ->should(new NotHaveDependencyOutsideNamespace("CongregationManager\Contract\\$contract", [
                 InvalidArgumentException::class,
+                DateTimeImmutable::class,
             ]))
             ->because('Contracts should not have any external dependencies.');
     }

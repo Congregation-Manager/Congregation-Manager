@@ -7,9 +7,6 @@
     <entity name="CongregationManager\Component\Core\Domain\Brother" table="brother"
             repository-class="CongregationManager\Bundle\Congregation\Repository\BrotherRepository">
 
-        <id name="id" type="integer" column="id">
-            <generator strategy="AUTO"/>
-        </id>
 
         <field name="firstName" column="first_name" type="string" length="255"/>
 

@@ -7,9 +7,6 @@
     <entity name="CongregationManager\Bundle\Core\Entity\AdminUser" table="admin_user"
             repository-class="CongregationManager\Bundle\User\Repository\AdminUserRepository">
 
-        <id name="id" type="integer" column="id">
-            <generator strategy="AUTO"/>
-        </id>
 
         <field name="email" type="string" length="180" unique="true"/>
 

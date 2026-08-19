@@ -7,9 +7,6 @@
     <entity name="CongregationManager\Bundle\Core\Entity\AppUser" table="app_user"
             repository-class="CongregationManager\Bundle\User\Repository\AppUserRepository">
 
-        <id name="id" type="integer" column="id">
-            <generator strategy="AUTO"/>
-        </id>
 
         <field name="email" type="string" length="180" unique="true"/>
 
