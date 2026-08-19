@@ -6,7 +6,7 @@ require 'recipe/symfony.php';
 
 // Config
 
-set('repository', 'git@github.com:lruozzi9/congregation-manager.git');
+set('repository', 'git@github.com:Congregation-Manager/Congregation-Manager.git');
 
 add('shared_files', [
     '.env.local',

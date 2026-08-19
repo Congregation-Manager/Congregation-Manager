@@ -20,5 +20,5 @@ Please adhere to this project's `code of conduct`.
 
 ## Authors
 
-- [@lruozzi9](https://www.github.com/lruozzi9)
+- [@Congregation-Manager](https://www.github.com/Congregation-Manager)
 

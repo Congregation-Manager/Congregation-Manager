@@ -10,4 +10,4 @@ The project is still currenly in beta.
 
 ## Reporting a Vulnerability
 
-Use the GitHub issue page available at https://github.com/lruozzi9/congregation-manager/issues.
+Use the GitHub issue page available at https://github.com/Congregation-Manager/Congregation-Manager/issues.

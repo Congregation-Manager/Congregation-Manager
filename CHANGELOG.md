@@ -8,4 +8,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 
-[unreleased]: https://github.com/lruozzi9/congregation-manager/compare/v0.0.1...HEAD
+[unreleased]: https://github.com/Congregation-Manager/Congregation-Manager/compare/v0.0.1...HEAD
