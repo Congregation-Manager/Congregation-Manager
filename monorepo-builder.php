@@ -15,7 +15,7 @@ return static function (MBConfig $mbConfig): void {
         ],
         ComposerJsonSection::MINIMUM_STABILITY => 'stable',
         ComposerJsonSection::REQUIRE_DEV => [
-            'phpunit/phpunit' => '^9.5',
+            'phpunit/phpunit' => '^12.5',
         ],
     ]);
 };

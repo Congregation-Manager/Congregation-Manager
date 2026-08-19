@@ -217,13 +217,15 @@
         "test": [
             "@pds",
             "@ecs",
+            "@monorepo",
             "@phparkitect",
             "@phpstan",
             "@psalm",
             "@rector",
             "@unit",
             "@behat"
-        ]
+        ],
+        "monorepo": "vendor/bin/monorepo-builder validate"
     },
     "type": "library",
     "minimum-stability": "stable",
