@@ -4,25 +4,16 @@ declare(strict_types=1);
 
 namespace CongregationManager\Bundle\TerritoryManager\Repository;
 
+use CongregationManager\Bundle\Resource\Repository\ResourceRepository;
 use CongregationManager\Component\Core\Domain\Municipality;
 use CongregationManager\Component\TerritoryManager\Domain\MunicipalityInterface;
 use CongregationManager\Component\TerritoryManager\Domain\Repository\MunicipalityRepositoryInterface;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @extends ServiceEntityRepository<MunicipalityInterface>
- *
- * @method MunicipalityInterface|null find($id, $lockMode = null, $lockVersion = null)
- * @method MunicipalityInterface|null findOneBy(array<string, mixed> $criteria, array<string, string>|null $orderBy = null)
- * @psalm-method list<MunicipalityInterface> findAll()
- *
- * @method MunicipalityInterface[] findAll()
- * @psalm-method list<MunicipalityInterface> findBy(array<string, mixed> $criteria, array<string, string>|null $orderBy = null, int|null $limit = null, int|null $offset = null)
- *
- * @method MunicipalityInterface[] findBy(array<string, mixed> $criteria, array<string, string>|null $orderBy = null, int|null $limit = null, int|null $offset = null)
+ * @extends ResourceRepository<MunicipalityInterface>
  */
-final class MunicipalityRepository extends ServiceEntityRepository implements MunicipalityRepositoryInterface
+final class MunicipalityRepository extends ResourceRepository implements MunicipalityRepositoryInterface
 {
     public function __construct(ManagerRegistry $registry)
     {

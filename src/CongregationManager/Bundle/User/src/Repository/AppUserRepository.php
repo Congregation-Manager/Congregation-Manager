@@ -6,29 +6,20 @@ namespace CongregationManager\Bundle\User\Repository;
 
 use CongregationManager\Bundle\Core\Entity\AppUIUserInterface;
 use CongregationManager\Bundle\Core\Entity\AppUser;
+use CongregationManager\Bundle\Resource\Repository\ResourceRepository;
 use CongregationManager\Component\Core\Domain\Repository\AppUserRepositoryInterface;
 use CongregationManager\Component\User\Domain\UserInterface;
 use CongregationManager\Contract\Resource\AggregateRootId;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\PasswordUpgraderInterface;
 
 /**
- * @extends ServiceEntityRepository<AppUIUserInterface>
+ * @extends ResourceRepository<AppUIUserInterface>
  * @implements AppUserRepositoryInterface<AppUIUserInterface>
- *
- * @method AppUIUserInterface|null find($id, $lockMode = null, $lockVersion = null)
- * @method AppUIUserInterface|null findOneBy(array<string, mixed> $criteria, array<string, string>|null $orderBy = null)
- * @psalm-method list<AppUIUserInterface> findAll()
- *
- * @method AppUIUserInterface[] findAll()
- * @psalm-method list<AppUIUserInterface> findBy(array<string, mixed> $criteria, array<string, string>|null $orderBy = null, int|null $limit = null, int|null $offset = null)
- *
- * @method AppUIUserInterface[] findBy(array<string, mixed> $criteria, array<string, string>|null $orderBy = null, int|null $limit = null, int|null $offset = null)
  */
-class AppUserRepository extends ServiceEntityRepository implements AppUserRepositoryInterface, PasswordUpgraderInterface
+class AppUserRepository extends ResourceRepository implements AppUserRepositoryInterface, PasswordUpgraderInterface
 {
     public function __construct(ManagerRegistry $registry)
     {

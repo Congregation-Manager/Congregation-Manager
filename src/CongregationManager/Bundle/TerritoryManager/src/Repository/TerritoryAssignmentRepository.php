@@ -4,25 +4,16 @@ declare(strict_types=1);
 
 namespace CongregationManager\Bundle\TerritoryManager\Repository;
 
+use CongregationManager\Bundle\Resource\Repository\ResourceRepository;
 use CongregationManager\Component\Core\Domain\TerritoryAssignment;
 use CongregationManager\Component\TerritoryManager\Domain\Repository\TerritoryAssignmentRepositoryInterface;
 use CongregationManager\Component\TerritoryManager\Domain\TerritoryAssignmentInterface;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @extends ServiceEntityRepository<TerritoryAssignmentInterface>
- *
- * @method TerritoryAssignmentInterface|null find($id, $lockMode = null, $lockVersion = null)
- * @method TerritoryAssignmentInterface|null findOneBy(array<string, mixed> $criteria, array<string, string>|null $orderBy = null)
- * @psalm-method list<TerritoryAssignmentInterface> findAll()
- *
- * @method TerritoryAssignmentInterface[] findAll()
- * @psalm-method list<TerritoryAssignmentInterface> findBy(array<string, mixed> $criteria, array<string, string>|null $orderBy = null, int|null $limit = null, int|null $offset = null)
- *
- * @method TerritoryAssignmentInterface[] findBy(array<string, mixed> $criteria, array<string, string>|null $orderBy = null, int|null $limit = null, int|null $offset = null)
+ * @extends ResourceRepository<TerritoryAssignmentInterface>
  */
-final class TerritoryAssignmentRepository extends ServiceEntityRepository implements TerritoryAssignmentRepositoryInterface
+final class TerritoryAssignmentRepository extends ResourceRepository implements TerritoryAssignmentRepositoryInterface
 {
     public function __construct(ManagerRegistry $registry)
     {

@@ -6,30 +6,21 @@ namespace CongregationManager\Bundle\User\Repository;
 
 use CongregationManager\Bundle\Core\Entity\AdminUIUserInterface;
 use CongregationManager\Bundle\Core\Entity\AdminUser;
+use CongregationManager\Bundle\Resource\Repository\ResourceRepository;
 use CongregationManager\Component\Core\Domain\AdminUserInterface as DomainAdminUserInterface;
 use CongregationManager\Component\Core\Domain\Repository\AdminUserRepositoryInterface;
 use CongregationManager\Component\User\Domain\UserInterface;
 use CongregationManager\Contract\Resource\AggregateRootId;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\PasswordUpgraderInterface;
 
 /**
- * @extends ServiceEntityRepository<AdminUIUserInterface>
+ * @extends ResourceRepository<AdminUIUserInterface>
  * @implements AdminUserRepositoryInterface<AdminUIUserInterface>
- *
- * @method AdminUIUserInterface|null find($id, $lockMode = null, $lockVersion = null)
- * @method AdminUIUserInterface|null findOneBy(array<string, mixed> $criteria, array<string, string>|null $orderBy = null)
- * @psalm-method list<AdminUIUserInterface> findAll()
- *
- * @method AdminUIUserInterface[] findAll()
- * @psalm-method list<AdminUIUserInterface> findBy(array<string, mixed> $criteria, array<string, string>|null $orderBy = null, int|null $limit = null, int|null $offset = null)
- *
- * @method AdminUIUserInterface[] findBy(array<string, mixed> $criteria, array<string, string>|null $orderBy = null, int|null $limit = null, int|null $offset = null)
  */
-class AdminUserRepository extends ServiceEntityRepository implements AdminUserRepositoryInterface, PasswordUpgraderInterface
+class AdminUserRepository extends ResourceRepository implements AdminUserRepositoryInterface, PasswordUpgraderInterface
 {
     public function __construct(ManagerRegistry $registry)
     {

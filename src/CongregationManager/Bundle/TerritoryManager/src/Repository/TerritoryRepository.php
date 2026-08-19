@@ -4,40 +4,26 @@ declare(strict_types=1);
 
 namespace CongregationManager\Bundle\TerritoryManager\Repository;
 
+use CongregationManager\Bundle\Resource\Repository\ResourceRepository;
 use CongregationManager\Bundle\TerritoryManager\Repository\Filter\TerritoryFilterResults;
 use CongregationManager\Component\Core\Domain\Territory;
 use CongregationManager\Component\Core\Domain\TerritoryAssignment;
 use CongregationManager\Component\TerritoryManager\Domain\Repository\Filter\TerritoryRepositoryFilterInterface;
 use CongregationManager\Component\TerritoryManager\Domain\Repository\TerritoryRepositoryInterface;
 use CongregationManager\Component\TerritoryManager\Domain\TerritoryInterface;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\Query\Expr\Join;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @extends ServiceEntityRepository<TerritoryInterface>
- *
- * @method TerritoryInterface|null find($id, $lockMode = null, $lockVersion = null)
- * @method TerritoryInterface|null findOneBy(array<string, mixed> $criteria, array<string, string>|null $orderBy = null)
- * @psalm-method list<TerritoryInterface> findAll()
- *
- * @method TerritoryInterface[] findAll()
- * @psalm-method list<TerritoryInterface> findBy(array<string, mixed> $criteria, array<string, string>|null $orderBy = null, int|null $limit = null, int|null $offset = null)
- *
- * @method TerritoryInterface[] findBy(array<string, mixed> $criteria, array<string, string>|null $orderBy = null, int|null $limit = null, int|null $offset = null)
+ * @extends ResourceRepository<TerritoryInterface>
  */
-class TerritoryRepository extends ServiceEntityRepository implements TerritoryRepositoryInterface
+class TerritoryRepository extends ResourceRepository implements TerritoryRepositoryInterface
 {
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Territory::class);
     }
 
-    #[\Override]
-    public function add(TerritoryInterface $territory): void
-    {
-        $this->_em->persist($territory);
-    }
 
     #[\Override]
     public function findOneById(int $id): ?TerritoryInterface
@@ -98,5 +84,11 @@ class TerritoryRepository extends ServiceEntityRepository implements TerritoryRe
         return $this->findOneBy([
             'number' => $number,
         ]);
+    }
+
+    #[\Override]
+    public function add(TerritoryInterface $territory): void
+    {
+        $this->_em->persist($territory);
     }
 }

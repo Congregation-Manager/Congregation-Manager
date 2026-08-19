@@ -4,25 +4,16 @@ declare(strict_types=1);
 
 namespace CongregationManager\Bundle\TerritoryManager\Repository;
 
+use CongregationManager\Bundle\Resource\Repository\ResourceRepository;
 use CongregationManager\Component\Core\Domain\Area;
 use CongregationManager\Component\TerritoryManager\Domain\AreaInterface;
 use CongregationManager\Component\TerritoryManager\Domain\Repository\AreaRepositoryInterface;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @extends ServiceEntityRepository<AreaInterface>
- *
- * @method AreaInterface|null find($id, $lockMode = null, $lockVersion = null)
- * @method AreaInterface|null findOneBy(array<string, mixed> $criteria, array<string, string>|null $orderBy = null)
- * @psalm-method list<AreaInterface> findAll()
- *
- * @method AreaInterface[] findAll()
- * @psalm-method list<AreaInterface> findBy(array<string, mixed> $criteria, array<string, string>|null $orderBy = null, int|null $limit = null, int|null $offset = null)
- *
- * @method AreaInterface[] findBy(array<string, mixed> $criteria, array<string, string>|null $orderBy = null, int|null $limit = null, int|null $offset = null)
+ * @extends ResourceRepository<AreaInterface>
  */
-final class AreaRepository extends ServiceEntityRepository implements AreaRepositoryInterface
+final class AreaRepository extends ResourceRepository implements AreaRepositoryInterface
 {
     public function __construct(ManagerRegistry $registry)
     {
