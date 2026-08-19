@@ -74,6 +74,12 @@ jobs:
                     -
                         local_path: 'src/CongregationManager/Bundle/User'
                         split_repository: 'user-bundle'
+                    -
+                        local_path: 'src/CongregationManager/Bundle/Fixtures'
+                        split_repository: 'fixtures-bundle'
+                    -
+                        local_path: 'src/CongregationManager/Behat'
+                        split_repository: 'behat'
         steps:
             -
                 uses: actions/checkout@v4
