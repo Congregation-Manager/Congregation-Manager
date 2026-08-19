@@ -1,12 +1,12 @@
 {% extends '@CongregationManagerApp/base.html.twig' %}
 
-{% block title %}{{ 'congregation_manager_app.meta_title.territory_show'|trans_app({':number': territory.number}) }}{% endblock %}
+{% block title %}{{ 'congregation_manager_app.meta_title.territory_show'|trans_app({'{number}': territory.number}) }}{% endblock %}
 
 {% block content %}
     <div class="container">
         <div class="row">
             <div class="col-12">
-                <h1>{{ 'congregation_manager_app.ui.territory_with_number'|trans_app({':number': territory.number}) }} <span
+                <h1>{{ 'congregation_manager_app.ui.territory_with_number'|trans_app({'{number}': territory.number}) }} <span
                         class="badge badge-{% if territory.available %}success{% else %}secondary{% endif %}">
                         {% if territory.available %}{{ 'congregation_manager_app.ui.not_assigned'|trans_app }}{% else %}{{ 'congregation_manager_app.ui.assigned'|trans_app }}{% endif %}
                     </span></h1>
