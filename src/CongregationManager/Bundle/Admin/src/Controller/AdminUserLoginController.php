@@ -19,7 +19,7 @@ final class AdminUserLoginController extends AbstractController
     public function index(): Response
     {
         if ($this->getUser()) {
-            return $this->redirectToRoute('admin_dashboard');
+            return $this->redirectToRoute('congregation_manager_admin_dashboard');
         }
 
         $error = $this->authenticationUtils->getLastAuthenticationError();
