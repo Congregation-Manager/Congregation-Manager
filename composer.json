@@ -1,8 +1,8 @@
 {
     "authors": [
         {
-            "name": "Lorenzo Ruozzi",
-            "homepage": "https://congregation-manager.github.io"
+            "name": "Congregation Manager",
+            "homepage": "https://github.com/Congregation-Manager"
         }
     ],
     "autoload": {
@@ -73,7 +73,7 @@
             "require": "^7.1"
         }
     },
-    "license": "proprietary",
+    "license": "MIT",
     "name": "congregation-manager/congregation-manager",
     "repositories": [
         {

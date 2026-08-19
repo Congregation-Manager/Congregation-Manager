@@ -8,7 +8,7 @@
         "php"
     ],
     "homepage": "https://github.com/congregation-manager/congregation-manager",
-    "license": "proprietary",
+    "license": "MIT",
     "authors": [
         {
             "name": "Congregation Manager",
@@ -35,7 +35,10 @@
     "prefer-stable": true,
     "extra": {
         "branch-alias": {
-            "dev-master": "2.0-dev"
+            "dev-master": "0.1-dev"
         }
+    },
+    "require": {
+        "php": "^8.3"
     }
 }

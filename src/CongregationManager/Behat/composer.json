@@ -7,11 +7,11 @@
         "congregation-manager"
     ],
     "homepage": "https://github.com/congregation-manager/congregation-manager",
-    "license": "proprietary",
+    "license": "MIT",
     "authors": [
         {
-            "name": "Lorenzo Ruozzi",
-            "homepage": "https://lruozzi9.github.io"
+            "name": "Congregation Manager",
+            "homepage": "https://github.com/Congregation-Manager"
         }
     ],
     "autoload": {
@@ -31,5 +31,33 @@
         }
     ],
     "minimum-stability": "stable",
-    "prefer-stable": true
+    "prefer-stable": true,
+    "extra": {
+        "branch-alias": {
+            "dev-master": "0.1-dev"
+        }
+    },
+    "require": {
+        "php": "^8.3",
+        "behat/behat": "^3.32",
+        "congregation-manager/congregation": "self.version",
+        "congregation-manager/core": "self.version",
+        "congregation-manager/core-bundle": "self.version",
+        "congregation-manager/resource-contract": "self.version",
+        "congregation-manager/territory-manager": "self.version",
+        "congregation-manager/user-bundle": "self.version",
+        "doctrine/data-fixtures": "^2.0",
+        "doctrine/orm": "^2.17.1",
+        "friends-of-behat/symfony-extension": "^2.4.2",
+        "symfony/http-foundation": "^7.1.0",
+        "symfony/mailer": "^7.1",
+        "symfony/mime": "^7.1.0",
+        "symfony/password-hasher": "^7.1.0",
+        "symfony/security-core": "^7.1.0",
+        "symfony/translation-contracts": "^3.4.0",
+        "symfony/twig-bridge": "^7.1.0",
+        "symfonycasts/reset-password-bundle": "^1.19.0",
+        "twig/twig": "^2.12|^3.8.0",
+        "webmozart/assert": "^1.11"
+    }
 }
