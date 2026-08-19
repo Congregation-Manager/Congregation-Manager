@@ -1,6 +1,6 @@
 {
     "name": "congregation-manager/admin-bundle",
-    "type": "library",
+    "type": "symfony-bundle",
     "description": "Congregation Manager administration on Symfony.",
     "keywords": [
         "admin",

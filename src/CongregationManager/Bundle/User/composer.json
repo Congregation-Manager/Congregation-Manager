@@ -1,6 +1,6 @@
 {
     "name": "congregation-manager/user-bundle",
-    "type": "library",
+    "type": "symfony-bundle",
     "description": "User Symfony bundle.",
     "keywords": [
         "user",

@@ -1,6 +1,6 @@
 {
     "name": "congregation-manager/territory-manager-bundle",
-    "type": "library",
+    "type": "symfony-bundle",
     "description": "Territory Manager for Symfony applications.",
     "keywords": [
         "territory",

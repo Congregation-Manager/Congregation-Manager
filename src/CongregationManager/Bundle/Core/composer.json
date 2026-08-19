@@ -1,6 +1,6 @@
 {
     "name": "congregation-manager/core-bundle",
-    "type": "library",
+    "type": "symfony-bundle",
     "description": "Congregation Manager core Symfony bundle. It integrates all other bundles into a full stack Symfony solution.",
     "keywords": [
         "congregation-manager",

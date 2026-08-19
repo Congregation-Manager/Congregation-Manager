@@ -1,6 +1,6 @@
 {
     "name": "congregation-manager/app-bundle",
-    "type": "library",
+    "type": "symfony-bundle",
     "description": "Congregation Manager application on Symfony.",
     "keywords": [
         "app",

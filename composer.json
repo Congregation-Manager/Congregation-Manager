@@ -84,6 +84,7 @@
     "replace": {
         "congregation-manager/admin-bundle": "self.version",
         "congregation-manager/app-bundle": "self.version",
+        "congregation-manager/behat": "self.version",
         "congregation-manager/congregation": "self.version",
         "congregation-manager/congregation-bundle": "self.version",
         "congregation-manager/core": "self.version",
@@ -164,7 +165,6 @@
     "require-dev": {
         "behat/behat": "^3.32",
         "behat/mink": "^1.13",
-        "congregation-manager/fixtures-bundle": "dev-master",
         "dama/doctrine-test-bundle": "^8.2",
         "deployer/deployer": "^7.0",
         "doctrine/doctrine-fixtures-bundle": "^3.6",
@@ -225,7 +225,7 @@
             "@behat"
         ]
     },
-    "type": "project",
+    "type": "library",
     "minimum-stability": "stable",
     "prefer-stable": true
 }

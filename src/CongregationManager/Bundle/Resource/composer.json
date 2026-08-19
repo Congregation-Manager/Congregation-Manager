@@ -1,6 +1,6 @@
 {
     "name": "congregation-manager/resource-bundle",
-    "type": "library",
+    "type": "symfony-bundle",
     "description": "Resource contract Symfony bundle.",
     "keywords": [
         "congregation-manager",
