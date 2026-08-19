@@ -9,12 +9,14 @@ use CongregationManager\Bundle\Core\Entity\AdminUser;
 use CongregationManager\Bundle\Core\Entity\AppUIUserInterface;
 use CongregationManager\Bundle\Core\Entity\AppUser;
 use CongregationManager\Component\Core\Domain\AdminUserInterface;
+use CongregationManager\Contract\Resource\IdGeneratorInterface;
 use Doctrine\ORM\EntityManagerInterface;
 use InvalidArgumentException;
 
 final readonly class UserContext implements Context
 {
     public function __construct(
+        private IdGeneratorInterface $idGenerator,
         private EntityManagerInterface $entityManager
     ) {
     }
@@ -47,7 +49,7 @@ final readonly class UserContext implements Context
             'email' => $email,
         ]);
         if ($adminUser === null) {
-            $adminUser = new AdminUser($email);
+            $adminUser = new AdminUser($this->idGenerator->generateNew(), $email);
 
             $this->entityManager->persist($adminUser);
             $this->entityManager->flush();

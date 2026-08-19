@@ -5,11 +5,13 @@ declare(strict_types=1);
 namespace CongregationManager\Component\Congregation\Domain;
 
 use CongregationManager\Contract\Resource\AggregateRoot;
+use CongregationManager\Contract\Resource\AggregateRootId;
 use DateTimeInterface;
 
 class Brother extends AggregateRoot implements BrotherInterface
 {
     public function __construct(
+        AggregateRootId $id,
         protected string $firstName,
         protected string $lastName,
         protected CongregationInterface $congregation,
@@ -18,6 +20,7 @@ class Brother extends AggregateRoot implements BrotherInterface
         protected ?DateTimeInterface $birthDate = null,
         protected ?DateTimeInterface $baptismDate = null,
     ) {
+        parent::__construct($id);
     }
 
     #[\Override]

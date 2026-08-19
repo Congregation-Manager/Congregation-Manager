@@ -18,6 +18,7 @@ return static function (ContainerConfigurator $containerConfigurator): void {
 
     $services->set('congregation_manager_behat.context.setup.account', AccountContext::class)
         ->args([
+            service('congregation_manager_resource.generator.id'),
             service('doctrine.orm.entity_manager'),
             service('security.password_hasher'),
             service('symfonycasts.reset_password.token_generator'),
@@ -34,15 +35,22 @@ return static function (ContainerConfigurator $containerConfigurator): void {
     ;
 
     $services->set('congregation_manager_behat.context.setup.congregation', CongregationContext::class)
-        ->args([service('doctrine.orm.entity_manager'), service('congregation_manager_behat.shared_storage')])
+        ->args([
+            service('congregation_manager_resource.generator.id'), service('doctrine.orm.entity_manager'), service(
+                'congregation_manager_behat.shared_storage'
+            )])
     ;
 
     $services->set('congregation_manager_behat.context.setup.brother', BrotherContext::class)
-        ->args([service('doctrine.orm.entity_manager'), service('congregation_manager_behat.shared_storage')])
+        ->args([
+            service('congregation_manager_resource.generator.id'), service('doctrine.orm.entity_manager'), service(
+                'congregation_manager_behat.shared_storage'
+            )])
     ;
 
     $services->set('congregation_manager_behat.context.setup.territory', TerritoryContext::class)
         ->args([
+            service('congregation_manager_resource.generator.id'),
             service('congregation_manager_behat.shared_storage'),
             service('congregation_manager_territory_manager.repository.territory'),
             service('doctrine.orm.entity_manager'),
@@ -51,6 +59,7 @@ return static function (ContainerConfigurator $containerConfigurator): void {
 
     $services->set('congregation_manager_behat.context.setup.territory_assignment', TerritoryAssignmentContext::class)
         ->args([
+            service('congregation_manager_resource.generator.id'),
             service('congregation_manager_behat.shared_storage'),
             service('congregation_manager_territory_manager.repository.territory_assignment'),
             service('doctrine.orm.entity_manager'),

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace CongregationManager\Component\TerritoryManager\Domain;
 
 use CongregationManager\Contract\Resource\AggregateRoot;
+use CongregationManager\Contract\Resource\AggregateRootId;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 
@@ -16,9 +17,11 @@ class Province extends AggregateRoot implements ProvinceInterface
     protected Collection $municipalities;
 
     public function __construct(
+        AggregateRootId $id,
         protected string $name,
         protected ?string $description = null
     ) {
+        parent::__construct($id);
         $this->municipalities = new ArrayCollection();
     }
 

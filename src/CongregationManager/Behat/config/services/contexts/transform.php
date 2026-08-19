@@ -15,7 +15,7 @@ return static function (ContainerConfigurator $containerConfigurator): void {
         ->public();
 
     $services->set('congregation_manager_behat.context.transform.user', UserContext::class)
-        ->args([service('doctrine.orm.entity_manager')])
+        ->args([service('congregation_manager_resource.generator.id'), service('doctrine.orm.entity_manager')])
     ;
 
     $services->set('congregation_manager_behat.context.transform.brother', BrotherContext::class)

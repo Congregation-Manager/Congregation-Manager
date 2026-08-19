@@ -8,6 +8,7 @@ use CongregationManager\Bundle\Resource\Repository\ResourceRepository;
 use CongregationManager\Component\Core\Domain\Province;
 use CongregationManager\Component\TerritoryManager\Domain\ProvinceInterface;
 use CongregationManager\Component\TerritoryManager\Domain\Repository\ProvinceRepositoryInterface;
+use CongregationManager\Contract\Resource\AggregateRootId;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -21,7 +22,7 @@ final class ProvinceRepository extends ResourceRepository implements ProvinceRep
     }
 
     #[\Override]
-    public function findOneById(int $id): ?ProvinceInterface
+    public function findOneById(AggregateRootId $id): ?ProvinceInterface
     {
         return $this->find($id);
     }

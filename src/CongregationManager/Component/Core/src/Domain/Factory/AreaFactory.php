@@ -9,10 +9,12 @@ use CongregationManager\Component\Core\Domain\Context\CongregationContextInterfa
 use CongregationManager\Component\TerritoryManager\Domain\AreaInterface as BaseAreaInterface;
 use CongregationManager\Component\TerritoryManager\Domain\Factory\AreaFactoryInterface;
 use CongregationManager\Component\TerritoryManager\Domain\MunicipalityInterface;
+use CongregationManager\Contract\Resource\IdGeneratorInterface;
 
 final readonly class AreaFactory implements AreaFactoryInterface
 {
     public function __construct(
+        private IdGeneratorInterface $idGenerator,
         private CongregationContextInterface $congregationContext
     ) {
     }
@@ -23,6 +25,12 @@ final readonly class AreaFactory implements AreaFactoryInterface
         string $name,
         ?string $description = null,
     ): BaseAreaInterface {
-        return new Area($this->congregationContext->getCongregation(), $municipality, $name, $description);
+        return new Area(
+            $this->idGenerator->generateNew(),
+            $this->congregationContext->getCongregation(),
+            $municipality,
+            $name,
+            $description
+        );
     }
 }

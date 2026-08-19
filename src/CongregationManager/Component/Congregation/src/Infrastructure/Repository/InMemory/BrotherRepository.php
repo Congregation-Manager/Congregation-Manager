@@ -6,6 +6,7 @@ namespace CongregationManager\Component\Congregation\Infrastructure\Repository\I
 
 use CongregationManager\Component\Congregation\Domain\BrotherInterface;
 use CongregationManager\Component\Congregation\Domain\Repository\BrotherRepositoryInterface;
+use CongregationManager\Contract\Resource\AggregateRootId;
 use RuntimeException;
 
 final class BrotherRepository implements BrotherRepositoryInterface
@@ -32,10 +33,10 @@ final class BrotherRepository implements BrotherRepositoryInterface
     }
 
     #[\Override]
-    public function findOneById(int $id): ?BrotherInterface
+    public function findOneById(AggregateRootId $id): ?BrotherInterface
     {
         foreach ($this->brothers as $brother) {
-            if ($brother->getId() === $id) {
+            if ($brother->getId()->equals($id)) {
                 return $brother;
             }
         }

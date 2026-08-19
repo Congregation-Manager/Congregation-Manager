@@ -8,9 +8,12 @@ use CongregationManager\Bundle\Core\Entity\AdminResetPasswordRequest;
 use CongregationManager\Bundle\Core\Entity\AdminUIUserInterface;
 use CongregationManager\Bundle\Core\Entity\AppResetPasswordRequest;
 use CongregationManager\Bundle\Core\Entity\AppUIUserInterface;
+use CongregationManager\Bundle\Resource\Doctrine\DBAL\Types\UuidAggregateRootIdType;
 use CongregationManager\Bundle\User\Entity\ResetPasswordRequestInterface;
 use CongregationManager\Bundle\User\Exception\Factory\UserInstanceNotValidFactory;
 use CongregationManager\Component\User\Domain\Repository\ResetPasswordRequestRepositoryInterface;
+use CongregationManager\Contract\Resource\AggregateRootId;
+use CongregationManager\Contract\Resource\IdGeneratorInterface;
 use DateTimeInterface;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\EntityManagerInterface;
@@ -31,7 +34,8 @@ final readonly class ResetPasswordRequestRepository implements ResetPasswordRequ
     private const array REQUEST_CLASSES = [AdminResetPasswordRequest::class, AppResetPasswordRequest::class];
 
     public function __construct(
-        private EntityManagerInterface $entityManager
+        private EntityManagerInterface $entityManager,
+        private IdGeneratorInterface $idGenerator
     ) {
     }
 
@@ -43,10 +47,22 @@ final readonly class ResetPasswordRequestRepository implements ResetPasswordRequ
         string $hashedToken
     ): SymfonyResetPasswordRequestInterface {
         if ($user instanceof AdminUIUserInterface) {
-            return new AdminResetPasswordRequest($expiresAt, $hashedToken, $user, $selector);
+            return new AdminResetPasswordRequest(
+                $this->idGenerator->generateNew(),
+                $expiresAt,
+                $hashedToken,
+                $user,
+                $selector
+            );
         }
         if ($user instanceof AppUIUserInterface) {
-            return new AppResetPasswordRequest($expiresAt, $hashedToken, $user, $selector);
+            return new AppResetPasswordRequest(
+                $this->idGenerator->generateNew(),
+                $expiresAt,
+                $hashedToken,
+                $user,
+                $selector
+            );
         }
 
         throw UserInstanceNotValidFactory::createWithInstanceClass($user::class);
@@ -55,19 +71,7 @@ final readonly class ResetPasswordRequestRepository implements ResetPasswordRequ
     #[\Override]
     public function getUserIdentifier(object $user): string
     {
-        $identifier = $this->entityManager
-            ->getUnitOfWork()
-            ->getSingleIdentifierValue($user)
-        ;
-        if (!is_scalar($identifier)) {
-            throw new RuntimeException(sprintf(
-                'Unable to read the identifier of "%s": expected a scalar, got "%s".',
-                $user::class,
-                get_debug_type($identifier)
-            ));
-        }
-
-        return (string) $identifier;
+        return (string) $this->getUserId($user);
     }
 
     #[\Override]
@@ -102,7 +106,7 @@ final readonly class ResetPasswordRequestRepository implements ResetPasswordRequ
             ->select('t')
             ->from($this->getRequestClassForUser($user), 't')
             ->where('t.user = :user')
-            ->setParameter('user', $this->getUserId($user), Types::INTEGER)
+            ->setParameter('user', $this->getUserId($user), UuidAggregateRootIdType::NAME)
             ->orderBy('t.requestedAt', 'DESC')
             ->setMaxResults(1)
             ->getQuery()
@@ -149,21 +153,21 @@ final readonly class ResetPasswordRequestRepository implements ResetPasswordRequ
         $this->entityManager->createQueryBuilder()
             ->delete($this->getRequestClassForUser($user), 't')
             ->where('t.user = :user')
-            ->setParameter('user', $this->getUserId($user), Types::INTEGER)
+            ->setParameter('user', $this->getUserId($user), UuidAggregateRootIdType::NAME)
             ->getQuery()
             ->execute()
         ;
     }
 
-    private function getUserId(object $user): int
+    private function getUserId(object $user): AggregateRootId
     {
         $identifier = $this->entityManager
             ->getUnitOfWork()
             ->getSingleIdentifierValue($user)
         ;
-        if (!is_int($identifier)) {
+        if (!$identifier instanceof AggregateRootId) {
             throw new RuntimeException(sprintf(
-                'Unable to read the identifier of "%s": expected an int, got "%s".',
+                'Unable to read the identifier of "%s": expected an identifier, got "%s".',
                 $user::class,
                 get_debug_type($identifier)
             ));

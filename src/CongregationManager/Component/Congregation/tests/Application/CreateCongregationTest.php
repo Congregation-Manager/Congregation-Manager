@@ -8,6 +8,7 @@ use CongregationManager\Component\Congregation\Application\CreateCongregation;
 use CongregationManager\Component\Congregation\Domain\Factory\CongregationFactory;
 use CongregationManager\Component\Congregation\Domain\Repository\CongregationRepositoryInterface;
 use CongregationManager\Component\Congregation\Infrastructure\Repository\InMemory\CongregationRepository;
+use CongregationManager\Contract\Resource\IncrementingIdGenerator;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -25,7 +26,7 @@ final class CreateCongregationTest extends TestCase
     {
         $this->congregationRepository = new CongregationRepository();
         $this->createCongregation = new CreateCongregation(
-            new CongregationFactory(),
+            new CongregationFactory(new IncrementingIdGenerator()),
             $this->congregationRepository,
         );
     }

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace CongregationManager\Component\TerritoryManager\Domain;
 
 use CongregationManager\Contract\Resource\AggregateRoot;
+use CongregationManager\Contract\Resource\AggregateRootId;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 
@@ -16,10 +17,12 @@ class Area extends AggregateRoot implements AreaInterface
     protected Collection $territories;
 
     public function __construct(
+        AggregateRootId $id,
         protected MunicipalityInterface $municipality,
         protected string $name,
         protected ?string $description = null
     ) {
+        parent::__construct($id);
         $this->territories = new ArrayCollection();
     }
 

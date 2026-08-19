@@ -8,6 +8,7 @@ use CongregationManager\Bundle\Resource\Repository\ResourceRepository;
 use CongregationManager\Component\Congregation\Domain\CongregationInterface;
 use CongregationManager\Component\Congregation\Domain\Repository\CongregationRepositoryInterface;
 use CongregationManager\Component\Core\Domain\Congregation;
+use CongregationManager\Contract\Resource\AggregateRootId;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -21,7 +22,7 @@ final class CongregationRepository extends ResourceRepository implements Congreg
     }
 
     #[\Override]
-    public function findOneById(int $id): ?CongregationInterface
+    public function findOneById(AggregateRootId $id): ?CongregationInterface
     {
         return $this->find($id);
     }

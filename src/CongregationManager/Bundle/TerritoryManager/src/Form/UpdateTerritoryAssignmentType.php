@@ -7,6 +7,7 @@ namespace CongregationManager\Bundle\TerritoryManager\Form;
 use CongregationManager\Component\Core\Domain\Brother;
 use CongregationManager\Component\Core\Domain\Territory;
 use CongregationManager\Component\TerritoryManager\Application\Command\UpdateTerritoryAssignment;
+use CongregationManager\Contract\Resource\AggregateRootInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
@@ -25,6 +26,7 @@ final class UpdateTerritoryAssignmentType extends AbstractType
         $builder
             ->add('territory', EntityType::class, [
                 'class' => Territory::class,
+                'choice_value' => static fn (?AggregateRootInterface $resource): ?string => $resource?->getId()?->__toString(),
                 'label' => 'congregation_manager_territory_manager.ui.territory',
                 'choice_label' => 'number',
                 'placeholder' => 'cm.ui.choose_option',
@@ -38,6 +40,7 @@ final class UpdateTerritoryAssignmentType extends AbstractType
             ])
             ->add('brother', EntityType::class, [
                 'class' => Brother::class,
+                'choice_value' => static fn (?AggregateRootInterface $resource): ?string => $resource?->getId()?->__toString(),
                 'property_path' => 'recipient',
                 'label' => 'cm.ui.brother',
                 'multiple' => false,

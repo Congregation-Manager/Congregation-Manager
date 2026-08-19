@@ -9,6 +9,7 @@ use CongregationManager\Bundle\User\Form\InviteUserFormType;
 use CongregationManager\Component\Congregation\Domain\Repository\BrotherRepositoryInterface;
 use CongregationManager\Component\Core\Application\CreateAppUserInvitation;
 use CongregationManager\Component\Core\Domain\BrotherInterface;
+use CongregationManager\Contract\Resource\AggregateRootId;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -37,7 +38,7 @@ final class AdminBrotherController extends AbstractController
         ]);
     }
 
-    public function show(Request $request, int $id): Response
+    public function show(Request $request, AggregateRootId $id): Response
     {
         $brother = $this->brotherRepository->findOneById($id);
         if ($brother === null) {
@@ -49,7 +50,7 @@ final class AdminBrotherController extends AbstractController
         ]);
     }
 
-    public function invite(Request $request, int $id): Response
+    public function invite(Request $request, AggregateRootId $id): Response
     {
         $brother = $this->brotherRepository->findOneById($id);
         if (!$brother instanceof BrotherInterface) {

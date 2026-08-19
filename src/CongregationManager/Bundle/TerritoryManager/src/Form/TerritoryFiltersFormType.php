@@ -7,6 +7,7 @@ namespace CongregationManager\Bundle\TerritoryManager\Form;
 use CongregationManager\Bundle\TerritoryManager\Repository\Filter\QueryBuilderTerritoryRepositoryFilter;
 use CongregationManager\Component\Core\Domain\Area;
 use CongregationManager\Component\Core\Domain\Brother;
+use CongregationManager\Contract\Resource\AggregateRootInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -42,6 +43,7 @@ final class TerritoryFiltersFormType extends AbstractType
             ])
             ->add('assignedTo', EntityType::class, [
                 'class' => Brother::class,
+                'choice_value' => static fn (?AggregateRootInterface $resource): ?string => $resource?->getId()?->__toString(),
                 'label' => 'congregation_manager_territory_manager.ui.assigned_to',
                 'placeholder' => 'congregation_manager_territory_manager.ui.choose_option',
                 'required' => false,

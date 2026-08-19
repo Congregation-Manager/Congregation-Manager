@@ -6,8 +6,9 @@
 
     <mapped-superclass name="CongregationManager\Contract\Resource\AggregateRoot">
 
-        <id name="id" type="integer" column="id">
-            <generator strategy="AUTO"/>
+        <!-- The resource brings its own identity, so Doctrine must not assign one. -->
+        <id name="id" type="uuid_aggregate_root_id" column="id">
+            <generator strategy="NONE"/>
         </id>
 
         <field name="createdAt" column="created_at" type="datetime_immutable" nullable="true"/>

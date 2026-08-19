@@ -8,10 +8,12 @@ use CongregationManager\Component\Core\Domain\Context\CongregationContextInterfa
 use CongregationManager\Component\Core\Domain\Province;
 use CongregationManager\Component\TerritoryManager\Domain\Factory\ProvinceFactoryInterface;
 use CongregationManager\Component\TerritoryManager\Domain\ProvinceInterface as BaseProvinceInterface;
+use CongregationManager\Contract\Resource\IdGeneratorInterface;
 
 final readonly class ProvinceFactory implements ProvinceFactoryInterface
 {
     public function __construct(
+        private IdGeneratorInterface $idGenerator,
         private CongregationContextInterface $congregationContext
     ) {
     }
@@ -19,6 +21,11 @@ final readonly class ProvinceFactory implements ProvinceFactoryInterface
     #[\Override]
     public function createNew(string $name, ?string $description = null): BaseProvinceInterface
     {
-        return new Province($this->congregationContext->getCongregation(), $name, $description);
+        return new Province(
+            $this->idGenerator->generateNew(),
+            $this->congregationContext->getCongregation(),
+            $name,
+            $description
+        );
     }
 }

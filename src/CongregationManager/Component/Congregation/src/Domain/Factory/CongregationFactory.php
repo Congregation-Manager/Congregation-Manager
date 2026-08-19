@@ -6,12 +6,18 @@ namespace CongregationManager\Component\Congregation\Domain\Factory;
 
 use CongregationManager\Component\Congregation\Domain\Congregation;
 use CongregationManager\Component\Congregation\Domain\CongregationInterface;
+use CongregationManager\Contract\Resource\IdGeneratorInterface;
 
-final class CongregationFactory implements CongregationFactoryInterface
+final readonly class CongregationFactory implements CongregationFactoryInterface
 {
+    public function __construct(
+        private IdGeneratorInterface $idGenerator
+    ) {
+    }
+
     #[\Override]
     public function createNew(string $name): CongregationInterface
     {
-        return new Congregation($name);
+        return new Congregation($this->idGenerator->generateNew(), $name);
     }
 }

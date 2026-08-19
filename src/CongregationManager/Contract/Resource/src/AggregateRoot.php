@@ -8,25 +8,26 @@ use DateTimeImmutable;
 
 abstract class AggregateRoot implements AggregateRootInterface
 {
-    protected ?int $id = null;
-
     protected ?DateTimeImmutable $createdAt = null;
 
     protected ?DateTimeImmutable $updatedAt = null;
+
+    /**
+     * A resource carries its identity from the moment it exists, so nothing can hand
+     * around an aggregate that is not identifiable yet.
+     */
+    public function __construct(
+        protected AggregateRootId $id
+    ) {
+    }
 
     #[\Override]
     abstract public function __toString(): string;
 
     #[\Override]
-    public function getId(): ?int
+    public function getId(): AggregateRootId
     {
         return $this->id;
-    }
-
-    #[\Override]
-    public function setId(?int $id): void
-    {
-        $this->id = $id;
     }
 
     #[\Override]
@@ -41,10 +42,6 @@ abstract class AggregateRoot implements AggregateRootInterface
         return $this->updatedAt;
     }
 
-    /**
-     * Stamped by Doctrine rather than by the constructors, so that the resources keep
-     * the constructors their own domain defines.
-     */
     public function initializeTimestamps(): void
     {
         $this->createdAt = new DateTimeImmutable('now');

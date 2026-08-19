@@ -10,12 +10,14 @@ use CongregationManager\Component\Core\Domain\BrotherInterface;
 use CongregationManager\Component\Core\Domain\TerritoryAssignment;
 use CongregationManager\Component\TerritoryManager\Domain\Repository\TerritoryAssignmentRepositoryInterface;
 use CongregationManager\Component\TerritoryManager\Domain\TerritoryInterface;
+use CongregationManager\Contract\Resource\IdGeneratorInterface;
 use DateTimeImmutable;
 use Doctrine\ORM\EntityManagerInterface;
 
 final readonly class TerritoryAssignmentContext implements Context
 {
     public function __construct(
+        private IdGeneratorInterface $idGenerator,
         private SharedStorageInterface $sharedStorage,
         private TerritoryAssignmentRepositoryInterface $territoryAssignmentRepository,
         private EntityManagerInterface $entityManager,
@@ -35,7 +37,12 @@ final readonly class TerritoryAssignmentContext implements Context
     ): void {
         $assignmentDate = new DateTimeImmutable($assignmentDate ?? 'now');
         $revocationDate = $revocationDate !== null ? new DateTimeImmutable($revocationDate) : null;
-        $territoryAssignment = new TerritoryAssignment($territory, $assignmentDate, $brother);
+        $territoryAssignment = new TerritoryAssignment(
+            $this->idGenerator->generateNew(),
+            $territory,
+            $assignmentDate,
+            $brother
+        );
         $territoryAssignment->setRevocationDate($revocationDate);
 
         $this->territoryAssignmentRepository->add($territoryAssignment);

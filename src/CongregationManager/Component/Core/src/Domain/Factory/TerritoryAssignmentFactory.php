@@ -9,10 +9,16 @@ use CongregationManager\Component\TerritoryManager\Domain\Factory\TerritoryAssig
 use CongregationManager\Component\TerritoryManager\Domain\RecipientInterface;
 use CongregationManager\Component\TerritoryManager\Domain\TerritoryAssignmentInterface;
 use CongregationManager\Component\TerritoryManager\Domain\TerritoryInterface;
+use CongregationManager\Contract\Resource\IdGeneratorInterface;
 use DateTimeInterface;
 
-final class TerritoryAssignmentFactory implements TerritoryAssignmentFactoryInterface
+final readonly class TerritoryAssignmentFactory implements TerritoryAssignmentFactoryInterface
 {
+    public function __construct(
+        private IdGeneratorInterface $idGenerator
+    ) {
+    }
+
     #[\Override]
     public function createNew(
         TerritoryInterface $territory,
@@ -20,6 +26,12 @@ final class TerritoryAssignmentFactory implements TerritoryAssignmentFactoryInte
         ?RecipientInterface $recipient = null,
         ?DateTimeInterface $revocationDate = null,
     ): TerritoryAssignmentInterface {
-        return new TerritoryAssignment($territory, $assignmentDate, $recipient, $revocationDate);
+        return new TerritoryAssignment(
+            $this->idGenerator->generateNew(),
+            $territory,
+            $assignmentDate,
+            $recipient,
+            $revocationDate
+        );
     }
 }

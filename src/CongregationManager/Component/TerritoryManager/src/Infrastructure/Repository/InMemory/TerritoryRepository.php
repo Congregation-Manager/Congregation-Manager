@@ -8,6 +8,7 @@ use CongregationManager\Component\TerritoryManager\Domain\Repository\Filter\Terr
 use CongregationManager\Component\TerritoryManager\Domain\Repository\Filter\TerritoryRepositoryFilterInterface;
 use CongregationManager\Component\TerritoryManager\Domain\Repository\TerritoryRepositoryInterface;
 use CongregationManager\Component\TerritoryManager\Domain\TerritoryInterface;
+use CongregationManager\Contract\Resource\AggregateRootId;
 use RuntimeException;
 
 final class TerritoryRepository implements TerritoryRepositoryInterface
@@ -24,10 +25,10 @@ final class TerritoryRepository implements TerritoryRepositoryInterface
     }
 
     #[\Override]
-    public function findOneById(int $id): ?TerritoryInterface
+    public function findOneById(AggregateRootId $id): ?TerritoryInterface
     {
         foreach ($this->territories as $territory) {
-            if ($territory->getId() === $id) {
+            if ($territory->getId()->equals($id)) {
                 return $territory;
             }
         }

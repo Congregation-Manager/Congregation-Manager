@@ -9,6 +9,8 @@ use CongregationManager\Component\Congregation\Domain\Congregation;
 use CongregationManager\Component\Congregation\Domain\Factory\BrotherFactory;
 use CongregationManager\Component\Congregation\Domain\Repository\BrotherRepositoryInterface;
 use CongregationManager\Component\Congregation\Infrastructure\Repository\InMemory\BrotherRepository;
+use CongregationManager\Contract\Resource\IncrementingIdGenerator;
+use CongregationManager\Contract\Resource\IntegerAggregateRootId;
 use DateTime;
 use DateTimeInterface;
 use PHPUnit\Framework\TestCase;
@@ -27,12 +29,14 @@ final class CreateBrotherTest extends TestCase
     protected function setUp(): void
     {
         $this->brotherRepository = new BrotherRepository();
-        $this->createBrother = new CreateBrother(new BrotherFactory(), $this->brotherRepository);
+        $this->createBrother = new CreateBrother(new BrotherFactory(
+            new IncrementingIdGenerator()
+        ), $this->brotherRepository);
     }
 
     public function testThatItCreatesANewBrother(): void
     {
-        $congregation = new Congregation('Carrollton');
+        $congregation = new Congregation(new IntegerAggregateRootId(1), 'Carrollton');
         $brother = $this->createBrother->create(
             'Samuel',
             'Finch',

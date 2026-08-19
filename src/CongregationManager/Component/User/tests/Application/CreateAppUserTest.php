@@ -10,6 +10,8 @@ use CongregationManager\Component\Core\Application\CreateAppUser;
 use CongregationManager\Component\Core\Domain\Factory\AppUserFactory;
 use CongregationManager\Component\Core\Infrastructure\InMemory\Repository\AppUserRepository;
 use CongregationManager\Component\User\Infrastructure\InMemory\Hasher\UserPasswordHasher;
+use CongregationManager\Contract\Resource\IncrementingIdGenerator;
+use CongregationManager\Contract\Resource\IntegerAggregateRootId;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -29,7 +31,7 @@ final class CreateAppUserTest extends TestCase
         $this->appUserRepository = new AppUserRepository();
         $this->userPasswordHasher = new UserPasswordHasher();
         $this->createAppUser = new CreateAppUser(
-            new AppUserFactory(),
+            new AppUserFactory(new IncrementingIdGenerator()),
             $this->appUserRepository,
             $this->userPasswordHasher
         );
@@ -37,7 +39,10 @@ final class CreateAppUserTest extends TestCase
 
     public function testThatItCreatesANewAppUser(): void
     {
-        $brother = new Brother('John', 'Ritz', new Congregation('Carrollton'));
+        $brother = new Brother(new IntegerAggregateRootId(1), 'John', 'Ritz', new Congregation(
+            new IntegerAggregateRootId(2),
+            'Carrollton'
+        ));
         $appUser = $this->createAppUser->create($brother, 'info@email.com', 'p455w0rd', 'it_IT');
 
         $this->assertSame($brother, $appUser->getBrother());
@@ -53,7 +58,10 @@ final class CreateAppUserTest extends TestCase
 
     public function testThatItCreatesANewAppUserWithoutPasswordIfNotSpecified(): void
     {
-        $brother = new Brother('John', 'Ritz', new Congregation('Carrollton'));
+        $brother = new Brother(new IntegerAggregateRootId(3), 'John', 'Ritz', new Congregation(
+            new IntegerAggregateRootId(4),
+            'Carrollton'
+        ));
         $appUser = $this->createAppUser->create($brother, 'info@email.com', null, 'it_IT');
 
         $this->assertSame('info@email.com', $appUser->getEmail());
@@ -65,7 +73,10 @@ final class CreateAppUserTest extends TestCase
 
     public function testThatItCreatesANewAppUserWithoutLocaleIfNotSpecified(): void
     {
-        $brother = new Brother('John', 'Ritz', new Congregation('Carrollton'));
+        $brother = new Brother(new IntegerAggregateRootId(5), 'John', 'Ritz', new Congregation(
+            new IntegerAggregateRootId(6),
+            'Carrollton'
+        ));
         $appUser = $this->createAppUser->create($brother, 'info@email.com', 'p455w0rd', null);
 
         $this->assertSame('info@email.com', $appUser->getEmail());

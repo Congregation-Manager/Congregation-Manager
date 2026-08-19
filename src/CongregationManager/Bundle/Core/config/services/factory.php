@@ -17,32 +17,54 @@ use CongregationManager\Component\Core\Domain\Factory\TerritoryFactory;
 return static function (ContainerConfigurator $containerConfigurator): void {
     $services = $containerConfigurator->services();
 
-    $services->set('congregation_manager_congregation.factory.congregation', CongregationFactory::class);
+    $services->set('congregation_manager_congregation.factory.congregation', CongregationFactory::class)
+        ->args([service('congregation_manager_resource.generator.id')])
+    ;
 
-    $services->set('congregation_manager_congregation.factory.brother', BrotherFactory::class);
+    $services->set('congregation_manager_congregation.factory.brother', BrotherFactory::class)
+        ->args([service('congregation_manager_resource.generator.id')])
+    ;
 
     $services->set('congregation_manager_territory_manager.factory.province', ProvinceFactory::class)
-        ->args([service('congregation_manager_core.context.congregation')])
+        ->args([
+            service('congregation_manager_resource.generator.id'),
+            service('congregation_manager_core.context.congregation'),
+        ])
     ;
 
     $services->set('congregation_manager_territory_manager.factory.municipality', MunicipalityFactory::class)
-        ->args([service('congregation_manager_core.context.congregation')])
+        ->args([
+            service('congregation_manager_resource.generator.id'),
+            service('congregation_manager_core.context.congregation'),
+        ])
     ;
 
     $services->set('congregation_manager_territory_manager.factory.area', AreaFactory::class)
-        ->args([service('congregation_manager_core.context.congregation')])
+        ->args([
+            service('congregation_manager_resource.generator.id'),
+            service('congregation_manager_core.context.congregation'),
+        ])
     ;
 
     $services->set('congregation_manager_territory_manager.factory.territory', TerritoryFactory::class)
-        ->args([service('congregation_manager_core.context.congregation')])
+        ->args([
+            service('congregation_manager_resource.generator.id'),
+            service('congregation_manager_core.context.congregation'),
+        ])
     ;
 
     $services->set(
         'congregation_manager_territory_manager.factory.territory_assignment',
         TerritoryAssignmentFactory::class
-    );
+    )
+        ->args([service('congregation_manager_resource.generator.id')])
+    ;
 
-    $services->set('congregation_manager_user.factory.admin_user', AdminUserFactory::class);
+    $services->set('congregation_manager_user.factory.admin_user', AdminUserFactory::class)
+        ->args([service('congregation_manager_resource.generator.id')])
+    ;
 
-    $services->set('congregation_manager_user.factory.app_user', AppUserFactory::class);
+    $services->set('congregation_manager_user.factory.app_user', AppUserFactory::class)
+        ->args([service('congregation_manager_resource.generator.id')])
+    ;
 };

@@ -8,9 +8,7 @@ use DateTimeImmutable;
 
 interface AggregateRootInterface extends \Stringable
 {
-    public function getId(): ?int;
-
-    public function setId(?int $id): void;
+    public function getId(): AggregateRootId;
 
     public function getCreatedAt(): ?DateTimeImmutable;
 

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace CongregationManager\Component\Congregation\Domain;
 
 use CongregationManager\Contract\Resource\AggregateRoot;
+use CongregationManager\Contract\Resource\AggregateRootId;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 
@@ -16,8 +17,10 @@ class Congregation extends AggregateRoot implements CongregationInterface
     protected Collection $brothers;
 
     public function __construct(
+        AggregateRootId $id,
         protected string $name
     ) {
+        parent::__construct($id);
         $this->brothers = new ArrayCollection();
     }
 

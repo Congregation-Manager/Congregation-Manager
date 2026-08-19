@@ -14,6 +14,7 @@ use CongregationManager\Component\TerritoryManager\Domain\Territory;
 use CongregationManager\Component\TerritoryManager\Domain\TerritoryAssignment;
 use CongregationManager\Component\TerritoryManager\Domain\TerritoryAssignmentInterface;
 use CongregationManager\Component\TerritoryManager\Domain\TerritoryInterface;
+use CongregationManager\Contract\Resource\IntegerAggregateRootId;
 use DateTimeImmutable;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\ReadableCollection;
@@ -65,36 +66,41 @@ class S13GeneratorTest extends TestCase
     #[\Override]
     protected function setUp(): void
     {
-        $province = new Province('Carrollton');
-        $municipality = new Municipality($province, 'Carrollton');
-        $area = new Area($municipality, 'Carrollton');
+        $province = new Province(new IntegerAggregateRootId(1), 'Carrollton');
+        $municipality = new Municipality(new IntegerAggregateRootId(2), $province, 'Carrollton');
+        $area = new Area(new IntegerAggregateRootId(3), $municipality, 'Carrollton');
 
-        $this->carrolltonTerritory1 = new Territory($area, 1, 'Territory 1');
+        $this->carrolltonTerritory1 = new Territory(new IntegerAggregateRootId(4), $area, 1, 'Territory 1');
         $this->carrolltonTerritory1Assignment1 = new TerritoryAssignment(
+            new IntegerAggregateRootId(5),
             $this->carrolltonTerritory1,
             new DateTimeImmutable('2022-08-01'),
             null,
             new DateTimeImmutable('2022-08-31')
         );
         $carrolltonTerritory1Assignment0 = new TerritoryAssignment(
+            new IntegerAggregateRootId(6),
             $this->carrolltonTerritory1,
             new DateTimeImmutable('2022-05-01'),
             null,
             new DateTimeImmutable('2022-05-15')
         );
         $this->carrolltonTerritory1Assignment2 = new TerritoryAssignment(
+            new IntegerAggregateRootId(7),
             $this->carrolltonTerritory1,
             new DateTimeImmutable('2022-09-01'),
             null,
             new DateTimeImmutable('2022-09-31')
         );
         $this->carrolltonTerritory1Assignment3 = new TerritoryAssignment(
+            new IntegerAggregateRootId(8),
             $this->carrolltonTerritory1,
             new DateTimeImmutable('2022-11-01'),
             null,
             new DateTimeImmutable('2023-01-01')
         );
         $this->carrolltonTerritory1Assignment4 = new TerritoryAssignment(
+            new IntegerAggregateRootId(9),
             $this->carrolltonTerritory1,
             new DateTimeImmutable('2023-02-01'),
             null,
@@ -106,20 +112,23 @@ class S13GeneratorTest extends TestCase
         $this->carrolltonTerritory1->addTerritoryAssignment($this->carrolltonTerritory1Assignment3);
         $this->carrolltonTerritory1->addTerritoryAssignment($this->carrolltonTerritory1Assignment4);
 
-        $this->carrolltonTerritory2 = new Territory($area, 2, 'Territory 2');
+        $this->carrolltonTerritory2 = new Territory(new IntegerAggregateRootId(10), $area, 2, 'Territory 2');
         $this->carrolltonTerritory2Assignment1 = new TerritoryAssignment(
+            new IntegerAggregateRootId(11),
             $this->carrolltonTerritory2,
             new DateTimeImmutable('2023-01-10'),
             null,
             new DateTimeImmutable('2023-01-31')
         );
         $this->carrolltonTerritory2Assignment2 = new TerritoryAssignment(
+            new IntegerAggregateRootId(12),
             $this->carrolltonTerritory2,
             new DateTimeImmutable('2023-05-01'),
             null,
             new DateTimeImmutable('2023-05-30')
         );
         $this->carrolltonTerritory2Assignment3 = new TerritoryAssignment(
+            new IntegerAggregateRootId(13),
             $this->carrolltonTerritory2,
             new DateTimeImmutable('2023-07-01'),
             null,
@@ -129,44 +138,51 @@ class S13GeneratorTest extends TestCase
         $this->carrolltonTerritory2->addTerritoryAssignment($this->carrolltonTerritory2Assignment2);
         $this->carrolltonTerritory2->addTerritoryAssignment($this->carrolltonTerritory2Assignment3);
 
-        $this->carrolltonTerritory3 = new Territory($area, 3, 'Territory 3');
+        $this->carrolltonTerritory3 = new Territory(new IntegerAggregateRootId(14), $area, 3, 'Territory 3');
         $this->carrolltonTerritory3Assignment1 = new TerritoryAssignment(
+            new IntegerAggregateRootId(15),
             $this->carrolltonTerritory3,
             new DateTimeImmutable('2022-07-03'),
             null,
             new DateTimeImmutable('2022-07-28')
         );
         $this->carrolltonTerritory3Assignment2 = new TerritoryAssignment(
+            new IntegerAggregateRootId(16),
             $this->carrolltonTerritory3,
             new DateTimeImmutable('2022-08-20'),
             null,
             new DateTimeImmutable('2022-10-25')
         );
         $this->carrolltonTerritory3Assignment3 = new TerritoryAssignment(
+            new IntegerAggregateRootId(17),
             $this->carrolltonTerritory3,
             new DateTimeImmutable('2022-12-01'),
             null,
             new DateTimeImmutable('2022-12-25')
         );
         $this->carrolltonTerritory3Assignment4 = new TerritoryAssignment(
+            new IntegerAggregateRootId(18),
             $this->carrolltonTerritory3,
             new DateTimeImmutable('2023-04-01'),
             null,
             new DateTimeImmutable('2023-04-25')
         );
         $this->carrolltonTerritory3Assignment5 = new TerritoryAssignment(
+            new IntegerAggregateRootId(19),
             $this->carrolltonTerritory3,
             new DateTimeImmutable('2023-05-01'),
             null,
             new DateTimeImmutable('2023-05-25')
         );
         $this->carrolltonTerritory3Assignment6 = new TerritoryAssignment(
+            new IntegerAggregateRootId(20),
             $this->carrolltonTerritory3,
             new DateTimeImmutable('2023-06-01'),
             null,
             new DateTimeImmutable('2023-06-25')
         );
         $this->carrolltonTerritory3Assignment7 = new TerritoryAssignment(
+            new IntegerAggregateRootId(21),
             $this->carrolltonTerritory3,
             new DateTimeImmutable('2023-07-01'),
             null,
@@ -251,7 +267,7 @@ class S13GeneratorTest extends TestCase
     {
         $territories = [];
         for ($startFrom; $startFrom <= $num; $startFrom++) {
-            $territory = new Territory($area, $startFrom, 'Territory ' . $startFrom);
+            $territory = new Territory(new IntegerAggregateRootId(22), $area, $startFrom, 'Territory ' . $startFrom);
             $territories[] = $territory;
         }
 

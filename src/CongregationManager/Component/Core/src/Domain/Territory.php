@@ -7,16 +7,18 @@ namespace CongregationManager\Component\Core\Domain;
 use CongregationManager\Component\Congregation\Domain\CongregationInterface;
 use CongregationManager\Component\TerritoryManager\Domain\AreaInterface;
 use CongregationManager\Component\TerritoryManager\Domain\Territory as BaseTerritory;
+use CongregationManager\Contract\Resource\AggregateRootId;
 
 class Territory extends BaseTerritory implements TerritoryInterface
 {
     public function __construct(
+        AggregateRootId $id,
         protected CongregationInterface $congregation,
         AreaInterface $area,
         int $number,
         ?string $description = null,
     ) {
-        parent::__construct($area, $number, $description);
+        parent::__construct($id, $area, $number, $description);
     }
 
     #[\Override]

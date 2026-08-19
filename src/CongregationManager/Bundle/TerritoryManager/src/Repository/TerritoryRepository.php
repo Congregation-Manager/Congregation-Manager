@@ -11,6 +11,7 @@ use CongregationManager\Component\Core\Domain\TerritoryAssignment;
 use CongregationManager\Component\TerritoryManager\Domain\Repository\Filter\TerritoryRepositoryFilterInterface;
 use CongregationManager\Component\TerritoryManager\Domain\Repository\TerritoryRepositoryInterface;
 use CongregationManager\Component\TerritoryManager\Domain\TerritoryInterface;
+use CongregationManager\Contract\Resource\AggregateRootId;
 use Doctrine\ORM\Query\Expr\Join;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -26,7 +27,7 @@ class TerritoryRepository extends ResourceRepository implements TerritoryReposit
 
 
     #[\Override]
-    public function findOneById(int $id): ?TerritoryInterface
+    public function findOneById(AggregateRootId $id): ?TerritoryInterface
     {
         return $this->find($id);
     }

@@ -8,12 +8,14 @@ use Behat\Behat\Context\Context;
 use CongregationManager\Behat\Services\SharedStorageInterface;
 use CongregationManager\Component\Congregation\Domain\CongregationInterface;
 use CongregationManager\Component\Core\Domain\Brother;
+use CongregationManager\Contract\Resource\IdGeneratorInterface;
 use Doctrine\ORM\EntityManagerInterface;
 use Webmozart\Assert\Assert;
 
 final readonly class BrotherContext implements Context
 {
     public function __construct(
+        private IdGeneratorInterface $idGenerator,
         private EntityManagerInterface $entityManager,
         private SharedStorageInterface $sharedStorage
     ) {
@@ -28,7 +30,7 @@ final readonly class BrotherContext implements Context
         $congregation = $this->sharedStorage->get('congregation');
         Assert::isInstanceOf($congregation, CongregationInterface::class);
         [$firstName, $lastName] = explode(' ', $fullName);
-        $brother = new Brother($firstName, $lastName, $congregation);
+        $brother = new Brother($this->idGenerator->generateNew(), $firstName, $lastName, $congregation);
         if ($type === 'sister') {
             $brother->setMale(false);
         }

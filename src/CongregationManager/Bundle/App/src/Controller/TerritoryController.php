@@ -11,6 +11,7 @@ use CongregationManager\Component\Core\Domain\Context\CongregationContextInterfa
 use CongregationManager\Component\Core\Domain\Repository\TerritoryRepositoryInterface;
 use CongregationManager\Component\TerritoryManager\Domain\Generator\S13GeneratorInterface;
 use CongregationManager\Component\TerritoryManager\Domain\Renderer\S13RendererInterface;
+use CongregationManager\Contract\Resource\AggregateRootId;
 use DateTimeImmutable;
 use Doctrine\Common\Collections\ArrayCollection;
 use Knp\Component\Pager\Event\Subscriber\Paginate\Callback\CallbackPagination;
@@ -67,7 +68,7 @@ final class TerritoryController extends AbstractController
         ]);
     }
 
-    public function show(int $id, Request $request): Response
+    public function show(AggregateRootId $id, Request $request): Response
     {
         $territory = $this->territoryRepository->findOneById($id);
         if ($territory === null) {

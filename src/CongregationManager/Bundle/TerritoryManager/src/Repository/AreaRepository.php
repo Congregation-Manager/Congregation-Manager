@@ -8,6 +8,7 @@ use CongregationManager\Bundle\Resource\Repository\ResourceRepository;
 use CongregationManager\Component\Core\Domain\Area;
 use CongregationManager\Component\TerritoryManager\Domain\AreaInterface;
 use CongregationManager\Component\TerritoryManager\Domain\Repository\AreaRepositoryInterface;
+use CongregationManager\Contract\Resource\AggregateRootId;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -21,7 +22,7 @@ final class AreaRepository extends ResourceRepository implements AreaRepositoryI
     }
 
     #[\Override]
-    public function findOneById(int $id): ?AreaInterface
+    public function findOneById(AggregateRootId $id): ?AreaInterface
     {
         return $this->find($id);
     }

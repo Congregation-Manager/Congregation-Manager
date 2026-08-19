@@ -8,6 +8,7 @@ use CongregationManager\Bundle\Resource\Repository\ResourceRepository;
 use CongregationManager\Component\Core\Domain\Municipality;
 use CongregationManager\Component\TerritoryManager\Domain\MunicipalityInterface;
 use CongregationManager\Component\TerritoryManager\Domain\Repository\MunicipalityRepositoryInterface;
+use CongregationManager\Contract\Resource\AggregateRootId;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -21,7 +22,7 @@ final class MunicipalityRepository extends ResourceRepository implements Municip
     }
 
     #[\Override]
-    public function findOneById(int $id): ?MunicipalityInterface
+    public function findOneById(AggregateRootId $id): ?MunicipalityInterface
     {
         return $this->find($id);
     }

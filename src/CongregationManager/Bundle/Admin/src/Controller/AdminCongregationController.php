@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace CongregationManager\Bundle\Admin\Controller;
 
 use CongregationManager\Component\Congregation\Domain\Repository\CongregationRepositoryInterface;
+use CongregationManager\Contract\Resource\AggregateRootId;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -27,7 +28,7 @@ final class AdminCongregationController extends AbstractController
         ]);
     }
 
-    public function show(Request $request, int $id): Response
+    public function show(Request $request, AggregateRootId $id): Response
     {
         $congregation = $this->congregationRepository->findOneById($id);
         if ($congregation === null) {

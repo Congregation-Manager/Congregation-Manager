@@ -8,6 +8,7 @@ use CongregationManager\Bundle\Resource\Repository\ResourceRepository;
 use CongregationManager\Component\Congregation\Domain\BrotherInterface;
 use CongregationManager\Component\Congregation\Domain\Repository\BrotherRepositoryInterface;
 use CongregationManager\Component\Core\Domain\Brother;
+use CongregationManager\Contract\Resource\AggregateRootId;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -21,7 +22,7 @@ final class BrotherRepository extends ResourceRepository implements BrotherRepos
     }
 
     #[\Override]
-    public function findOneById(int $id): ?BrotherInterface
+    public function findOneById(AggregateRootId $id): ?BrotherInterface
     {
         return $this->find($id);
     }

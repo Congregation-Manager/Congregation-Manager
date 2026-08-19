@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace CongregationManager\Bundle\App\Controller;
 
+use CongregationManager\Bundle\Resource\Uid\UuidAggregateRootId;
 use CongregationManager\Bundle\TerritoryManager\Form\CreateTerritoryAssignmentType;
 use CongregationManager\Bundle\TerritoryManager\Form\UpdateTerritoryAssignmentType;
 use CongregationManager\Component\TerritoryManager\Application\Command\CreateTerritoryAssignment;
@@ -12,6 +13,7 @@ use CongregationManager\Component\TerritoryManager\Application\Command\UpdateTer
 use CongregationManager\Component\TerritoryManager\Application\Command\UpdateTerritoryAssignmentHandler;
 use CongregationManager\Component\TerritoryManager\Domain\Repository\TerritoryAssignmentRepositoryInterface;
 use CongregationManager\Component\TerritoryManager\Domain\Repository\TerritoryRepositoryInterface;
+use CongregationManager\Contract\Resource\AggregateRootId;
 use DateTimeImmutable;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -31,9 +33,11 @@ final class TerritoryAssignmentController extends AbstractController
     public function create(Request $request): Response
     {
         $territory = null;
-        $territoryId = $request->query->getInt('territoryId');
-        if ($territoryId !== 0) {
-            $territory = $this->territoryRepository->findOneById($territoryId);
+        $territoryId = $request->query->getString('territoryId');
+        if ($territoryId !== '') {
+            $territory = $this->territoryRepository->findOneById(
+                UuidAggregateRootId::convertToPHPValue($territoryId)
+            );
         }
         $command = new CreateTerritoryAssignment($territory, new DateTimeImmutable());
         $form = $this->createForm(CreateTerritoryAssignmentType::class, $command);
@@ -53,7 +57,7 @@ final class TerritoryAssignmentController extends AbstractController
         ]);
     }
 
-    public function update(Request $request, int $id): Response
+    public function update(Request $request, AggregateRootId $id): Response
     {
         $territoryAssignment = $this->territoryAssignmentRepository->findOneById($id);
         if ($territoryAssignment === null) {

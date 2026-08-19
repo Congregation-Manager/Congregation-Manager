@@ -7,6 +7,7 @@ namespace CongregationManager\Component\Core\Domain;
 use CongregationManager\Component\Congregation\Domain\Brother as BaseBrother;
 use CongregationManager\Component\Congregation\Domain\CongregationInterface;
 use CongregationManager\Component\TerritoryManager\Domain\TerritoryAssignmentInterface;
+use CongregationManager\Contract\Resource\AggregateRootId;
 use DateTimeInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -23,6 +24,7 @@ class Brother extends BaseBrother implements BrotherInterface
     protected Collection $territoryAssignments;
 
     public function __construct(
+        AggregateRootId $id,
         string $firstName,
         string $lastName,
         CongregationInterface $congregation,
@@ -31,7 +33,7 @@ class Brother extends BaseBrother implements BrotherInterface
         ?DateTimeInterface $birthDate = null,
         ?DateTimeInterface $baptismDate = null,
     ) {
-        parent::__construct($firstName, $lastName, $congregation, $male, $middleName, $birthDate, $baptismDate);
+        parent::__construct($id, $firstName, $lastName, $congregation, $male, $middleName, $birthDate, $baptismDate);
 
         $this->territoryAssignments = new ArrayCollection();
     }

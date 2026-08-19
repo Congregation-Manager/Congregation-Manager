@@ -9,6 +9,7 @@ use CongregationManager\Component\TerritoryManager\Domain\AreaInterface;
 use CongregationManager\Component\TerritoryManager\Domain\MunicipalityInterface;
 use CongregationManager\Component\TerritoryManager\Domain\ProvinceInterface;
 use CongregationManager\Component\TerritoryManager\Domain\TerritoryInterface;
+use CongregationManager\Contract\Resource\AggregateRootId;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 
@@ -34,9 +35,9 @@ class Congregation extends BaseCongregation implements CongregationInterface
      */
     protected Collection $territories;
 
-    public function __construct(string $name)
+    public function __construct(AggregateRootId $id, string $name)
     {
-        parent::__construct($name);
+        parent::__construct($id, $name);
         $this->provinces = new ArrayCollection();
         $this->municipalities = new ArrayCollection();
         $this->areas = new ArrayCollection();

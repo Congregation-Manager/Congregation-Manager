@@ -5,15 +5,18 @@ declare(strict_types=1);
 namespace CongregationManager\Component\User\Domain;
 
 use CongregationManager\Contract\Resource\AggregateRoot;
+use CongregationManager\Contract\Resource\AggregateRootId;
 use DateTimeInterface;
 
 class ResetPasswordRequest extends AggregateRoot implements ResetPasswordRequestInterface
 {
     public function __construct(
+        AggregateRootId $id,
         protected DateTimeInterface $expiresAt,
         protected string $hashedToken,
         protected UIUserInterface $user,
     ) {
+        parent::__construct($id);
     }
 
     #[\Override]

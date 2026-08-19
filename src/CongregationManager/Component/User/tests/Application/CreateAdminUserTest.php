@@ -9,6 +9,7 @@ use CongregationManager\Component\Core\Domain\AdminUser;
 use CongregationManager\Component\Core\Domain\Factory\AdminUserFactory;
 use CongregationManager\Component\Core\Infrastructure\InMemory\Repository\AdminUserRepository;
 use CongregationManager\Component\User\Infrastructure\InMemory\Hasher\UserPasswordHasher;
+use CongregationManager\Contract\Resource\IncrementingIdGenerator;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -32,7 +33,7 @@ final class CreateAdminUserTest extends TestCase
         $this->adminUserRepository = new AdminUserRepository();
         $this->userPasswordHasher = new UserPasswordHasher();
         $this->createAdminUser = new CreateAdminUser(
-            new AdminUserFactory(),
+            new AdminUserFactory(new IncrementingIdGenerator()),
             $this->adminUserRepository,
             $this->userPasswordHasher
         );

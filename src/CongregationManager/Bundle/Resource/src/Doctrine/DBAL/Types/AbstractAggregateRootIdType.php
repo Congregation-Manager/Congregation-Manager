@@ -17,6 +17,10 @@ abstract class AbstractAggregateRootIdType extends Type
         if ($value === null) {
             return null;
         }
+        // the custom id generator hands back an identifier that is already converted
+        if ($value instanceof AggregateRootId) {
+            return $value;
+        }
 
         return $this->getCurrentTypeConvertToPHPValueImplementation($value);
     }
@@ -27,9 +31,15 @@ abstract class AbstractAggregateRootIdType extends Type
         if ($value === null) {
             return null;
         }
-        // @TODO Is this the right way? See features/account/app_accept_invite.feature:12 scenario
+        // Forms hand over the raw identifier, and an untouched optional field gives an
+        // empty string: let the concrete type decide whether the string is an identifier.
         if (is_string($value)) {
-            return $value;
+            if ($value === '') {
+                return null;
+            }
+
+            return $this->getCurrentTypeConvertToPHPValueImplementation($value)
+                ->convertToDatabaseValue();
         }
         if ($value instanceof AggregateRootId) {
             return $value->convertToDatabaseValue();

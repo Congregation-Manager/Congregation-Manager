@@ -6,6 +6,7 @@ namespace CongregationManager\Component\TerritoryManager\Domain;
 
 use ArrayIterator;
 use CongregationManager\Contract\Resource\AggregateRoot;
+use CongregationManager\Contract\Resource\AggregateRootId;
 use DateTimeInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -25,10 +26,12 @@ class Territory extends AggregateRoot implements TerritoryInterface
     protected ?Collection $sortedTerritoryAssignments = null;
 
     public function __construct(
+        AggregateRootId $id,
         protected AreaInterface $area,
         protected int $number,
         protected ?string $description = null
     ) {
+        parent::__construct($id);
         $this->territoryAssignments = new ArrayCollection();
     }
 

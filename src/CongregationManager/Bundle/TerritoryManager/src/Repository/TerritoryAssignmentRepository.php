@@ -8,6 +8,7 @@ use CongregationManager\Bundle\Resource\Repository\ResourceRepository;
 use CongregationManager\Component\Core\Domain\TerritoryAssignment;
 use CongregationManager\Component\TerritoryManager\Domain\Repository\TerritoryAssignmentRepositoryInterface;
 use CongregationManager\Component\TerritoryManager\Domain\TerritoryAssignmentInterface;
+use CongregationManager\Contract\Resource\AggregateRootId;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -28,7 +29,7 @@ final class TerritoryAssignmentRepository extends ResourceRepository implements 
     }
 
     #[\Override]
-    public function findOneById(int $id): ?TerritoryAssignmentInterface
+    public function findOneById(AggregateRootId $id): ?TerritoryAssignmentInterface
     {
         return $this->find($id);
     }

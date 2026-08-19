@@ -15,12 +15,14 @@ use CongregationManager\Component\Core\Domain\Province;
 use CongregationManager\Component\Core\Domain\ProvinceInterface;
 use CongregationManager\Component\Core\Domain\Repository\TerritoryRepositoryInterface;
 use CongregationManager\Component\Core\Domain\Territory;
+use CongregationManager\Contract\Resource\IdGeneratorInterface;
 use Doctrine\ORM\EntityManagerInterface;
 use Webmozart\Assert\Assert;
 
 final readonly class TerritoryContext implements Context
 {
     public function __construct(
+        private IdGeneratorInterface $idGenerator,
         private SharedStorageInterface $sharedStorage,
         private TerritoryRepositoryInterface $territoryRepository,
         private EntityManagerInterface $entityManager,
@@ -36,7 +38,9 @@ final readonly class TerritoryContext implements Context
         $congregation = $this->sharedStorage->get('congregation');
         Assert::isInstanceOf($congregation, CongregationInterface::class);
 
-        $territory = new Territory($congregation, $this->createAreaByCongregation($congregation), $number);
+        $territory = new Territory($this->idGenerator->generateNew(), $congregation, $this->createAreaByCongregation(
+            $congregation
+        ), $number);
 
         $this->territoryRepository->add($territory);
         $this->entityManager->flush();
@@ -46,7 +50,7 @@ final readonly class TerritoryContext implements Context
 
     private function createProvinceByCongregation(CongregationInterface $congregation): ProvinceInterface
     {
-        $province = new Province($congregation, 'Carrollton');
+        $province = new Province($this->idGenerator->generateNew(), $congregation, 'Carrollton');
         $this->entityManager->persist($province);
 
         return $province;
@@ -55,6 +59,7 @@ final readonly class TerritoryContext implements Context
     private function createMunicipalityByCongregation(CongregationInterface $congregation): MunicipalityInterface
     {
         $municipality = new Municipality(
+            $this->idGenerator->generateNew(),
             $congregation,
             $this->createProvinceByCongregation($congregation),
             'Carrollton'
@@ -66,7 +71,9 @@ final readonly class TerritoryContext implements Context
 
     private function createAreaByCongregation(CongregationInterface $congregation): AreaInterface
     {
-        $area = new Area($congregation, $this->createMunicipalityByCongregation($congregation), 'Carrollton');
+        $area = new Area($this->idGenerator->generateNew(), $congregation, $this->createMunicipalityByCongregation(
+            $congregation
+        ), 'Carrollton');
         $this->entityManager->persist($area);
 
         return $area;

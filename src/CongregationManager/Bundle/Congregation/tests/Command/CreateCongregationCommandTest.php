@@ -45,7 +45,6 @@ final class CreateCongregationCommandTest extends KernelTestCase
         $this->assertCount(1, $congregations);
         $congregation = $congregations[0];
         $this->assertInstanceOf(CongregationInterface::class, $congregation);
-        $this->assertNotNull($congregation->getId());
         $this->assertSame('Carrollton', $congregation->getName());
         $this->assertCount(0, $congregation->getBrothers());
     }

@@ -12,7 +12,17 @@ return static function (DoctrineConfig $doctrine): void {
         ->type(
             'integer_aggregate_root_id',
             CongregationManager\Bundle\Resource\Doctrine\DBAL\Types\IntegerAggregateRootIdType::class
+        )
+        ->type(
+            'uuid_aggregate_root_id',
+            CongregationManager\Bundle\Resource\Doctrine\DBAL\Types\UuidAggregateRootIdType::class
         );
+
+    // so that schema introspection maps a uuid column back onto the custom type
+    $doctrine
+        ->dbal()
+        ->connection('default')
+        ->mappingType('uuid', 'uuid_aggregate_root_id');
 
     $emDefault = $doctrine->orm()
         ->entityManager('default');

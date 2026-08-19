@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace CongregationManager\Component\TerritoryManager\Domain\Repository;
 
 use CongregationManager\Component\TerritoryManager\Domain\ProvinceInterface;
+use CongregationManager\Contract\Resource\AggregateRootId;
 
 interface ProvinceRepositoryInterface
 {
@@ -13,7 +14,7 @@ interface ProvinceRepositoryInterface
      */
     public function findAll();
 
-    public function findOneById(int $id): ?ProvinceInterface;
+    public function findOneById(AggregateRootId $id): ?ProvinceInterface;
 
     public function add(ProvinceInterface $province): void;
 }

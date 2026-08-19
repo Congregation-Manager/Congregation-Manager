@@ -6,6 +6,7 @@ namespace CongregationManager\Component\Congregation\Infrastructure\Repository\I
 
 use CongregationManager\Component\Congregation\Domain\CongregationInterface;
 use CongregationManager\Component\Congregation\Domain\Repository\CongregationRepositoryInterface;
+use CongregationManager\Contract\Resource\AggregateRootId;
 
 final class CongregationRepository implements CongregationRepositoryInterface
 {
@@ -31,10 +32,10 @@ final class CongregationRepository implements CongregationRepositoryInterface
     }
 
     #[\Override]
-    public function findOneById(int $id): ?CongregationInterface
+    public function findOneById(AggregateRootId $id): ?CongregationInterface
     {
         foreach ($this->congregations as $congregation) {
-            if ($congregation->getId() === $id) {
+            if ($congregation->getId()->equals($id)) {
                 return $congregation;
             }
         }

@@ -7,11 +7,13 @@ namespace CongregationManager\Behat\Context\Setup;
 use Behat\Behat\Context\Context;
 use CongregationManager\Behat\Services\SharedStorageInterface;
 use CongregationManager\Component\Core\Domain\Congregation;
+use CongregationManager\Contract\Resource\IdGeneratorInterface;
 use Doctrine\ORM\EntityManagerInterface;
 
 final readonly class CongregationContext implements Context
 {
     public function __construct(
+        private IdGeneratorInterface $idGenerator,
         private EntityManagerInterface $entityManager,
         private SharedStorageInterface $sharedStorage
     ) {
@@ -22,7 +24,7 @@ final readonly class CongregationContext implements Context
      */
     public function thereIsACongregation(string $name): void
     {
-        $congregation = new Congregation($name);
+        $congregation = new Congregation($this->idGenerator->generateNew(), $name);
         $this->entityManager->persist($congregation);
         $this->entityManager->flush();
         $this->sharedStorage->set('congregation', $congregation);

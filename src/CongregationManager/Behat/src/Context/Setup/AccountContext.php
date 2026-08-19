@@ -14,6 +14,7 @@ use CongregationManager\Bundle\Core\Entity\AppUIUserInterface;
 use CongregationManager\Bundle\Core\Entity\AppUser;
 use CongregationManager\Component\Core\Application\CreateAppUserInvitation;
 use CongregationManager\Component\Core\Domain\BrotherInterface;
+use CongregationManager\Contract\Resource\IdGeneratorInterface;
 use DateTimeImmutable;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
@@ -24,6 +25,7 @@ use Webmozart\Assert\Assert;
 final readonly class AccountContext implements Context
 {
     public function __construct(
+        private IdGeneratorInterface $idGenerator,
         private EntityManagerInterface $entityManager,
         private UserPasswordHasherInterface $userPasswordHasher,
         private ResetPasswordTokenGenerator $tokenGenerator,
@@ -47,7 +49,7 @@ final readonly class AccountContext implements Context
         /** @var ?BrotherInterface $brother */
         $brother = $this->sharedStorage->get('brother');
         Assert::isInstanceOf($brother, BrotherInterface::class);
-        $appUser = new AppUser($brother, $email);
+        $appUser = new AppUser($this->idGenerator->generateNew(), $brother, $email);
         $appUser->setPassword($this->userPasswordHasher->hashPassword($appUser, $password));
 
         $this->entityManager->persist($appUser);
@@ -60,7 +62,7 @@ final readonly class AccountContext implements Context
      */
     public function thereIsAnAdminUserWithEmailAndPassword(string $email, string $password = 'password'): void
     {
-        $adminUser = new AdminUser($email);
+        $adminUser = new AdminUser($this->idGenerator->generateNew(), $email);
         $adminUser->setPassword($this->userPasswordHasher->hashPassword($adminUser, $password));
 
         $this->entityManager->persist($adminUser);
@@ -163,7 +165,7 @@ final readonly class AccountContext implements Context
      */
     public function iAmLoggedInAs(BrotherInterface $brother): void
     {
-        $appUser = new AppUser($brother, 'user@cm.org');
+        $appUser = new AppUser($this->idGenerator->generateNew(), $brother, 'user@cm.org');
         $appUser->setPassword($this->userPasswordHasher->hashPassword($appUser, 'password'));
 
         $this->entityManager->persist($appUser);
