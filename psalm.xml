@@ -12,6 +12,7 @@
         <directory name="src"/>
         <ignoreFiles>
             <directory name="vendor"/>
+            <directory name="src/CongregationManager/Bundle/*/Migrations"/>
             <file name="src/CongregationManager/Bundle/Congregation/config/packages/doctrine.php"/>
             <file name="src/CongregationManager/Bundle/Resource/config/packages/doctrine.php"/>
             <file name="src/CongregationManager/Bundle/TerritoryManager/config/packages/doctrine.php"/>

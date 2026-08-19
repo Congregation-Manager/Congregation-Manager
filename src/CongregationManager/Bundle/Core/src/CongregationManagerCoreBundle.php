@@ -18,4 +18,18 @@ final class CongregationManagerCoreBundle extends AbstractBundle
     {
         $configurator->import('../config/services.php');
     }
+
+    /**
+     * The schema belongs to the bundle that maps it, so installing the bundle is enough
+     * to get the migrations: the application does not have to know where they live.
+     */
+    #[\Override]
+    public function prependExtension(ContainerConfigurator $configurator, ContainerBuilder $container): void
+    {
+        $container->prependExtensionConfig('doctrine_migrations', [
+            'migrations_paths' => [
+                'CongregationManager\Bundle\Core\Migrations' => __DIR__ . '/../Migrations',
+            ],
+        ]);
+    }
 }
