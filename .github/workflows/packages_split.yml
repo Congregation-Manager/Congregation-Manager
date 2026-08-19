@@ -11,7 +11,26 @@ env:
     GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
 
 jobs:
+    check_token:
+        runs-on: ubuntu-latest
+        steps:
+            -
+                name: "Verify the token can push to the split repositories"
+                env:
+                    GH_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+                run: |
+                    if [ -z "$GH_TOKEN" ]; then
+                        echo "::error::ACCESS_TOKEN is not set"
+                        exit 1
+                    fi
+                    push_allowed=$(gh api repos/${{ github.repository_owner }}/core-bundle --jq '.permissions.push')
+                    if [ "$push_allowed" != "true" ]; then
+                        echo "::error::ACCESS_TOKEN cannot push to the split repositories: renew it"
+                        exit 1
+                    fi
+
     packages_split:
+        needs: check_token
         runs-on: ubuntu-latest
 
         strategy:
@@ -23,12 +42,38 @@ jobs:
                         local_path: 'src/CongregationManager/Contract/Resource'
                         split_repository: 'resource-contract'
                     -
+                        local_path: 'src/CongregationManager/Component/Congregation'
+                        split_repository: 'congregation'
+                    -
+                        local_path: 'src/CongregationManager/Component/Core'
+                        split_repository: 'core'
+                    -
+                        local_path: 'src/CongregationManager/Component/TerritoryManager'
+                        split_repository: 'territory-manager'
+                    -
+                        local_path: 'src/CongregationManager/Component/User'
+                        split_repository: 'user'
+                    -
                         local_path: 'src/CongregationManager/Bundle/Admin'
                         split_repository: 'admin-bundle'
                     -
                         local_path: 'src/CongregationManager/Bundle/App'
                         split_repository: 'app-bundle'
-
+                    -
+                        local_path: 'src/CongregationManager/Bundle/Congregation'
+                        split_repository: 'congregation-bundle'
+                    -
+                        local_path: 'src/CongregationManager/Bundle/Core'
+                        split_repository: 'core-bundle'
+                    -
+                        local_path: 'src/CongregationManager/Bundle/Resource'
+                        split_repository: 'resource-bundle'
+                    -
+                        local_path: 'src/CongregationManager/Bundle/TerritoryManager'
+                        split_repository: 'territory-manager-bundle'
+                    -
+                        local_path: 'src/CongregationManager/Bundle/User'
+                        split_repository: 'user-bundle'
         steps:
             -
                 uses: actions/checkout@v4
@@ -36,7 +81,7 @@ jobs:
             # no tag
             -
                 if: "!startsWith(github.ref, 'refs/tags/')"
-                uses: "symplify/monorepo-split-github-action@v2.3.0"
+                uses: "symplify/monorepo-split-github-action@v2.4.5"
                 with:
                     package_directory: '${{ matrix.package.local_path }}'
 
@@ -49,7 +94,7 @@ jobs:
             # with tag
             -
                 if: "startsWith(github.ref, 'refs/tags/')"
-                uses: "symplify/monorepo-split-github-action@v2.3.0"
+                uses: "symplify/monorepo-split-github-action@v2.4.5"
                 with:
                     tag: ${GITHUB_REF#refs/tags/}
 
